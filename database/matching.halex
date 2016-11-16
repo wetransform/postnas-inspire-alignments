@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<hale-project version="3.1.0.SNAPSHOT">
+    <name>Generated schema-to-schema mapping</name>
+    <author>Generated</author>
+    <modified>2016-11-16T17:27:58.605+01:00</modified>
+    <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
+        <setting name="charset">UTF-8</setting>
+        <setting name="projectFiles.separate">false</setting>
+        <setting name="target">file:/home/simon/repos/rlp-inspire-alignments/database/matching.halex</setting>
+    </save-config>
+    <resource action-id="eu.esdihumboldt.hale.io.schema.read.source" provider-id="eu.esdihumboldt.hale.io.xsd.reader">
+        <setting name="charset">UTF-8</setting>
+        <setting name="source">file:/home/simon/repos/rlp-inspire-alignments/adv-alignments/schemas/NAS_6.0.1/schema/aaa.xsd</setting>
+        <setting name="contentType">eu.esdihumboldt.hale.io.xsd</setting>
+    </resource>
+    <resource action-id="eu.esdihumboldt.hale.io.schema.read.target" provider-id="eu.esdihumboldt.hale.common.schema.persist.hsd.read">
+        <setting name="charset">UTF-8</setting>
+        <setting name="source">file:/home/simon/repos/rlp-inspire-alignments/database/schema.hsd</setting>
+        <setting name="contentType">eu.esdihumboldt.hale.common.schema.hsd</setting>
+    </resource>
+    <file name="alignment.xml" location="matching.halex.alignment.xml"/>
+</hale-project>
