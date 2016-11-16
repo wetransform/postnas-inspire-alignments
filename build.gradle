@@ -65,6 +65,46 @@ task('dbMatching', type: HaleCommandLine) {
   group 'Alignment migration'
 }
 
+
+def json = new groovy.json.JsonSlurper()
+def migrations = json.parse(file(project.hasProperty('migrationsFile') ? project.getProperty('migrationsFile') : 'migrations.json'))
+
+task('migrate-all') {
+  description "Runs all migration tasks (for all configured projects)."
+  group 'Alignment migration'
+}
+
+migrations.each { name, config ->
+  if (config.enabled != null && !config.enabled) {
+    return
+  }
+
+  def projectsDir = file('projects')
+  if (!projectsDir.exists()) projectsDir.mkdirs()
+  def autoProjectFile = new File(projectsDir, "${name}-auto.halex")
+
+  // add migration task for each key
+  task("migrate-$name", type: HaleCommandLine) {
+    args = [
+      'project',
+      'migrate',
+      'matching',
+      '--source-project',
+      advAlignmentsPath + '/' + config.advProject,
+      '--matching-project',
+      'database/matching.halex', // PostNAS
+      '--target',
+      autoProjectFile as String
+    ]
+
+    description "Migrate AdV project ${config.advProject} to PostNAS schema"
+    group 'Alignment migration'
+  }
+
+  tasks['migrate-all'].dependsOn("migrate-$name")
+
+}
+
 // task and helper classes
 
 /**
