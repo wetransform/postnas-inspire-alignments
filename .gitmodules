@@ -1,0 +1,3 @@
+[submodule "adv-alignments"]
+	path = adv-alignments
+	url = git@github.com:wetransform/adv-inspire-alignments.git
