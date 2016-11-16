@@ -1,5 +1,7 @@
 project.ext.useCommandLine = project.hasProperty('haleCliExecutable')
 
+project.ext.advAlignmentsPath = project.hasProperty('advAlignments') ? project.getProperty('advAlignments') : 'adv-alignments'
+
 def cliVersion = '3.1.0-SNAPSHOT'
 
 if (!project.ext.useCommandLine) {
@@ -42,8 +44,25 @@ if (!project.ext.useCommandLine) {
 
   dependencies {
     // hale CLI
-    hale "to.wetransform:hale-cli:$cliVersion"
+    // hale "to.wetransform:hale-cli:$cliVersion"
+    hale "to.wetransform:hale-cli-rlp:$cliVersion"
   }
+}
+
+task('dbMatching', type: HaleCommandLine) {
+  args = [
+    'rlp',
+    'match-schemas',
+    '--reference-schema',
+    advAlignmentsPath + '/schemas/NAS_6.0.1/schema/aaa.xsd',
+    '--target-schema',
+    'database/schema.hsd',
+    '--target',
+    'database/matching.halex'
+  ]
+
+  description "Generate matching project between AAA XSD and RLP PostNAS schemas"
+  group 'Alignment migration'
 }
 
 // task and helper classes
