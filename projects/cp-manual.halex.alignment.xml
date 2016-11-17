@@ -1,62 +1,203 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <alignment xmlns="http://www.esdi-humboldt.eu/hale/alignment">
     <customFunction>
-        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.id.default" name="AdV INSPIRE localId" type="groovy">
-            <cf:input eager="true" maxOccurs="-1" minOccurs="1" name="id">
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
+            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
+                <cf:binding>java.lang.String</cf:binding>
+            </cf:input>
+            <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                 <cf:binding>java.lang.String</cf:binding>
             </cf:input>
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
-                <cf:binding>java.lang.String</cf:binding>
+                <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </cf:output>
+            <cf:param maxOccurs="1" minOccurs="0" name="source">
+                <cf:description>
+                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Quelle des Namens. Falls nicht angegeben wird sie aus einer Projekt-Variable bestimmt.</core:text>
+                </cf:description>
+                <cf:display value="Source of name"/>
+                <cf:binding>java.lang.String</cf:binding>
+            </cf:param>
+            <cf:param maxOccurs="1" minOccurs="0" name="nameStatus">
+                <cf:description>
+                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Status des Namens. Falls nicht angegeben wird als Standardwert official angenommen.</core:text>
+                </cf:description>
+                <cf:display value="nameStatus"/>
+                <cf:value>standardised</cf:value>
+                <cf:value>other</cf:value>
+                <cf:value>official</cf:value>
+                <cf:value>historical</cf:value>
+                <cf:value>unpopulated</cf:value>
+                <cf:value>unknown</cf:value>
+            </cf:param>
+            <cf:param maxOccurs="1" minOccurs="0" name="nativeness">
+                <cf:description>
+                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Ortsüblichkeit des Namens. Falls nicht angegeben wird als Standardwert endonym angenommen.</core:text>
+                </cf:description>
+                <cf:display value="nativeness"/>
+                <cf:value>endonym</cf:value>
+                <cf:value>unpopulated</cf:value>
+                <cf:value>exonym</cf:value>
+                <cf:value>unknown</cf:value>
+            </cf:param>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-// alle Quell-IDs als Liste
-def identifiers = id.p.values()
+def name = lagebezeichnung.p.unverschluesselt.value()
 
-def id
+if (!name) {
+	// Namen auch aus verschlüsselter Lagebezeichnung ableiten
+	
+	def gemeinde = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde.value()
+	def kreis = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.kreis.value()
+	def lage = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.lage.value()
+	def land = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.land.value()
+	def reg = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.regierungsbezirk.value()
 
-if (identifiers.size() == 1) {
-  // verwende Original-ID falls nur eine Quelle
-  id = identifiers[0]
+	if (land &amp;&amp; gemeinde &amp;&amp; kreis &amp;&amp; lage) {
+		if (!reg) reg = '0'
+		def schluesselGesamt = "$land$reg$kreis$gemeinde$lage"
+		
+		withTransformationContext {
+			def collect = _.context.collector(it)
+	  
+			// Name zu Schlüssel der Lagebezeichnung aus Index holen
+			name = collect.lagebezeichnung[schluesselGesamt].value()
+		}
+	}
+}
+
+if (name) {
+	def sourceName_var = _project.vars.get('ADV_MODELLART', null)
+
+	_target {
+		// source
+
+		// Priorität 1 - feste Quelle
+		if (_params.source) {
+			sourceOfName( _params.source )
+		}
+		// Priorität 2 - aus Projektvariable
+		else if (sourceName_var) {
+			sourceOfName( sourceName_var )
+		}
+		else {
+			sourceOfName {
+				nilReason( 'unknown' )
+			}
+		}
+
+		// nativeness
+		def nn = _params.nativeness
+		if (nn) {
+			if (nn == 'unpopulated') {
+				nativeness {
+					nilReason( 'other:unpopulated' )
+				}
+			}
+			else if (nn == 'unknown') {
+				nativeness {
+					nilReason( 'unknown' )
+				}
+			}
+			else {
+				nativeness {
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/' + nn )
+				}
+			}
+		}
+		else {
+			// default for nativeness if not specified is endonym
+			nativeness {
+				href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )
+			}
+		}
+
+		// nameStatus
+		def ns = _params.nameStatus
+		if (ns) {
+			if (ns == 'unpopulated') {
+				nameStatus {
+					nilReason( 'other:unpopulated' )
+				}
+			}
+			else if (ns == 'unknown') {
+				nameStatus {
+					nilReason( 'unknown' )
+				}
+			}
+			else {
+				nameStatus {
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/' + ns )
+				}
+			}
+		}
+		else {
+			// default for nameStatus if not specified is official
+			nameStatus {
+				href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/official' )
+			}
+		}
+
+		// spelling
+		spelling {
+			SpellingOfName {
+				text( name )
+				script( 'Latn' )
+			}
+		}
+		// language
+		language( 'deu' )
+	}
 }
 else {
-  // sortieren (TODO spezielle Ordnung benötigt?)
-  identifiers = identifiers.sort()
-
-  def identString = identifiers.join()
-
-  id = '_' + _.crypto.sha256(identString)
+	throw new NoResultException()
 }
-
-// Ziel-Typ als Präfix
-if (true /*_params.useTargetTypePrefix*/) {
-  def targetType = _targetType.definition.name.localPart
-  if (targetType) {
-    if (targetType.endsWith('Type')) {
-      targetType = targetType[0..-5]
-    }
-  
-    if (!id.startsWith('_')) {
-      id = '_' + id
-    }
-    id = targetType + id
-  }
-}
-
-id
 </core:text>
             </cf:definition>
             <cf:explanation>
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Bestimmung einer INSPIRE localId oder GML id aus Fachkennzeichen oder AAA-ObjektIDs.
+Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.
+Eine unverschlüsselte Lagebezeichnung wird direkt übernommen, eine verschlüsselte Lagebezeichnung wird versucht über einen Index nachzuschlagen.
 
-Für eine einzige Quell-ID wird diese direkt herangezogen.
+Die Sprache wird als Deutsch angenommen.
 
-Andernfalls wird unter Verwendung des SHA256-Algorithmus ein Hash-Wert aus den sortierten und dann konkatenierten Quell-IDs gebildet und hexadezimal kodiert.
-
-Außerdem wird der Name des Feature-Typs des Ziel-Modells als Präfix vorangestellt. Dabei wird sichergestellt dass der Typ-Name von den weiteren Teilen der ID durch einen Unterstrich getrennt ist.
+&lt;% if (_params.nameStatus) {
+  if (_params.nameStatus == 'unpopulated') {
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
+  }
+  else if (_params.nameStatus == 'unknown') {
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
+  }
+  else {
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
+  }
+}
+else {
+  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
+}
+out &lt;&lt; "\n\n"
+if (_params.nativeness) {
+  if (_params.nativeness == 'unpopulated') {
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
+  }
+  else if (_params.nativeness == 'unknown') {
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
+  }
+  else {
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
+  }
+}
+else {
+  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
+}
+out &lt;&lt; "\n\n"
+if (_params.source) {&#xD;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
+} else {&#xD;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
+} %&gt;
 </core:text>
                     </cf:template>
                 </cf:locale>
@@ -261,30 +402,6 @@ if (_params.source) {&#xD;
         </cf:custom-property-function>
     </customFunction>
     <customFunction>
-        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.namespace" name="AdV INSPIRE ID namespace" type="groovy">
-            <cf:output eager="false" maxOccurs="1" minOccurs="1">
-                <cf:binding>java.lang.String</cf:binding>
-            </cf:output>
-            <cf:definition>
-                <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-// verwende Wert aus Projekt-Variable "INSPIRE_NAMESPACE"
-_project.vars.INSPIRE_NAMESPACE
-</core:text>
-            </cf:definition>
-            <cf:explanation>
-                <cf:locale country="" language="" variant="">
-                    <cf:template>
-                        <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Setzt $_target auf den für den Datensatz vorgegebenen festen INSPIRE Namespace.
-
-Der für Datenanbieter und Datensatz spezifische Namespace muss dafür als Vorgabe (Projekt-Variable) konfiguriert werden.
-</core:text>
-                    </cf:template>
-                </cf:locale>
-            </cf:explanation>
-        </cf:custom-property-function>
-    </customFunction>
-    <customFunction>
         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.date.earliest" name="Jüngstes Datum" type="groovy">
             <cf:input eager="true" maxOccurs="-1" minOccurs="1" name="dates">
                 <cf:binding>java.lang.String</cf:binding>
@@ -341,8 +458,8 @@ values[-1]
         </cf:custom-property-function>
     </customFunction>
     <customFunction>
-        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.uom.toucum" name="AdV Maßeinheit zu UCUM" type="groovy">
-            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="uom">
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.id.default" name="AdV INSPIRE localId" type="groovy">
+            <cf:input eager="true" maxOccurs="-1" minOccurs="1" name="id">
                 <cf:binding>java.lang.String</cf:binding>
             </cf:input>
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
@@ -350,44 +467,53 @@ values[-1]
             </cf:output>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!uom) {
-	throw new NoResultException()
+// alle Quell-IDs als Liste
+def identifiers = id.p.values()
+
+def id
+
+if (identifiers.size() == 1) {
+  // verwende Original-ID falls nur eine Quelle
+  id = identifiers[0]
+}
+else {
+  // sortieren (TODO spezielle Ordnung benötigt?)
+  identifiers = identifiers.sort()
+
+  def identString = identifiers.join()
+
+  id = '_' + _.crypto.sha256(identString)
 }
 
-def result
-
-// Mapping auf UCUM
-switch(uom) {
-case 'urn:adv:uom:m2':
-	result = 'm2'
-	break
-case 'urn:adv:uom:m':
-	result = 'm'
-	break
+// Ziel-Typ als Präfix
+if (true /*_params.useTargetTypePrefix*/) {
+  def targetType = _targetType.definition.name.localPart
+  if (targetType) {
+    if (targetType.endsWith('Type')) {
+      targetType = targetType[0..-5]
+    }
+  
+    if (!id.startsWith('_')) {
+      id = '_' + id
+    }
+    id = targetType + id
+  }
 }
 
-if (!result) {
-	// Transformations-Warnung falls kein Mapping auf UCUM vorhanden
-	_log.warn("Unknown UCUM representation for unit of measurment $uom, using code as-is")
-	result = uom
-}
-
-result
+id
 </core:text>
             </cf:definition>
             <cf:explanation>
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Abbildung von Maßeinheiten aus AdV URNs nach UCUM
+Bestimmung einer INSPIRE localId oder GML id aus Fachkennzeichen oder AAA-ObjektIDs.
 
-*Keine vollständige Abbildung, muss ggf. ergänzt werden.*
+Für eine einzige Quell-ID wird diese direkt herangezogen.
 
-Aktuell ist folgende Abbildung umgesetzt:
+Andernfalls wird unter Verwendung des SHA256-Algorithmus ein Hash-Wert aus den sortierten und dann konkatenierten Quell-IDs gebildet und hexadezimal kodiert.
 
-- `urn:adv:uom:m2` zu `m2`
-- `urn:adv:uom:m`zu `m`
-
+Außerdem wird der Name des Feature-Typs des Ziel-Modells als Präfix vorangestellt. Dabei wird sichergestellt dass der Typ-Name von den weiteren Teilen der ID durch einen Unterstrich getrennt ist.
 </core:text>
                     </cf:template>
                 </cf:locale>
@@ -476,203 +602,77 @@ Der `codeSpace` für den GML identifier wird als `http://inspire.ec.europa.eu/id
         </cf:custom-property-function>
     </customFunction>
     <customFunction>
-        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
-            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
-                <cf:binding>java.lang.String</cf:binding>
-            </cf:input>
-            <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
-                <cf:binding>java.lang.String</cf:binding>
-            </cf:input>
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.namespace" name="AdV INSPIRE ID namespace" type="groovy">
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
-                <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </cf:output>
-            <cf:param maxOccurs="1" minOccurs="0" name="source">
-                <cf:description>
-                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Quelle des Namens. Falls nicht angegeben wird sie aus einer Projekt-Variable bestimmt.</core:text>
-                </cf:description>
-                <cf:display value="Source of name"/>
                 <cf:binding>java.lang.String</cf:binding>
-            </cf:param>
-            <cf:param maxOccurs="1" minOccurs="0" name="nameStatus">
-                <cf:description>
-                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Status des Namens. Falls nicht angegeben wird als Standardwert official angenommen.</core:text>
-                </cf:description>
-                <cf:display value="nameStatus"/>
-                <cf:value>standardised</cf:value>
-                <cf:value>other</cf:value>
-                <cf:value>official</cf:value>
-                <cf:value>historical</cf:value>
-                <cf:value>unpopulated</cf:value>
-                <cf:value>unknown</cf:value>
-            </cf:param>
-            <cf:param maxOccurs="1" minOccurs="0" name="nativeness">
-                <cf:description>
-                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Ortsüblichkeit des Namens. Falls nicht angegeben wird als Standardwert endonym angenommen.</core:text>
-                </cf:description>
-                <cf:display value="nativeness"/>
-                <cf:value>endonym</cf:value>
-                <cf:value>unpopulated</cf:value>
-                <cf:value>exonym</cf:value>
-                <cf:value>unknown</cf:value>
-            </cf:param>
+            </cf:output>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def name = lagebezeichnung.p.unverschluesselt.value()
-
-if (!name) {
-	// Namen auch aus verschlüsselter Lagebezeichnung ableiten
-	
-	def gemeinde = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde.value()
-	def kreis = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.kreis.value()
-	def lage = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.lage.value()
-	def land = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.land.value()
-	def reg = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.regierungsbezirk.value()
-
-	if (land &amp;&amp; gemeinde &amp;&amp; kreis &amp;&amp; lage) {
-		if (!reg) reg = '0'
-		def schluesselGesamt = "$land$reg$kreis$gemeinde$lage"
-		
-		withTransformationContext {
-			def collect = _.context.collector(it)
-	  
-			// Name zu Schlüssel der Lagebezeichnung aus Index holen
-			name = collect.lagebezeichnung[schluesselGesamt].value()
-		}
-	}
-}
-
-if (name) {
-	def sourceName_var = _project.vars.get('ADV_MODELLART', null)
-
-	_target {
-		// source
-
-		// Priorität 1 - feste Quelle
-		if (_params.source) {
-			sourceOfName( _params.source )
-		}
-		// Priorität 2 - aus Projektvariable
-		else if (sourceName_var) {
-			sourceOfName( sourceName_var )
-		}
-		else {
-			sourceOfName {
-				nilReason( 'unknown' )
-			}
-		}
-
-		// nativeness
-		def nn = _params.nativeness
-		if (nn) {
-			if (nn == 'unpopulated') {
-				nativeness {
-					nilReason( 'other:unpopulated' )
-				}
-			}
-			else if (nn == 'unknown') {
-				nativeness {
-					nilReason( 'unknown' )
-				}
-			}
-			else {
-				nativeness {
-					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/' + nn )
-				}
-			}
-		}
-		else {
-			// default for nativeness if not specified is endonym
-			nativeness {
-				href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )
-			}
-		}
-
-		// nameStatus
-		def ns = _params.nameStatus
-		if (ns) {
-			if (ns == 'unpopulated') {
-				nameStatus {
-					nilReason( 'other:unpopulated' )
-				}
-			}
-			else if (ns == 'unknown') {
-				nameStatus {
-					nilReason( 'unknown' )
-				}
-			}
-			else {
-				nameStatus {
-					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/' + ns )
-				}
-			}
-		}
-		else {
-			// default for nameStatus if not specified is official
-			nameStatus {
-				href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/official' )
-			}
-		}
-
-		// spelling
-		spelling {
-			SpellingOfName {
-				text( name )
-				script( 'Latn' )
-			}
-		}
-		// language
-		language( 'deu' )
-	}
-}
-else {
-	throw new NoResultException()
-}
+// verwende Wert aus Projekt-Variable "INSPIRE_NAMESPACE"
+_project.vars.INSPIRE_NAMESPACE
 </core:text>
             </cf:definition>
             <cf:explanation>
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.
-Eine unverschlüsselte Lagebezeichnung wird direkt übernommen, eine verschlüsselte Lagebezeichnung wird versucht über einen Index nachzuschlagen.
+Setzt $_target auf den für den Datensatz vorgegebenen festen INSPIRE Namespace.
 
-Die Sprache wird als Deutsch angenommen.
+Der für Datenanbieter und Datensatz spezifische Namespace muss dafür als Vorgabe (Projekt-Variable) konfiguriert werden.
+</core:text>
+                    </cf:template>
+                </cf:locale>
+            </cf:explanation>
+        </cf:custom-property-function>
+    </customFunction>
+    <customFunction>
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.uom.toucum" name="AdV Maßeinheit zu UCUM" type="groovy">
+            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="uom">
+                <cf:binding>java.lang.String</cf:binding>
+            </cf:input>
+            <cf:output eager="false" maxOccurs="1" minOccurs="1">
+                <cf:binding>java.lang.String</cf:binding>
+            </cf:output>
+            <cf:definition>
+                <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (!uom) {
+	throw new NoResultException()
+}
 
-&lt;% if (_params.nameStatus) {
-  if (_params.nameStatus == 'unpopulated') {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
-  }
-  else if (_params.nameStatus == 'unknown') {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
-  }
-  else {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
-  }
+def result
+
+// Mapping auf UCUM
+switch(uom) {
+case 'urn:adv:uom:m2':
+	result = 'm2'
+	break
+case 'urn:adv:uom:m':
+	result = 'm'
+	break
 }
-else {
-  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
+
+if (!result) {
+	// Transformations-Warnung falls kein Mapping auf UCUM vorhanden
+	_log.warn("Unknown UCUM representation for unit of measurment $uom, using code as-is")
+	result = uom
 }
-out &lt;&lt; "\n\n"
-if (_params.nativeness) {
-  if (_params.nativeness == 'unpopulated') {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
-  }
-  else if (_params.nativeness == 'unknown') {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
-  }
-  else {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
-  }
-}
-else {
-  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
-}
-out &lt;&lt; "\n\n"
-if (_params.source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
-} else {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
-} %&gt;
+
+result
+</core:text>
+            </cf:definition>
+            <cf:explanation>
+                <cf:locale country="" language="" variant="">
+                    <cf:template>
+                        <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+Abbildung von Maßeinheiten aus AdV URNs nach UCUM
+
+*Keine vollständige Abbildung, muss ggf. ergänzt werden.*
+
+Aktuell ist folgende Abbildung umgesetzt:
+
+- `urn:adv:uom:m2` zu `m2`
+- `urn:adv:uom:m`zu `m`
+
 </core:text>
                     </cf:template>
                 </cf:locale>
@@ -690,8 +690,8 @@ if (_params.source) {&#xD;
                 <type name="CadastralParcelType" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </class>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ceb874d7d-ec44-43ba-ba26-2004b0a8c78e" priority="normal">
         <source>
@@ -706,10 +706,10 @@ if (_params.source) {&#xD;
                 <child name="areaValue" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign" id="Cadaf7342-a74b-454d-b029-a86d793437e8" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C110e119c-01c3-4a9b-8825-b5ca67875d4c" priority="normal">
         <target>
             <property>
                 <type name="CadastralParcelType" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
@@ -732,8 +732,8 @@ if (_params.source) {&#xD;
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C7f209965-d6a1-4cf7-8b1e-bf4ff7ebe028" priority="normal">
         <target>
@@ -758,9 +758,9 @@ if (_params.source) {&#xD;
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="true" name="structuralRename"/>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ce6bf7947-2b16-446e-b4c9-5d0e39e5c0c8" priority="normal">
         <source name="id">
@@ -835,7 +835,6 @@ if (_params.source) {&#xD;
                 <child name="label" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="variablesAsInstances"/>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 if (nenner) {
@@ -846,6 +845,7 @@ else {
 }
 </core:text>
         </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
         <documentation>Falls ein *nenner* vorhanden ist das Ergebnis repräsentiert als `zaehler/nenner`, ansonsten wird nur der *zaehler* angegeben.</documentation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8fe37216-c8fe-40ef-a5f5-41fabf8cc024" priority="normal">
@@ -861,8 +861,8 @@ else {
                 <child name="nationalCadastralReference" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.geometric.interiorPoint" id="C3e2e3e1e-449b-4985-b1ce-f4a3a5fa8198" priority="normal">
         <source>
@@ -892,8 +892,8 @@ else {
                 <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C41ceffd5-78c3-4f15-a342-5e6f33b25b5f" priority="normal">
         <target>
@@ -919,7 +919,6 @@ else {
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
-        <parameter value="false" name="variablesAsInstances"/>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 // Land und Gemarkung: 1.-6. Stelle
@@ -937,6 +936,7 @@ else {
 } 
 </core:text>
         </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
         <documentation>Je nachdem ob es einen übergeordneten Gemarkungsteil/Flur gibt, wird die Verknüpfung zum Zoning hergestellt, das entweder einen Gemarkungsteil/Flur repräsentiert, oder eine Gemarkung.</documentation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C9c05084d-c56a-4f00-a2cb-a52632fad7af" priority="normal">
@@ -978,7 +978,7 @@ else {
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 // alle Eigenschaften mit Geometrien aus Flurstücken
-def geoms = _source.links.ax_flurstueck.p.wkb_geometry.list()
+def geoms = _source.links.ax_flurstueck.p.wkb_geometry.values()
 
 // führe den Join nicht aus wenn keine assoziierten Flurstücke
 // vorhanden sind
@@ -1050,7 +1050,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 // alle Eigenschaften mit Geometrien aus Flurstücken
-def geoms = _source.links.ax_flurstueck.p.wkb_geometry.list()
+def geoms = _source.links.ax_flurstueck.p.wkb_geometry.values()
 
 // führe den Join nicht aus wenn keine assoziierten Flurstücke
 // vorhanden sind
@@ -1134,14 +1134,14 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
 // sammle Geometrien von assoziierten Flurstücken
 
 // Flurnummer als Zahl
-def flur = _source.p.gemarkungsteilFlur.value() as Integer
+def flur = _source.p.gemarkungsteilflur.value() as Integer
 // alle Flurstücke der Gemarkung
 def fs = _source.links.ax_flurstueck.list()
 fs = fs.findAll {
   it.p.flurnummer.value() == flur
 }
 def geoms = fs.collect {
-  it.p.wkb_geometry.first()
+  it.p.wkb_geometry.value()
 }
 
 // führe den Join nicht aus wenn keine assoziierten Flurstücke
@@ -1187,8 +1187,8 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C5bfc7fdc-a782-48f1-b471-86da4c97a8ee" priority="normal">
         <source>
@@ -1203,8 +1203,8 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C5bfc7fdc-a782-48f1-b471-86da4c97a8ee" priority="normal">
         <source>
@@ -1219,8 +1219,8 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C3f86cfe1-7de4-41c0-9b0a-de46fd576ae4" priority="normal">
         <source>
@@ -1235,8 +1235,8 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C3f86cfe1-7de4-41c0-9b0a-de46fd576ae4" priority="normal">
         <source>
@@ -1251,8 +1251,8 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C3f86cfe1-7de4-41c0-9b0a-de46fd576ae4" priority="normal">
         <source>
@@ -1267,8 +1267,8 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cc2df1716-c68b-414c-ae38-d976a5b406eb" priority="normal">
         <target>
@@ -1446,8 +1446,8 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="label" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd3503205-d3dd-4065-b890-f0ca7bc48ab3" priority="normal">
         <source>
@@ -1462,8 +1462,8 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="label" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C9dfc4c6d-358f-435f-98f6-fec4fc45f55a" priority="normal">
         <source>
@@ -1478,8 +1478,8 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="label" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C31124838-4e0d-4aa1-a7f9-8aec658f8c1d" priority="normal">
         <source name="anchor">
@@ -1649,8 +1649,8 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="nationalCadastalZoningReference" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C477b8046-eca5-46d5-ac8d-17447e20dd02" priority="normal">
         <source>
@@ -1665,8 +1665,8 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="nationalCadastalZoningReference" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf39ce03f-c797-4bb5-a633-e244b1d715fe" priority="normal">
         <source>
@@ -1681,8 +1681,8 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="nationalCadastalZoningReference" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Ccdd35fbd-03f9-4740-9807-a15d901e43c7" priority="normal">
         <target>

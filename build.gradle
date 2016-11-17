@@ -166,7 +166,7 @@ migrations.each { name, config ->
         }
       } catch (e) {
         error = e
-      }  
+      }
       // recreate generated alignment file
       copy {
         from tempFile
@@ -178,12 +178,9 @@ migrations.each { name, config ->
 
       // handle git apply problem
       if (error) {
-        println "Error applying diff to update manually curated project"
-        println "Run"
-        println "     git add"
-        println "     git apply --3way ${projectDir.toPath().relativize(diffFile.toPath()).toString()}"
-        println "to try to apply the patch manually."
-        println "The apply may delete the generated alignment, make sure to undo that."
+        println "Error applying diff to update manually curated project."
+        println "Please check if you can apply the changes manually."
+        println "Be aware that the manually created project has been replaced by the generated version."
       }
     }
     

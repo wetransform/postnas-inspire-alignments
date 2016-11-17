@@ -1,16 +1,8 @@
 diff --git a/projects/cp-auto.halex.alignment.xml b/projects/cp-manual.halex.alignment.xml
-index de6189e..8db1a34 100644
+index 31a19e8..b4c4a04 100644
 --- a/projects/cp-auto.halex.alignment.xml
 +++ b/projects/cp-manual.halex.alignment.xml
-@@ -70,7 +70,6 @@ Außerdem wird der Name des Feature-Typs des Ziel-Modells als Präfix vorangeste
-             </cf:input>
-             <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
-                 <cf:binding>java.lang.String</cf:binding>
--                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-             </cf:input>
-             <cf:output eager="false" maxOccurs="1" minOccurs="1">
-                 <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-@@ -480,7 +479,6 @@ Der `codeSpace` für den GML identifier wird als `http://inspire.ec.europa.eu/id
+@@ -4,7 +4,6 @@
          <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
              <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
                  <cf:binding>java.lang.String</cf:binding>
@@ -18,9 +10,17 @@ index de6189e..8db1a34 100644
              </cf:input>
              <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
-@@ -711,14 +709,7 @@ if (_params.source) {&#xD;
-         <parameter value="false" name="structuralRename"/>
+@@ -212,7 +211,6 @@ if (_params.source) {&#xD;
+             </cf:input>
+             <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:output eager="false" maxOccurs="1" minOccurs="1">
+                 <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -711,14 +709,7 @@ Aktuell ist folgende Abbildung umgesetzt:
          <parameter value="false" name="ignoreNamespaces"/>
+         <parameter value="false" name="structuralRename"/>
      </cell>
 -    <cell relation="custom:alignment:adv.uom.toucum" id="C033c7108-6b60-4abd-92a4-4cf19ee508a0" priority="normal">
 -        <source name="uom">
@@ -30,11 +30,11 @@ index de6189e..8db1a34 100644
 -                <child name="uom"/>
 -            </property>
 -        </source>
-+    <cell relation="eu.esdihumboldt.hale.align.assign" id="Cadaf7342-a74b-454d-b029-a86d793437e8" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.assign" id="C110e119c-01c3-4a9b-8825-b5ca67875d4c" priority="normal">
          <target>
              <property>
                  <type name="CadastralParcelType" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
-@@ -726,6 +717,7 @@ if (_params.source) {&#xD;
+@@ -726,6 +717,7 @@ Aktuell ist folgende Abbildung umgesetzt:
                  <child name="uom"/>
              </property>
          </target>
@@ -42,165 +42,30 @@ index de6189e..8db1a34 100644
      </cell>
      <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc51360e3-edaa-45a0-9e45-bcf77eb69c99" priority="normal">
          <source>
-@@ -963,10 +955,30 @@ else {
-                 <type name="CadastralZoningType" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
-             </class>
-         </target>
-+        <complexParameter name="join">
-+            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
-+                <class>
-+                    <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                </class>
-+                <class>
-+                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                </class>
-+                <jp:condition>
-+                    <property>
-+                        <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                        <child name="schluesselgesamt"/>
-+                    </property>
-+                    <property>
-+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                        <child name="gemarkung_land"/>
-+                    </property>
-+                </jp:condition>
-+            </jp:join-parameter>
-+        </complexParameter>
+@@ -986,7 +978,7 @@ else {
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // alle Eigenschaften mit Geometrien aus Flurstücken
 -def geoms = _source.links.AX_Flurstueck.p.position.list()
-+def geoms = _source.links.ax_flurstueck.p.wkb_geometry.list()
++def geoms = _source.links.ax_flurstueck.p.wkb_geometry.values()
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // vorhanden sind
-@@ -991,26 +1003,6 @@ _target {
- }
- </core:text>
-         </complexParameter>
--        <complexParameter name="join">
--            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
--                <class>
--                    <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
--                </class>
--                <class>
--                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
--                </class>
--                <jp:condition>
--                    <property>
--                        <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
--                        <child name="schluesselgesamt"/>
--                    </property>
--                    <property>
--                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
--                        <child name="gemarkung_land"/>
--                    </property>
--                </jp:condition>
--            </jp:join-parameter>
--        </complexParameter>
-         <documentation>Hier wird ein INSPIRE *CadastralZoning* zu einem entsprechenden *AX_Bundesland* erstellt.
- 
- Zu einem *AX_Bundesland* werden über den Gemarkungsschlüssel von *AX_Flurstueck* alle dazugehörigen Flurstücke bestimmt.
-@@ -1035,10 +1027,30 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
-                 <type name="CadastralZoningType" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
-             </class>
-         </target>
-+        <complexParameter name="join">
-+            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
-+                <class>
-+                    <type name="ax_gemarkung" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                </class>
-+                <class>
-+                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                </class>
-+                <jp:condition>
-+                    <property>
-+                        <type name="ax_gemarkung" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                        <child name="gemarkungsnummer"/>
-+                    </property>
-+                    <property>
-+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                        <child name="gemarkungsnummer"/>
-+                    </property>
-+                </jp:condition>
-+            </jp:join-parameter>
-+        </complexParameter>
+@@ -1058,7 +1050,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // alle Eigenschaften mit Geometrien aus Flurstücken
 -def geoms = _source.links.AX_Flurstueck.p.position.list()
-+def geoms = _source.links.ax_flurstueck.p.wkb_geometry.list()
++def geoms = _source.links.ax_flurstueck.p.wkb_geometry.values()
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // vorhanden sind
-@@ -1063,26 +1075,6 @@ _target {
- }
- </core:text>
-         </complexParameter>
--        <complexParameter name="join">
--            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
--                <class>
--                    <type name="ax_gemarkung" ns="jdbc:postgresql:testbed:aaa_ogr"/>
--                </class>
--                <class>
--                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
--                </class>
--                <jp:condition>
--                    <property>
--                        <type name="ax_gemarkung" ns="jdbc:postgresql:testbed:aaa_ogr"/>
--                        <child name="gemarkungsnummer"/>
--                    </property>
--                    <property>
--                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
--                        <child name="gemarkungsnummer"/>
--                    </property>
--                </jp:condition>
--            </jp:join-parameter>
--        </complexParameter>
-         <documentation>Hier wird ein INSPIRE *CadastralZoning* zu einer entsprechenden *AX_Gemarkung* erstellt.
- 
- Zu einer *AX_Gemarkung* werden über den Gemarkungsschlüssel von *AX_Flurstueck* alle dazugehörigen Flurstücke bestimmt.
-@@ -1107,19 +1099,49 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
-                 <type name="CadastralZoningType" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
-             </class>
-         </target>
-+        <complexParameter name="join">
-+            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
-+                <class>
-+                    <type name="ax_gemarkungsteilflur" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                </class>
-+                <class>
-+                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                </class>
-+                <jp:condition>
-+                    <property>
-+                        <type name="ax_gemarkungsteilflur" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                        <child name="gemarkung"/>
-+                    </property>
-+                    <property>
-+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                        <child name="gemarkungsnummer"/>
-+                    </property>
-+                </jp:condition>
-+                <jp:condition>
-+                    <property>
-+                        <type name="ax_gemarkungsteilflur" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                        <child name="schluessel_land"/>
-+                    </property>
-+                    <property>
-+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                        <child name="gemarkung_land"/>
-+                    </property>
-+                </jp:condition>
-+            </jp:join-parameter>
-+        </complexParameter>
-         <complexParameter name="script">
-             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+@@ -1142,14 +1134,14 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
  // sammle Geometrien von assoziierten Flurstücken
  
  // Flurnummer als Zahl
 -def flur = _source.p.schluessel.AX_GemarkungsteilFlur_Schluessel.gemarkungsteilFlur.value() as Integer
-+def flur = _source.p.gemarkungsteilFlur.value() as Integer
++def flur = _source.p.gemarkungsteilflur.value() as Integer
  // alle Flurstücke der Gemarkung
 -def fs = _source.links.AX_Flurstueck.list()
 +def fs = _source.links.ax_flurstueck.list()
@@ -209,44 +74,7 @@ index de6189e..8db1a34 100644
  }
  def geoms = fs.collect {
 -  it.p.position.first()
-+  it.p.wkb_geometry.first()
++  it.p.wkb_geometry.value()
  }
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
-@@ -1144,36 +1166,6 @@ _target {
- }
- </core:text>
-         </complexParameter>
--        <complexParameter name="join">
--            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
--                <class>
--                    <type name="ax_gemarkungsteilflur" ns="jdbc:postgresql:testbed:aaa_ogr"/>
--                </class>
--                <class>
--                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
--                </class>
--                <jp:condition>
--                    <property>
--                        <type name="ax_gemarkungsteilflur" ns="jdbc:postgresql:testbed:aaa_ogr"/>
--                        <child name="schluessel_land"/>
--                    </property>
--                    <property>
--                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
--                        <child name="gemarkung_land"/>
--                    </property>
--                </jp:condition>
--                <jp:condition>
--                    <property>
--                        <type name="ax_gemarkungsteilflur" ns="jdbc:postgresql:testbed:aaa_ogr"/>
--                        <child name="gemarkung"/>
--                    </property>
--                    <property>
--                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
--                        <child name="gemarkungsnummer"/>
--                    </property>
--                </jp:condition>
--            </jp:join-parameter>
--        </complexParameter>
-         <documentation>Hier wird ein INSPIRE *CadastralZoning* zu einem entsprechenden *AX_GemarkungsteilFlur* erstellt.
- 
- Zu einem *AX_GemarkungsteilFlur* werden über den Gemarkungsschlüssel von *AX_Flurstueck* alle dazugehörigen Flurstücke bestimmt.
