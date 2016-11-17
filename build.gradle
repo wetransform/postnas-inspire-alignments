@@ -82,9 +82,36 @@ migrations.each { name, config ->
   def projectsDir = file('projects')
   if (!projectsDir.exists()) projectsDir.mkdirs()
   def autoProjectFile = new File(projectsDir, "${name}-auto.halex")
+  def manualProjectFile = new File(projectsDir, "${name}-manual.halex")
 
-  // add migration task for each key
-  task("migrate-$name", type: HaleCommandLine) {
+  def diffFile = new File(projectsDir, "${name}-manual.diff")
+
+  // create diff to previously created manual project
+  task("diff-$name").doLast {
+    if (manualProjectFile.exists()) {
+      exec {
+        commandLine'git', 'diff', '-p', '--no-index',
+          projectDir.toPath().relativize(autoProjectFile.toPath()).toString() + '.alignment.xml',
+          projectDir.toPath().relativize(manualProjectFile.toPath()).toString() + '.alignment.xml'
+
+        // git seems to always return with an exit code here
+        ignoreExitValue = true
+
+        standardOutput = diffFile.newOutputStream()
+        // errorOutput = new TeeOutputStream(errFile.newOutputStream(), errorOutput)
+      }
+
+      if (!diffFile.length()) {
+        diffFile.delete()
+      }
+    }
+
+    description "Create a diff between the manually curated and the automatically generated migration project"
+    group 'Alignment migration'
+  }
+
+  // add migration task for each project
+  task("auto-$name", type: HaleCommandLine, dependsOn: "diff-$name") {
     args = [
       'project',
       'migrate',
@@ -97,7 +124,48 @@ migrations.each { name, config ->
       autoProjectFile as String
     ]
 
-    description "Migrate AdV project ${config.advProject} to PostNAS schema"
+    description "Automatical migration of AdV project ${config.advProject} to PostNAS schema"
+    group 'Alignment migration'
+  }
+
+  task("migrate-$name", dependsOn: "auto-$name").doLast {
+    // copy project
+    copy {
+      from projectsDir
+      include projectsDir.toPath().relativize(autoProjectFile.toPath()).toString()
+      include projectsDir.toPath().relativize(autoProjectFile.toPath()).toString() + '.alignment.xml'
+      into projectsDir
+
+      rename(/(.*)-auto(.*)/, '$1-manual$2')
+    }
+
+    if (diffFile.exists() && diffFile.length()) {
+      // apply diff
+      
+      // first create a copy of the generated alignment (as git deletes the file)
+      def tempFile = new File(getTemporaryDir(), autoProjectFile.name)
+      copy {
+        from autoProjectFile.toString() + '.alignment.xml'
+        into tempFile.parentFile
+        rename {
+          tempFile.name
+        }
+      }
+      // apply diff with git
+      exec {
+        commandLine 'git', 'apply', projectDir.toPath().relativize(diffFile.toPath()).toString()
+      }
+      // recreate generated alignment file
+      copy {
+        from tempFile
+        into projectsDir
+        rename {
+          autoProjectFile.name + '.alignment.xml'
+        }
+      }
+    }
+    
+    description "Migrate AdV project ${config.advProject} to PostNAS schema, attempts to update manually curated project"
     group 'Alignment migration'
   }
 
