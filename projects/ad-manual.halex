@@ -3,7 +3,7 @@
     <name>ALKIS zu INSPIRE Addresses</name>
     <author>Thorsten Reitz, wetransform GmbH</author>
     <created>2016-06-14T14:18:58.157+02:00</created>
-    <modified>2016-11-17T09:19:49.791+01:00</modified>
+    <modified>2016-11-17T11:33:33.192+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -39,7 +39,7 @@
         <setting name="source">file:/home/simon/repos/rlp-inspire-alignments/database/schema.hsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.common.schema.hsd</setting>
     </resource>
-    <file name="alignment.xml" location="ad-auto.halex.alignment.xml"/>
+    <file name="alignment.xml" location="ad-manual.halex.alignment.xml"/>
     <complex-property name="codelists">
         <associations>
             <codeList identifier="//inspire.ec.europa.eu/codelist/LocatorDesignatorTypeValue" namespace="http://inspire.ec.europa.eu/codelist/LocatorDesignatorTypeValue">

@@ -15,7 +15,7 @@ Das gleiche gilt für die aggregierten Geometrien -- hier werden bei unvollstän
 
 Sofern möglich sollte alternativ für die Transformation das Projekt mit Aggregierung aus `AX_KommunalesGebiet` verwendet werden. Falls diese Objekte nich vorhanden sind, könnten als Zwischenschritt auch `AX_KommunalesGebiet` aus Flurstücken abgeleitet werden.</description>
     <created>2015-09-28T11:46:45.435+02:00</created>
-    <modified>2016-11-17T09:20:08.721+01:00</modified>
+    <modified>2016-11-17T11:33:49.019+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -33,7 +33,7 @@ Sofern möglich sollte alternativ für die Transformation das Projekt mit Aggreg
         <setting name="source">file:/home/simon/repos/rlp-inspire-alignments/database/schema.hsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.common.schema.hsd</setting>
     </resource>
-    <file name="alignment.xml" location="au-auto.halex.alignment.xml"/>
+    <file name="alignment.xml" location="au-manual.halex.alignment.xml"/>
     <property name="defaultGeometry:{http://inspire.ec.europa.eu/schemas/au/4.0}AdministrativeBoundaryType/1">{http://inspire.ec.europa.eu/schemas/au/4.0}geometry</property>
     <property name="defaultGeometry:{http://inspire.ec.europa.eu/schemas/au/4.0}AdministrativeBoundaryType/2">{http://www.opengis.net/gml/3.2/AbstractCurve}choice</property>
     <property name="defaultGeometry:{http://inspire.ec.europa.eu/schemas/au/4.0}AdministrativeBoundaryType/count">2</property>

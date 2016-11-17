@@ -1083,6 +1083,16 @@ _target{
                 <jp:condition>
                     <property>
                         <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="regierungsbezirk"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="regierungsbezirk"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="gemeinde"/>
                     </property>
                     <property>
@@ -1098,16 +1108,6 @@ _target{
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="kreis"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
@@ -1220,21 +1220,11 @@ withTransformationContext {
                 <jp:condition>
                     <property>
                         <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeinde"/>
+                        <child name="regierungsbezirk"/>
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeinde"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="kreis"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="kreis"/>
+                        <child name="regierungsbezirk"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
@@ -1250,11 +1240,21 @@ withTransformationContext {
                 <jp:condition>
                     <property>
                         <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
+                        <child name="gemeinde"/>
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
+                        <child name="gemeinde"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="kreis"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="kreis"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
@@ -1440,21 +1440,21 @@ _target{
                 <jp:condition>
                     <property>
                         <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="land"/>
+                        <child name="regierungsbezirk"/>
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeindezugehoerigkeit_land"/>
+                        <child name="regierungsbezirk"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
                     <property>
                         <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
+                        <child name="land"/>
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
+                        <child name="gemeindezugehoerigkeit_land"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
