@@ -69,10 +69,12 @@ task('dbMatching', type: HaleCommandLine) {
 def json = new groovy.json.JsonSlurper()
 def migrations = json.parse(file(project.hasProperty('migrationsFile') ? project.getProperty('migrationsFile') : 'migrations.json'))
 
+/*
 task('migrate-all') {
   description "Runs all migration tasks (for all configured projects)."
   group 'Alignment migration'
 }
+*/
 
 migrations.each { name, config ->
   if (config.enabled != null && !config.enabled) {
@@ -83,6 +85,7 @@ migrations.each { name, config ->
   if (!projectsDir.exists()) projectsDir.mkdirs()
   def autoProjectFile = new File(projectsDir, "${name}-auto.halex")
   def manualProjectFile = new File(projectsDir, "${name}-manual.halex")
+  def dbProjectFile = new File(projectsDir, "${name}-db.halex")
 
   def diffFile = new File(projectsDir, "${name}-manual.diff")
 
@@ -106,7 +109,7 @@ migrations.each { name, config ->
       }
     }
 
-    description "Create a diff between the manually curated and the automatically generated migration project"
+    description "Create a diff between the manually curated and the automatically generated migration project (${name})"
     group 'Alignment migration'
   }
 
@@ -138,6 +141,10 @@ migrations.each { name, config ->
 
       rename(/(.*)-auto(.*)/, '$1-manual$2')
     }
+    // adapt project file to reference correct alignment
+    manualProjectFile.text = manualProjectFile.text.replaceFirst(
+      /-auto\.halex\.alignment\.xml/,
+      '-manual.halex.alignment.xml')
 
     if (diffFile.exists() && diffFile.length()) {
       // apply diff
@@ -152,9 +159,14 @@ migrations.each { name, config ->
         }
       }
       // apply diff with git
-      exec {
-        commandLine 'git', 'apply', projectDir.toPath().relativize(diffFile.toPath()).toString()
-      }
+      def error
+      try {
+        exec {
+          commandLine 'git', 'apply', projectDir.toPath().relativize(diffFile.toPath()).toString()
+        }
+      } catch (e) {
+        error = e
+      }  
       // recreate generated alignment file
       copy {
         from tempFile
@@ -163,13 +175,44 @@ migrations.each { name, config ->
           autoProjectFile.name + '.alignment.xml'
         }
       }
+
+      // handle git apply problem
+      if (error) {
+        println "Error applying diff to update manually curated project"
+        println "Run"
+        println "     git add"
+        println "     git apply --3way ${projectDir.toPath().relativize(diffFile.toPath()).toString()}"
+        println "to try to apply the patch manually."
+        println "The apply may delete the generated alignment, make sure to undo that."
+      }
     }
     
     description "Migrate AdV project ${config.advProject} to PostNAS schema, attempts to update manually curated project"
     group 'Alignment migration'
   }
 
-  tasks['migrate-all'].dependsOn("migrate-$name")
+  // tasks['migrate-all'].dependsOn("migrate-$name")
+
+  // change source to database
+  task("db-migrate-$name", type: HaleCommandLine) {
+    args = [
+      'project', 'migrate', 'source',
+      '--schema',
+      project.hasProperty('db.uri') ? project.getProperty('db.uri') : 'jdbc:postgresql://localhost:5432/testbed',
+      '--schema-reader', 'eu.esdihumboldt.hale.io.jdbc.schema.reader',
+      '--schema-setting',
+      'jdbc.user=' + (project.hasProperty('db.user') ? project.getProperty('db.user') : 'postgres'),
+      '--schema-setting',
+      'jdbc.password=' + (project.hasProperty('db.password') ? project.getProperty('db.password') : 'postgres'),
+      '--source-project',
+      manualProjectFile as String,
+      '--target',
+      dbProjectFile as String
+    ]
+
+    description "Adapt the manually curated ${name}-project to a custom database connection"
+    group 'Alignment migration'
+  }
 
 }
 
