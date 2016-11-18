@@ -1,62 +1,204 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <alignment xmlns="http://www.esdi-humboldt.eu/hale/alignment">
     <customFunction>
-        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.id.default" name="AdV INSPIRE localId" type="groovy">
-            <cf:input eager="true" maxOccurs="-1" minOccurs="1" name="id">
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
+            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
+                <cf:binding>java.lang.String</cf:binding>
+                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+            </cf:input>
+            <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                 <cf:binding>java.lang.String</cf:binding>
             </cf:input>
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
-                <cf:binding>java.lang.String</cf:binding>
+                <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </cf:output>
+            <cf:param maxOccurs="1" minOccurs="0" name="source">
+                <cf:description>
+                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Quelle des Namens. Falls nicht angegeben wird sie aus einer Projekt-Variable bestimmt.</core:text>
+                </cf:description>
+                <cf:display value="Source of name"/>
+                <cf:binding>java.lang.String</cf:binding>
+            </cf:param>
+            <cf:param maxOccurs="1" minOccurs="0" name="nameStatus">
+                <cf:description>
+                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Status des Namens. Falls nicht angegeben wird als Standardwert official angenommen.</core:text>
+                </cf:description>
+                <cf:display value="nameStatus"/>
+                <cf:value>standardised</cf:value>
+                <cf:value>other</cf:value>
+                <cf:value>official</cf:value>
+                <cf:value>historical</cf:value>
+                <cf:value>unpopulated</cf:value>
+                <cf:value>unknown</cf:value>
+            </cf:param>
+            <cf:param maxOccurs="1" minOccurs="0" name="nativeness">
+                <cf:description>
+                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Ortsüblichkeit des Namens. Falls nicht angegeben wird als Standardwert endonym angenommen.</core:text>
+                </cf:description>
+                <cf:display value="nativeness"/>
+                <cf:value>endonym</cf:value>
+                <cf:value>unpopulated</cf:value>
+                <cf:value>exonym</cf:value>
+                <cf:value>unknown</cf:value>
+            </cf:param>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-// alle Quell-IDs als Liste
-def identifiers = id.p.values()
+def name = lagebezeichnung.p.unverschluesselt.value()
 
-def id
+if (!name) {
+	// Namen auch aus verschlüsselter Lagebezeichnung ableiten
+	
+	def gemeinde = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde.value()
+	def kreis = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.kreis.value()
+	def lage = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.lage.value()
+	def land = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.land.value()
+	def reg = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.regierungsbezirk.value()
 
-if (identifiers.size() == 1) {
-  // verwende Original-ID falls nur eine Quelle
-  id = identifiers[0]
+	if (land &amp;&amp; gemeinde &amp;&amp; kreis &amp;&amp; lage) {
+		if (!reg) reg = '0'
+		def schluesselGesamt = "$land$reg$kreis$gemeinde$lage"
+		
+		withTransformationContext {
+			def collect = _.context.collector(it)
+	  
+			// Name zu Schlüssel der Lagebezeichnung aus Index holen
+			name = collect.lagebezeichnung[schluesselGesamt].value()
+		}
+	}
+}
+
+if (name) {
+	def sourceName_var = _project.vars.get('ADV_MODELLART', null)
+
+	_target {
+		// source
+
+		// Priorität 1 - feste Quelle
+		if (_params.source) {
+			sourceOfName( _params.source )
+		}
+		// Priorität 2 - aus Projektvariable
+		else if (sourceName_var) {
+			sourceOfName( sourceName_var )
+		}
+		else {
+			sourceOfName {
+				nilReason( 'unknown' )
+			}
+		}
+
+		// nativeness
+		def nn = _params.nativeness
+		if (nn) {
+			if (nn == 'unpopulated') {
+				nativeness {
+					nilReason( 'other:unpopulated' )
+				}
+			}
+			else if (nn == 'unknown') {
+				nativeness {
+					nilReason( 'unknown' )
+				}
+			}
+			else {
+				nativeness {
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/' + nn )
+				}
+			}
+		}
+		else {
+			// default for nativeness if not specified is endonym
+			nativeness {
+				href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )
+			}
+		}
+
+		// nameStatus
+		def ns = _params.nameStatus
+		if (ns) {
+			if (ns == 'unpopulated') {
+				nameStatus {
+					nilReason( 'other:unpopulated' )
+				}
+			}
+			else if (ns == 'unknown') {
+				nameStatus {
+					nilReason( 'unknown' )
+				}
+			}
+			else {
+				nameStatus {
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/' + ns )
+				}
+			}
+		}
+		else {
+			// default for nameStatus if not specified is official
+			nameStatus {
+				href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/official' )
+			}
+		}
+
+		// spelling
+		spelling {
+			SpellingOfName {
+				text( name )
+				script( 'Latn' )
+			}
+		}
+		// language
+		language( 'deu' )
+	}
 }
 else {
-  // sortieren (TODO spezielle Ordnung benötigt?)
-  identifiers = identifiers.sort()
-
-  def identString = identifiers.join()
-
-  id = '_' + _.crypto.sha256(identString)
+	throw new NoResultException()
 }
-
-// Ziel-Typ als Präfix
-if (true /*_params.useTargetTypePrefix*/) {
-  def targetType = _targetType.definition.name.localPart
-  if (targetType) {
-    if (targetType.endsWith('Type')) {
-      targetType = targetType[0..-5]
-    }
-  
-    if (!id.startsWith('_')) {
-      id = '_' + id
-    }
-    id = targetType + id
-  }
-}
-
-id
 </core:text>
             </cf:definition>
             <cf:explanation>
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Bestimmung einer INSPIRE localId oder GML id aus Fachkennzeichen oder AAA-ObjektIDs.
+Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.
+Eine unverschlüsselte Lagebezeichnung wird direkt übernommen, eine verschlüsselte Lagebezeichnung wird versucht über einen Index nachzuschlagen.
 
-Für eine einzige Quell-ID wird diese direkt herangezogen.
+Die Sprache wird als Deutsch angenommen.
 
-Andernfalls wird unter Verwendung des SHA256-Algorithmus ein Hash-Wert aus den sortierten und dann konkatenierten Quell-IDs gebildet und hexadezimal kodiert.
-
-Außerdem wird der Name des Feature-Typs des Ziel-Modells als Präfix vorangestellt. Dabei wird sichergestellt dass der Typ-Name von den weiteren Teilen der ID durch einen Unterstrich getrennt ist.
+&lt;% if (_params.nameStatus) {
+  if (_params.nameStatus == 'unpopulated') {
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
+  }
+  else if (_params.nameStatus == 'unknown') {
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
+  }
+  else {
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
+  }
+}
+else {
+  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
+}
+out &lt;&lt; "\n\n"
+if (_params.nativeness) {
+  if (_params.nativeness == 'unpopulated') {
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
+  }
+  else if (_params.nativeness == 'unknown') {
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
+  }
+  else {
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
+  }
+}
+else {
+  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
+}
+out &lt;&lt; "\n\n"
+if (_params.source) {&#xD;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
+} else {&#xD;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
+} %&gt;
 </core:text>
                     </cf:template>
                 </cf:locale>
@@ -262,30 +404,6 @@ if (_params.source) {&#xD;
         </cf:custom-property-function>
     </customFunction>
     <customFunction>
-        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.namespace" name="AdV INSPIRE ID namespace" type="groovy">
-            <cf:output eager="false" maxOccurs="1" minOccurs="1">
-                <cf:binding>java.lang.String</cf:binding>
-            </cf:output>
-            <cf:definition>
-                <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-// verwende Wert aus Projekt-Variable "INSPIRE_NAMESPACE"
-_project.vars.INSPIRE_NAMESPACE
-</core:text>
-            </cf:definition>
-            <cf:explanation>
-                <cf:locale country="" language="" variant="">
-                    <cf:template>
-                        <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Setzt $_target auf den für den Datensatz vorgegebenen festen INSPIRE Namespace.
-
-Der für Datenanbieter und Datensatz spezifische Namespace muss dafür als Vorgabe (Projekt-Variable) konfiguriert werden.
-</core:text>
-                    </cf:template>
-                </cf:locale>
-            </cf:explanation>
-        </cf:custom-property-function>
-    </customFunction>
-    <customFunction>
         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.date.earliest" name="Jüngstes Datum" type="groovy">
             <cf:input eager="true" maxOccurs="-1" minOccurs="1" name="dates">
                 <cf:binding>java.lang.String</cf:binding>
@@ -342,8 +460,8 @@ values[-1]
         </cf:custom-property-function>
     </customFunction>
     <customFunction>
-        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.uom.toucum" name="AdV Maßeinheit zu UCUM" type="groovy">
-            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="uom">
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.id.default" name="AdV INSPIRE localId" type="groovy">
+            <cf:input eager="true" maxOccurs="-1" minOccurs="1" name="id">
                 <cf:binding>java.lang.String</cf:binding>
             </cf:input>
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
@@ -351,44 +469,53 @@ values[-1]
             </cf:output>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!uom) {
-	throw new NoResultException()
+// alle Quell-IDs als Liste
+def identifiers = id.p.values()
+
+def id
+
+if (identifiers.size() == 1) {
+  // verwende Original-ID falls nur eine Quelle
+  id = identifiers[0]
+}
+else {
+  // sortieren (TODO spezielle Ordnung benötigt?)
+  identifiers = identifiers.sort()
+
+  def identString = identifiers.join()
+
+  id = '_' + _.crypto.sha256(identString)
 }
 
-def result
-
-// Mapping auf UCUM
-switch(uom) {
-case 'urn:adv:uom:m2':
-	result = 'm2'
-	break
-case 'urn:adv:uom:m':
-	result = 'm'
-	break
+// Ziel-Typ als Präfix
+if (true /*_params.useTargetTypePrefix*/) {
+  def targetType = _targetType.definition.name.localPart
+  if (targetType) {
+    if (targetType.endsWith('Type')) {
+      targetType = targetType[0..-5]
+    }
+  
+    if (!id.startsWith('_')) {
+      id = '_' + id
+    }
+    id = targetType + id
+  }
 }
 
-if (!result) {
-	// Transformations-Warnung falls kein Mapping auf UCUM vorhanden
-	_log.warn("Unknown UCUM representation for unit of measurment $uom, using code as-is")
-	result = uom
-}
-
-result
+id
 </core:text>
             </cf:definition>
             <cf:explanation>
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Abbildung von Maßeinheiten aus AdV URNs nach UCUM
+Bestimmung einer INSPIRE localId oder GML id aus Fachkennzeichen oder AAA-ObjektIDs.
 
-*Keine vollständige Abbildung, muss ggf. ergänzt werden.*
+Für eine einzige Quell-ID wird diese direkt herangezogen.
 
-Aktuell ist folgende Abbildung umgesetzt:
+Andernfalls wird unter Verwendung des SHA256-Algorithmus ein Hash-Wert aus den sortierten und dann konkatenierten Quell-IDs gebildet und hexadezimal kodiert.
 
-- `urn:adv:uom:m2` zu `m2`
-- `urn:adv:uom:m`zu `m`
-
+Außerdem wird der Name des Feature-Typs des Ziel-Modells als Präfix vorangestellt. Dabei wird sichergestellt dass der Typ-Name von den weiteren Teilen der ID durch einen Unterstrich getrennt ist.
 </core:text>
                     </cf:template>
                 </cf:locale>
@@ -477,204 +604,77 @@ Der `codeSpace` für den GML identifier wird als `http://inspire.ec.europa.eu/id
         </cf:custom-property-function>
     </customFunction>
     <customFunction>
-        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
-            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
-                <cf:binding>java.lang.String</cf:binding>
-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </cf:input>
-            <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
-                <cf:binding>java.lang.String</cf:binding>
-            </cf:input>
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.namespace" name="AdV INSPIRE ID namespace" type="groovy">
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
-                <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </cf:output>
-            <cf:param maxOccurs="1" minOccurs="0" name="source">
-                <cf:description>
-                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Quelle des Namens. Falls nicht angegeben wird sie aus einer Projekt-Variable bestimmt.</core:text>
-                </cf:description>
-                <cf:display value="Source of name"/>
                 <cf:binding>java.lang.String</cf:binding>
-            </cf:param>
-            <cf:param maxOccurs="1" minOccurs="0" name="nameStatus">
-                <cf:description>
-                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Status des Namens. Falls nicht angegeben wird als Standardwert official angenommen.</core:text>
-                </cf:description>
-                <cf:display value="nameStatus"/>
-                <cf:value>standardised</cf:value>
-                <cf:value>other</cf:value>
-                <cf:value>official</cf:value>
-                <cf:value>historical</cf:value>
-                <cf:value>unpopulated</cf:value>
-                <cf:value>unknown</cf:value>
-            </cf:param>
-            <cf:param maxOccurs="1" minOccurs="0" name="nativeness">
-                <cf:description>
-                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Ortsüblichkeit des Namens. Falls nicht angegeben wird als Standardwert endonym angenommen.</core:text>
-                </cf:description>
-                <cf:display value="nativeness"/>
-                <cf:value>endonym</cf:value>
-                <cf:value>unpopulated</cf:value>
-                <cf:value>exonym</cf:value>
-                <cf:value>unknown</cf:value>
-            </cf:param>
+            </cf:output>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def name = lagebezeichnung.p.unverschluesselt.value()
-
-if (!name) {
-	// Namen auch aus verschlüsselter Lagebezeichnung ableiten
-	
-	def gemeinde = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde.value()
-	def kreis = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.kreis.value()
-	def lage = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.lage.value()
-	def land = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.land.value()
-	def reg = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.regierungsbezirk.value()
-
-	if (land &amp;&amp; gemeinde &amp;&amp; kreis &amp;&amp; lage) {
-		if (!reg) reg = '0'
-		def schluesselGesamt = "$land$reg$kreis$gemeinde$lage"
-		
-		withTransformationContext {
-			def collect = _.context.collector(it)
-	  
-			// Name zu Schlüssel der Lagebezeichnung aus Index holen
-			name = collect.lagebezeichnung[schluesselGesamt].value()
-		}
-	}
-}
-
-if (name) {
-	def sourceName_var = _project.vars.get('ADV_MODELLART', null)
-
-	_target {
-		// source
-
-		// Priorität 1 - feste Quelle
-		if (_params.source) {
-			sourceOfName( _params.source )
-		}
-		// Priorität 2 - aus Projektvariable
-		else if (sourceName_var) {
-			sourceOfName( sourceName_var )
-		}
-		else {
-			sourceOfName {
-				nilReason( 'unknown' )
-			}
-		}
-
-		// nativeness
-		def nn = _params.nativeness
-		if (nn) {
-			if (nn == 'unpopulated') {
-				nativeness {
-					nilReason( 'other:unpopulated' )
-				}
-			}
-			else if (nn == 'unknown') {
-				nativeness {
-					nilReason( 'unknown' )
-				}
-			}
-			else {
-				nativeness {
-					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/' + nn )
-				}
-			}
-		}
-		else {
-			// default for nativeness if not specified is endonym
-			nativeness {
-				href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )
-			}
-		}
-
-		// nameStatus
-		def ns = _params.nameStatus
-		if (ns) {
-			if (ns == 'unpopulated') {
-				nameStatus {
-					nilReason( 'other:unpopulated' )
-				}
-			}
-			else if (ns == 'unknown') {
-				nameStatus {
-					nilReason( 'unknown' )
-				}
-			}
-			else {
-				nameStatus {
-					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/' + ns )
-				}
-			}
-		}
-		else {
-			// default for nameStatus if not specified is official
-			nameStatus {
-				href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/official' )
-			}
-		}
-
-		// spelling
-		spelling {
-			SpellingOfName {
-				text( name )
-				script( 'Latn' )
-			}
-		}
-		// language
-		language( 'deu' )
-	}
-}
-else {
-	throw new NoResultException()
-}
+// verwende Wert aus Projekt-Variable "INSPIRE_NAMESPACE"
+_project.vars.INSPIRE_NAMESPACE
 </core:text>
             </cf:definition>
             <cf:explanation>
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.
-Eine unverschlüsselte Lagebezeichnung wird direkt übernommen, eine verschlüsselte Lagebezeichnung wird versucht über einen Index nachzuschlagen.
+Setzt $_target auf den für den Datensatz vorgegebenen festen INSPIRE Namespace.
 
-Die Sprache wird als Deutsch angenommen.
+Der für Datenanbieter und Datensatz spezifische Namespace muss dafür als Vorgabe (Projekt-Variable) konfiguriert werden.
+</core:text>
+                    </cf:template>
+                </cf:locale>
+            </cf:explanation>
+        </cf:custom-property-function>
+    </customFunction>
+    <customFunction>
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.uom.toucum" name="AdV Maßeinheit zu UCUM" type="groovy">
+            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="uom">
+                <cf:binding>java.lang.String</cf:binding>
+            </cf:input>
+            <cf:output eager="false" maxOccurs="1" minOccurs="1">
+                <cf:binding>java.lang.String</cf:binding>
+            </cf:output>
+            <cf:definition>
+                <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (!uom) {
+	throw new NoResultException()
+}
 
-&lt;% if (_params.nameStatus) {
-  if (_params.nameStatus == 'unpopulated') {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
-  }
-  else if (_params.nameStatus == 'unknown') {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
-  }
-  else {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
-  }
+def result
+
+// Mapping auf UCUM
+switch(uom) {
+case 'urn:adv:uom:m2':
+	result = 'm2'
+	break
+case 'urn:adv:uom:m':
+	result = 'm'
+	break
 }
-else {
-  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
+
+if (!result) {
+	// Transformations-Warnung falls kein Mapping auf UCUM vorhanden
+	_log.warn("Unknown UCUM representation for unit of measurment $uom, using code as-is")
+	result = uom
 }
-out &lt;&lt; "\n\n"
-if (_params.nativeness) {
-  if (_params.nativeness == 'unpopulated') {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
-  }
-  else if (_params.nativeness == 'unknown') {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
-  }
-  else {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
-  }
-}
-else {
-  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
-}
-out &lt;&lt; "\n\n"
-if (_params.source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
-} else {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
-} %&gt;
+
+result
+</core:text>
+            </cf:definition>
+            <cf:explanation>
+                <cf:locale country="" language="" variant="">
+                    <cf:template>
+                        <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+Abbildung von Maßeinheiten aus AdV URNs nach UCUM
+
+*Keine vollständige Abbildung, muss ggf. ergänzt werden.*
+
+Aktuell ist folgende Abbildung umgesetzt:
+
+- `urn:adv:uom:m2` zu `m2`
+- `urn:adv:uom:m`zu `m`
+
 </core:text>
                     </cf:template>
                 </cf:locale>
@@ -684,7 +684,7 @@ if (_params.source) {&#xD;
     <cell relation="eu.esdihumboldt.hale.align.retype" id="ba1:C0763cc94-6454-472a-aaab-966e2c0e3644" priority="normal">
         <source>
             <class>
-                <type name="AX_GebietsgrenzeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+                <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
                 </type>
             </class>
@@ -694,8 +694,8 @@ if (_params.source) {&#xD;
                 <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </class>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
         <documentation>Grenze des Gemeindeteils kann nicht berücksichtigt werden.</documentation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="ba1:Cda73bba5-8df9-4012-bf50-946a7d3c3ea7" priority="normal">
@@ -711,12 +711,10 @@ if (_params.source) {&#xD;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Ce026bc0c-3397-451f-a82d-b9f0d17f2f58" priority="normal">
         <source>
             <property>
-                <type name="AX_GebietsgrenzeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+                <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
                 </type>
-                <child name="lebenszeitintervall" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="AA_Lebenszeitintervall" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="beginnt" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+                <child name="beginnt"/>
             </property>
         </source>
         <target>
@@ -725,8 +723,8 @@ if (_params.source) {&#xD;
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="ba1:Cba0fc743-8465-4b65-912a-f82a1f90d345" priority="normal">
         <target>
@@ -767,12 +765,10 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Cd61ba716-99db-4b9a-b02e-3bc27465763f" priority="normal">
         <source>
             <property>
-                <type name="AX_GebietsgrenzeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+                <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
                 </type>
-                <child name="lebenszeitintervall" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="AA_Lebenszeitintervall" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="endet" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+                <child name="endet"/>
             </property>
         </source>
         <target>
@@ -781,16 +777,16 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:C9d5c3ef4-5dbe-4599-ab63-bfb08bc1683e" priority="normal">
         <source>
             <property>
-                <type name="AX_GebietsgrenzeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+                <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
                 </type>
-                <child name="position" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+                <child name="wkb_geometry"/>
             </property>
         </source>
         <target>
@@ -799,17 +795,17 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="true" name="structuralRename"/>
         <parameter value="false" name="copyGeometries"/>
         <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="ba1:C4b96b3d9-a53b-4cec-9679-dd90a9934271" priority="normal">
         <source name="id">
             <property>
-                <type name="AX_GebietsgrenzeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+                <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
                 </type>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="gml_id"/>
             </property>
         </source>
         <target>
@@ -823,10 +819,10 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
     <cell relation="custom:alignment:adv.inspire.identifier" id="ba1:C1c28a6dd-5adc-4957-ac58-fbdc78b1bacb" priority="normal">
         <source name="id">
             <property>
-                <type name="AX_GebietsgrenzeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+                <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
                 </type>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="gml_id"/>
             </property>
         </source>
         <target>
@@ -839,10 +835,10 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
     <cell relation="custom:alignment:adv.inspire.id.default" id="ba1:Ce5d081fc-d59e-4e22-b31e-95b5818a8f58" priority="normal">
         <source name="id">
             <property>
-                <type name="AX_GebietsgrenzeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+                <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
                 </type>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="gml_id"/>
             </property>
         </source>
         <target>
@@ -878,10 +874,10 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
     <cell relation="eu.esdihumboldt.hale.align.classification" id="ba1:C7dcc71d4-57ff-4159-a663-0ebac792ba30" priority="normal">
         <source>
             <property>
-                <type name="AX_GebietsgrenzeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+                <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
                 </type>
-                <child name="artDerGebietsgrenze" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+                <child name="artdergebietsgrenze"/>
             </property>
         </source>
         <target>
@@ -891,7 +887,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
-        <parameter value="null" name="notClassifiedAction"/>
         <complexParameter name="lookupTable">
             <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
                 <entry>
@@ -920,6 +915,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 </entry>
             </lookup-table>
         </complexParameter>
+        <parameter value="null" name="notClassifiedAction"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="ba1:C6ac9d6bf-2106-45c7-8ead-4e38d2374ed5" priority="normal">
         <target>
@@ -947,6 +943,26 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </class>
         </target>
+        <complexParameter name="join">
+            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
+                <class>
+                    <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <class>
+                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <jp:condition>
+                    <property>
+                        <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="schluessel_land"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gemeindezugehoerigkeit_land"/>
+                    </property>
+                </jp:condition>
+            </jp:join-parameter>
+        </complexParameter>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -977,26 +993,6 @@ _target{
 }
 </core:text>
         </complexParameter>
-        <complexParameter name="join">
-            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
-                <class>
-                    <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <class>
-                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <jp:condition>
-                    <property>
-                        <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="schluessel_land"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeindezugehoerigkeit_land"/>
-                    </property>
-                </jp:condition>
-            </jp:join-parameter>
-        </complexParameter>
         <documentation>Erstellt eine `AdministrativeUnit` aus einem `AX_Bundesland`.
 Die Geometrie wird aus den über den Schlüssel verknüpften `AX_Flurstueck` zusammengefügt.
 
@@ -1018,6 +1014,56 @@ Die Verknüpfung zur untergeordneten Ebene von `AdministrativeUnit`s wird über 
                 <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </class>
         </target>
+        <complexParameter name="join">
+            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
+                <class>
+                    <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <class>
+                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <jp:condition>
+                    <property>
+                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gemeinde"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gemeinde"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gemeindekennzeichen_land"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gemeindezugehoerigkeit_land"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="kreis"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="kreis"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="regierungsbezirk"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="regierungsbezirk"/>
+                    </property>
+                </jp:condition>
+            </jp:join-parameter>
+        </complexParameter>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -1062,56 +1108,6 @@ _target{
 }
 </core:text>
         </complexParameter>
-        <complexParameter name="join">
-            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
-                <class>
-                    <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <class>
-                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <jp:condition>
-                    <property>
-                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeindekennzeichen_land"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeindezugehoerigkeit_land"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeinde"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeinde"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="kreis"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="kreis"/>
-                    </property>
-                </jp:condition>
-            </jp:join-parameter>
-        </complexParameter>
         <documentation>Erstellt eine `AdministrativeUnit` aus einer `AX_Gemeinde`.
 Die Geometrie wird aus den über den Schlüssel verknüpften `AX_Flurstueck` zusammengefügt. Nur falls entsprechende Flurstücke gefunden werden wird eine eine `AdministrativeUnit` erstellt.
 
@@ -1139,6 +1135,69 @@ Falls keine Zugehörigkeit zu einer Verwaltungsgemeinschaft besteht wird die Zug
                 <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </class>
         </target>
+        <complexParameter name="join">
+            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
+                <class>
+                    <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <class>
+                    <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <class>
+                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <jp:condition>
+                    <property>
+                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gemeinde"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gemeinde"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gemeindekennzeichen_land"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gemeindezugehoerigkeit_land"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gml_id"/>
+                    </property>
+                    <property>
+                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="istteilvon"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="kreis"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="kreis"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="regierungsbezirk"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="regierungsbezirk"/>
+                    </property>
+                </jp:condition>
+            </jp:join-parameter>
+        </complexParameter>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -1196,69 +1255,6 @@ withTransformationContext {
 
 </core:text>
         </complexParameter>
-        <complexParameter name="join">
-            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
-                <class>
-                    <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <class>
-                    <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <class>
-                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <jp:condition>
-                    <property>
-                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeindekennzeichen_land"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeindezugehoerigkeit_land"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gml_id"/>
-                    </property>
-                    <property>
-                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="istteilvon"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeinde"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeinde"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="kreis"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="kreis"/>
-                    </property>
-                </jp:condition>
-            </jp:join-parameter>
-        </complexParameter>
         <documentation>Erstellt eine `AdministrativeUnit` aus einem `AX_Verwaltungsgemeinschaft`.
 Die Geometrie wird aus den über den Schlüssel verknüpften `AX_Flurstueck` zusammengefügt.
 
@@ -1283,6 +1279,46 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
                 <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </class>
         </target>
+        <complexParameter name="join">
+            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
+                <class>
+                    <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <class>
+                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <jp:condition>
+                    <property>
+                        <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="kreis"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="kreis"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="regierungsbezirk"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="regierungsbezirk"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="schluessel_land"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gemeindezugehoerigkeit_land"/>
+                    </property>
+                </jp:condition>
+            </jp:join-parameter>
+        </complexParameter>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -1329,46 +1365,6 @@ _target{
 }
 </core:text>
         </complexParameter>
-        <complexParameter name="join">
-            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
-                <class>
-                    <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <class>
-                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <jp:condition>
-                    <property>
-                        <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="schluessel_land"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeindezugehoerigkeit_land"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="kreis"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="kreis"/>
-                    </property>
-                </jp:condition>
-            </jp:join-parameter>
-        </complexParameter>
         <documentation>Erstellt eine `AdministrativeUnit` aus einem `AX_KreisRegion`.
 Die Geometrie wird aus den über den Schlüssel verknüpften `AX_Flurstueck` zusammengefügt.
 
@@ -1392,6 +1388,36 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
                 <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </class>
         </target>
+        <complexParameter name="join">
+            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
+                <class>
+                    <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <class>
+                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <jp:condition>
+                    <property>
+                        <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="land"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gemeindezugehoerigkeit_land"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="regierungsbezirk"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="regierungsbezirk"/>
+                    </property>
+                </jp:condition>
+            </jp:join-parameter>
+        </complexParameter>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -1429,36 +1455,6 @@ _target{
 }
 </core:text>
         </complexParameter>
-        <complexParameter name="join">
-            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
-                <class>
-                    <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <class>
-                    <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <jp:condition>
-                    <property>
-                        <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="land"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeindezugehoerigkeit_land"/>
-                    </property>
-                </jp:condition>
-            </jp:join-parameter>
-        </complexParameter>
         <documentation>Erstellt eine `AdministrativeUnit` aus einem `AX_Regierungsbezirk`.
 Die Geometrie wird aus den über den Schlüssel verknüpften `AX_Flurstueck` zusammengefügt.
 
@@ -1479,8 +1475,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Ccef5cb84-463f-48e8-82cb-646e5f1d8032" priority="normal">
         <source>
@@ -1495,8 +1491,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Ccef5cb84-463f-48e8-82cb-646e5f1d8032" priority="normal">
         <source>
@@ -1511,8 +1507,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Ccef5cb84-463f-48e8-82cb-646e5f1d8032" priority="normal">
         <source>
@@ -1527,8 +1523,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Ccef5cb84-463f-48e8-82cb-646e5f1d8032" priority="normal">
         <source>
@@ -1543,8 +1539,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:C09453a00-9d93-4ea2-94d5-83a662679e84" priority="normal">
         <source>
@@ -1559,8 +1555,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="ba1:C0c74cb2b-0866-4a59-ade9-e31fe3a2000f" priority="normal">
         <target>
@@ -1621,8 +1617,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Cbd879726-8cea-4184-9cf3-74593fce4479" priority="normal">
         <source>
@@ -1637,8 +1633,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Cbd879726-8cea-4184-9cf3-74593fce4479" priority="normal">
         <source>
@@ -1653,8 +1649,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Cbd879726-8cea-4184-9cf3-74593fce4479" priority="normal">
         <source>
@@ -1669,8 +1665,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Cbd879726-8cea-4184-9cf3-74593fce4479" priority="normal">
         <source>
@@ -1685,8 +1681,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Cf6233ece-b5e3-49fc-bf2d-0966d13e6ca1" priority="normal">
         <source>
@@ -1701,8 +1697,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="ba1:C027c7ea7-322f-4fa9-9960-ef6263f3feac" priority="normal">
         <source name="id">
@@ -1935,16 +1931,16 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="ba1:C03ecccc0-d989-4597-85d7-53401c0c6390" priority="normal">
-        <source name="spelling">
-            <property>
-                <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="bezeichnung"/>
-            </property>
-        </source>
         <source name="source">
             <property>
                 <type name="AX_BundeslandType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
                 <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+            </property>
+        </source>
+        <source name="spelling">
+            <property>
+                <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="bezeichnung"/>
             </property>
         </source>
         <target>
@@ -1956,16 +1952,16 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="ba1:Cb517321b-4e19-4fdd-bb36-41584acd28c3" priority="normal">
-        <source name="spelling">
-            <property>
-                <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="bezeichnung"/>
-            </property>
-        </source>
         <source name="source">
             <property>
                 <type name="AX_GemeindeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
                 <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+            </property>
+        </source>
+        <source name="spelling">
+            <property>
+                <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="bezeichnung"/>
             </property>
         </source>
         <target>
@@ -1977,16 +1973,16 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="ba1:C11652e8a-9255-43e3-a93b-087a7d23e5d6" priority="normal">
-        <source name="spelling">
-            <property>
-                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="bezeichnung"/>
-            </property>
-        </source>
         <source name="source">
             <property>
                 <type name="AX_KreisRegionType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
                 <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+            </property>
+        </source>
+        <source name="spelling">
+            <property>
+                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="bezeichnung"/>
             </property>
         </source>
         <target>
@@ -1998,16 +1994,16 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="ba1:C6ddff7d7-c1be-4950-8937-5ab069cbb372" priority="normal">
-        <source name="spelling">
-            <property>
-                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="bezeichnung"/>
-            </property>
-        </source>
         <source name="source">
             <property>
                 <type name="AX_RegierungsbezirkType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
                 <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+            </property>
+        </source>
+        <source name="spelling">
+            <property>
+                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="bezeichnung"/>
             </property>
         </source>
         <target>
@@ -2019,16 +2015,16 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="ba1:Cc914b5bf-167d-4b30-9155-bf43363cf6dc" priority="normal">
-        <source name="spelling">
-            <property>
-                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="bezeichnung"/>
-            </property>
-        </source>
         <source name="source">
             <property>
                 <type name="AX_VerwaltungsgemeinschaftType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
                 <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+            </property>
+        </source>
+        <source name="spelling">
+            <property>
+                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="bezeichnung"/>
             </property>
         </source>
         <target>
@@ -2052,8 +2048,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Caa605b44-05cd-4a95-8df1-68e6f85eecf8" priority="normal">
         <source>
@@ -2068,8 +2064,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Cdba833bd-f1e1-49e6-b33d-1a74d2b309cd" priority="normal">
         <source>
@@ -2084,8 +2080,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Cd1b7f401-86c0-4375-a22b-a7a3df75036c" priority="normal">
         <source>
@@ -2100,8 +2096,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:C47023cf3-ddda-42e2-97df-c1f3c0439936" priority="normal">
         <source>
@@ -2116,8 +2112,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="ba1:Cc79906f6-7938-43b4-bae4-31266ced1798" priority="normal">
         <source name="anchor">
@@ -2300,8 +2296,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </class>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="ba1:C635bad95-0f4b-4482-86c1-dec0a31966a8" priority="normal">
         <target>
@@ -2326,8 +2322,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="ba1:Cd7362da3-c2c8-4fa2-9157-62602a0da9d5" priority="normal">
         <source>
@@ -2342,8 +2338,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.geometric.aggregate" id="ba1:Ce9f48fe2-0f92-41b8-87ae-3a68142b1d25" priority="normal">
         <source>

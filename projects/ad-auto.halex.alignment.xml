@@ -1,62 +1,204 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <alignment xmlns="http://www.esdi-humboldt.eu/hale/alignment">
     <customFunction>
-        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.id.default" name="AdV INSPIRE localId" type="groovy">
-            <cf:input eager="true" maxOccurs="-1" minOccurs="1" name="id">
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
+            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
+                <cf:binding>java.lang.String</cf:binding>
+                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+            </cf:input>
+            <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                 <cf:binding>java.lang.String</cf:binding>
             </cf:input>
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
-                <cf:binding>java.lang.String</cf:binding>
+                <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </cf:output>
+            <cf:param maxOccurs="1" minOccurs="0" name="source">
+                <cf:description>
+                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Quelle des Namens. Falls nicht angegeben wird sie aus einer Projekt-Variable bestimmt.</core:text>
+                </cf:description>
+                <cf:display value="Source of name"/>
+                <cf:binding>java.lang.String</cf:binding>
+            </cf:param>
+            <cf:param maxOccurs="1" minOccurs="0" name="nameStatus">
+                <cf:description>
+                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Status des Namens. Falls nicht angegeben wird als Standardwert official angenommen.</core:text>
+                </cf:description>
+                <cf:display value="nameStatus"/>
+                <cf:value>standardised</cf:value>
+                <cf:value>other</cf:value>
+                <cf:value>official</cf:value>
+                <cf:value>historical</cf:value>
+                <cf:value>unpopulated</cf:value>
+                <cf:value>unknown</cf:value>
+            </cf:param>
+            <cf:param maxOccurs="1" minOccurs="0" name="nativeness">
+                <cf:description>
+                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Ortsüblichkeit des Namens. Falls nicht angegeben wird als Standardwert endonym angenommen.</core:text>
+                </cf:description>
+                <cf:display value="nativeness"/>
+                <cf:value>endonym</cf:value>
+                <cf:value>unpopulated</cf:value>
+                <cf:value>exonym</cf:value>
+                <cf:value>unknown</cf:value>
+            </cf:param>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-// alle Quell-IDs als Liste
-def identifiers = id.p.values()
+def name = lagebezeichnung.p.unverschluesselt.value()
 
-def id
+if (!name) {
+	// Namen auch aus verschlüsselter Lagebezeichnung ableiten
+	
+	def gemeinde = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde.value()
+	def kreis = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.kreis.value()
+	def lage = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.lage.value()
+	def land = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.land.value()
+	def reg = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.regierungsbezirk.value()
 
-if (identifiers.size() == 1) {
-  // verwende Original-ID falls nur eine Quelle
-  id = identifiers[0]
+	if (land &amp;&amp; gemeinde &amp;&amp; kreis &amp;&amp; lage) {
+		if (!reg) reg = '0'
+		def schluesselGesamt = "$land$reg$kreis$gemeinde$lage"
+		
+		withTransformationContext {
+			def collect = _.context.collector(it)
+	  
+			// Name zu Schlüssel der Lagebezeichnung aus Index holen
+			name = collect.lagebezeichnung[schluesselGesamt].value()
+		}
+	}
+}
+
+if (name) {
+	def sourceName_var = _project.vars.get('ADV_MODELLART', null)
+
+	_target {
+		// source
+
+		// Priorität 1 - feste Quelle
+		if (_params.source) {
+			sourceOfName( _params.source )
+		}
+		// Priorität 2 - aus Projektvariable
+		else if (sourceName_var) {
+			sourceOfName( sourceName_var )
+		}
+		else {
+			sourceOfName {
+				nilReason( 'unknown' )
+			}
+		}
+
+		// nativeness
+		def nn = _params.nativeness
+		if (nn) {
+			if (nn == 'unpopulated') {
+				nativeness {
+					nilReason( 'other:unpopulated' )
+				}
+			}
+			else if (nn == 'unknown') {
+				nativeness {
+					nilReason( 'unknown' )
+				}
+			}
+			else {
+				nativeness {
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/' + nn )
+				}
+			}
+		}
+		else {
+			// default for nativeness if not specified is endonym
+			nativeness {
+				href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )
+			}
+		}
+
+		// nameStatus
+		def ns = _params.nameStatus
+		if (ns) {
+			if (ns == 'unpopulated') {
+				nameStatus {
+					nilReason( 'other:unpopulated' )
+				}
+			}
+			else if (ns == 'unknown') {
+				nameStatus {
+					nilReason( 'unknown' )
+				}
+			}
+			else {
+				nameStatus {
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/' + ns )
+				}
+			}
+		}
+		else {
+			// default for nameStatus if not specified is official
+			nameStatus {
+				href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/official' )
+			}
+		}
+
+		// spelling
+		spelling {
+			SpellingOfName {
+				text( name )
+				script( 'Latn' )
+			}
+		}
+		// language
+		language( 'deu' )
+	}
 }
 else {
-  // sortieren (TODO spezielle Ordnung benötigt?)
-  identifiers = identifiers.sort()
-
-  def identString = identifiers.join()
-
-  id = '_' + _.crypto.sha256(identString)
+	throw new NoResultException()
 }
-
-// Ziel-Typ als Präfix
-if (true /*_params.useTargetTypePrefix*/) {
-  def targetType = _targetType.definition.name.localPart
-  if (targetType) {
-    if (targetType.endsWith('Type')) {
-      targetType = targetType[0..-5]
-    }
-  
-    if (!id.startsWith('_')) {
-      id = '_' + id
-    }
-    id = targetType + id
-  }
-}
-
-id
 </core:text>
             </cf:definition>
             <cf:explanation>
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Bestimmung einer INSPIRE localId oder GML id aus Fachkennzeichen oder AAA-ObjektIDs.
+Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.
+Eine unverschlüsselte Lagebezeichnung wird direkt übernommen, eine verschlüsselte Lagebezeichnung wird versucht über einen Index nachzuschlagen.
 
-Für eine einzige Quell-ID wird diese direkt herangezogen.
+Die Sprache wird als Deutsch angenommen.
 
-Andernfalls wird unter Verwendung des SHA256-Algorithmus ein Hash-Wert aus den sortierten und dann konkatenierten Quell-IDs gebildet und hexadezimal kodiert.
-
-Außerdem wird der Name des Feature-Typs des Ziel-Modells als Präfix vorangestellt. Dabei wird sichergestellt dass der Typ-Name von den weiteren Teilen der ID durch einen Unterstrich getrennt ist.
+&lt;% if (_params.nameStatus) {
+  if (_params.nameStatus == 'unpopulated') {
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
+  }
+  else if (_params.nameStatus == 'unknown') {
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
+  }
+  else {
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
+  }
+}
+else {
+  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
+}
+out &lt;&lt; "\n\n"
+if (_params.nativeness) {
+  if (_params.nativeness == 'unpopulated') {
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
+  }
+  else if (_params.nativeness == 'unknown') {
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
+  }
+  else {
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
+  }
+}
+else {
+  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
+}
+out &lt;&lt; "\n\n"
+if (_params.source) {&#xD;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
+} else {&#xD;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
+} %&gt;
 </core:text>
                     </cf:template>
                 </cf:locale>
@@ -262,30 +404,6 @@ if (_params.source) {&#xD;
         </cf:custom-property-function>
     </customFunction>
     <customFunction>
-        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.namespace" name="AdV INSPIRE ID namespace" type="groovy">
-            <cf:output eager="false" maxOccurs="1" minOccurs="1">
-                <cf:binding>java.lang.String</cf:binding>
-            </cf:output>
-            <cf:definition>
-                <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-// verwende Wert aus Projekt-Variable "INSPIRE_NAMESPACE"
-_project.vars.INSPIRE_NAMESPACE
-</core:text>
-            </cf:definition>
-            <cf:explanation>
-                <cf:locale country="" language="" variant="">
-                    <cf:template>
-                        <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Setzt $_target auf den für den Datensatz vorgegebenen festen INSPIRE Namespace.
-
-Der für Datenanbieter und Datensatz spezifische Namespace muss dafür als Vorgabe (Projekt-Variable) konfiguriert werden.
-</core:text>
-                    </cf:template>
-                </cf:locale>
-            </cf:explanation>
-        </cf:custom-property-function>
-    </customFunction>
-    <customFunction>
         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.date.earliest" name="Jüngstes Datum" type="groovy">
             <cf:input eager="true" maxOccurs="-1" minOccurs="1" name="dates">
                 <cf:binding>java.lang.String</cf:binding>
@@ -342,8 +460,8 @@ values[-1]
         </cf:custom-property-function>
     </customFunction>
     <customFunction>
-        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.uom.toucum" name="AdV Maßeinheit zu UCUM" type="groovy">
-            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="uom">
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.id.default" name="AdV INSPIRE localId" type="groovy">
+            <cf:input eager="true" maxOccurs="-1" minOccurs="1" name="id">
                 <cf:binding>java.lang.String</cf:binding>
             </cf:input>
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
@@ -351,44 +469,53 @@ values[-1]
             </cf:output>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!uom) {
-	throw new NoResultException()
+// alle Quell-IDs als Liste
+def identifiers = id.p.values()
+
+def id
+
+if (identifiers.size() == 1) {
+  // verwende Original-ID falls nur eine Quelle
+  id = identifiers[0]
+}
+else {
+  // sortieren (TODO spezielle Ordnung benötigt?)
+  identifiers = identifiers.sort()
+
+  def identString = identifiers.join()
+
+  id = '_' + _.crypto.sha256(identString)
 }
 
-def result
-
-// Mapping auf UCUM
-switch(uom) {
-case 'urn:adv:uom:m2':
-	result = 'm2'
-	break
-case 'urn:adv:uom:m':
-	result = 'm'
-	break
+// Ziel-Typ als Präfix
+if (true /*_params.useTargetTypePrefix*/) {
+  def targetType = _targetType.definition.name.localPart
+  if (targetType) {
+    if (targetType.endsWith('Type')) {
+      targetType = targetType[0..-5]
+    }
+  
+    if (!id.startsWith('_')) {
+      id = '_' + id
+    }
+    id = targetType + id
+  }
 }
 
-if (!result) {
-	// Transformations-Warnung falls kein Mapping auf UCUM vorhanden
-	_log.warn("Unknown UCUM representation for unit of measurment $uom, using code as-is")
-	result = uom
-}
-
-result
+id
 </core:text>
             </cf:definition>
             <cf:explanation>
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Abbildung von Maßeinheiten aus AdV URNs nach UCUM
+Bestimmung einer INSPIRE localId oder GML id aus Fachkennzeichen oder AAA-ObjektIDs.
 
-*Keine vollständige Abbildung, muss ggf. ergänzt werden.*
+Für eine einzige Quell-ID wird diese direkt herangezogen.
 
-Aktuell ist folgende Abbildung umgesetzt:
+Andernfalls wird unter Verwendung des SHA256-Algorithmus ein Hash-Wert aus den sortierten und dann konkatenierten Quell-IDs gebildet und hexadezimal kodiert.
 
-- `urn:adv:uom:m2` zu `m2`
-- `urn:adv:uom:m`zu `m`
-
+Außerdem wird der Name des Feature-Typs des Ziel-Modells als Präfix vorangestellt. Dabei wird sichergestellt dass der Typ-Name von den weiteren Teilen der ID durch einen Unterstrich getrennt ist.
 </core:text>
                     </cf:template>
                 </cf:locale>
@@ -477,204 +604,77 @@ Der `codeSpace` für den GML identifier wird als `http://inspire.ec.europa.eu/id
         </cf:custom-property-function>
     </customFunction>
     <customFunction>
-        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
-            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
-                <cf:binding>java.lang.String</cf:binding>
-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </cf:input>
-            <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
-                <cf:binding>java.lang.String</cf:binding>
-            </cf:input>
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.namespace" name="AdV INSPIRE ID namespace" type="groovy">
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
-                <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </cf:output>
-            <cf:param maxOccurs="1" minOccurs="0" name="source">
-                <cf:description>
-                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Quelle des Namens. Falls nicht angegeben wird sie aus einer Projekt-Variable bestimmt.</core:text>
-                </cf:description>
-                <cf:display value="Source of name"/>
                 <cf:binding>java.lang.String</cf:binding>
-            </cf:param>
-            <cf:param maxOccurs="1" minOccurs="0" name="nameStatus">
-                <cf:description>
-                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Status des Namens. Falls nicht angegeben wird als Standardwert official angenommen.</core:text>
-                </cf:description>
-                <cf:display value="nameStatus"/>
-                <cf:value>standardised</cf:value>
-                <cf:value>other</cf:value>
-                <cf:value>official</cf:value>
-                <cf:value>historical</cf:value>
-                <cf:value>unpopulated</cf:value>
-                <cf:value>unknown</cf:value>
-            </cf:param>
-            <cf:param maxOccurs="1" minOccurs="0" name="nativeness">
-                <cf:description>
-                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Ortsüblichkeit des Namens. Falls nicht angegeben wird als Standardwert endonym angenommen.</core:text>
-                </cf:description>
-                <cf:display value="nativeness"/>
-                <cf:value>endonym</cf:value>
-                <cf:value>unpopulated</cf:value>
-                <cf:value>exonym</cf:value>
-                <cf:value>unknown</cf:value>
-            </cf:param>
+            </cf:output>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def name = lagebezeichnung.p.unverschluesselt.value()
-
-if (!name) {
-	// Namen auch aus verschlüsselter Lagebezeichnung ableiten
-	
-	def gemeinde = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde.value()
-	def kreis = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.kreis.value()
-	def lage = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.lage.value()
-	def land = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.land.value()
-	def reg = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.regierungsbezirk.value()
-
-	if (land &amp;&amp; gemeinde &amp;&amp; kreis &amp;&amp; lage) {
-		if (!reg) reg = '0'
-		def schluesselGesamt = "$land$reg$kreis$gemeinde$lage"
-		
-		withTransformationContext {
-			def collect = _.context.collector(it)
-	  
-			// Name zu Schlüssel der Lagebezeichnung aus Index holen
-			name = collect.lagebezeichnung[schluesselGesamt].value()
-		}
-	}
-}
-
-if (name) {
-	def sourceName_var = _project.vars.get('ADV_MODELLART', null)
-
-	_target {
-		// source
-
-		// Priorität 1 - feste Quelle
-		if (_params.source) {
-			sourceOfName( _params.source )
-		}
-		// Priorität 2 - aus Projektvariable
-		else if (sourceName_var) {
-			sourceOfName( sourceName_var )
-		}
-		else {
-			sourceOfName {
-				nilReason( 'unknown' )
-			}
-		}
-
-		// nativeness
-		def nn = _params.nativeness
-		if (nn) {
-			if (nn == 'unpopulated') {
-				nativeness {
-					nilReason( 'other:unpopulated' )
-				}
-			}
-			else if (nn == 'unknown') {
-				nativeness {
-					nilReason( 'unknown' )
-				}
-			}
-			else {
-				nativeness {
-					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/' + nn )
-				}
-			}
-		}
-		else {
-			// default for nativeness if not specified is endonym
-			nativeness {
-				href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )
-			}
-		}
-
-		// nameStatus
-		def ns = _params.nameStatus
-		if (ns) {
-			if (ns == 'unpopulated') {
-				nameStatus {
-					nilReason( 'other:unpopulated' )
-				}
-			}
-			else if (ns == 'unknown') {
-				nameStatus {
-					nilReason( 'unknown' )
-				}
-			}
-			else {
-				nameStatus {
-					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/' + ns )
-				}
-			}
-		}
-		else {
-			// default for nameStatus if not specified is official
-			nameStatus {
-				href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/official' )
-			}
-		}
-
-		// spelling
-		spelling {
-			SpellingOfName {
-				text( name )
-				script( 'Latn' )
-			}
-		}
-		// language
-		language( 'deu' )
-	}
-}
-else {
-	throw new NoResultException()
-}
+// verwende Wert aus Projekt-Variable "INSPIRE_NAMESPACE"
+_project.vars.INSPIRE_NAMESPACE
 </core:text>
             </cf:definition>
             <cf:explanation>
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.
-Eine unverschlüsselte Lagebezeichnung wird direkt übernommen, eine verschlüsselte Lagebezeichnung wird versucht über einen Index nachzuschlagen.
+Setzt $_target auf den für den Datensatz vorgegebenen festen INSPIRE Namespace.
 
-Die Sprache wird als Deutsch angenommen.
+Der für Datenanbieter und Datensatz spezifische Namespace muss dafür als Vorgabe (Projekt-Variable) konfiguriert werden.
+</core:text>
+                    </cf:template>
+                </cf:locale>
+            </cf:explanation>
+        </cf:custom-property-function>
+    </customFunction>
+    <customFunction>
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.uom.toucum" name="AdV Maßeinheit zu UCUM" type="groovy">
+            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="uom">
+                <cf:binding>java.lang.String</cf:binding>
+            </cf:input>
+            <cf:output eager="false" maxOccurs="1" minOccurs="1">
+                <cf:binding>java.lang.String</cf:binding>
+            </cf:output>
+            <cf:definition>
+                <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (!uom) {
+	throw new NoResultException()
+}
 
-&lt;% if (_params.nameStatus) {
-  if (_params.nameStatus == 'unpopulated') {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
-  }
-  else if (_params.nameStatus == 'unknown') {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
-  }
-  else {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
-  }
+def result
+
+// Mapping auf UCUM
+switch(uom) {
+case 'urn:adv:uom:m2':
+	result = 'm2'
+	break
+case 'urn:adv:uom:m':
+	result = 'm'
+	break
 }
-else {
-  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
+
+if (!result) {
+	// Transformations-Warnung falls kein Mapping auf UCUM vorhanden
+	_log.warn("Unknown UCUM representation for unit of measurment $uom, using code as-is")
+	result = uom
 }
-out &lt;&lt; "\n\n"
-if (_params.nativeness) {
-  if (_params.nativeness == 'unpopulated') {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
-  }
-  else if (_params.nativeness == 'unknown') {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
-  }
-  else {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
-  }
-}
-else {
-  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
-}
-out &lt;&lt; "\n\n"
-if (_params.source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
-} else {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
-} %&gt;
+
+result
+</core:text>
+            </cf:definition>
+            <cf:explanation>
+                <cf:locale country="" language="" variant="">
+                    <cf:template>
+                        <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+Abbildung von Maßeinheiten aus AdV URNs nach UCUM
+
+*Keine vollständige Abbildung, muss ggf. ergänzt werden.*
+
+Aktuell ist folgende Abbildung umgesetzt:
+
+- `urn:adv:uom:m2` zu `m2`
+- `urn:adv:uom:m`zu `m`
+
 </core:text>
                     </cf:template>
                 </cf:locale>
@@ -684,7 +684,7 @@ if (_params.source) {&#xD;
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="Cd5bb8841-8c5f-4712-bd15-03c3cf5d80ca" priority="normal">
         <source name="types">
             <class>
-                <type name="AP_PTOType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">signaturnummer like '%4070' and art='HNR'</condition>
                 </type>
             </class>
@@ -709,6 +709,56 @@ if (_params.source) {&#xD;
                 <type name="AddressType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </class>
         </target>
+        <complexParameter name="join">
+            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
+                <class>
+                    <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <class>
+                    <type name="ax_georeferenziertegebaeudeadresse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <class>
+                    <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <condition lang="CQL">signaturnummer like '%4070' and art='HNR'</condition>
+                    </type>
+                </class>
+                <class>
+                    <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <jp:condition>
+                    <property>
+                        <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gml_id"/>
+                    </property>
+                    <property>
+                        <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr">
+                            <condition lang="CQL">signaturnummer like '%4070' and art='HNR'</condition>
+                        </type>
+                        <child name="dientzurdarstellungvon"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gml_id"/>
+                    </property>
+                    <property>
+                        <type name="ax_georeferenziertegebaeudeadresse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="hatauch"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gml_id"/>
+                    </property>
+                    <property>
+                        <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="zeigtauf"/>
+                    </property>
+                </jp:condition>
+            </jp:join-parameter>
+        </complexParameter>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 def positionAdresse = _source.links.AX_GeoreferenzierteGebaeudeadresse.p.position.first()&#xD;
@@ -742,57 +792,6 @@ if (positionAdresse) {&#xD;
 	}&#xD;
 }
 </core:text>
-        </complexParameter>
-        <complexParameter name="join">
-            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
-                <class>
-                    <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <class>
-                    <type name="ax_georeferenziertegebaeudeadresse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <class>
-                    <type name="AP_PTOType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                        <condition lang="CQL">signaturnummer like '%4070' and art='HNR'</condition>
-                    </type>
-                </class>
-                <class>
-                    <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <jp:condition>
-                    <property>
-                        <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gml_id"/>
-                    </property>
-                    <property>
-                        <type name="AP_PTOType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                            <condition lang="CQL">signaturnummer like '%4070' and art='HNR'</condition>
-                        </type>
-                        <child name="dientZurDarstellungVon" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                        <child name="href" ns="http://www.w3.org/1999/xlink"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gml_id"/>
-                    </property>
-                    <property>
-                        <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="zeigtauf"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gml_id"/>
-                    </property>
-                    <property>
-                        <type name="ax_georeferenziertegebaeudeadresse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="hatauch"/>
-                    </property>
-                </jp:condition>
-            </jp:join-parameter>
         </complexParameter>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C08467f52-22e7-4435-9031-9149c4aac7c6" priority="normal">
@@ -808,7 +807,7 @@ if (positionAdresse) {&#xD;
         </source>
         <source name="types">
             <class>
-                <type name="AP_PTOType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">signaturnummer like '%4070' and art='HNR'</condition>
                 </type>
             </class>
@@ -823,6 +822,56 @@ if (positionAdresse) {&#xD;
                 <type name="AddressType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </class>
         </target>
+        <complexParameter name="join">
+            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
+                <class>
+                    <type name="ax_lagebezeichnungohnehausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <class>
+                    <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <class>
+                    <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <condition lang="CQL">signaturnummer like '%4070' and art='HNR'</condition>
+                    </type>
+                </class>
+                <class>
+                    <type name="ax_georeferenziertegebaeudeadresse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <jp:condition>
+                    <property>
+                        <type name="ax_lagebezeichnungohnehausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gml_id"/>
+                    </property>
+                    <property>
+                        <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr">
+                            <condition lang="CQL">signaturnummer like '%4070' and art='HNR'</condition>
+                        </type>
+                        <child name="dientzurdarstellungvon"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_lagebezeichnungohnehausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gml_id"/>
+                    </property>
+                    <property>
+                        <type name="ax_georeferenziertegebaeudeadresse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="hatauch"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_lagebezeichnungohnehausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gml_id"/>
+                    </property>
+                    <property>
+                        <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="zeigtauf"/>
+                    </property>
+                </jp:condition>
+            </jp:join-parameter>
+        </complexParameter>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 def positionAdresse = _source.links.AX_GeoreferenzierteGebaeudeadresse.p.position.first()&#xD;
@@ -858,57 +907,6 @@ if (positionAdresse) {&#xD;
 
 </core:text>
         </complexParameter>
-        <complexParameter name="join">
-            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
-                <class>
-                    <type name="ax_lagebezeichnungohnehausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <class>
-                    <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <class>
-                    <type name="AP_PTOType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                        <condition lang="CQL">signaturnummer like '%4070' and art='HNR'</condition>
-                    </type>
-                </class>
-                <class>
-                    <type name="ax_georeferenziertegebaeudeadresse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <jp:condition>
-                    <property>
-                        <type name="ax_lagebezeichnungohnehausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gml_id"/>
-                    </property>
-                    <property>
-                        <type name="ax_georeferenziertegebaeudeadresse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="hatauch"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_lagebezeichnungohnehausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gml_id"/>
-                    </property>
-                    <property>
-                        <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="zeigtauf"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_lagebezeichnungohnehausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gml_id"/>
-                    </property>
-                    <property>
-                        <type name="AP_PTOType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                            <condition lang="CQL">signaturnummer like '%4070' and art='HNR'</condition>
-                        </type>
-                        <child name="dientZurDarstellungVon" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                        <child name="href" ns="http://www.w3.org/1999/xlink"/>
-                    </property>
-                </jp:condition>
-            </jp:join-parameter>
-        </complexParameter>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf26a5a1b-0059-45d7-82b6-6624cf7a104b" priority="normal">
         <source>
@@ -923,8 +921,8 @@ if (positionAdresse) {&#xD;
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C26cdb092-6dd3-4145-9e40-a4dde696a11d" priority="normal">
         <source name="var">
@@ -1105,8 +1103,8 @@ if (positionAdresse) {&#xD;
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C611cc7db-d565-41d6-8844-af5630d49a44" priority="normal">
         <source name="id">
@@ -1191,8 +1189,8 @@ if (positionAdresse) {&#xD;
                 <child name="designator" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C2c8d71c6-dcbe-4bcd-a217-56f8830fdb0f" priority="normal">
         <target>
@@ -1231,8 +1229,8 @@ if (positionAdresse) {&#xD;
                 <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </class>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Cef658861-1b2b-4431-b31a-e0ec65c62402" priority="normal">
         <source>
@@ -1245,8 +1243,8 @@ if (positionAdresse) {&#xD;
                 <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </class>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Cbc19c1b0-4c69-4997-8f49-cb02a3332759" priority="normal">
         <source>
@@ -1259,8 +1257,8 @@ if (positionAdresse) {&#xD;
                 <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </class>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C42e5309f-ca89-4f2c-af7a-5b01f97c64fb" priority="normal">
         <source>
@@ -1273,8 +1271,8 @@ if (positionAdresse) {&#xD;
                 <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </class>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Cd0c5ca3f-089f-4614-9d37-b68c4598281a" priority="normal">
         <source>
@@ -1287,8 +1285,8 @@ if (positionAdresse) {&#xD;
                 <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </class>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cb184f148-a9ee-4170-a5da-e425a0fe2cc2" priority="normal">
         <source>
@@ -1303,8 +1301,8 @@ if (positionAdresse) {&#xD;
                 <child name="alternativeIdentifier" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce54ba4cd-801f-4606-9410-b7d2d89649b5" priority="normal">
         <source>
@@ -1319,8 +1317,8 @@ if (positionAdresse) {&#xD;
                 <child name="alternativeIdentifier" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C1e277297-eb69-46ae-8d3b-18ec46f498da" priority="normal">
         <source>
@@ -1335,8 +1333,8 @@ if (positionAdresse) {&#xD;
                 <child name="alternativeIdentifier" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf2907904-ac59-4dfb-96eb-67b187deb8f2" priority="normal">
         <source>
@@ -1351,8 +1349,8 @@ if (positionAdresse) {&#xD;
                 <child name="alternativeIdentifier" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C937d4514-6da0-4e5c-9d4f-67e2d46f73ec" priority="normal">
         <source>
@@ -1367,8 +1365,8 @@ if (positionAdresse) {&#xD;
                 <child name="alternativeIdentifier" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc3745d4c-517a-4c5d-a0bf-ad8908bce866" priority="normal">
         <source>
@@ -1383,8 +1381,8 @@ if (positionAdresse) {&#xD;
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C678fa6c6-6d21-41f7-a03b-b44cf7f9df93" priority="normal">
         <source>
@@ -1399,8 +1397,8 @@ if (positionAdresse) {&#xD;
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd93081b4-fc11-4825-bf0d-f2f02cc88589" priority="normal">
         <source>
@@ -1415,8 +1413,8 @@ if (positionAdresse) {&#xD;
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cfe9f05f3-7e7c-43d1-883a-e215c07c6c62" priority="normal">
         <source>
@@ -1431,8 +1429,8 @@ if (positionAdresse) {&#xD;
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cdb60c4eb-8ffa-49dc-b43c-03b8eba3620d" priority="normal">
         <source>
@@ -1447,8 +1445,8 @@ if (positionAdresse) {&#xD;
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ceda0b304-65ef-4b74-97e3-b589d0d110cd" priority="normal">
         <source>
@@ -1463,8 +1461,8 @@ if (positionAdresse) {&#xD;
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cb9a13692-9d01-4d84-a425-743f3b905ec8" priority="normal">
         <source>
@@ -1479,8 +1477,8 @@ if (positionAdresse) {&#xD;
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C544ace01-519f-454b-9cbc-f0e700883861" priority="normal">
         <source>
@@ -1495,8 +1493,8 @@ if (positionAdresse) {&#xD;
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cdf273295-0b54-4885-a7b7-40ab21646b5d" priority="normal">
         <source>
@@ -1511,8 +1509,8 @@ if (positionAdresse) {&#xD;
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca61f94ac-63c5-4a7a-be15-8c88be2c95cb" priority="normal">
         <source>
@@ -1527,8 +1525,8 @@ if (positionAdresse) {&#xD;
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C3f9ca71b-a625-4e8b-ad52-6712f6317f97" priority="normal">
         <source name="id">
@@ -1770,8 +1768,8 @@ if (positionAdresse) {&#xD;
                 <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
-        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
         <parameter value="https://registry.gdi-de.org/id/de.{1}/" name="outputFormat"/>
+        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.string.regexanalysisfunction" id="Caa49d79e-c38e-4d07-96e7-b9b73ee67db3" priority="normal">
         <source>
@@ -1788,8 +1786,8 @@ if (positionAdresse) {&#xD;
                 <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
-        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
         <parameter value="https://registry.gdi-de.org/id/de.{1}/" name="outputFormat"/>
+        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.string.regexanalysisfunction" id="Caa49d79e-c38e-4d07-96e7-b9b73ee67db3" priority="normal">
         <source>
@@ -1806,8 +1804,8 @@ if (positionAdresse) {&#xD;
                 <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
-        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
         <parameter value="https://registry.gdi-de.org/id/de.{1}/" name="outputFormat"/>
+        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.string.regexanalysisfunction" id="Caa49d79e-c38e-4d07-96e7-b9b73ee67db3" priority="normal">
         <source>
@@ -1824,8 +1822,8 @@ if (positionAdresse) {&#xD;
                 <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
-        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
         <parameter value="https://registry.gdi-de.org/id/de.{1}/" name="outputFormat"/>
+        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.string.regexanalysisfunction" id="Caa49d79e-c38e-4d07-96e7-b9b73ee67db3" priority="normal">
         <source>
@@ -1842,8 +1840,8 @@ if (positionAdresse) {&#xD;
                 <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
-        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
         <parameter value="https://registry.gdi-de.org/id/de.{1}/" name="outputFormat"/>
+        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cd89386a6-97dd-4cb9-979a-c159ce868ff8" priority="normal">
         <source name="anchor">
@@ -1942,8 +1940,8 @@ if (positionAdresse) {&#xD;
                 <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C5fe87932-7e93-4a0c-ad80-abf8069df0d6" priority="normal">
         <source>
@@ -1962,8 +1960,8 @@ if (positionAdresse) {&#xD;
                 <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C1fdf6ba9-e582-41d4-89d4-2fd3536af24f" priority="normal">
         <source>
@@ -1982,8 +1980,8 @@ if (positionAdresse) {&#xD;
                 <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C67c897fc-a4a9-4120-8008-56c7087986ef" priority="normal">
         <source>
@@ -2002,8 +2000,8 @@ if (positionAdresse) {&#xD;
                 <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C064e28f7-71c0-4cd4-87e4-a9cd291c3f1c" priority="normal">
         <source>
@@ -2022,8 +2020,8 @@ if (positionAdresse) {&#xD;
                 <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C99ef38d9-8667-4ef0-a92f-4dcfc31d8b36" priority="normal">
         <source>
@@ -2036,8 +2034,8 @@ if (positionAdresse) {&#xD;
                 <type name="PostalDescriptorType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </class>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C9842c4bf-f94e-4cb6-ae00-86bdb2c2ca62" priority="normal">
         <source name="var">
@@ -2119,8 +2117,8 @@ if (positionAdresse) {&#xD;
                 <child name="postCode" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C327276ff-581f-4aab-b58a-921a1ede3f11" priority="normal">
         <source>
@@ -2139,8 +2137,8 @@ if (positionAdresse) {&#xD;
                 <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C9fc48689-dc97-4f8a-864a-1557dcf3c563" priority="normal">
         <source>
@@ -2153,8 +2151,8 @@ if (positionAdresse) {&#xD;
                 <type name="ThoroughfareNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </class>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C3e6e7ee6-189b-4dc3-9cbc-05e4319721b3" priority="normal">
         <source>
@@ -2169,8 +2167,8 @@ if (positionAdresse) {&#xD;
                 <child name="alternativeIdentifier" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca2326213-385b-46a1-921b-34bdb65470b9" priority="normal">
         <source>
@@ -2185,8 +2183,8 @@ if (positionAdresse) {&#xD;
                 <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cee50530f-ceb8-4c36-8ba6-994ce78aa2d2" priority="normal">
         <source>
@@ -2201,8 +2199,8 @@ if (positionAdresse) {&#xD;
                 <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9116fc99-f798-4388-b55a-93a8151259f2" priority="normal">
         <source name="id">
@@ -2289,7 +2287,7 @@ if (positionAdresse) {&#xD;
                 <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="structuralRename"/>
         <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
 </alignment>
