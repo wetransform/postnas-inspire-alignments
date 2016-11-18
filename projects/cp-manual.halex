@@ -13,11 +13,11 @@ Andernfalls erhält man Aggregationen aus einer Untermenge, die natürlich auch 
 Referenzen zwischen *CadastralParcels* und *CadastralZonings*, sowie der *CadastralZonings* untereinander werden als lokale XLink-Referenzen umgesetzt.
 Für konsistente Referenzen wird in den Quell-Daten neben *AX_Gemarkung* und ggf. *AX_GemarkungsteilFlur* auch *AX_Bundesland*  benötigt.</description>
     <created>2015-09-28T11:46:45.435+02:00</created>
-    <modified>2016-11-18T09:34:06.064+01:00</modified>
+    <modified>2016-11-18T09:42:32.439+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
-        <setting name="target">file:/home/simon/repos/rlp-inspire-alignments/projects/cp-auto.halex</setting>
+        <setting name="target">file:/home/simon/repos/rlp-inspire-alignments/projects/cp-manual.halex</setting>
     </save-config>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.target" provider-id="eu.esdihumboldt.hale.io.xsd.reader">
         <setting name="charset">UTF-8</setting>

@@ -15,11 +15,11 @@ Das gleiche gilt für die aggregierten Geometrien -- hier werden bei unvollstän
 
 Sofern möglich sollte alternativ für die Transformation das Projekt mit Aggregierung aus `AX_KommunalesGebiet` verwendet werden. Falls diese Objekte nich vorhanden sind, könnten als Zwischenschritt auch `AX_KommunalesGebiet` aus Flurstücken abgeleitet werden.</description>
     <created>2015-09-28T11:46:45.435+02:00</created>
-    <modified>2016-11-18T09:35:32.036+01:00</modified>
+    <modified>2016-11-18T09:44:35.846+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
-        <setting name="target">file:/home/simon/repos/rlp-inspire-alignments/projects/au-auto.halex</setting>
+        <setting name="target">file:/home/simon/repos/rlp-inspire-alignments/projects/au-manual.halex</setting>
     </save-config>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.target" provider-id="eu.esdihumboldt.hale.io.xsd.reader">
         <setting name="charset">UTF-8</setting>

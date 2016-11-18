@@ -148,6 +148,9 @@ migrations.each { name, config ->
     manualProjectFile.text = manualProjectFile.text.replaceFirst(
       /-auto\.halex\.alignment\.xml/,
       '-manual.halex.alignment.xml')
+    manualProjectFile.text = manualProjectFile.text.replaceFirst(
+      /-auto\.halex/,
+      '-manual.halex')
 
     if (diffFile.exists() && diffFile.length()) {
       // apply diff

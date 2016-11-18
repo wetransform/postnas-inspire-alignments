@@ -3,11 +3,11 @@
     <name>AAA zu Geographical Names</name>
     <author>Thorsten Reitz</author>
     <created>2016-04-28T13:07:54.568+02:00</created>
-    <modified>2016-11-18T09:35:56.823+01:00</modified>
+    <modified>2016-11-18T09:45:01.820+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
-        <setting name="target">file:/home/simon/repos/rlp-inspire-alignments/projects/gn-auto.halex</setting>
+        <setting name="target">file:/home/simon/repos/rlp-inspire-alignments/projects/gn-manual.halex</setting>
     </save-config>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.target" provider-id="eu.esdihumboldt.hale.io.xsd.reader">
         <setting name="onlyElementsMappable">true</setting>

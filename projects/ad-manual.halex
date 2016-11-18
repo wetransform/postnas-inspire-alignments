@@ -3,11 +3,11 @@
     <name>ALKIS zu INSPIRE Addresses</name>
     <author>Thorsten Reitz, wetransform GmbH</author>
     <created>2016-06-14T14:18:58.157+02:00</created>
-    <modified>2016-11-18T09:34:35.057+01:00</modified>
+    <modified>2016-11-18T09:44:53.554+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
-        <setting name="target">file:/home/simon/repos/rlp-inspire-alignments/projects/ad-auto.halex</setting>
+        <setting name="target">file:/home/simon/repos/rlp-inspire-alignments/projects/ad-manual.halex</setting>
     </save-config>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.target" provider-id="eu.esdihumboldt.hale.io.xsd.reader">
         <setting name="charset">UTF-8</setting>
