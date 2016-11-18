@@ -2,7 +2,7 @@
 <hale-project version="3.1.0.SNAPSHOT">
     <name>Generated schema-to-schema mapping</name>
     <author>Generated</author>
-    <modified>2016-11-16T17:27:58.605+01:00</modified>
+    <modified>2016-11-18T09:25:19.550+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
