@@ -210,6 +210,12 @@ migrations.each { name, config ->
       dbProjectFile as String
     ]
 
+    def schemas = project.hasProperty('db.schemas') ? project.getProperty('db.schemas') : null
+    if (schemas) {
+      args << '--schema-setting'
+      args << "schemas=$schemas"
+    }
+
     description "Adapt the manually curated ${name}-project to a custom database connection"
     group 'Alignment migration'
   }

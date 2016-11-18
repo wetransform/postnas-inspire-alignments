@@ -2,6 +2,8 @@
 #db.uri=jdbc:postgresql://localhost:5432/testbed
 #db.user=postgres
 #db.password=postgres
+# Comma separated list of database schemas, optional
+#db.schemas=aaa_ogr
 # Path to hale CLI executable
 #haleCliExecutable=hale
 # Maximum heap size for hale CLI in MB

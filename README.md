@@ -39,11 +39,10 @@ Dazu muss die Möglichkeit bestehen zu der Datenbank zu verbinden und die nötig
 db.uri=jdbc:postgresql://localhost:5432/testbed
 db.user=postgres
 db.password=postgres
+db.schemas=aaa_ogr
 ```
 
-**Achtung:** Die automatische Migration auf die Datenbank funktioniert aktuell nur zuverlässig wenn die Tabellen-Namen innerhalb der Datenbank eindeutig sind (also nicht in mehreren Datenbank-Schemas vorkommen).
-
-Die auf die Datenbank migrierten Projekte werden ebenfalls im Ordner `projects` abgelegt und haben den Suffix `-db` im Dateinamen.
+Die auf die Datenbank migrierten Projekte werden ebenfalls im Ordner `projects` abgelegt und haben den Suffix `-db` im Dateinamen. Diese Projekte können dann zur Transformation aus dieser Datenbank heraus verwendet werden.
 
 
 Pflege der Alignments
