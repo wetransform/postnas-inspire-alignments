@@ -131,7 +131,10 @@ migrations.each { name, config ->
     group 'Alignment migration'
   }
 
-  task("migrate-$name", dependsOn: "auto-$name").doLast {
+  task("migrate-$name", dependsOn: "auto-$name") {
+    description "Migrate AdV project ${config.advProject} to PostNAS schema, attempts to update manually curated project"
+    group 'Alignment migration'
+  }.doLast {
     // copy project
     copy {
       from projectsDir
@@ -183,9 +186,6 @@ migrations.each { name, config ->
         println "Be aware that the manually created project has been replaced by the generated version."
       }
     }
-    
-    description "Migrate AdV project ${config.advProject} to PostNAS schema, attempts to update manually curated project"
-    group 'Alignment migration'
   }
 
   // tasks['migrate-all'].dependsOn("migrate-$name")
