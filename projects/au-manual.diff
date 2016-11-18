@@ -1,0 +1,326 @@
+diff --git a/projects/au-auto.halex.alignment.xml b/projects/au-manual.halex.alignment.xml
+index 26f417f..6fd8837 100644
+--- a/projects/au-auto.halex.alignment.xml
++++ b/projects/au-manual.halex.alignment.xml
+@@ -4,7 +4,6 @@
+         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
+             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+@@ -212,7 +211,6 @@ if (_params.source) {&#xD;
+             </cf:input>
+             <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:output eager="false" maxOccurs="1" minOccurs="1">
+                 <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -685,7 +683,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+         <source>
+             <class>
+                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
++                    <condition lang="CQL">artdergebietsgrenze = '7101' or artdergebietsgrenze = '7102' or artdergebietsgrenze = '7103' or artdergebietsgrenze = '7104' or artdergebietsgrenze = '7105' or artdergebietsgrenze = '7106'</condition>
+                 </type>
+             </class>
+         </source>
+@@ -712,7 +710,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+         <source>
+             <property>
+                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
++                    <condition lang="CQL">artdergebietsgrenze = '7101' or artdergebietsgrenze = '7102' or artdergebietsgrenze = '7103' or artdergebietsgrenze = '7104' or artdergebietsgrenze = '7105' or artdergebietsgrenze = '7106'</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -766,7 +764,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <source>
+             <property>
+                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
++                    <condition lang="CQL">artdergebietsgrenze = '7101' or artdergebietsgrenze = '7102' or artdergebietsgrenze = '7103' or artdergebietsgrenze = '7104' or artdergebietsgrenze = '7105' or artdergebietsgrenze = '7106'</condition>
+                 </type>
+                 <child name="endet"/>
+             </property>
+@@ -784,7 +782,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <source>
+             <property>
+                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
++                    <condition lang="CQL">artdergebietsgrenze = '7101' or artdergebietsgrenze = '7102' or artdergebietsgrenze = '7103' or artdergebietsgrenze = '7104' or artdergebietsgrenze = '7105' or artdergebietsgrenze = '7106'</condition>
+                 </type>
+                 <child name="wkb_geometry"/>
+             </property>
+@@ -803,7 +801,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <source name="id">
+             <property>
+                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
++                    <condition lang="CQL">artdergebietsgrenze = '7101' or artdergebietsgrenze = '7102' or artdergebietsgrenze = '7103' or artdergebietsgrenze = '7104' or artdergebietsgrenze = '7105' or artdergebietsgrenze = '7106'</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -820,7 +818,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <source name="id">
+             <property>
+                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
++                    <condition lang="CQL">artdergebietsgrenze = '7101' or artdergebietsgrenze = '7102' or artdergebietsgrenze = '7103' or artdergebietsgrenze = '7104' or artdergebietsgrenze = '7105' or artdergebietsgrenze = '7106'</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -836,7 +834,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <source name="id">
+             <property>
+                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
++                    <condition lang="CQL">artdergebietsgrenze = '7101' or artdergebietsgrenze = '7102' or artdergebietsgrenze = '7103' or artdergebietsgrenze = '7104' or artdergebietsgrenze = '7105' or artdergebietsgrenze = '7106'</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -875,7 +873,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <source>
+             <property>
+                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
++                    <condition lang="CQL">artdergebietsgrenze = '7101' or artdergebietsgrenze = '7102' or artdergebietsgrenze = '7103' or artdergebietsgrenze = '7104' or artdergebietsgrenze = '7105' or artdergebietsgrenze = '7106'</condition>
+                 </type>
+                 <child name="artdergebietsgrenze"/>
+             </property>
+@@ -966,7 +964,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // alle Eigenschaften mit Geometrien aus Flurstücken
+-def geoms = _.geom.findPolygons(_source.links.AX_Flurstueck.p.position.list())
++def geoms = _.geom.findPolygons(_source.links.ax_flurstueck.p.wkb_geometry.values())
+ 
+ // führe den Join nicht aus wenn keine assoziierten Flurstücke
+ // mit entsprechender Geometrie vorhanden sind
+@@ -978,7 +976,7 @@ def collect
+ withTransformationContext {
+ 	collect = _.context.collector(it)
+ }
+-def _id = 'AdministrativeUnit_' + _source.p.schluesselGesamt.value()
++def _id = 'AdministrativeUnit_' + _source.p.schluesselgesamt.value()
+ 
+ _target{
+ 	geometry {
+@@ -1067,7 +1065,7 @@ Die Verknüpfung zur untergeordneten Ebene von `AdministrativeUnit`s wird über
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // alle Eigenschaften mit Geometrien aus Flurstücken
+-def geoms = _source.links.AX_Flurstueck.p.position.list()
++def geoms = _source.links.ax_flurstueck.p.wkb_geometry.values()
+ 
+ // führe den Join nicht aus wenn keine assoziierten Flurstücke
+ // vorhanden sind
+@@ -1083,14 +1081,14 @@ def collect
+ withTransformationContext {
+ 	collect = _.context.collector(it)
+ }
+-def _id = 'AdministrativeUnit_' + _source.p.schluesselGesamt.value()
++def _id = 'AdministrativeUnit_' + _source.p.schluesselgesamt.value()
+ // hinterlegte Verwaltungsgemeinschaft
+ def upperLevelUnit = collect.verwaltungsGemeinschaft[_id].value()
+ if (!upperLevelUnit) {
+ 	// Kreis/Region
+-	def land = _source.p.gemeindekennzeichen.AX_Gemeindekennzeichen.land.value()
+-	def regBezirk = _source.p.gemeindekennzeichen.AX_Gemeindekennzeichen.regierungsbezirk.value()?:'0'
+-	def kreis = _source.p.gemeindekennzeichen.AX_Gemeindekennzeichen.kreis.value()
++	def land = _source.p.gemeindekennzeichen_land.value()
++	def regBezirk = _source.p.regierungsbezirk.value()?:'0'
++	def kreis = _source.p.kreis.value()
+ 	
+ 	upperLevelUnit =  "AdministrativeUnit_${land}${regBezirk}${kreis}"
+ 	
+@@ -1201,13 +1199,13 @@ Falls keine Zugehörigkeit zu einer Verwaltungsgemeinschaft besteht wird die Zug
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // alle Eigenschaften mit Geometrien aus Flurstücken
+-def geoms = _.geom.findPolygons(_source.links.AX_Gemeinde.AX_Flurstueck.p.position.list())
++def geoms = _.geom.findPolygons(_source.links.ax_gemeinde.ax_flurstueck.p.wkb_geometry.values())
+ 
+ // führe den Join nicht aus wenn keine assoziierten Flurstücke
+ // mit entsprechender Geometrie vorhanden sind
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ if (!geoms) {
+-	def gemeinden = _source.links.AX_Gemeinde.p.id.values()
++	def gemeinden = _source.links.ax_gemeinde.p.gml_id.values()
+ 	if (gemeinden) {
+ 		_log.warn("Keine Flurstückgeometrien zu Verwaltungsgemeinschaft $sourceId gefunden, zugehörige AdminstrativeUnit wird nicht erstellt")
+ 	}
+@@ -1218,14 +1216,14 @@ if (!geoms) {
+ }
+ 
+ // Schlüssel für alle Gemeinden der Gemeinschaft
+-def gemeinden = _source.links.AX_Gemeinde.p.schluesselGesamt.values()
++def gemeinden = _source.links.ax_gemeinde.p.schluesselgesamt.values()
+ 
+ if (gemeinden &amp;&amp; gemeinden.size() == 1) {
+ 	_log.warn("Nur eine Gemeinde zu Verwaltungsgemeinschaft $sourceId gefunden")
+ }
+ 
+ // bestimme upperLevelUnit
+-def upperLevelUnit = 'AdministrativeUnit_' + _source.p.schluesselGesamt.value()[0..4]
++def upperLevelUnit = 'AdministrativeUnit_' + _source.p.schluesselgesamt.value()[0..4]
+ 
+ _target{
+ 	geometry {
+@@ -1244,7 +1242,7 @@ _target{
+ 
+ withTransformationContext {
+ 	def collect = _.context.collector(it)
+-	def _id = 'AdministrativeUnit_' + _source.p.id.value()
++	def _id = 'AdministrativeUnit_' + _source.p.gml_id.value()
+ 	// Hinterlege ID je Gemeinde
+ 	gemeinden.each {
+ 		collect.verwaltungsGemeinschaft['AdministrativeUnit_' + it] = _id
+@@ -1322,7 +1320,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // alle Eigenschaften mit Geometrien aus Flurstücken
+-def geoms = _.geom.findPolygons(_source.links.AX_Flurstueck.p.position.list())
++def geoms = _.geom.findPolygons(_source.links.ax_flurstueck.p.wkb_geometry.values())
+ 
+ // führe den Join nicht aus wenn keine assoziierten Flurstücke
+ // mit entsprechender Geometrie vorhanden sind
+@@ -1334,11 +1332,11 @@ def collect
+ withTransformationContext {
+ 	collect = _.context.collector(it)
+ }
+-def _id = 'AdministrativeUnit_' + _source.p.schluesselGesamt.value()
++def _id = 'AdministrativeUnit_' + _source.p.schluesselgesamt.value()
+ 
+ // bestimme upperLevelUnit, sammle ID
+-def land = _source.p.schluessel.AX_Kreis_Schluessel.land.value()
+-def regBezirk = _source.p.schluessel.AX_Kreis_Schluessel.regierungsbezirk.value()
++def land = _source.p.schluessel_land.value()
++def regBezirk = _source.p.regierungsbezirk.value()
+ def upperLevelUnit
+ if (regBezirk &amp;&amp; regBezirk != '0') {
+ 	upperLevelUnit = 'AdministrativeUnit_' + land + regBezirk
+@@ -1421,7 +1419,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // alle Eigenschaften mit Geometrien aus Flurstücken
+-def geoms = _.geom.findPolygons(_source.links.AX_Flurstueck.p.position.list())
++def geoms = _.geom.findPolygons(_source.links.ax_flurstueck.p.wkb_geometry.values())
+ 
+ // führe den Join nicht aus wenn keine assoziierten Flurstücke
+ // mit entsprechender Geometrie vorhanden sind
+@@ -1433,10 +1431,10 @@ def collect
+ withTransformationContext {
+ 	collect = _.context.collector(it)
+ }
+-def _id = 'AdministrativeUnit_' + _source.p.schluesselGesamt.value()
++def _id = 'AdministrativeUnit_' + _source.p.schluesselgesamt.value()
+ 
+ // bestimme upperLevelUnit, sammle ID
+-def upperLevelUnit = 'AdministrativeUnit_' + _source.p.schluessel.AX_Regierungsbezirk_Schluessel.land.value()
++def upperLevelUnit = 'AdministrativeUnit_' + _source.p.land.value()
+ collect.land[upperLevelUnit] &lt;&lt; _id
+ 
+ _target{
+@@ -1931,12 +1929,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         </target>
+     </cell>
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C03ecccc0-d989-4597-85d7-53401c0c6390" priority="normal">
+-        <source name="source">
+-            <property>
+-                <type name="AX_BundeslandType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+         <source name="spelling">
+             <property>
+                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+@@ -1952,12 +1944,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         </target>
+     </cell>
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cb517321b-4e19-4fdd-bb36-41584acd28c3" priority="normal">
+-        <source name="source">
+-            <property>
+-                <type name="AX_GemeindeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+         <source name="spelling">
+             <property>
+                 <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+@@ -1973,12 +1959,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         </target>
+     </cell>
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C11652e8a-9255-43e3-a93b-087a7d23e5d6" priority="normal">
+-        <source name="source">
+-            <property>
+-                <type name="AX_KreisRegionType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+         <source name="spelling">
+             <property>
+                 <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+@@ -1994,12 +1974,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         </target>
+     </cell>
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C6ddff7d7-c1be-4950-8937-5ab069cbb372" priority="normal">
+-        <source name="source">
+-            <property>
+-                <type name="AX_RegierungsbezirkType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+         <source name="spelling">
+             <property>
+                 <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+@@ -2015,12 +1989,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         </target>
+     </cell>
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc914b5bf-167d-4b30-9155-bf43363cf6dc" priority="normal">
+-        <source name="source">
+-            <property>
+-                <type name="AX_VerwaltungsgemeinschaftType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+         <source name="spelling">
+             <property>
+                 <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+@@ -2430,33 +2398,15 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+     <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_C153144ee-8008-471c-a689-adba7e1d10b7">
+         <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
+     </modifier>
+-    <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_C50146037-bbef-42fc-b1f5-03656c971858">
+-        <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
+-    </modifier>
+     <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_C67bd480d-5ea0-4ef8-b84c-15b1063d2667">
+         <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
+     </modifier>
+-    <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_C9d42346d-f8ab-44d6-8a30-7b7030955c0c">
+-        <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
+-    </modifier>
+-    <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_Ca8cda25e-00d1-4715-a4e0-c6ff8ca3b08e">
+-        <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
+-    </modifier>
+     <modifier cell="Ccef5cb84-463f-48e8-82cb-646e5f1d8032_C153144ee-8008-471c-a689-adba7e1d10b7">
+         <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
+     </modifier>
+-    <modifier cell="Ccef5cb84-463f-48e8-82cb-646e5f1d8032_C50146037-bbef-42fc-b1f5-03656c971858">
+-        <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
+-    </modifier>
+     <modifier cell="Ccef5cb84-463f-48e8-82cb-646e5f1d8032_C67bd480d-5ea0-4ef8-b84c-15b1063d2667">
+         <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
+     </modifier>
+-    <modifier cell="Ccef5cb84-463f-48e8-82cb-646e5f1d8032_C9d42346d-f8ab-44d6-8a30-7b7030955c0c">
+-        <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
+-    </modifier>
+-    <modifier cell="Ccef5cb84-463f-48e8-82cb-646e5f1d8032_Ca8cda25e-00d1-4715-a4e0-c6ff8ca3b08e">
+-        <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
+-    </modifier>
+     <modifier cell="Cd866ada4-43ad-47dd-963d-a2d48a11c40c">
+         <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
+     </modifier>
