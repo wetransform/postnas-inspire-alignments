@@ -68,4 +68,52 @@ Die auf die Datenbank migrierten Projekte werden ebenfalls im Ordner `projects` 
 Pflege der Alignments
 ---------------------
 
-TODO Beschreibung
+Die Pflege der Alignments und Aktualisierung auf Basis der AdV-Alignments hat einen automatischen und einen manuellen Teil. Der automatische Prozess basiert auf einem Matching zwischen AdV XML Schemas und dem PostNAS Datenbank-Schema.
+
+Basierend auf diesem Matching werden die AdV-Alignments soweit möglich automatisch auf das Datenbank-Schema migriert. Anschließend können manuelle Anpassungen erfolgen. Manuelle Anpassungen die zuvor bereits erfolgt waren werden versucht zu übertragen.
+
+Als Grundlage wird ein Verweis auf die AdV Alignments benötigt. Standardmäßig wird davon ausgegangen das sie im Ordner `adv-alignments` zu finden sind.
+Es kann jedoch auch ein anderer Ort über die Gradle-Property `advAlignments` angegeben werden (siehe `gradle.properties.sample`). Der Pfad sollte auf das Basis-Verzeichnis des AdV Repositories zeigen, dort werden nicht nur Alignments, sondern auch das AAA-Schema nachgeschlagen.
+
+
+### AAA-PostNAS Matching
+
+Das Matching zwischen AdV XML Schemas und PostNAS Datenbank Schema erfolgt auf Basis einer hinterlegten hale Schema-Datei (`database/schema.hsd`). Diese muss aktualisiert werden falls sich das Datenbank-Schema ändert. Hintergrund dass eine solche Datei verwendet wird ist, das so einerseits keine entsprechende Datenbank verfügbar sein muss und andererseits genau dokumentiert ist auch welches Schema sich der aktuelle Stand der Migration bezieht.
+
+Die Schema-Datei kann erzeugt werden, indem das Datenbank-Schema in hale importiert wird, und von dort in eine Datei exportiert.
+
+Der Prozess um das Matching zu erzeugen enthält spezifische Annahmen über beide Schemata, ist also nicht auf ohne weiteres auf andere Schemata zu übertragen. Z.B. werden die Informationen, die im PostNAS-Schema in Kommentaren hinterlegt sind, ausgewertet.
+
+Das Matching kann mit dem Gradle-Task `dbMatching` angestoßen werden, z.B.:
+
+```
+./gradlew dbMatching
+```
+
+Dies erzeugt bzw. aktualisiert das Projekt `database/matching.halex`. Diese Ressource ist dazu gedacht, wie auch das Schema selbst, mit der Versionskontrolle zu unterliegen und entsprechend nur aktualisiert zu werden wenn sich eines der Schemata oder der Matching-Prozess selbst geändert hat.
+
+
+### Automatische Migration
+
+In der Datei `migrations.json` sind alle zu migrierenden Projekte konfiguriert. Die Konfiguration eines Projekts erfolgt unter einem bestimmten Kürzel, z.B. `cp` für das Cadastral Parcels Projekt.
+
+Die automatische Migration eines Projekts wird über den Task `migrate-<Kürzel>` ausgeführt, z.B. `migrate-cp`.
+
+Dort wird zuerst eine Diff-Datei erzeugt, zwischen einer eventuell schon existierenden manuellen Anpassung und der zuvor automatisch generierten Version.
+
+Dann erfolgt die automatische Migration anhand des Matchings. Das Ergebnis ist das Projekt `projects/<Kürzel>-auto.halex`.
+
+Das automatisch erzeugte Projekt wird kopiert und ersetzt die bisherige manuelle Anpassung.
+Danach wird versuch das Diff erneut anzuwenden. Mit etwas Glück ist es erfolgreich, andernfalls muss dieser Schritt manuell geschehen.
+
+
+### Manuelle Anpassung
+
+Durch den automatischen Migrationsprozess wird ein Projekt `projects/<Kürzel>-manual.halex` erzeugt.
+Dort sollten manuelle Anpassungen erfolgen und ebenfalls die ggf. manuell nötige Aktualisierung anhand des Diff bei Aktualisierung durch die automatische Migration.
+
+Anpassungen sind normalerweise:
+
+- Anpassung von Groovy Skripts an geänderte Attributnamen und Strukturen
+- Entfernen von nicht anwendbaren Mappings, ggf. ersetzen
+- Erweiterte Anpassungen durch Strukturänderungen erforderliche Anpassung von Typ-Relationen
