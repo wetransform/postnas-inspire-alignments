@@ -75,6 +75,8 @@ Basierend auf diesem Matching werden die AdV-Alignments soweit möglich automati
 Als Grundlage wird ein Verweis auf die AdV Alignments benötigt. Standardmäßig wird davon ausgegangen das sie im Ordner `adv-alignments` zu finden sind.
 Es kann jedoch auch ein anderer Ort über die Gradle-Property `advAlignments` angegeben werden (siehe `gradle.properties.sample`). Der Pfad sollte auf das Basis-Verzeichnis des AdV Repositories zeigen, dort werden nicht nur Alignments, sondern auch das AAA-Schema nachgeschlagen.
 
+Außerdem wird für das Management der Änderungen zwischen automatisch migriertem Mapping und manuell gepflegtem Projekt das Programm `git` verwendet. Dieses wird im System-Pfad erwartet. Es wird verwendet um sog. Diffs zu erzeugen und anzuwenden.
+
 
 ### AAA-PostNAS Matching
 
@@ -104,7 +106,7 @@ Dort wird zuerst eine Diff-Datei erzeugt, zwischen einer eventuell schon existie
 Dann erfolgt die automatische Migration anhand des Matchings. Das Ergebnis ist das Projekt `projects/<Kürzel>-auto.halex`.
 
 Das automatisch erzeugte Projekt wird kopiert und ersetzt die bisherige manuelle Anpassung.
-Danach wird versuch das Diff erneut anzuwenden. Mit etwas Glück ist es erfolgreich, andernfalls muss dieser Schritt manuell geschehen.
+Danach wird versuch das Diff erneut anzuwenden. Mit etwas Glück ist es zumindest teilweise erfolgreich, andernfalls muss dieser Schritt manuell geschehen. Bei einem Fehlschlag bitte genau prüfen welche Änderungen ggf. nicht übernommen wurden und wie das ggf. zu beheben ist.
 
 
 ### Manuelle Anpassung
