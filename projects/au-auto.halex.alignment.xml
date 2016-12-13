@@ -160,9 +160,11 @@ else {
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.
-Eine unverschlüsselte Lagebezeichnung wird direkt übernommen, eine verschlüsselte Lagebezeichnung wird versucht über einen Index nachzuschlagen.
+Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.
+Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.
+Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.
 
-Die Sprache wird als Deutsch angenommen.
+Die Sprache des Namens wird als Deutsch angenommen.
 
 &lt;% if (_params.nameStatus) {
   if (_params.nameStatus == 'unpopulated') {
@@ -467,6 +469,13 @@ values[-1]
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
                 <cf:binding>java.lang.String</cf:binding>
             </cf:output>
+            <cf:param maxOccurs="1" minOccurs="0" name="collectorName">
+                <cf:description>
+                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Name eines Kollektors, der verwendet werden soll, um die erzeugten IDs zu sammeln.</core:text>
+                </cf:description>
+                <cf:display value="Collector name"/>
+                <cf:binding>java.lang.String</cf:binding>
+            </cf:param>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 // alle Quell-IDs als Liste
@@ -499,6 +508,15 @@ if (true /*_params.useTargetTypePrefix*/) {
       id = '_' + id
     }
     id = targetType + id
+  }
+}
+
+// Falls ein Collector-Name angegeben wurde, IDs in diesem einspeisen
+
+if (_params.collectorName) {
+  withTransformationContext {
+    def c = _.context.collector(it)
+    c[_params.collectorName] &lt;&lt; id
   }
 }
 
@@ -650,6 +668,9 @@ case 'urn:adv:uom:m2':
 	break
 case 'urn:adv:uom:m':
 	result = 'm'
+	break
+case 'urn:adv:uom:km':
+	result = 'km'
 	break
 }
 
@@ -1931,12 +1952,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C03ecccc0-d989-4597-85d7-53401c0c6390" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_BundeslandType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -1952,12 +1967,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cb517321b-4e19-4fdd-bb36-41584acd28c3" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_GemeindeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -1973,12 +1982,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C11652e8a-9255-43e3-a93b-087a7d23e5d6" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_KreisRegionType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -1994,12 +1997,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C6ddff7d7-c1be-4950-8937-5ab069cbb372" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_RegierungsbezirkType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -2015,12 +2012,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc914b5bf-167d-4b30-9155-bf43363cf6dc" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_VerwaltungsgemeinschaftType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
