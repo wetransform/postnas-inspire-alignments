@@ -160,9 +160,11 @@ else {
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.
-Eine unverschlüsselte Lagebezeichnung wird direkt übernommen, eine verschlüsselte Lagebezeichnung wird versucht über einen Index nachzuschlagen.
+Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.
+Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.
+Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.
 
-Die Sprache wird als Deutsch angenommen.
+Die Sprache des Namens wird als Deutsch angenommen.
 
 &lt;% if (_params.nameStatus) {
   if (_params.nameStatus == 'unpopulated') {
@@ -467,6 +469,13 @@ values[-1]
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
                 <cf:binding>java.lang.String</cf:binding>
             </cf:output>
+            <cf:param maxOccurs="1" minOccurs="0" name="collectorName">
+                <cf:description>
+                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Name eines Kollektors, der verwendet werden soll, um die erzeugten IDs zu sammeln.</core:text>
+                </cf:description>
+                <cf:display value="Collector name"/>
+                <cf:binding>java.lang.String</cf:binding>
+            </cf:param>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 // alle Quell-IDs als Liste
@@ -499,6 +508,15 @@ if (true /*_params.useTargetTypePrefix*/) {
       id = '_' + id
     }
     id = targetType + id
+  }
+}
+
+// Falls ein Collector-Name angegeben wurde, IDs in diesem einspeisen
+
+if (_params.collectorName) {
+  withTransformationContext {
+    def c = _.context.collector(it)
+    c[_params.collectorName] &lt;&lt; id
   }
 }
 
@@ -650,6 +668,9 @@ case 'urn:adv:uom:m2':
 	break
 case 'urn:adv:uom:m':
 	result = 'm'
+	break
+case 'urn:adv:uom:km':
+	result = 'km'
 	break
 }
 
@@ -9808,7 +9829,7 @@ withTransformationContext {
                 <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
             </property>
         </target>
-        <parameter value="FlächeBesondererFunktionalerPrägung" name="value"/>
+        <parameter value="SportFreizeitUndErholungsfläche" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C0735bf53-72c0-485e-aa6a-7d7060f8f685" priority="normal">
         <source name="anchor">
@@ -10097,14 +10118,6 @@ withTransformationContext {
         <parameter value="Wohnplatz" name="value"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C510499f9-62aa-4e14-975f-9d36e7d84e5b_C3f5941a3-eaf1-4c23-99c8-fd528b94431f" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_BahnstreckeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -10125,14 +10138,6 @@ withTransformationContext {
         <parameter value="other" name="nameStatus"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Ce688d878-23f2-41f5-8280-10a1f4b32712" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_BahnverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -10153,14 +10158,6 @@ withTransformationContext {
         <parameter value="other" name="nameStatus"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C7c97e0e8-a75e-49d9-98f3-9e997b27235a" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_FahrwegachseType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -10181,14 +10178,6 @@ withTransformationContext {
         <parameter value="other" name="nameStatus"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Ccbf5601a-4096-443f-946f-985efd24c9c5" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_GewaesserstationierungsachseType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -10209,14 +10198,6 @@ withTransformationContext {
         <parameter value="other" name="nameStatus"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C231cefd7-413e-46d1-a07b-be65444f2fd8" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_KanalType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -10237,14 +10218,6 @@ withTransformationContext {
         <parameter value="other" name="nameStatus"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C064f1fc0-6d18-4849-bf58-362bab0acef8" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_MeerType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -10265,14 +10238,6 @@ withTransformationContext {
         <parameter value="other" name="nameStatus"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C28ab9b83-6cec-4c12-87ba-db54b93f0a0f" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_OrtslageType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_ortslage" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -10293,14 +10258,6 @@ withTransformationContext {
         <parameter value="other" name="nameStatus"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C5f7b966c-afdb-42a4-b18c-1a1eb769892f_C6b0f4934-f8ca-4b4a-b0a1-ae8482ff00c6" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_PlatzType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -10321,14 +10278,6 @@ withTransformationContext {
         <parameter value="other" name="nameStatus"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C4aa7e68d-691b-41d4-961b-2c3273854fe3" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_SickerstreckeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -10349,14 +10298,6 @@ withTransformationContext {
         <parameter value="other" name="nameStatus"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C1df3bfe5-aee3-45db-a90c-ecdad62c35b6" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_StrasseType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -10377,14 +10318,6 @@ withTransformationContext {
         <parameter value="other" name="nameStatus"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc4060181-c4e1-4a82-93c7-d968fb690d7a" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_StrassenverkehrsanlageType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -10405,14 +10338,6 @@ withTransformationContext {
         <parameter value="other" name="nameStatus"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cac336271-8ee4-46d4-8691-47575f82a8ff" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_WasserlaufType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -10433,14 +10358,6 @@ withTransformationContext {
         <parameter value="other" name="nameStatus"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cb752eb9c-2255-420c-9251-fa050b3d3987" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_WegPfadSteigType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -10461,14 +10378,6 @@ withTransformationContext {
         <parameter value="other" name="nameStatus"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cf5bd2e1f-a328-4c70-9a8c-1adc7094cc3a" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_WohnplatzType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_wohnplatz" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -10488,31 +10397,6 @@ withTransformationContext {
         </target>
         <parameter value="other" name="nameStatus"/>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C03a70e9d-239c-4dba-85a1-e26b11bb2524" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_BahnstreckeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cb6bc9ef4-e386-4832-a1e7-b8eeb2037400" priority="normal">
         <source name="lagebezeichnung">
             <property>
@@ -10531,442 +10415,13 @@ withTransformationContext {
             </property>
         </target>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C4ea02efc-a64f-46a5-9c13-454ec60edff3" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_BahnverkehrsanlageType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_bahnverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C499b163f-b5ec-43ce-bfe0-d591d0229ee0" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_BauRaumOderBodenordnungsrechtType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_bauraumoderbodenordnungsrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C31c19dbf-71d6-4967-8a0a-1fa0f451fe2f" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_BaublockType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_baublock" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="baublockbezeichnung"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C28eda494-b7b0-4d6d-b9ed-716c24a769b7" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_BauwerkImGewaesserbereichType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbd9417de-9126-406a-9be5-4bbd1eb6efac_C181b71c7-3e7a-4864-b601-4c531390bafe" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_BauwerkImVerkehrsbereichType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C710a77eb-9d35-449d-8aee-a3478bd60abd" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_BauwerkOderAnlageFuerIndustrieUndGewerbeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc33b207b-932a-4526-b679-bcb9bc662bfc" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_BauwerkOderAnlageFuerSportFreizeitUndErholungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Ca5d467a9-c35c-4499-9211-730a222d852f" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_BergbaubetriebType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_bergbaubetrieb" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C8e863b45-d861-4800-b79c-a2cd988db1a7" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_BoeschungKliffType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="AX_BoeschungKliffType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="name" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cdaf4a01d-53df-4887-9c24-e7e4496b8862" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_BundeslandType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="bezeichnung"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C1a0ffc38-b23c-4457-acd9-612d4b62056a_C10995741-3244-402a-bbe1-2523cb06820e" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_DammWallDeichType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C39111248-408c-4cc3-b7f5-5328af7fc3cf" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_DenkmalschutzrechtType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_denkmalschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C5f2d00ca-0522-4a8e-9e43-4667fbe4d079" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_DueneType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_duene" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C963bf75c-9508-4555-86ac-7d4dbea9d2a5" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_EinrichtungenFuerDenSchiffsverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C668edb89-4f9a-4e77-9dfe-5430b794c39c" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_FahrwegachseType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cf8faeeb2-d4d4-4708-b311-a08e68217395" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_FelsenFelsblockFelsnadelType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_felsenfelsblockfelsnadel" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C7e75153d-66b9-4be7-8aa0-1c50b4a906a2" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_FlaecheBesondererFunktionalerPraegungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cf05826e5-293d-4431-961f-18fb018ffe10" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_FlaecheGemischterNutzungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_flaechegemischternutzung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
             </property>
         </source>
         <target>
@@ -11013,277 +10468,6 @@ withTransformationContext {
             </property>
         </target>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbf5d7902-dea4-4005-9d14-a9609617a40b" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_FlugverkehrsanlageType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C6dce5bcd-a76e-4d4a-a471-fa8ec29cf244" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_FriedhofType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_friedhof" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc9523916-55cc-44ef-9efc-a17f9c90e4da" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_GebaeudeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C72f4c4c9-3b63-41f0-8aff-6970b794927f" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_GehoelzType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_gehoelz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C29b937f6-d6f0-4df2-9df9-814043bd6c82" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_GemeindeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="bezeichnung"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C28fb151c-8b27-488e-a89d-17cc77f5197f" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_GewaessermerkmalType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C6d5638c4-1b38-4ede-b2fa-9351ed23f42a" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_GewaesserstationierungsachseType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C4e28ca39-6ebd-4214-839e-3b79c67b0eeb" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_GewannType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_gewann" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C4a8727dd-e340-4f83-9573-e8406bece78a" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_GleisType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_gleis" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C88e33c33-7696-4ac3-b7ab-f0247a133360" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_GrenzuebergangType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_grenzuebergang" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc611c89b-f24e-427d-80e4-236475c6cf49" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_HafenType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_hafen" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C5f952416-142c-4dbc-bd5e-1850306b0c65" priority="normal">
         <source name="lagebezeichnung">
             <property>
@@ -11292,327 +10476,6 @@ withTransformationContext {
                 </type>
                 <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
                 <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C95d17b10-614b-47c9-ad79-57d0368c011c" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_HaldeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_halde" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cd2b9407d-cb2c-4957-8e6e-7b9dac14c1c4" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_HeideType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_heide" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbc4ad6d1-2bc9-494a-98ed-b941433a1a15" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_HeilquelleGasquelleType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_heilquellegasquelle" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C53589238-c19a-420a-8fc8-e9ecf4019e2c" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_HistorischesBauwerkOderHistorischeEinrichtungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C5e59f6b7-8434-4c47-af00-00d79b74dac1" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_HoehleneingangType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_hoehleneingang" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc8942d20-a605-4fd7-9e66-875dd35a0570" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_IndustrieUndGewerbeflaecheType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_industrieundgewerbeflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C48157804-9e6a-4af5-8d40-85ffe9eb1583" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_InselType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_insel" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C069d4efb-502f-42f2-93e2-736ec90b8bad" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_KanalType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C72106ce3-71c6-4feb-8619-e91338749fa9" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_KleinraeumigerLandschaftsteilType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_kleinraeumigerlandschaftsteil" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C146baccf-7172-4157-b1ea-e635112629ff" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_KreisRegionType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="bezeichnung"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C165a5ee7-b3a6-4a4b-abc4-35a3f4a17a9e" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_LandschaftType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_landschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C05697ce6-e17c-4e3e-bb04-888dac3f38ce" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_LandwirtschaftType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_landwirtschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C68ce7b45-bc8d-4fdd-936b-6aa098db88f1" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_LeitungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
             </property>
         </source>
         <target>
@@ -11641,102 +10504,6 @@ withTransformationContext {
             </property>
         </target>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cf5ac9aff-d3f1-4dba-8845-df403779a6b7" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_MoorType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_moor" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc2f9b1ce-a4cf-4f87-bd5c-5ce01082cbb4" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_NationalstaatType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="bezeichnung"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C9b66f632-d13b-4e6b-a810-3519a5d727b5" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_NaturUmweltOderBodenschutzrechtType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_naturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C5c642d92-1976-48c1-9047-be97b980c744" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_OrtslageType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_ortslage" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C0387fa9e-2ba2-4e37-8242-b1a284f952fb" priority="normal">
         <source name="lagebezeichnung">
             <property>
@@ -11745,77 +10512,6 @@ withTransformationContext {
                 </type>
                 <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
                 <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C31e8224f-9a2d-4b91-9f23-8c9f486c14bd" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_PolderType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_polder" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C83e623ba-73e6-4c68-8a6e-8b63bc5f8912" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_RegierungsbezirkType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="bezeichnung"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C33268efb-197a-4c03-a2d2-2937f256247e" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_SchifffahrtslinieFaehrverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
             </property>
         </source>
         <target>
@@ -11844,231 +10540,6 @@ withTransformationContext {
             </property>
         </target>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc216d08b-a90d-4afe-86de-a5c4a98fd329" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_SchleuseType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C217bfe0e-c7bf-4c55-ba93-86da158f3431" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_SchutzgebietNachNaturUmweltOderBodenschutzrechtType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Ccfc2c960-d5e5-4464-8ef6-35f9a829f025" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_SchutzgebietNachWasserrechtType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C0e3d0b22-e316-4532-8d7c-e5799ecc0317" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_SeilbahnSchwebebahnType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C85b02063-9ddd-40e8-92cc-c94877762c1f" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_SickerstreckeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C37188974-b06f-48e2-9319-a06e24f4ec70" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_SollType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_soll" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C0f5beb5d-044c-4b7d-be1e-7fd55d63d9b3" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_SonstigesBauwerkOderSonstigeEinrichtungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C218ca701-269a-4fa7-b58c-6acd337d4718" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_SonstigesRechtType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_sonstigesrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cab596d46-0377-47bc-b1f6-c8099e46e8ee" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_SportFreizeitUndErholungsflaecheType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_sportfreizeitunderholungsflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C8568e877-b442-4e75-92cf-8dd2504d30bf" priority="normal">
         <source name="lagebezeichnung">
             <property>
@@ -12087,57 +10558,6 @@ withTransformationContext {
             </property>
         </target>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc692daf2-37c9-4219-b740-f3e4ff28d3fe" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_StrasseType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C0e671607-ee4c-4398-bb36-03d5a089d46c" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_StrassenverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="zweitname"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="other" name="nameStatus"/>
-    </cell>
     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cd2f35246-916d-4414-b732-7071be7ad95a" priority="normal">
         <source name="lagebezeichnung">
             <property>
@@ -12146,327 +10566,6 @@ withTransformationContext {
                 </type>
                 <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
                 <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C14b2578c-fac6-41df-880f-44f60d45a4ee" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_StrassenverkehrsanlageType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C267050d2-3088-4d65-80d7-e16b04f4246f" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_SumpfType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cb97090fc-c605-4eee-9147-64be2641b3cd" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_TagebauGrubeSteinbruchType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_tagebaugrubesteinbruch" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc4ceb717-c9b6-4573-97e5-16aef97e8c69" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_TestgelaendeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_testgelaende" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C626e4429-02b7-47c1-a62a-6bc300fa0113" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_TurmType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C61cceaa7-2bf0-4cc6-be20-d97a3bdd57ad" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_UnlandVegetationsloseFlaecheType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_unlandvegetationsloseflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C0493608e-bcb2-49b6-aab5-8d9a3f25e6de" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_UntergeordnetesGewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C4da36023-4c59-410c-8792-16f8bd3fd412" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_VegetationsmerkmalType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C55202b14-8239-47c1-b78e-95968bda1ccb" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_VerwaltungsgemeinschaftType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="bezeichnung"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C5856498c-6d62-4a6e-9837-9742701082ab" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_VorratsbehaelterSpeicherbauwerkType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cf6a2612c-c6f0-45f2-9e29-53ead0b4049a" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_WaldType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_wald" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C08ee73b4-79ca-4f7e-92c3-edbe15dbb96b" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_WasserlaufType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C13c9dc8f-7ebe-4d25-a161-f796c7475ab8" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_WegPfadSteigType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <source name="spelling">
-            <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name"/>
             </property>
         </source>
         <target>
@@ -12495,15 +10594,1237 @@ withTransformationContext {
             </property>
         </target>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C380b06db-0270-4cab-8b65-9e458efac174" priority="normal">
-        <source name="source">
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C03a70e9d-239c-4dba-85a1-e26b11bb2524" priority="normal">
+        <source name="spelling">
             <property>
-                <type name="AX_WohnbauflaecheType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+                <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+                <child name="name"/>
             </property>
         </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C4ea02efc-a64f-46a5-9c13-454ec60edff3" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_bahnverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C31c19dbf-71d6-4967-8a0a-1fa0f451fe2f" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_baublock" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="baublockbezeichnung"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C499b163f-b5ec-43ce-bfe0-d591d0229ee0" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_bauraumoderbodenordnungsrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C28eda494-b7b0-4d6d-b9ed-716c24a769b7" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbd9417de-9126-406a-9be5-4bbd1eb6efac_C181b71c7-3e7a-4864-b601-4c531390bafe" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C710a77eb-9d35-449d-8aee-a3478bd60abd" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc33b207b-932a-4526-b679-bcb9bc662bfc" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Ca5d467a9-c35c-4499-9211-730a222d852f" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_bergbaubetrieb" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cdaf4a01d-53df-4887-9c24-e7e4496b8862" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="bezeichnung"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C1a0ffc38-b23c-4457-acd9-612d4b62056a_C10995741-3244-402a-bbe1-2523cb06820e" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C39111248-408c-4cc3-b7f5-5328af7fc3cf" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_denkmalschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C5f2d00ca-0522-4a8e-9e43-4667fbe4d079" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_duene" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C963bf75c-9508-4555-86ac-7d4dbea9d2a5" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C668edb89-4f9a-4e77-9dfe-5430b794c39c" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cf8faeeb2-d4d4-4708-b311-a08e68217395" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_felsenfelsblockfelsnadel" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C7e75153d-66b9-4be7-8aa0-1c50b4a906a2" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cf05826e5-293d-4431-961f-18fb018ffe10" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_flaechegemischternutzung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbf5d7902-dea4-4005-9d14-a9609617a40b" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C6dce5bcd-a76e-4d4a-a471-fa8ec29cf244" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_friedhof" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc9523916-55cc-44ef-9efc-a17f9c90e4da" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C72f4c4c9-3b63-41f0-8aff-6970b794927f" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_gehoelz" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C29b937f6-d6f0-4df2-9df9-814043bd6c82" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="bezeichnung"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C28fb151c-8b27-488e-a89d-17cc77f5197f" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C6d5638c4-1b38-4ede-b2fa-9351ed23f42a" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C4e28ca39-6ebd-4214-839e-3b79c67b0eeb" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_gewann" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C4a8727dd-e340-4f83-9573-e8406bece78a" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_gleis" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C88e33c33-7696-4ac3-b7ab-f0247a133360" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_grenzuebergang" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc611c89b-f24e-427d-80e4-236475c6cf49" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_hafen" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C95d17b10-614b-47c9-ad79-57d0368c011c" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_halde" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cd2b9407d-cb2c-4957-8e6e-7b9dac14c1c4" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_heide" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbc4ad6d1-2bc9-494a-98ed-b941433a1a15" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_heilquellegasquelle" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C53589238-c19a-420a-8fc8-e9ecf4019e2c" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C5e59f6b7-8434-4c47-af00-00d79b74dac1" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_hoehleneingang" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc8942d20-a605-4fd7-9e66-875dd35a0570" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_industrieundgewerbeflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C48157804-9e6a-4af5-8d40-85ffe9eb1583" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_insel" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C069d4efb-502f-42f2-93e2-736ec90b8bad" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C72106ce3-71c6-4feb-8619-e91338749fa9" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_kleinraeumigerlandschaftsteil" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C146baccf-7172-4157-b1ea-e635112629ff" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="bezeichnung"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C165a5ee7-b3a6-4a4b-abc4-35a3f4a17a9e" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_landschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C05697ce6-e17c-4e3e-bb04-888dac3f38ce" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_landwirtschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C68ce7b45-bc8d-4fdd-936b-6aa098db88f1" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cf5ac9aff-d3f1-4dba-8845-df403779a6b7" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_moor" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc2f9b1ce-a4cf-4f87-bd5c-5ce01082cbb4" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="bezeichnung"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C9b66f632-d13b-4e6b-a810-3519a5d727b5" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_naturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C5c642d92-1976-48c1-9047-be97b980c744" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_ortslage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C31e8224f-9a2d-4b91-9f23-8c9f486c14bd" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_polder" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C83e623ba-73e6-4c68-8a6e-8b63bc5f8912" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="bezeichnung"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C33268efb-197a-4c03-a2d2-2937f256247e" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc216d08b-a90d-4afe-86de-a5c4a98fd329" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C217bfe0e-c7bf-4c55-ba93-86da158f3431" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Ccfc2c960-d5e5-4464-8ef6-35f9a829f025" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C0e3d0b22-e316-4532-8d7c-e5799ecc0317" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C85b02063-9ddd-40e8-92cc-c94877762c1f" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C37188974-b06f-48e2-9319-a06e24f4ec70" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_soll" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C0f5beb5d-044c-4b7d-be1e-7fd55d63d9b3" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C218ca701-269a-4fa7-b58c-6acd337d4718" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_sonstigesrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cab596d46-0377-47bc-b1f6-c8099e46e8ee" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_sportfreizeitunderholungsflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc692daf2-37c9-4219-b740-f3e4ff28d3fe" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C0e671607-ee4c-4398-bb36-03d5a089d46c" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="zweitname"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+        <parameter value="other" name="nameStatus"/>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C14b2578c-fac6-41df-880f-44f60d45a4ee" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C267050d2-3088-4d65-80d7-e16b04f4246f" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cb97090fc-c605-4eee-9147-64be2641b3cd" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_tagebaugrubesteinbruch" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc4ceb717-c9b6-4573-97e5-16aef97e8c69" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_testgelaende" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C626e4429-02b7-47c1-a62a-6bc300fa0113" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C61cceaa7-2bf0-4cc6-be20-d97a3bdd57ad" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_unlandvegetationsloseflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C0493608e-bcb2-49b6-aab5-8d9a3f25e6de" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C4da36023-4c59-410c-8792-16f8bd3fd412" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C55202b14-8239-47c1-b78e-95968bda1ccb" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="bezeichnung"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C5856498c-6d62-4a6e-9837-9742701082ab" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cf6a2612c-c6f0-45f2-9e29-53ead0b4049a" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_wald" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C08ee73b4-79ca-4f7e-92c3-edbe15dbb96b" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C13c9dc8f-7ebe-4d25-a161-f796c7475ab8" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C380b06db-0270-4cab-8b65-9e458efac174" priority="normal">
         <source name="spelling">
             <property>
                 <type name="ax_wohnbauflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -12521,14 +11842,6 @@ withTransformationContext {
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Ca4f6e9cf-b443-4cbe-8df5-518f6de6c5c7" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_WohnbauflaecheType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_wohnbauflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -12547,14 +11860,6 @@ withTransformationContext {
         <parameter value="other" name="nameStatus"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C985416f4-8e75-4d1e-94d4-a896103bbf8d" priority="normal">
-        <source name="source">
-            <property>
-                <type name="AX_WohnplatzType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
         <source name="spelling">
             <property>
                 <type name="ax_wohnplatz" ns="jdbc:postgresql:testbed:aaa_ogr">
