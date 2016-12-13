@@ -117,5 +117,6 @@ Dort sollten manuelle Anpassungen erfolgen und ebenfalls die ggf. manuell nötig
 Anpassungen sind normalerweise:
 
 - Anpassung von Groovy Skripts an geänderte Attributnamen und Strukturen
+- Anpassung von Bedingungen an geänderte Attributnamen und Strukturen
 - Entfernen von nicht anwendbaren Mappings, ggf. ersetzen
 - Erweiterte Anpassungen durch Strukturänderungen erforderliche Anpassung von Typ-Relationen
