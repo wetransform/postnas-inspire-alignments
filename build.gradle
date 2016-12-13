@@ -167,8 +167,10 @@ migrations.each { name, config ->
       // apply diff with git
       def error
       try {
+        // try at least a partial apply
+        // see also http://stackoverflow.com/questions/15796528/partial-git-apply
         exec {
-          commandLine 'git', 'apply', projectDir.toPath().relativize(diffFile.toPath()).toString()
+          commandLine 'git', 'apply', '--reject', '--verbose', projectDir.toPath().relativize(diffFile.toPath()).toString()
         }
       } catch (e) {
         error = e
@@ -184,8 +186,9 @@ migrations.each { name, config ->
 
       // handle git apply problem
       if (error) {
-        println "Error applying diff to update manually curated project."
+        println "ERROR applying diff to update manually curated project."
         println "Please check if you can apply the changes manually."
+        println "Please check any .rej files for rejected hunks."
         println "Be aware that the manually created project has been replaced by the generated version."
       }
     }
