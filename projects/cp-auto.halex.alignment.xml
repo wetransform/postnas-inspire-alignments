@@ -160,9 +160,11 @@ else {
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.
-Eine unverschlüsselte Lagebezeichnung wird direkt übernommen, eine verschlüsselte Lagebezeichnung wird versucht über einen Index nachzuschlagen.
+Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.
+Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.
+Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.
 
-Die Sprache wird als Deutsch angenommen.
+Die Sprache des Namens wird als Deutsch angenommen.
 
 &lt;% if (_params.nameStatus) {
   if (_params.nameStatus == 'unpopulated') {
@@ -467,6 +469,13 @@ values[-1]
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
                 <cf:binding>java.lang.String</cf:binding>
             </cf:output>
+            <cf:param maxOccurs="1" minOccurs="0" name="collectorName">
+                <cf:description>
+                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Name eines Kollektors, der verwendet werden soll, um die erzeugten IDs zu sammeln.</core:text>
+                </cf:description>
+                <cf:display value="Collector name"/>
+                <cf:binding>java.lang.String</cf:binding>
+            </cf:param>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 // alle Quell-IDs als Liste
@@ -499,6 +508,15 @@ if (true /*_params.useTargetTypePrefix*/) {
       id = '_' + id
     }
     id = targetType + id
+  }
+}
+
+// Falls ein Collector-Name angegeben wurde, IDs in diesem einspeisen
+
+if (_params.collectorName) {
+  withTransformationContext {
+    def c = _.context.collector(it)
+    c[_params.collectorName] &lt;&lt; id
   }
 }
 
@@ -650,6 +668,9 @@ case 'urn:adv:uom:m2':
 	break
 case 'urn:adv:uom:m':
 	result = 'm'
+	break
+case 'urn:adv:uom:km':
+	result = 'km'
 	break
 }
 
