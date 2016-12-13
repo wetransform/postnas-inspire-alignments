@@ -160,9 +160,11 @@ else {
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.
-Eine unverschlüsselte Lagebezeichnung wird direkt übernommen, eine verschlüsselte Lagebezeichnung wird versucht über einen Index nachzuschlagen.
+Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.
+Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.
+Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.
 
-Die Sprache wird als Deutsch angenommen.
+Die Sprache des Namens wird als Deutsch angenommen.
 
 &lt;% if (_params.nameStatus) {
   if (_params.nameStatus == 'unpopulated') {
@@ -467,6 +469,13 @@ values[-1]
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
                 <cf:binding>java.lang.String</cf:binding>
             </cf:output>
+            <cf:param maxOccurs="1" minOccurs="0" name="collectorName">
+                <cf:description>
+                    <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">Name eines Kollektors, der verwendet werden soll, um die erzeugten IDs zu sammeln.</core:text>
+                </cf:description>
+                <cf:display value="Collector name"/>
+                <cf:binding>java.lang.String</cf:binding>
+            </cf:param>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 // alle Quell-IDs als Liste
@@ -499,6 +508,15 @@ if (true /*_params.useTargetTypePrefix*/) {
       id = '_' + id
     }
     id = targetType + id
+  }
+}
+
+// Falls ein Collector-Name angegeben wurde, IDs in diesem einspeisen
+
+if (_params.collectorName) {
+  withTransformationContext {
+    def c = _.context.collector(it)
+    c[_params.collectorName] &lt;&lt; id
   }
 }
 
@@ -651,6 +669,9 @@ case 'urn:adv:uom:m2':
 case 'urn:adv:uom:m':
 	result = 'm'
 	break
+case 'urn:adv:uom:km':
+	result = 'km'
+	break
 }
 
 if (!result) {
@@ -762,8 +783,13 @@ Aktuell ist folgende Abbildung umgesetzt:
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 def positionAdresse = _source.links.AX_GeoreferenzierteGebaeudeadresse.p.position.first()&#xD;
+def pointId = ""&#xD;
 if (!positionAdresse) {&#xD;
 	positionAdresse = _source.links.AP_PTO.p.position.first()&#xD;
+	if (positionAdresse) {&#xD;
+		pointId = positionAdresse.p.Point.id.value()&#xD;
+		positionAdresse = _.geom.find(positionAdresse)&#xD;
+	}&#xD;
 }&#xD;
 if (!positionAdresse) {&#xD;
 	positionAdresse = _source.links.AX_Gebaeude.p.position.first()&#xD;
@@ -781,6 +807,11 @@ if (positionAdresse) {&#xD;
 				}&#xD;
 				geometry {&#xD;
 					Point(_.geom.find(positionAdresse))&#xD;
+					{&#xD;
+						if (pointId) {&#xD;
+							id(pointId)&#xD;
+						}&#xD;
+					}&#xD;
 				}&#xD;
 				method {&#xD;
 					href( 'http://inspire.ec.europa.eu/codelist/GeometryMethodValue/byAdministrator' )&#xD;
@@ -875,8 +906,14 @@ if (positionAdresse) {&#xD;
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 def positionAdresse = _source.links.AX_GeoreferenzierteGebaeudeadresse.p.position.first()&#xD;
+def pointId = ""&#xD;
+&#xD;
 if (!positionAdresse) {&#xD;
 	positionAdresse = _source.links.AP_PTO.p.position.first()&#xD;
+	if (positionAdresse) {&#xD;
+		pointId = positionAdresse.p.Point.id.value()&#xD;
+		positionAdresse = _.geom.find(positionAdresse)&#xD;
+	}&#xD;
 }&#xD;
 if (!positionAdresse) {&#xD;
 	positionAdresse = _source.links.AX_Gebaeude.p.position.first()&#xD;
@@ -884,7 +921,11 @@ if (!positionAdresse) {&#xD;
 		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#xD;
 	}&#xD;
 }&#xD;
+ &#xD;
+&#xD;
 if (positionAdresse) {&#xD;
+	&#xD;
+&#xD;
 	_target {&#xD;
 		position {&#xD;
 			GeographicPosition {&#xD;
@@ -894,6 +935,11 @@ if (positionAdresse) {&#xD;
 				}&#xD;
 				geometry {&#xD;
 					Point(_.geom.find(positionAdresse))&#xD;
+					{&#xD;
+						if (pointId) {&#xD;
+							id(pointId)&#xD;
+						}&#xD;
+					}&#xD;
 				}&#xD;
 				method {&#xD;
 					href( 'http://inspire.ec.europa.eu/codelist/GeometryMethodValue/byAdministrator' )&#xD;
@@ -941,12 +987,15 @@ if (positionAdresse) {&#xD;
             </property>
         </target>
         <parameter value="#AdminUnitName_{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.land}" name="pattern"/>
+        <documentation>Erzeugt die Referenz auf das `AdminUnitName`-Objekt für das (Bundes-)Land.</documentation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="Cfb05b17a-dca3-486f-bb18-5eca732e1d91" priority="normal">
         <source name="var">
             <property>
                 <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="regierungsbezirk"/>
+                <child name="regierungsbezirk">
+                    <condition lang="CQL">value &lt;&gt; '0' and value &lt;&gt; ''</condition>
+                </child>
             </property>
         </source>
         <source name="var">
@@ -965,42 +1014,7 @@ if (positionAdresse) {&#xD;
             </property>
         </target>
         <parameter value="#AdminUnitName_{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.land}{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.regierungsbezirk}" name="pattern"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C9c13ab33-02fc-4914-8236-c04b84052656" priority="normal">
-        <source name="var">
-            <property>
-                <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gemeinde"/>
-            </property>
-        </source>
-        <source name="var">
-            <property>
-                <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="kreis"/>
-            </property>
-        </source>
-        <source name="var">
-            <property>
-                <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="regierungsbezirk"/>
-            </property>
-        </source>
-        <source name="var">
-            <property>
-                <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="land"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="AddressType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="component" ns="http://inspire.ec.europa.eu/schemas/ad/4.0">
-                    <context>2</context>
-                </child>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="#AdminUnitName_{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.land}{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.regierungsbezirk}{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.kreis}{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde}" name="pattern"/>
+        <documentation>Erzeugt die Referenz für das `AdminUnitName`-Objekt für den Regierungsbezirk.</documentation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="Cd5f04e1f-ec85-4793-9745-2383cc48abb3" priority="normal">
         <source name="var">
@@ -1012,7 +1026,9 @@ if (positionAdresse) {&#xD;
         <source name="var">
             <property>
                 <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="regierungsbezirk"/>
+                <child name="regierungsbezirk">
+                    <condition lang="CQL">value &lt;&gt; '0' and value &lt;&gt; ''</condition>
+                </child>
             </property>
         </source>
         <source name="var">
@@ -1049,6 +1065,46 @@ if (positionAdresse) {&#xD;
             </property>
         </target>
         <parameter value="#PostalDescriptor_{postalischeAdresse.AX_Post.postleitzahl}" name="pattern"/>
+        <documentation>Erzeugt die Referenz auf das passende Objekt vom Typ `PostalDescriptor`.</documentation>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C9c13ab33-02fc-4914-8236-c04b84052656" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gemeinde"/>
+            </property>
+        </source>
+        <source name="var">
+            <property>
+                <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="kreis"/>
+            </property>
+        </source>
+        <source name="var">
+            <property>
+                <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="regierungsbezirk">
+                    <condition lang="CQL">value &lt;&gt; '0' and value &lt;&gt; ''</condition>
+                </child>
+            </property>
+        </source>
+        <source name="var">
+            <property>
+                <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="land"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="AddressType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
+                <child name="component" ns="http://inspire.ec.europa.eu/schemas/ad/4.0">
+                    <context>4</context>
+                </child>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="#AdminUnitName_{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.land}{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.regierungsbezirk}{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.kreis}{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde}" name="pattern"/>
+        <documentation>Erzeugt eine Referenz auf das `AdminUnitName`-Objekt für die Gemeinde.</documentation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="Cfbb22675-de38-4588-9c13-a578d13a47ea" priority="normal">
         <source name="var">
@@ -1066,7 +1122,9 @@ if (positionAdresse) {&#xD;
         <source name="var">
             <property>
                 <type name="ax_lagebezeichnungmithausnummer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="regierungsbezirk"/>
+                <child name="regierungsbezirk">
+                    <condition lang="CQL">value &lt;&gt; '0' and value &lt;&gt; ''</condition>
+                </child>
             </property>
         </source>
         <source name="var">
@@ -1089,6 +1147,7 @@ if (positionAdresse) {&#xD;
             </property>
         </target>
         <parameter value="#ThoroughfareName_{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.land}{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.regierungsbezirk}{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.kreis}{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde}{lagebezeichnung.AX_Lagebezeichnung.choice_1.verschluesselt.AX_VerschluesselteLagebezeichnung.lage}" name="pattern"/>
+        <documentation>Erzeugt die Referenz auf den Straßennamen (`ThoroughfareName`).</documentation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C7d8d1bdc-e6b1-4e69-ae34-e09caa043943" priority="normal">
         <source>
@@ -1923,8 +1982,8 @@ if (positionAdresse) {&#xD;
         </target>
         <parameter value="http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/3rdOrder" name="value"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca0c5ca58-69f9-4917-af60-61d2acaa67c4" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C2cec625e-879a-4406-b77a-570f4acf7a16" priority="normal">
+        <source name="spelling">
             <property>
                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="bezeichnung"/>
@@ -1935,16 +1994,12 @@ if (positionAdresse) {&#xD;
                 <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                 <child name="name" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="DLKM" name="source"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C5fe87932-7e93-4a0c-ad80-abf8069df0d6" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C9bd3802a-3312-4c60-b65c-01716f854e9b" priority="normal">
+        <source name="spelling">
             <property>
                 <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="bezeichnung"/>
@@ -1955,16 +2010,12 @@ if (positionAdresse) {&#xD;
                 <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                 <child name="name" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="DLKM" name="source"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C1fdf6ba9-e582-41d4-89d4-2fd3536af24f" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C9c6a4a39-4371-4afd-b95b-99ea5b2efdfe" priority="normal">
+        <source name="spelling">
             <property>
                 <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="bezeichnung"/>
@@ -1975,16 +2026,12 @@ if (positionAdresse) {&#xD;
                 <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                 <child name="name" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="DLKM" name="source"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C67c897fc-a4a9-4120-8008-56c7087986ef" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbd19a099-b6aa-46e0-952d-3ee56a523b0e" priority="normal">
+        <source name="spelling">
             <property>
                 <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="bezeichnung"/>
@@ -1995,16 +2042,12 @@ if (positionAdresse) {&#xD;
                 <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                 <child name="name" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="DLKM" name="source"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C064e28f7-71c0-4cd4-87e4-a9cd291c3f1c" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C59c011ba-f77e-4f86-a34b-abea477d1886" priority="normal">
+        <source name="spelling">
             <property>
                 <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="bezeichnung"/>
@@ -2015,15 +2058,11 @@ if (positionAdresse) {&#xD;
                 <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                 <child name="name" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="DLKM" name="source"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.retype" id="C99ef38d9-8667-4ef0-a92f-4dcfc31d8b36" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.merge" id="C853700b9-c520-4c5c-9e2c-105f697c6d50" priority="normal">
         <source>
             <class>
                 <type name="AX_PostType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
@@ -2034,8 +2073,11 @@ if (positionAdresse) {&#xD;
                 <type name="PostalDescriptorType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
             </class>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="{http://www.adv-online.de/namespaces/adv/gid/6.0}zusatzOrtsname" name="additional_property"/>
+        <parameter value="{http://www.adv-online.de/namespaces/adv/gid/6.0}strassenname" name="additional_property"/>
+        <parameter value="{http://www.adv-online.de/namespaces/adv/gid/6.0}ortsnamePost" name="additional_property"/>
+        <parameter value="false" name="auto_detect"/>
+        <parameter value="{http://www.adv-online.de/namespaces/adv/gid/6.0}postleitzahl" name="property"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C9842c4bf-f94e-4cb6-ae00-86bdb2c2ca62" priority="normal">
         <source name="var">
@@ -2120,8 +2162,8 @@ if (positionAdresse) {&#xD;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C327276ff-581f-4aab-b58a-921a1ede3f11" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc9517454-0c72-414a-87ba-a1b252c7f69d" priority="normal">
+        <source name="spelling">
             <property>
                 <type name="AX_PostType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
                 <child name="ortsnamePost" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
@@ -2132,13 +2174,9 @@ if (positionAdresse) {&#xD;
                 <type name="PostalDescriptorType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                 <child name="postName" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="DLKM" name="source"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C9fc48689-dc97-4f8a-864a-1557dcf3c563" priority="normal">
         <source>
@@ -2268,8 +2306,8 @@ if (positionAdresse) {&#xD;
             </property>
         </target>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd4f4a85e-07bd-46f3-9d4a-80d229cd6024" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C92934998-8d8a-41d9-ad6d-f2aeb4227180" priority="normal">
+        <source name="spelling">
             <property>
                 <type name="ax_lagebezeichnungkatalogeintrag" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="bezeichnung"/>
@@ -2282,12 +2320,8 @@ if (positionAdresse) {&#xD;
                 <child name="ThoroughfareNameValue" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                 <child name="name" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="DLKM" name="source"/>
     </cell>
 </alignment>

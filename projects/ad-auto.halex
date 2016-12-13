@@ -3,7 +3,7 @@
     <name>ALKIS zu INSPIRE Addresses</name>
     <author>Thorsten Reitz, wetransform GmbH</author>
     <created>2016-06-14T14:18:58.157+02:00</created>
-    <modified>2016-11-18T13:44:14.403+01:00</modified>
+    <modified>2016-12-13T11:59:43.641+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -34,6 +34,18 @@
         <setting name="source">http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.codelist.inspire</setting>
     </resource>
+    <resource action-id="eu.esdihumboldt.hale.codelist.read" provider-id="eu.esdihumboldt.hale.io.codelist.inspire.reader">
+        <setting name="charset">UTF-8</setting>
+        <setting name="resourceId">96087dc7-459d-4586-bc57-74317fb55b89</setting>
+        <setting name="source">http://inspire.ec.europa.eu/codelist/NameStatusValue</setting>
+        <setting name="contentType">eu.esdihumboldt.hale.io.codelist.inspire</setting>
+    </resource>
+    <resource action-id="eu.esdihumboldt.hale.codelist.read" provider-id="eu.esdihumboldt.hale.io.codelist.inspire.reader">
+        <setting name="charset">UTF-8</setting>
+        <setting name="resourceId">c2569242-791b-4b23-b924-58dc11f0c8b5</setting>
+        <setting name="source">http://inspire.ec.europa.eu/codelist/NativenessValue</setting>
+        <setting name="contentType">eu.esdihumboldt.hale.io.codelist.inspire</setting>
+    </resource>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.source" provider-id="eu.esdihumboldt.hale.common.schema.persist.hsd.read">
         <setting name="charset">UTF-8</setting>
         <setting name="source">file:/home/simon/repos/rlp-inspire-alignments/database/schema.hsd</setting>
@@ -42,6 +54,17 @@
     <file name="alignment.xml" location="ad-auto.halex.alignment.xml"/>
     <complex-property name="codelists">
         <associations>
+            <codeList identifier="//inspire.ec.europa.eu/codelist/NativenessValue" namespace="http://inspire.ec.europa.eu/codelist/NativenessValue">
+                <entity>
+                    <type name="ThoroughfareNameType" namespace="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
+                    <property name="name" namespace="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
+                    <property name="ThoroughfareNameValue" namespace="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
+                    <property name="name" namespace="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
+                    <property name="GeographicalName" namespace="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                    <property name="nativeness" namespace="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                    <property name="href" namespace="http://www.w3.org/1999/xlink"/>
+                </entity>
+            </codeList>
             <codeList identifier="//inspire.ec.europa.eu/codelist/LocatorDesignatorTypeValue" namespace="http://inspire.ec.europa.eu/codelist/LocatorDesignatorTypeValue">
                 <entity>
                     <type name="AddressType" namespace="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
@@ -66,6 +89,17 @@
                     <property name="locator" namespace="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                     <property name="AddressLocator" namespace="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
                     <property name="level" namespace="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
+                    <property name="href" namespace="http://www.w3.org/1999/xlink"/>
+                </entity>
+            </codeList>
+            <codeList identifier="//inspire.ec.europa.eu/codelist/NameStatusValue" namespace="http://inspire.ec.europa.eu/codelist/NameStatusValue">
+                <entity>
+                    <type name="ThoroughfareNameType" namespace="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
+                    <property name="name" namespace="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
+                    <property name="ThoroughfareNameValue" namespace="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
+                    <property name="name" namespace="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
+                    <property name="GeographicalName" namespace="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                    <property name="nameStatus" namespace="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                     <property name="href" namespace="http://www.w3.org/1999/xlink"/>
                 </entity>
             </codeList>
@@ -1524,7 +1558,16 @@
     <property name="resource-3461353a-f8e3-4d83-90aa-01a40e86dfb1:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AX_WohnbauflaecheType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Surface/{http://www.opengis.net/gml/3.2}patches/{http://www.opengis.net/gml/3.2}PolygonPatch/{http://www.opengis.net/gml/3.2}exterior/{http://www.opengis.net/gml/3.2}Ring/{http://www.opengis.net/gml/3.2}curveMember/{http://www.opengis.net/gml/3.2}Curve/{http://www.opengis.net/gml/3.2}segments/{http://www.opengis.net/gml/3.2}LineStringSegment">code:EPSG:25832</property>
     <property name="resource-3461353a-f8e3-4d83-90aa-01a40e86dfb1:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AX_WohnbauflaecheType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Surface/{http://www.opengis.net/gml/3.2}patches/{http://www.opengis.net/gml/3.2}PolygonPatch/{http://www.opengis.net/gml/3.2}interior/{http://www.opengis.net/gml/3.2}Ring/{http://www.opengis.net/gml/3.2}curveMember/{http://www.opengis.net/gml/3.2}Curve/{http://www.opengis.net/gml/3.2}segments/{http://www.opengis.net/gml/3.2}LineStringSegment">code:EPSG:25832</property>
     <property name="resource-3461353a-f8e3-4d83-90aa-01a40e86dfb1:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AX_WohnplatzType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Point">code:EPSG:25832</property>
+    <property name="resource-6c50da32-60da-4f04-80fd-29b04ca9e0d0:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AP_PTOType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Point">code:EPSG:31468</property>
+    <property name="resource-6c50da32-60da-4f04-80fd-29b04ca9e0d0:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AX_GebaeudeType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Surface/{http://www.opengis.net/gml/3.2}patches/{http://www.opengis.net/gml/3.2}PolygonPatch/{http://www.opengis.net/gml/3.2}exterior/{http://www.opengis.net/gml/3.2}Ring/{http://www.opengis.net/gml/3.2}curveMember/{http://www.opengis.net/gml/3.2}Curve/{http://www.opengis.net/gml/3.2}segments/{http://www.opengis.net/gml/3.2}LineStringSegment">code:EPSG:31468</property>
+    <property name="resource-6c50da32-60da-4f04-80fd-29b04ca9e0d0:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AX_GebaeudeType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Surface/{http://www.opengis.net/gml/3.2}patches/{http://www.opengis.net/gml/3.2}PolygonPatch/{http://www.opengis.net/gml/3.2}interior/{http://www.opengis.net/gml/3.2}Ring/{http://www.opengis.net/gml/3.2}curveMember/{http://www.opengis.net/gml/3.2}Curve/{http://www.opengis.net/gml/3.2}segments/{http://www.opengis.net/gml/3.2}LineStringSegment">code:EPSG:31468</property>
+    <property name="resource-b3fd0f0e-b986-4725-91aa-a4f49f181901:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AP_PTOType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Point">code:EPSG:31468</property>
+    <property name="resource-b3fd0f0e-b986-4725-91aa-a4f49f181901:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AX_GebaeudeType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Surface/{http://www.opengis.net/gml/3.2}patches/{http://www.opengis.net/gml/3.2}PolygonPatch/{http://www.opengis.net/gml/3.2}exterior/{http://www.opengis.net/gml/3.2}Ring/{http://www.opengis.net/gml/3.2}curveMember/{http://www.opengis.net/gml/3.2}Curve/{http://www.opengis.net/gml/3.2}segments/{http://www.opengis.net/gml/3.2}LineStringSegment">code:EPSG:31468</property>
+    <property name="resource-b3fd0f0e-b986-4725-91aa-a4f49f181901:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AX_GebaeudeType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Surface/{http://www.opengis.net/gml/3.2}patches/{http://www.opengis.net/gml/3.2}PolygonPatch/{http://www.opengis.net/gml/3.2}interior/{http://www.opengis.net/gml/3.2}Ring/{http://www.opengis.net/gml/3.2}curveMember/{http://www.opengis.net/gml/3.2}Curve/{http://www.opengis.net/gml/3.2}segments/{http://www.opengis.net/gml/3.2}LineStringSegment">code:EPSG:31468</property>
     <property name="resource-b497469f-ad76-442d-a8b8-1a44ac4f3858:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AP_PTOType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Point">code:EPSG:32632</property>
+    <property name="resource-c41a1ca5-1d89-41ae-a61a-941e8bf76db9:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AP_PTOType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Point">code:EPSG:25833</property>
+    <property name="resource-c41a1ca5-1d89-41ae-a61a-941e8bf76db9:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AX_GebaeudeType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Surface/{http://www.opengis.net/gml/3.2}patches/{http://www.opengis.net/gml/3.2}PolygonPatch/{http://www.opengis.net/gml/3.2}exterior/{http://www.opengis.net/gml/3.2}Ring/{http://www.opengis.net/gml/3.2}curveMember/{http://www.opengis.net/gml/3.2}Curve/{http://www.opengis.net/gml/3.2}segments/{http://www.opengis.net/gml/3.2}LineStringSegment">code:EPSG:25833</property>
+    <property name="resource-c41a1ca5-1d89-41ae-a61a-941e8bf76db9:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AX_GeoreferenzierteGebaeudeadresseType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Point">code:EPSG:25833</property>
     <property name="resource-f729034a-5c89-48d0-b9c9-2d9b9a460e3d:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AP_PTOType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Point">code:EPSG:32632</property>
     <property name="resource-f729034a-5c89-48d0-b9c9-2d9b9a460e3d:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/6.0}AX_GebaeudeType/{http://www.adv-online.de/namespaces/adv/gid/6.0}position/{http://www.opengis.net/gml/3.2}Surface/{http://www.opengis.net/gml/3.2}patches/{http://www.opengis.net/gml/3.2}PolygonPatch/{http://www.opengis.net/gml/3.2}exterior/{http://www.opengis.net/gml/3.2}Ring/{http://www.opengis.net/gml/3.2}curveMember/{http://www.opengis.net/gml/3.2}Curve/{http://www.opengis.net/gml/3.2}segments/{http://www.opengis.net/gml/3.2}LineStringSegment">code:EPSG:32632</property>
     <complex-property name="variables">
