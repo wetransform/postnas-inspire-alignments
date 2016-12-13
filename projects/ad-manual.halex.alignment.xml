@@ -4,7 +4,6 @@
         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
                 <cf:binding>java.lang.String</cf:binding>
-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
             </cf:input>
             <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                 <cf:binding>java.lang.String</cf:binding>
@@ -214,7 +213,6 @@ if (_params.source) {&#xD;
             </cf:input>
             <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                 <cf:binding>java.lang.String</cf:binding>
-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
             </cf:input>
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
                 <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -782,17 +780,19 @@ Aktuell ist folgende Abbildung umgesetzt:
         </complexParameter>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def positionAdresse = _source.links.AX_GeoreferenzierteGebaeudeadresse.p.position.first()&#xD;
+def positionAdresse = _source.links.ax_georeferenziertegebaeudeadresse.p.wkb_geometry.value()&#xD;
 def pointId = ""&#xD;
 if (!positionAdresse) {&#xD;
-	positionAdresse = _source.links.AP_PTO.p.position.first()&#xD;
+	positionAdresse = _source.links.ap_pto.p.wkb_geometry.value()&#xD;
 	if (positionAdresse) {&#xD;
+		/*&#xD;
 		pointId = positionAdresse.p.Point.id.value()&#xD;
+		*/&#xD;
 		positionAdresse = _.geom.find(positionAdresse)&#xD;
 	}&#xD;
 }&#xD;
 if (!positionAdresse) {&#xD;
-	positionAdresse = _source.links.AX_Gebaeude.p.position.first()&#xD;
+	positionAdresse = _source.links.ax_gebaeude.p.wkb_geometry.value()&#xD;
 	if (positionAdresse) {&#xD;
 		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#xD;
 	}&#xD;
@@ -905,18 +905,20 @@ if (positionAdresse) {&#xD;
         </complexParameter>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def positionAdresse = _source.links.AX_GeoreferenzierteGebaeudeadresse.p.position.first()&#xD;
+def positionAdresse = _source.links.ax_georeferenziertegebaeudeadresse.p.wkb_geometry.value()&#xD;
 def pointId = ""&#xD;
 &#xD;
 if (!positionAdresse) {&#xD;
-	positionAdresse = _source.links.AP_PTO.p.position.first()&#xD;
+	positionAdresse = _source.links.ap_pto.p.wkb_geometry.value()&#xD;
 	if (positionAdresse) {&#xD;
+		/*&#xD;
 		pointId = positionAdresse.p.Point.id.value()&#xD;
+		*/&#xD;
 		positionAdresse = _.geom.find(positionAdresse)&#xD;
 	}&#xD;
 }&#xD;
 if (!positionAdresse) {&#xD;
-	positionAdresse = _source.links.AX_Gebaeude.p.position.first()&#xD;
+	positionAdresse = _source.links.ax_gebaeude.p.wkb_geometry.value()&#xD;
 	if (positionAdresse) {&#xD;
 		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#xD;
 	}&#xD;
@@ -2062,53 +2064,6 @@ if (positionAdresse) {&#xD;
         </target>
         <parameter value="DLKM" name="source"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.merge" id="C853700b9-c520-4c5c-9e2c-105f697c6d50" priority="normal">
-        <source>
-            <class>
-                <type name="AX_PostType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </class>
-        </source>
-        <target>
-            <class>
-                <type name="PostalDescriptorType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-            </class>
-        </target>
-        <parameter value="{http://www.adv-online.de/namespaces/adv/gid/6.0}zusatzOrtsname" name="additional_property"/>
-        <parameter value="{http://www.adv-online.de/namespaces/adv/gid/6.0}strassenname" name="additional_property"/>
-        <parameter value="{http://www.adv-online.de/namespaces/adv/gid/6.0}ortsnamePost" name="additional_property"/>
-        <parameter value="false" name="auto_detect"/>
-        <parameter value="{http://www.adv-online.de/namespaces/adv/gid/6.0}postleitzahl" name="property"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C9842c4bf-f94e-4cb6-ae00-86bdb2c2ca62" priority="normal">
-        <source name="var">
-            <property>
-                <type name="AX_PostType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="postleitzahl" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="PostalDescriptorType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="PostalDescriptor_{postleitzahl}" name="pattern"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="Cde00693b-1df7-4ff4-aab6-5e4b8a7282b1" priority="normal">
-        <source name="var">
-            <property>
-                <type name="AX_PostType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="postleitzahl" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="PostalDescriptorType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="{{project:INSPIRE_NAMESPACE}}/PostalDescriptor_{postleitzahl}" name="pattern"/>
-    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C5fd35164-5918-4189-872b-296d8225f787" priority="normal">
         <target>
             <property>
@@ -2119,23 +2074,6 @@ if (positionAdresse) {&#xD;
         </target>
         <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C4877a124-a4b8-4f5b-bd65-48ed3eba8f03" priority="normal">
-        <source name="var">
-            <property>
-                <type name="AX_PostType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="postleitzahl" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="PostalDescriptorType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="PostalDescriptor_{postleitzahl}" name="pattern"/>
-    </cell>
     <cell relation="custom:alignment:adv.inspire.namespace" id="C5c322644-b41b-41ca-9f41-806faae001c7" priority="normal">
         <target>
             <property>
@@ -2145,38 +2083,6 @@ if (positionAdresse) {&#xD;
                 <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C7728f074-399c-454d-837c-ac41fcbb264c" priority="normal">
-        <source>
-            <property>
-                <type name="AX_PostType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="postleitzahl" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="PostalDescriptorType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="postCode" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc9517454-0c72-414a-87ba-a1b252c7f69d" priority="normal">
-        <source name="spelling">
-            <property>
-                <type name="AX_PostType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="ortsnamePost" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="PostalDescriptorType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="postName" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="DLKM" name="source"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C9fc48689-dc97-4f8a-864a-1557dcf3c563" priority="normal">
         <source>
@@ -2324,4 +2230,8 @@ if (positionAdresse) {&#xD;
         </target>
         <parameter value="DLKM" name="source"/>
     </cell>
+    <modifier cell="C75348f09-eb65-459e-b73f-79a19b3936db">
+        <disable-for parent="C08467f52-22e7-4435-9031-9149c4aac7c6"/>
+        <disable-for parent="Cd5bb8841-8c5f-4712-bd15-03c3cf5d80ca"/>
+    </modifier>
 </alignment>
