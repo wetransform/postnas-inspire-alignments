@@ -1006,7 +1006,7 @@ withTransformationContext {
         <source>
             <class>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">bezeichnung is not null</condition>
                 </type>
             </class>
         </source>
@@ -2548,7 +2548,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">bezeichnung is not null</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -4012,7 +4012,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">bezeichnung is not null</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -5564,7 +5564,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">bezeichnung is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -7085,7 +7085,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">bezeichnung is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -8599,204 +8599,6 @@ withTransformationContext {
             </property>
         </target>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C4166c2d4-91f2-439b-a9cd-22a5171ec949" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_BahnverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="bezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
-            </property>
-        </target>
-        <parameter value="Bahnverkehr" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ceb5e4f3f-5dc4-427e-81b7-c97188d49770" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_BoeschungKliffType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
-            </property>
-        </target>
-        <parameter value="BöschungKliff" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cbf7aef56-7354-42bb-9c8e-b804ee243e2c" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_FliessgewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
-            </property>
-        </target>
-        <parameter value="Fliessgewässer" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cdba3b061-b38b-4b87-9f20-5ccbac21f766" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_FlugverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
-            </property>
-        </target>
-        <parameter value="Flugverkehr" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cdfa2e34b-2b1e-4a3e-961d-f80159024748" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_HafenbeckenType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
-            </property>
-        </target>
-        <parameter value="Hafenbecken" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C60a2464a-e3ab-4b04-badc-f065f0a97afb" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_MeerType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
-            </property>
-        </target>
-        <parameter value="Meer" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C6b79aea0-f4c1-44b2-8f80-a7797858365c" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_PlatzType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
-            </property>
-        </target>
-        <parameter value="Platz" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C1cf2b792-2d53-4137-a02a-8637d04cce85" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_SchiffsverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
-            </property>
-        </target>
-        <parameter value="Schiffsverkehr" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C3d179d98-93f1-47ba-b689-c638e03fd33c" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_StehendesGewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
-            </property>
-        </target>
-        <parameter value="StehendesGewässer" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C7bbb895b-b581-4149-982f-345ce6032761" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_StrassenverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
-            </property>
-        </target>
-        <parameter value="Strassenverkehr" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cfef79e8e-6a54-4874-8925-1c7c94660d72" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_WegType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
-            </property>
-        </target>
-        <parameter value="Weg" name="value"/>
-    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C7448f370-ca82-47da-a33c-787303ca077b" priority="normal">
         <source name="anchor">
             <property>
@@ -8814,6 +8616,24 @@ withTransformationContext {
             </property>
         </target>
         <parameter value="Bahnstrecke" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C4166c2d4-91f2-439b-a9cd-22a5171ec949" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">bezeichnung is not null</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
+            </property>
+        </target>
+        <parameter value="Bahnverkehr" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cb1019ab0-8ab7-4fb1-b5de-ebd813570377" priority="normal">
         <source name="anchor">
@@ -8958,6 +8778,24 @@ withTransformationContext {
             </property>
         </target>
         <parameter value="Bergbaubetrieb" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ceb5e4f3f-5dc4-427e-81b7-c97188d49770" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
+            </property>
+        </target>
+        <parameter value="BöschungKliff" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C32e3f2de-5122-4f0f-8449-2ec742f48fa7" priority="normal">
         <source name="anchor">
@@ -9118,6 +8956,42 @@ withTransformationContext {
             </property>
         </target>
         <parameter value="FlächeGemischterNutzung" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cbf7aef56-7354-42bb-9c8e-b804ee243e2c" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
+            </property>
+        </target>
+        <parameter value="Fliessgewässer" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cdba3b061-b38b-4b87-9f20-5ccbac21f766" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
+            </property>
+        </target>
+        <parameter value="Flugverkehr" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C1b015599-2423-439d-9346-5cf9e334643c" priority="normal">
         <source name="anchor">
@@ -9314,6 +9188,24 @@ withTransformationContext {
             </property>
         </target>
         <parameter value="Hafen" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cdfa2e34b-2b1e-4a3e-961d-f80159024748" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
+            </property>
+        </target>
+        <parameter value="Hafenbecken" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C60ff6273-48b5-449c-97b0-c1cb3c7189df" priority="normal">
         <source name="anchor">
@@ -9547,6 +9439,24 @@ withTransformationContext {
         </target>
         <parameter value="Leitung" name="value"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C60a2464a-e3ab-4b04-badc-f065f0a97afb" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
+            </property>
+        </target>
+        <parameter value="Meer" name="value"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C91115aa6-46e9-41e5-ae31-f8c0ad184ff5" priority="normal">
         <source name="anchor">
             <property>
@@ -9617,6 +9527,24 @@ withTransformationContext {
         </target>
         <parameter value="Ortslage" name="value"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C6b79aea0-f4c1-44b2-8f80-a7797858365c" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
+            </property>
+        </target>
+        <parameter value="Platz" name="value"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C4f84951d-ba95-4f07-8757-83c7a53cdade" priority="normal">
         <source name="anchor">
             <property>
@@ -9668,6 +9596,24 @@ withTransformationContext {
             </property>
         </target>
         <parameter value="SchifffahrtslinieFährverkehr" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C1cf2b792-2d53-4137-a02a-8637d04cce85" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
+            </property>
+        </target>
+        <parameter value="Schiffsverkehr" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cb167b1aa-36d7-43c7-9600-81f52e478ba2" priority="normal">
         <source name="anchor">
@@ -9831,6 +9777,24 @@ withTransformationContext {
         </target>
         <parameter value="SportFreizeitUndErholungsfläche" name="value"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C3d179d98-93f1-47ba-b689-c638e03fd33c" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
+            </property>
+        </target>
+        <parameter value="StehendesGewässer" name="value"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C0735bf53-72c0-485e-aa6a-7d7060f8f685" priority="normal">
         <source name="anchor">
             <property>
@@ -9848,6 +9812,24 @@ withTransformationContext {
             </property>
         </target>
         <parameter value="Strasse" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C7bbb895b-b581-4149-982f-345ce6032761" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
+            </property>
+        </target>
+        <parameter value="Strassenverkehr" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ca3bb7029-8a09-4e3c-bbc3-a29be5f6e057" priority="normal">
         <source name="anchor">
@@ -10063,6 +10045,24 @@ withTransformationContext {
         </target>
         <parameter value="Wasserlauf" name="value"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cfef79e8e-6a54-4874-8925-1c7c94660d72" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
+            </property>
+        </target>
+        <parameter value="Weg" name="value"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cc2e7ca97-1c3e-4854-b508-baed4ad4cdbf" priority="normal">
         <source name="anchor">
             <property>
@@ -10141,7 +10141,7 @@ withTransformationContext {
         <source name="spelling">
             <property>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">bezeichnung is not null</condition>
                 </type>
                 <child name="zweitname"/>
             </property>
@@ -10401,27 +10401,10 @@ withTransformationContext {
         <source name="lagebezeichnung">
             <property>
                 <type name="AX_BahnverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">bezeichnung is not null</condition>
                 </type>
                 <child name="bezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
                 <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C8e863b45-d861-4800-b79c-a2cd988db1a7" priority="normal">
-        <source name="spelling">
-            <property>
-                <type name="AX_BoeschungKliffType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </source>
         <target>
@@ -10734,6 +10717,23 @@ withTransformationContext {
         <source name="spelling">
             <property>
                 <type name="ax_bergbaubetrieb" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C8e863b45-d861-4800-b79c-a2cd988db1a7" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="name"/>
@@ -11916,204 +11916,6 @@ withTransformationContext {
         </target>
         <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/landcover" name="value"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C7fb83589-604f-4d84-914e-380d18d1c329" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_BahnverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="bezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/transportNetwork" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ccaf8cd74-0a24-430f-a5be-3084a42a5bf1" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_BoeschungKliffType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/landform" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cf62fd1bf-2bf0-4622-8d4b-ebe21438b77d" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_FliessgewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/hydrography" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C31da1b6b-cd42-4707-b4dd-bfad1972a2b9" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_FlugverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/transportNetwork" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cd93ddda4-d5a8-4686-98f3-acb56b4c7f13" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_HafenbeckenType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/transportNetwork" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C1937ac45-b24a-4211-807d-958c0a129d24" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_MeerType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/hydrography" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ca2b50342-b590-4a28-9548-73e19c553013" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_PlatzType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/transportNetwork" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C5082ed33-5336-48ba-8bfc-3136d9c45d80" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_SchiffsverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/transportNetwork" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C95f04999-a010-415a-a62d-a57f5e3f6bd1" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_StehendesGewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/hydrography" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C7259f6ea-75b3-4bfe-976b-7a1996ca8d29" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_StrassenverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/transportNetwork" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C85c15e09-4330-4ab3-a003-c9e93d09bea4" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="AX_WegType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/transportNetwork" name="value"/>
-    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ca40a5fd3-3196-4752-b3f1-9e532001bae3" priority="normal">
         <source name="anchor">
             <property>
@@ -12121,6 +11923,24 @@ withTransformationContext {
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/transportNetwork" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C7fb83589-604f-4d84-914e-380d18d1c329" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">bezeichnung is not null</condition>
+                </type>
+                <child name="gml_id"/>
             </property>
         </source>
         <target>
@@ -12275,6 +12095,24 @@ withTransformationContext {
             </property>
         </target>
         <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/other" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ccaf8cd74-0a24-430f-a5be-3084a42a5bf1" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/landform" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cff6523a8-b197-428c-af74-6eb7f4e4882b" priority="normal">
         <source name="anchor">
@@ -12435,6 +12273,42 @@ withTransformationContext {
             </property>
         </target>
         <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/populatedPlace" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cf62fd1bf-2bf0-4622-8d4b-ebe21438b77d" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/hydrography" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C31da1b6b-cd42-4707-b4dd-bfad1972a2b9" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/transportNetwork" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cceb99ff6-5b2d-4d8c-9822-6299ac366e1e" priority="normal">
         <source name="anchor">
@@ -12621,6 +12495,24 @@ withTransformationContext {
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/transportNetwork" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cd93ddda4-d5a8-4686-98f3-acb56b4c7f13" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
             </property>
         </source>
         <target>
@@ -12864,6 +12756,24 @@ withTransformationContext {
         </target>
         <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/other" name="value"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C1937ac45-b24a-4211-807d-958c0a129d24" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/hydrography" name="value"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C8b1cb77f-62f0-473e-a195-8b305a967219" priority="normal">
         <source name="anchor">
             <property>
@@ -12934,6 +12844,24 @@ withTransformationContext {
         </target>
         <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/populatedPlace" name="value"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ca2b50342-b590-4a28-9548-73e19c553013" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/transportNetwork" name="value"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cae1b457e-e4d0-4d7c-a889-3fa3c30c3a9d" priority="normal">
         <source name="anchor">
             <property>
@@ -12975,6 +12903,24 @@ withTransformationContext {
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/transportNetwork" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C5082ed33-5336-48ba-8bfc-3136d9c45d80" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
             </property>
         </source>
         <target>
@@ -13148,6 +13094,24 @@ withTransformationContext {
         </target>
         <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/other" name="value"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C95f04999-a010-415a-a62d-a57f5e3f6bd1" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/hydrography" name="value"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cd990f379-8609-4081-9189-27668e9426d0" priority="normal">
         <source name="anchor">
             <property>
@@ -13155,6 +13119,24 @@ withTransformationContext {
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/transportNetwork" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C7259f6ea-75b3-4bfe-976b-7a1996ca8d29" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
             </property>
         </source>
         <target>
@@ -13379,6 +13361,24 @@ withTransformationContext {
             </property>
         </target>
         <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/hydrography" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C85c15e09-4330-4ab3-a003-c9e93d09bea4" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="type" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/transportNetwork" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C6c3a6d5a-19b0-4ed8-8693-66e583869ab5" priority="normal">
         <source name="anchor">
