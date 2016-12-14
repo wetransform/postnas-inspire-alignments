@@ -726,7 +726,7 @@ Aktuell ist folgende Abbildung umgesetzt:
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 def name = _source.p.bezeichnung.value()
-def schluessel = _source.p.schluesselGesamt.value()
+def schluessel = _source.p.schluesselgesamt.value()
 
 withTransformationContext {
   def collect = _.context.collector(it)
