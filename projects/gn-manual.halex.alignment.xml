@@ -1016,7 +1016,7 @@ withTransformationContext {
         <source>
             <class>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bezeichnung is not null</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
             </class>
         </source>
@@ -1325,7 +1325,7 @@ withTransformationContext {
         <source>
             <class>
                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
             </class>
         </source>
@@ -1341,7 +1341,7 @@ withTransformationContext {
         <source>
             <class>
                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
             </class>
         </source>
@@ -1708,7 +1708,7 @@ withTransformationContext {
         <source>
             <class>
                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
             </class>
         </source>
@@ -1900,7 +1900,7 @@ withTransformationContext {
         <source>
             <class>
                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
             </class>
         </source>
@@ -1964,7 +1964,7 @@ withTransformationContext {
         <source>
             <class>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
             </class>
         </source>
@@ -2012,7 +2012,7 @@ withTransformationContext {
         <source>
             <class>
                 <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
             </class>
         </source>
@@ -2140,7 +2140,7 @@ withTransformationContext {
         <source>
             <class>
                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
             </class>
         </source>
@@ -2156,7 +2156,7 @@ withTransformationContext {
         <source>
             <class>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
             </class>
         </source>
@@ -2332,7 +2332,7 @@ withTransformationContext {
         <source>
             <class>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
             </class>
         </source>
@@ -2558,7 +2558,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bezeichnung is not null</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2886,7 +2886,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2904,7 +2904,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -3214,7 +3214,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -3430,7 +3430,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -3502,7 +3502,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -3556,7 +3556,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -3700,7 +3700,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -3718,7 +3718,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -3916,7 +3916,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -4022,7 +4022,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bezeichnung is not null</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -4328,7 +4328,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -4346,7 +4346,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -4625,7 +4625,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -4841,7 +4841,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -4913,7 +4913,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -4967,7 +4967,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -5111,7 +5111,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -5129,7 +5129,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -5327,7 +5327,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -5574,7 +5574,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bezeichnung is not null</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5884,7 +5884,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5901,7 +5901,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6195,7 +6195,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6399,7 +6399,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6467,7 +6467,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6518,7 +6518,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6654,7 +6654,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6671,7 +6671,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6858,7 +6858,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -7095,7 +7095,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bezeichnung is not null</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -7441,7 +7441,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -7460,7 +7460,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -7786,7 +7786,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -8014,7 +8014,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -8090,7 +8090,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -8147,7 +8147,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -8299,7 +8299,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -8318,7 +8318,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -8527,7 +8527,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -8631,7 +8631,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bezeichnung is not null</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -8971,7 +8971,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -8989,7 +8989,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -9203,7 +9203,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -9453,7 +9453,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -9541,7 +9541,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -9611,7 +9611,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -9791,7 +9791,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -9827,7 +9827,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -10059,7 +10059,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -10151,7 +10151,7 @@ withTransformationContext {
         <source name="spelling">
             <property>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bezeichnung is not null</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="zweitname"/>
             </property>
@@ -10231,7 +10231,7 @@ withTransformationContext {
         <source name="spelling">
             <property>
                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="zweitname"/>
             </property>
@@ -10271,7 +10271,7 @@ withTransformationContext {
         <source name="spelling">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="zweitname"/>
             </property>
@@ -11826,7 +11826,7 @@ withTransformationContext {
         <source name="spelling">
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="zweitname"/>
             </property>
@@ -12218,7 +12218,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bezeichnung is not null</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -12558,7 +12558,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -12576,7 +12576,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -12790,7 +12790,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -13040,7 +13040,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -13128,7 +13128,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -13198,7 +13198,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -13378,7 +13378,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -13414,7 +13414,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -13646,7 +13646,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
