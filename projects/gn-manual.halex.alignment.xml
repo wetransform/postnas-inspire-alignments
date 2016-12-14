@@ -10407,186 +10407,6 @@ withTransformationContext {
         </target>
         <parameter value="other" name="nameStatus"/>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cb6bc9ef4-e386-4832-a1e7-b8eeb2037400" priority="normal">
-        <source name="lagebezeichnung">
-            <property>
-                <type name="AX_BahnverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">bezeichnung is not null</condition>
-                </type>
-                <child name="bezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C286ac70d-25c5-4f7d-a80b-9ca24ccfb119" priority="normal">
-        <source name="lagebezeichnung">
-            <property>
-                <type name="AX_FliessgewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Ca302db1b-ec63-46bc-b5ba-0ca0a349b028" priority="normal">
-        <source name="lagebezeichnung">
-            <property>
-                <type name="AX_FlugverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C5f952416-142c-4dbc-bd5e-1850306b0c65" priority="normal">
-        <source name="lagebezeichnung">
-            <property>
-                <type name="AX_HafenbeckenType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Ccf7bb2b5-2d33-436a-aefa-c785cf3161d9" priority="normal">
-        <source name="lagebezeichnung">
-            <property>
-                <type name="AX_MeerType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C0387fa9e-2ba2-4e37-8242-b1a284f952fb" priority="normal">
-        <source name="lagebezeichnung">
-            <property>
-                <type name="AX_PlatzType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C001a1ba1-d7ff-4374-89a6-a00fac6bc13a" priority="normal">
-        <source name="lagebezeichnung">
-            <property>
-                <type name="AX_SchiffsverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C8568e877-b442-4e75-92cf-8dd2504d30bf" priority="normal">
-        <source name="lagebezeichnung">
-            <property>
-                <type name="AX_StehendesGewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cd2f35246-916d-4414-b732-7071be7ad95a" priority="normal">
-        <source name="lagebezeichnung">
-            <property>
-                <type name="AX_StrassenverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C9784554a-ab1b-4e9c-86f9-54929a6e1428" priority="normal">
-        <source name="lagebezeichnung">
-            <property>
-                <type name="AX_WegType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C03a70e9d-239c-4dba-85a1-e26b11bb2524" priority="normal">
         <source name="spelling">
             <property>
@@ -10594,6 +10414,51 @@ withTransformationContext {
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cb6bc9ef4-e386-4832-a1e7-b8eeb2037400" priority="normal">
+        <source name="lage_gemeinde">
+            <property>
+                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gemeinde"/>
+            </property>
+        </source>
+        <source name="lage_kreis">
+            <property>
+                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="kreis"/>
+            </property>
+        </source>
+        <source name="lage_lage">
+            <property>
+                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="lage"/>
+            </property>
+        </source>
+        <source name="lage_land">
+            <property>
+                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="land"/>
+            </property>
+        </source>
+        <source name="lage_regierungsbezirk">
+            <property>
+                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="regierungsbezirk"/>
+            </property>
+        </source>
+        <source name="lage_unverschluesselt">
+            <property>
+                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="unverschluesselt"/>
             </property>
         </source>
         <target>
@@ -10908,6 +10773,96 @@ withTransformationContext {
             </property>
         </target>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C286ac70d-25c5-4f7d-a80b-9ca24ccfb119" priority="normal">
+        <source name="lage_gemeinde">
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gemeinde"/>
+            </property>
+        </source>
+        <source name="lage_kreis">
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="kreis"/>
+            </property>
+        </source>
+        <source name="lage_lage">
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="lage"/>
+            </property>
+        </source>
+        <source name="lage_land">
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="land"/>
+            </property>
+        </source>
+        <source name="lage_regierungsbezirk">
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="regierungsbezirk"/>
+            </property>
+        </source>
+        <source name="lage_unverschluesselt">
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="unverschluesselt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Ca302db1b-ec63-46bc-b5ba-0ca0a349b028" priority="normal">
+        <source name="lage_gemeinde">
+            <property>
+                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gemeinde"/>
+            </property>
+        </source>
+        <source name="lage_kreis">
+            <property>
+                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="kreis"/>
+            </property>
+        </source>
+        <source name="lage_lage">
+            <property>
+                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="lage"/>
+            </property>
+        </source>
+        <source name="lage_land">
+            <property>
+                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="land"/>
+            </property>
+        </source>
+        <source name="lage_regierungsbezirk">
+            <property>
+                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="regierungsbezirk"/>
+            </property>
+        </source>
+        <source name="lage_unverschluesselt">
+            <property>
+                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="unverschluesselt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbf5d7902-dea4-4005-9d14-a9609617a40b" priority="normal">
         <source name="spelling">
             <property>
@@ -11083,6 +11038,51 @@ withTransformationContext {
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C5f952416-142c-4dbc-bd5e-1850306b0c65" priority="normal">
+        <source name="lage_gemeinde">
+            <property>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gemeinde"/>
+            </property>
+        </source>
+        <source name="lage_kreis">
+            <property>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="kreis"/>
+            </property>
+        </source>
+        <source name="lage_lage">
+            <property>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="lage"/>
+            </property>
+        </source>
+        <source name="lage_land">
+            <property>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="land"/>
+            </property>
+        </source>
+        <source name="lage_regierungsbezirk">
+            <property>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="regierungsbezirk"/>
+            </property>
+        </source>
+        <source name="lage_unverschluesselt">
+            <property>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="unverschluesselt"/>
             </property>
         </source>
         <target>
@@ -11312,6 +11312,51 @@ withTransformationContext {
             </property>
         </target>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Ccf7bb2b5-2d33-436a-aefa-c785cf3161d9" priority="normal">
+        <source name="lage_gemeinde">
+            <property>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gemeinde"/>
+            </property>
+        </source>
+        <source name="lage_kreis">
+            <property>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="kreis"/>
+            </property>
+        </source>
+        <source name="lage_lage">
+            <property>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="lage"/>
+            </property>
+        </source>
+        <source name="lage_land">
+            <property>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="land"/>
+            </property>
+        </source>
+        <source name="lage_regierungsbezirk">
+            <property>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="regierungsbezirk"/>
+            </property>
+        </source>
+        <source name="lage_unverschluesselt">
+            <property>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="unverschluesselt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cf5ac9aff-d3f1-4dba-8845-df403779a6b7" priority="normal">
         <source name="spelling">
             <property>
@@ -11378,6 +11423,51 @@ withTransformationContext {
             </property>
         </target>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C0387fa9e-2ba2-4e37-8242-b1a284f952fb" priority="normal">
+        <source name="lage_gemeinde">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gemeinde"/>
+            </property>
+        </source>
+        <source name="lage_kreis">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="kreis"/>
+            </property>
+        </source>
+        <source name="lage_lage">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="lage"/>
+            </property>
+        </source>
+        <source name="lage_land">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="land"/>
+            </property>
+        </source>
+        <source name="lage_regierungsbezirk">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="regierungsbezirk"/>
+            </property>
+        </source>
+        <source name="lage_unverschluesselt">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="unverschluesselt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C31e8224f-9a2d-4b91-9f23-8c9f486c14bd" priority="normal">
         <source name="spelling">
             <property>
@@ -11417,6 +11507,51 @@ withTransformationContext {
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C001a1ba1-d7ff-4374-89a6-a00fac6bc13a" priority="normal">
+        <source name="lage_gemeinde">
+            <property>
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gemeinde"/>
+            </property>
+        </source>
+        <source name="lage_kreis">
+            <property>
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="kreis"/>
+            </property>
+        </source>
+        <source name="lage_lage">
+            <property>
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="lage"/>
+            </property>
+        </source>
+        <source name="lage_land">
+            <property>
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="land"/>
+            </property>
+        </source>
+        <source name="lage_regierungsbezirk">
+            <property>
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="regierungsbezirk"/>
+            </property>
+        </source>
+        <source name="lage_unverschluesselt">
+            <property>
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="unverschluesselt"/>
             </property>
         </source>
         <target>
@@ -11580,6 +11715,51 @@ withTransformationContext {
             </property>
         </target>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C8568e877-b442-4e75-92cf-8dd2504d30bf" priority="normal">
+        <source name="lage_gemeinde">
+            <property>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gemeinde"/>
+            </property>
+        </source>
+        <source name="lage_kreis">
+            <property>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="kreis"/>
+            </property>
+        </source>
+        <source name="lage_lage">
+            <property>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="lage"/>
+            </property>
+        </source>
+        <source name="lage_land">
+            <property>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="land"/>
+            </property>
+        </source>
+        <source name="lage_regierungsbezirk">
+            <property>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="regierungsbezirk"/>
+            </property>
+        </source>
+        <source name="lage_unverschluesselt">
+            <property>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="unverschluesselt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc692daf2-37c9-4219-b740-f3e4ff28d3fe" priority="normal">
         <source name="spelling">
             <property>
@@ -11587,6 +11767,51 @@ withTransformationContext {
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cd2f35246-916d-4414-b732-7071be7ad95a" priority="normal">
+        <source name="lage_gemeinde">
+            <property>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gemeinde"/>
+            </property>
+        </source>
+        <source name="lage_kreis">
+            <property>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="kreis"/>
+            </property>
+        </source>
+        <source name="lage_lage">
+            <property>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="lage"/>
+            </property>
+        </source>
+        <source name="lage_land">
+            <property>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="land"/>
+            </property>
+        </source>
+        <source name="lage_regierungsbezirk">
+            <property>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="regierungsbezirk"/>
+            </property>
+        </source>
+        <source name="lage_unverschluesselt">
+            <property>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="unverschluesselt"/>
             </property>
         </source>
         <target>
@@ -11807,6 +12032,51 @@ withTransformationContext {
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C9784554a-ab1b-4e9c-86f9-54929a6e1428" priority="normal">
+        <source name="lage_gemeinde">
+            <property>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gemeinde"/>
+            </property>
+        </source>
+        <source name="lage_kreis">
+            <property>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="kreis"/>
+            </property>
+        </source>
+        <source name="lage_lage">
+            <property>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="lage"/>
+            </property>
+        </source>
+        <source name="lage_land">
+            <property>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="land"/>
+            </property>
+        </source>
+        <source name="lage_regierungsbezirk">
+            <property>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="regierungsbezirk"/>
+            </property>
+        </source>
+        <source name="lage_unverschluesselt">
+            <property>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="unverschluesselt"/>
             </property>
         </source>
         <target>
