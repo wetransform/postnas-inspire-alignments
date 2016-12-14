@@ -1573,9 +1573,7 @@ withTransformationContext {
         </source>
         <source name="types">
             <class>
-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
+                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
             </class>
         </source>
         <target>
@@ -1589,9 +1587,7 @@ withTransformationContext {
                     <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 </class>
                 <class>
-                    <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr">
-                        <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                    </type>
+                    <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 </class>
                 <jp:condition>
                     <property>
@@ -1599,9 +1595,7 @@ withTransformationContext {
                         <child name="schluesselgesamt"/>
                     </property>
                     <property>
-                        <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr">
-                            <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                        </type>
+                        <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="schluesselgesamt"/>
                     </property>
                 </jp:condition>
@@ -2395,12 +2389,6 @@ withTransformationContext {
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Ca3ebfac9-ea93-4f00-ad87-53c90fcefd6d" priority="normal">
         <source>
             <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <source>
-            <property>
                 <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
@@ -2425,12 +2413,6 @@ withTransformationContext {
                 <child name="beginnt"/>
             </property>
         </source>
-        <source>
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
         <target>
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -2441,12 +2423,6 @@ withTransformationContext {
         <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C29a5ee63-234f-4d8c-9451-b059ea1dea0c" priority="normal">
-        <source>
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
         <source>
             <property>
                 <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -2465,12 +2441,6 @@ withTransformationContext {
         <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C4e42085c-cea8-4679-bb10-ae9ac568aac6" priority="normal">
-        <source>
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
         <source>
             <property>
                 <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -2497,12 +2467,6 @@ withTransformationContext {
                 <child name="beginnt"/>
             </property>
         </source>
-        <source>
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
         <target>
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -2513,12 +2477,6 @@ withTransformationContext {
         <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C71713b77-1284-4ba9-a970-94501a6ea626" priority="normal">
-        <source>
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
         <source>
             <property>
                 <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -2717,12 +2675,6 @@ withTransformationContext {
         <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C6ffe1102-f993-49da-bc1e-7c25ed40b8d2" priority="normal">
-        <source>
-            <property>
-                <type name="ax_gebiet_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
         <source>
             <property>
                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -2975,12 +2927,6 @@ withTransformationContext {
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
         <source>
             <property>
-                <type name="ax_gebiet_kreis" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <source>
-            <property>
                 <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="beginnt"/>
             </property>
@@ -3001,12 +2947,6 @@ withTransformationContext {
                 <child name="beginnt"/>
             </property>
         </source>
-        <source>
-            <property>
-                <type name="ax_gebiet_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
         <target>
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -3023,12 +2963,6 @@ withTransformationContext {
                 <child name="beginnt"/>
             </property>
         </source>
-        <source>
-            <property>
-                <type name="ax_gebiet_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
         <target>
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -3042,12 +2976,6 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <source>
-            <property>
-                <type name="ax_gebiet_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -3082,14 +3010,6 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <source>
-            <property>
-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -4768,9 +4688,7 @@ withTransformationContext {
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C9405b153-68f1-41ee-b945-e9c4953e7511" priority="normal">
         <source>
             <property>
-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
+                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -5418,12 +5336,6 @@ withTransformationContext {
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Ca3ebfac9-ea93-4f00-ad87-53c90fcefd6d" priority="normal">
         <source name="id">
             <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <source name="id">
-            <property>
                 <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
@@ -5447,12 +5359,6 @@ withTransformationContext {
                 <child name="gml_id"/>
             </property>
         </source>
-        <source name="id">
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <target>
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -5462,12 +5368,6 @@ withTransformationContext {
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C29a5ee63-234f-4d8c-9451-b059ea1dea0c" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <source name="id">
             <property>
                 <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -5485,12 +5385,6 @@ withTransformationContext {
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C4e42085c-cea8-4679-bb10-ae9ac568aac6" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <source name="id">
             <property>
                 <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -5516,12 +5410,6 @@ withTransformationContext {
                 <child name="gml_id"/>
             </property>
         </source>
-        <source name="id">
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <target>
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -5531,12 +5419,6 @@ withTransformationContext {
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C71713b77-1284-4ba9-a970-94501a6ea626" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <source name="id">
             <property>
                 <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -5724,12 +5606,6 @@ withTransformationContext {
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C6ffe1102-f993-49da-bc1e-7c25ed40b8d2" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_gebiet_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <source name="id">
             <property>
                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -5968,12 +5844,6 @@ withTransformationContext {
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gebiet_kreis" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <source name="id">
-            <property>
                 <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="gml_id"/>
             </property>
@@ -5993,12 +5863,6 @@ withTransformationContext {
                 <child name="gml_id"/>
             </property>
         </source>
-        <source name="id">
-            <property>
-                <type name="ax_gebiet_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <target>
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -6014,12 +5878,6 @@ withTransformationContext {
                 <child name="gml_id"/>
             </property>
         </source>
-        <source name="id">
-            <property>
-                <type name="ax_gebiet_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <target>
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -6032,12 +5890,6 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <source name="id">
-            <property>
-                <type name="ax_gebiet_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -6070,14 +5922,6 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <source name="id">
-            <property>
-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -6925,12 +6769,6 @@ withTransformationContext {
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Ca3ebfac9-ea93-4f00-ad87-53c90fcefd6d" priority="normal">
         <source name="id">
             <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <source name="id">
-            <property>
                 <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
@@ -6956,12 +6794,6 @@ withTransformationContext {
                 <child name="gml_id"/>
             </property>
         </source>
-        <source name="id">
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <target>
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -6973,12 +6805,6 @@ withTransformationContext {
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C29a5ee63-234f-4d8c-9451-b059ea1dea0c" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <source name="id">
             <property>
                 <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -6998,12 +6824,6 @@ withTransformationContext {
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C4e42085c-cea8-4679-bb10-ae9ac568aac6" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <source name="id">
             <property>
                 <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -7031,12 +6851,6 @@ withTransformationContext {
                 <child name="gml_id"/>
             </property>
         </source>
-        <source name="id">
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <target>
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -7048,12 +6862,6 @@ withTransformationContext {
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C71713b77-1284-4ba9-a970-94501a6ea626" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <source name="id">
             <property>
                 <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -7263,12 +7071,6 @@ withTransformationContext {
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C6ffe1102-f993-49da-bc1e-7c25ed40b8d2" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_gebiet_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <source name="id">
             <property>
                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -7535,12 +7337,6 @@ withTransformationContext {
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gebiet_kreis" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <source name="id">
-            <property>
                 <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="gml_id"/>
             </property>
@@ -7562,12 +7358,6 @@ withTransformationContext {
                 <child name="gml_id"/>
             </property>
         </source>
-        <source name="id">
-            <property>
-                <type name="ax_gebiet_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <target>
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -7585,12 +7375,6 @@ withTransformationContext {
                 <child name="gml_id"/>
             </property>
         </source>
-        <source name="id">
-            <property>
-                <type name="ax_gebiet_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
         <target>
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -7605,12 +7389,6 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <source name="id">
-            <property>
-                <type name="ax_gebiet_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -7647,14 +7425,6 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <source name="id">
-            <property>
-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
                 <child name="gml_id"/>
             </property>
         </source>
