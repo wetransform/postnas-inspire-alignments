@@ -1,5 +1,5 @@
 diff --git a/projects/au-auto.halex.alignment.xml b/projects/au-manual.halex.alignment.xml
-index 26f417f..6fd8837 100644
+index 98284fb..753b854 100644
 --- a/projects/au-auto.halex.alignment.xml
 +++ b/projects/au-manual.halex.alignment.xml
 @@ -4,7 +4,6 @@
@@ -10,7 +10,7 @@ index 26f417f..6fd8837 100644
              </cf:input>
              <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
-@@ -212,7 +211,6 @@ if (_params.source) {&#xD;
+@@ -214,7 +213,6 @@ if (_params.source) {&#xD;
              </cf:input>
              <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
@@ -18,7 +18,7 @@ index 26f417f..6fd8837 100644
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-@@ -685,7 +683,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+@@ -706,7 +704,7 @@ Aktuell ist folgende Abbildung umgesetzt:
          <source>
              <class>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -27,7 +27,7 @@ index 26f417f..6fd8837 100644
                  </type>
              </class>
          </source>
-@@ -712,7 +710,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+@@ -733,7 +731,7 @@ Aktuell ist folgende Abbildung umgesetzt:
          <source>
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -36,7 +36,7 @@ index 26f417f..6fd8837 100644
                  </type>
                  <child name="beginnt"/>
              </property>
-@@ -766,7 +764,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -787,7 +785,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source>
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -45,7 +45,7 @@ index 26f417f..6fd8837 100644
                  </type>
                  <child name="endet"/>
              </property>
-@@ -784,7 +782,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -805,7 +803,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source>
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -54,7 +54,7 @@ index 26f417f..6fd8837 100644
                  </type>
                  <child name="wkb_geometry"/>
              </property>
-@@ -803,7 +801,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -824,7 +822,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source name="id">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -63,7 +63,7 @@ index 26f417f..6fd8837 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -820,7 +818,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -841,7 +839,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source name="id">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -72,7 +72,7 @@ index 26f417f..6fd8837 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -836,7 +834,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -857,7 +855,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source name="id">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -81,7 +81,7 @@ index 26f417f..6fd8837 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -875,7 +873,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -896,7 +894,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source>
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -90,7 +90,7 @@ index 26f417f..6fd8837 100644
                  </type>
                  <child name="artdergebietsgrenze"/>
              </property>
-@@ -966,7 +964,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -987,7 +985,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -99,7 +99,7 @@ index 26f417f..6fd8837 100644
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // mit entsprechender Geometrie vorhanden sind
-@@ -978,7 +976,7 @@ def collect
+@@ -999,7 +997,7 @@ def collect
  withTransformationContext {
  	collect = _.context.collector(it)
  }
@@ -108,7 +108,7 @@ index 26f417f..6fd8837 100644
  
  _target{
  	geometry {
-@@ -1067,7 +1065,7 @@ Die Verknüpfung zur untergeordneten Ebene von `AdministrativeUnit`s wird über
+@@ -1088,7 +1086,7 @@ Die Verknüpfung zur untergeordneten Ebene von `AdministrativeUnit`s wird über
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -117,7 +117,7 @@ index 26f417f..6fd8837 100644
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // vorhanden sind
-@@ -1083,14 +1081,14 @@ def collect
+@@ -1104,14 +1102,14 @@ def collect
  withTransformationContext {
  	collect = _.context.collector(it)
  }
@@ -136,7 +136,7 @@ index 26f417f..6fd8837 100644
  	
  	upperLevelUnit =  "AdministrativeUnit_${land}${regBezirk}${kreis}"
  	
-@@ -1201,13 +1199,13 @@ Falls keine Zugehörigkeit zu einer Verwaltungsgemeinschaft besteht wird die Zug
+@@ -1222,13 +1220,13 @@ Falls keine Zugehörigkeit zu einer Verwaltungsgemeinschaft besteht wird die Zug
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -153,7 +153,7 @@ index 26f417f..6fd8837 100644
  	if (gemeinden) {
  		_log.warn("Keine Flurstückgeometrien zu Verwaltungsgemeinschaft $sourceId gefunden, zugehörige AdminstrativeUnit wird nicht erstellt")
  	}
-@@ -1218,14 +1216,14 @@ if (!geoms) {
+@@ -1239,14 +1237,14 @@ if (!geoms) {
  }
  
  // Schlüssel für alle Gemeinden der Gemeinschaft
@@ -170,7 +170,7 @@ index 26f417f..6fd8837 100644
  
  _target{
  	geometry {
-@@ -1244,7 +1242,7 @@ _target{
+@@ -1265,7 +1263,7 @@ _target{
  
  withTransformationContext {
  	def collect = _.context.collector(it)
@@ -179,7 +179,7 @@ index 26f417f..6fd8837 100644
  	// Hinterlege ID je Gemeinde
  	gemeinden.each {
  		collect.verwaltungsGemeinschaft['AdministrativeUnit_' + it] = _id
-@@ -1322,7 +1320,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
+@@ -1343,7 +1341,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -188,7 +188,7 @@ index 26f417f..6fd8837 100644
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // mit entsprechender Geometrie vorhanden sind
-@@ -1334,11 +1332,11 @@ def collect
+@@ -1355,11 +1353,11 @@ def collect
  withTransformationContext {
  	collect = _.context.collector(it)
  }
@@ -203,7 +203,7 @@ index 26f417f..6fd8837 100644
  def upperLevelUnit
  if (regBezirk &amp;&amp; regBezirk != '0') {
  	upperLevelUnit = 'AdministrativeUnit_' + land + regBezirk
-@@ -1421,7 +1419,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
+@@ -1442,7 +1440,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -212,7 +212,7 @@ index 26f417f..6fd8837 100644
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // mit entsprechender Geometrie vorhanden sind
-@@ -1433,10 +1431,10 @@ def collect
+@@ -1454,10 +1452,10 @@ def collect
  withTransformationContext {
  	collect = _.context.collector(it)
  }
@@ -225,72 +225,7 @@ index 26f417f..6fd8837 100644
  collect.land[upperLevelUnit] &lt;&lt; _id
  
  _target{
-@@ -1931,12 +1929,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
-         </target>
-     </cell>
-     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C03ecccc0-d989-4597-85d7-53401c0c6390" priority="normal">
--        <source name="source">
--            <property>
--                <type name="AX_BundeslandType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--            </property>
--        </source>
-         <source name="spelling">
-             <property>
-                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-@@ -1952,12 +1944,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
-         </target>
-     </cell>
-     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cb517321b-4e19-4fdd-bb36-41584acd28c3" priority="normal">
--        <source name="source">
--            <property>
--                <type name="AX_GemeindeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--            </property>
--        </source>
-         <source name="spelling">
-             <property>
-                 <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-@@ -1973,12 +1959,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
-         </target>
-     </cell>
-     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C11652e8a-9255-43e3-a93b-087a7d23e5d6" priority="normal">
--        <source name="source">
--            <property>
--                <type name="AX_KreisRegionType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--            </property>
--        </source>
-         <source name="spelling">
-             <property>
-                 <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-@@ -1994,12 +1974,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
-         </target>
-     </cell>
-     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C6ddff7d7-c1be-4950-8937-5ab069cbb372" priority="normal">
--        <source name="source">
--            <property>
--                <type name="AX_RegierungsbezirkType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--            </property>
--        </source>
-         <source name="spelling">
-             <property>
-                 <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-@@ -2015,12 +1989,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
-         </target>
-     </cell>
-     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc914b5bf-167d-4b30-9155-bf43363cf6dc" priority="normal">
--        <source name="source">
--            <property>
--                <type name="AX_VerwaltungsgemeinschaftType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="modellart" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--            </property>
--        </source>
-         <source name="spelling">
-             <property>
-                 <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-@@ -2430,33 +2398,15 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -2421,33 +2419,15 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
      <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_C153144ee-8008-471c-a689-adba7e1d10b7">
          <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
      </modifier>

@@ -121,3 +121,5 @@ Anpassungen sind normalerweise:
 - Anpassung von Custom Functions an geänderte Strukturen
 - Entfernen von nicht anwendbaren Mappings, ggf. ersetzen
 - Erweiterte Anpassungen durch Strukturänderungen erforderliche Anpassung von Typ-Relationen
+
+Manuell erfolgte Anpassungen sollten zur möglicherweise später notwendigen Reproduktion dokumentiert werden. Dies erfolgt in den Dateien `projects/<Kürzel>-manual.md`.
