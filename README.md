@@ -80,7 +80,7 @@ Außerdem wird für das Management der Änderungen zwischen automatisch migriert
 
 ### AAA-PostNAS Matching
 
-Das Matching zwischen AdV XML Schemas und PostNAS Datenbank Schema erfolgt auf Basis einer hinterlegten hale Schema-Datei (`database/schema.hsd`). Diese muss aktualisiert werden falls sich das Datenbank-Schema ändert. Hintergrund dass eine solche Datei verwendet wird ist, das so einerseits keine entsprechende Datenbank verfügbar sein muss und andererseits genau dokumentiert ist auch welches Schema sich der aktuelle Stand der Migration bezieht.
+Das Matching zwischen AdV XML Schemas und PostNAS Datenbank Schema erfolgt auf Basis einer hinterlegten hale Schema-Datei (`database/schema.hsd`). Diese muss aktualisiert werden falls sich das Datenbank-Schema ändert. Hintergrund dass eine solche Datei verwendet wird ist, das so einerseits keine entsprechende Datenbank verfügbar sein muss und andererseits genau dokumentiert ist auf welches Schema sich der aktuelle Stand der Migration bezieht.
 
 Die Schema-Datei kann erzeugt werden, indem das Datenbank-Schema in hale importiert wird, und von dort in eine Datei exportiert.
 
