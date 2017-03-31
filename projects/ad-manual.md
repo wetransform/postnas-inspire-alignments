@@ -1,3 +1,9 @@
+Allgemeine Anmerkungen
+----------------------
+
+Es scheint keine Entsprechung für AX_Post im Datenbank-Schema zu geben. Dementsprechend werden im Addresses-Mapping keine PostalDescriptors erzeugt. Fehlt dieser Typ ggf. noch im Datenbank-Schema oder wird diese Information hier nicht geführt? *(Berichtet am 14.12.2016)*
+
+
 Notizen zu manuellen Anpassungen
 --------------------------------
 

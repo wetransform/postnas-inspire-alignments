@@ -77,6 +77,8 @@ Es kann jedoch auch ein anderer Ort über die Gradle-Property `advAlignments` an
 
 Außerdem wird für das Management der Änderungen zwischen automatisch migriertem Mapping und manuell gepflegtem Projekt das Programm `git` verwendet. Dieses wird im System-Pfad erwartet. Es wird verwendet um sog. Diffs zu erzeugen und anzuwenden.
 
+Es wird empfohlen nach abgeschlossenen Arbeitsschritten immer einen Git Commit zu erzeugen. Damit wird sichergestellt das nichts verloren geht, Änderungen dokumentiert sind und die nachfolgenden Änderungen durch automatische Arbeitsschritte klar ersichtlich sind.
+
 
 ### AAA-PostNAS Matching
 
