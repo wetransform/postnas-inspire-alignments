@@ -1353,11 +1353,6 @@ if (positionAdresse) {&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def lage = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_lage?.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
-def gemeinde = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_gemeinde
-def kreis = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_kreis
-def land = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_land
-def regierungsbezirk = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_regierungsbezirk
 if (!regierungsbezirk) {
 	regierungsbezirk = '0'
 }
@@ -2549,7 +2544,7 @@ else {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
+def id = schluesselgesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
 
 "ThoroughfareName_$id"
 </core:text>
@@ -2571,7 +2566,7 @@ def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
+def id = schluesselgesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
 
 def ns = _project.vars.INSPIRE_NAMESPACE
 if (ns &amp;&amp; !ns.endsWith('/')) {
@@ -2610,7 +2605,7 @@ if (ns &amp;&amp; !ns.endsWith('/')) {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
+def id = schluesselgesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
 
 "ThoroughfareName_$id"
 </core:text>

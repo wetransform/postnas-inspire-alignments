@@ -1,5 +1,5 @@
 diff --git a/projects/ad-auto.halex.alignment.xml b/projects/ad-manual.halex.alignment.xml
-index 7393b48..508a2e2 100644
+index 7393b48..660f755 100644
 --- a/projects/ad-auto.halex.alignment.xml
 +++ b/projects/ad-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -65,7 +65,19 @@ index 7393b48..508a2e2 100644
  	if (positionAdresse) {&#xD;
  		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#xD;
  	}&#xD;
-@@ -2420,23 +2422,6 @@ else {
+@@ -1351,11 +1353,6 @@ if (positionAdresse) {&#xD;
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def lage = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_lage?.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
+-def gemeinde = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_gemeinde
+-def kreis = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_kreis
+-def land = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_land
+-def regierungsbezirk = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_regierungsbezirk
+ if (!regierungsbezirk) {
+ 	regierungsbezirk = '0'
+ }
+@@ -2420,23 +2417,6 @@ else {
          </target>
          <parameter value="other:unpopulated" name="value"/>
      </cell>
@@ -89,7 +101,7 @@ index 7393b48..508a2e2 100644
      <cell relation="eu.esdihumboldt.hale.align.assign" id="Cc5c40a0a-bc89-42aa-a918-7e25fb8215f5" priority="normal">
          <target>
              <property>
-@@ -2447,36 +2432,6 @@ else {
+@@ -2447,36 +2427,6 @@ else {
          </target>
          <parameter value="other:unpopulated" name="value"/>
      </cell>
@@ -126,7 +138,7 @@ index 7393b48..508a2e2 100644
      <cell relation="eu.esdihumboldt.hale.align.assign" id="C5fd35164-5918-4189-872b-296d8225f787" priority="normal">
          <target>
              <property>
-@@ -2487,23 +2442,6 @@ else {
+@@ -2487,23 +2437,6 @@ else {
          </target>
          <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
      </cell>
@@ -150,7 +162,7 @@ index 7393b48..508a2e2 100644
      <cell relation="custom:alignment:adv.inspire.namespace" id="C5c322644-b41b-41ca-9f41-806faae001c7" priority="normal">
          <target>
              <property>
-@@ -2514,38 +2452,6 @@ else {
+@@ -2514,38 +2447,6 @@ else {
              </property>
          </target>
      </cell>
@@ -189,7 +201,34 @@ index 7393b48..508a2e2 100644
      <cell relation="eu.esdihumboldt.hale.align.assign" id="Cae50d6a8-8f52-4846-8a29-b20b2e495505" priority="normal">
          <target>
              <property>
-@@ -2749,4 +2655,8 @@ def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
+@@ -2643,7 +2544,7 @@ else {
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
++def id = schluesselgesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
+ 
+ "ThoroughfareName_$id"
+ </core:text>
+@@ -2665,7 +2566,7 @@ def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
++def id = schluesselgesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
+ 
+ def ns = _project.vars.INSPIRE_NAMESPACE
+ if (ns &amp;&amp; !ns.endsWith('/')) {
+@@ -2704,7 +2605,7 @@ if (ns &amp;&amp; !ns.endsWith('/')) {
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
++def id = schluesselgesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
+ 
+ "ThoroughfareName_$id"
+ </core:text>
+@@ -2749,4 +2650,8 @@ def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
          </target>
          <parameter value="other:unpopulated" name="value"/>
      </cell>
