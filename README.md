@@ -11,8 +11,8 @@ Folgende Alignments werden hier verwaltet:
 | :---------------------------------------------------- | :--------: |
 | Geo5 Hauskoordinaten -> Adressen                      | -          |
 | Geo5 PostNAS -> Adressen                              | -          |
-| Geo5 PostNAS -> Verwaltungseinheiten                  | Prototyp   |
-| Geo5 PostNAS -> Flurstücke/Grundstücke                | Prototyp   |
+| Geo5 PostNAS -> Verwaltungseinheiten                  | -          |
+| Geo5 PostNAS -> Flurstücke/Grundstücke                | -          |
 | Geo5 PostNAS -> Geografische Bezeichnungen            | -          |
 | Geo5 PostNAS -> Gewässernetz                          | -          |
 | Geo5 PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)   | -          |
@@ -106,7 +106,7 @@ Dort wird zuerst eine Diff-Datei erzeugt, zwischen einer eventuell schon existie
 Dann erfolgt die automatische Migration anhand des Matchings. Das Ergebnis ist das Projekt `projects/<Kürzel>-auto.halex`.
 
 Das automatisch erzeugte Projekt wird kopiert und ersetzt die bisherige manuelle Anpassung.
-Danach wird versuch das Diff erneut anzuwenden. Mit etwas Glück ist es zumindest teilweise erfolgreich, andernfalls muss dieser Schritt manuell geschehen. Bei einem Fehlschlag bitte genau prüfen welche Änderungen ggf. nicht übernommen wurden und wie das ggf. zu beheben ist.
+Danach wird versucht das Diff erneut anzuwenden. Mit etwas Glück ist es zumindest teilweise erfolgreich, andernfalls muss dieser Schritt manuell geschehen. Bei einem Fehlschlag bitte genau prüfen welche Änderungen ggf. nicht übernommen wurden und wie das ggf. zu beheben ist.
 
 
 ### Manuelle Anpassung
