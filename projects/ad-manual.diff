@@ -1,5 +1,5 @@
 diff --git a/projects/ad-auto.halex.alignment.xml b/projects/ad-manual.halex.alignment.xml
-index 06a8f23..3ad60c6 100644
+index 318f56c..ba97d87 100644
 --- a/projects/ad-auto.halex.alignment.xml
 +++ b/projects/ad-manual.halex.alignment.xml
 @@ -4,7 +4,6 @@
@@ -65,7 +65,7 @@ index 06a8f23..3ad60c6 100644
  	if (positionAdresse) {&#xD;
  		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#xD;
  	}&#xD;
-@@ -2062,53 +2064,6 @@ if (positionAdresse) {&#xD;
+@@ -2286,53 +2288,6 @@ if (positionAdresse) {&#xD;
          </target>
          <parameter value="DLKM" name="source"/>
      </cell>
@@ -119,7 +119,7 @@ index 06a8f23..3ad60c6 100644
      <cell relation="eu.esdihumboldt.hale.align.assign" id="C5fd35164-5918-4189-872b-296d8225f787" priority="normal">
          <target>
              <property>
-@@ -2119,23 +2074,6 @@ if (positionAdresse) {&#xD;
+@@ -2343,23 +2298,6 @@ if (positionAdresse) {&#xD;
          </target>
          <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
      </cell>
@@ -143,7 +143,7 @@ index 06a8f23..3ad60c6 100644
      <cell relation="custom:alignment:adv.inspire.namespace" id="C5c322644-b41b-41ca-9f41-806faae001c7" priority="normal">
          <target>
              <property>
-@@ -2146,38 +2084,6 @@ if (positionAdresse) {&#xD;
+@@ -2370,38 +2308,6 @@ if (positionAdresse) {&#xD;
              </property>
          </target>
      </cell>
@@ -182,7 +182,7 @@ index 06a8f23..3ad60c6 100644
      <cell relation="eu.esdihumboldt.hale.align.retype" id="C9fc48689-dc97-4f8a-864a-1557dcf3c563" priority="normal">
          <source>
              <class>
-@@ -2324,4 +2230,8 @@ if (positionAdresse) {&#xD;
+@@ -2548,4 +2454,8 @@ if (positionAdresse) {&#xD;
          </target>
          <parameter value="DLKM" name="source"/>
      </cell>

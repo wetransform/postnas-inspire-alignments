@@ -1,0 +1,1876 @@
+diff --git a/projects/gn-auto.halex.alignment.xml b/projects/gn-manual.halex.alignment.xml
+index 6cfa5bc..6b7eeef 100644
+--- a/projects/gn-auto.halex.alignment.xml
++++ b/projects/gn-manual.halex.alignment.xml
+@@ -2,11 +2,22 @@
+ <alignment xmlns="http://www.esdi-humboldt.eu/hale/alignment">
+     <customFunction>
+         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
+-            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
++            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_unverschluesselt">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+-            <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
++            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_land">
++                <cf:binding>java.lang.String</cf:binding>
++            </cf:input>
++            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_regierungsbezirk">
++                <cf:binding>java.lang.String</cf:binding>
++            </cf:input>
++            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_kreis">
++                <cf:binding>java.lang.String</cf:binding>
++            </cf:input>
++            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_gemeinde">
++                <cf:binding>java.lang.String</cf:binding>
++            </cf:input>
++            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_lage">
+                 <cf:binding>java.lang.String</cf:binding>
+             </cf:input>
+             <cf:output eager="false" maxOccurs="1" minOccurs="1">
+@@ -43,16 +54,16 @@
+             </cf:param>
+             <cf:definition>
+                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def name = lagebezeichnung.p.unverschluesselt.value()
++def name = lage_unverschluesselt
+ 
+ if (!name) {
+ 	// Namen auch aus verschlüsselter Lagebezeichnung ableiten
+ 	
+-	def gemeinde = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde.value()
+-	def kreis = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.kreis.value()
+-	def lage = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.lage.value()
+-	def land = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.land.value()
+-	def reg = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.regierungsbezirk.value()
++	def gemeinde = lage_gemeinde
++	def kreis = lage_kreis
++	def lage = lage_lage
++	def land = lage_land
++	def reg = lage_regierungsbezirk
+ 
+ 	if (land &amp;&amp; gemeinde &amp;&amp; kreis &amp;&amp; lage) {
+ 		if (!reg) reg = '0'
+@@ -214,7 +225,6 @@ if (_params.source) {&#xD;
+             </cf:input>
+             <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:output eager="false" maxOccurs="1" minOccurs="1">
+                 <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -716,7 +726,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def name = _source.p.bezeichnung.value()
+-def schluessel = _source.p.schluesselGesamt.value()
++def schluessel = _source.p.schluesselgesamt.value()
+ 
+ withTransformationContext {
+   def collect = _.context.collector(it)
+@@ -1006,7 +1016,7 @@ withTransformationContext {
+         <source>
+             <class>
+                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">bezeichnung is not null</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+             </class>
+         </source>
+@@ -1315,7 +1325,7 @@ withTransformationContext {
+         <source>
+             <class>
+                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+             </class>
+         </source>
+@@ -1331,7 +1341,7 @@ withTransformationContext {
+         <source>
+             <class>
+                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+             </class>
+         </source>
+@@ -1692,7 +1702,7 @@ withTransformationContext {
+         <source>
+             <class>
+                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+             </class>
+         </source>
+@@ -1884,7 +1894,7 @@ withTransformationContext {
+         <source>
+             <class>
+                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+             </class>
+         </source>
+@@ -1948,7 +1958,7 @@ withTransformationContext {
+         <source>
+             <class>
+                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+             </class>
+         </source>
+@@ -1996,7 +2006,7 @@ withTransformationContext {
+         <source>
+             <class>
+                 <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+             </class>
+         </source>
+@@ -2124,7 +2134,7 @@ withTransformationContext {
+         <source>
+             <class>
+                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+             </class>
+         </source>
+@@ -2140,7 +2150,7 @@ withTransformationContext {
+         <source>
+             <class>
+                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+             </class>
+         </source>
+@@ -2316,7 +2326,7 @@ withTransformationContext {
+         <source>
+             <class>
+                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+             </class>
+         </source>
+@@ -2379,12 +2389,6 @@ withTransformationContext {
+     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Ca3ebfac9-ea93-4f00-ad87-53c90fcefd6d" priority="normal">
+         <source>
+             <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+-        <source>
+-            <property>
+                 <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                 </type>
+@@ -2409,12 +2413,6 @@ withTransformationContext {
+                 <child name="beginnt"/>
+             </property>
+         </source>
+-        <source>
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -2427,12 +2425,6 @@ withTransformationContext {
+     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C29a5ee63-234f-4d8c-9451-b059ea1dea0c" priority="normal">
+         <source>
+             <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+-        <source>
+-            <property>
+                 <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                 </type>
+@@ -2451,12 +2443,6 @@ withTransformationContext {
+     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C4e42085c-cea8-4679-bb10-ae9ac568aac6" priority="normal">
+         <source>
+             <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+-        <source>
+-            <property>
+                 <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                 </type>
+@@ -2481,12 +2467,6 @@ withTransformationContext {
+                 <child name="beginnt"/>
+             </property>
+         </source>
+-        <source>
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -2499,12 +2479,6 @@ withTransformationContext {
+     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C71713b77-1284-4ba9-a970-94501a6ea626" priority="normal">
+         <source>
+             <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+-        <source>
+-            <property>
+                 <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                 </type>
+@@ -2542,7 +2516,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">bezeichnung is not null</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -2703,12 +2677,6 @@ withTransformationContext {
+     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C6ffe1102-f993-49da-bc1e-7c25ed40b8d2" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_gebiet_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+-        <source>
+-            <property>
+                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                 <child name="beginnt"/>
+             </property>
+@@ -2870,7 +2838,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -2888,7 +2856,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -2959,12 +2927,6 @@ withTransformationContext {
+     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_gebiet_kreis" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+-        <source>
+-            <property>
+                 <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                 <child name="beginnt"/>
+             </property>
+@@ -2985,12 +2947,6 @@ withTransformationContext {
+                 <child name="beginnt"/>
+             </property>
+         </source>
+-        <source>
+-            <property>
+-                <type name="ax_gebiet_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -3007,12 +2963,6 @@ withTransformationContext {
+                 <child name="beginnt"/>
+             </property>
+         </source>
+-        <source>
+-            <property>
+-                <type name="ax_gebiet_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -3029,12 +2979,6 @@ withTransformationContext {
+                 <child name="beginnt"/>
+             </property>
+         </source>
+-        <source>
+-            <property>
+-                <type name="ax_gebiet_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -3069,12 +3013,6 @@ withTransformationContext {
+                 <child name="beginnt"/>
+             </property>
+         </source>
+-        <source>
+-            <property>
+-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -3196,7 +3134,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -3412,7 +3350,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -3484,7 +3422,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -3538,7 +3476,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -3682,7 +3620,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -3700,7 +3638,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -3898,7 +3836,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -4004,7 +3942,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">bezeichnung is not null</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="wkb_geometry"/>
+             </property>
+@@ -4310,7 +4248,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="wkb_geometry"/>
+             </property>
+@@ -4328,7 +4266,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="wkb_geometry"/>
+             </property>
+@@ -4607,7 +4545,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="wkb_geometry"/>
+             </property>
+@@ -4821,7 +4759,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="wkb_geometry"/>
+             </property>
+@@ -4893,7 +4831,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="wkb_geometry"/>
+             </property>
+@@ -4947,7 +4885,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="wkb_geometry"/>
+             </property>
+@@ -5091,7 +5029,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="wkb_geometry"/>
+             </property>
+@@ -5109,7 +5047,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="wkb_geometry"/>
+             </property>
+@@ -5307,7 +5245,7 @@ withTransformationContext {
+         <source>
+             <property>
+                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="wkb_geometry"/>
+             </property>
+@@ -5398,12 +5336,6 @@ withTransformationContext {
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Ca3ebfac9-ea93-4f00-ad87-53c90fcefd6d" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+                 <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                 </type>
+@@ -5427,12 +5359,6 @@ withTransformationContext {
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -5444,12 +5370,6 @@ withTransformationContext {
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C29a5ee63-234f-4d8c-9451-b059ea1dea0c" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+                 <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                 </type>
+@@ -5467,12 +5387,6 @@ withTransformationContext {
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C4e42085c-cea8-4679-bb10-ae9ac568aac6" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+                 <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                 </type>
+@@ -5496,12 +5410,6 @@ withTransformationContext {
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -5513,12 +5421,6 @@ withTransformationContext {
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C71713b77-1284-4ba9-a970-94501a6ea626" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+                 <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                 </type>
+@@ -5554,7 +5456,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">bezeichnung is not null</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -5706,12 +5608,6 @@ withTransformationContext {
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C6ffe1102-f993-49da-bc1e-7c25ed40b8d2" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_gebiet_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                 <child name="gml_id"/>
+             </property>
+@@ -5864,7 +5760,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -5881,7 +5777,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -5948,12 +5844,6 @@ withTransformationContext {
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_gebiet_kreis" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+                 <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                 <child name="gml_id"/>
+             </property>
+@@ -5973,12 +5863,6 @@ withTransformationContext {
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ax_gebiet_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -5994,12 +5878,6 @@ withTransformationContext {
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ax_gebiet_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -6015,12 +5893,6 @@ withTransformationContext {
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ax_gebiet_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -6053,12 +5925,6 @@ withTransformationContext {
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -6173,7 +6039,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -6377,7 +6243,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -6445,7 +6311,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -6496,7 +6362,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -6632,7 +6498,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -6649,7 +6515,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -6836,7 +6702,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -6903,12 +6769,6 @@ withTransformationContext {
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Ca3ebfac9-ea93-4f00-ad87-53c90fcefd6d" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+                 <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                 </type>
+@@ -6934,12 +6794,6 @@ withTransformationContext {
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -6953,12 +6807,6 @@ withTransformationContext {
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C29a5ee63-234f-4d8c-9451-b059ea1dea0c" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+                 <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                 </type>
+@@ -6978,12 +6826,6 @@ withTransformationContext {
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C4e42085c-cea8-4679-bb10-ae9ac568aac6" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+                 <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                 </type>
+@@ -7009,12 +6851,6 @@ withTransformationContext {
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -7028,12 +6864,6 @@ withTransformationContext {
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C71713b77-1284-4ba9-a970-94501a6ea626" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+                 <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                 </type>
+@@ -7073,7 +6903,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">bezeichnung is not null</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -7243,12 +7073,6 @@ withTransformationContext {
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C6ffe1102-f993-49da-bc1e-7c25ed40b8d2" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_gebiet_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                 <child name="gml_id"/>
+             </property>
+@@ -7419,7 +7243,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -7438,7 +7262,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -7513,12 +7337,6 @@ withTransformationContext {
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_gebiet_kreis" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+                 <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                 <child name="gml_id"/>
+             </property>
+@@ -7540,12 +7358,6 @@ withTransformationContext {
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ax_gebiet_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -7563,12 +7375,6 @@ withTransformationContext {
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ax_gebiet_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -7586,12 +7392,6 @@ withTransformationContext {
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ax_gebiet_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -7628,12 +7428,6 @@ withTransformationContext {
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -7762,7 +7556,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -7990,7 +7784,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -8066,7 +7860,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -8123,7 +7917,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -8275,7 +8069,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -8294,7 +8088,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -8503,7 +8297,7 @@ withTransformationContext {
+         <source name="id">
+             <property>
+                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -8607,7 +8401,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">bezeichnung is not null</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -8947,7 +8741,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -8965,7 +8759,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -9179,7 +8973,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -9429,7 +9223,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -9517,7 +9311,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -9587,7 +9381,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -9767,7 +9561,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -9803,7 +9597,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -10035,7 +9829,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -10127,7 +9921,7 @@ withTransformationContext {
+         <source name="spelling">
+             <property>
+                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">bezeichnung is not null</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="zweitname"/>
+             </property>
+@@ -10207,7 +10001,7 @@ withTransformationContext {
+         <source name="spelling">
+             <property>
+                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="zweitname"/>
+             </property>
+@@ -10247,7 +10041,7 @@ withTransformationContext {
+         <source name="spelling">
+             <property>
+                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="zweitname"/>
+             </property>
+@@ -10383,86 +10177,13 @@ withTransformationContext {
+         </target>
+         <parameter value="other" name="nameStatus"/>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cb6bc9ef4-e386-4832-a1e7-b8eeb2037400" priority="normal">
+-        <source name="lagebezeichnung">
+-            <property>
+-                <type name="AX_BahnverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="CQL">bezeichnung is not null</condition>
+-                </type>
+-                <child name="bezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C286ac70d-25c5-4f7d-a80b-9ca24ccfb119" priority="normal">
+-        <source name="lagebezeichnung">
+-            <property>
+-                <type name="AX_FliessgewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Ca302db1b-ec63-46bc-b5ba-0ca0a349b028" priority="normal">
+-        <source name="lagebezeichnung">
+-            <property>
+-                <type name="AX_FlugverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C5f952416-142c-4dbc-bd5e-1850306b0c65" priority="normal">
+-        <source name="lagebezeichnung">
+-            <property>
+-                <type name="AX_HafenbeckenType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Ccf7bb2b5-2d33-436a-aefa-c785cf3161d9" priority="normal">
+-        <source name="lagebezeichnung">
++    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C03a70e9d-239c-4dba-85a1-e26b11bb2524" priority="normal">
++        <source name="spelling">
+             <property>
+-                <type name="AX_MeerType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
++                <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                 </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -10473,103 +10194,41 @@ withTransformationContext {
+             </property>
+         </target>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C0387fa9e-2ba2-4e37-8242-b1a284f952fb" priority="normal">
+-        <source name="lagebezeichnung">
++    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cb6bc9ef4-e386-4832-a1e7-b8eeb2037400" priority="normal">
++        <source name="lage_gemeinde">
+             <property>
+-                <type name="AX_PlatzType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
++                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gemeinde"/>
+             </property>
+         </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C001a1ba1-d7ff-4374-89a6-a00fac6bc13a" priority="normal">
+-        <source name="lagebezeichnung">
++        <source name="lage_kreis">
+             <property>
+-                <type name="AX_SchiffsverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
++                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="kreis"/>
+             </property>
+         </source>
+-        <target>
++        <source name="lage_lage">
+             <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C8568e877-b442-4e75-92cf-8dd2504d30bf" priority="normal">
+-        <source name="lagebezeichnung">
+-            <property>
+-                <type name="AX_StehendesGewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
++                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="lage"/>
+             </property>
+         </source>
+-        <target>
++        <source name="lage_land">
+             <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cd2f35246-916d-4414-b732-7071be7ad95a" priority="normal">
+-        <source name="lagebezeichnung">
+-            <property>
+-                <type name="AX_StrassenverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
++                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="land"/>
+             </property>
+         </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C9784554a-ab1b-4e9c-86f9-54929a6e1428" priority="normal">
+-        <source name="lagebezeichnung">
++        <source name="lage_regierungsbezirk">
+             <property>
+-                <type name="AX_WegType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
++                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="regierungsbezirk"/>
+             </property>
+         </source>
+-        <target>
++        <source name="lage_unverschluesselt">
+             <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C03a70e9d-239c-4dba-85a1-e26b11bb2524" priority="normal">
+-        <source name="spelling">
+-            <property>
+-                <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+-                </type>
+-                <child name="name"/>
++                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="unverschluesselt"/>
+             </property>
+         </source>
+         <target>
+@@ -10884,6 +10543,96 @@ withTransformationContext {
+             </property>
+         </target>
+     </cell>
++    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C286ac70d-25c5-4f7d-a80b-9ca24ccfb119" priority="normal">
++        <source name="lage_gemeinde">
++            <property>
++                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gemeinde"/>
++            </property>
++        </source>
++        <source name="lage_kreis">
++            <property>
++                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="kreis"/>
++            </property>
++        </source>
++        <source name="lage_lage">
++            <property>
++                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="lage"/>
++            </property>
++        </source>
++        <source name="lage_land">
++            <property>
++                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="land"/>
++            </property>
++        </source>
++        <source name="lage_regierungsbezirk">
++            <property>
++                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="regierungsbezirk"/>
++            </property>
++        </source>
++        <source name="lage_unverschluesselt">
++            <property>
++                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="unverschluesselt"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++            </property>
++        </target>
++    </cell>
++    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Ca302db1b-ec63-46bc-b5ba-0ca0a349b028" priority="normal">
++        <source name="lage_gemeinde">
++            <property>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gemeinde"/>
++            </property>
++        </source>
++        <source name="lage_kreis">
++            <property>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="kreis"/>
++            </property>
++        </source>
++        <source name="lage_lage">
++            <property>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="lage"/>
++            </property>
++        </source>
++        <source name="lage_land">
++            <property>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="land"/>
++            </property>
++        </source>
++        <source name="lage_regierungsbezirk">
++            <property>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="regierungsbezirk"/>
++            </property>
++        </source>
++        <source name="lage_unverschluesselt">
++            <property>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="unverschluesselt"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++            </property>
++        </target>
++    </cell>
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbf5d7902-dea4-4005-9d14-a9609617a40b" priority="normal">
+         <source name="spelling">
+             <property>
+@@ -11069,6 +10818,51 @@ withTransformationContext {
+             </property>
+         </target>
+     </cell>
++    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C5f952416-142c-4dbc-bd5e-1850306b0c65" priority="normal">
++        <source name="lage_gemeinde">
++            <property>
++                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gemeinde"/>
++            </property>
++        </source>
++        <source name="lage_kreis">
++            <property>
++                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="kreis"/>
++            </property>
++        </source>
++        <source name="lage_lage">
++            <property>
++                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="lage"/>
++            </property>
++        </source>
++        <source name="lage_land">
++            <property>
++                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="land"/>
++            </property>
++        </source>
++        <source name="lage_regierungsbezirk">
++            <property>
++                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="regierungsbezirk"/>
++            </property>
++        </source>
++        <source name="lage_unverschluesselt">
++            <property>
++                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="unverschluesselt"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++            </property>
++        </target>
++    </cell>
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C95d17b10-614b-47c9-ad79-57d0368c011c" priority="normal">
+         <source name="spelling">
+             <property>
+@@ -11288,6 +11082,51 @@ withTransformationContext {
+             </property>
+         </target>
+     </cell>
++    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Ccf7bb2b5-2d33-436a-aefa-c785cf3161d9" priority="normal">
++        <source name="lage_gemeinde">
++            <property>
++                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gemeinde"/>
++            </property>
++        </source>
++        <source name="lage_kreis">
++            <property>
++                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="kreis"/>
++            </property>
++        </source>
++        <source name="lage_lage">
++            <property>
++                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="lage"/>
++            </property>
++        </source>
++        <source name="lage_land">
++            <property>
++                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="land"/>
++            </property>
++        </source>
++        <source name="lage_regierungsbezirk">
++            <property>
++                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="regierungsbezirk"/>
++            </property>
++        </source>
++        <source name="lage_unverschluesselt">
++            <property>
++                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="unverschluesselt"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++            </property>
++        </target>
++    </cell>
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cf5ac9aff-d3f1-4dba-8845-df403779a6b7" priority="normal">
+         <source name="spelling">
+             <property>
+@@ -11354,6 +11193,51 @@ withTransformationContext {
+             </property>
+         </target>
+     </cell>
++    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C0387fa9e-2ba2-4e37-8242-b1a284f952fb" priority="normal">
++        <source name="lage_gemeinde">
++            <property>
++                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gemeinde"/>
++            </property>
++        </source>
++        <source name="lage_kreis">
++            <property>
++                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="kreis"/>
++            </property>
++        </source>
++        <source name="lage_lage">
++            <property>
++                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="lage"/>
++            </property>
++        </source>
++        <source name="lage_land">
++            <property>
++                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="land"/>
++            </property>
++        </source>
++        <source name="lage_regierungsbezirk">
++            <property>
++                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="regierungsbezirk"/>
++            </property>
++        </source>
++        <source name="lage_unverschluesselt">
++            <property>
++                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="unverschluesselt"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++            </property>
++        </target>
++    </cell>
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C31e8224f-9a2d-4b91-9f23-8c9f486c14bd" priority="normal">
+         <source name="spelling">
+             <property>
+@@ -11403,6 +11287,51 @@ withTransformationContext {
+             </property>
+         </target>
+     </cell>
++    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C001a1ba1-d7ff-4374-89a6-a00fac6bc13a" priority="normal">
++        <source name="lage_gemeinde">
++            <property>
++                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gemeinde"/>
++            </property>
++        </source>
++        <source name="lage_kreis">
++            <property>
++                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="kreis"/>
++            </property>
++        </source>
++        <source name="lage_lage">
++            <property>
++                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="lage"/>
++            </property>
++        </source>
++        <source name="lage_land">
++            <property>
++                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="land"/>
++            </property>
++        </source>
++        <source name="lage_regierungsbezirk">
++            <property>
++                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="regierungsbezirk"/>
++            </property>
++        </source>
++        <source name="lage_unverschluesselt">
++            <property>
++                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="unverschluesselt"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++            </property>
++        </target>
++    </cell>
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc216d08b-a90d-4afe-86de-a5c4a98fd329" priority="normal">
+         <source name="spelling">
+             <property>
+@@ -11556,6 +11485,51 @@ withTransformationContext {
+             </property>
+         </target>
+     </cell>
++    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C8568e877-b442-4e75-92cf-8dd2504d30bf" priority="normal">
++        <source name="lage_gemeinde">
++            <property>
++                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gemeinde"/>
++            </property>
++        </source>
++        <source name="lage_kreis">
++            <property>
++                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="kreis"/>
++            </property>
++        </source>
++        <source name="lage_lage">
++            <property>
++                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="lage"/>
++            </property>
++        </source>
++        <source name="lage_land">
++            <property>
++                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="land"/>
++            </property>
++        </source>
++        <source name="lage_regierungsbezirk">
++            <property>
++                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="regierungsbezirk"/>
++            </property>
++        </source>
++        <source name="lage_unverschluesselt">
++            <property>
++                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="unverschluesselt"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++            </property>
++        </target>
++    </cell>
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc692daf2-37c9-4219-b740-f3e4ff28d3fe" priority="normal">
+         <source name="spelling">
+             <property>
+@@ -11573,11 +11547,56 @@ withTransformationContext {
+             </property>
+         </target>
+     </cell>
++    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cd2f35246-916d-4414-b732-7071be7ad95a" priority="normal">
++        <source name="lage_gemeinde">
++            <property>
++                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gemeinde"/>
++            </property>
++        </source>
++        <source name="lage_kreis">
++            <property>
++                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="kreis"/>
++            </property>
++        </source>
++        <source name="lage_lage">
++            <property>
++                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="lage"/>
++            </property>
++        </source>
++        <source name="lage_land">
++            <property>
++                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="land"/>
++            </property>
++        </source>
++        <source name="lage_regierungsbezirk">
++            <property>
++                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="regierungsbezirk"/>
++            </property>
++        </source>
++        <source name="lage_unverschluesselt">
++            <property>
++                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="unverschluesselt"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++            </property>
++        </target>
++    </cell>
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C0e671607-ee4c-4398-bb36-03d5a089d46c" priority="normal">
+         <source name="spelling">
+             <property>
+                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="zweitname"/>
+             </property>
+@@ -11793,6 +11812,51 @@ withTransformationContext {
+             </property>
+         </target>
+     </cell>
++    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C9784554a-ab1b-4e9c-86f9-54929a6e1428" priority="normal">
++        <source name="lage_gemeinde">
++            <property>
++                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gemeinde"/>
++            </property>
++        </source>
++        <source name="lage_kreis">
++            <property>
++                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="kreis"/>
++            </property>
++        </source>
++        <source name="lage_lage">
++            <property>
++                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="lage"/>
++            </property>
++        </source>
++        <source name="lage_land">
++            <property>
++                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="land"/>
++            </property>
++        </source>
++        <source name="lage_regierungsbezirk">
++            <property>
++                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="regierungsbezirk"/>
++            </property>
++        </source>
++        <source name="lage_unverschluesselt">
++            <property>
++                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="unverschluesselt"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++            </property>
++        </target>
++    </cell>
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C13c9dc8f-7ebe-4d25-a161-f796c7475ab8" priority="normal">
+         <source name="spelling">
+             <property>
+@@ -11924,7 +11988,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">bezeichnung is not null</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -12264,7 +12328,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -12282,7 +12346,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -12496,7 +12560,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -12746,7 +12810,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -12834,7 +12898,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -12904,7 +12968,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -13084,7 +13148,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -13120,7 +13184,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -13352,7 +13416,7 @@ withTransformationContext {
+         <source name="anchor">
+             <property>
+                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>

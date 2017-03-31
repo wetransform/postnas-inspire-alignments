@@ -1563,9 +1563,7 @@ withTransformationContext {
         </source>
         <source name="types">
             <class>
-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
+                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
             </class>
         </source>
         <target>
@@ -1579,9 +1577,7 @@ withTransformationContext {
                     <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 </class>
                 <class>
-                    <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr">
-                        <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                    </type>
+                    <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 </class>
                 <jp:condition>
                     <property>
@@ -1589,9 +1585,7 @@ withTransformationContext {
                         <child name="schluesselgesamt"/>
                     </property>
                     <property>
-                        <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr">
-                            <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                        </type>
+                        <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="schluesselgesamt"/>
                     </property>
                 </jp:condition>
@@ -3077,9 +3071,7 @@ withTransformationContext {
         </source>
         <source>
             <property>
-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
+                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -4758,9 +4750,7 @@ withTransformationContext {
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C9405b153-68f1-41ee-b945-e9c4953e7511" priority="normal">
         <source>
             <property>
-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
+                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -6065,9 +6055,7 @@ withTransformationContext {
         </source>
         <source name="id">
             <property>
-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
+                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -7642,9 +7630,7 @@ withTransformationContext {
         </source>
         <source name="id">
             <property>
-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
+                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="gml_id"/>
             </property>
         </source>
