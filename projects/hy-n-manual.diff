@@ -1,0 +1,285 @@
+diff --git a/projects/hy-n-auto.halex.alignment.xml b/projects/hy-n-manual.halex.alignment.xml
+index 40b6d94..ec59194 100644
+--- a/projects/hy-n-auto.halex.alignment.xml
++++ b/projects/hy-n-manual.halex.alignment.xml
+@@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
+         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
+             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+@@ -276,7 +275,6 @@ if (_params.source) {&#xD;
+             </cf:input>
+             <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:output eager="false" maxOccurs="1" minOccurs="1">
+                 <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -1632,36 +1630,6 @@ _target {&#xD;
+         </target>
+         <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
+-        <target>
+-            <property>
+-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+-            </property>
+-        </target>
+-        <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_Cc4d2bf71-d9f7-4089-84fc-80ac610248a1" priority="normal">
+-        <target>
+-            <property>
+-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+-            </property>
+-        </target>
+-        <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_Ce45298d6-bb21-48c2-9f44-91b32411e0d0" priority="normal">
+-        <target>
+-            <property>
+-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+-            </property>
+-        </target>
+-        <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
+-    </cell>
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Ca0d6577b-2581-49cd-87d8-8f235e6ce242_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
+         <source name="id">
+             <property>
+@@ -1740,36 +1708,6 @@ _target {&#xD;
+             </property>
+         </target>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.namespace" id="C3cf05bdc-15bc-4540-95d0-4a87b84eb9df_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
+-        <target>
+-            <property>
+-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-            </property>
+-        </target>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.namespace" id="C3cf05bdc-15bc-4540-95d0-4a87b84eb9df_Cc4d2bf71-d9f7-4089-84fc-80ac610248a1" priority="normal">
+-        <target>
+-            <property>
+-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-            </property>
+-        </target>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.namespace" id="C3cf05bdc-15bc-4540-95d0-4a87b84eb9df_Ce45298d6-bb21-48c2-9f44-91b32411e0d0" priority="normal">
+-        <target>
+-            <property>
+-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-            </property>
+-        </target>
+-    </cell>
+     <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatelength" id="C7c8926c6-296b-4339-8f52-319848398955_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
+         <source>
+             <property>
+@@ -1943,11 +1881,11 @@ _target {&#xD;
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // ID des Dükers bestimmen&#xD;
+-def duekerID = _source.p.id.value()&#xD;
++def duekerID = _source.p.gml_id.value()&#xD;
+ duekerID = 'WatercourseLink_' + duekerID&#xD;
+ &#xD;
+ // Wurde eine passende AX_Gewasserachse gefunden? Falls ja, ID bestimmen:&#xD;
+-def gewaesserAchseID = _source.links.AX_Gewaesserachse.p.id.value()&#xD;
++def gewaesserAchseID = _source.links.ax_gewaesserachse.p.gml_id.value()&#xD;
+ if (gewaesserAchseID) {&#xD;
+ 	gewaesserAchseID = 'WatercourseLink_' + gewaesserAchseID&#xD;
+ 	_target {&#xD;
+@@ -2012,11 +1950,11 @@ if (gewaesserAchseID) {&#xD;
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // ID der Brücke bestimmen&#xD;
+-def brueckeID = _source.p.id.value()&#xD;
++def brueckeID = _source.p.gml_id.value()&#xD;
+ brueckeID = 'WatercourseLink_' + brueckeID&#xD;
+ &#xD;
+ // Wurde eine passende AX_Gewasserachse gefunden? Falls ja, ID bestimmen:&#xD;
+-def gewaesserAchseID = _source.links.AX_Fliessgewaesser.p.id.value()&#xD;
++def gewaesserAchseID = _source.links.ax_fliessgewaesser.p.gml_id.value()&#xD;
+ if (gewaesserAchseID) {&#xD;
+ 	gewaesserAchseID = 'WatercourseLink_' + gewaesserAchseID&#xD;
+ 	_target {&#xD;
+@@ -2082,11 +2020,11 @@ if (gewaesserAchseID) {&#xD;
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // ID der Brücke bestimmen&#xD;
+-def brueckeID = _source.p.id.value()&#xD;
++def brueckeID = _source.p.gml_id.value()&#xD;
+ brueckeID = 'WatercourseLink_' + brueckeID&#xD;
+ &#xD;
+ // Wurde eine passende AX_Gewasserachse gefunden? Falls ja, ID bestimmen:&#xD;
+-def gewaesserAchseID = _source.links.AX_Gewaesserachse.p.id.value()&#xD;
++def gewaesserAchseID = _source.links.ax_gewaesserachse.p.gml_id.value()&#xD;
+ if (gewaesserAchseID) {&#xD;
+ 	gewaesserAchseID = 'WatercourseLink_' + gewaesserAchseID&#xD;
+ 	_target {&#xD;
+@@ -2142,24 +2080,6 @@ if (gewaesserAchseID) {&#xD;
+         <parameter value="false" name="ignoreNamespaces"/>
+         <parameter value="false" name="structuralRename"/>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8bfb7a01-ae8a-42b9-9f2c-fb708d5b7918_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
+-        <source>
+-            <property>
+-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
+-                </type>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-            </property>
+-        </target>
+-        <parameter value="false" name="ignoreNamespaces"/>
+-        <parameter value="false" name="structuralRename"/>
+-    </cell>
+     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf0510852-3541-4662-ae7f-e275be6973f7_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
+         <source>
+             <property>
+@@ -2196,24 +2116,6 @@ if (gewaesserAchseID) {&#xD;
+         <parameter value="false" name="ignoreNamespaces"/>
+         <parameter value="false" name="structuralRename"/>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C6d7d8ef1-4c16-4fb6-a635-7355ccafcae6_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
+-        <source>
+-            <property>
+-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
+-                </type>
+-                <child name="endet"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-            </property>
+-        </target>
+-        <parameter value="false" name="ignoreNamespaces"/>
+-        <parameter value="false" name="structuralRename"/>
+-    </cell>
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Ca19f26cc-d722-4574-9217-23c1da508d5e_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
+         <source name="id">
+             <property>
+@@ -2248,23 +2150,6 @@ if (gewaesserAchseID) {&#xD;
+         </target>
+         <parameter value="network" name="collectorName"/>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="C136eff7d-1e18-46b1-b96e-76f77ce9f584_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
+-        <source name="id">
+-            <property>
+-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
+-                </type>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+-            </property>
+-        </target>
+-        <parameter value="network" name="collectorName"/>
+-    </cell>
+     <cell relation="custom:alignment:adv.inspire.identifier" id="Cffa73abc-d9fd-483a-ad19-5beca3a5e2b6_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
+         <source name="id">
+             <property>
+@@ -2297,22 +2182,6 @@ if (gewaesserAchseID) {&#xD;
+             </property>
+         </target>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.identifier" id="C37922be7-144a-4018-8f73-def91c4788b4_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
+-        <source name="id">
+-            <property>
+-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
+-                </type>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+-            </property>
+-        </target>
+-    </cell>
+     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
+         <target>
+             <property>
+@@ -2323,26 +2192,6 @@ if (gewaesserAchseID) {&#xD;
+         </target>
+         <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
+-        <target>
+-            <property>
+-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+-            </property>
+-        </target>
+-        <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
+-        <target>
+-            <property>
+-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+-            </property>
+-        </target>
+-        <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
+-    </cell>
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Cc56c5410-b9cc-47d8-852b-1ca0a5b8adda_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
+         <source name="id">
+             <property>
+@@ -2379,24 +2228,6 @@ if (gewaesserAchseID) {&#xD;
+             </property>
+         </target>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cba9bc971-ba94-4dfa-89b3-5edd2a77adfc_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
+-        <source name="id">
+-            <property>
+-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
+-                </type>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-            </property>
+-        </target>
+-    </cell>
+     <cell relation="custom:alignment:adv.inspire.namespace" id="C12eaf7f7-c51d-4b2c-9650-a6e2491830d3" priority="normal">
+         <target>
+             <property>
