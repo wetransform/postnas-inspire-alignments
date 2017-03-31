@@ -12,10 +12,10 @@
     "advProject": "annex-1/mappings/GeographicalNames/aaa-gn-02.halex"
   },
   "hy-n": {
-    "advProject": "annex-1/mappings/Hydrography/aaa-hy-p.halex"
+    "advProject": "annex-1/mappings/Hydrography/aaa-hy-n.halex"
   },
   "hy-p": {
-    "advProject": "annex-1/mappings/Hydrography/aaa-hy-n.halex"
+    "advProject": "annex-1/mappings/Hydrography/aaa-hy-p.halex"
   },
   "tn-ro": {
     "advProject": "annex-1/mappings/RoadTransportNetwork/aaa-tn-ro-01.halex"
