@@ -13,7 +13,7 @@ Folgende Alignments werden hier verwaltet:
 | Geo5 PostNAS -> Adressen                              | Migriert   | ad         |
 | Geo5 PostNAS -> Verwaltungseinheiten                  | Migriert   | au         |
 | Geo5 PostNAS -> Flurstücke/Grundstücke                | Migriert   | cp         |
-| Geo5 PostNAS -> Geografische Bezeichnungen            | -          | gn         |
+| Geo5 PostNAS -> Geografische Bezeichnungen            | Migriert   | gn         |
 | Geo5 PostNAS -> Gewässernetz                          | -          | hy-n, hy-p |
 | Geo5 PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)   | -          | tn-ro      |
 | Geo5 PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)  | -          | tn-ra      |

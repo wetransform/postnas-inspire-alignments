@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <alignment xmlns="http://www.esdi-humboldt.eu/hale/alignment">
     <customFunction>
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.geometry.simplefeature" name="Simple Feature Geometrie" type="groovy">
+            <cf:input eager="true" maxOccurs="1" minOccurs="1" name="geometrie"/>
+            <cf:output eager="false" maxOccurs="1" minOccurs="1"/>
+            <cf:definition>
+                <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def geoms = _.geom.toSimpleGeometries(geometries: _.geom.aggregate(geometrie), collections: false)
+if (geoms) {
+	if (geoms.size() &gt; 1) {
+		_log.error("Mehrere Geometrien gefunden - Aufteilung nötig")
+	}
+	_target(geoms[0])
+}
+else {
+	_log.error("Keine Geometrie gefunden")
+}
+</core:text>
+            </cf:definition>
+            <cf:explanation>
+                <cf:locale country="" language="" variant="">
+                    <cf:template>
+                        <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+Überführt die Quell-Geometrien als eine zusammengefasste Simple Feature Geometrie (ohne Multi-Geometrien).
+
+Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann. Andernfalls wird ein entsprechender Fehler in die Transformations-Logs eingetragen.
+</core:text>
+                    </cf:template>
+                </cf:locale>
+            </cf:explanation>
+        </cf:custom-property-function>
+    </customFunction>
+    <customFunction>
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.geometry.simplefeature.multi" name="Simple Feature Geometrie (Multi)" type="groovy">
+            <cf:input eager="true" maxOccurs="1" minOccurs="1" name="geometrie"/>
+            <cf:output eager="false" maxOccurs="1" minOccurs="1"/>
+            <cf:definition>
+                <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def geoms = _.geom.toSimpleGeometries(geometries: _.geom.aggregate(geometrie), collections: true)
+if (geoms) {
+	if (geoms.size() &gt; 1) {
+		_log.error("Mehrere Geometrien gefunden - Aufteilung nötig")
+	}
+	_target(geoms[0])
+}
+else {
+	_log.error("Keine Geometrie gefunden")
+}
+</core:text>
+            </cf:definition>
+            <cf:explanation>
+                <cf:locale country="" language="" variant="">
+                    <cf:template>
+                        <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+Überführt die Quell-Geometrien als eine zusammengefasste Simple Feature Geometrie (ggf. als Multi-Geometrie).
+
+Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann. Andernfalls wird ein entsprechender Fehler in die Transformations-Logs eingetragen.
+</core:text>
+                    </cf:template>
+                </cf:locale>
+            </cf:explanation>
+        </cf:custom-property-function>
+    </customFunction>
+    <customFunction>
         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_unverschluesselt">
                 <cf:binding>java.lang.String</cf:binding>
@@ -738,17 +800,17 @@ withTransformationContext {
         </complexParameter>
         <documentation>Dies ist eine Dummy-Transformationsdefinition die keine Objekte erzeugt sondern zum Aufbauen eines Index für `AX_LagebezeichnungKatalogeintrag` dient.</documentation>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.join" id="Ca3ebfac9-ea93-4f00-ad87-53c90fcefd6d" priority="normal">
-        <source name="types">
-            <class>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-            </class>
-        </source>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C0745b820-d15a-47ba-83a1-bebdc0d2a2bb" priority="normal">
         <source name="types">
             <class>
                 <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
+            </class>
+        </source>
+        <source name="types">
+            <class>
+                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
             </class>
         </source>
         <target>
@@ -780,8 +842,17 @@ withTransformationContext {
                 </jp:condition>
             </jp:join-parameter>
         </complexParameter>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def point = _source.links.ap_pto.p.wkb_geometry.value()
+if (point) {
+	_target {
+	}
+}
+</core:text>
+        </complexParameter>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.join" id="C00ce9792-6386-452a-a96e-479e896a6077" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="Cd904c950-4920-42cc-8648-858bf842f64c" priority="normal">
         <source name="types">
             <class>
                 <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -823,18 +894,27 @@ withTransformationContext {
                 </jp:condition>
             </jp:join-parameter>
         </complexParameter>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def point = _source.links.ap_pto.p.wkb_geometry.value()
+if (point) {
+	_target {
+	}
+}
+</core:text>
+        </complexParameter>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.join" id="C29a5ee63-234f-4d8c-9451-b059ea1dea0c" priority="normal">
-        <source name="types">
-            <class>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-            </class>
-        </source>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C0fe8025f-9b37-46c5-bea0-0fb65743617a" priority="normal">
         <source name="types">
             <class>
                 <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
+            </class>
+        </source>
+        <source name="types">
+            <class>
+                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
             </class>
         </source>
         <target>
@@ -866,18 +946,27 @@ withTransformationContext {
                 </jp:condition>
             </jp:join-parameter>
         </complexParameter>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def point = _source.links.ap_pto.p.wkb_geometry.value()
+if (point) {
+	_target {
+	}
+}
+</core:text>
+        </complexParameter>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.join" id="C4e42085c-cea8-4679-bb10-ae9ac568aac6" priority="normal">
-        <source name="types">
-            <class>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-            </class>
-        </source>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C874fc701-461b-4bea-a6f4-f5ad6305edb0" priority="normal">
         <source name="types">
             <class>
                 <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
+            </class>
+        </source>
+        <source name="types">
+            <class>
+                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
             </class>
         </source>
         <target>
@@ -909,8 +998,17 @@ withTransformationContext {
                 </jp:condition>
             </jp:join-parameter>
         </complexParameter>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def point = _source.links.ap_pto.p.wkb_geometry.value()
+if (point) {
+	_target {
+	}
+}
+</core:text>
+        </complexParameter>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.join" id="C620b2869-0c69-4e70-afca-9c141b68e844" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C81c816fb-f232-47ff-b1e3-2cc177631b3f" priority="normal">
         <source name="types">
             <class>
                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -952,18 +1050,27 @@ withTransformationContext {
                 </jp:condition>
             </jp:join-parameter>
         </complexParameter>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def point = _source.links.ap_pto.p.wkb_geometry.value()
+if (point) {
+	_target {
+	}
+}
+</core:text>
+        </complexParameter>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.join" id="C71713b77-1284-4ba9-a970-94501a6ea626" priority="normal">
-        <source name="types">
-            <class>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-            </class>
-        </source>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="Cb327b836-6e14-4edd-94ed-52bd21f94b4b" priority="normal">
         <source name="types">
             <class>
                 <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
+            </class>
+        </source>
+        <source name="types">
+            <class>
+                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
             </class>
         </source>
         <target>
@@ -994,6 +1101,15 @@ withTransformationContext {
                     </property>
                 </jp:condition>
             </jp:join-parameter>
+        </complexParameter>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def point = _source.links.ap_pto.p.wkb_geometry.value()
+if (point) {
+	_target {
+	}
+}
+</core:text>
         </complexParameter>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C3f5941a3-eaf1-4c23-99c8-fd528b94431f" priority="normal">
@@ -1048,7 +1164,7 @@ withTransformationContext {
         <source>
             <class>
                 <type name="ax_baublock" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">baublockbezeichnung is not null and baublockbezeichnung &lt;&gt; ''</condition>
                 </type>
             </class>
         </source>
@@ -2386,114 +2502,6 @@ withTransformationContext {
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Ca3ebfac9-ea93-4f00-ad87-53c90fcefd6d" priority="normal">
-        <source>
-            <property>
-                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C00ce9792-6386-452a-a96e-479e896a6077" priority="normal">
-        <source>
-            <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C29a5ee63-234f-4d8c-9451-b059ea1dea0c" priority="normal">
-        <source>
-            <property>
-                <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C4e42085c-cea8-4679-bb10-ae9ac568aac6" priority="normal">
-        <source>
-            <property>
-                <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C620b2869-0c69-4e70-afca-9c141b68e844" priority="normal">
-        <source>
-            <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C71713b77-1284-4ba9-a970-94501a6ea626" priority="normal">
-        <source>
-            <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C3f5941a3-eaf1-4c23-99c8-fd528b94431f" priority="normal">
         <source>
             <property>
@@ -2552,7 +2560,7 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_baublock" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">baublockbezeichnung is not null and baublockbezeichnung &lt;&gt; ''</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2660,6 +2668,24 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_bergbaubetrieb" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C0745b820-d15a-47ba-83a1-bebdc0d2a2bb" priority="normal">
+        <source>
+            <property>
+                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="beginnt"/>
@@ -2912,70 +2938,6 @@ withTransformationContext {
                 <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
-        <source>
-            <property>
-                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C09d71e6c-a2f3-4f7e-9ded-0f703cb30bd5" priority="normal">
-        <source>
-            <property>
-                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C9f5c5023-e913-4fb5-8255-2070c0b3399f" priority="normal">
-        <source>
-            <property>
-                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cc97357e7-3242-45b4-9409-7c3a4f78f9be" priority="normal">
-        <source>
-            <property>
-                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -3274,12 +3236,46 @@ withTransformationContext {
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cd904c950-4920-42cc-8648-858bf842f64c" priority="normal">
+        <source>
+            <property>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C8eff885e-0122-4b1f-a5b7-47990543d915" priority="normal">
         <source>
             <property>
                 <type name="ax_kleinraeumigerlandschaftsteil" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
+        <source>
+            <property>
+                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -3382,6 +3378,22 @@ withTransformationContext {
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C09d71e6c-a2f3-4f7e-9ded-0f703cb30bd5" priority="normal">
+        <source>
+            <property>
+                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C4e6bd141-c081-4b15-b6e8-1314c7f557e1" priority="normal">
         <source>
             <property>
@@ -3454,6 +3466,22 @@ withTransformationContext {
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C9f5c5023-e913-4fb5-8255-2070c0b3399f" priority="normal">
+        <source>
+            <property>
+                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C32f8ed66-29c3-46e6-bb8d-96453f5b93b5" priority="normal">
         <source>
             <property>
@@ -3494,6 +3522,42 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C0fe8025f-9b37-46c5-bea0-0fb65743617a" priority="normal">
+        <source>
+            <property>
+                <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C874fc701-461b-4bea-a6f4-f5ad6305edb0" priority="normal">
+        <source>
+            <property>
+                <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="beginnt"/>
@@ -3621,6 +3685,24 @@ withTransformationContext {
             <property>
                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                </type>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C81c816fb-f232-47ff-b1e3-2cc177631b3f" priority="normal">
+        <source>
+            <property>
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -3796,6 +3878,22 @@ withTransformationContext {
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cc97357e7-3242-45b4-9409-7c3a4f78f9be" priority="normal">
+        <source>
+            <property>
+                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C32f1b9b7-cc60-4cda-ba06-c2e119510be6" priority="normal">
         <source>
             <property>
@@ -3818,6 +3916,24 @@ withTransformationContext {
         <source>
             <property>
                 <type name="ax_wald" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cb327b836-6e14-4edd-94ed-52bd21f94b4b" priority="normal">
+        <source>
+            <property>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="beginnt"/>
@@ -3904,24 +4020,8 @@ withTransformationContext {
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cb174f863-adde-4bb6-a881-8ee469d1ba7a" priority="normal">
-        <source>
-            <property>
-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C50ee9be0-3608-4020-8298-6f7f988bc9ac" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Ce082180c-5e32-4b00-92d1-947076136417" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -3935,11 +4035,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C86bee92c-7b77-4535-a5fd-b33f28ed0468" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C6c62a204-bd7e-46c1-842b-981567de0853" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
@@ -3953,11 +4051,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf418a6aa-846e-4d06-9580-f0ff672d620d" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C7b388d07-e21e-4bc1-a8f2-cbc05d80ef2f" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_bahnverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -3971,14 +4067,12 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ccf5c2cb9-5ea3-417a-93a3-8dcb4d66c4cc" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Ccc247866-5d21-40ee-b523-069a0882c4ea" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_baublock" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">baublockbezeichnung is not null and baublockbezeichnung &lt;&gt; ''</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -3989,11 +4083,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C87c4c04c-b595-4f7c-9b5c-6817f8f977f1" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C10daa196-4957-4d89-9737-ec66819a90c3" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_bauraumoderbodenordnungsrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4007,11 +4099,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf3e867c7-bfc1-4b4e-b857-e64c74d1851e" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C759036ac-4d6b-41c9-b203-9394c3ad54a6" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4025,11 +4115,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C5cdc93b4-f602-4775-84cd-da2cb0ce1caf_C181b71c7-3e7a-4864-b601-4c531390bafe" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C47ff7099-ceb3-45e8-8d4c-c407de568816_C181b71c7-3e7a-4864-b601-4c531390bafe" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4043,11 +4131,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C9edec3c7-8645-4d4a-84c4-b81ca0923e62" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C75a4253d-a56e-4d82-a7a9-bbf930b99f95" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4061,11 +4147,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C7429730b-65d9-432c-8484-1c68d869a62f" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C27fac4a2-abe8-46c2-8cf5-1414e0ba51c4" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4079,11 +4163,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C7b79c5de-146a-4fa4-8cd4-91a9e65f7b75" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C9f9e6de9-699d-4eb0-afdb-451dc538cf98" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_bergbaubetrieb" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4097,11 +4179,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C006b9f35-07ac-4418-9874-0df9cbce51fa_C10995741-3244-402a-bbe1-2523cb06820e" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C09bd8b78-6c1b-43e2-b186-1926258e69de_C10995741-3244-402a-bbe1-2523cb06820e" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4115,11 +4195,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C0d7ea614-c72a-4730-b17c-9fdb9b697c49" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C6528c025-6ed5-4b7d-be53-050697a111e7" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_denkmalschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4133,11 +4211,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ccbf09a9c-752c-4108-b283-e03fcea000d8" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C5dd4888e-85eb-4da2-8ccc-47b0ad7d3632" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_duene" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4151,11 +4227,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C613ec5b3-02cc-413c-ba33-7c9419339eb6" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C603212a3-b501-4c23-ad9b-dc828189d9d3" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4169,11 +4243,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cae006b36-6727-45ee-a9dc-21292d5b3941" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Ce2d4afb2-6003-40ab-a67a-590cb1aa0ee9" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4187,11 +4259,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C2ed76894-2331-40ea-b329-74f7cd514797" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cfbe1a63c-bbb4-4ccd-ae9e-21864c13dada" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_felsenfelsblockfelsnadel" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4205,11 +4275,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf4b7cde4-7726-4fc4-86ae-db95af878b57" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C0c614b38-b8ef-46d8-a402-2e41822d3571" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4223,11 +4291,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbf53a39e-bd5e-45ac-99c9-c365e56483a9" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Ccb627a52-f7a6-471d-89b3-3022a21d9736" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_flaechegemischternutzung" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4241,11 +4307,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce19a7c0d-f528-406e-ab6c-429e737a266e" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cf133f903-0596-4992-9ef4-bcd9ccc27ca1" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
@@ -4259,11 +4323,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc2506188-e3c8-4ea4-bfda-6199c59f14a3" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C324e3c2a-fdc8-4889-ad6a-25fd7476a0da" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
@@ -4277,11 +4339,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8dd4592e-c396-4e1b-87ca-0268379bd56c" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Ca3bf6ff1-949a-4f6a-ad5b-942fc29050ff" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4295,11 +4355,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cfe024169-ded7-41b7-9b89-67958908fc29" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C5bfb118d-7b12-4c69-97d4-c26fc90e530d" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_friedhof" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4313,11 +4371,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C7bfd886a-0318-46a5-84df-aecb599e9cc4_C3d16c037-d22d-46a6-b068-62925103a866" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C1bcccfe5-6d4a-45c7-a842-0b49e6a7cff9_C3d16c037-d22d-46a6-b068-62925103a866" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4331,12 +4387,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="copyGeometries"/>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C6b3b6a01-cd2c-4d11-9c18-0522a992f01e" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cfb040b81-6cca-4aac-89cf-1ab1f20e20e3" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_gebiet_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="wkb_geometry"/>
@@ -4348,11 +4401,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C5f66cb0d-87c0-48e2-bbba-9a313e588dd9" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C93335399-3ca4-48d6-90d4-68f1b09f77bb" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_gebiet_kreis" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="wkb_geometry"/>
@@ -4364,11 +4415,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C665376b0-7a8d-4c15-851e-5c7eddd09171" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cfe8d8345-61d2-4c5b-9310-d727b0212b34" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_gebiet_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="wkb_geometry"/>
@@ -4380,11 +4429,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C78ecb0f2-e791-4300-99d1-69afbb6c2fb2" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cb382ebb2-fb97-48d4-8827-9457c666b026" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_gebiet_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="wkb_geometry"/>
@@ -4396,11 +4443,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C1c67e014-c83d-4539-bb0d-2a8b7bd25dcf" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C25dc1344-619c-4e93-868a-50253bd2609e" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_gebiet_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="wkb_geometry"/>
@@ -4412,11 +4457,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C23df448d-6016-4219-bfc8-c23990204a5f" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C0b79d181-abbb-4867-a072-39523b458a70" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_gehoelz" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4430,11 +4473,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C96a20019-faa0-4791-802c-73d844809bfc" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C089fc427-89e9-482f-aa6d-cd3aaf0141a1" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4448,11 +4489,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8292cbfa-9e1f-4a62-b5b0-d4a64754753f" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C069a6626-d901-41aa-9383-d3e07086e0db" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4466,11 +4505,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C9314e5ff-aef8-47c1-9264-051081377d53" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Ca65b2dee-4ab9-4182-88dc-7530367fddf6" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_gewann" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4484,11 +4521,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C4589b5a8-5857-4b8b-b4d5-c91d551eeefc" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C48a5a882-a3d2-4013-a1b2-34113e1bc559" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_gleis" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4502,11 +4537,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C637643d3-3404-4980-9255-1638617ce1e0" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C572b72ed-341e-405f-8aed-04effcf230f2" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_grenzuebergang" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4520,11 +4553,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cff69e14d-bcd1-430b-976d-a1200f4871fe" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cd3ccaaa3-c3fe-4588-84fd-b8e76eb2689d" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_hafen" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4538,11 +4569,9 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C94972184-be69-4695-9dfd-68f7a2e3b89e" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C7edbef3b-ef1e-4bad-839d-5d3652d743f2" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
@@ -4556,11 +4585,25 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C7d1d6f24-96e4-4fd5-bfd3-d9985438ba04" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cd61c7118-2a84-486c-b30e-4dc8b57eab92" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_halde" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cf0db60ec-3d64-40b9-a19d-172f30ab64a1" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_heide" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
@@ -4574,7 +4617,629 @@ withTransformationContext {
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C42e2ca1b-5d94-4a81-878e-110e4955e2db" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C97421240-ebd6-48ec-aec5-47ded4a634f3" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_industrieundgewerbeflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C789f6350-0184-4f70-b575-c395931ed4f5" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_insel" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cd444d3cf-b14d-4938-b397-0eec92add945" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_kleinraeumigerlandschaftsteil" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C36c0c986-e8c0-41ec-a44a-acd18d211d40" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cb2d79935-3132-4318-a8d2-93f9e765a749" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_landschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cf5f9eea5-f648-425a-86a7-7bda51cbf678" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_landwirtschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C472882ed-44ca-47d6-be67-961ca7777e61" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C55093038-25b8-47df-b783-726a492dd0fa" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Ccf73dcf2-219f-4aa9-9a72-68091e65ca86" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_moor" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C3d14d14c-fb71-41e6-899e-02c978900cdb" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_naturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C9f244450-6b48-414f-a038-94cdcbd5a89d" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_ortslage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C570ca9eb-7c9d-4d46-b441-48530bef3610_C6b0f4934-f8ca-4b4a-b0a1-ae8482ff00c6" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C6140a4e5-ee95-4180-b219-1a9babfdfab3" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_polder" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cabe87782-83dd-4977-8822-606507ce1a5c" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Ccf769319-2621-4b99-af24-45c132d14286" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C1f1be5bb-c716-4bbe-8cf8-4df19f32938a" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Ce2c98eb3-7c00-4a1d-9b83-5f970e3cb838" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C1cb3c8f3-164c-4dd8-8ff9-7ba668ff5335" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C4772fbfb-b4fb-44c9-904e-3ad728bf6279" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_soll" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cd7632376-03c7-4fc2-ab15-9910b21aaade" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cccf56a9c-3084-479c-bf1c-af1f4c429fd7" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_sonstigesrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Ca3ccb7a5-0b87-49fd-a5db-770a70229d12" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_sportfreizeitunderholungsflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cf5919fe5-a2f1-4b7a-906c-a86ee2c154ef" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cc4d5c8d6-04a7-468e-bcca-119b703438c4" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C8483199c-26fa-46c1-811f-a2f64a4041dd" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C80985d34-e4f7-4e23-b086-d6de37f31274" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cc77c6ff7-75db-40a5-b955-3d9e8e105ed7" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_tagebaugrubesteinbruch" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Cac7f1068-90b3-4c47-bdba-062e767283a0" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_testgelaende" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Ca5da819e-b88e-4bad-a20f-62112fc4a0d3" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C14834247-1299-451a-a518-750165dd3a5b" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_unlandvegetationsloseflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C680754ba-b8e0-4e27-96e3-d395cc16bca6" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C39aa3941-481a-4eb8-b8ec-19ac319b1a28" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C00a44194-024a-495f-81bd-8b1a64ebc44c" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C826b5a2c-868b-4933-95ef-25cec97396a3" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_wald" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Ca8b49895-cbb9-48bd-85e8-d1212f1b769b" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="Ce077cb79-5789-43be-a37d-5a19da812122" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature.multi" id="C3c22660b-0e23-474e-a51d-29eb41e2206b" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_wohnbauflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cb174f863-adde-4bb6-a881-8ee469d1ba7a" priority="normal">
+        <source>
+            <property>
+                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Point" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C9765b81e-4c83-4462-b78c-0c0b4238e12a" priority="normal">
@@ -4590,27 +5255,11 @@ withTransformationContext {
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Point" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C624d3a57-07b3-4691-9dee-976ff80170d0" priority="normal">
-        <source>
-            <property>
-                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca7573612-d513-4093-9cc6-913c7215407b" priority="normal">
@@ -4626,674 +5275,12 @@ withTransformationContext {
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
+                <child name="Point" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ccdf2a969-543b-4aa0-a38c-adcf9b68a2a3" priority="normal">
-        <source>
-            <property>
-                <type name="ax_industrieundgewerbeflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C892bfa03-b3ab-4926-a49b-0970098f6313" priority="normal">
-        <source>
-            <property>
-                <type name="ax_insel" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd2abfe74-d1fd-4370-ab3d-8dec38ef0f20" priority="normal">
-        <source>
-            <property>
-                <type name="ax_kleinraeumigerlandschaftsteil" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C9405b153-68f1-41ee-b945-e9c4953e7511" priority="normal">
-        <source>
-            <property>
-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C0ac9927c-b1ed-452e-a648-f0495eda4177" priority="normal">
-        <source>
-            <property>
-                <type name="ax_landschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cda6a25f5-0ee3-4dda-aecc-5dfaed584e01" priority="normal">
-        <source>
-            <property>
-                <type name="ax_landwirtschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C78a2a722-2da9-4f48-9dd8-5ae926500c89" priority="normal">
-        <source>
-            <property>
-                <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cabdd563d-7c4f-4c65-8b22-83f82573f655" priority="normal">
-        <source>
-            <property>
-                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc4f332ef-956d-42ee-b33f-0c7148557402" priority="normal">
-        <source>
-            <property>
-                <type name="ax_moor" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cb4d0e017-5a29-4948-9793-30b6cc3084c6" priority="normal">
-        <source>
-            <property>
-                <type name="ax_naturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca9fd8e79-204d-4d1a-8297-b83b5d1f2844" priority="normal">
-        <source>
-            <property>
-                <type name="ax_ortslage" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C971d6a38-38f9-4ff0-baba-0d09fa533432_C6b0f4934-f8ca-4b4a-b0a1-ae8482ff00c6" priority="normal">
-        <source>
-            <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C1ef7d22f-e59c-426d-82fc-c02d4458f055" priority="normal">
-        <source>
-            <property>
-                <type name="ax_polder" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf8a7d0db-d99f-496a-8d9d-8c1bae1e5eb8" priority="normal">
-        <source>
-            <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C5ca336cb-a8b7-4ca0-9b0e-a4728c4ce919" priority="normal">
-        <source>
-            <property>
-                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C9fd14d8c-a24d-460c-af58-afb9ce8b37f5" priority="normal">
-        <source>
-            <property>
-                <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cea5a1af1-d155-4977-9405-55c676cb235d" priority="normal">
-        <source>
-            <property>
-                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cefb7aa9a-09bd-4c5d-83fc-f32f6cdafbc9" priority="normal">
-        <source>
-            <property>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd9889af4-723d-436c-97f0-22b0619433b7" priority="normal">
-        <source>
-            <property>
-                <type name="ax_soll" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C9ca348d2-c80f-4226-b018-32bae2630070" priority="normal">
-        <source>
-            <property>
-                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C0a7cba65-692f-47b7-94b5-13ebcc667035" priority="normal">
-        <source>
-            <property>
-                <type name="ax_sonstigesrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C18f54868-9d95-40b4-ab53-101b0ad4197c" priority="normal">
-        <source>
-            <property>
-                <type name="ax_sportfreizeitunderholungsflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C9acf5610-fd46-4bb2-bd06-7f7caf29cd1b" priority="normal">
-        <source>
-            <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C998d8c05-aedf-4e5b-bd56-adb8e91ea533" priority="normal">
-        <source>
-            <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C91982063-7c6b-464b-a654-b6d03c2a4197" priority="normal">
-        <source>
-            <property>
-                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ccf88abdc-badb-4214-88dc-18ca48a7668d" priority="normal">
-        <source>
-            <property>
-                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C6b71d962-9c41-4311-b79d-d020fb3e8a61" priority="normal">
-        <source>
-            <property>
-                <type name="ax_tagebaugrubesteinbruch" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C61a75b8d-20f2-4e3a-9a41-01f56b5a1534" priority="normal">
-        <source>
-            <property>
-                <type name="ax_testgelaende" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd790126d-8142-46a9-9600-b104f7ec6734" priority="normal">
-        <source>
-            <property>
-                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C57bfb7b8-7d57-4b63-a8ef-fba4ae724046" priority="normal">
-        <source>
-            <property>
-                <type name="ax_unlandvegetationsloseflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C9b0885d5-a475-4443-9d6d-8bcc54d4574a" priority="normal">
-        <source>
-            <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd50ba3c1-6489-416c-882b-fe88cb8a8e53" priority="normal">
-        <source>
-            <property>
-                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8dc3895b-0f01-4a2e-9a5a-ea1b1a776e07" priority="normal">
-        <source>
-            <property>
-                <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C17cba077-0802-4cd3-9024-6523ae396f40" priority="normal">
-        <source>
-            <property>
-                <type name="ax_wald" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C20cdaaa3-48ea-4003-92d6-e2edcb3a7eb4" priority="normal">
-        <source>
-            <property>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cce6bb655-402c-400a-91ca-00057f240fc3" priority="normal">
-        <source>
-            <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C1edd7400-23ee-4f58-965a-44336023f5e8" priority="normal">
-        <source>
-            <property>
-                <type name="ax_wohnbauflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce725c8d4-3100-493a-8ec5-d15aeb54ca2a" priority="normal">
         <source>
@@ -5308,132 +5295,12 @@ withTransformationContext {
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cabfa5434-99a3-48eb-b083-ef839948e614" priority="normal">
-        <source>
-            <property>
-                <type name="ax_halde" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="wkb_geometry"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="choice" ns="http://www.opengis.net/gml/3.2/AbstractGeometry"/>
-                <child name="Surface" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="Point" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Ca3ebfac9-ea93-4f00-ad87-53c90fcefd6d" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C00ce9792-6386-452a-a96e-479e896a6077" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C29a5ee63-234f-4d8c-9451-b059ea1dea0c" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C4e42085c-cea8-4679-bb10-ae9ac568aac6" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C620b2869-0c69-4e70-afca-9c141b68e844" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C71713b77-1284-4ba9-a970-94501a6ea626" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
+        <parameter value="true" name="ignoreNamespaces"/>
+        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C3f5941a3-eaf1-4c23-99c8-fd528b94431f" priority="normal">
         <source name="id">
@@ -5490,7 +5357,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_baublock" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">baublockbezeichnung is not null and baublockbezeichnung &lt;&gt; ''</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5537,7 +5404,7 @@ withTransformationContext {
         </target>
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C181b71c7-3e7a-4864-b601-4c531390bafe" priority="normal">
+    <cell relation="custom:alignment:adv.inspire.id.default" id="C3cabcfac-9a97-4016-b46d-3559fdaeb52c" priority="normal">
         <source name="id">
             <property>
                 <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -5552,7 +5419,6 @@ withTransformationContext {
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C14040eeb-5add-4ceb-980e-a280da7043a5" priority="normal">
         <source name="id">
@@ -5592,6 +5458,23 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_bergbaubetrieb" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C0745b820-d15a-47ba-83a1-bebdc0d2a2bb" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="gml_id"/>
@@ -5830,66 +5713,6 @@ withTransformationContext {
                 <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C09d71e6c-a2f3-4f7e-9ded-0f703cb30bd5" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C9f5c5023-e913-4fb5-8255-2070c0b3399f" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cc97357e7-3242-45b4-9409-7c3a4f78f9be" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -6171,12 +5994,44 @@ withTransformationContext {
         </target>
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cd904c950-4920-42cc-8648-858bf842f64c" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C8eff885e-0122-4b1f-a5b7-47990543d915" priority="normal">
         <source name="id">
             <property>
                 <type name="ax_kleinraeumigerlandschaftsteil" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -6273,6 +6128,21 @@ withTransformationContext {
         </target>
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C09d71e6c-a2f3-4f7e-9ded-0f703cb30bd5" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C4e6bd141-c081-4b15-b6e8-1314c7f557e1" priority="normal">
         <source name="id">
             <property>
@@ -6341,6 +6211,21 @@ withTransformationContext {
         </target>
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C9f5c5023-e913-4fb5-8255-2070c0b3399f" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C32f8ed66-29c3-46e6-bb8d-96453f5b93b5" priority="normal">
         <source name="id">
             <property>
@@ -6379,6 +6264,40 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C0fe8025f-9b37-46c5-bea0-0fb65743617a" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C874fc701-461b-4bea-a6f4-f5ad6305edb0" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="gml_id"/>
@@ -6499,6 +6418,23 @@ withTransformationContext {
             <property>
                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C81c816fb-f232-47ff-b1e3-2cc177631b3f" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6664,6 +6600,21 @@ withTransformationContext {
         </target>
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cc97357e7-3242-45b4-9409-7c3a4f78f9be" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C32f1b9b7-cc60-4cda-ba06-c2e119510be6" priority="normal">
         <source name="id">
             <property>
@@ -6685,6 +6636,23 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_wald" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cb327b836-6e14-4edd-94ed-52bd21f94b4b" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="gml_id"/>
@@ -6766,120 +6734,6 @@ withTransformationContext {
         </target>
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Ca3ebfac9-ea93-4f00-ad87-53c90fcefd6d" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C00ce9792-6386-452a-a96e-479e896a6077" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C29a5ee63-234f-4d8c-9451-b059ea1dea0c" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C4e42085c-cea8-4679-bb10-ae9ac568aac6" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C620b2869-0c69-4e70-afca-9c141b68e844" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C71713b77-1284-4ba9-a970-94501a6ea626" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C3f5941a3-eaf1-4c23-99c8-fd528b94431f" priority="normal">
         <source name="id">
             <property>
@@ -6941,7 +6795,7 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_baublock" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">baublockbezeichnung is not null and baublockbezeichnung &lt;&gt; ''</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -7055,6 +6909,25 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_bergbaubetrieb" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C0745b820-d15a-47ba-83a1-bebdc0d2a2bb" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="gml_id"/>
@@ -7321,74 +7194,6 @@ withTransformationContext {
                 <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C09d71e6c-a2f3-4f7e-9ded-0f703cb30bd5" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C9f5c5023-e913-4fb5-8255-2070c0b3399f" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="true" name="useTargetTypePrefix"/>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cc97357e7-3242-45b4-9409-7c3a4f78f9be" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -7704,12 +7509,48 @@ withTransformationContext {
         </target>
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cd904c950-4920-42cc-8648-858bf842f64c" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C8eff885e-0122-4b1f-a5b7-47990543d915" priority="normal">
         <source name="id">
             <property>
                 <type name="ax_kleinraeumigerlandschaftsteil" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -7818,6 +7659,23 @@ withTransformationContext {
         </target>
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C09d71e6c-a2f3-4f7e-9ded-0f703cb30bd5" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C4e6bd141-c081-4b15-b6e8-1314c7f557e1" priority="normal">
         <source name="id">
             <property>
@@ -7894,6 +7752,23 @@ withTransformationContext {
         </target>
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C9f5c5023-e913-4fb5-8255-2070c0b3399f" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C32f8ed66-29c3-46e6-bb8d-96453f5b93b5" priority="normal">
         <source name="id">
             <property>
@@ -7936,6 +7811,44 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C0fe8025f-9b37-46c5-bea0-0fb65743617a" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C874fc701-461b-4bea-a6f4-f5ad6305edb0" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="gml_id"/>
@@ -8070,6 +7983,25 @@ withTransformationContext {
             <property>
                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C81c816fb-f232-47ff-b1e3-2cc177631b3f" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -8255,6 +8187,23 @@ withTransformationContext {
         </target>
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cc97357e7-3242-45b4-9409-7c3a4f78f9be" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C32f1b9b7-cc60-4cda-ba06-c2e119510be6" priority="normal">
         <source name="id">
             <property>
@@ -8278,6 +8227,25 @@ withTransformationContext {
         <source name="id">
             <property>
                 <type name="ax_wald" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="true" name="useTargetTypePrefix"/>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cb327b836-6e14-4edd-94ed-52bd21f94b4b" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
                 </type>
                 <child name="gml_id"/>
@@ -8437,7 +8405,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_baublock" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">baublockbezeichnung is not null and baublockbezeichnung &lt;&gt; ''</condition>
                 </type>
                 <child name="baublockbezeichnung"/>
             </property>
@@ -10260,7 +10228,7 @@ withTransformationContext {
         <source name="spelling">
             <property>
                 <type name="ax_baublock" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">baublockbezeichnung is not null and baublockbezeichnung &lt;&gt; ''</condition>
                 </type>
                 <child name="baublockbezeichnung"/>
             </property>
@@ -12024,7 +11992,7 @@ withTransformationContext {
         <source name="anchor">
             <property>
                 <type name="ax_baublock" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
+                    <condition lang="CQL">baublockbezeichnung is not null and baublockbezeichnung &lt;&gt; ''</condition>
                 </type>
                 <child name="baublockbezeichnung"/>
             </property>
@@ -13484,4 +13452,22 @@ withTransformationContext {
         </target>
         <parameter value="http://inspire.ec.europa.eu/codelist/NamedPlaceTypeValue/populatedPlace" name="value"/>
     </cell>
+    <modifier cell="C0607871a-8806-4d7e-bfe2-163ee53a0c07">
+        <transformation mode="disabled"/>
+    </modifier>
+    <modifier cell="C09d71e6c-a2f3-4f7e-9ded-0f703cb30bd5">
+        <transformation mode="disabled"/>
+    </modifier>
+    <modifier cell="C6ffe1102-f993-49da-bc1e-7c25ed40b8d2">
+        <transformation mode="disabled"/>
+    </modifier>
+    <modifier cell="C86bdd4fc-6d3e-4919-af38-49dd92fe26aa">
+        <transformation mode="disabled"/>
+    </modifier>
+    <modifier cell="C9f5c5023-e913-4fb5-8255-2070c0b3399f">
+        <transformation mode="disabled"/>
+    </modifier>
+    <modifier cell="Cc97357e7-3242-45b4-9409-7c3a4f78f9be">
+        <transformation mode="disabled"/>
+    </modifier>
 </alignment>
