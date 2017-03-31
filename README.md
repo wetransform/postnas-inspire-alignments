@@ -10,7 +10,7 @@ Folgende Alignments werden hier verwaltet:
 | Alignment                                             | Status     |
 | :---------------------------------------------------- | :--------: |
 | Geo5 Hauskoordinaten -> Adressen                      | -          |
-| Geo5 PostNAS -> Adressen                              | -          |
+| Geo5 PostNAS -> Adressen                              | Migriert   |
 | Geo5 PostNAS -> Verwaltungseinheiten                  | -          |
 | Geo5 PostNAS -> Flurstücke/Grundstücke                | -          |
 | Geo5 PostNAS -> Geografische Bezeichnungen            | -          |

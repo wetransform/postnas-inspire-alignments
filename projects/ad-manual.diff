@@ -1,8 +1,8 @@
 diff --git a/projects/ad-auto.halex.alignment.xml b/projects/ad-manual.halex.alignment.xml
-index 318f56c..ba97d87 100644
+index 7393b48..508a2e2 100644
 --- a/projects/ad-auto.halex.alignment.xml
 +++ b/projects/ad-manual.halex.alignment.xml
-@@ -4,7 +4,6 @@
+@@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
          <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
              <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
                  <cf:binding>java.lang.String</cf:binding>
@@ -10,7 +10,7 @@ index 318f56c..ba97d87 100644
              </cf:input>
              <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
-@@ -214,7 +213,6 @@ if (_params.source) {&#xD;
+@@ -276,7 +275,6 @@ if (_params.source) {&#xD;
              </cf:input>
              <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
@@ -18,7 +18,7 @@ index 318f56c..ba97d87 100644
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-@@ -782,17 +780,19 @@ Aktuell ist folgende Abbildung umgesetzt:
+@@ -844,17 +842,19 @@ Aktuell ist folgende Abbildung umgesetzt:
          </complexParameter>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -41,7 +41,7 @@ index 318f56c..ba97d87 100644
  	if (positionAdresse) {&#xD;
  		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#xD;
  	}&#xD;
-@@ -905,18 +905,20 @@ if (positionAdresse) {&#xD;
+@@ -967,18 +967,20 @@ if (positionAdresse) {&#xD;
          </complexParameter>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -65,9 +65,9 @@ index 318f56c..ba97d87 100644
  	if (positionAdresse) {&#xD;
  		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#xD;
  	}&#xD;
-@@ -2286,53 +2288,6 @@ if (positionAdresse) {&#xD;
+@@ -2420,23 +2422,6 @@ else {
          </target>
-         <parameter value="DLKM" name="source"/>
+         <parameter value="other:unpopulated" name="value"/>
      </cell>
 -    <cell relation="eu.esdihumboldt.hale.align.merge" id="C853700b9-c520-4c5c-9e2c-105f697c6d50" priority="normal">
 -        <source>
@@ -86,6 +86,13 @@ index 318f56c..ba97d87 100644
 -        <parameter value="false" name="auto_detect"/>
 -        <parameter value="{http://www.adv-online.de/namespaces/adv/gid/6.0}postleitzahl" name="property"/>
 -    </cell>
+     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cc5c40a0a-bc89-42aa-a918-7e25fb8215f5" priority="normal">
+         <target>
+             <property>
+@@ -2447,36 +2432,6 @@ else {
+         </target>
+         <parameter value="other:unpopulated" name="value"/>
+     </cell>
 -    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C9842c4bf-f94e-4cb6-ae00-86bdb2c2ca62" priority="normal">
 -        <source name="var">
 -            <property>
@@ -119,7 +126,7 @@ index 318f56c..ba97d87 100644
      <cell relation="eu.esdihumboldt.hale.align.assign" id="C5fd35164-5918-4189-872b-296d8225f787" priority="normal">
          <target>
              <property>
-@@ -2343,23 +2298,6 @@ if (positionAdresse) {&#xD;
+@@ -2487,23 +2442,6 @@ else {
          </target>
          <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
      </cell>
@@ -143,7 +150,7 @@ index 318f56c..ba97d87 100644
      <cell relation="custom:alignment:adv.inspire.namespace" id="C5c322644-b41b-41ca-9f41-806faae001c7" priority="normal">
          <target>
              <property>
-@@ -2370,38 +2308,6 @@ if (positionAdresse) {&#xD;
+@@ -2514,38 +2452,6 @@ else {
              </property>
          </target>
      </cell>
@@ -179,12 +186,12 @@ index 318f56c..ba97d87 100644
 -        </target>
 -        <parameter value="DLKM" name="source"/>
 -    </cell>
-     <cell relation="eu.esdihumboldt.hale.align.retype" id="C9fc48689-dc97-4f8a-864a-1557dcf3c563" priority="normal">
-         <source>
-             <class>
-@@ -2548,4 +2454,8 @@ if (positionAdresse) {&#xD;
+     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cae50d6a8-8f52-4846-8a29-b20b2e495505" priority="normal">
+         <target>
+             <property>
+@@ -2749,4 +2655,8 @@ def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
          </target>
-         <parameter value="DLKM" name="source"/>
+         <parameter value="other:unpopulated" name="value"/>
      </cell>
 +    <modifier cell="C75348f09-eb65-459e-b73f-79a19b3936db">
 +        <disable-for parent="C08467f52-22e7-4435-9031-9149c4aac7c6"/>
