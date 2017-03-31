@@ -18,7 +18,7 @@ Folgende Alignments werden hier verwaltet:
 | Geo5 PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)   | -          | tn-ro      |
 | Geo5 PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)  | -          | tn-ra      |
 | Geo5 PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)    | -          | tn-w       |
-| Geo5 PostNAS -> Verkehrsnetze (Luftverkehrsnetz)      | -          | tn-a       |
+| Geo5 PostNAS -> Verkehrsnetze (Luftverkehrsnetz)      | Migriert   | tn-a       |
 
 
 Einrichtung Gradle und hale-cli
