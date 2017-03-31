@@ -110,6 +110,23 @@ Dann erfolgt die automatische Migration anhand des Matchings. Das Ergebnis ist d
 Das automatisch erzeugte Projekt wird kopiert und ersetzt die bisherige manuelle Anpassung.
 Danach wird versucht das Diff erneut anzuwenden. Mit etwas Glück ist es zumindest teilweise erfolgreich, andernfalls muss dieser Schritt manuell geschehen. Bei einem Fehlschlag bitte genau prüfen welche Änderungen ggf. nicht übernommen wurden und wie das ggf. zu beheben ist.
 
+Bei fehlgeschlagener Anwendung des Diff auf das Projekt mit den manuellen Anpassungen erhält man eine Ausgabe ähnlich der folgenden:
+
+```
+Hunk #1 applied cleanly.
+Rejected hunk #2.
+Hunk #3 applied cleanly.
+ERROR applying diff to update manually curated project.
+Please check if you can apply the changes manually.
+Please check any .rej files for rejected hunks.
+Be aware that the manually created project has been replaced by the generated version.
+```
+
+Hier bietet es sich an zu prüfen (z.B. mit `git diff <datei-name>`) welche Änderungen es in der automatisch generierten Alignment-Datei gab und welche Änderungen sich in der manuell angepassten Alignment-Datei ergeben haben.
+Zusätzlich sollte auf jeden Fall die `.rej`-Datei geprüft werden, denn diese enthält die manuellen Anpassungen die nicht automatisch übernommen werden konnten.
+
+Auch bei erfolgreicher Anwendung des Diffs sollte geprüft werden, ob eventuell neu hinzugekommene oder angepasste Mappings im Kontext des angepassten Quell-Schemas noch gültig sind.
+
 
 ### Manuelle Anpassung
 
