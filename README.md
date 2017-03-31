@@ -7,18 +7,18 @@ Die Ableitung erfolgt teils automatisch (`projects/*-auto.halex`) und wird durch
 
 Folgende Alignments werden hier verwaltet:
 
-| Alignment                                             | Status     |
-| :---------------------------------------------------- | :--------: |
-| Geo5 Hauskoordinaten -> Adressen                      | -          |
-| Geo5 PostNAS -> Adressen                              | Migriert   |
-| Geo5 PostNAS -> Verwaltungseinheiten                  | -          |
-| Geo5 PostNAS -> Flurstücke/Grundstücke                | -          |
-| Geo5 PostNAS -> Geografische Bezeichnungen            | -          |
-| Geo5 PostNAS -> Gewässernetz                          | -          |
-| Geo5 PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)   | -          |
-| Geo5 PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)  | -          |
-| Geo5 PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)    | -          |
-| Geo5 PostNAS -> Verkehrsnetze (Luftverkehrsnetz)      | -          |
+| Alignment                                             | Status     | Kürzel     |
+| :---------------------------------------------------- | :--------: | :--------- |
+| Geo5 Hauskoordinaten -> Adressen                      | -          | -          |
+| Geo5 PostNAS -> Adressen                              | Migriert   | ad         |
+| Geo5 PostNAS -> Verwaltungseinheiten                  | Migriert   | au         |
+| Geo5 PostNAS -> Flurstücke/Grundstücke                | -          | cp         |
+| Geo5 PostNAS -> Geografische Bezeichnungen            | -          | gn         |
+| Geo5 PostNAS -> Gewässernetz                          | -          | hy-n, hy-p |
+| Geo5 PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)   | -          | tn-ro      |
+| Geo5 PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)  | -          | tn-ra      |
+| Geo5 PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)    | -          | tn-w       |
+| Geo5 PostNAS -> Verkehrsnetze (Luftverkehrsnetz)      | -          | tn-a       |
 
 
 Einrichtung Gradle und hale-cli

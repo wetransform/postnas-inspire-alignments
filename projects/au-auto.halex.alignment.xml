@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <alignment xmlns="http://www.esdi-humboldt.eu/hale/alignment">
     <customFunction>
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.geometry.simplefeature" name="Simple Feature Geometrie" type="groovy">
+            <cf:input eager="true" maxOccurs="1" minOccurs="1" name="geometrie"/>
+            <cf:output eager="false" maxOccurs="1" minOccurs="1"/>
+            <cf:definition>
+                <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def geoms = _.geom.toSimpleGeometries(geometries: _.geom.aggregate(geometrie), collections: false)
+if (geoms) {
+	if (geoms.size() &gt; 1) {
+		_log.error("Mehrere Geometrien gefunden - Aufteilung nötig")
+	}
+	_target(geoms[0])
+}
+else {
+	_log.error("Keine Geometrie gefunden")
+}
+</core:text>
+            </cf:definition>
+            <cf:explanation>
+                <cf:locale country="" language="" variant="">
+                    <cf:template>
+                        <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+Überführt die Quell-Geometrien als eine zusammengefasste Simple Feature Geometrie (ohne Multi-Geometrien).
+
+Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann. Andernfalls wird ein entsprechender Fehler in die Transformations-Logs eingetragen.
+</core:text>
+                    </cf:template>
+                </cf:locale>
+            </cf:explanation>
+        </cf:custom-property-function>
+    </customFunction>
+    <customFunction>
+        <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.geometry.simplefeature.multi" name="Simple Feature Geometrie (Multi)" type="groovy">
+            <cf:input eager="true" maxOccurs="1" minOccurs="1" name="geometrie"/>
+            <cf:output eager="false" maxOccurs="1" minOccurs="1"/>
+            <cf:definition>
+                <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def geoms = _.geom.toSimpleGeometries(geometries: _.geom.aggregate(geometrie), collections: true)
+if (geoms) {
+	if (geoms.size() &gt; 1) {
+		_log.error("Mehrere Geometrien gefunden - Aufteilung nötig")
+	}
+	_target(geoms[0])
+}
+else {
+	_log.error("Keine Geometrie gefunden")
+}
+</core:text>
+            </cf:definition>
+            <cf:explanation>
+                <cf:locale country="" language="" variant="">
+                    <cf:template>
+                        <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+Überführt die Quell-Geometrien als eine zusammengefasste Simple Feature Geometrie (ggf. als Multi-Geometrie).
+
+Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann. Andernfalls wird ein entsprechender Fehler in die Transformations-Logs eingetragen.
+</core:text>
+                    </cf:template>
+                </cf:locale>
+            </cf:explanation>
+        </cf:custom-property-function>
+    </customFunction>
+    <customFunction>
         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
                 <cf:binding>java.lang.String</cf:binding>
@@ -801,8 +863,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C9d5c3ef4-5dbe-4599-ab63-bfb08bc1683e_C0763cc94-6454-472a-aaab-966e2c0e3644" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature" id="C0c484a21-4686-4842-8690-06096a3024e9_C0763cc94-6454-472a-aaab-966e2c0e3644" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
                     <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
@@ -816,9 +878,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <parameter value="false" name="copyGeometries"/>
-        <parameter value="true" name="ignoreNamespaces"/>
-        <parameter value="true" name="structuralRename"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C4b96b3d9-a53b-4cec-9679-dd90a9934271_C0763cc94-6454-472a-aaab-966e2c0e3644" priority="normal">
         <source name="id">
@@ -2332,8 +2391,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.geometric.aggregate" id="Ce9f48fe2-0f92-41b8-87ae-3a68142b1d25" priority="normal">
-        <source>
+    <cell relation="custom:alignment:adv.geometry.simplefeature" id="C82f3702a-b860-476a-b702-35eead04c670" priority="normal">
+        <source name="geometrie">
             <property>
                 <type name="ax_kondominium" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="wkb_geometry"/>
@@ -2345,7 +2404,6 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
-        <documentation>Die Aggregate-Funktion führt hier keine Aggregation von Geometrien durch, sie wird hier nur verwendet um die Geometrie auf einfache Weise zu übertragen, unabhängig von der genauen Repräsentation.</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C4947ef7f-dde0-44e0-8d5c-2bb712379150" priority="normal">
         <source name="id">

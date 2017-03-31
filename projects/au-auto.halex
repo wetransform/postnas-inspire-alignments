@@ -15,7 +15,7 @@ Das gleiche gilt für die aggregierten Geometrien -- hier werden bei unvollstän
 
 Sofern möglich sollte alternativ für die Transformation das Projekt mit Aggregierung aus `AX_KommunalesGebiet` verwendet werden. Falls diese Objekte nich vorhanden sind, könnten als Zwischenschritt auch `AX_KommunalesGebiet` aus Flurstücken abgeleitet werden.</description>
     <created>2015-09-28T11:46:45.435+02:00</created>
-    <modified>2017-03-31T09:30:58.442+02:00</modified>
+    <modified>2017-03-31T10:21:53.628+02:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -1303,23 +1303,16 @@ Sofern möglich sollte alternativ für die Transformation das Projekt mit Aggreg
     <property name="instances.sampling.sampler">first</property>
     <property name="instances.sampling.settings.first">500</property>
     <property name="instances.sampling.settings.skip">10</property>
-    <property name="mappableSourceType/1">{jdbc:postgresql:testbed:aaa_ogr}ax_besondereflurstuecksgrenze</property>
-    <property name="mappableSourceType/10">{jdbc:postgresql:testbed:aaa_ogr}ax_kondominium</property>
-    <property name="mappableSourceType/11">{jdbc:postgresql:testbed:aaa_ogr}ax_regierungsbezirk</property>
-    <property name="mappableSourceType/12">{jdbc:postgresql:testbed:aaa_ogr}ax_gemeinde</property>
-    <property name="mappableSourceType/13">{jdbc:postgresql:testbed:aaa_ogr}ax_bundesland</property>
-    <property name="mappableSourceType/14">{jdbc:postgresql:testbed:aaa_ogr}ax_kreisregion</property>
-    <property name="mappableSourceType/15">{jdbc:postgresql:testbed:aaa_ogr}ax_verwaltungsgemeinschaft</property>
-    <property name="mappableSourceType/16">{jdbc:postgresql:testbed:aaa_ogr}ax_flurstueck</property>
-    <property name="mappableSourceType/2">{jdbc:postgresql:testbed:aaa_ogr}ax_gebiet_bundesland</property>
-    <property name="mappableSourceType/3">{jdbc:postgresql:testbed:aaa_ogr}ax_gebiet_kreis</property>
-    <property name="mappableSourceType/4">{jdbc:postgresql:testbed:aaa_ogr}ax_gebietsgrenze</property>
-    <property name="mappableSourceType/5">{jdbc:postgresql:testbed:aaa_ogr}ax_gebiet_verwaltungsgemeinschaft</property>
-    <property name="mappableSourceType/6">{jdbc:postgresql:testbed:aaa_ogr}ax_kommunalesgebiet</property>
-    <property name="mappableSourceType/7">{jdbc:postgresql:testbed:aaa_ogr}ax_gebiet_regierungsbezirk</property>
-    <property name="mappableSourceType/8">{jdbc:postgresql:testbed:aaa_ogr}ax_gebiet_nationalstaat</property>
-    <property name="mappableSourceType/9">{jdbc:postgresql:testbed:aaa_ogr}ax_nationalstaat</property>
-    <property name="mappableSourceType/count">16</property>
+    <property name="mappableSourceType/1">{jdbc:postgresql:testbed:aaa_ogr}ax_gebietsgrenze</property>
+    <property name="mappableSourceType/2">{jdbc:postgresql:testbed:aaa_ogr}ax_nationalstaat</property>
+    <property name="mappableSourceType/3">{jdbc:postgresql:testbed:aaa_ogr}ax_kondominium</property>
+    <property name="mappableSourceType/4">{jdbc:postgresql:testbed:aaa_ogr}ax_regierungsbezirk</property>
+    <property name="mappableSourceType/5">{jdbc:postgresql:testbed:aaa_ogr}ax_gemeinde</property>
+    <property name="mappableSourceType/6">{jdbc:postgresql:testbed:aaa_ogr}ax_bundesland</property>
+    <property name="mappableSourceType/7">{jdbc:postgresql:testbed:aaa_ogr}ax_kreisregion</property>
+    <property name="mappableSourceType/8">{jdbc:postgresql:testbed:aaa_ogr}ax_verwaltungsgemeinschaft</property>
+    <property name="mappableSourceType/9">{jdbc:postgresql:testbed:aaa_ogr}ax_flurstueck</property>
+    <property name="mappableSourceType/count">9</property>
     <property name="mappableTargetType/1">{http://inspire.ec.europa.eu/schemas/au/4.0}AdministrativeUnitType</property>
     <property name="mappableTargetType/2">{http://inspire.ec.europa.eu/schemas/au/4.0}AdministrativeBoundaryType</property>
     <property name="mappableTargetType/3">{http://inspire.ec.europa.eu/schemas/au/4.0}CondominiumType</property>
