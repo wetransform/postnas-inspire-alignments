@@ -16,7 +16,7 @@ Folgende Alignments werden hier verwaltet:
 | Geo5 PostNAS -> Geografische Bezeichnungen            | Migriert   | gn         |
 | Geo5 PostNAS -> Gewässernetz                          | Migriert   | hy-n, hy-p |
 | Geo5 PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)   | Migriert   | tn-ro      |
-| Geo5 PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)  | -          | tn-ra      |
+| Geo5 PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)  | Migriert   | tn-ra      |
 | Geo5 PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)    | -          | tn-w       |
 | Geo5 PostNAS -> Verkehrsnetze (Luftverkehrsnetz)      | Migriert   | tn-a       |
 
