@@ -1,0 +1,356 @@
+diff --git a/projects/tn-a-auto.halex.alignment.xml b/projects/tn-a-manual.halex.alignment.xml
+index 71905a3..d0b0477 100644
+--- a/projects/tn-a-auto.halex.alignment.xml
++++ b/projects/tn-a-manual.halex.alignment.xml
+@@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
+     </customFunction>
+     <customFunction>
+         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
+-            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
++            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_unverschluesselt">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+-            <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
++            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_land">
++                <cf:binding>java.lang.String</cf:binding>
++            </cf:input>
++            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_regierungsbezirk">
++                <cf:binding>java.lang.String</cf:binding>
++            </cf:input>
++            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_kreis">
++                <cf:binding>java.lang.String</cf:binding>
++            </cf:input>
++            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_gemeinde">
++                <cf:binding>java.lang.String</cf:binding>
++            </cf:input>
++            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_lage">
+                 <cf:binding>java.lang.String</cf:binding>
+             </cf:input>
+             <cf:output eager="false" maxOccurs="1" minOccurs="1">
+@@ -105,16 +116,16 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
+             </cf:param>
+             <cf:definition>
+                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def name = lagebezeichnung.p.unverschluesselt.value()
++def name = lage_unverschluesselt
+ 
+ if (!name) {
+ 	// Namen auch aus verschlüsselter Lagebezeichnung ableiten
+ 	
+-	def gemeinde = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde.value()
+-	def kreis = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.kreis.value()
+-	def lage = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.lage.value()
+-	def land = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.land.value()
+-	def reg = lagebezeichnung.p.verschluesselt.AX_VerschluesselteLagebezeichnung.regierungsbezirk.value()
++	def gemeinde = lage_gemeinde
++	def kreis = lage_kreis
++	def lage = lage_lage
++	def land = lage_land
++	def reg = lage_regierungsbezirk
+ 
+ 	if (land &amp;&amp; gemeinde &amp;&amp; kreis &amp;&amp; lage) {
+ 		if (!reg) reg = '0'
+@@ -276,7 +287,6 @@ if (_params.source) {&#xD;
+             </cf:input>
+             <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:output eager="false" maxOccurs="1" minOccurs="1">
+                 <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -778,7 +788,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def bwf = _source.p.bauwerksfunktion.value()
+-def identifier = _source.p.identifier.value()
++def identifier = _source.p.gml_id.value()
+ 
+ withTransformationContext {
+   def collect = _.context.collector(it)
+@@ -805,7 +815,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def bwf = _source.p.bauwerksfunktion.value()
+-def identifier = _source.p.identifier.value()
++def identifier = _source.p.gml_id.value()
+ 
+ withTransformationContext {
+   def collect = _.context.collector(it)
+@@ -837,14 +847,14 @@ withTransformationContext {
+ }
+ 
+ 
+-def _id = 'AerodromeArea_' + _source.p.id.value() 
++def _id = 'AerodromeArea_' + _source.p.gml_id.value() 
+ 
+ _target {
+ }
+ 
+ // bestimme AerodromeCategory
+ def aerodromeCategory
+-switch(_source.p.art.value()) {
++switch(_source.p.art.value() as String) {
+ case '5511': // Internationaler Flughafen
+ 	aerodromeCategory = 'international'
+ 	break
+@@ -862,7 +872,7 @@ case '5550': // Segelfluggelände
+ 
+ // bestimme AerodromeType
+ def aerodromeType
+-switch(_source.p.art.value()) {
++switch(_source.p.art.value() as String) {
+ case '5510': // Flughafen
+ case '5511': // Internationaler Flughafen
+ case '5512': // Regionalflughafen
+@@ -880,7 +890,7 @@ case '5530': // Hubschrauberflugplatz
+ 
+ // bestimme ConditionOfFacility
+ def conditionOfFacility = 'functional'
+-switch (_source.p.zustand.value()) {
++switch (_source.p.zustand.value() as String) {
+ case '2100': // Außer Betrieb, stillgelegt, verlassen
+ 	conditionOfFacility = 'disused'
+ 	break
+@@ -892,9 +902,9 @@ case '4000': // Im Bau
+ /*
+  * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
+  */
+-def untenRefs = _source.p.hatDirektUnten.href.values()
++def untenRefs = _source.p.hatdirektunten.values()
+ def verticalPositions = untenRefs.findResults { identifier -&gt;
+-	def bwf = collect.bauwerksfunktion[identifier].value()
++	def bwf = collect.bauwerksfunktion[identifier].value() as String
+ 	if (bwf) {
+ 		switch (bwf) {
+ 		// AX_BauwerkImVerkehrsbereich
+@@ -1072,11 +1082,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+         <parameter value="false" name="structuralRename"/>
+     </cell>
+     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C013ef1ce-3389-4a12-9e43-299c5877d6dd_Cd2d3c726-c951-484a-8bb0-c17504676eeb" priority="normal">
+-        <source name="lagebezeichnung">
++        <source name="lage_gemeinde">
++            <property>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gemeinde"/>
++            </property>
++        </source>
++        <source name="lage_kreis">
++            <property>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="kreis"/>
++            </property>
++        </source>
++        <source name="lage_lage">
++            <property>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="lage"/>
++            </property>
++        </source>
++        <source name="lage_land">
+             <property>
+-                <type name="AX_FlugverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="land"/>
++            </property>
++        </source>
++        <source name="lage_regierungsbezirk">
++            <property>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="regierungsbezirk"/>
++            </property>
++        </source>
++        <source name="lage_unverschluesselt">
++            <property>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="unverschluesselt"/>
+             </property>
+         </source>
+         <target>
+@@ -1384,7 +1423,7 @@ withTransformationContext {
+ }
+ 
+ // nur Objekt mit flächenartigen Geometrien behandeln
+-def geometries = _.geom.findPolygons(_source.p.position.first())
++def geometries = _.geom.findPolygons(_source.p.wkb_geometry.value())
+ 
+ // Ziel unterstützt keine MultiSurfaces
+ def surfaces = _.geom.splitMulti(geometries)
+@@ -1394,11 +1433,11 @@ def surfaces = _.geom.splitMulti(geometries)
+ _b.strictValueFlags = false
+ 
+ // Identifier des Quell-Objekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ 
+ // bestimme SurfaceComposition
+ def surfaceComposition
+-switch(_source.p.oberflaechenmaterial.value()) {
++switch(_source.p.oberflaechenmaterial.value() as String) {
+ case '1210': // Gras, Rasen
+ 	surfaceComposition = 'grass'
+ 	break
+@@ -1413,9 +1452,9 @@ case '1230': // Bitumen, Asphalt
+ /*
+  * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
+  */
+-def untenRefs = _source.p.hatDirektUnten.href.values()
++def untenRefs = _source.p.hatdirektunten.values()
+ def verticalPositions = untenRefs.findResults { identifier -&gt;
+-	def bwf = collect.bauwerksfunktion[identifier].value()
++	def bwf = collect.bauwerksfunktion[identifier].value() as String
+ 	if (bwf) {
+ 		switch (bwf) {
+ 		// AX_BauwerkImVerkehrsbereich
+@@ -1820,7 +1859,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. *Tra
+         <source>
+             <class>
+                 <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">breiteDesObjekts is not null and (art = '1310' or art = '1320')</condition>
++                    <condition lang="CQL">breitedesobjekts is not null and (art = '1310' or art = '1320')</condition>
+                 </type>
+             </class>
+         </source>
+@@ -1837,7 +1876,7 @@ withTransformationContext {
+ }
+ 
+ // ID des Quell-Objekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ 
+ _target {
+ 	// Referenz zu jedem NetworkElement das aus der Flugverkehrs-
+@@ -1873,7 +1912,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
+         <source name="id">
+             <property>
+                 <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">breiteDesObjekts is not null and (art = '1310' or art = '1320')</condition>
++                    <condition lang="CQL">breitedesobjekts is not null and (art = '1310' or art = '1320')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -1889,7 +1928,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
+         <source name="id">
+             <property>
+                 <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">breiteDesObjekts is not null and (art = '1310' or art = '1320')</condition>
++                    <condition lang="CQL">breitedesobjekts is not null and (art = '1310' or art = '1320')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -1905,7 +1944,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
+         <source name="id">
+             <property>
+                 <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">breiteDesObjekts is not null and (art = '1310' or art = '1320')</condition>
++                    <condition lang="CQL">breitedesobjekts is not null and (art = '1310' or art = '1320')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -1944,7 +1983,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
+         <source>
+             <property>
+                 <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">breiteDesObjekts is not null and (art = '1310' or art = '1320')</condition>
++                    <condition lang="CQL">breitedesobjekts is not null and (art = '1310' or art = '1320')</condition>
+                 </type>
+                 <child name="breitedesobjekts"/>
+             </property>
+@@ -1958,16 +1997,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
+         <parameter value="false" name="ignoreNamespaces"/>
+         <parameter value="false" name="structuralRename"/>
+     </cell>
+-    <cell relation="custom:alignment:adv.uom.toucum" id="Cc3659e5d-d3a3-464a-bc59-506edd1b7763_Cbfe48734-25e9-488c-bb87-cb9913240d13" priority="normal">
+-        <source name="uom">
+-            <property>
+-                <type name="AX_FlugverkehrsanlageType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="CQL">breiteDesObjekts is not null and (art = '1310' or art = '1320')</condition>
+-                </type>
+-                <child name="breiteDesObjekts" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="uom"/>
+-            </property>
+-        </source>
++    <cell relation="eu.esdihumboldt.hale.align.assign" id="Ccb503ef2-edbe-4a89-a134-120a0103930e" priority="normal">
+         <target>
+             <property>
+                 <type name="ElementWidthType" ns="http://inspire.ec.europa.eu/schemas/tn-a/4.0"/>
+@@ -1975,6 +2005,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
+                 <child name="uom"/>
+             </property>
+         </target>
++        <parameter value="m" name="value"/>
+     </cell>
+     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Ccaa52a0b-aa46-4373-913d-d52ebe85743c" priority="normal">
+         <source>
+@@ -1997,7 +2028,7 @@ withTransformationContext {
+ }
+ 
+ // nur Objekt mit flächenartigen Geometrien behandeln
+-def geometries = _.geom.findPolygons(_source.p.position.first())
++def geometries = _.geom.findPolygons(_source.p.wkb_geometry.value())
+ 
+ // Ziel unterstützt keine MultiSurfaces
+ def surfaces = _.geom.splitMulti(geometries)
+@@ -2007,11 +2038,11 @@ def surfaces = _.geom.splitMulti(geometries)
+ _b.strictValueFlags = false
+ 
+ // Identifier des Quell-Objekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ 
+ // bestimme SurfaceComposition
+ def surfaceComposition
+-switch(_source.p.oberflaechenmaterial.value()) {
++switch(_source.p.oberflaechenmaterial.value() as String) {
+ case '1210': // Gras, Rasen
+ 	surfaceComposition = 'grass'
+ 	break
+@@ -2026,9 +2057,9 @@ case '1230': // Bitumen, Asphalt
+ /*
+  * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
+  */
+-def untenRefs = _source.p.hatDirektUnten.href.values()
++def untenRefs = _source.p.hatdirektunten.values()
+ def verticalPositions = untenRefs.findResults { identifier -&gt;
+-	def bwf = collect.bauwerksfunktion[identifier].value()
++	def bwf = collect.bauwerksfunktion[identifier].value() as String
+ 	if (bwf) {
+ 		switch (bwf) {
+ 		// AX_BauwerkImVerkehrsbereich
+@@ -2427,7 +2458,7 @@ withTransformationContext {
+ }
+ 
+ // nur Objekt mit flächenartigen Geometrien behandeln
+-def geometries = _.geom.findPolygons(_source.p.position.first())
++def geometries = _.geom.findPolygons(_source.p.wkb_geometry.value())
+ 
+ // Ziel unterstützt keine MultiSurfaces
+ def surfaces = _.geom.splitMulti(geometries)
+@@ -2437,11 +2468,11 @@ def surfaces = _.geom.splitMulti(geometries)
+ _b.strictValueFlags = false
+ 
+ // Identifier des Quell-Objekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ 
+ // bestimme SurfaceComposition
+ def surfaceComposition
+-switch(_source.p.oberflaechenmaterial.value()) {
++switch(_source.p.oberflaechenmaterial.value() as String) {
+ case '1210': // Gras, Rasen
+ 	surfaceComposition = 'grass'
+ 	break
+@@ -2456,9 +2487,9 @@ case '1230': // Bitumen, Asphalt
+ /*
+  * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
+  */
+-def untenRefs = _source.p.hatDirektUnten.href.values()
++def untenRefs = _source.p.hatdirektunten.values()
+ def verticalPositions = untenRefs.findResults { identifier -&gt;
+-	def bwf = collect.bauwerksfunktion[identifier].value()
++	def bwf = collect.bauwerksfunktion[identifier].value() as String
+ 	if (bwf) {
+ 		switch (bwf) {
+ 		// AX_BauwerkImVerkehrsbereich

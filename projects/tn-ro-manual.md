@@ -5,5 +5,5 @@ Notizen zu manuellen Anpassungen
 - Verwendung *AX_Lagebezeichnung zu GeographicalName* angepasst (für `AX_Platz`, `AX_Strassenverkehr`, `AX_Weg`)
 - Bedingungen mit `internationaleBedeutung` angepasst (zu `internationalebedeutung`; auch in Join-Konfiguration)
 - Anpassung von Groovy Typ-Relationen mit korrigierten Typ- und Eigenschafts-Namen
-- Behandlung von Codes als Strings in Groovy Typ-Relationen
+- Explizite Behandlung von Codes als Strings in Groovy Typ-Relationen (um Logik kompatibel zu halten)
 - Entfernen von doppelten Relationen

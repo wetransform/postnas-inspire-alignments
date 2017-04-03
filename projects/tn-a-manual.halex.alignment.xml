@@ -854,7 +854,7 @@ _target {
 
 // bestimme AerodromeCategory
 def aerodromeCategory
-switch(_source.p.art.value()) {
+switch(_source.p.art.value() as String) {
 case '5511': // Internationaler Flughafen
 	aerodromeCategory = 'international'
 	break
@@ -872,7 +872,7 @@ case '5550': // Segelfluggelände
 
 // bestimme AerodromeType
 def aerodromeType
-switch(_source.p.art.value()) {
+switch(_source.p.art.value() as String) {
 case '5510': // Flughafen
 case '5511': // Internationaler Flughafen
 case '5512': // Regionalflughafen
@@ -890,7 +890,7 @@ case '5530': // Hubschrauberflugplatz
 
 // bestimme ConditionOfFacility
 def conditionOfFacility = 'functional'
-switch (_source.p.zustand.value()) {
+switch (_source.p.zustand.value() as String) {
 case '2100': // Außer Betrieb, stillgelegt, verlassen
 	conditionOfFacility = 'disused'
 	break
@@ -904,7 +904,7 @@ case '4000': // Im Bau
  */
 def untenRefs = _source.p.hatdirektunten.values()
 def verticalPositions = untenRefs.findResults { identifier -&gt;
-	def bwf = collect.bauwerksfunktion[identifier].value()
+	def bwf = collect.bauwerksfunktion[identifier].value() as String
 	if (bwf) {
 		switch (bwf) {
 		// AX_BauwerkImVerkehrsbereich
@@ -1437,7 +1437,7 @@ def sourceId = _source.p.gml_id.value()
 
 // bestimme SurfaceComposition
 def surfaceComposition
-switch(_source.p.oberflaechenmaterial.value()) {
+switch(_source.p.oberflaechenmaterial.value() as String) {
 case '1210': // Gras, Rasen
 	surfaceComposition = 'grass'
 	break
@@ -1454,7 +1454,7 @@ case '1230': // Bitumen, Asphalt
  */
 def untenRefs = _source.p.hatdirektunten.values()
 def verticalPositions = untenRefs.findResults { identifier -&gt;
-	def bwf = collect.bauwerksfunktion[identifier].value()
+	def bwf = collect.bauwerksfunktion[identifier].value() as String
 	if (bwf) {
 		switch (bwf) {
 		// AX_BauwerkImVerkehrsbereich
@@ -2042,7 +2042,7 @@ def sourceId = _source.p.gml_id.value()
 
 // bestimme SurfaceComposition
 def surfaceComposition
-switch(_source.p.oberflaechenmaterial.value()) {
+switch(_source.p.oberflaechenmaterial.value() as String) {
 case '1210': // Gras, Rasen
 	surfaceComposition = 'grass'
 	break
@@ -2059,7 +2059,7 @@ case '1230': // Bitumen, Asphalt
  */
 def untenRefs = _source.p.hatdirektunten.values()
 def verticalPositions = untenRefs.findResults { identifier -&gt;
-	def bwf = collect.bauwerksfunktion[identifier].value()
+	def bwf = collect.bauwerksfunktion[identifier].value() as String
 	if (bwf) {
 		switch (bwf) {
 		// AX_BauwerkImVerkehrsbereich
@@ -2472,7 +2472,7 @@ def sourceId = _source.p.gml_id.value()
 
 // bestimme SurfaceComposition
 def surfaceComposition
-switch(_source.p.oberflaechenmaterial.value()) {
+switch(_source.p.oberflaechenmaterial.value() as String) {
 case '1210': // Gras, Rasen
 	surfaceComposition = 'grass'
 	break
@@ -2489,7 +2489,7 @@ case '1230': // Bitumen, Asphalt
  */
 def untenRefs = _source.p.hatdirektunten.values()
 def verticalPositions = untenRefs.findResults { identifier -&gt;
-	def bwf = collect.bauwerksfunktion[identifier].value()
+	def bwf = collect.bauwerksfunktion[identifier].value() as String
 	if (bwf) {
 		switch (bwf) {
 		// AX_BauwerkImVerkehrsbereich
