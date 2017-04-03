@@ -6,4 +6,4 @@ Notizen zu manuellen Anpassungen
 - Bedingungen mit `internationaleBedeutung` angepasst (zu `internationalebedeutung`; auch in Join-Konfiguration)
 - Anpassung von Groovy Typ-Relationen mit korrigierten Typ- und Eigenschafts-Namen
 - Explizite Behandlung von Codes als Strings in Groovy Typ-Relationen (um Logik kompatibel zu halten)
-- Entfernen von doppelten Relationen
+- Entfernen von mehrfach vorkommenden identischen Relationen

@@ -17,7 +17,7 @@ Folgende Alignments werden hier verwaltet:
 | Geo5 PostNAS -> Gewässernetz                          | Migriert   | hy-n, hy-p |
 | Geo5 PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)   | Migriert   | tn-ro      |
 | Geo5 PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)  | Migriert   | tn-ra      |
-| Geo5 PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)    | -          | tn-w       |
+| Geo5 PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)    | Migriert   | tn-w       |
 | Geo5 PostNAS -> Verkehrsnetze (Luftverkehrsnetz)      | Migriert   | tn-a       |
 
 
@@ -141,6 +141,7 @@ Anpassungen sind normalerweise:
 - Entfernen von nicht anwendbaren Mappings, ggf. ersetzen
 - Erweiterte Anpassungen durch Strukturänderungen erforderliche Anpassung von Typ-Relationen
 - Anpassung der Behandlung von Codes in Groovy Skripts, für die sich der Datentyp geändert hat (z.B. Zahlentyp statt String)
+- Entfernen von mehrfach vorkommenden identischen Relationen (normalerweise im Kontext von Joins)
 
 Manuell erfolgte Anpassungen sollten zur möglicherweise später notwendigen Reproduktion dokumentiert werden. Dies erfolgt in den Dateien `projects/<Kürzel>-manual.md`.
 

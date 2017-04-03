@@ -1,0 +1,385 @@
+diff --git a/projects/tn-w-auto.halex.alignment.xml b/projects/tn-w-manual.halex.alignment.xml
+index b9107c9..964d3e2 100644
+--- a/projects/tn-w-auto.halex.alignment.xml
++++ b/projects/tn-w-manual.halex.alignment.xml
+@@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
+         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
+             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+@@ -276,7 +275,6 @@ if (_params.source) {&#xD;
+             </cf:input>
+             <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:output eager="false" maxOccurs="1" minOccurs="1">
+                 <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -778,7 +776,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def bwf = _source.p.bauwerksfunktion.value()
+-def identifier = _source.p.identifier.value()
++def identifier = _source.p.gml_id.value()
+ 
+ withTransformationContext {
+   def collect = _.context.collector(it)
+@@ -805,7 +803,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def bwf = _source.p.bauwerksfunktion.value()
+-def identifier = _source.p.identifier.value()
++def identifier = _source.p.gml_id.value()
+ 
+ withTransformationContext {
+   def collect = _.context.collector(it)
+@@ -833,13 +831,13 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!_source.p.position.Point.first()) {
++if (!_.geom.findPoints(_source.p.wkb_geometry.value())) {
+ 	// Nur Objekte mit Punkt-Geometrien verwenden
+ 	return
+ }
+ 
+ // ID des Quellobjekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ 
+ def _id = "Beacon_$sourceId"
+ 	
+@@ -856,9 +854,9 @@ withTransformationContext {
+ /*
+  * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
+  */
+-def untenRefs = _source.p.hatDirektUnten.href.values()
++def untenRefs = _source.p.hatdirektunten.values()
+ def verticalPositions = untenRefs.findResults { identifier -&gt;
+-	def bwf = collect.bauwerksfunktion[identifier].value()
++	def bwf = collect.bauwerksfunktion[identifier].value() as String
+ 	if (bwf) {
+ 		switch (bwf) {
+ 		// AX_BauwerkImVerkehrsbereich
+@@ -966,13 +964,13 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!_source.p.position.Point.first()) {
++if (!_.geom.findPoints(_source.p.wkb_geometry.value())) {
+ 	// Nur Objekte mit Punkt-Geometrien verwenden
+ 	return
+ }
+ 
+ // ID des Quellobjekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ 
+ def _id = "Beacon_$sourceId"
+ 	
+@@ -989,9 +987,9 @@ withTransformationContext {
+ /*
+  * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
+  */
+-def untenRefs = _source.p.hatDirektUnten.href.values()
++def untenRefs = _source.p.hatdirektunten.values()
+ def verticalPositions = untenRefs.findResults { identifier -&gt;
+-	def bwf = collect.bauwerksfunktion[identifier].value()
++	def bwf = collect.bauwerksfunktion[identifier].value() as String
+ 	if (bwf) {
+ 		switch (bwf) {
+ 		// AX_BauwerkImVerkehrsbereich
+@@ -1576,7 +1574,7 @@ Es werden Referenzen (NetworkReference) zu allen Netzwerk-Elementen (z.B. `Water
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // ID des Quell-Objekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ 
+ def collect
+ withTransformationContext {
+@@ -1590,7 +1588,7 @@ def _id = "FerryCrossing_$sourceId"
+ 
+ // bestimme FerryUse
+ def ferryUse
+-switch (_source.p.art.value()) {
++switch (_source.p.art.value() as String) {
+ case '1710': // Autofährverkehr
+ 	ferryUse = 'cars'
+ 	break
+@@ -1624,9 +1622,9 @@ if (links) {
+ 	/*
+ 	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
+ 	 */
+-	def untenRefs = _source.p.hatDirektUnten.href.values()
++	def untenRefs = _source.p.hatdirektunten.values()
+ 	def verticalPositions = untenRefs.findResults { identifier -&gt;
+-		def bwf = collect.bauwerksfunktion[identifier].value()
++		def bwf = collect.bauwerksfunktion[identifier].value() as String
+ 		if (bwf) {
+ 			switch (bwf) {
+ 			// AX_BauwerkImVerkehrsbereich
+@@ -1977,7 +1975,7 @@ Es werden Referenzen (NetworkReference) zu allen `FerryCrossing`s erstellt, welc
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // ID des Quell-Objekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ 
+ def collect
+ withTransformationContext {
+@@ -2031,7 +2029,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // ID des Quell-Objekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ 
+ def collect
+ withTransformationContext {
+@@ -2361,13 +2359,13 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!_source.p.position.Point.first()) {
++if (!_.geom.findPoints(_source.p.wkb_geometry.value())) {
+ 	// Nur Objekte mit Punkt-Geometrien verwenden
+ 	return
+ }
+ 
+ // ID des Quellobjekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ 
+ def _id = "MarkerPost_$sourceId"
+ 	
+@@ -2384,9 +2382,9 @@ withTransformationContext {
+ /*
+  * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
+  */
+-def untenRefs = _source.p.hatDirektUnten.href.values()
++def untenRefs = _source.p.hatdirektunten.values()
+ def verticalPositions = untenRefs.findResults { identifier -&gt;
+-	def bwf = collect.bauwerksfunktion[identifier].value()
++	def bwf = collect.bauwerksfunktion[identifier].value() as String
+ 	if (bwf) {
+ 		switch (bwf) {
+ 		// AX_BauwerkImVerkehrsbereich
+@@ -2654,16 +2652,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+         <parameter value="false" name="ignoreNamespaces"/>
+         <parameter value="false" name="structuralRename"/>
+     </cell>
+-    <cell relation="custom:alignment:adv.uom.toucum" id="Cf3eb9a99-85bb-4077-bf11-23888bc6e0c9" priority="normal">
+-        <source name="uom">
+-            <property>
+-                <type name="AX_EinrichtungenFuerDenSchiffsverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="CQL">art = '1430' and kilometerangabe is not null</condition>
+-                </type>
+-                <child name="kilometerangabe" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="uom"/>
+-            </property>
+-        </source>
++    <cell relation="eu.esdihumboldt.hale.align.assign" id="C7a0e022a-cddb-48cf-ad3f-1190ce199055" priority="normal">
+         <target>
+             <property>
+                 <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+@@ -2671,6 +2660,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+                 <child name="uom"/>
+             </property>
+         </target>
++        <parameter value="km" name="value"/>
+     </cell>
+     <cell relation="eu.esdihumboldt.hale.align.assign" id="C1b5231df-4a28-4162-a8ee-04202c8bb57c" priority="normal">
+         <target>
+@@ -2718,7 +2708,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // ID des Quellobjekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ 
+ def _id = "PortArea_$sourceId"
+ 	
+@@ -2735,9 +2725,9 @@ withTransformationContext {
+ /*
+  * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
+  */
+-def untenRefs = _source.p.hatDirektUnten.href.values()
++def untenRefs = _source.p.hatdirektunten.values()
+ def verticalPositions = untenRefs.findResults { identifier -&gt;
+-	def bwf = collect.bauwerksfunktion[identifier].value()
++	def bwf = collect.bauwerksfunktion[identifier].value() as String
+ 	if (bwf) {
+ 		switch (bwf) {
+ 		// AX_BauwerkImVerkehrsbereich
+@@ -3323,10 +3313,10 @@ collect.verticalPosition.consume { key, values -&gt;
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // ID des Quell-Objekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ 
+ // ID des Quell-Kanals
+-def parentId = _source.links.AX_Kanal.p.id.value()
++def parentId = _source.links.ax_kanal.p.gml_id.value()
+ 
+ if (parentId) {
+ 	// nur falls ein Kanal verfügbar ist, der die entsprechenden Bedingungen erfüllt
+@@ -3339,7 +3329,7 @@ if (parentId) {
+ 	
+ 	// bestimme ConditionOfWaterFacility
+ 	def conditionOfFacility = 'functional'
+-	switch (_source.p.zustand.value()) {
++	switch (_source.p.zustand.value() as String) {
+ 	case '2100': // Außer Betrieb, stillgelegt, verlassen
+ 		conditionOfFacility = 'disused'
+ 		break
+@@ -3362,9 +3352,9 @@ if (parentId) {
+ 	/*
+ 	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
+ 	 */
+-	def untenRefs = _source.p.hatDirektUnten.href.values()
++	def untenRefs = _source.p.hatdirektunten.values()
+ 	def verticalPositions = untenRefs.findResults { identifier -&gt;
+-		def bwf = collect.bauwerksfunktion[identifier].value()
++		def bwf = collect.bauwerksfunktion[identifier].value() as String
+ 		if (bwf) {
+ 			switch (bwf) {
+ 			// AX_BauwerkImVerkehrsbereich
+@@ -3516,10 +3506,10 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // ID des Quell-Objekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ 
+ // ID des Quell-Wasserlaufs
+-def parentId = _source.links.AX_Wasserlauf.p.id.value()
++def parentId = _source.links.ax_wasserlauf.p.gml_id.value()
+ 
+ if (parentId) {
+ 	// nur falls ein Wasserlauf verfügbar ist, der die entsprechenden Bedingungen erfüllt
+@@ -3542,9 +3532,9 @@ if (parentId) {
+ 	/*
+ 	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
+ 	 */
+-	def untenRefs = _source.p.hatDirektUnten.href.values()
++	def untenRefs = _source.p.hatdirektunten.values()
+ 	def verticalPositions = untenRefs.findResults { identifier -&gt;
+-		def bwf = collect.bauwerksfunktion[identifier].value()
++		def bwf = collect.bauwerksfunktion[identifier].value() as String
+ 		if (bwf) {
+ 			switch (bwf) {
+ 			// AX_BauwerkImVerkehrsbereich
+@@ -3654,7 +3644,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // ID des Quellobjekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ 
+ def _id = "WaterwayLink_$sourceId"
+ 	
+@@ -3671,9 +3661,9 @@ withTransformationContext {
+ /*
+  * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
+  */
+-def untenRefs = _source.p.hatDirektUnten.href.values()
++def untenRefs = _source.p.hatdirektunten.values()
+ def verticalPositions = untenRefs.findResults { identifier -&gt;
+-	def bwf = collect.bauwerksfunktion[identifier].value()
++	def bwf = collect.bauwerksfunktion[identifier].value() as String
+ 	if (bwf) {
+ 		switch (bwf) {
+ 		// AX_BauwerkImVerkehrsbereich
+@@ -3785,9 +3775,11 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // ID des Quellobjekts
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
++
++def geoms = _.geom.toSimpleGeometries(geometries: _source.p.wkb_geometry.value(), collections: false)
+ 
+-if (_source.p.position.CompositeCurve.first() || _source.p.position.Curve.first() || _source.p.position.LineString.first()) {
++if (geoms &amp;&amp; geoms.size() == 1) {
+ 	// nur Objekte die durch Curve/LineString oder CompositeCurve dargestellt sind
+ 	
+ 	def _id = "WaterwayLink_$sourceId"
+@@ -3807,9 +3799,9 @@ if (_source.p.position.CompositeCurve.first() || _source.p.position.Curve.first(
+ 	/*
+ 	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
+ 	 */
+-	def untenRefs = _source.p.hatDirektUnten.href.values()
++	def untenRefs = _source.p.hatdirektunten.values()
+ 	def verticalPositions = untenRefs.findResults { identifier -&gt;
+-		def bwf = collect.bauwerksfunktion[identifier].value()
++		def bwf = collect.bauwerksfunktion[identifier].value() as String
+ 		if (bwf) {
+ 			switch (bwf) {
+ 			// AX_BauwerkImVerkehrsbereich
+@@ -3865,8 +3857,7 @@ else {
+ 	// das ist die Vorgabe aus der Mapping-Tabelle - heißt das es können keine MultiCurves auftreten?
+ 	// zur Sicherheit - Warnung falls andere linienartige Geometrie gefunden
+ 	
+-	def geometries = _.geom.findLines(_source.p.position.first())
+-	if (geometries) {
++	if (geoms) {
+ 		_log.warn("AX_SchifffahrtslinieFaehrverkehr $sourceId enthält wider Erwarten linienartige Geometrie die nicht Curve/LineString/CompositeCurve ist, es wurde kein WaterwayLink gebildet")
+ 	}
+ }
+@@ -4187,51 +4178,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+             </property>
+         </target>
+     </cell>
+-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C2eb8a251-1062-494b-808f-c7a5771b0b57" priority="normal">
+-        <target name="result">
+-            <property>
+-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+-            </property>
+-        </target>
+-        <complexParameter name="script">
+-            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">'#' + _project.vars.NETWORK_ID</core:text>
+-        </complexParameter>
+-        <parameter value="false" name="variablesAsInstances"/>
+-        <documentation>Verknüpft das Netzwerk-Element mit dem entsprechenden *TransportNetwork*.
+-Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</documentation>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C4ce2dafa-0c09-46d1-b006-f8b9d3156e12" priority="normal">
+-        <target name="result">
+-            <property>
+-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+-            </property>
+-        </target>
+-        <complexParameter name="script">
+-            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">'#' + _project.vars.NETWORK_ID</core:text>
+-        </complexParameter>
+-        <parameter value="false" name="variablesAsInstances"/>
+-        <documentation>Verknüpft das Netzwerk-Element mit dem entsprechenden *TransportNetwork*.
+-Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</documentation>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cbd3d5432-25dc-4994-8c8d-d7680a5859e0" priority="normal">
+-        <target name="result">
+-            <property>
+-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+-            </property>
+-        </target>
+-        <complexParameter name="script">
+-            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">'#' + _project.vars.NETWORK_ID</core:text>
+-        </complexParameter>
+-        <parameter value="false" name="variablesAsInstances"/>
+-        <documentation>Verknüpft das Netzwerk-Element mit dem entsprechenden *TransportNetwork*.
+-Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</documentation>
+-    </cell>
+     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cc3026039-7b92-4b52-aaa5-cc40b3749b65" priority="normal">
+         <target name="result">
+             <property>
