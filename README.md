@@ -1,7 +1,8 @@
 INSPIRE Alignments LVermGeo RLP
 ===============================
 
-Verwaltung der hale Alignments für LVermGeo RLP die aus den entsprechenden AdV-Alignments abgeleitet wurden.
+Aus den AdV-Alignments abgeleitete Alignments (PostNAS nach INSPIRE)
+Herkunft: Komplementärbeauftragung Rheinland-Pfalz
 
 Die Ableitung erfolgt teils automatisch (`projects/*-auto.halex`) und wird durch manuelle Anpassungen ergänzt (`projects/*-manual.halex`). Um die manuellen Anpassungen nachvollziehen zu können unterliegen auch die generierten Projekte der Versionskontrolle.
 
@@ -146,3 +147,4 @@ Anpassungen sind normalerweise:
 Manuell erfolgte Anpassungen sollten zur möglicherweise später notwendigen Reproduktion dokumentiert werden. Dies erfolgt in den Dateien `projects/<Kürzel>-manual.md`.
 
 Nach erfolgter manueller Anpassung sollten die Änderungen in einem Commit abgelegt werden. Zur Kontrolle empfiehlt es sich dann die automatische Migration noch einmal anzustoßen. Diese sollte erfolgreich sein und keine Änderungen an der manuell angepassten vornehmen. Außerdem wird hier ein aktuelles Diff erzeugt das die manuellen Änderungen repräsentiert. Diese kann dem zuvor erzeugten Commit hinzugefügt werden.
+
