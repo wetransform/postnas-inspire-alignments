@@ -85,7 +85,7 @@ Es wird empfohlen nach abgeschlossenen Arbeitsschritten immer einen Git Commit z
 
 Das Matching zwischen AdV XML Schemas und PostNAS Datenbank Schema erfolgt auf Basis einer hinterlegten hale Schema-Datei (`database/schema.hsd`). Diese muss aktualisiert werden falls sich das Datenbank-Schema ändert. Hintergrund dass eine solche Datei verwendet wird ist, das so einerseits keine entsprechende Datenbank verfügbar sein muss und andererseits genau dokumentiert ist auf welches Schema sich der aktuelle Stand der Migration bezieht.
 
-Die Schema-Datei kann erzeugt werden, indem das Datenbank-Schema in hale importiert wird, und von dort in eine Datei exportiert.
+Die Schema-Datei kann erzeugt werden, indem das Datenbank-Schema in hale importiert wird, und von dort in eine Datei exportiert (siehe auch [database/testbed/README.md](database/testbed/README.md)).
 
 Der Prozess um das Matching zu erzeugen enthält spezifische Annahmen über beide Schemata, ist also nicht auf ohne weiteres auf andere Schemata zu übertragen. Z.B. werden die Informationen, die im PostNAS-Schema in Kommentaren hinterlegt sind, ausgewertet.
 

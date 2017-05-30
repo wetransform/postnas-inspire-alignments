@@ -1,0 +1,7 @@
+database:
+  build: ./database
+  ports:
+    - "15432:5432"
+  environment:
+    POSTGRES_PASSWORD: postgres
+
