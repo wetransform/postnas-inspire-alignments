@@ -1,5 +1,5 @@
 diff --git a/projects/hy-p-auto.halex.alignment.xml b/projects/hy-p-manual.halex.alignment.xml
-index d32c3dd..4fcd842 100644
+index e92c2e0..bb6d196 100644
 --- a/projects/hy-p-auto.halex.alignment.xml
 +++ b/projects/hy-p-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.

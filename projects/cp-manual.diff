@@ -1,8 +1,8 @@
 diff --git a/projects/cp-auto.halex.alignment.xml b/projects/cp-manual.halex.alignment.xml
-index bfd80b5..ce4d88c 100644
+index 27c5cfb..fa812a7 100644
 --- a/projects/cp-auto.halex.alignment.xml
 +++ b/projects/cp-manual.halex.alignment.xml
-@@ -4,7 +4,6 @@
+@@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
          <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
              <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
                  <cf:binding>java.lang.String</cf:binding>
@@ -10,7 +10,7 @@ index bfd80b5..ce4d88c 100644
              </cf:input>
              <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
-@@ -214,7 +213,6 @@ if (_params.source) {&#xD;
+@@ -276,7 +275,6 @@ if (_params.source) {&#xD;
              </cf:input>
              <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
@@ -18,7 +18,7 @@ index bfd80b5..ce4d88c 100644
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-@@ -732,14 +730,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+@@ -794,14 +792,7 @@ Aktuell ist folgende Abbildung umgesetzt:
          <parameter value="false" name="ignoreNamespaces"/>
          <parameter value="false" name="structuralRename"/>
      </cell>
@@ -34,7 +34,7 @@ index bfd80b5..ce4d88c 100644
          <target>
              <property>
                  <type name="CadastralParcelType" ns="http://inspire.ec.europa.eu/schemas/cp/4.0"/>
-@@ -747,6 +738,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+@@ -809,6 +800,7 @@ Aktuell ist folgende Abbildung umgesetzt:
                  <child name="uom"/>
              </property>
          </target>
@@ -42,7 +42,7 @@ index bfd80b5..ce4d88c 100644
      </cell>
      <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc51360e3-edaa-45a0-9e45-bcf77eb69c99" priority="normal">
          <source>
-@@ -1007,7 +999,7 @@ else {
+@@ -1069,7 +1061,7 @@ else {
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -51,7 +51,7 @@ index bfd80b5..ce4d88c 100644
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // vorhanden sind
-@@ -1079,7 +1071,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
+@@ -1141,7 +1133,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -60,7 +60,7 @@ index bfd80b5..ce4d88c 100644
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // vorhanden sind
-@@ -1163,14 +1155,14 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
+@@ -1225,14 +1217,14 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
  // sammle Geometrien von assoziierten Flurstücken
  
  // Flurnummer als Zahl
