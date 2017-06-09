@@ -1,5 +1,5 @@
-INSPIRE Alignments LVermGeo RLP
-===============================
+PostNAS INSPIRE Alignments
+==========================
 
 Aus den AdV-Alignments abgeleitete Alignments (PostNAS nach INSPIRE)
 Herkunft: Komplementärbeauftragung Rheinland-Pfalz
@@ -10,16 +10,15 @@ Folgende Alignments werden hier verwaltet:
 
 | Alignment                                             | Status     | Kürzel     |
 | :---------------------------------------------------- | :--------: | :--------- |
-| Geo5 Hauskoordinaten -> Adressen                      | -          | -          |
-| Geo5 PostNAS -> Adressen                              | Migriert   | ad         |
-| Geo5 PostNAS -> Verwaltungseinheiten                  | Migriert   | au         |
-| Geo5 PostNAS -> Flurstücke/Grundstücke                | Migriert   | cp         |
-| Geo5 PostNAS -> Geografische Bezeichnungen            | Migriert   | gn         |
-| Geo5 PostNAS -> Gewässernetz                          | Migriert   | hy-n, hy-p |
-| Geo5 PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)   | Migriert   | tn-ro      |
-| Geo5 PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)  | Migriert   | tn-ra      |
-| Geo5 PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)    | Migriert   | tn-w       |
-| Geo5 PostNAS -> Verkehrsnetze (Luftverkehrsnetz)      | Migriert   | tn-a       |
+| PostNAS -> Adressen                                   | Migriert   | ad         |
+| PostNAS -> Verwaltungseinheiten                       | Migriert   | au         |
+| PostNAS -> Flurstücke/Grundstücke                     | Migriert   | cp         |
+| PostNAS -> Geografische Bezeichnungen                 | Migriert   | gn         |
+| PostNAS -> Gewässernetz                               | Migriert   | hy-n, hy-p |
+| PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)        | Migriert   | tn-ro      |
+| PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)       | Migriert   | tn-ra      |
+| PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)         | Migriert   | tn-w       |
+| PostNAS -> Verkehrsnetze (Luftverkehrsnetz)           | Migriert   | tn-a       |
 
 
 Einrichtung Gradle und hale-cli
