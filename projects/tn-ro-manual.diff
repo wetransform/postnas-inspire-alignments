@@ -1,5 +1,5 @@
 diff --git a/projects/tn-ro-auto.halex.alignment.xml b/projects/tn-ro-manual.halex.alignment.xml
-index 015fccc..9c4d515 100644
+index 4f6791b..53f92ae 100644
 --- a/projects/tn-ro-auto.halex.alignment.xml
 +++ b/projects/tn-ro-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -652,7 +652,7 @@ index 015fccc..9c4d515 100644
 -		def geoms = _.geom.toSimpleGeometries(geometries: achse.p.position.first(), collections: false)
 +		def geoms = _.geom.toSimpleGeometries(geometries: achse.p.wkb_geometry.value(), collections: false)
  		if (geoms.size() &gt; 1) {
- 			_log.error('Zusammenfassung von Geometrie in Achse nicht möglich')
+ 			_log.error("Zusammenfassung von Geometrie in Achse ${sourceId} nicht möglich")
  		}
 @@ -3428,22 +3459,22 @@ def erstelleRoadLink = { achse -&gt;
  		

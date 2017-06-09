@@ -3411,7 +3411,7 @@ def erstelleRoadLink = { achse -&gt;
 		id( _id )
 		def geoms = _.geom.toSimpleGeometries(geometries: achse.p.position.first(), collections: false)
 		if (geoms.size() &gt; 1) {
-			_log.error('Zusammenfassung von Geometrie in Achse nicht möglich')
+			_log.error("Zusammenfassung von Geometrie in Achse ${sourceId} nicht möglich")
 		}
 		centrelineGeometry( geoms[0] )
 		inspireId {

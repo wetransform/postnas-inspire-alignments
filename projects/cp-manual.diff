@@ -1,5 +1,5 @@
 diff --git a/projects/cp-auto.halex.alignment.xml b/projects/cp-manual.halex.alignment.xml
-index 27c5cfb..fa812a7 100644
+index 0a3f443..2da8a91 100644
 --- a/projects/cp-auto.halex.alignment.xml
 +++ b/projects/cp-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -42,25 +42,25 @@ index 27c5cfb..fa812a7 100644
      </cell>
      <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc51360e3-edaa-45a0-9e45-bcf77eb69c99" priority="normal">
          <source>
-@@ -1069,7 +1061,7 @@ else {
-         <complexParameter name="script">
-             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+@@ -1134,7 +1126,7 @@ class Processor {
+ 
+ 
  // alle Eigenschaften mit Geometrien aus Flurstücken
 -def geoms = _source.links.AX_Flurstueck.p.position.list()
 +def geoms = _source.links.ax_flurstueck.p.wkb_geometry.values()
+ if (geoms) {
+ 	geoms = _.geom.findAll(geoms)
+ }
+@@ -1296,7 +1288,7 @@ class Processor {
  
- // führe den Join nicht aus wenn keine assoziierten Flurstücke
- // vorhanden sind
-@@ -1141,7 +1133,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
-         <complexParameter name="script">
-             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ 
  // alle Eigenschaften mit Geometrien aus Flurstücken
 -def geoms = _source.links.AX_Flurstueck.p.position.list()
 +def geoms = _source.links.ax_flurstueck.p.wkb_geometry.values()
- 
- // führe den Join nicht aus wenn keine assoziierten Flurstücke
- // vorhanden sind
-@@ -1225,14 +1217,14 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
+ if (geoms) {
+ 	geoms = _.geom.findAll(geoms)
+ }
+@@ -1460,9 +1452,9 @@ class Processor {
  // sammle Geometrien von assoziierten Flurstücken
  
  // Flurnummer als Zahl
@@ -70,11 +70,23 @@ index 27c5cfb..fa812a7 100644
 -def fs = _source.links.AX_Flurstueck.list()
 +def fs = _source.links.ax_flurstueck.list()
  fs = fs.findAll {
-   it.p.flurnummer.value() == flur
+   // flur aus flurnummer bestimmen
+   def stueckFlur = it.p.flurnummer.value()
+@@ -1471,7 +1463,7 @@ fs = fs.findAll {
+     // stattdessen flur aus Kennzeichen extrahieren
+     def kennzeichen = it.p.flurstueckskennzeichen.value()
+     if (kennzeichen) {
+-      stueckFlur = kennzeichen[6..8]
++      stueckFlur = kennzeichen[6..8] as Integer
+     }
+   }
+   
+@@ -1479,7 +1471,7 @@ fs = fs.findAll {
+   stueckFlur == flur
  }
  def geoms = fs.collect {
 -  it.p.position.first()
 +  it.p.wkb_geometry.value()
  }
- 
- // führe den Join nicht aus wenn keine assoziierten Flurstücke
+ if (geoms) {
+   geoms = _.geom.findAll(geoms)

@@ -1,5 +1,5 @@
 diff --git a/projects/hy-p-auto.halex.alignment.xml b/projects/hy-p-manual.halex.alignment.xml
-index e92c2e0..bb6d196 100644
+index e5740c9..bb134d6 100644
 --- a/projects/hy-p-auto.halex.alignment.xml
 +++ b/projects/hy-p-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -156,9 +156,9 @@ index e92c2e0..bb6d196 100644
  
  // Builder konfigurieren
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
-@@ -2149,24 +2159,6 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
-         <parameter value="false" name="ignoreNamespaces"/>
-         <parameter value="false" name="structuralRename"/>
+@@ -2160,24 +2170,6 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+         <parameter value="m" name="value"/>
+         <documentation>Falls in den Ausgangsdaten keine `uom` definiert wurde, wird `uom` auf `m` gesetzt.</documentation>
      </cell>
 -    <cell relation="custom:alignment:adv.uom.toucum" id="Cba9e19c1-19ee-4393-bf1c-01bceb39ce3e" priority="normal">
 -        <source name="uom">
@@ -178,10 +178,10 @@ index e92c2e0..bb6d196 100644
 -            </property>
 -        </target>
 -    </cell>
-     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cd283ee45-7652-46d7-a1f4-24e9e7314a42" priority="lowest">
-         <source name="anchor">
-             <property>
-@@ -2202,10 +2194,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C1f48e318-a73d-4dc7-ae83-a03f60aafd65" priority="normal">
+         <source>
+             <class>
+@@ -2194,10 +2186,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // Geometrien aufteilen in einzelne Simple Feature Geometrien
@@ -194,7 +194,7 @@ index e92c2e0..bb6d196 100644
  
  // Builder konfigurieren
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
-@@ -2415,64 +2407,6 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+@@ -2407,64 +2399,6 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
          <parameter value="false" name="ignoreNamespaces"/>
          <parameter value="false" name="structuralRename"/>
      </cell>
@@ -259,7 +259,7 @@ index e92c2e0..bb6d196 100644
      <cell relation="custom:alignment:adv.inspire.id.default" id="Cad9d9d2c-bf2b-4bb8-9ea4-89d4a3b38412" priority="normal">
          <source name="id">
              <property>
-@@ -2543,10 +2477,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+@@ -2535,10 +2469,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // Geometrien aufteilen in einzelne Simple Feature Geometrien
@@ -272,7 +272,7 @@ index e92c2e0..bb6d196 100644
  
  // Builder konfigurieren
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
-@@ -2731,10 +2665,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+@@ -2723,10 +2657,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // Geometrien aufteilen in einzelne Simple Feature Geometrien
@@ -285,7 +285,7 @@ index e92c2e0..bb6d196 100644
  
  // Builder konfigurieren
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
-@@ -2841,10 +2775,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+@@ -2833,10 +2767,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // Geometrien aufteilen in einzelne Simple Feature Geometrien
@@ -298,7 +298,7 @@ index e92c2e0..bb6d196 100644
  
  // Builder konfigurieren
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
-@@ -3033,10 +2967,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+@@ -3025,10 +2959,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // Geometrien aufteilen in einzelne Simple Feature Geometrien
@@ -311,7 +311,7 @@ index e92c2e0..bb6d196 100644
  
  // Builder konfigurieren
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
-@@ -3321,12 +3255,41 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+@@ -3313,12 +3247,41 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
          <parameter value="false" name="ignoreNamespaces"/>
          <parameter value="false" name="structuralRename"/>
      </cell>
@@ -358,7 +358,7 @@ index e92c2e0..bb6d196 100644
              </property>
          </source>
          <target>
-@@ -3337,12 +3300,41 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+@@ -3329,12 +3292,41 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
              </property>
          </target>
      </cell>
@@ -405,7 +405,7 @@ index e92c2e0..bb6d196 100644
              </property>
          </source>
          <target>
-@@ -3745,11 +3737,11 @@ def _ns = _project.vars.INSPIRE_NAMESPACE&#xD;
+@@ -3737,11 +3729,11 @@ def _ns = _project.vars.INSPIRE_NAMESPACE&#xD;
  &#xD;
  int counter = 1;&#xD;
  &#xD;
@@ -420,7 +420,7 @@ index e92c2e0..bb6d196 100644
  if (!hatLinienhaft &amp;&amp; !hatFlaechenhaft) {&#xD;
  	_log.warn("Watercourse: Kanal $kanalId hat weder AX_Fliessgewaesser noch AX_Gewaesserachsen")&#xD;
  	throw new NoResultException('Kann kein Watercourse-Objekt ohne Geometrie erstellen')&#xD;
-@@ -3780,7 +3772,7 @@ def createWatercourse = { aggregate -&gt; &#xD;
+@@ -3772,7 +3764,7 @@ def createWatercourse = { aggregate -&gt; &#xD;
  &#xD;
  // erstelle Watercourse&#xD;
  if (hatLinienhaft) {&#xD;
@@ -429,7 +429,7 @@ index e92c2e0..bb6d196 100644
  	def geoms = _.geom.toSimpleGeometries(geometries: aggregate, collections: false)&#xD;
  	if (geoms.size() &gt; 1) {&#xD;
  		_log.warn("${geoms.size()} Geometrien für Kanal $kanalId (aus Gewaesserachsen)")&#xD;
-@@ -3790,7 +3782,7 @@ if (hatLinienhaft) {&#xD;
+@@ -3782,7 +3774,7 @@ if (hatLinienhaft) {&#xD;
  	}&#xD;
  }&#xD;
  if (hatFlaechenhaft) {&#xD;
@@ -438,7 +438,7 @@ index e92c2e0..bb6d196 100644
  	def geoms = _.geom.toSimpleGeometries(geometries: aggregate, collections: false)&#xD;
  	if (geoms.size() &gt; 1) {&#xD;
  		_log.warn("${geoms.size()} Geometrien für Kanal $kanalId (aus Fliessgewaessern)")&#xD;
-@@ -3870,11 +3862,11 @@ def _ns = _project.vars.INSPIRE_NAMESPACE&#xD;
+@@ -3862,11 +3854,11 @@ def _ns = _project.vars.INSPIRE_NAMESPACE&#xD;
  &#xD;
  int counter = 1;&#xD;
  &#xD;
@@ -453,7 +453,7 @@ index e92c2e0..bb6d196 100644
  if (!hatLinienhaft &amp;&amp; !hatFlaechenhaft) {&#xD;
  	_log.warn("Watercourse: Wasserlauf $wasserlaufId hat weder AX_Fliessgewaesser noch AX_Gewaesserachsen")&#xD;
  	throw new NoResultException('Kann kein Watercourse-Objekt ohne Geometrie erstellen')&#xD;
-@@ -3905,7 +3897,7 @@ def createWatercourse = { aggregate -&gt; &#xD;
+@@ -3897,7 +3889,7 @@ def createWatercourse = { aggregate -&gt; &#xD;
  &#xD;
  // erstelle Watercourse&#xD;
  if (hatLinienhaft) {&#xD;
@@ -462,7 +462,7 @@ index e92c2e0..bb6d196 100644
  	def geoms = _.geom.toSimpleGeometries(geometries: aggregate, collections: false)&#xD;
  	if (geoms.size() &gt; 1) {&#xD;
  		_log.warn("${geoms.size()} Geometrien für Wasserlauf $wasserlaufId (aus Gewaesserachsen)")&#xD;
-@@ -3915,7 +3907,7 @@ if (hatLinienhaft) {&#xD;
+@@ -3907,7 +3899,7 @@ if (hatLinienhaft) {&#xD;
  	}&#xD;
  }&#xD;
  if (hatFlaechenhaft) {&#xD;
@@ -471,7 +471,7 @@ index e92c2e0..bb6d196 100644
  	def geoms = _.geom.toSimpleGeometries(geometries: aggregate, collections: false)&#xD;
  	if (geoms.size() &gt; 1) {&#xD;
  		_log.warn("${geoms.size()} Geometrien für Wasserlauf $wasserlaufId (aus Fliessgewaessern)")&#xD;
-@@ -4632,10 +4624,10 @@ if (hatFlaechenhaft) {&#xD;
+@@ -4624,10 +4616,10 @@ if (hatFlaechenhaft) {&#xD;
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // Geometrien aufteilen in einzelne Flächen
@@ -484,7 +484,7 @@ index e92c2e0..bb6d196 100644
  
  // Builder konfigurieren
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
-@@ -4703,10 +4695,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+@@ -4695,10 +4687,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // Geometrien aufteilen in einzelne Flächen
@@ -497,7 +497,7 @@ index e92c2e0..bb6d196 100644
  
  // Builder konfigurieren
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
-@@ -5111,362 +5103,96 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+@@ -5103,362 +5095,96 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
          <parameter value="true" name="value"/>
      </cell>
      <modifier cell="C0702079d-c85c-431e-ad2c-fd570baaa99b_C4c0212ea-a994-4344-9aec-580c1420ba86">
