@@ -13,11 +13,11 @@ apply plugin: 'to.wetransform.hale'
 
 hale {
   cliArtifact = 'to.wetransform:hale-cli-rlp' // RLP custom version (for DB matching)
-  cliVersion = '3.3.0-SNAPSHOT'
+  cliVersion = '3.3.0'
 }
 
 repositories {
-  mavenLocal() // XXX for testing
+  // mavenLocal() // XXX for testing
 }
 
 configurations.all {
