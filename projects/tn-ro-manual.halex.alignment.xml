@@ -5309,7 +5309,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
                         <child name="gml_id"/>
                     </property>
                     <property>
-                        <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="istteilvon"/>
                     </property>
                 </jp:condition>
@@ -5321,7 +5321,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
                         <child name="gml_id"/>
                     </property>
                     <property>
-                        <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="istteilvon"/>
                     </property>
                 </jp:condition>

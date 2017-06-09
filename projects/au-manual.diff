@@ -1,8 +1,8 @@
 diff --git a/projects/au-auto.halex.alignment.xml b/projects/au-manual.halex.alignment.xml
-index 98284fb..753b854 100644
+index 562d8e7..c317d70 100644
 --- a/projects/au-auto.halex.alignment.xml
 +++ b/projects/au-manual.halex.alignment.xml
-@@ -4,7 +4,6 @@
+@@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
          <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
              <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
                  <cf:binding>java.lang.String</cf:binding>
@@ -10,7 +10,7 @@ index 98284fb..753b854 100644
              </cf:input>
              <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
-@@ -214,7 +213,6 @@ if (_params.source) {&#xD;
+@@ -276,7 +275,6 @@ if (_params.source) {&#xD;
              </cf:input>
              <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
@@ -18,7 +18,7 @@ index 98284fb..753b854 100644
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-@@ -706,7 +704,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+@@ -768,7 +766,7 @@ Aktuell ist folgende Abbildung umgesetzt:
          <source>
              <class>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -27,7 +27,7 @@ index 98284fb..753b854 100644
                  </type>
              </class>
          </source>
-@@ -733,7 +731,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+@@ -795,7 +793,7 @@ Aktuell ist folgende Abbildung umgesetzt:
          <source>
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -36,7 +36,7 @@ index 98284fb..753b854 100644
                  </type>
                  <child name="beginnt"/>
              </property>
-@@ -787,7 +785,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -849,7 +847,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source>
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -45,8 +45,8 @@ index 98284fb..753b854 100644
                  </type>
                  <child name="endet"/>
              </property>
-@@ -805,7 +803,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
-         <source>
+@@ -867,7 +865,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <source name="geometrie">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
 -                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
@@ -54,7 +54,7 @@ index 98284fb..753b854 100644
                  </type>
                  <child name="wkb_geometry"/>
              </property>
-@@ -824,7 +822,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -883,7 +881,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source name="id">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -63,7 +63,7 @@ index 98284fb..753b854 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -841,7 +839,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -900,7 +898,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source name="id">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -72,7 +72,7 @@ index 98284fb..753b854 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -857,7 +855,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -916,7 +914,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source name="id">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -81,7 +81,7 @@ index 98284fb..753b854 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -896,7 +894,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -955,7 +953,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source>
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -90,7 +90,7 @@ index 98284fb..753b854 100644
                  </type>
                  <child name="artdergebietsgrenze"/>
              </property>
-@@ -987,7 +985,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -1046,7 +1044,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -99,7 +99,7 @@ index 98284fb..753b854 100644
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // mit entsprechender Geometrie vorhanden sind
-@@ -999,7 +997,7 @@ def collect
+@@ -1058,7 +1056,7 @@ def collect
  withTransformationContext {
  	collect = _.context.collector(it)
  }
@@ -108,7 +108,7 @@ index 98284fb..753b854 100644
  
  _target{
  	geometry {
-@@ -1088,7 +1086,7 @@ Die Verknüpfung zur untergeordneten Ebene von `AdministrativeUnit`s wird über
+@@ -1147,7 +1145,7 @@ Die Verknüpfung zur untergeordneten Ebene von `AdministrativeUnit`s wird über
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -117,7 +117,7 @@ index 98284fb..753b854 100644
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // vorhanden sind
-@@ -1104,14 +1102,14 @@ def collect
+@@ -1163,14 +1161,14 @@ def collect
  withTransformationContext {
  	collect = _.context.collector(it)
  }
@@ -136,7 +136,7 @@ index 98284fb..753b854 100644
  	
  	upperLevelUnit =  "AdministrativeUnit_${land}${regBezirk}${kreis}"
  	
-@@ -1222,13 +1220,13 @@ Falls keine Zugehörigkeit zu einer Verwaltungsgemeinschaft besteht wird die Zug
+@@ -1281,13 +1279,13 @@ Falls keine Zugehörigkeit zu einer Verwaltungsgemeinschaft besteht wird die Zug
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -153,7 +153,7 @@ index 98284fb..753b854 100644
  	if (gemeinden) {
  		_log.warn("Keine Flurstückgeometrien zu Verwaltungsgemeinschaft $sourceId gefunden, zugehörige AdminstrativeUnit wird nicht erstellt")
  	}
-@@ -1239,14 +1237,14 @@ if (!geoms) {
+@@ -1298,14 +1296,14 @@ if (!geoms) {
  }
  
  // Schlüssel für alle Gemeinden der Gemeinschaft
@@ -170,7 +170,7 @@ index 98284fb..753b854 100644
  
  _target{
  	geometry {
-@@ -1265,7 +1263,7 @@ _target{
+@@ -1324,7 +1322,7 @@ _target{
  
  withTransformationContext {
  	def collect = _.context.collector(it)
@@ -179,7 +179,7 @@ index 98284fb..753b854 100644
  	// Hinterlege ID je Gemeinde
  	gemeinden.each {
  		collect.verwaltungsGemeinschaft['AdministrativeUnit_' + it] = _id
-@@ -1343,7 +1341,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
+@@ -1402,7 +1400,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -188,7 +188,7 @@ index 98284fb..753b854 100644
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // mit entsprechender Geometrie vorhanden sind
-@@ -1355,11 +1353,11 @@ def collect
+@@ -1414,11 +1412,11 @@ def collect
  withTransformationContext {
  	collect = _.context.collector(it)
  }
@@ -203,7 +203,7 @@ index 98284fb..753b854 100644
  def upperLevelUnit
  if (regBezirk &amp;&amp; regBezirk != '0') {
  	upperLevelUnit = 'AdministrativeUnit_' + land + regBezirk
-@@ -1442,7 +1440,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
+@@ -1501,7 +1499,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -212,7 +212,7 @@ index 98284fb..753b854 100644
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // mit entsprechender Geometrie vorhanden sind
-@@ -1454,10 +1452,10 @@ def collect
+@@ -1513,10 +1511,10 @@ def collect
  withTransformationContext {
  	collect = _.context.collector(it)
  }
@@ -225,7 +225,7 @@ index 98284fb..753b854 100644
  collect.land[upperLevelUnit] &lt;&lt; _id
  
  _target{
-@@ -2421,33 +2419,15 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -2479,33 +2477,15 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
      <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_C153144ee-8008-471c-a689-adba7e1d10b7">
          <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
      </modifier>

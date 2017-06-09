@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hale-project version="3.2.0.release">
+<hale-project version="3.3.0.release">
     <name>Generated schema-to-schema mapping</name>
     <author>Generated</author>
-    <modified>2017-03-30T17:57:56.300+02:00</modified>
+    <modified>2017-06-09T10:08:18.524+02:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
