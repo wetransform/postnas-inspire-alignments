@@ -40,6 +40,35 @@ Siehe auch die [entsprechende Gradle-Dokumentation](https://docs.gradle.org/curr
 
 Die Einstellungen für den HTTP-Proxy für hale werden für die Transformation aus der Gradle-Konfiguration übernommen, sofern möglich.
 
+### AdV Alignments über Git Submodul einbinden
+
+In diesem Git-Repository ist ein Git-Submodul für das Einbinden der AdV Alignments für den Ordner `adv-alignments/` konfiguriert. Allerdings wird dazu Zugriff auf das entsprechende Git-Repository der AdV benötigt. Falls dieser nicht vorhanden ist kann auch ein Download des Repositorys verwendet werden.
+
+Um das Submodul erstmalig zu initialisieren kann folgender Befehl verwendet werden:
+
+```
+git submodule update --init
+```
+
+Damit wird der Ordner `adv-alignments` erstellt und mit der zuletzt im Zusammenhang mit den PostNAS Alignments verwendeten Version der AdV Alignments initialisiert.
+
+Wenn der aktuelle Stand der PostNAS Alignments (z.B. mit `git pull`) vom Server geholt wird, sollte auch das Submodul mit `git submodule update` aktualisiert werden.
+
+Wenn auf den aktuellen Stand der AdV Alignments aktualisiert werden soll, muss in den Ordner des Submodules (`adv-alignments/`) gewechselt werden. Dort kann das Submodul mit den folgenden Ḱommandos auf den aktuellen Stand gebracht werden:
+
+```
+git checkout master
+git pull
+```
+
+Um ein aktualisiertes Submodul im PostNAS Repository zu speichern, muss die Änderung auf Ebene des PostNAS Repositories (also nicht mehr im Unterordner) einem Commit hinzugefügt werden. Also beispielsweise mit den folgenden Kommandos:
+
+```
+cd .. # um ggf. in den Root-Ordner zu wechseln
+git add adv-alignments
+git commit
+```
+
 
 Verwendung der Alignments
 -------------------------
@@ -73,6 +102,9 @@ Die Pflege der Alignments und Aktualisierung auf Basis der AdV-Alignments hat ei
 Basierend auf diesem Matching werden die AdV-Alignments soweit möglich automatisch auf das Datenbank-Schema migriert. Anschließend können manuelle Anpassungen erfolgen. Manuelle Anpassungen die zuvor bereits erfolgt waren werden versucht zu übertragen.
 
 Als Grundlage wird ein Verweis auf die AdV Alignments benötigt. Standardmäßig wird davon ausgegangen das sie im Ordner `adv-alignments` zu finden sind.
+
+In diesem Git-Repository ist dazu ein Git-Submodul konfiguriert das auf das Repository mit den AdV Alignments verweist. Allerdings wird dazu Zugriff auf das entsprechende Git-Repository der AdV benötigt. Falls dieser nicht vorhanden ist kann auch ein Download des Repositorys verwendet werden.
+
 Es kann jedoch auch ein anderer Ort über die Gradle-Property `advAlignments` angegeben werden (siehe `gradle.properties.sample`). Der Pfad sollte auf das Basis-Verzeichnis des AdV Repositories zeigen, dort werden nicht nur Alignments, sondern auch das AAA-Schema nachgeschlagen.
 
 Außerdem wird für das Management der Änderungen zwischen automatisch migriertem Mapping und manuell gepflegtem Projekt das Programm `git` verwendet. Dieses wird im System-Pfad erwartet. Es wird verwendet um sog. Diffs zu erzeugen und anzuwenden.
