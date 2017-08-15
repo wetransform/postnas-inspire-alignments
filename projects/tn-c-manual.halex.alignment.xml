@@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann. 
         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
                 <cf:binding>java.lang.String</cf:binding>
-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
             </cf:input>
             <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                 <cf:binding>java.lang.String</cf:binding>
@@ -276,7 +275,6 @@ if (_params.source) {&#xD;
             </cf:input>
             <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                 <cf:binding>java.lang.String</cf:binding>
-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
             </cf:input>
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
                 <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -834,7 +832,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 // nur Objekt mit linienartigen Geometrien behandeln
-def geometries = _.geom.findLines(_source.p.position.first())
+def geometries = _.geom.findLines(_source.p.wkb_geometry.value())
 
 // Ziel unterstützt keine MultiLineStrings
 def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: false)
@@ -843,7 +841,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
 // - Zuweisung der Geometrie auf Ebene von geometry zulassen
 _b.strictValueFlags = false
 
-def sourceId = _source.p.id.value()
+def sourceId = _source.p.gml_id.value()
 
 // Ziel-Objekt für jede Linie erstellen
 int num = 1
