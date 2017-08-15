@@ -28,5 +28,8 @@
   },
   "tn-a": {
     "advProject": "annex-1/mappings/AirTransportNetwork/aaa-tn-a-01.halex"
+  },
+  "tn-c": {
+    "advProject": "annex-1/mappings/CableTransportNetwork/aaa-tn-c-01.halex"
   }
 }
