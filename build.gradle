@@ -21,8 +21,8 @@ repositories {
 }
 
 configurations.all {
-  // resolutionStrategy.cacheChangingModulesFor 60, 'minutes'
-  resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+  resolutionStrategy.cacheChangingModulesFor 180, 'minutes'
+  //resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
 project.ext.advAlignmentsPath = project.hasProperty('advAlignments') ? project.getProperty('advAlignments') : 'adv-alignments'
