@@ -8,17 +8,18 @@ Die Ableitung erfolgt teils automatisch (`projects/*-auto.halex`) und wird durch
 
 Folgende Alignments werden hier verwaltet:
 
-| Alignment                                             | Status     | Kürzel     |
-| :---------------------------------------------------- | :--------: | :--------- |
-| PostNAS -> Adressen                                   | Migriert   | ad         |
-| PostNAS -> Verwaltungseinheiten                       | Migriert   | au         |
-| PostNAS -> Flurstücke/Grundstücke                     | Migriert   | cp         |
-| PostNAS -> Geografische Bezeichnungen                 | Migriert   | gn         |
-| PostNAS -> Gewässernetz                               | Migriert   | hy-n, hy-p |
-| PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)        | Migriert   | tn-ro      |
-| PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)       | Migriert   | tn-ra      |
-| PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)         | Migriert   | tn-w       |
-| PostNAS -> Verkehrsnetze (Luftverkehrsnetz)           | Migriert   | tn-a       |
+| Alignment                                             | Status         | Kürzel     |
+| :---------------------------------------------------- | :------------: | :--------- |
+| PostNAS -> Adressen                                   | Update nötig   | ad         |
+| PostNAS -> Verwaltungseinheiten                       | Update nötig   | au         |
+| PostNAS -> Flurstücke/Grundstücke                     | Update nötig   | cp         |
+| PostNAS -> Geografische Bezeichnungen                 | Update nötig   | gn         |
+| PostNAS -> Gewässernetz                               | Update nötig   | hy-n, hy-p |
+| PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)        | Update nötig   | tn-ro      |
+| PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)       | Update nötig   | tn-ra      |
+| PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)         | Update nötig   | tn-w       |
+| PostNAS -> Verkehrsnetze (Luftverkehrsnetz)           | Update nötig   | tn-a       |
+| PostNAS -> Verkehrsnetze (Kabel)                      | TODO           | tn-c       |
 
 
 Einrichtung Gradle und hale-cli
