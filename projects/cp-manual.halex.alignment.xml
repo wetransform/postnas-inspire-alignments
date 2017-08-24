@@ -1053,7 +1053,7 @@ else {
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemarkung_land"/>
+                        <child name="land"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
@@ -1211,11 +1211,11 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <jp:condition>
                     <property>
                         <type name="ax_gemarkung" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="schluessel_land"/>
+                        <child name="land"/>
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemarkung_land"/>
+                        <child name="land"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
@@ -1373,11 +1373,11 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <jp:condition>
                     <property>
                         <type name="ax_gemarkungsteilflur" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="schluessel_land"/>
+                        <child name="land"/>
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemarkung_land"/>
+                        <child name="land"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
@@ -1782,7 +1782,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
         <source>
             <property>
                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="schluessel_land"/>
+                <child name="land"/>
             </property>
         </source>
         <target>
@@ -2043,7 +2043,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
         <source name="var">
             <property>
                 <type name="ax_gemarkung" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="schluessel_land"/>
+                <child name="land"/>
             </property>
         </source>
         <target>
@@ -2053,7 +2053,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
-        <parameter value="#CadastralZoning_{schluessel.AX_Gemarkung_Schluessel.land}" name="pattern"/>
+        <parameter value="#CadastralZoning_{land}" name="pattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C14174a15-b4b0-4278-9d2c-93243485710f" priority="normal">
         <source name="var">
@@ -2065,7 +2065,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
         <source name="var">
             <property>
                 <type name="ax_gemarkungsteilflur" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="schluessel_land"/>
+                <child name="land"/>
             </property>
         </source>
         <target>
@@ -2075,7 +2075,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
-        <parameter value="#CadastralZoning_{schluessel.AX_GemarkungsteilFlur_Schluessel.land}{schluessel.AX_GemarkungsteilFlur_Schluessel.gemarkung}" name="pattern"/>
+        <parameter value="#CadastralZoning_{land}{gemarkung}" name="pattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Ca6561677-18bf-4882-8f37-04ca5dc53eb4" priority="normal">
         <target>
