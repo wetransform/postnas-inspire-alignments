@@ -12,7 +12,7 @@
 - Bei der Abbildung `AX_SeilbahnSchwebebahn` nach `CablewayLink` werden Objekte anhand ihrer (Mehrfach-)Geometrie in mehrere Ziel-Objekte aufgeteilt werden. Hier wurde die ID des Zielobjekts jeweils mit der entsprechenden Nummer der Geometrie (1., 2., etc. Geometrie) als Suffix angehängt.
 </description>
     <created>2015-09-28T11:46:45.435+02:00</created>
-    <modified>2017-08-15T11:59:16.501+02:00</modified>
+    <modified>2017-08-24T08:36:38.141+02:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
