@@ -1729,7 +1729,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
-        <parameter value="#RailwayLink_{id}" name="pattern"/>
+        <parameter value="#RailwayLink_{gml_id}" name="pattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C0047cb98-5745-4d80-9ea9-5785af1a3809" priority="normal">
         <target>

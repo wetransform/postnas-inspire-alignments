@@ -1,5 +1,5 @@
 diff --git a/projects/tn-ro-auto.halex.alignment.xml b/projects/tn-ro-manual.halex.alignment.xml
-index 4f6791b..53f92ae 100644
+index 171544c..65dd49f 100644
 --- a/projects/tn-ro-auto.halex.alignment.xml
 +++ b/projects/tn-ro-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -955,6 +955,15 @@ index 4f6791b..53f92ae 100644
      <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C2f3a385b-d4d3-4a1e-9999-296f10a58386" priority="normal">
          <target name="result">
              <property>
+@@ -5127,7 +5140,7 @@ _target( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
+                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
+             </property>
+         </target>
+-        <parameter value="#RoadServiceArea_{id}" name="pattern"/>
++        <parameter value="#RoadServiceArea_{gml_id}" name="pattern"/>
+     </cell>
+     <cell relation="eu.esdihumboldt.hale.align.classification" id="Cb822d066-69fc-4cf8-8d8d-7e957bf43384_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
+         <source>
 @@ -5256,7 +5269,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
          <source name="types">
              <class>
@@ -1171,6 +1180,15 @@ index 4f6791b..53f92ae 100644
      <cell relation="custom:alignment:adv.inspire.namespace" id="Cc2269463-2fe0-460d-883d-6da676dbb1bc_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
          <target>
              <property>
+@@ -5843,7 +5806,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
+             </property>
+         </target>
+-        <parameter value="#RoadLink_{id}" name="pattern"/>
++        <parameter value="#RoadLink_{gml_id}" name="pattern"/>
+     </cell>
+     <cell relation="eu.esdihumboldt.hale.align.rename" id="C713718d5-a92b-4d39-a5e8-b55d5d88aca8" priority="normal">
+         <source>
 @@ -5865,7 +5828,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
          <source>
              <property>

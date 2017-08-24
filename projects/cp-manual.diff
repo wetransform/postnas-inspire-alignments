@@ -1,5 +1,5 @@
 diff --git a/projects/cp-auto.halex.alignment.xml b/projects/cp-manual.halex.alignment.xml
-index c711878..2da8a91 100644
+index ea58474..a33741e 100644
 --- a/projects/cp-auto.halex.alignment.xml
 +++ b/projects/cp-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -81,3 +81,21 @@ index c711878..2da8a91 100644
  }
  if (geoms) {
    geoms = _.geom.findAll(geoms)
+@@ -2061,7 +2053,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
+                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
+             </property>
+         </target>
+-        <parameter value="#CadastralZoning_{schluessel.AX_Gemarkung_Schluessel.land}" name="pattern"/>
++        <parameter value="#CadastralZoning_{land}" name="pattern"/>
+     </cell>
+     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C14174a15-b4b0-4278-9d2c-93243485710f" priority="normal">
+         <source name="var">
+@@ -2083,7 +2075,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
+                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
+             </property>
+         </target>
+-        <parameter value="#CadastralZoning_{schluessel.AX_GemarkungsteilFlur_Schluessel.land}{schluessel.AX_GemarkungsteilFlur_Schluessel.gemarkung}" name="pattern"/>
++        <parameter value="#CadastralZoning_{land}{gemarkung}" name="pattern"/>
+     </cell>
+     <cell relation="eu.esdihumboldt.hale.align.assign" id="Ca6561677-18bf-4882-8f37-04ca5dc53eb4" priority="normal">
+         <target>

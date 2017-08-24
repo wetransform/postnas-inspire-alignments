@@ -1061,7 +1061,7 @@ else {
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemarkung_land"/>
+                        <child name="land"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
@@ -1219,11 +1219,11 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <jp:condition>
                     <property>
                         <type name="ax_gemarkung" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="schluessel_land"/>
+                        <child name="land"/>
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemarkung_land"/>
+                        <child name="land"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
@@ -1381,11 +1381,11 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <jp:condition>
                     <property>
                         <type name="ax_gemarkungsteilflur" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="schluessel_land"/>
+                        <child name="land"/>
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemarkung_land"/>
+                        <child name="land"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
@@ -1790,7 +1790,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
         <source>
             <property>
                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="schluessel_land"/>
+                <child name="land"/>
             </property>
         </source>
         <target>
@@ -2051,7 +2051,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
         <source name="var">
             <property>
                 <type name="ax_gemarkung" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="schluessel_land"/>
+                <child name="land"/>
             </property>
         </source>
         <target>
@@ -2073,7 +2073,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
         <source name="var">
             <property>
                 <type name="ax_gemarkungsteilflur" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="schluessel_land"/>
+                <child name="land"/>
             </property>
         </source>
         <target>

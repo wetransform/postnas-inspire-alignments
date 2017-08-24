@@ -1034,7 +1034,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <jp:condition>
                     <property>
                         <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="schluessel_land"/>
+                        <child name="land"/>
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -1109,13 +1109,23 @@ Die Verknüpfung zur untergeordneten Ebene von `AdministrativeUnit`s wird über 
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeinde"/>
+                        <child name="gemeindezugehoerigkeit_gemeinde"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
                     <property>
                         <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeindekennzeichen_land"/>
+                        <child name="kreis"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gemeindezugehoerigkeit_kreis"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="land"/>
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -1125,21 +1135,11 @@ Die Verknüpfung zur untergeordneten Ebene von `AdministrativeUnit`s wird über 
                 <jp:condition>
                     <property>
                         <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="kreis"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="kreis"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="regierungsbezirk"/>
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
+                        <child name="gemeindezugehoerigkeit_regierungsbezirk"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
@@ -1233,17 +1233,7 @@ Falls keine Zugehörigkeit zu einer Verwaltungsgemeinschaft besteht wird die Zug
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeinde"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeindekennzeichen_land"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gemeindezugehoerigkeit_land"/>
+                        <child name="gemeindezugehoerigkeit_gemeinde"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
@@ -1263,7 +1253,17 @@ Falls keine Zugehörigkeit zu einer Verwaltungsgemeinschaft besteht wird die Zug
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="kreis"/>
+                        <child name="gemeindezugehoerigkeit_kreis"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="land"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gemeindezugehoerigkeit_land"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
@@ -1273,7 +1273,7 @@ Falls keine Zugehörigkeit zu einer Verwaltungsgemeinschaft besteht wird die Zug
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
+                        <child name="gemeindezugehoerigkeit_regierungsbezirk"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
@@ -1374,27 +1374,27 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="kreis"/>
+                        <child name="gemeindezugehoerigkeit_kreis"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
                     <property>
                         <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
-                    </property>
-                    <property>
-                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="schluessel_land"/>
+                        <child name="land"/>
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="gemeindezugehoerigkeit_land"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="regierungsbezirk"/>
+                    </property>
+                    <property>
+                        <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gemeindezugehoerigkeit_regierungsbezirk"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
@@ -1493,7 +1493,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
                     </property>
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="regierungsbezirk"/>
+                        <child name="gemeindezugehoerigkeit_regierungsbezirk"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
