@@ -2121,13 +2121,6 @@
 <hsd:name namespace="jdbc:postgresql:testbed:aaa_ogr">aa_advstandardmodell</hsd:name>
 <hsd:description>Alias: "AA_AdVStandardModell", UML-Typ: Enumeration</hsd:description>
 <hsd:constraint type="abstract" value="false"/>
-<hsd:constraint type="enumeration">
-<core:properties xmlns:core="http://www.esdi-humboldt.eu/hale/core">
-<core:property name="allowOthers">
-<core:value value="true"/>
-</core:property>
-</core:properties>
-</hsd:constraint>
 <hsd:constraint type="has-value" value="false"/>
 <hsd:constraint type="jdbc.sqlquery">
 <core:text xml:space="preserve" xmlns:core="http://www.esdi-humboldt.eu/hale/core">SELECT * FROM "aaa_ogr"."aa_advstandardmodell"</core:text>
@@ -3476,13 +3469,6 @@
 <hsd:name namespace="jdbc:postgresql:testbed:aaa_ogr">aa_weiteremodellart</hsd:name>
 <hsd:description>Alias: "AA_WeitereModellart", UML-Typ: Code Liste</hsd:description>
 <hsd:constraint type="abstract" value="false"/>
-<hsd:constraint type="enumeration">
-<core:properties xmlns:core="http://www.esdi-humboldt.eu/hale/core">
-<core:property name="allowOthers">
-<core:value value="true"/>
-</core:property>
-</core:properties>
-</hsd:constraint>
 <hsd:constraint type="has-value" value="false"/>
 <hsd:constraint type="jdbc.sqlquery">
 <core:text xml:space="preserve" xmlns:core="http://www.esdi-humboldt.eu/hale/core">SELECT * FROM "aaa_ogr"."aa_weiteremodellart"</core:text>
@@ -5930,13 +5916,6 @@
 <hsd:name namespace="jdbc:postgresql:testbed:aaa_ogr">ax_abbaugut_bergbaubetrieb</hsd:name>
 <hsd:description>Alias: "AX_Abbaugut_Bergbaubetrieb", UML-Typ: Enumeration</hsd:description>
 <hsd:constraint type="abstract" value="false"/>
-<hsd:constraint type="enumeration">
-<core:properties xmlns:core="http://www.esdi-humboldt.eu/hale/core">
-<core:property name="allowOthers">
-<core:value value="true"/>
-</core:property>
-</core:properties>
-</hsd:constraint>
 <hsd:constraint type="has-value" value="false"/>
 <hsd:constraint type="jdbc.sqlquery">
 <core:text xml:space="preserve" xmlns:core="http://www.esdi-humboldt.eu/hale/core">SELECT * FROM "aaa_ogr"."ax_abbaugut_bergbaubetrieb"</core:text>
@@ -20886,13 +20865,6 @@
 <hsd:name namespace="jdbc:postgresql:testbed:aaa_ogr">ax_einrichtungenfuerdenschiffsverkehr</hsd:name>
 <hsd:description>FeatureType: "AX_EinrichtungenFuerDenSchiffsverkehr"</hsd:description>
 <hsd:constraint type="abstract" value="false"/>
-<hsd:constraint type="enumeration">
-<core:properties xmlns:core="http://www.esdi-humboldt.eu/hale/core">
-<core:property name="allowOthers">
-<core:value value="true"/>
-</core:property>
-</core:properties>
-</hsd:constraint>
 <hsd:constraint type="has-value" value="false"/>
 <hsd:constraint type="jdbc.sqlquery">
 <core:text xml:space="preserve" xmlns:core="http://www.esdi-humboldt.eu/hale/core">SELECT * FROM "aaa_ogr"."ax_einrichtungenfuerdenschiffsverkehr"</core:text>
@@ -21826,13 +21798,6 @@
 <hsd:name namespace="jdbc:postgresql:testbed:aaa_ogr">ax_fahrbahnachse</hsd:name>
 <hsd:description>FeatureType: "AX_Fahrbahnachse"</hsd:description>
 <hsd:constraint type="abstract" value="false"/>
-<hsd:constraint type="enumeration">
-<core:properties xmlns:core="http://www.esdi-humboldt.eu/hale/core">
-<core:property name="allowOthers">
-<core:value value="true"/>
-</core:property>
-</core:properties>
-</hsd:constraint>
 <hsd:constraint type="has-value" value="false"/>
 <hsd:constraint type="jdbc.sqlquery">
 <core:text xml:space="preserve" xmlns:core="http://www.esdi-humboldt.eu/hale/core">SELECT * FROM "aaa_ogr"."ax_fahrbahnachse"</core:text>
@@ -22693,13 +22658,6 @@
 <hsd:name namespace="jdbc:postgresql:testbed:aaa_ogr">ax_flaechebesondererfunktionalerpraegung</hsd:name>
 <hsd:description>FeatureType: "AX_FlaecheBesondererFunktionalerPraegung"</hsd:description>
 <hsd:constraint type="abstract" value="false"/>
-<hsd:constraint type="enumeration">
-<core:properties xmlns:core="http://www.esdi-humboldt.eu/hale/core">
-<core:property name="allowOthers">
-<core:value value="true"/>
-</core:property>
-</core:properties>
-</hsd:constraint>
 <hsd:constraint type="has-value" value="false"/>
 <hsd:constraint type="jdbc.sqlquery">
 <core:text xml:space="preserve" xmlns:core="http://www.esdi-humboldt.eu/hale/core">SELECT * FROM "aaa_ogr"."ax_flaechebesondererfunktionalerpraegung"</core:text>
@@ -24027,13 +23985,6 @@
 <hsd:name namespace="jdbc:postgresql:testbed:aaa_ogr">ax_flugverkehr</hsd:name>
 <hsd:description>FeatureType: "AX_Flugverkehr"</hsd:description>
 <hsd:constraint type="abstract" value="false"/>
-<hsd:constraint type="enumeration">
-<core:properties xmlns:core="http://www.esdi-humboldt.eu/hale/core">
-<core:property name="allowOthers">
-<core:value value="true"/>
-</core:property>
-</core:properties>
-</hsd:constraint>
 <hsd:constraint type="has-value" value="false"/>
 <hsd:constraint type="jdbc.sqlquery">
 <core:text xml:space="preserve" xmlns:core="http://www.esdi-humboldt.eu/hale/core">SELECT * FROM "aaa_ogr"."ax_flugverkehr"</core:text>
@@ -24743,13 +24694,6 @@
 <hsd:name namespace="jdbc:postgresql:testbed:aaa_ogr">ax_flurstueck</hsd:name>
 <hsd:description>FeatureType: "AX_Flurstueck"</hsd:description>
 <hsd:constraint type="abstract" value="false"/>
-<hsd:constraint type="enumeration">
-<core:properties xmlns:core="http://www.esdi-humboldt.eu/hale/core">
-<core:property name="allowOthers">
-<core:value value="true"/>
-</core:property>
-</core:properties>
-</hsd:constraint>
 <hsd:constraint type="has-value" value="false"/>
 <hsd:constraint type="jdbc.sqlquery">
 <core:text xml:space="preserve" xmlns:core="http://www.esdi-humboldt.eu/hale/core">SELECT * FROM "aaa_ogr"."ax_flurstueck"</core:text>
@@ -24783,14 +24727,12 @@
 <hsd:constraint type="jdbc.autoinc" value="true"/>
 <hsd:constraint type="jdbc.default" value="nextval('aaa_ogr.ax_flurstueck_ogc_fid_seq'::regclass)"/>
 <hsd:constraint type="nillable" value="false"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="663"/>
 </hsd:property>
 <hsd:property>
 <hsd:name>gml_id</hsd:name>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="false"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="489"/>
 </hsd:property>
 <hsd:property>
@@ -24798,7 +24740,6 @@
 <hsd:description>anlass codelist AA_Anlassart 0..*</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="4"/>
 </hsd:property>
 <hsd:property>
@@ -24806,7 +24747,6 @@
 <hsd:description>lebenszeitintervall|AA_Lebenszeitintervall|beginnt  DateTime 1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="false"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="489"/>
 </hsd:property>
 <hsd:property>
@@ -24814,7 +24754,6 @@
 <hsd:description>lebenszeitintervall|AA_Lebenszeitintervall|endet  DateTime 0..1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="489"/>
 </hsd:property>
 <hsd:property>
@@ -24822,7 +24761,6 @@
 <hsd:description>modellart|AA_Modellart|advStandardModell enumeration AA_AdVStandardModell 0..1</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="4"/>
 </hsd:property>
 <hsd:property>
@@ -24830,7 +24768,6 @@
 <hsd:description>modellart|AA_Modellart|sonstigesModell codelist AA_WeitereModellart 0..1</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="4"/>
 </hsd:property>
 <hsd:property>
@@ -24838,7 +24775,6 @@
 <hsd:description>zeigtAufExternes|AA_Fachdatenverbindung|art  URI 1</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="4"/>
 </hsd:property>
 <hsd:property>
@@ -24846,7 +24782,6 @@
 <hsd:description>zeigtAufExternes|AA_Fachdatenverbindung|fachdatenobjekt|AA_Fachdatenobjekt|name   0..1</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="4"/>
 </hsd:property>
 <hsd:property>
@@ -24854,7 +24789,6 @@
 <hsd:description>zeigtAufExternes|AA_Fachdatenverbindung|fachdatenobjekt|AA_Fachdatenobjekt|uri  URI 0..1</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="4"/>
 </hsd:property>
 <hsd:property>
@@ -24862,7 +24796,6 @@
 <hsd:description>abweichenderRechtszustand  Boolean 0..1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="670"/>
 </hsd:property>
 <hsd:property>
@@ -24870,7 +24803,6 @@
 <hsd:description>amtlicheFlaeche  Area 1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="false"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="491"/>
 </hsd:property>
 <hsd:property>
@@ -24878,7 +24810,6 @@
 <hsd:description>flurnummer  Integer 0..1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="650"/>
 </hsd:property>
 <hsd:property>
@@ -24886,7 +24817,6 @@
 <hsd:description>flurstuecksfolge  CharacterString 0..1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="670"/>
 </hsd:property>
 <hsd:property>
@@ -24894,7 +24824,6 @@
 <hsd:description>flurstueckskennzeichen  CharacterString 1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="false"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="670"/>
 </hsd:property>
 <hsd:property>
@@ -24902,7 +24831,6 @@
 <hsd:description>flurstuecksnummer|AX_Flurstuecksnummer|nenner   0..1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="670"/>
 </hsd:property>
 <hsd:property>
@@ -24910,7 +24838,6 @@
 <hsd:description>flurstuecksnummer|AX_Flurstuecksnummer|zaehler   1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="false"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="670"/>
 </hsd:property>
 <hsd:property>
@@ -24918,7 +24845,6 @@
 <hsd:description>gemarkung|AX_Gemarkung_Schluessel|gemarkungsnummer   1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="false"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="670"/>
 </hsd:property>
 <hsd:property>
@@ -24926,7 +24852,6 @@
 <hsd:description>gemarkung|AX_Gemarkung_Schluessel|land   1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="false"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="670"/>
 </hsd:property>
 <hsd:property>
@@ -24934,7 +24859,6 @@
 <hsd:description>gemeindezugehoerigkeit|AX_Gemeindekennzeichen|gemeinde   1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="670"/>
 </hsd:property>
 <hsd:property>
@@ -24942,7 +24866,6 @@
 <hsd:description>gemeindezugehoerigkeit|AX_Gemeindekennzeichen|gemeindeteil   0..1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="670"/>
 </hsd:property>
 <hsd:property>
@@ -24950,7 +24873,6 @@
 <hsd:description>gemeindezugehoerigkeit|AX_Gemeindekennzeichen|kreis   1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="670"/>
 </hsd:property>
 <hsd:property>
@@ -24958,7 +24880,6 @@
 <hsd:description>gemeindezugehoerigkeit|AX_Gemeindekennzeichen|land   1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="670"/>
 </hsd:property>
 <hsd:property>
@@ -24966,7 +24887,6 @@
 <hsd:description>gemeindezugehoerigkeit|AX_Gemeindekennzeichen|regierungsbezirk   0..1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="670"/>
 </hsd:property>
 <hsd:property>
@@ -24974,7 +24894,6 @@
 <hsd:description>rechtsbehelfsverfahren  Boolean 0..1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="670"/>
 </hsd:property>
 <hsd:property>
@@ -24982,7 +24901,6 @@
 <hsd:description>sonstigeEigenschaften|AX_SonstigeEigenschaften_Flurstueck|angabenZumAbschnittBemerkung   0..1</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="4"/>
 </hsd:property>
 <hsd:property>
@@ -24990,7 +24908,6 @@
 <hsd:description>sonstigeEigenschaften|AX_SonstigeEigenschaften_Flurstueck|angabenZumAbschnittFlurstueck   0..1</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="4"/>
 </hsd:property>
 <hsd:property>
@@ -24998,7 +24915,6 @@
 <hsd:description>sonstigeEigenschaften|AX_SonstigeEigenschaften_Flurstueck|angabenZumAbschnittNummerAktenzeichen   0..1</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="4"/>
 </hsd:property>
 <hsd:property>
@@ -25006,7 +24922,6 @@
 <hsd:description>sonstigeEigenschaften|AX_SonstigeEigenschaften_Flurstueck|angabenZumAbschnittStelle   0..1</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="4"/>
 </hsd:property>
 <hsd:property>
@@ -25014,7 +24929,6 @@
 <hsd:description>sonstigeEigenschaften|AX_SonstigeEigenschaften_Flurstueck|flaecheDesAbschnitts  Area 0..1</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="2"/>
 </hsd:property>
 <hsd:property>
@@ -25022,7 +24936,6 @@
 <hsd:description>sonstigeEigenschaften|AX_SonstigeEigenschaften_Flurstueck|kennungSchluessel   0..1</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="4"/>
 </hsd:property>
 <hsd:property>
@@ -25030,7 +24943,6 @@
 <hsd:description>zeitpunktDerEntstehung  Date 0..1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="490"/>
 </hsd:property>
 <hsd:property>
@@ -25038,7 +24950,6 @@
 <hsd:description>zustaendigeStelle|AX_Dienststelle_Schluessel|land   1</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="4"/>
 </hsd:property>
 <hsd:property>
@@ -25046,7 +24957,6 @@
 <hsd:description>zustaendigeStelle|AX_Dienststelle_Schluessel|stelle   1</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="4"/>
 </hsd:property>
 <hsd:property>
@@ -25054,35 +24964,30 @@
 <hsd:description>zweifelhafterFlurstuecksnachweis  Boolean 0..1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="670"/>
 </hsd:property>
 <hsd:property>
 <hsd:name>istabgeleitetaus</hsd:name>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="0"/>
 </hsd:property>
 <hsd:property>
 <hsd:name>traegtbeizu</hsd:name>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="0"/>
 </hsd:property>
 <hsd:property>
 <hsd:name>hatdirektunten</hsd:name>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="0"/>
 </hsd:property>
 <hsd:property>
 <hsd:name>istteilvon</hsd:name>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="0"/>
 </hsd:property>
 <hsd:property>
@@ -25090,7 +24995,6 @@
 <hsd:description>Assoziation zu: FeatureType AX_Buchungsstelle (ax_buchungsstelle) 1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="false"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="489"/>
 </hsd:property>
 <hsd:property>
@@ -25098,7 +25002,6 @@
 <hsd:description>Assoziation zu: FeatureType AX_Flurstueck (ax_flurstueck) 0..*</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="0"/>
 </hsd:property>
 <hsd:property>
@@ -25106,7 +25009,6 @@
 <hsd:description>Assoziation zu: FeatureType AX_Flurstueck (ax_flurstueck) 0..*</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="0"/>
 </hsd:property>
 <hsd:property>
@@ -25114,7 +25016,6 @@
 <hsd:description>Assoziation zu: FeatureType AX_LagebezeichnungOhneHausnummer (ax_lagebezeichnungohnehausnummer) 0..*</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="0"/>
 </hsd:property>
 <hsd:property>
@@ -25122,7 +25023,6 @@
 <hsd:description>Assoziation zu: FeatureType AX_LagebezeichnungMitHausnummer (ax_lagebezeichnungmithausnummer) 0..*</hsd:description>
 <hsd:constraint type="cardinality" value="0..n"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="0"/>
 </hsd:property>
 <hsd:property>
@@ -25130,7 +25030,6 @@
 <hsd:description>wkb_geometry  GM_Object 0..1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="546"/>
 </hsd:property>
 <hsd:property>
@@ -25138,7 +25037,6 @@
 <hsd:description>objektkoordinaten  GM_Point 0..1</hsd:description>
 <hsd:constraint type="cardinality" value="1..1"/>
 <hsd:constraint type="nillable" value="true"/>
-<hsd:constraint type="xsd.attribute" value="false"/>
 <hsd:propertyType index="545"/>
 </hsd:property>
 </hsd:declares>
