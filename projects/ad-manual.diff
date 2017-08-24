@@ -1,5 +1,5 @@
 diff --git a/projects/ad-auto.halex.alignment.xml b/projects/ad-manual.halex.alignment.xml
-index 7393b48..660f755 100644
+index 7393b48..7b7c7dc 100644
 --- a/projects/ad-auto.halex.alignment.xml
 +++ b/projects/ad-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -77,6 +77,42 @@ index 7393b48..660f755 100644
  if (!regierungsbezirk) {
  	regierungsbezirk = '0'
  }
+@@ -2023,7 +2020,7 @@ else {
+                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+             </property>
+         </target>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{id}" name="pattern"/>
++        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
+     </cell>
+     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="Cc179f391-2a24-4500-b41a-5107f8fcb270" priority="normal">
+         <source name="var">
+@@ -2038,7 +2035,7 @@ else {
+                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+             </property>
+         </target>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{id}" name="pattern"/>
++        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
+     </cell>
+     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C5c107c12-aa5c-4546-82d6-4bac140dccac" priority="normal">
+         <source name="var">
+@@ -2053,7 +2050,7 @@ else {
+                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+             </property>
+         </target>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{id}" name="pattern"/>
++        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
+     </cell>
+     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C3036c6aa-ef00-4410-abb6-a9f64b7b6203" priority="normal">
+         <source name="var">
+@@ -2068,7 +2065,7 @@ else {
+                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+             </property>
+         </target>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{id}" name="pattern"/>
++        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
+     </cell>
+     <cell relation="eu.esdihumboldt.hale.align.assign" id="C39637ce1-0c45-4334-bddf-1db42f5e0be8" priority="normal">
+         <target>
 @@ -2420,23 +2417,6 @@ else {
          </target>
          <parameter value="other:unpopulated" name="value"/>

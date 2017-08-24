@@ -2020,7 +2020,7 @@ else {
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{id}" name="pattern"/>
+        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="Cc179f391-2a24-4500-b41a-5107f8fcb270" priority="normal">
         <source name="var">
@@ -2035,7 +2035,7 @@ else {
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{id}" name="pattern"/>
+        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C5c107c12-aa5c-4546-82d6-4bac140dccac" priority="normal">
         <source name="var">
@@ -2050,7 +2050,7 @@ else {
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{id}" name="pattern"/>
+        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C3036c6aa-ef00-4410-abb6-a9f64b7b6203" priority="normal">
         <source name="var">
@@ -2065,7 +2065,7 @@ else {
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{id}" name="pattern"/>
+        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C39637ce1-0c45-4334-bddf-1db42f5e0be8" priority="normal">
         <target>
