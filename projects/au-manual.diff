@@ -1,5 +1,5 @@
 diff --git a/projects/au-auto.halex.alignment.xml b/projects/au-manual.halex.alignment.xml
-index 562d8e7..c317d70 100644
+index 9651f47..897fa34 100644
 --- a/projects/au-auto.halex.alignment.xml
 +++ b/projects/au-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -130,7 +130,7 @@ index 562d8e7..c317d70 100644
 -	def land = _source.p.gemeindekennzeichen.AX_Gemeindekennzeichen.land.value()
 -	def regBezirk = _source.p.gemeindekennzeichen.AX_Gemeindekennzeichen.regierungsbezirk.value()?:'0'
 -	def kreis = _source.p.gemeindekennzeichen.AX_Gemeindekennzeichen.kreis.value()
-+	def land = _source.p.gemeindekennzeichen_land.value()
++	def land = _source.p.land.value()
 +	def regBezirk = _source.p.regierungsbezirk.value()?:'0'
 +	def kreis = _source.p.kreis.value()
  	
@@ -198,7 +198,7 @@ index 562d8e7..c317d70 100644
  // bestimme upperLevelUnit, sammle ID
 -def land = _source.p.schluessel.AX_Kreis_Schluessel.land.value()
 -def regBezirk = _source.p.schluessel.AX_Kreis_Schluessel.regierungsbezirk.value()
-+def land = _source.p.schluessel_land.value()
++def land = _source.p.land.value()
 +def regBezirk = _source.p.regierungsbezirk.value()
  def upperLevelUnit
  if (regBezirk &amp;&amp; regBezirk != '0') {
