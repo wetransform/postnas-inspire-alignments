@@ -875,7 +875,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                         <child name="hatdirektunten"/>
                     </property>
                     <property>
-                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="gml_id"/>
                     </property>
                 </jp:condition>
@@ -887,7 +887,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                         <child name="hatdirektunten"/>
                     </property>
                     <property>
-                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="gml_id"/>
                     </property>
                 </jp:condition>
