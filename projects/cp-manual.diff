@@ -1,5 +1,5 @@
 diff --git a/projects/cp-auto.halex.alignment.xml b/projects/cp-manual.halex.alignment.xml
-index ea58474..a33741e 100644
+index b1e4942..a765b3b 100644
 --- a/projects/cp-auto.halex.alignment.xml
 +++ b/projects/cp-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -42,25 +42,35 @@ index ea58474..a33741e 100644
      </cell>
      <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc51360e3-edaa-45a0-9e45-bcf77eb69c99" priority="normal">
          <source>
-@@ -1134,7 +1126,7 @@ class Processor {
+@@ -1109,7 +1101,7 @@ class Processor {
  
  
- // alle Eigenschaften mit Geometrien aus Flurstücken
--def geoms = _source.links.AX_Flurstueck.p.position.list()
-+def geoms = _source.links.ax_flurstueck.p.wkb_geometry.values()
+ // Geometrien wenn aus zugehörigen Gemarkungen bestimmen
+-def _land = _source.p.schluessel.AX_Bundesland_Schluessel.land.value()
++def _land = _source.p.land.value()
+ def geoms = _.context.collector().GemarkungGeometrien[_land].clear()
  if (geoms) {
  	geoms = _.geom.findAll(geoms)
+@@ -1273,15 +1265,15 @@ class Processor {
+ def geoms
+ 
+ // Geometrien wenn möglich aus zugehörigen Fluren bestimmen
+-def _land = _source.p.schluessel.AX_Gemarkung_Schluessel.land.value()
+-def _gemarkung = _source.p.schluessel.AX_Gemarkung_Schluessel.gemarkungsnummer.value()
++def _land = _source.p.land.value()
++def _gemarkung = _source.p.gemarkungsnummer.value()
+ if (_land &amp;&amp; _gemarkung) {
+ 	geoms = _.context.collector().FlurGeometrien[_land][_gemarkung].clear()
  }
-@@ -1296,7 +1288,7 @@ class Processor {
  
+ // ansonsten Geometrien aus Flurstücken (in manchen Bundesländern gibt es keine Flure/Gemarkungsteile)
+ if (!geoms) {
+-	geoms = _source.links.AX_Flurstueck.p.position.list()
++	geoms = _source.links.ax_flurstueck.p.wkb_geometry.values()
+ }
  
- // alle Eigenschaften mit Geometrien aus Flurstücken
--def geoms = _source.links.AX_Flurstueck.p.position.list()
-+def geoms = _source.links.ax_flurstueck.p.wkb_geometry.values()
  if (geoms) {
- 	geoms = _.geom.findAll(geoms)
- }
-@@ -1460,9 +1452,9 @@ class Processor {
+@@ -1453,9 +1445,9 @@ class Processor {
  // sammle Geometrien von assoziierten Flurstücken
  
  // Flurnummer als Zahl
@@ -72,7 +82,7 @@ index ea58474..a33741e 100644
  fs = fs.findAll {
    // flur aus flurnummer bestimmen
    def stueckFlur = it.p.flurnummer.value()
-@@ -1479,7 +1471,7 @@ fs = fs.findAll {
+@@ -1472,7 +1464,7 @@ fs = fs.findAll {
    stueckFlur == flur
  }
  def geoms = fs.collect {
@@ -81,6 +91,17 @@ index ea58474..a33741e 100644
  }
  if (geoms) {
    geoms = _.geom.findAll(geoms)
+@@ -1498,8 +1490,8 @@ g = new Processor().convert(g, _project.variables.ERROR_AREA_THRESHOLD as double
+ union = new DefaultGeometryProperty(union.CRSDefinition, g)
+ 
+ // speichere aggregierte Geometrie für Bildung von Gemarkung
+-def _land = _source.p.schluesselGesamt.value()
+-def _gemarkung = _source.p.schluessel.AX_GemarkungsteilFlur_Schluessel.gemarkung.value()
++def _land = _source.p.land.value()
++def _gemarkung = _source.p.gemarkung.value()
+ if (_land &amp;&amp; _gemarkung) {
+ 	_.context.collector().FlurGeometrien[_land][_gemarkung] &lt;&lt; union
+ }
 @@ -2061,7 +2053,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
                  <child name="href" ns="http://www.w3.org/1999/xlink"/>
              </property>
