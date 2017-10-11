@@ -1,5 +1,5 @@
 diff --git a/projects/au-auto.halex.alignment.xml b/projects/au-manual.halex.alignment.xml
-index 9651f47..897fa34 100644
+index ea210cb..47be5f7 100644
 --- a/projects/au-auto.halex.alignment.xml
 +++ b/projects/au-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -90,34 +90,25 @@ index 9651f47..897fa34 100644
                  </type>
                  <child name="artdergebietsgrenze"/>
              </property>
-@@ -1046,7 +1044,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
-         <complexParameter name="script">
-             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
- // alle Eigenschaften mit Geometrien aus Flurstücken
--def geoms = _.geom.findPolygons(_source.links.AX_Flurstueck.p.position.list())
-+def geoms = _.geom.findPolygons(_source.links.ax_flurstueck.p.wkb_geometry.values())
+@@ -1084,7 +1082,7 @@ class Processor {
  
- // führe den Join nicht aus wenn keine assoziierten Flurstücke
- // mit entsprechender Geometrie vorhanden sind
-@@ -1058,7 +1056,7 @@ def collect
- withTransformationContext {
- 	collect = _.context.collector(it)
  }
+ 
 -def _id = 'AdministrativeUnit_' + _source.p.schluesselGesamt.value()
 +def _id = 'AdministrativeUnit_' + _source.p.schluesselgesamt.value()
  
- _target{
- 	geometry {
-@@ -1147,7 +1145,7 @@ Die Verknüpfung zur untergeordneten Ebene von `AdministrativeUnit`s wird über
-         <complexParameter name="script">
-             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // Geometrien aus Lower Level Unit
+ def geoms = _.context.collector().LowerLevelGeometrien[_id].clear()
+@@ -1259,7 +1257,7 @@ class Processor {
+ 
+ 
  // alle Eigenschaften mit Geometrien aus Flurstücken
 -def geoms = _source.links.AX_Flurstueck.p.position.list()
 +def geoms = _source.links.ax_flurstueck.p.wkb_geometry.values()
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // vorhanden sind
-@@ -1163,14 +1161,14 @@ def collect
+@@ -1280,14 +1278,14 @@ def collect
  withTransformationContext {
  	collect = _.context.collector(it)
  }
@@ -136,9 +127,9 @@ index 9651f47..897fa34 100644
  	
  	upperLevelUnit =  "AdministrativeUnit_${land}${regBezirk}${kreis}"
  	
-@@ -1281,13 +1279,13 @@ Falls keine Zugehörigkeit zu einer Verwaltungsgemeinschaft besteht wird die Zug
-         <complexParameter name="script">
-             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+@@ -1466,13 +1464,13 @@ class Processor {
+ 
+ 
  // alle Eigenschaften mit Geometrien aus Flurstücken
 -def geoms = _.geom.findPolygons(_source.links.AX_Gemeinde.AX_Flurstueck.p.position.list())
 +def geoms = _.geom.findPolygons(_source.links.ax_gemeinde.ax_flurstueck.p.wkb_geometry.values())
@@ -153,7 +144,7 @@ index 9651f47..897fa34 100644
  	if (gemeinden) {
  		_log.warn("Keine Flurstückgeometrien zu Verwaltungsgemeinschaft $sourceId gefunden, zugehörige AdminstrativeUnit wird nicht erstellt")
  	}
-@@ -1298,14 +1296,14 @@ if (!geoms) {
+@@ -1483,14 +1481,14 @@ if (!geoms) {
  }
  
  // Schlüssel für alle Gemeinden der Gemeinschaft
@@ -168,9 +159,9 @@ index 9651f47..897fa34 100644
 -def upperLevelUnit = 'AdministrativeUnit_' + _source.p.schluesselGesamt.value()[0..4]
 +def upperLevelUnit = 'AdministrativeUnit_' + _source.p.schluesselgesamt.value()[0..4]
  
- _target{
- 	geometry {
-@@ -1324,7 +1322,7 @@ _target{
+ def union = _.geom.union(geoms)
+ 
+@@ -1516,7 +1514,7 @@ _target{
  
  withTransformationContext {
  	def collect = _.context.collector(it)
@@ -179,21 +170,17 @@ index 9651f47..897fa34 100644
  	// Hinterlege ID je Gemeinde
  	gemeinden.each {
  		collect.verwaltungsGemeinschaft['AdministrativeUnit_' + it] = _id
-@@ -1402,7 +1400,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
-         <complexParameter name="script">
-             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
- // alle Eigenschaften mit Geometrien aus Flurstücken
--def geoms = _.geom.findPolygons(_source.links.AX_Flurstueck.p.position.list())
-+def geoms = _.geom.findPolygons(_source.links.ax_flurstueck.p.wkb_geometry.values())
+@@ -1615,7 +1613,7 @@ class Processor {
  
- // führe den Join nicht aus wenn keine assoziierten Flurstücke
- // mit entsprechender Geometrie vorhanden sind
-@@ -1414,11 +1412,11 @@ def collect
- withTransformationContext {
- 	collect = _.context.collector(it)
  }
+ 
 -def _id = 'AdministrativeUnit_' + _source.p.schluesselGesamt.value()
 +def _id = 'AdministrativeUnit_' + _source.p.schluesselgesamt.value()
+ 
+ // Geometrien aus Lower Level Unit
+ def geoms = _.context.collector().LowerLevelGeometrien[_id].clear()
+@@ -1632,8 +1630,8 @@ withTransformationContext {
+ }
  
  // bestimme upperLevelUnit, sammle ID
 -def land = _source.p.schluessel.AX_Kreis_Schluessel.land.value()
@@ -203,57 +190,53 @@ index 9651f47..897fa34 100644
  def upperLevelUnit
  if (regBezirk &amp;&amp; regBezirk != '0') {
  	upperLevelUnit = 'AdministrativeUnit_' + land + regBezirk
-@@ -1501,7 +1499,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
-         <complexParameter name="script">
-             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
- // alle Eigenschaften mit Geometrien aus Flurstücken
--def geoms = _.geom.findPolygons(_source.links.AX_Flurstueck.p.position.list())
-+def geoms = _.geom.findPolygons(_source.links.ax_flurstueck.p.wkb_geometry.values())
+@@ -1754,7 +1752,7 @@ class Processor {
  
- // führe den Join nicht aus wenn keine assoziierten Flurstücke
- // mit entsprechender Geometrie vorhanden sind
-@@ -1513,10 +1511,10 @@ def collect
- withTransformationContext {
- 	collect = _.context.collector(it)
  }
+ 
 -def _id = 'AdministrativeUnit_' + _source.p.schluesselGesamt.value()
 +def _id = 'AdministrativeUnit_' + _source.p.schluesselgesamt.value()
+ 
+ // Geometrien aus Lower Level Unit
+ def geoms = _.context.collector().LowerLevelGeometrien[_id].clear()
+@@ -1771,7 +1769,7 @@ withTransformationContext {
+ }
  
  // bestimme upperLevelUnit, sammle ID
 -def upperLevelUnit = 'AdministrativeUnit_' + _source.p.schluessel.AX_Regierungsbezirk_Schluessel.land.value()
 +def upperLevelUnit = 'AdministrativeUnit_' + _source.p.land.value()
  collect.land[upperLevelUnit] &lt;&lt; _id
  
- _target{
-@@ -2479,33 +2477,15 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+ def union = _.geom.union(geoms)
+@@ -2744,33 +2742,15 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
      <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_C153144ee-8008-471c-a689-adba7e1d10b7">
          <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
      </modifier>
--    <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_C50146037-bbef-42fc-b1f5-03656c971858">
+-    <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_C20449391-5bfb-4ec5-b494-dfbac5854cc0">
 -        <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
 -    </modifier>
      <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_C67bd480d-5ea0-4ef8-b84c-15b1063d2667">
          <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
      </modifier>
--    <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_C9d42346d-f8ab-44d6-8a30-7b7030955c0c">
+-    <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_C730641fd-b68b-4b5f-b63b-35e1c9076579">
 -        <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
 -    </modifier>
--    <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_Ca8cda25e-00d1-4715-a4e0-c6ff8ca3b08e">
+-    <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_Ce653f33d-5e1e-4b8b-aee7-9e48ef01f113">
 -        <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
 -    </modifier>
      <modifier cell="Ccef5cb84-463f-48e8-82cb-646e5f1d8032_C153144ee-8008-471c-a689-adba7e1d10b7">
          <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
      </modifier>
--    <modifier cell="Ccef5cb84-463f-48e8-82cb-646e5f1d8032_C50146037-bbef-42fc-b1f5-03656c971858">
+-    <modifier cell="Ccef5cb84-463f-48e8-82cb-646e5f1d8032_C20449391-5bfb-4ec5-b494-dfbac5854cc0">
 -        <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
 -    </modifier>
      <modifier cell="Ccef5cb84-463f-48e8-82cb-646e5f1d8032_C67bd480d-5ea0-4ef8-b84c-15b1063d2667">
          <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
      </modifier>
--    <modifier cell="Ccef5cb84-463f-48e8-82cb-646e5f1d8032_C9d42346d-f8ab-44d6-8a30-7b7030955c0c">
+-    <modifier cell="Ccef5cb84-463f-48e8-82cb-646e5f1d8032_C730641fd-b68b-4b5f-b63b-35e1c9076579">
 -        <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
 -    </modifier>
--    <modifier cell="Ccef5cb84-463f-48e8-82cb-646e5f1d8032_Ca8cda25e-00d1-4715-a4e0-c6ff8ca3b08e">
+-    <modifier cell="Ccef5cb84-463f-48e8-82cb-646e5f1d8032_Ce653f33d-5e1e-4b8b-aee7-9e48ef01f113">
 -        <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
 -    </modifier>
      <modifier cell="Cd866ada4-43ad-47dd-963d-a2d48a11c40c">
