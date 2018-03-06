@@ -123,12 +123,14 @@ migrations.each { name, config ->
       rename(/(.*)-auto(.*)/, '$1-manual$2')
     }
     // adapt project file to reference correct alignment
-    manualProjectFile.text = manualProjectFile.text.replaceFirst(
+    def manualText = manualProjectFile.getText('UTF-8')
+    manualText = manualText.replaceFirst(
       /-auto\.halex\.alignment\.xml/,
       '-manual.halex.alignment.xml')
-    manualProjectFile.text = manualProjectFile.text.replaceFirst(
+    manualText = manualText.replaceFirst(
       /-auto\.halex/,
       '-manual.halex')
+    manualProjectFile.write(manualText, 'UTF-8')
 
     if (diffFile.exists() && diffFile.length()) {
       // apply diff
