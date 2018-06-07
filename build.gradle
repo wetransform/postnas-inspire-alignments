@@ -208,5 +208,5 @@ migrations.each { name, config ->
  * Gradle wrapper
  */
 task wrapper(type: Wrapper) {
-  gradleVersion = '3.2'
+  gradleVersion = '4.8'
 }
