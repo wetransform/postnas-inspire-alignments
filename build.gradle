@@ -44,8 +44,7 @@ task('dbMatching', type: hale.cli()) {
 }
 
 
-def json = new groovy.json.JsonSlurper()
-def migrations = json.parse(file(project.hasProperty('migrationsFile') ? project.getProperty('migrationsFile') : 'migrations.json'))
+def migrations = Config.load(file(project.hasProperty('migrationsFile') ? project.getProperty('migrationsFile') : 'migrations.yaml'))
 
 /*
 task('migrate-all') {
