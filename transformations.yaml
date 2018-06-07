@@ -1,0 +1,72 @@
+---
+defaults:
+  enabled: true
+  validation:
+    xmlSchema: true
+    haleInternal: true
+  variables:
+    INSPIRE_NAMESPACE: https://registry.gdi-de.org/id/REPLACEME
+
+tasks:
+  ad:
+    project: ad
+    model: DLKM
+    additionalModels:
+      - DKKM1000
+  au-dlkm:
+    project: au
+    model: DLKM
+  au-basis-dlm:
+    project: au
+    model: Basis-DLM
+  cp:
+    project: cp
+    model: DLKM
+  gn-dlkm:
+    project: gn
+    model: DLKM
+  gn-basis-dlm:
+    project: gn
+    model: Basis-DLM
+  hy-n-dlkm:
+    project: hy-n
+    model: DLKM
+  hy-n-basis-dlm:
+    project: hy-n
+    model: Basis-DLM
+  hy-p-dlkm:
+    project: hy-p
+    model: DLKM
+  hy-p-basis-dlm:
+    project: hy-p
+    model: Basis-DLM
+  tn-ro-dlkm:
+    project: tn-ro
+    model: DLKM
+  tn-ro-basis-dlm:
+    project: tn-ro
+    model: Basis-DLM
+  tn-ra-dlkm:
+    project: tn-ra
+    model: DLKM
+  tn-ra-basis-dlm:
+    project: tn-ra
+    model: Basis-DLM
+  tn-w-dlkm:
+    project: tn-w
+    model: DLKM
+  tn-w-basis-dlm:
+    project: tn-w
+    model: Basis-DLM
+  tn-a-dlkm:
+    project: tn-a
+    model: DLKM
+  tn-a-basis-dlm:
+    project: tn-a
+    model: Basis-DLM
+  tn-c-dlkm:
+    project: tn-c
+    model: DLKM
+  tn-c-basis-dlm:
+    project: tn-c
+    model: Basis-DLM

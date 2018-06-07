@@ -4,3 +4,6 @@ gradle.properties
 /buildSrc/build/
 /*.zip
 *.rej
+
+transformations-override.yaml
+transformation/

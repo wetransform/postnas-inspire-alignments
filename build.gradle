@@ -45,6 +45,7 @@ task('dbMatching', type: hale.cli()) {
 
 
 def migrations = Config.load(file(project.hasProperty('migrationsFile') ? project.getProperty('migrationsFile') : 'migrations.yaml'))
+def projectFiles = [:]
 
 /*
 task('migrate-all') {
@@ -63,6 +64,8 @@ migrations.each { name, config ->
   def autoProjectFile = new File(projectsDir, "${name}-auto.halex")
   def manualProjectFile = new File(projectsDir, "${name}-manual.halex")
   def dbProjectFile = new File(projectsDir, "${name}-db.halex")
+
+  projectFiles[name] = dbProjectFile
 
   def diffFile = new File(projectsDir, "${name}-manual.diff")
 
@@ -202,6 +205,120 @@ migrations.each { name, config ->
     group 'Alignment migration'
   }
 
+}
+
+/*
+ * Transformation
+ */
+
+def transformationFiles = [file('transformations.yaml')]
+transformationFiles.addAll(fileTree(dir: projectDir).matching {
+  //TODO configurable?
+  include('transformations-override.yaml')
+} as List)
+
+def transformations = Config.load(transformationFiles as File[])
+
+transformations.tasks.each { name, config ->
+  // apply defaults
+  if (transformations.defaults) {
+    config = Config.mergeConfigs([transformations.defaults, config])
+  }
+
+  // check if enabled
+  if (config.enabled != null && !config.enabled) {
+    return
+  }
+
+  // requires a project to be set
+  if (!config.project) {
+    return
+  }
+  def projectId = config.project
+  def projectFile = projectFiles[projectId]
+
+  def targetFolder = new File(file('transformation'), name)
+  def targetFile = new File(targetFolder, 'result.gml')
+
+  task("transform-${name}", type: hale.transform(), dependsOn: "db-migrate-$projectId") {
+    // transformation project
+    transformation = projectFile
+
+    // database source
+    source(project.findProperty('db.uri') ?: 'jdbc:postgresql://localhost:5432/testbed') {
+      provider 'eu.esdihumboldt.hale.io.jdbc.instance.reader'
+
+      setting 'jdbc.user', (project.findProperty('db.user') ?: 'postgres')
+      setting 'jdbc.password', (project.findProperty('db.password') ?: 'postgres')
+    }
+
+    if (config.model) {
+      // restrict to a specific model -> add generic filter
+      filterArgs << '-filter'
+      filterArgs << "CQL:advstandardmodell = '${config.model}'"
+
+      if (config.additionalModels) {
+        // add filters for additional models (also accepting those)
+        config.additionalModels.each { modelName ->
+          filterArgs << '-filter'
+          filterArgs << "CQL:advstandardmodell = '${modelName}'"
+        }
+      }
+
+      // add project variable
+      projectVariables['ADV_MODELLART'] = config.model
+    }
+
+    // project variables from config
+    if (config.variables) {
+      projectVariables << config.variables
+    }
+
+    // transformation target
+    target(targetFile) {
+      provider 'eu.esdihumboldt.hale.io.wfs.fc.write-2.0' // WFS 2 FC
+      setting 'xml.pretty', true
+      setting 'crs.epsg.prefix', 'http://www.opengis.net/def/crs/EPSG/0/'
+      setting 'skipFeatureCount', true
+
+      // custom settings
+      if (config.writerSettings) {
+        settings << config.writerSettings
+      }
+    }
+    
+    // XML schema validation
+    if (config.validation.xmlSchema) {
+      validate('eu.esdihumboldt.hale.io.xml.validator')
+    }
+    
+    // folder for output and reports
+    logFolder = targetFolder
+
+    // general options
+    printStacktrace = true
+    trustGroovy = true
+
+    // activate hale internal validation of transformed instances
+    if (config.validation.haleInternal) {
+      environment['HALE_TRANSFORMATION_INTERNAL_VALIDATION'] = 'true'
+    }
+    
+    //FIXME hale 3.4 required
+    // statistics and ...
+    additionalArgs << '-statisticsOut'
+    File statsFile = new File(targetFolder, 'statistics.json')
+    additionalArgs << statsFile.absolutePath
+    // ... success evaluation
+    // additionalArgs << '-successEvaluation'
+    // additionalArgs << project.file('success.groovy')
+
+    description "Runs a transformation based on project ${projectId} for model $model."
+    group 'Transformation'
+  }.doFirst {
+    targetFolder.deleteDir()
+    targetFolder.mkdirs()
+  }
 }
 
 /*
