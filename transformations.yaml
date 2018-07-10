@@ -31,9 +31,13 @@ tasks:
   hy-n-dlkm:
     project: hy-n
     model: DLKM
+    variables:
+      NETWORK_ID: Network_Hydro
   hy-n-basis-dlm:
     project: hy-n
     model: Basis-DLM
+    variables:
+      NETWORK_ID: Network_Hydro
   hy-p-dlkm:
     project: hy-p
     model: DLKM
@@ -43,30 +47,60 @@ tasks:
   tn-ro-dlkm:
     project: tn-ro
     model: DLKM
+    variables:
+      NETWORK_ID: TransportNetwork_Road
+      NETWORK_NAME: Straßen-Verkehrsnetz
   tn-ro-basis-dlm:
     project: tn-ro
     model: Basis-DLM
+    variables:
+      NETWORK_ID: TransportNetwork_Road
+      NETWORK_NAME: Straßen-Verkehrsnetz
   tn-ra-dlkm:
     project: tn-ra
     model: DLKM
+    variables:
+      NETWORK_ID: TransportNetwork_Railway
+      NETWORK_NAME: Eisenbahn-Verkehrsnetz
   tn-ra-basis-dlm:
     project: tn-ra
     model: Basis-DLM
+    variables:
+      NETWORK_ID: TransportNetwork_Railway
+      NETWORK_NAME: Eisenbahn-Verkehrsnetz
   tn-w-dlkm:
     project: tn-w
     model: DLKM
+    variables:
+      NETWORK_ID: TransportNetwork_Water
+      NETWORK_NAME: Wasser-Verkehrsnetz
   tn-w-basis-dlm:
     project: tn-w
     model: Basis-DLM
+    variables:
+      NETWORK_ID: TransportNetwork_Water
+      NETWORK_NAME: Wasser-Verkehrsnetz
   tn-a-dlkm:
     project: tn-a
     model: DLKM
+    variables:
+      NETWORK_ID: TransportNetwork_Air
+      NETWORK_NAME: Luftfahrt-Verkehrsnetz
   tn-a-basis-dlm:
     project: tn-a
     model: Basis-DLM
+    variables:
+      NETWORK_ID: TransportNetwork_Air
+      NETWORK_NAME: Luftfahrt-Verkehrsnetz
   tn-c-dlkm:
     project: tn-c
     model: DLKM
+    variables:
+      NETWORK_ID: TransportNetwork_Cable
+      NETWORK_NAME: Kabel-Verkehrsnetz
   tn-c-basis-dlm:
     project: tn-c
     model: Basis-DLM
+    variables:
+      NETWORK_ID: TransportNetwork_Cable
+      NETWORK_NAME: Kabel-Verkehrsnetz
