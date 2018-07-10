@@ -840,6 +840,13 @@ _target {&#xD;
                 </jp:condition>
             </jp:join-parameter>
         </complexParameter>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.join" id="C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source name="types">
@@ -883,6 +890,13 @@ _target {&#xD;
                 </jp:condition>
             </jp:join-parameter>
         </complexParameter>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Cc4d2bf71-d9f7-4089-84fc-80ac610248a1" priority="normal">
         <source>
@@ -929,6 +943,13 @@ _target {&#xD;
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C0c7a1560-07b7-497c-a0ea-9c6fad6bf459_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source>
@@ -947,6 +968,13 @@ _target {&#xD;
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C98bc7f41-5f2a-4b8d-878d-f4576b4f4e17" priority="normal">
         <source>
@@ -995,6 +1023,13 @@ _target {&#xD;
                 <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C32e99886-76cc-4140-baac-1bd195a851ef_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source name="geometrie">
@@ -1011,6 +1046,13 @@ _target {&#xD;
                 <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C492c3831-f97d-4d49-ac60-7beb6b6d245e" priority="normal">
         <source name="geometrie">
@@ -1057,6 +1099,13 @@ _target {&#xD;
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cde4b9411-60d4-4cb4-b200-f7549b88df60_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source>
@@ -1075,6 +1124,13 @@ _target {&#xD;
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cb91972dd-fc22-488d-8b0f-3918f77a7c79" priority="normal">
         <source>
@@ -1169,6 +1225,13 @@ _target {&#xD;
             </lookup-table>
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C9fa88231-373a-462b-9bdf-64c2bad25eeb_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source>
@@ -1195,6 +1258,13 @@ _target {&#xD;
             </lookup-table>
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C5a37708c-333d-4276-8f1f-8326af62a576" priority="normal">
         <source>
@@ -1514,6 +1584,13 @@ _target {&#xD;
             </property>
         </target>
         <parameter value="network" name="collectorName"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9abf2351-2518-44d0-8926-cb8caf880963_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source name="id">
@@ -1531,6 +1608,13 @@ _target {&#xD;
             </property>
         </target>
         <parameter value="network" name="collectorName"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ca9d3b9b7-8ef8-4abb-93cf-0f4bdf32defa" priority="normal">
         <source name="id">
@@ -1577,6 +1661,13 @@ _target {&#xD;
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C670559fc-a9d4-4fcb-a456-32fc671c071c_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source name="id">
@@ -1593,6 +1684,13 @@ _target {&#xD;
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C9892986c-a82d-4d20-80b9-bbd0d408055c" priority="normal">
         <source name="id">
@@ -1679,6 +1777,13 @@ _target {&#xD;
                 <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ca0d6577b-2581-49cd-87d8-8f235e6ce242_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source name="id">
@@ -1697,6 +1802,13 @@ _target {&#xD;
                 <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cffb35322-9f3a-467d-ade2-16a021dda2c8" priority="normal">
         <source name="id">
@@ -1785,6 +1897,13 @@ _target {&#xD;
                 <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatelength" id="C7c8926c6-296b-4339-8f52-319848398955_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source>
@@ -1801,6 +1920,13 @@ _target {&#xD;
                 <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatelength" id="C2881ff0f-c31d-48f1-98e8-d828319a654c" priority="normal">
         <source>
@@ -1847,6 +1973,13 @@ _target {&#xD;
             </property>
         </target>
         <parameter value="m" name="value"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cb034ce5f-93a2-4153-be13-0142edd7e94d_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source name="anchor">
@@ -1865,6 +1998,13 @@ _target {&#xD;
             </property>
         </target>
         <parameter value="m" name="value"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C67bc8977-3a7d-4a0c-baa1-1e77beda7092" priority="normal">
         <source name="anchor">
@@ -1966,6 +2106,20 @@ if (gewaesserAchseID) {&#xD;
 </core:text>
         </complexParameter>
         <documentation>Mittels der Relation`hatDirektUnten` wird ermittelt, ob es Gewässerachsen gibt, die von einem Düker unterquert werden. Ist dies der Fall, wird ein `WatercourseSeparatedCrossing` erstellt.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
         <source name="types">
@@ -2036,6 +2190,20 @@ if (gewaesserAchseID) {&#xD;
 </core:text>
         </complexParameter>
         <documentation>Mittels der Relation`hatDirektUnten` wird ermittelt, ob es Fliessgewässer gibt, die von einer Brücke überquert werden. Ist dies der Fall, wird ein `WatercourseSeparatedCrossing` erstellt.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
         <source name="types">
@@ -2105,6 +2273,20 @@ if (gewaesserAchseID) {&#xD;
 </core:text>
         </complexParameter>
         <documentation>Mittels der Relation`hatDirektUnten` wird ermittelt, ob es Gewässerachsen gibt, die von einer Brücke überquert werden. Ist dies der Fall, wird ein `WatercourseSeparatedCrossing` erstellt.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2bd85216-4863-4563-954d-31c8e95e7490_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
         <source>
@@ -2123,6 +2305,13 @@ if (gewaesserAchseID) {&#xD;
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8bfb7a01-ae8a-42b9-9f2c-fb708d5b7918_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
         <source>
@@ -2141,6 +2330,13 @@ if (gewaesserAchseID) {&#xD;
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8bfb7a01-ae8a-42b9-9f2c-fb708d5b7918_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
         <source>
@@ -2159,6 +2355,13 @@ if (gewaesserAchseID) {&#xD;
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf0510852-3541-4662-ae7f-e275be6973f7_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
         <source>
@@ -2177,6 +2380,13 @@ if (gewaesserAchseID) {&#xD;
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C6d7d8ef1-4c16-4fb6-a635-7355ccafcae6_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
         <source>
@@ -2195,6 +2405,13 @@ if (gewaesserAchseID) {&#xD;
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C6d7d8ef1-4c16-4fb6-a635-7355ccafcae6_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
         <source>
@@ -2213,6 +2430,13 @@ if (gewaesserAchseID) {&#xD;
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ca19f26cc-d722-4574-9217-23c1da508d5e_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
         <source name="id">
@@ -2230,6 +2454,13 @@ if (gewaesserAchseID) {&#xD;
             </property>
         </target>
         <parameter value="network" name="collectorName"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C136eff7d-1e18-46b1-b96e-76f77ce9f584_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
         <source name="id">
@@ -2247,6 +2478,13 @@ if (gewaesserAchseID) {&#xD;
             </property>
         </target>
         <parameter value="network" name="collectorName"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C136eff7d-1e18-46b1-b96e-76f77ce9f584_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
         <source name="id">
@@ -2264,6 +2502,13 @@ if (gewaesserAchseID) {&#xD;
             </property>
         </target>
         <parameter value="network" name="collectorName"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cffa73abc-d9fd-483a-ad19-5beca3a5e2b6_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
         <source name="id">
@@ -2280,6 +2525,13 @@ if (gewaesserAchseID) {&#xD;
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C37922be7-144a-4018-8f73-def91c4788b4_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
         <source name="id">
@@ -2296,6 +2548,13 @@ if (gewaesserAchseID) {&#xD;
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C37922be7-144a-4018-8f73-def91c4788b4_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
         <source name="id">
@@ -2312,6 +2571,13 @@ if (gewaesserAchseID) {&#xD;
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
         <target>
@@ -2360,6 +2626,13 @@ if (gewaesserAchseID) {&#xD;
                 <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cba9bc971-ba94-4dfa-89b3-5edd2a77adfc_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
         <source name="id">
@@ -2378,6 +2651,13 @@ if (gewaesserAchseID) {&#xD;
                 <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cba9bc971-ba94-4dfa-89b3-5edd2a77adfc_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
         <source name="id">
@@ -2396,6 +2676,13 @@ if (gewaesserAchseID) {&#xD;
                 <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.namespace" id="C12eaf7f7-c51d-4b2c-9650-a6e2491830d3" priority="normal">
         <target>
