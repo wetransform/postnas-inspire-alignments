@@ -809,6 +809,13 @@ Aktuell ist folgende Abbildung umgesetzt:
                 <child name="uom"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_FlurstueckType/amtlicheFlaeche/uom found</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc51360e3-edaa-45a0-9e45-bcf77eb69c99" priority="normal">
         <source>
@@ -938,6 +945,13 @@ else {
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
         <documentation>Falls ein *nenner* vorhanden ist das Ergebnis repräsentiert als `zaehler/nenner`, ansonsten wird nur der *zaehler* angegeben.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8fe37216-c8fe-40ef-a5f5-41fabf8cc024" priority="normal">
         <source>
@@ -969,6 +983,13 @@ else {
                 <child name="Point" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Inaccurate match of [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_FlurstueckType/position/choice/Surface to [type] jdbc:postgresql:testbed:aaa_ogr/ax_flurstueck/wkb_geometry via parent entity</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C744bc64e-0688-4be1-9ea2-a80e5082537b" priority="normal">
         <source>
@@ -1029,6 +1050,13 @@ else {
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
         <documentation>Je nachdem ob es einen übergeordneten Gemarkungsteil/Flur gibt, wird die Verknüpfung zum Zoning hergestellt, das entweder einen Gemarkungsteil/Flur repräsentiert, oder eine Gemarkung.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C8a96eace-7e17-4c0d-b649-a7fd73b0757c" priority="lowest">
         <source>
@@ -1157,6 +1185,13 @@ Außerdem wird für den Referenz-Punkt ein Punkt innerhalb dieser Fläche bestim
 
 Falls keine *CadastralZonings* zu den Gemarkungen für das Bundesland als Teil der Transformation gebildet wurden, wird zu diesem Bundesland kein *CadastralZoning* in den Ausgangsdaten erstellt.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C6ea88b52-bfd5-417d-81d0-3ff64788eb3a" priority="lower">
         <source name="types">
@@ -1336,6 +1371,13 @@ Falls als Teil der Transformation aus entsprechenden Fluren oder Gemarkungsteile
 
 Falls keine Flure/Gemarkungsteile oder Flurstücke zu der Gemarkung in den Quell-Daten vorhanden sind, wird zu dieser Gemarkung kein *CadastralZoning* in den Ausgangsdaten erstellt.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="Cb3d47ecd-2e54-4637-a92c-de4055bd0d91" priority="low">
         <source name="types">
@@ -1526,6 +1568,13 @@ Zu einem *AX_GemarkungsteilFlur* werden über den Gemarkungsschlüssel von *AX_F
 Falls keine Flurstücke zu dem Gemarkungsteil oder Flur in den Quell-Daten vorhanden sind, wird zu diesem Gemarkungsteil oderFlur kein *CadastralZoning* in den Ausgangsdaten erstellt.
 
 Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die Geometrie des *CadastralZoning* zusammengefasst. Außerdem wird für den Referenz-Punkt ein Punkt innerhalb dieser Fläche bestimmt.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C5bfc7fdc-a782-48f1-b471-86da4c97a8ee_C8a96eace-7e17-4c0d-b649-a7fd73b0757c" priority="normal">
         <source>
@@ -2061,7 +2110,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
-        <parameter value="#CadastralZoning_{schluessel.AX_Gemarkung_Schluessel.land}" name="pattern"/>
+        <parameter value="#CadastralZoning_{land}" name="pattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C14174a15-b4b0-4278-9d2c-93243485710f" priority="normal">
         <source name="var">
@@ -2083,7 +2132,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die 
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
-        <parameter value="#CadastralZoning_{schluessel.AX_GemarkungsteilFlur_Schluessel.land}{schluessel.AX_GemarkungsteilFlur_Schluessel.gemarkung}" name="pattern"/>
+        <parameter value="#CadastralZoning_{land}{gemarkung}" name="pattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Ca6561677-18bf-4882-8f37-04ca5dc53eb4" priority="normal">
         <target>

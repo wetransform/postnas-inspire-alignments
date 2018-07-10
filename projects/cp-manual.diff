@@ -1,5 +1,5 @@
 diff --git a/projects/cp-auto.halex.alignment.xml b/projects/cp-manual.halex.alignment.xml
-index 279e8a8..a765b3b 100644
+index 4ac967a..11f377c 100644
 --- a/projects/cp-auto.halex.alignment.xml
 +++ b/projects/cp-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -39,10 +39,10 @@ index 279e8a8..a765b3b 100644
              </property>
          </target>
 +        <parameter value="m2" name="value"/>
-     </cell>
-     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc51360e3-edaa-45a0-9e45-bcf77eb69c99" priority="normal">
-         <source>
-@@ -1109,7 +1101,7 @@ class Processor {
+         <annotation type="message">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                 <core:content>
+@@ -1137,7 +1129,7 @@ class Processor {
  
  
  // Geometrien wenn aus zugehörigen Gemarkungen bestimmen
@@ -51,7 +51,7 @@ index 279e8a8..a765b3b 100644
  def geoms = _.context.collector().GemarkungGeometrien[_land].clear()
  if (geoms) {
  	geoms = _.geom.findAll(geoms)
-@@ -1273,15 +1265,15 @@ class Processor {
+@@ -1308,15 +1300,15 @@ class Processor {
  def geoms
  
  // Geometrien wenn möglich aus zugehörigen Fluren bestimmen
@@ -70,7 +70,7 @@ index 279e8a8..a765b3b 100644
  }
  
  if (geoms) {
-@@ -1453,9 +1445,9 @@ class Processor {
+@@ -1495,9 +1487,9 @@ class Processor {
  // sammle Geometrien von assoziierten Flurstücken
  
  // Flurnummer als Zahl
@@ -82,7 +82,7 @@ index 279e8a8..a765b3b 100644
  fs = fs.findAll {
    // flur aus flurnummer bestimmen
    def stueckFlur = it.p.flurnummer.value()
-@@ -1472,7 +1464,7 @@ fs = fs.findAll {
+@@ -1514,7 +1506,7 @@ fs = fs.findAll {
    stueckFlur == flur
  }
  def geoms = fs.collect {
@@ -91,7 +91,7 @@ index 279e8a8..a765b3b 100644
  }
  if (geoms) {
    geoms = _.geom.findAll(geoms)
-@@ -1498,8 +1490,8 @@ g = new Processor().convert(g, _project.variables.ERROR_AREA_THRESHOLD as double
+@@ -1540,8 +1532,8 @@ g = new Processor().convert(g, _project.variables.ERROR_AREA_THRESHOLD as double
  union = new DefaultGeometryProperty(union.CRSDefinition, g)
  
  // speichere aggregierte Geometrie für Bildung von Gemarkung
@@ -102,21 +102,3 @@ index 279e8a8..a765b3b 100644
  if (_land &amp;&amp; _gemarkung) {
  	_.context.collector().FlurGeometrien[_land][_gemarkung] &lt;&lt; union
  }
-@@ -2061,7 +2053,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
-                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
-             </property>
-         </target>
--        <parameter value="#CadastralZoning_{schluessel.AX_Gemarkung_Schluessel.land}" name="pattern"/>
-+        <parameter value="#CadastralZoning_{land}" name="pattern"/>
-     </cell>
-     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C14174a15-b4b0-4278-9d2c-93243485710f" priority="normal">
-         <source name="var">
-@@ -2083,7 +2075,7 @@ Falls Flurstücke vorhanden sind werden die Geometrien der Flurstücke für die
-                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
-             </property>
-         </target>
--        <parameter value="#CadastralZoning_{schluessel.AX_GemarkungsteilFlur_Schluessel.land}{schluessel.AX_GemarkungsteilFlur_Schluessel.gemarkung}" name="pattern"/>
-+        <parameter value="#CadastralZoning_{land}{gemarkung}" name="pattern"/>
-     </cell>
-     <cell relation="eu.esdihumboldt.hale.align.assign" id="Ca6561677-18bf-4882-8f37-04ca5dc53eb4" priority="normal">
-         <target>
