@@ -1,5 +1,5 @@
 diff --git a/projects/ad-auto.halex.alignment.xml b/projects/ad-manual.halex.alignment.xml
-index 7393b48..7b7c7dc 100644
+index 65631a7..27f4c65 100644
 --- a/projects/ad-auto.halex.alignment.xml
 +++ b/projects/ad-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -41,7 +41,7 @@ index 7393b48..7b7c7dc 100644
  	if (positionAdresse) {&#xD;
  		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#xD;
  	}&#xD;
-@@ -967,18 +967,20 @@ if (positionAdresse) {&#xD;
+@@ -981,18 +981,20 @@ if (positionAdresse) {&#xD;
          </complexParameter>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -65,7 +65,7 @@ index 7393b48..7b7c7dc 100644
  	if (positionAdresse) {&#xD;
  		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#xD;
  	}&#xD;
-@@ -1351,11 +1353,6 @@ if (positionAdresse) {&#xD;
+@@ -1421,11 +1423,6 @@ if (positionAdresse) {&#xD;
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -77,43 +77,7 @@ index 7393b48..7b7c7dc 100644
  if (!regierungsbezirk) {
  	regierungsbezirk = '0'
  }
-@@ -2023,7 +2020,7 @@ else {
-                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
-             </property>
-         </target>
--        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{id}" name="pattern"/>
-+        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
-     </cell>
-     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="Cc179f391-2a24-4500-b41a-5107f8fcb270" priority="normal">
-         <source name="var">
-@@ -2038,7 +2035,7 @@ else {
-                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
-             </property>
-         </target>
--        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{id}" name="pattern"/>
-+        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
-     </cell>
-     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C5c107c12-aa5c-4546-82d6-4bac140dccac" priority="normal">
-         <source name="var">
-@@ -2053,7 +2050,7 @@ else {
-                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
-             </property>
-         </target>
--        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{id}" name="pattern"/>
-+        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
-     </cell>
-     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C3036c6aa-ef00-4410-abb6-a9f64b7b6203" priority="normal">
-         <source name="var">
-@@ -2068,7 +2065,7 @@ else {
-                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
-             </property>
-         </target>
--        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{id}" name="pattern"/>
-+        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
-     </cell>
-     <cell relation="eu.esdihumboldt.hale.align.assign" id="C39637ce1-0c45-4334-bddf-1db42f5e0be8" priority="normal">
-         <target>
-@@ -2420,23 +2417,6 @@ else {
+@@ -2424,58 +2421,6 @@ else {
          </target>
          <parameter value="other:unpopulated" name="value"/>
      </cell>
@@ -133,11 +97,46 @@ index 7393b48..7b7c7dc 100644
 -        <parameter value="{http://www.adv-online.de/namespaces/adv/gid/6.0}ortsnamePost" name="additional_property"/>
 -        <parameter value="false" name="auto_detect"/>
 -        <parameter value="{http://www.adv-online.de/namespaces/adv/gid/6.0}postleitzahl" name="property"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_PostType found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_PostType/postleitzahl found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_PostType/zusatzOrtsname found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_PostType/strassenname found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_PostType/ortsnamePost found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
 -    </cell>
      <cell relation="eu.esdihumboldt.hale.align.assign" id="Cc5c40a0a-bc89-42aa-a918-7e25fb8215f5" priority="normal">
          <target>
              <property>
-@@ -2447,36 +2427,6 @@ else {
+@@ -2486,50 +2431,6 @@ else {
          </target>
          <parameter value="other:unpopulated" name="value"/>
      </cell>
@@ -155,6 +154,13 @@ index 7393b48..7b7c7dc 100644
 -            </property>
 -        </target>
 -        <parameter value="PostalDescriptor_{postleitzahl}" name="pattern"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_PostType/postleitzahl found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
 -    </cell>
 -    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="Cde00693b-1df7-4ff4-aab6-5e4b8a7282b1" priority="normal">
 -        <source name="var">
@@ -170,11 +176,18 @@ index 7393b48..7b7c7dc 100644
 -            </property>
 -        </target>
 -        <parameter value="{{project:INSPIRE_NAMESPACE}}/PostalDescriptor_{postleitzahl}" name="pattern"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_PostType/postleitzahl found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
 -    </cell>
      <cell relation="eu.esdihumboldt.hale.align.assign" id="C5fd35164-5918-4189-872b-296d8225f787" priority="normal">
          <target>
              <property>
-@@ -2487,23 +2437,6 @@ else {
+@@ -2540,30 +2441,6 @@ else {
          </target>
          <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
      </cell>
@@ -194,11 +207,18 @@ index 7393b48..7b7c7dc 100644
 -            </property>
 -        </target>
 -        <parameter value="PostalDescriptor_{postleitzahl}" name="pattern"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_PostType/postleitzahl found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
 -    </cell>
      <cell relation="custom:alignment:adv.inspire.namespace" id="C5c322644-b41b-41ca-9f41-806faae001c7" priority="normal">
          <target>
              <property>
-@@ -2514,38 +2447,6 @@ else {
+@@ -2574,52 +2451,6 @@ else {
              </property>
          </target>
      </cell>
@@ -217,6 +237,13 @@ index 7393b48..7b7c7dc 100644
 -        </target>
 -        <parameter value="false" name="ignoreNamespaces"/>
 -        <parameter value="false" name="structuralRename"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_PostType/postleitzahl found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
 -    </cell>
 -    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc9517454-0c72-414a-87ba-a1b252c7f69d" priority="normal">
 -        <source name="spelling">
@@ -233,11 +260,18 @@ index 7393b48..7b7c7dc 100644
 -            </property>
 -        </target>
 -        <parameter value="DLKM" name="source"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_PostType/ortsnamePost found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
 -    </cell>
      <cell relation="eu.esdihumboldt.hale.align.assign" id="Cae50d6a8-8f52-4846-8a29-b20b2e495505" priority="normal">
          <target>
              <property>
-@@ -2643,7 +2544,7 @@ else {
+@@ -2717,7 +2548,7 @@ else {
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -246,7 +280,7 @@ index 7393b48..7b7c7dc 100644
  
  "ThoroughfareName_$id"
  </core:text>
-@@ -2665,7 +2566,7 @@ def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
+@@ -2746,7 +2577,7 @@ def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -255,7 +289,7 @@ index 7393b48..7b7c7dc 100644
  
  def ns = _project.vars.INSPIRE_NAMESPACE
  if (ns &amp;&amp; !ns.endsWith('/')) {
-@@ -2704,7 +2605,7 @@ if (ns &amp;&amp; !ns.endsWith('/')) {
+@@ -2792,7 +2623,7 @@ if (ns &amp;&amp; !ns.endsWith('/')) {
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -264,7 +298,7 @@ index 7393b48..7b7c7dc 100644
  
  "ThoroughfareName_$id"
  </core:text>
-@@ -2749,4 +2650,8 @@ def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
+@@ -2844,4 +2675,8 @@ def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
          </target>
          <parameter value="other:unpopulated" name="value"/>
      </cell>
