@@ -780,6 +780,13 @@ Aktuell ist folgende Abbildung umgesetzt:
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
         <documentation>Grenze des Gemeindeteils kann nicht berücksichtigt werden.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cda73bba5-8df9-4012-bf50-946a7d3c3ea7" priority="normal">
         <target>
@@ -808,6 +815,13 @@ Aktuell ist folgende Abbildung umgesetzt:
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cba0fc743-8465-4b65-912a-f82a1f90d345" priority="normal">
         <target>
@@ -862,6 +876,13 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C0c484a21-4686-4842-8690-06096a3024e9_C0763cc94-6454-472a-aaab-966e2c0e3644" priority="normal">
         <source name="geometrie">
@@ -878,6 +899,13 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C4b96b3d9-a53b-4cec-9679-dd90a9934271_C0763cc94-6454-472a-aaab-966e2c0e3644" priority="normal">
         <source name="id">
@@ -895,6 +923,13 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
             </property>
         </target>
         <parameter value="false" name="useTargetTypePrefix"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C1c28a6dd-5adc-4957-ac58-fbdc78b1bacb_C0763cc94-6454-472a-aaab-966e2c0e3644" priority="normal">
         <source name="id">
@@ -911,6 +946,13 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ce5d081fc-d59e-4e22-b31e-95b5818a8f58_C0763cc94-6454-472a-aaab-966e2c0e3644" priority="normal">
         <source name="id">
@@ -930,6 +972,13 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
             </property>
         </target>
         <parameter value="false" name="useTargetTypePrefix"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.namespace" id="C6092e734-d37b-4a6b-964f-0b6762218a8d" priority="normal">
         <target>
@@ -996,6 +1045,13 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
             </lookup-table>
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C6ac9d6bf-2106-45c7-8ead-4e38d2374ed5" priority="normal">
         <target>
@@ -1124,6 +1180,13 @@ _target{
 Die Geometrie wird aus den Geometrien der untergeordneten Ebene zusammengefügt.
 
 Die Verknüpfung zur untergeordneten Ebene von `AdministrativeUnit`s wird über die im Index gesammelten Informationen hergestellt.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C67bd480d-5ea0-4ef8-b84c-15b1063d2667" priority="higher">
         <source name="types">
@@ -1313,6 +1376,13 @@ Die Geometrie wird aus den über den Schlüssel verknüpften `AX_Flurstueck` zus
 
 Über den Index wird bestimmt ob die Gemeinde zu einer Verwaltungsgemeinschaft gehört. Diese wird als `upperLevelUnit` referenziert.
 Falls keine Zugehörigkeit zu einer Verwaltungsgemeinschaft besteht wird die Zugehörigkeit zur übergeordneten `AdministrativeUnit` (in diesem Fall *Kreis*) im Index hinterlegt.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C153144ee-8008-471c-a689-adba7e1d10b7" priority="highest">
         <source name="types">
@@ -1358,16 +1428,6 @@ Falls keine Zugehörigkeit zu einer Verwaltungsgemeinschaft besteht wird die Zug
                 </jp:condition>
                 <jp:condition>
                     <property>
-                        <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gml_id"/>
-                    </property>
-                    <property>
-                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="istteilvon"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
                         <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="kreis"/>
                     </property>
@@ -1394,6 +1454,16 @@ Falls keine Zugehörigkeit zu einer Verwaltungsgemeinschaft besteht wird die Zug
                     <property>
                         <type name="ax_flurstueck" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="gemeindezugehoerigkeit_regierungsbezirk"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gml_id"/>
+                    </property>
+                    <property>
+                        <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="istteilvon"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
@@ -1537,6 +1607,13 @@ Die zur Verwaltungsgemeinschaft zugehörigen Gemeinden werden über `bestehtAus`
 Jede der Gemeinden wird als `lowerLevelUnit` referenziert und im Index wird die Information hinterlegt, dass die Gemeinde zu dieser Verwaltungsgemeinschaft gehört.
 
 Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit` (Kreis) wird ebenfalls im Index hinterlegt.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C20449391-5bfb-4ec5-b494-dfbac5854cc0" priority="high">
         <source>
@@ -1676,6 +1753,13 @@ Die Geometrie wird aus den Geometrien der untergeordneten Ebene zusammengefügt.
 Die Verknüpfung zur untergeordneten Ebene von `AdministrativeUnit`s wird über die im Index gesammelten Informationen hergestellt.
 
 Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit` (Bundesland oder Regierungsbezirk) und die Geometrie werden im Index hinterlegt.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C730641fd-b68b-4b5f-b63b-35e1c9076579" priority="normal">
         <source>
@@ -1806,6 +1890,13 @@ Die Geometrie wird aus den Geometrien der untergeordneten Ebene zusammengefügt.
 Die Verknüpfung zur untergeordneten Ebene von `AdministrativeUnit`s wird über die im Index gesammelten Informationen hergestellt.
 
 Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit` (Bundesland) und die Geometrie werden im Index hinterlegt.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ccef5cb84-463f-48e8-82cb-646e5f1d8032_Ce653f33d-5e1e-4b8b-aee7-9e48ef01f113" priority="normal">
         <source>
