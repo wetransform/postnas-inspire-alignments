@@ -1,0 +1,7 @@
+---
+#
+# Dummy configuration to be replaced by real Hamburg configuration
+#
+tasks:
+  ad:
+    enabled: false

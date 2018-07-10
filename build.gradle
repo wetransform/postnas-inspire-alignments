@@ -213,7 +213,11 @@ migrations.each { name, config ->
 
 def transformationFiles = [file('transformations.yaml')]
 transformationFiles.addAll(fileTree(dir: projectDir).matching {
-  //TODO configurable?
+  if (project.hasProperty('profile')) {
+    include("profiles/${project.getProperty('profile')}/transformations.yaml")
+  }
+  
+  // override configuration locally
   include('transformations-override.yaml')
 } as List)
 

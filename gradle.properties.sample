@@ -1,5 +1,7 @@
 # Path to AdV alignments
 #advAlignments=adv-alignments
+# Customization
+#profile=hamburg
 # Database connection
 #db.uri=jdbc:postgresql://localhost:5432/testbed
 #db.user=postgres

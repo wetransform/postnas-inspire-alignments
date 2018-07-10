@@ -180,3 +180,34 @@ Manuell erfolgte Anpassungen sollten zur möglicherweise später notwendigen Rep
 
 Nach erfolgter manueller Anpassung sollten die Änderungen in einem Commit abgelegt werden. Zur Kontrolle empfiehlt es sich dann die automatische Migration noch einmal anzustoßen. Diese sollte erfolgreich sein und keine Änderungen an der manuell angepassten vornehmen. Außerdem wird hier ein aktuelles Diff erzeugt das die manuellen Änderungen repräsentiert. Diese kann dem zuvor erzeugten Commit hinzugefügt werden.
 
+
+Transformation
+--------------
+
+Die Transformation von Daten basierend auf den hier verwalteten Projekten kann ebenfalls über Gradle ausgeführt werden.
+
+Die Datei `transformations.yaml` enthält die Basis-Konfiguration für die Transformations-Tasks.
+
+Die Konfiguration enthält alle Projekte, sowie generelle Einstellungen zur Validierung.
+Anpassungen an der Konfiguration (z.B. Deaktivierung von Projekten oder individuelle Projekt-Variablen) können in separaten Konfigurations-Dateien vorgenommen werden (siehe nächsten Abschnitt).
+
+Das verwendete Transformations-Projekt ist das Projekt das aus den `db-migrate-*`-Tasks entsteht.
+Für die Quell-Daten wird die dafür konfigurierte Datenbankanbindung herangezogen.
+
+
+### Benutzerdefinierte Konfiguration
+
+Die allgemeine Konfiguration in `transformations.yaml` kann durch benutzerdefinierte Konfigurations-Dateien überschrieben werden.
+
+Eine Möglichkeit ist die Verwendung eines sogenannten Profils, in dem die Konfiguration angepasst wird und das mit in das Repository eingecheckt werden kann.
+
+Zur Verwendung eines Profils muss ein entsprechender Unterordner im Ordner `profiles` erstellt werden. Der Name des Profils ist der Name des Unterordners.
+Eine im Profil-Ordner abgelegte Datei `transformations.yaml` überschreibt Konfigurations-Optionen aus der allgemeinen Konfiguration.
+
+Um ein Profil zu verwenden, muss das Profil über die Gradle Property `profile` angegeben werden. Diese kann z.B. in der Datei `gradle.properties` hinterlegt werden (siehe auch `gradle.properties.sample`):
+
+```
+profile=hamburg
+```
+
+Wenn nur wenige Konfigurations-Optionen für die lokale Ausführung überschrieben werden sollen, kann die Datei `transformations-override.yaml` verwendet werden. Diese wird nicht mit in das Repository eingecheckt und überschreibt Konfiguration aus allgemeiner Konfiguration und dem ggf. angegebenen Profil.
