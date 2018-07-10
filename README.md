@@ -19,7 +19,7 @@ Folgende Alignments werden hier verwaltet:
 | PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)       | Migriert       | tn-ra      |
 | PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)         | Migriert       | tn-w       |
 | PostNAS -> Verkehrsnetze (Luftverkehrsnetz)           | Migriert       | tn-a       |
-| PostNAS -> Verkehrsnetze (Kabel)                      | Update nötig   | tn-c       |
+| PostNAS -> Verkehrsnetze (Kabel)                      | Migriert       | tn-c       |
 
 
 Einrichtung Gradle und hale-cli
