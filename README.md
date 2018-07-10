@@ -189,7 +189,31 @@ Die Transformation von Daten basierend auf den hier verwalteten Projekten kann e
 Die Datei `transformations.yaml` enthält die Basis-Konfiguration für die Transformations-Tasks.
 
 Die Konfiguration enthält alle Projekte, sowie generelle Einstellungen zur Validierung.
-Anpassungen an der Konfiguration (z.B. Deaktivierung von Projekten oder individuelle Projekt-Variablen) können in separaten Konfigurations-Dateien vorgenommen werden (siehe nächsten Abschnitt).
+Anpassungen an der Konfiguration (z.B. Deaktivierung von Projekten oder individuelle Projekt-Variablen) können in separaten Konfigurations-Dateien vorgenommen werden (siehe nächster Abschnitt).
+
+Muster für die Konfiguration von Transformations-Tasks:
+
+```yaml
+tasks:
+  ad: # Task-ID
+    project: ad # Referenz auf Projekt über Kürzel
+    model: DLKM # Modellart
+    additionalModels: # optionale weitere Modellarten deren Objekte akzeptiert werden
+      - DKKM1000
+    enabled: true # Ist das Projekt aktiviert?
+    validation:
+      xmlSchema: true # Soll XML Schema Validierung ausgeführt werden?
+      haleInternal: true # Soll die hale-interne Validierung ausgeführt werden?
+    variables: # Projekt-Variablen
+      INSPIRE_NAMESPACE: https://registry.gdi-de.org/id/REPLACEME  
+
+  # ... weitere Tasks
+
+# Standard-Einstellungen für alle Transformationen
+defaults:
+  # z.B. um Projekte standardmäßig zu deaktivieren
+  enabled: false
+```
 
 Das verwendete Transformations-Projekt ist das Projekt das aus den `db-migrate-*`-Tasks entsteht.
 Für die Quell-Daten wird die dafür konfigurierte Datenbankanbindung herangezogen.
@@ -211,3 +235,36 @@ profile=hamburg
 ```
 
 Wenn nur wenige Konfigurations-Optionen für die lokale Ausführung überschrieben werden sollen, kann die Datei `transformations-override.yaml` verwendet werden. Diese wird nicht mit in das Repository eingecheckt und überschreibt Konfiguration aus allgemeiner Konfiguration und dem ggf. angegebenen Profil.
+
+
+### Stufen der Transformations-Pipeline
+
+Der Transformations-Ablauf ist in verschiedene Stufen unterteilt:
+
+1. `transform` - die eigentlich Transformation der Daten
+2. `validate` - die Auswertung der Transformationsergebnisse und Validierung der Daten
+3. `process` - Nachprozessierung des Transformationsergebnisses (optional)
+4. `upload` - Upload der Daten über eine WFS-T Schnittstelle (optional)
+
+Die Stufen lassen sich einzeln ausführen, oder als komplette "Pipeline".
+
+Der komplette Ablauf lässt sich über die `run-<Task-ID>`-Tasks starten. Dabei wird der aktuelle Stand zurück gesetzt und beginnend mit der Transformation neu gestartet.
+
+Beim Ausführen der einzelnen Stufen (*stages*) wird die letzte erfolgreich abgeschlossene Stufe als Zustand in einer Datei gespeichert. Diese Information kann verwendet werden um den Ablauf an der Stelle, an der ein Problem aufgetreten ist, wieder aufzugreifen.
+Dazu dienen die `continue-<Task-ID>`-Tasks. Schlägt beispielweise der Upload eines Transformationsergebnisses in der **upload**-Stufe fehl, wird `continue-*` beim nächsten Aufruf wieder den Upload versuchen, ohne z.B. die Transformation oder Validierung neu laufen zu lassen.
+
+Der Status wird in der Datei `state` je Transformation im Verzeichnis `results/<Task-ID>` abgelegt.
+Es ist eine einfache Text-Datei die als einzigen Inhalt den Zustand enthält:
+
+- `start` - keine Transformation wurd ausgeführt oder der Ablauf wurde zurückgesetzt
+- `transformed` - die Transformation wurde abgeschlossen
+- `validated` - die Validierung des Transformations-Ergebnisses war erfolgreich
+- `processed` - die Prozessierung des Transformations-Ergebnisses war erfolgreich
+- `uploaded` - der Upload der (prozessierten) Daten war erfolgreich
+
+Um die verschiedenen Stufen individuell auszuführen können die folgenden Tasks verwendet werden:
+
+- `transform-<Task-ID>` - setzt die Pipeline zurück und führt die Transformation aus (Voraussetzung: keine; Erfolgs-Status: `transformed`)
+- `validate-<Task-ID>` - wertet das Transformationsergebnis aus und validiert die Daten (Voraussetzung: `transformed`; Erfolgs-Status: `validated`)
+- `process-<Task-ID>` - **TODO**
+- `upload-<Task-ID>` - **TODO**

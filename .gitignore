@@ -6,4 +6,4 @@ gradle.properties
 *.rej
 
 transformations-override.yaml
-transformation/
+results/

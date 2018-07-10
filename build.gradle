@@ -12,8 +12,9 @@ buildscript {
 apply plugin: 'to.wetransform.hale'
 
 hale {
-  cliArtifact = 'to.wetransform:hale-cli-rlp' // RLP custom version (for DB matching)
-  cliVersion = '3.3.1'
+  cliArtifact = 'to.wetransform:hale-cli'
+  cliVersion = '3.4.0'
+  //FIXME RLP custom version not used any more (for DB matching), adaptions needed
 }
 
 repositories {
@@ -211,6 +212,34 @@ migrations.each { name, config ->
  * Transformation
  */
 
+enum State {
+  start, transformed, validated, processed, uploaded
+}
+class StateManager {
+  private final File stateFile
+
+  StateManager(File stateFile) {
+    this.stateFile = stateFile
+  }
+
+  void setCurrent(State state) {
+    stateFile.text = (state ?: State.start).name()
+  }
+
+  State getCurrent() {
+    if (stateFile.exists()) {
+      State.valueOf(stateFile.text.trim())
+    }
+    else {
+      State.start // assume start
+    }
+  }
+
+  void reset() {
+    setCurrent(State.start)
+  }
+}
+
 def transformationFiles = [file('transformations.yaml')]
 transformationFiles.addAll(fileTree(dir: projectDir).matching {
   if (project.hasProperty('profile')) {
@@ -241,8 +270,15 @@ transformations.tasks.each { name, config ->
   def projectId = config.project
   def projectFile = projectFiles[projectId]
 
-  def targetFolder = new File(file('transformation'), name)
+  def baseFolder = new File(file('results'), name)
+  baseFolder.mkdirs()
+  def state = new StateManager(new File(baseFolder, 'state'))
+
+  def targetFolder = new File(baseFolder, 'transform')
   def targetFile = new File(targetFolder, 'result.gml')
+  File statsFile = new File(targetFolder, 'statistics.json')
+
+  // Transformation stage
 
   task("transform-${name}", type: hale.transform(), dependsOn: "db-migrate-$projectId") {
     // transformation project
@@ -308,21 +344,161 @@ transformations.tasks.each { name, config ->
       environment['HALE_TRANSFORMATION_INTERNAL_VALIDATION'] = 'true'
     }
     
-    //FIXME hale 3.4 required
     // statistics and ...
     additionalArgs << '-statisticsOut'
-    File statsFile = new File(targetFolder, 'statistics.json')
     additionalArgs << statsFile.absolutePath
     // ... success evaluation
     // additionalArgs << '-successEvaluation'
     // additionalArgs << project.file('success.groovy')
 
-    description "Runs a transformation based on project ${projectId} for model $model."
+    // exit value is ignored -> we do a success evaluation in the validation stage
+    ignoreExitValue = true
+
+    description "Runs a transformation based on project ${projectId} for model ${config.model}."
     group 'Transformation'
   }.doFirst {
     targetFolder.deleteDir()
     targetFolder.mkdirs()
+
+    // reset state -> we are starting anew
+    state.reset()
+  }.doLast {
+    // stage completed
+    state.current = State.transformed
+    println 'Transformation stage completed'
   }
+
+  // Validation stage
+  
+  def validateFolder = new File(baseFolder, 'validate')
+  
+  task("validate-${name}") {
+    description "Performs/evaluates validation on transformation results for project ${projectId} for model ${config.model}."
+    group 'Transformation'
+  }.doFirst {
+    // verify state
+    assert state.current != State.start : 'Validation requires transformation to have been run'
+  }.doLast {
+    // success evaluation
+
+    validateFolder.mkdirs()
+    def evaluationError = new File(validateFolder, 'evaluationError.txt')
+    if (evaluationError.exists()) {
+      evaluationError.delete()
+    }
+
+    // errors that require transformation to be re-run
+    def stats
+    def aggregated
+    try {
+      assert statsFile.exists() : 'Statistics file does not exist'
+
+      // load stats
+      stats = new groovy.json.JsonSlurper().parse(statsFile)
+      aggregated = stats.aggregated
+
+      assert aggregated['eu.esdihumboldt.hale.transform'].report.completed == true : 'Die Transformation wurde nicht abgeschlossen'
+
+      assert aggregated['eu.esdihumboldt.hale.transform'].report.errors == 0 : 'Während der Transformation sind Fehler aufgetreten'
+
+      assert aggregated['eu.esdihumboldt.hale.transform'].createdPerType.any { typeName, count -> count > 0 } : 'Aus der Transformation sind keine Objekte erzeugt worden sein'
+
+      assert aggregated['eu.esdihumboldt.hale.io.instance.write.transformed'].report.completed == true : 'Das Schreiben der Ziel-Datei wurde nicht abgeschlossen'
+
+      assert aggregated['eu.esdihumboldt.hale.io.instance.write.transformed'].report.errors == 0 : 'Während des Schreibens der Ziel-Datei sind Fehler aufgetreten'
+    } catch (Throwable e) {
+      // reset state
+      state.reset()
+      println 'Transformation needs to be re-run, resetting state'
+
+      evaluationError.text = e.message
+      throw e
+    }
+
+    // errors that are general validation errors
+    try {
+      // XML Schema
+      if (config.validation.xmlSchema) {
+        assert aggregated['eu.esdihumboldt.hale.io.xml.validator']?.report?.completed == true : 'Die XML Schema Validierung wurde nicht ausgeführt'
+
+        assert aggregated['eu.esdihumboldt.hale.io.xml.validator'].report.errors == 0 : 'Die XML Schema Validierung ergab Fehler'
+
+        assert aggregated['eu.esdihumboldt.hale.io.xml.validator'].report.warnings == 0 : 'Die XML Schema Validierung ergab Warnungen'
+      }
+
+      if (config.validation.haleInternal) {
+        assert aggregated['eu.esdihumboldt.hale.instance.validation.internal']?.report?.completed == true : 'Die hale-interne Validierung wurde nicht ausgeführt'
+        assert aggregated['eu.esdihumboldt.hale.instance.validation.internal'].report.errors == 0 : 'Die hale-interne Validierung ergab Fehler'
+        assert aggregated['eu.esdihumboldt.hale.instance.validation.internal'].report.warnings == 0 : 'Die hale-interne Validierung ergab Warnungen'
+      }
+    } catch (Throwable e) {
+      evaluationError.text = e.message
+      throw e
+    }
+
+    //TODO other, external validations?
+
+    // success -> mark stage as complete
+    if (state.current == State.transformed) {
+      // only override state for transformed (to not invalidate any processing)
+      state.current = State.validated
+    }
+    println 'Validation stage completed'
+  }
+
+  // Continue -> run pipeline based on current state
+  
+  boolean alreadyDone = state.current == State.uploaded
+  
+  task("continue-${name}") {
+    description "Runs transformation pipeline from point of last failure or starts it anew (Project ${projectId} for model ${config.model})."
+    group 'Transformation'
+
+    /*
+     * Important: This is based on the stage state at the time Gradle
+     * is run!
+     */
+    switch(state.current) {
+      case State.start:
+        // run transformation
+        dependsOn "transform-$name"
+      case State.transformed:
+        // run validation
+        dependsOn "validate-$name"
+        tasks.findByName("validate-$name").mustRunAfter "transform-$name"
+      case State.validated:
+        //TODO processing if applicable
+      case State.processed:
+        //TODO upload
+      case State.uploaded:
+        // nothing to do
+      default:
+        break
+    }
+  }.doLast {
+    if (alreadyDone) {
+      println 'Transformation pipeline was already complete'
+    }
+    else {
+      println 'Transformation pipeline completed'
+    }
+  }
+
+  // Run -> run complete pipeline
+
+  task("run-${name}", type: GradleBuild) {
+    description "Reruns the complete transformation pipeline (Project ${projectId} for model ${config.model})."
+    group 'Transformation'
+
+    tasks = ["transform-$name" as String, "validate-$name" as String] //TODO add more stages
+  }.doFirst {
+    // reset any previous result
+    baseFolder.deleteDir()
+    baseFolder.mkdirs()
+  }.doLast {
+    println 'Transformation pipeline completed'
+  }
+
 }
 
 /*
