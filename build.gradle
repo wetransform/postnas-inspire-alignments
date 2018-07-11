@@ -9,6 +9,8 @@ buildscript {
   }
 }
 
+import java.text.*
+
 apply plugin: 'to.wetransform.hale'
 
 hale {
@@ -25,6 +27,23 @@ configurations.all {
   resolutionStrategy.cacheChangingModulesFor 180, 'minutes'
   //resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
+
+Calendar calendar = Calendar.getInstance();
+
+gradle.taskGraph.whenReady {
+  // determine build ID
+  String buildID = System.getenv()['BUILD_ID'] // set externally
+  if (buildID == null){
+    DateFormat dateFormat = new SimpleDateFormat('YYYY-MM-dd HH-mm-ss');
+    buildID = dateFormat.format(calendar.getTime())
+  }
+  project.ext.buildId = buildID
+}
+
+
+/*
+ * Migration tasks
+ */
 
 project.ext.advAlignmentsPath = project.hasProperty('advAlignments') ? project.getProperty('advAlignments') : 'adv-alignments'
 
@@ -740,6 +759,64 @@ task("runAll", type: GradleBuild) {
   // continue even if tasks failed -> runs all transformations even if one fails (same as --continue command line option)
   startParameter.continueOnFailure = true
 }
+
+// build report
+
+class BuildReporter extends BuildAdapter implements TaskExecutionListener {
+
+  final def taskRuns = [:]
+  def project
+
+  void beforeExecute(Task task) {
+    taskRuns[task.name] = [startTime: java.time.LocalDateTime.now()]
+  }
+
+  @Override
+  void afterExecute(Task task, TaskState taskState) {
+    def t = taskRuns[task.name]
+    t.endTime = java.time.LocalDateTime.now()
+    
+    long s = java.time.Duration.between(t.startTime, t.endTime).getSeconds()
+    t.duration = "${(int) (s / 3600)}:${((int) ((s % 3600) / 60) as String).padLeft(2, '0')}:${((s % 60) as String).padLeft(2, '0')}" as String
+    t.startTime = t.startTime as String
+    t.endTime = t.endTime as String
+
+    t.succeeded = taskState.failure == null
+    if (taskState.failure) {
+      def error = taskState.failure
+      if (error.cause) {
+        error = error.cause
+      }
+      t.error = error.message
+    }
+  }
+
+  void buildFinished(BuildResult result) {
+    if (result.action == 'Build') {
+      def report = [
+        failure: !!result.failure,
+      ]
+      if (result.failure) {
+        def error = result.failure
+        if (error.cause) {
+          error = error.cause
+        }
+        report.error = error.message
+      }
+      report.tasks = taskRuns
+
+      def summaryFile = project.file("logs/${project.ext.buildId}/summary.yaml")
+      summaryFile.parentFile.mkdirs()
+      Config.saveYaml(report, summaryFile)
+    }
+  }
+
+}
+
+def reporter = new BuildReporter(project: project)
+gradle.addListener( (TaskExecutionListener) reporter)
+gradle.addListener( (BuildListener) reporter)
+
 
 /*
  * Gradle wrapper

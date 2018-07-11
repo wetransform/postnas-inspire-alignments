@@ -5,5 +5,7 @@ gradle.properties
 /*.zip
 *.rej
 
+/logs/
+
 transformations-override.yaml
 results/
