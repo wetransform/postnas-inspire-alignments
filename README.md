@@ -13,7 +13,7 @@ Folgende Alignments werden hier verwaltet:
 | PostNAS -> Adressen                                   | Migriert       | ad         |
 | PostNAS -> Verwaltungseinheiten                       | Migriert       | au         |
 | PostNAS -> Flurstücke/Grundstücke                     | Migriert       | cp         |
-| PostNAS -> Geografische Bezeichnungen                 | Update nötig   | gn         |
+| PostNAS -> Geografische Bezeichnungen                 | Migriert       | gn         |
 | PostNAS -> Gewässernetz                               | Migriert       | hy-n, hy-p |
 | PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)        | Migriert       | tn-ro      |
 | PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)       | Migriert       | tn-ra      |
