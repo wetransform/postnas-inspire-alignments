@@ -284,5 +284,5 @@ Um die verschiedenen Stufen individuell auszuführen können die folgenden Tasks
 
 - `transform-<Task-ID>` - setzt die Pipeline zurück und führt die Transformation aus (Voraussetzung: keine; Erfolgs-Status: `transformed`)
 - `validate-<Task-ID>` - wertet das Transformationsergebnis aus und validiert die Daten (Voraussetzung: `transformed`; Erfolgs-Status: `validated`)
-- `process-<Task-ID>` - **TODO**
-- `upload-<Task-ID>` - **TODO**
+- `process-<Task-ID>` - prozessiert das Transformationergebnis, aktuell nur Aufteilen in mehrere Dateien unterstützt (Voraussetzung: `validated`; Erfolgsstatus: `processed`)
+- `upload-<Task-ID>` - lädt (prozessiertes) Transformationergebnisin über eine WFS-T Schnitstelle hoch (Voraussetzung: `validated`; Erfolgsstatus: `uploaded`)

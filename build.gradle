@@ -538,6 +538,100 @@ transformations.tasks.each { name, config ->
     }
   }
 
+  // Upload stage
+  
+  boolean uploadEnabled = config.upload?.enabled
+  
+  if (uploadEnabled) {
+    def uploadFolder = new File(baseFolder, 'upload')
+
+    task("upload-${name}") {
+      description "Upload (processed) transformation result (Project ${projectId} for model ${config.model})."
+      group 'Transformation'
+    }.doFirst {
+      // check preconditions
+      assert state.current in [State.validated, State.processed, State.uploaded] : 'Uploading requires a valid (and optionally processed) transformation result'
+
+      uploadFolder.deleteDir()
+      uploadFolder.mkdirs()
+    }.doLast {
+      def uploadError = new File(uploadFolder, 'uploadError.txt')
+      if (uploadError.exists()) {
+        uploadError.delete()
+      }
+
+      // identify upload source(s)
+      def sources = []
+      try {
+        if (state.current == State.validated || !processResultFolder.exists()) {
+          // use transformation result
+          sources << targetFile
+        }
+        else {
+          // use processing result
+          sources = fileTree(dir: processResultFolder).matching {
+            include('*.gml')
+          } as List
+        }
+
+        assert !sources.empty : 'No files could be identified for upload'
+
+        assert config.upload.url : 'URL for upload is not configured'
+      } catch (Throwable e) {
+        uploadError.text = e.message
+          throw e
+      }
+
+      for (int i = 0; i < sources.size(); i++) {
+        def source = sources[i]
+        def fileId = 'file_' + "$i".padLeft(5, '0')
+        def reportFolder = new File(uploadFolder, fileId)
+        reportFolder.mkdirs()
+
+        // upload file
+        try {
+          hale.cli {
+            logFolder = reportFolder
+
+            args = ['data', 'rewrite']
+
+            // data source
+            args << '--data'
+            args << (source as File).absolutePath
+
+            // data settings
+            // -> don't change geometries
+            args << '--data-setting'
+            args << 'suppressParsingGeometry=true'
+
+            // schema settings
+            // -> all features types should be loaded
+            args << '--schema-setting'
+            args << 'relevantMode=featureTypes'
+
+            // target
+            args << '--target'
+            args << config.upload.url
+
+            //TODO settings configurable?
+            args << '--target-writer'
+            args << 'eu.esdihumboldt.hale.io.wfs.write'
+            args << '--target-setting'
+            args << 'wfsVersion=2.0.0'
+          }
+
+        } catch (Throwable e) {
+          uploadError.text = "Failed to upload file ${source} ($fileId): " + e.message
+          throw e
+        }
+      }
+
+      // success -> mark stage as complete
+      state.current = State.uploaded
+      println 'Upload stage completed'
+    }
+  }
+
   // Continue -> run pipeline based on current state
   
   boolean alreadyDone = state.current == State.uploaded
@@ -565,7 +659,16 @@ transformations.tasks.each { name, config ->
           tasks.findByName("process-$name").mustRunAfter "validate-$name"
         }
       case State.processed:
-        //TODO upload
+        if (uploadEnabled) {
+          // run upload
+          dependsOn "upload-$name"
+          if (processingEnabled) {
+            tasks.findByName("upload-$name").mustRunAfter "process-$name"
+          }
+          else {
+            tasks.findByName("upload-$name").mustRunAfter "validate-$name"
+          }
+        }
       case State.uploaded:
         // nothing to do
       default:
@@ -586,7 +689,14 @@ transformations.tasks.each { name, config ->
     description "Reruns the complete transformation pipeline (Project ${projectId} for model ${config.model})."
     group 'Transformation'
 
-    tasks = ["transform-$name" as String, "validate-$name" as String] //TODO add more stages
+    def taskList = ["transform-$name" as String, "validate-$name" as String]
+    if (processingEnabled) {
+      taskList << ("process-$name" as String)
+    }
+    if (uploadEnabled) {
+      taskList << ("upload-$name" as String)
+    }
+    tasks = taskList
   }.doFirst {
     // reset any previous result
     baseFolder.deleteDir()
