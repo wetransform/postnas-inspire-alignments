@@ -3,7 +3,7 @@
 # Customization
 #profile=hamburg
 # Database connection
-#db.uri=jdbc:postgresql://localhost:5432/testbed
+#db.uri=jdbc:postgresql://localhost:15432/testbed
 #db.user=postgres
 #db.password=postgres
 # Comma separated list of database schemas, optional
