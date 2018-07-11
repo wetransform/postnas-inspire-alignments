@@ -317,13 +317,9 @@ transformations.tasks.each { name, config ->
     // transformation target
     target(targetFile) {
       // WFS 2 FC by default
-      provider config.writer?.provider ?: 'eu.esdihumboldt.hale.io.wfs.fc.write-2.0'
-      // standard settings
-      setting 'xml.pretty', true
-      setting 'crs.epsg.prefix', 'http://www.opengis.net/def/crs/EPSG/0/'
-      setting 'skipFeatureCount', true
-
-      // custom settings
+      provider(config.writer?.provider ?: 'eu.esdihumboldt.hale.io.wfs.fc.write-2.0')
+      
+      // settings
       if (config.writer?.settings) {
         settings << config.writer.settings
       }
@@ -448,6 +444,99 @@ transformations.tasks.each { name, config ->
     println 'Validation stage completed'
   }
 
+  // Processing stage
+  
+  def processFolder = new File(baseFolder, 'process')
+  def processResultFolder = new File(processFolder, 'result')
+
+  // currently only splitting supported as processing
+  boolean processingEnabled = config.split?.enabled
+  
+  if (processingEnabled) {
+    def splitFolder = new File(processFolder, 'split')
+    
+    task("process-${name}") {
+      description "Processes transformation result (Project ${projectId} for model ${config.model})."
+      group 'Transformation'
+    }.doFirst {
+      // check preconditions
+      assert state.current in [State.validated, State.processed, State.uploaded] : 'Processing requires a valid transformation result'
+
+      processFolder.mkdirs()
+      processResultFolder.deleteDir()
+      processResultFolder.mkdirs()
+    }.doLast {
+      // actual processing
+      
+      // splitting
+      if (config.split?.enabled) {
+        splitFolder.mkdirs()
+        def splitError = new File(splitFolder, 'splitError.txt')
+        if (splitError.exists()) {
+          splitError.delete()
+        }
+
+        try {
+          // do actual splitting
+          
+          hale.cli {
+            logFolder = splitFolder
+
+            args = ['data', 'rewrite']
+
+            // data source
+            args << '--data'
+            args << targetFile.absolutePath
+
+            // data settings
+            // -> don't change geometries
+            args << '--data-setting'
+            args << 'suppressParsingGeometry=true'
+
+            // schema settings
+            // -> all features types should be loaded
+            args << '--schema-setting'
+            args << 'relevantMode=featureTypes'
+
+            // target
+            args << '--target'
+            args << new File(processResultFolder, 'part.gml')
+
+            args << '--target-writer'
+            args << (config.writer?.provider ?: 'eu.esdihumboldt.hale.io.wfs.fc.write-2.0')
+
+            // split settings
+            args << '--target-setting'
+            args << "partition.mode=${config.split.mode}"
+            args << '--target-setting'
+            args << "instancesPerFile=${config.split.instances}"
+
+            // writer settings
+            if (config.writer?.settings) {
+              config.writer?.settings.each { key, value ->
+                args << '--target-setting'
+                args << "${key}=$value"
+              }
+            }
+          }
+
+        } catch (Throwable e) {
+          splitError.text = e.message
+          throw e
+        }
+      }
+      else {
+        state.current = State.processed
+        println 'Processing stage skipped (nothing to do)'
+        return
+      }
+
+      // success -> mark stage as complete
+      state.current = State.processed
+      println 'Processing stage completed'
+    }
+  }
+
   // Continue -> run pipeline based on current state
   
   boolean alreadyDone = state.current == State.uploaded
@@ -469,7 +558,11 @@ transformations.tasks.each { name, config ->
         dependsOn "validate-$name"
         tasks.findByName("validate-$name").mustRunAfter "transform-$name"
       case State.validated:
-        //TODO processing if applicable
+        if (processingEnabled) {
+          // run processing
+          dependsOn "process-$name"
+          tasks.findByName("process-$name").mustRunAfter "validate-$name"
+        }
       case State.processed:
         //TODO upload
       case State.uploaded:

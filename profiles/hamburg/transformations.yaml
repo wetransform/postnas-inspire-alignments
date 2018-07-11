@@ -2,6 +2,10 @@
 #
 # Dummy configuration to be replaced by real Hamburg configuration
 #
+defaults:
+  upload:
+    enabled: true
+
 tasks:
   ad:
     enabled: false

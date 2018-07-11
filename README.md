@@ -203,7 +203,7 @@ tasks:
     enabled: true # Gradle-Tasks zu dieser Task-ID anbieten?
     variables: # Projekt-Variablen
       INSPIRE_NAMESPACE: https://registry.gdi-de.org/id/REPLACEME
-    # Konfiguration des Transformations-Ergebnis
+    # Konfiguration des GML-Writers (Transformation und Split)
     writer:
       # Der standardmäßig verwendete hale-Writer kann überschrieben werden (nicht empfohlen)
       provider: eu.esdihumboldt.hale.io.wfs.fc.write-2.0
@@ -215,8 +215,10 @@ tasks:
       xmlSchema: true # Soll XML Schema Validierung ausgeführt werden?
       haleInternal: true # Soll die hale-interne Validierung ausgeführt werden?
     # Konfigurationen für Prozessierung
-    split:
-      enabled: false
+    split: # Konfiguration für Aufteilung in mehrere Dateien
+      enabled: false # Aufteilen aktiviert?
+      mode: related # Aufteilungs-Modus
+      instances: 1000 # Wie viele Objekte sollen in eine Datei (Umsetzung je nach Modus)
 	# Konfiguration für Upload
 	upload:
 	  enabled: true # Upload aktiviert?

@@ -4,6 +4,12 @@ defaults:
   enabled: true
   variables:
     INSPIRE_NAMESPACE: https://registry.gdi-de.org/id/REPLACEME
+  # default writer settings
+  writer:
+    settings:
+      xml.pretty: true # Use a better readable XML
+      crs.epsg.prefix: http://www.opengis.net/def/crs/EPSG/0/ # Default EPSG prefix for INSPIRE
+      skipFeatureCount: true # Skip counting features to allow direct streaming
   # Validation
   validation:
     xmlSchema: true
@@ -11,6 +17,8 @@ defaults:
   # Splitting result disabled by default
   split:
     enabled: false
+    mode: related
+    instances: 1000
   # Upload disabled by default
   upload:
     enabled: false
