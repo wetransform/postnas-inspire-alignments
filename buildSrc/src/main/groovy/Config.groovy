@@ -119,6 +119,23 @@ class Config {
     }
   }
 
+  /**
+   * Save a configuration to a YAML file.
+   *
+   * @param yamlFile the YAML file
+   * @return the loaded configuration map
+   */
+  static void appendYaml(Map config, File yamlFile) {
+    DumperOptions options = new DumperOptions()
+    options.explicitStart = true
+    options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK)
+    Yaml yaml = new Yaml(options);
+    Map result
+    yamlFile.withWriterAppend(StandardCharsets.UTF_8.name()) {
+      result = yaml.dump(config, it)
+    }
+  }
+
   static Map load(Object... files) {
     mergeConfigs(files.collect { loadYaml(it as File) })
   }

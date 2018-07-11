@@ -286,3 +286,26 @@ Um die verschiedenen Stufen individuell auszuführen können die folgenden Tasks
 - `validate-<Task-ID>` - wertet das Transformationsergebnis aus und validiert die Daten (Voraussetzung: `transformed`; Erfolgs-Status: `validated`)
 - `process-<Task-ID>` - prozessiert das Transformationergebnis, aktuell nur Aufteilen in mehrere Dateien unterstützt (Voraussetzung: `validated`; Erfolgsstatus: `processed`)
 - `upload-<Task-ID>` - lädt (prozessiertes) Transformationergebnisin über eine WFS-T Schnitstelle hoch (Voraussetzung: `validated`; Erfolgsstatus: `uploaded`)
+
+### Alle Transformationen ausführen
+
+Um alle Transformationen auszuführen kann der Task `runAll` verwendet werden.
+Dieser versucht den Transformations-Ablauf für alle Projekte neu auszuführen.
+Schlägt der Ablauf für ein Projekt fehl, werden trotzdem die anderen danach auch noch ausgeführt.
+
+Mit dem Task `continueAll` wird versucht alle Transformations-Abläufe die nicht bis zum Ende ausgeführt wurden fortzusetzen.
+Hier wird aber beim ersten Fehler unterbrochen.
+
+Wenn man `continueAll` ohne Fehlerunterbrechung für alle Transformationen starten will muss man den Parameter `--continue` and Gradle übergeben, also z.B.:
+
+```
+gradlew --continue continueAll
+```
+
+### Fehler-Analyse
+
+Im Verzeichnis `logs/` werden zu jeder Ausführung eines Build (Unterverzeichnis mit Start-Zeit) eine Datei `summary.yaml` erzeugt die Auskunft über die ausgeführten Tasks und deren Erfolg oder Fehlschlag gibt.
+
+Damit lässt sich identifizieren, welche Tasks fehlgeschlagen sind aber keine genau Fehlerursache feststellen. Zu diesem Zweck sind in den Ordnern der verschiedenen Stufen des Prozesses üblicherweise Log- und/oder Fehler-Dateien vorhanden.
+Diese Ordner sind gruppiert nach der Task ID im Ordner `results/` zu finden.
+Dort werden ebenfalls die Ergebnisse aus den verschiedenen Stufen abgelegt.

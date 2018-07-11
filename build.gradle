@@ -30,15 +30,13 @@ configurations.all {
 
 Calendar calendar = Calendar.getInstance();
 
-gradle.taskGraph.whenReady {
-  // determine build ID
-  String buildID = System.getenv()['BUILD_ID'] // set externally
-  if (buildID == null){
-    DateFormat dateFormat = new SimpleDateFormat('YYYY-MM-dd HH-mm-ss');
-    buildID = dateFormat.format(calendar.getTime())
-  }
-  project.ext.buildId = buildID
+// determine build ID
+String buildID = project.findProperty('buildId') ?: System.getenv()['BUILD_ID'] // set externally
+if (buildID == null){
+  DateFormat dateFormat = new SimpleDateFormat('YYYY-MM-dd HH-mm-ss');
+  buildID = dateFormat.format(calendar.getTime())
 }
+project.ext.buildId = buildID
 
 
 /*
@@ -709,6 +707,9 @@ transformations.tasks.each { name, config ->
     description "Reruns the complete transformation pipeline (Project ${projectId} for model ${config.model})."
     group 'Transformation'
 
+    // retain buildId (to have combined summary)
+    startParameter.projectProperties.buildId = project.ext.buildId
+
     def taskList = ["transform-$name" as String, "validate-$name" as String]
     if (processingEnabled) {
       taskList << ("process-$name" as String)
@@ -733,6 +734,9 @@ task("continueAll", type: GradleBuild) {
   description "Runs the transformation pipeline from point of last failure for all projects."
   group 'Transformation'
 
+  // retain buildId (to have combined summary)
+  startParameter.projectProperties.buildId = project.ext.buildId
+
   def taskList = []
   transformations.tasks.each { name, config ->
     if (config.enabled) {
@@ -747,6 +751,9 @@ task("continueAll", type: GradleBuild) {
 task("runAll", type: GradleBuild) {
   description "Reruns the complete transformation pipeline for all transformations."
   group 'Transformation'
+
+  // retain buildId (to have combined summary)
+  startParameter.projectProperties.buildId = project.ext.buildId
 
   def taskList = []
   transformations.tasks.each { name, config ->
@@ -807,7 +814,7 @@ class BuildReporter extends BuildAdapter implements TaskExecutionListener {
 
       def summaryFile = project.file("logs/${project.ext.buildId}/summary.yaml")
       summaryFile.parentFile.mkdirs()
-      Config.saveYaml(report, summaryFile)
+      Config.appendYaml(report, summaryFile)
     }
   }
 
