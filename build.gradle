@@ -241,11 +241,12 @@ class StateManager {
 }
 
 def transformationFiles = [file('transformations.yaml')]
+if (project.hasProperty('profile')) {
+  transformationFiles.addAll(fileTree(dir: projectDir).matching {
+      include("profiles/${project.getProperty('profile')}/transformations.yaml")
+  } as List)
+}
 transformationFiles.addAll(fileTree(dir: projectDir).matching {
-  if (project.hasProperty('profile')) {
-    include("profiles/${project.getProperty('profile')}/transformations.yaml")
-  }
-  
   // override configuration locally
   include('transformations-override.yaml')
 } as List)
@@ -705,6 +706,39 @@ transformations.tasks.each { name, config ->
     println 'Transformation pipeline completed'
   }
 
+}
+
+// continue all
+
+task("continueAll", type: GradleBuild) {
+  description "Runs the transformation pipeline from point of last failure for all projects."
+  group 'Transformation'
+
+  def taskList = []
+  transformations.tasks.each { name, config ->
+    if (config.enabled) {
+      taskList << ("continue-$name" as String)
+    }
+  }
+  tasks = taskList
+}
+
+// run all
+
+task("runAll", type: GradleBuild) {
+  description "Reruns the complete transformation pipeline for all transformations."
+  group 'Transformation'
+
+  def taskList = []
+  transformations.tasks.each { name, config ->
+    if (config.enabled) {
+      taskList << ("run-$name" as String)
+    }
+  }
+  tasks = taskList
+
+  // continue even if tasks failed -> runs all transformations even if one fails (same as --continue command line option)
+  startParameter.continueOnFailure = true
 }
 
 /*
