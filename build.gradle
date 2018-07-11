@@ -274,7 +274,7 @@ transformations.tasks.each { name, config ->
   baseFolder.mkdirs()
   def state = new StateManager(new File(baseFolder, 'state'))
 
-  def targetFolder = new File(baseFolder, 'transform')
+  def targetFolder = new File(baseFolder, '01_transform')
   def targetFile = new File(targetFolder, 'result.gml')
   File statsFile = new File(targetFolder, 'statistics.json')
 
@@ -368,7 +368,7 @@ transformations.tasks.each { name, config ->
 
   // Validation stage
   
-  def validateFolder = new File(baseFolder, 'validate')
+  def validateFolder = new File(baseFolder, '02_validate')
   
   task("validate-${name}") {
     description "Performs/evaluates validation on transformation results for project ${projectId} for model ${config.model}."
@@ -446,7 +446,7 @@ transformations.tasks.each { name, config ->
 
   // Processing stage
   
-  def processFolder = new File(baseFolder, 'process')
+  def processFolder = new File(baseFolder, '03_process')
   def processResultFolder = new File(processFolder, 'result')
 
   // currently only splitting supported as processing
@@ -543,7 +543,7 @@ transformations.tasks.each { name, config ->
   boolean uploadEnabled = config.upload?.enabled
   
   if (uploadEnabled) {
-    def uploadFolder = new File(baseFolder, 'upload')
+    def uploadFolder = new File(baseFolder, '04_upload')
 
     task("upload-${name}") {
       description "Upload (processed) transformation result (Project ${projectId} for model ${config.model})."
