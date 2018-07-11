@@ -1,11 +1,19 @@
 ---
 defaults:
+  # By default all tasks are enabled
   enabled: true
+  variables:
+    INSPIRE_NAMESPACE: https://registry.gdi-de.org/id/REPLACEME
+  # Validation
   validation:
     xmlSchema: true
     haleInternal: true
-  variables:
-    INSPIRE_NAMESPACE: https://registry.gdi-de.org/id/REPLACEME
+  # Splitting result disabled by default
+  split:
+    enabled: false
+  # Upload disabled by default
+  upload:
+    enabled: false
 
 tasks:
   ad:

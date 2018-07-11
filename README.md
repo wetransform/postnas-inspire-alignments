@@ -200,12 +200,28 @@ tasks:
     model: DLKM # Modellart
     additionalModels: # optionale weitere Modellarten deren Objekte akzeptiert werden
       - DKKM1000
-    enabled: true # Ist das Projekt aktiviert?
+    enabled: true # Gradle-Tasks zu dieser Task-ID anbieten?
+    variables: # Projekt-Variablen
+      INSPIRE_NAMESPACE: https://registry.gdi-de.org/id/REPLACEME
+    # Konfiguration des Transformations-Ergebnis
+    writer:
+      # Der standardmäßig verwendete hale-Writer kann überschrieben werden (nicht empfohlen)
+      provider: eu.esdihumboldt.hale.io.wfs.fc.write-2.0
+      # Einstellungen des Writers können überschrieben oder zusätzlich angegeben werden
+      settings:
+        xml.pretty: false # z.B. kein Pretty printing für XML
+    # Konfiguration für Validierung
     validation:
       xmlSchema: true # Soll XML Schema Validierung ausgeführt werden?
       haleInternal: true # Soll die hale-interne Validierung ausgeführt werden?
-    variables: # Projekt-Variablen
-      INSPIRE_NAMESPACE: https://registry.gdi-de.org/id/REPLACEME  
+    # Konfigurationen für Prozessierung
+    split:
+      enabled: false
+	# Konfiguration für Upload
+	upload:
+	  enabled: true # Upload aktiviert?
+	  url: http://localhost:8080/services/wfs # Adresse des WFS-T
+	
 
   # ... weitere Tasks
 

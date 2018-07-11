@@ -316,14 +316,16 @@ transformations.tasks.each { name, config ->
 
     // transformation target
     target(targetFile) {
-      provider 'eu.esdihumboldt.hale.io.wfs.fc.write-2.0' // WFS 2 FC
+      // WFS 2 FC by default
+      provider config.writer?.provider ?: 'eu.esdihumboldt.hale.io.wfs.fc.write-2.0'
+      // standard settings
       setting 'xml.pretty', true
       setting 'crs.epsg.prefix', 'http://www.opengis.net/def/crs/EPSG/0/'
       setting 'skipFeatureCount', true
 
       // custom settings
-      if (config.writerSettings) {
-        settings << config.writerSettings
+      if (config.writer?.settings) {
+        settings << config.writer.settings
       }
     }
     
