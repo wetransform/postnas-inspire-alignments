@@ -470,6 +470,7 @@ transformations.tasks.each { name, config ->
       
       // splitting
       if (config.split?.enabled) {
+        splitFolder.deleteDir()
         splitFolder.mkdirs()
         def splitError = new File(splitFolder, 'splitError.txt')
         if (splitError.exists()) {
