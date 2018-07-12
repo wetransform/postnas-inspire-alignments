@@ -9,6 +9,8 @@ buildscript {
   }
 }
 
+import java.text.*
+
 apply plugin: 'to.wetransform.hale'
 
 hale {
@@ -24,6 +26,21 @@ configurations.all {
   resolutionStrategy.cacheChangingModulesFor 180, 'minutes'
   //resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
+
+Calendar calendar = Calendar.getInstance();
+
+// determine build ID
+String buildID = project.findProperty('buildId') ?: System.getenv()['BUILD_ID'] // set externally
+if (buildID == null){
+  DateFormat dateFormat = new SimpleDateFormat('YYYY-MM-dd HH-mm-ss');
+  buildID = dateFormat.format(calendar.getTime())
+}
+project.ext.buildId = buildID
+
+
+/*
+ * Migration tasks
+ */
 
 project.ext.advAlignmentsPath = project.hasProperty('advAlignments') ? project.getProperty('advAlignments') : 'adv-alignments'
 
@@ -212,13 +229,48 @@ migrations.each { name, config ->
  * Transformation
  */
 
+enum State {
+  start, transformed, validated, processed, uploaded
+}
+class StateManager {
+  private final File stateFile
+
+  StateManager(File stateFile) {
+    this.stateFile = stateFile
+  }
+
+  void setCurrent(State state) {
+    stateFile.text = (state ?: State.start).name()
+  }
+
+  State getCurrent() {
+    if (stateFile.exists()) {
+      State.valueOf(stateFile.text.trim())
+    }
+    else {
+      State.start // assume start
+    }
+  }
+
+  void reset() {
+    setCurrent(State.start)
+  }
+}
+
 def transformationFiles = [file('transformations.yaml')]
+if (project.hasProperty('profile')) {
+  transformationFiles.addAll(fileTree(dir: projectDir).matching {
+      include("profiles/${project.getProperty('profile')}/transformations.yaml")
+  } as List)
+}
 transformationFiles.addAll(fileTree(dir: projectDir).matching {
-  //TODO configurable?
+  // override configuration locally
   include('transformations-override.yaml')
 } as List)
 
 def transformations = Config.load(transformationFiles as File[])
+
+def enabledTransformations = [:]
 
 transformations.tasks.each { name, config ->
   // apply defaults
@@ -235,11 +287,20 @@ transformations.tasks.each { name, config ->
   if (!config.project) {
     return
   }
+  enabledTransformations[name] = true
+
   def projectId = config.project
   def projectFile = projectFiles[projectId]
 
-  def targetFolder = new File(file('transformation'), name)
+  def baseFolder = new File(file('results'), name)
+  baseFolder.mkdirs()
+  def state = new StateManager(new File(baseFolder, 'state'))
+
+  def targetFolder = new File(baseFolder, '01_transform')
   def targetFile = new File(targetFolder, 'result.gml')
+  File statsFile = new File(targetFolder, 'statistics.json')
+
+  // Transformation stage
 
   task("transform-${name}", type: hale.transform(), dependsOn: "db-migrate-$projectId") {
     // transformation project
@@ -277,14 +338,12 @@ transformations.tasks.each { name, config ->
 
     // transformation target
     target(targetFile) {
-      provider 'eu.esdihumboldt.hale.io.wfs.fc.write-2.0' // WFS 2 FC
-      setting 'xml.pretty', true
-      setting 'crs.epsg.prefix', 'http://www.opengis.net/def/crs/EPSG/0/'
-      setting 'skipFeatureCount', true
-
-      // custom settings
-      if (config.writerSettings) {
-        settings << config.writerSettings
+      // WFS 2 FC by default
+      provider(config.writer?.provider ?: 'eu.esdihumboldt.hale.io.wfs.fc.write-2.0')
+      
+      // settings
+      if (config.writer?.settings) {
+        settings << config.writer.settings
       }
     }
     
@@ -305,22 +364,470 @@ transformations.tasks.each { name, config ->
       environment['HALE_TRANSFORMATION_INTERNAL_VALIDATION'] = 'true'
     }
     
-    //FIXME hale 3.4 required
     // statistics and ...
     additionalArgs << '-statisticsOut'
-    File statsFile = new File(targetFolder, 'statistics.json')
     additionalArgs << statsFile.absolutePath
     // ... success evaluation
     // additionalArgs << '-successEvaluation'
     // additionalArgs << project.file('success.groovy')
 
-    description "Runs a transformation based on project ${projectId} for model $model."
+    // exit value is ignored -> we do a success evaluation in the validation stage
+    ignoreExitValue = true
+
+    description "Runs a transformation based on project ${projectId} for model ${config.model}."
     group 'Transformation'
   }.doFirst {
     targetFolder.deleteDir()
     targetFolder.mkdirs()
+
+    // reset state -> we are starting anew
+    state.reset()
+  }.doLast {
+    // stage completed
+    state.current = State.transformed
+    println 'Transformation stage completed'
   }
+
+  // Validation stage
+  
+  def validateFolder = new File(baseFolder, '02_validate')
+  
+  task("validate-${name}") {
+    description "Performs/evaluates validation on transformation results for project ${projectId} for model ${config.model}."
+    group 'Transformation'
+  }.doFirst {
+    // verify state
+    assert state.current != State.start : 'Validation requires transformation to have been run'
+  }.doLast {
+    // success evaluation
+
+    validateFolder.mkdirs()
+    def evaluationError = new File(validateFolder, 'evaluationError.txt')
+    if (evaluationError.exists()) {
+      evaluationError.delete()
+    }
+
+    // errors that require transformation to be re-run
+    def stats
+    def aggregated
+    try {
+      assert statsFile.exists() : 'Statistics file does not exist'
+
+      // load stats
+      stats = new groovy.json.JsonSlurper().parse(statsFile)
+      aggregated = stats.aggregated
+
+      assert aggregated['eu.esdihumboldt.hale.transform'].report.completed == true : 'Die Transformation wurde nicht abgeschlossen'
+
+      assert aggregated['eu.esdihumboldt.hale.transform'].report.errors == 0 : 'Während der Transformation sind Fehler aufgetreten'
+
+      assert aggregated['eu.esdihumboldt.hale.transform'].createdPerType.any { typeName, count -> count > 0 } : 'Aus der Transformation sind keine Objekte erzeugt worden sein'
+
+      assert aggregated['eu.esdihumboldt.hale.io.instance.write.transformed'].report.completed == true : 'Das Schreiben der Ziel-Datei wurde nicht abgeschlossen'
+
+      assert aggregated['eu.esdihumboldt.hale.io.instance.write.transformed'].report.errors == 0 : 'Während des Schreibens der Ziel-Datei sind Fehler aufgetreten'
+    } catch (Throwable e) {
+      // reset state
+      state.reset()
+      println 'Transformation needs to be re-run, resetting state'
+
+      evaluationError.text = e.message
+      throw e
+    }
+
+    // errors that are general validation errors
+    try {
+      // XML Schema
+      if (config.validation.xmlSchema) {
+        assert aggregated['eu.esdihumboldt.hale.io.xml.validator']?.report?.completed == true : 'Die XML Schema Validierung wurde nicht ausgeführt'
+
+        assert aggregated['eu.esdihumboldt.hale.io.xml.validator'].report.errors == 0 : 'Die XML Schema Validierung ergab Fehler'
+
+        assert aggregated['eu.esdihumboldt.hale.io.xml.validator'].report.warnings == 0 : 'Die XML Schema Validierung ergab Warnungen'
+      }
+
+      if (config.validation.haleInternal) {
+        assert aggregated['eu.esdihumboldt.hale.instance.validation.internal']?.report?.completed == true : 'Die hale-interne Validierung wurde nicht ausgeführt'
+        assert aggregated['eu.esdihumboldt.hale.instance.validation.internal'].report.errors == 0 : 'Die hale-interne Validierung ergab Fehler'
+        assert aggregated['eu.esdihumboldt.hale.instance.validation.internal'].report.warnings == 0 : 'Die hale-interne Validierung ergab Warnungen'
+      }
+    } catch (Throwable e) {
+      evaluationError.text = e.message
+      throw e
+    }
+
+    //TODO other, external validations?
+
+    // success -> mark stage as complete
+    if (state.current == State.transformed) {
+      // only override state for transformed (to not invalidate any processing)
+      state.current = State.validated
+    }
+    println 'Validation stage completed'
+  }
+
+  // Processing stage
+  
+  def processFolder = new File(baseFolder, '03_process')
+  def processResultFolder = new File(processFolder, 'result')
+
+  // currently only splitting supported as processing
+  boolean processingEnabled = config.split?.enabled
+  
+  if (processingEnabled) {
+    def splitFolder = new File(processFolder, 'split')
+    
+    task("process-${name}") {
+      description "Processes transformation result (Project ${projectId} for model ${config.model})."
+      group 'Transformation'
+    }.doFirst {
+      // check preconditions
+      assert state.current in [State.validated, State.processed, State.uploaded] : 'Processing requires a valid transformation result'
+
+      processFolder.mkdirs()
+      processResultFolder.deleteDir()
+      processResultFolder.mkdirs()
+    }.doLast {
+      // actual processing
+      
+      // splitting
+      if (config.split?.enabled) {
+        splitFolder.deleteDir()
+        splitFolder.mkdirs()
+        def splitError = new File(splitFolder, 'splitError.txt')
+        if (splitError.exists()) {
+          splitError.delete()
+        }
+
+        try {
+          // do actual splitting
+          
+          hale.cli {
+            logFolder = splitFolder
+
+            args = ['data', 'rewrite']
+
+            // data source
+            args << '--data'
+            args << targetFile.absolutePath
+
+            // data settings
+            // -> don't change geometries
+            args << '--data-setting'
+            args << 'suppressParsingGeometry=true'
+
+            // schema settings
+            // -> all features types should be loaded
+            args << '--schema-setting'
+            args << 'relevantMode=featureTypes'
+
+            // target
+            args << '--target'
+            args << new File(processResultFolder, 'part.gml')
+
+            args << '--target-writer'
+            args << (config.writer?.provider ?: 'eu.esdihumboldt.hale.io.wfs.fc.write-2.0')
+
+            // split settings
+            args << '--target-setting'
+            args << "partition.mode=${config.split.mode}"
+            args << '--target-setting'
+            args << "instancesPerFile=${config.split.instances}"
+
+            // writer settings
+            if (config.writer?.settings) {
+              config.writer?.settings.each { key, value ->
+                args << '--target-setting'
+                args << "${key}=$value"
+              }
+            }
+          }
+
+        } catch (Throwable e) {
+          splitError.text = e.message
+          throw e
+        }
+      }
+      else {
+        state.current = State.processed
+        println 'Processing stage skipped (nothing to do)'
+        return
+      }
+
+      // success -> mark stage as complete
+      state.current = State.processed
+      println 'Processing stage completed'
+    }
+  }
+
+  // Upload stage
+  
+  boolean uploadEnabled = config.upload?.enabled
+  
+  if (uploadEnabled) {
+    def uploadFolder = new File(baseFolder, '04_upload')
+
+    task("upload-${name}") {
+      description "Upload (processed) transformation result (Project ${projectId} for model ${config.model})."
+      group 'Transformation'
+    }.doFirst {
+      // check preconditions
+      assert state.current in [State.validated, State.processed, State.uploaded] : 'Uploading requires a valid (and optionally processed) transformation result'
+
+      uploadFolder.deleteDir()
+      uploadFolder.mkdirs()
+    }.doLast {
+      def uploadError = new File(uploadFolder, 'uploadError.txt')
+      if (uploadError.exists()) {
+        uploadError.delete()
+      }
+
+      // identify upload source(s)
+      def sources = []
+      try {
+        if (state.current == State.validated || !processResultFolder.exists()) {
+          // use transformation result
+          sources << targetFile
+        }
+        else {
+          // use processing result
+          sources = fileTree(dir: processResultFolder).matching {
+            include('*.gml')
+          } as List
+        }
+
+        assert !sources.empty : 'No files could be identified for upload'
+
+        assert config.upload.url : 'URL for upload is not configured'
+      } catch (Throwable e) {
+        uploadError.text = e.message
+          throw e
+      }
+
+      for (int i = 0; i < sources.size(); i++) {
+        def source = sources[i]
+        def fileId = 'file_' + "$i".padLeft(5, '0')
+        def reportFolder = new File(uploadFolder, fileId)
+        reportFolder.mkdirs()
+
+        // upload file
+        try {
+          hale.cli {
+            logFolder = reportFolder
+
+            args = ['data', 'rewrite']
+
+            // data source
+            args << '--data'
+            args << (source as File).absolutePath
+
+            // data settings
+            // -> don't change geometries
+            args << '--data-setting'
+            args << 'suppressParsingGeometry=true'
+
+            // schema settings
+            // -> all features types should be loaded
+            args << '--schema-setting'
+            args << 'relevantMode=featureTypes'
+
+            // target
+            args << '--target'
+            args << config.upload.url
+
+            //TODO settings configurable?
+            args << '--target-writer'
+            args << 'eu.esdihumboldt.hale.io.wfs.write'
+            args << '--target-setting'
+            args << 'wfsVersion=2.0.0'
+          }
+
+        } catch (Throwable e) {
+          uploadError.text = "Failed to upload file ${source} ($fileId): " + e.message
+          throw e
+        }
+      }
+
+      // success -> mark stage as complete
+      state.current = State.uploaded
+      println 'Upload stage completed'
+    }
+  }
+
+  // Continue -> run pipeline based on current state
+  
+  boolean alreadyDone = state.current == State.uploaded
+  
+  task("continue-${name}") {
+    description "Runs transformation pipeline from point of last failure or starts it anew (Project ${projectId} for model ${config.model})."
+    group 'Transformation'
+
+    /*
+     * Important: This is based on the stage state at the time Gradle
+     * is run!
+     */
+    switch(state.current) {
+      case State.start:
+        // run transformation
+        dependsOn "transform-$name"
+      case State.transformed:
+        // run validation
+        dependsOn "validate-$name"
+        tasks.findByName("validate-$name").mustRunAfter "transform-$name"
+      case State.validated:
+        if (processingEnabled) {
+          // run processing
+          dependsOn "process-$name"
+          tasks.findByName("process-$name").mustRunAfter "validate-$name"
+        }
+      case State.processed:
+        if (uploadEnabled) {
+          // run upload
+          dependsOn "upload-$name"
+          if (processingEnabled) {
+            tasks.findByName("upload-$name").mustRunAfter "process-$name"
+          }
+          else {
+            tasks.findByName("upload-$name").mustRunAfter "validate-$name"
+          }
+        }
+      case State.uploaded:
+        // nothing to do
+      default:
+        break
+    }
+  }.doLast {
+    if (alreadyDone) {
+      println 'Transformation pipeline was already complete'
+    }
+    else {
+      println 'Transformation pipeline completed'
+    }
+  }
+
+  // Run -> run complete pipeline
+
+  task("run-${name}", type: GradleBuild) {
+    description "Reruns the complete transformation pipeline (Project ${projectId} for model ${config.model})."
+    group 'Transformation'
+
+    // retain buildId (to have combined summary)
+    startParameter.projectProperties.buildId = project.ext.buildId
+
+    def taskList = ["transform-$name" as String, "validate-$name" as String]
+    if (processingEnabled) {
+      taskList << ("process-$name" as String)
+    }
+    if (uploadEnabled) {
+      taskList << ("upload-$name" as String)
+    }
+    tasks = taskList
+  }.doFirst {
+    // reset any previous result
+    baseFolder.deleteDir()
+    baseFolder.mkdirs()
+  }.doLast {
+    println 'Transformation pipeline completed'
+  }
+
 }
+
+// continue all
+
+task("continueAll", type: GradleBuild) {
+  description "Runs the transformation pipeline from point of last failure for all projects."
+  group 'Transformation'
+
+  // retain buildId (to have combined summary)
+  startParameter.projectProperties.buildId = project.ext.buildId
+
+  def taskList = []
+  transformations.tasks.each { name, config ->
+    if (enabledTransformations[name]) {
+      taskList << ("continue-$name" as String)
+    }
+  }
+  tasks = taskList
+}
+
+// run all
+
+task("runAll", type: GradleBuild) {
+  description "Reruns the complete transformation pipeline for all transformations."
+  group 'Transformation'
+
+  // retain buildId (to have combined summary)
+  startParameter.projectProperties.buildId = project.ext.buildId
+
+  def taskList = []
+  transformations.tasks.each { name, config ->
+    if (enabledTransformations[name]) {
+      taskList << ("run-$name" as String)
+    }
+  }
+  tasks = taskList
+
+  // continue even if tasks failed -> runs all transformations even if one fails (same as --continue command line option)
+  startParameter.continueOnFailure = true
+}
+
+// build report
+
+class BuildReporter extends BuildAdapter implements TaskExecutionListener {
+
+  final def taskRuns = [:]
+  def project
+
+  void beforeExecute(Task task) {
+    taskRuns[task.name] = [startTime: java.time.LocalDateTime.now()]
+  }
+
+  @Override
+  void afterExecute(Task task, TaskState taskState) {
+    def t = taskRuns[task.name]
+    t.endTime = java.time.LocalDateTime.now()
+    
+    long s = java.time.Duration.between(t.startTime, t.endTime).getSeconds()
+    t.duration = "${(int) (s / 3600)}:${((int) ((s % 3600) / 60) as String).padLeft(2, '0')}:${((s % 60) as String).padLeft(2, '0')}" as String
+    t.startTime = t.startTime as String
+    t.endTime = t.endTime as String
+
+    t.succeeded = taskState.failure == null
+    if (taskState.failure) {
+      def error = taskState.failure
+      if (error.cause) {
+        error = error.cause
+      }
+      t.error = error.message
+    }
+  }
+
+  void buildFinished(BuildResult result) {
+    if (result.action == 'Build') {
+      def report = [
+        failure: !!result.failure,
+      ]
+      if (result.failure) {
+        def error = result.failure
+        if (error.cause) {
+          error = error.cause
+        }
+        report.error = error.message
+      }
+      report.tasks = taskRuns
+
+      def summaryFile = project.file("logs/${project.ext.buildId}/summary.yaml")
+      summaryFile.parentFile.mkdirs()
+      Config.appendYaml(report, summaryFile)
+    }
+  }
+
+}
+
+def reporter = new BuildReporter(project: project)
+gradle.addListener( (TaskExecutionListener) reporter)
+gradle.addListener( (BuildListener) reporter)
+
 
 /*
  * Gradle wrapper
