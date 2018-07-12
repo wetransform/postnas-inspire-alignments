@@ -1,5 +1,5 @@
 diff --git a/projects/au-auto.halex.alignment.xml b/projects/au-manual.halex.alignment.xml
-index ea210cb..47be5f7 100644
+index 20070c4..a260d20 100644
 --- a/projects/au-auto.halex.alignment.xml
 +++ b/projects/au-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -27,7 +27,7 @@ index ea210cb..47be5f7 100644
                  </type>
              </class>
          </source>
-@@ -795,7 +793,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+@@ -802,7 +800,7 @@ Aktuell ist folgende Abbildung umgesetzt:
          <source>
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -36,7 +36,7 @@ index ea210cb..47be5f7 100644
                  </type>
                  <child name="beginnt"/>
              </property>
-@@ -849,7 +847,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -863,7 +861,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source>
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -45,7 +45,7 @@ index ea210cb..47be5f7 100644
                  </type>
                  <child name="endet"/>
              </property>
-@@ -867,7 +865,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -888,7 +886,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source name="geometrie">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -54,7 +54,7 @@ index ea210cb..47be5f7 100644
                  </type>
                  <child name="wkb_geometry"/>
              </property>
-@@ -883,7 +881,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -911,7 +909,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source name="id">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -63,7 +63,7 @@ index ea210cb..47be5f7 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -900,7 +898,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -935,7 +933,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source name="id">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -72,7 +72,7 @@ index ea210cb..47be5f7 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -916,7 +914,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -958,7 +956,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source name="id">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -81,7 +81,7 @@ index ea210cb..47be5f7 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -955,7 +953,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -1004,7 +1002,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source>
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -90,7 +90,7 @@ index ea210cb..47be5f7 100644
                  </type>
                  <child name="artdergebietsgrenze"/>
              </property>
-@@ -1084,7 +1082,7 @@ class Processor {
+@@ -1140,7 +1138,7 @@ class Processor {
  
  }
  
@@ -99,7 +99,7 @@ index ea210cb..47be5f7 100644
  
  // Geometrien aus Lower Level Unit
  def geoms = _.context.collector().LowerLevelGeometrien[_id].clear()
-@@ -1259,7 +1257,7 @@ class Processor {
+@@ -1322,7 +1320,7 @@ class Processor {
  
  
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -108,7 +108,7 @@ index ea210cb..47be5f7 100644
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // vorhanden sind
-@@ -1280,14 +1278,14 @@ def collect
+@@ -1343,14 +1341,14 @@ def collect
  withTransformationContext {
  	collect = _.context.collector(it)
  }
@@ -127,7 +127,7 @@ index ea210cb..47be5f7 100644
  	
  	upperLevelUnit =  "AdministrativeUnit_${land}${regBezirk}${kreis}"
  	
-@@ -1466,13 +1464,13 @@ class Processor {
+@@ -1536,13 +1534,13 @@ class Processor {
  
  
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -144,7 +144,7 @@ index ea210cb..47be5f7 100644
  	if (gemeinden) {
  		_log.warn("Keine Flurstückgeometrien zu Verwaltungsgemeinschaft $sourceId gefunden, zugehörige AdminstrativeUnit wird nicht erstellt")
  	}
-@@ -1483,14 +1481,14 @@ if (!geoms) {
+@@ -1553,14 +1551,14 @@ if (!geoms) {
  }
  
  // Schlüssel für alle Gemeinden der Gemeinschaft
@@ -161,7 +161,7 @@ index ea210cb..47be5f7 100644
  
  def union = _.geom.union(geoms)
  
-@@ -1516,7 +1514,7 @@ _target{
+@@ -1586,7 +1584,7 @@ _target{
  
  withTransformationContext {
  	def collect = _.context.collector(it)
@@ -170,7 +170,7 @@ index ea210cb..47be5f7 100644
  	// Hinterlege ID je Gemeinde
  	gemeinden.each {
  		collect.verwaltungsGemeinschaft['AdministrativeUnit_' + it] = _id
-@@ -1615,7 +1613,7 @@ class Processor {
+@@ -1692,7 +1690,7 @@ class Processor {
  
  }
  
@@ -179,7 +179,7 @@ index ea210cb..47be5f7 100644
  
  // Geometrien aus Lower Level Unit
  def geoms = _.context.collector().LowerLevelGeometrien[_id].clear()
-@@ -1632,8 +1630,8 @@ withTransformationContext {
+@@ -1709,8 +1707,8 @@ withTransformationContext {
  }
  
  // bestimme upperLevelUnit, sammle ID
@@ -190,7 +190,7 @@ index ea210cb..47be5f7 100644
  def upperLevelUnit
  if (regBezirk &amp;&amp; regBezirk != '0') {
  	upperLevelUnit = 'AdministrativeUnit_' + land + regBezirk
-@@ -1754,7 +1752,7 @@ class Processor {
+@@ -1838,7 +1836,7 @@ class Processor {
  
  }
  
@@ -199,7 +199,7 @@ index ea210cb..47be5f7 100644
  
  // Geometrien aus Lower Level Unit
  def geoms = _.context.collector().LowerLevelGeometrien[_id].clear()
-@@ -1771,7 +1769,7 @@ withTransformationContext {
+@@ -1855,7 +1853,7 @@ withTransformationContext {
  }
  
  // bestimme upperLevelUnit, sammle ID
@@ -208,7 +208,7 @@ index ea210cb..47be5f7 100644
  collect.land[upperLevelUnit] &lt;&lt; _id
  
  def union = _.geom.union(geoms)
-@@ -2744,33 +2742,15 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -2835,33 +2833,15 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
      <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_C153144ee-8008-471c-a689-adba7e1d10b7">
          <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
      </modifier>

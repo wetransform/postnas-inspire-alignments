@@ -1,5 +1,5 @@
 diff --git a/projects/tn-a-auto.halex.alignment.xml b/projects/tn-a-manual.halex.alignment.xml
-index 71905a3..d0b0477 100644
+index 891c2e0..ef8a3c0 100644
 --- a/projects/tn-a-auto.halex.alignment.xml
 +++ b/projects/tn-a-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -68,7 +68,7 @@ index 71905a3..d0b0477 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -805,7 +815,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
+@@ -812,7 +822,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  def bwf = _source.p.bauwerksfunktion.value()
@@ -77,12 +77,12 @@ index 71905a3..d0b0477 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -837,14 +847,14 @@ withTransformationContext {
+@@ -851,14 +861,14 @@ withTransformationContext {
  }
  
  
 -def _id = 'AerodromeArea_' + _source.p.id.value() 
-+def _id = 'AerodromeArea_' + _source.p.gml_id.value() 
++def _id = 'AerodromeArea_' + _source.p.gml_id.value()
  
  _target {
  }
@@ -94,7 +94,7 @@ index 71905a3..d0b0477 100644
  case '5511': // Internationaler Flughafen
  	aerodromeCategory = 'international'
  	break
-@@ -862,7 +872,7 @@ case '5550': // Segelfluggelände
+@@ -876,7 +886,7 @@ case '5550': // Segelfluggelände
  
  // bestimme AerodromeType
  def aerodromeType
@@ -103,7 +103,7 @@ index 71905a3..d0b0477 100644
  case '5510': // Flughafen
  case '5511': // Internationaler Flughafen
  case '5512': // Regionalflughafen
-@@ -880,7 +890,7 @@ case '5530': // Hubschrauberflugplatz
+@@ -894,7 +904,7 @@ case '5530': // Hubschrauberflugplatz
  
  // bestimme ConditionOfFacility
  def conditionOfFacility = 'functional'
@@ -112,7 +112,7 @@ index 71905a3..d0b0477 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -892,9 +902,9 @@ case '4000': // Im Bau
+@@ -906,9 +916,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -124,7 +124,7 @@ index 71905a3..d0b0477 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -1072,11 +1082,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -1093,11 +1103,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          <parameter value="false" name="structuralRename"/>
      </cell>
      <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C013ef1ce-3389-4a12-9e43-299c5877d6dd_Cd2d3c726-c951-484a-8bb0-c17504676eeb" priority="normal">
@@ -169,7 +169,7 @@ index 71905a3..d0b0477 100644
              </property>
          </source>
          <target>
-@@ -1384,7 +1423,7 @@ withTransformationContext {
+@@ -1412,7 +1451,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit flächenartigen Geometrien behandeln
@@ -178,7 +178,7 @@ index 71905a3..d0b0477 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def surfaces = _.geom.splitMulti(geometries)
-@@ -1394,11 +1433,11 @@ def surfaces = _.geom.splitMulti(geometries)
+@@ -1422,11 +1461,11 @@ def surfaces = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -192,7 +192,7 @@ index 71905a3..d0b0477 100644
  case '1210': // Gras, Rasen
  	surfaceComposition = 'grass'
  	break
-@@ -1413,9 +1452,9 @@ case '1230': // Bitumen, Asphalt
+@@ -1441,9 +1480,9 @@ case '1230': // Bitumen, Asphalt
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -204,7 +204,7 @@ index 71905a3..d0b0477 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -1820,7 +1859,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. *Tra
+@@ -1883,7 +1922,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. *Tra
          <source>
              <class>
                  <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -213,7 +213,7 @@ index 71905a3..d0b0477 100644
                  </type>
              </class>
          </source>
-@@ -1837,7 +1876,7 @@ withTransformationContext {
+@@ -1900,7 +1939,7 @@ withTransformationContext {
  }
  
  // ID des Quell-Objekts
@@ -222,7 +222,7 @@ index 71905a3..d0b0477 100644
  
  _target {
  	// Referenz zu jedem NetworkElement das aus der Flugverkehrs-
-@@ -1873,7 +1912,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
+@@ -1950,7 +1989,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
          <source name="id">
              <property>
                  <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -231,7 +231,7 @@ index 71905a3..d0b0477 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -1889,7 +1928,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
+@@ -1973,7 +2012,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
          <source name="id">
              <property>
                  <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -240,7 +240,7 @@ index 71905a3..d0b0477 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -1905,7 +1944,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
+@@ -1996,7 +2035,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
          <source name="id">
              <property>
                  <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -249,7 +249,7 @@ index 71905a3..d0b0477 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -1944,7 +1983,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
+@@ -2042,7 +2081,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
          <source>
              <property>
                  <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -258,9 +258,9 @@ index 71905a3..d0b0477 100644
                  </type>
                  <child name="breitedesobjekts"/>
              </property>
-@@ -1958,16 +1997,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
-         <parameter value="false" name="ignoreNamespaces"/>
-         <parameter value="false" name="structuralRename"/>
+@@ -2063,16 +2102,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
+             </core:message>
+         </annotation>
      </cell>
 -    <cell relation="custom:alignment:adv.uom.toucum" id="Cc3659e5d-d3a3-464a-bc59-506edd1b7763_Cbfe48734-25e9-488c-bb87-cb9913240d13" priority="normal">
 -        <source name="uom">
@@ -276,15 +276,15 @@ index 71905a3..d0b0477 100644
          <target>
              <property>
                  <type name="ElementWidthType" ns="http://inspire.ec.europa.eu/schemas/tn-a/4.0"/>
-@@ -1975,6 +2005,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
+@@ -2080,6 +2110,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
                  <child name="uom"/>
              </property>
          </target>
 +        <parameter value="m" name="value"/>
-     </cell>
-     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Ccaa52a0b-aa46-4373-913d-d52ebe85743c" priority="normal">
-         <source>
-@@ -1997,7 +2028,7 @@ withTransformationContext {
+         <annotation type="message">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                 <core:content>
+@@ -2109,7 +2140,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit flächenartigen Geometrien behandeln
@@ -293,7 +293,7 @@ index 71905a3..d0b0477 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def surfaces = _.geom.splitMulti(geometries)
-@@ -2007,11 +2038,11 @@ def surfaces = _.geom.splitMulti(geometries)
+@@ -2119,11 +2150,11 @@ def surfaces = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -307,7 +307,7 @@ index 71905a3..d0b0477 100644
  case '1210': // Gras, Rasen
  	surfaceComposition = 'grass'
  	break
-@@ -2026,9 +2057,9 @@ case '1230': // Bitumen, Asphalt
+@@ -2138,9 +2169,9 @@ case '1230': // Bitumen, Asphalt
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -319,7 +319,7 @@ index 71905a3..d0b0477 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2427,7 +2458,7 @@ withTransformationContext {
+@@ -2588,7 +2619,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit flächenartigen Geometrien behandeln
@@ -328,7 +328,7 @@ index 71905a3..d0b0477 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def surfaces = _.geom.splitMulti(geometries)
-@@ -2437,11 +2468,11 @@ def surfaces = _.geom.splitMulti(geometries)
+@@ -2598,11 +2629,11 @@ def surfaces = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -342,7 +342,7 @@ index 71905a3..d0b0477 100644
  case '1210': // Gras, Rasen
  	surfaceComposition = 'grass'
  	break
-@@ -2456,9 +2487,9 @@ case '1230': // Bitumen, Asphalt
+@@ -2617,9 +2648,9 @@ case '1230': // Bitumen, Asphalt
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */

@@ -1,5 +1,5 @@
 diff --git a/projects/tn-c-auto.halex.alignment.xml b/projects/tn-c-manual.halex.alignment.xml
-index 28bf025..a3a68ed 100644
+index f9780b4..ea7e3a4 100644
 --- a/projects/tn-c-auto.halex.alignment.xml
 +++ b/projects/tn-c-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -18,7 +18,7 @@ index 28bf025..a3a68ed 100644
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-@@ -834,7 +832,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
+@@ -848,7 +846,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // nur Objekt mit linienartigen Geometrien behandeln
@@ -27,7 +27,7 @@ index 28bf025..a3a68ed 100644
  
  // Ziel unterstützt keine MultiLineStrings
  def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: false)
-@@ -843,7 +841,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
+@@ -857,7 +855,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
  _b.strictValueFlags = false
  

@@ -810,6 +810,8 @@ geometries.each { geom -&gt;
 		}
 		geometry(geom)
 	}
+
+	num++
 }
 
 </core:text>
@@ -820,6 +822,20 @@ Die Geometrie des Quell-Objekts wird untersucht. Je einzelner Simple-Feature Geo
 
 Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-Objekts und einer aufsteigenden Nummer der Geometrie (1., 2., etc. einzelne Geometrie) gebildet.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="Cef61b9c6-e7e9-410d-a70b-ef79522d1d16" priority="normal">
         <source name="types">
@@ -922,6 +938,8 @@ if (hatReferenz) {&#xD;
 			}&#xD;
 			geometry(geom)&#xD;
 		}&#xD;
+	&#xD;
+		num++&#xD;
 	}&#xD;
 	&#xD;
 &#xD;
@@ -934,6 +952,20 @@ Die Geometrie des Quell-Objekts wird untersucht. Je einzelner Simple-Feature Geo
 
 Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-Objekts und einer aufsteigenden Nummer der Geometrie (1., 2., etc. einzelne Geometrie) gebildet.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C76a01cce-00b7-4705-8a54-109506ab4fdb" priority="normal">
         <source>
@@ -981,6 +1013,8 @@ geometries.each { geom -&gt;
 		}
 		geometry(geom)
 	}
+
+	num++
 }
 
 </core:text>
@@ -991,6 +1025,20 @@ Die Geometrie des Quell-Objekts wird untersucht. Je einzelner Simple-Feature Geo
 
 Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-Objekts und einer aufsteigenden Nummer der Geometrie (1., 2., etc. einzelne Geometrie) gebildet.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_C7062dc56-15a8-4b8e-a5d7-2b9aef459001" priority="normal">
         <source>
@@ -1009,6 +1057,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8212dbab-5681-4fa9-a3d4-48332c5c9dd4" priority="normal">
         <source>
@@ -1027,6 +1082,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_Cef61b9c6-e7e9-410d-a70b-ef79522d1d16" priority="normal">
         <source>
@@ -1057,6 +1119,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_C76a01cce-00b7-4705-8a54-109506ab4fdb" priority="normal">
         <source>
@@ -1075,6 +1144,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ca6813682-3575-4bb7-9a69-d65ba4d3d86a" priority="lowest">
         <source name="anchor">
@@ -1093,6 +1169,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </property>
         </target>
         <parameter value="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional" name="value"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C55f30921-d5d1-477f-8d01-19b218a1f25a" priority="normal">
         <source>
@@ -1123,6 +1206,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </lookup-table>
         </complexParameter>
         <parameter value="fixed:http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cd09e31ef-430a-435c-a900-8bb0d439032f" priority="lowest">
         <source name="anchor">
@@ -1141,6 +1231,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </property>
         </target>
         <parameter value="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional" name="value"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.classification" id="Cf63c2fb7-08aa-4316-b52a-781b5dcabb99" priority="normal">
         <source>
@@ -1171,6 +1268,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </lookup-table>
         </complexParameter>
         <parameter value="fixed:http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_C7062dc56-15a8-4b8e-a5d7-2b9aef459001" priority="normal">
         <source>
@@ -1189,6 +1293,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C9ebfe7f6-4d54-48a9-84bf-98620050e82b" priority="normal">
         <source>
@@ -1207,6 +1318,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_Cef61b9c6-e7e9-410d-a70b-ef79522d1d16" priority="normal">
         <source>
@@ -1237,6 +1355,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_C76a01cce-00b7-4705-8a54-109506ab4fdb" priority="normal">
         <source>
@@ -1255,6 +1380,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C0664ffc1-5775-4565-b4f7-36e8ca17f5cd" priority="normal">
         <source name="spelling">
@@ -1272,6 +1404,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C13fc5874-2c20-48de-b80e-ed3a8ae4ff73" priority="normal">
         <source name="spelling">
@@ -1289,6 +1428,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C5c2f96fd-8ae6-44d9-af64-f2261dc8ac44" priority="normal">
         <source name="spelling">
@@ -1306,6 +1452,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C7836f5d5-f99c-4844-a30c-f23c91df08f6" priority="normal">
         <target>
@@ -1332,6 +1485,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8c914f39-9647-4653-bd06-c6b8871cd637_Cef61b9c6-e7e9-410d-a70b-ef79522d1d16" priority="lowest">
         <source name="id">
@@ -1360,6 +1520,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8c914f39-9647-4653-bd06-c6b8871cd637_C76a01cce-00b7-4705-8a54-109506ab4fdb" priority="lowest">
         <source name="id">
@@ -1376,6 +1543,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_C7062dc56-15a8-4b8e-a5d7-2b9aef459001" priority="normal">
         <source name="id">
@@ -1392,6 +1566,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_Cef61b9c6-e7e9-410d-a70b-ef79522d1d16" priority="normal">
         <source name="id">
@@ -1420,6 +1601,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_C76a01cce-00b7-4705-8a54-109506ab4fdb" priority="normal">
         <source name="id">
@@ -1436,6 +1624,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.classification" id="Cd31ebb2d-50bf-420d-82b8-dd5f5f6f8cf1" priority="normal">
         <source>
@@ -1470,6 +1665,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </lookup-table>
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C154f1f76-644f-4cb3-9970-ebd5a7afa093" priority="normal">
         <source>
@@ -1496,6 +1698,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </lookup-table>
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C84a31c71-c61a-47ee-a175-7b3f5e6ce081" priority="normal">
         <source name="anchor">
@@ -1514,6 +1723,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </property>
         </target>
         <parameter value="http://inspire.ec.europa.eu/codelist/CrossingTypeValue/aqueduct" name="value"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cb562d66d-d71a-4ef6-bacd-a24d624e7524" priority="normal">
         <source>
@@ -1561,6 +1777,8 @@ geometries.each { geom -&gt;
 		}
 		geometry(geom)
 	}
+
+	num++
 }
 
 </core:text>
@@ -1571,6 +1789,20 @@ Die Geometrie des Quell-Objekts wird untersucht. Je einzelner Simple-Feature Geo
 
 Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-Objekts und einer aufsteigenden Nummer der Geometrie (1., 2., etc. einzelne Geometrie) gebildet.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_Cb562d66d-d71a-4ef6-bacd-a24d624e7524" priority="normal">
         <source>
@@ -1589,6 +1821,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C52249ce3-f646-4dab-8ed2-5383e8b3ae5a" priority="lowest">
         <target>
@@ -1629,6 +1868,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </lookup-table>
         </complexParameter>
         <parameter value="fixed:http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_Cb562d66d-d71a-4ef6-bacd-a24d624e7524" priority="normal">
         <source>
@@ -1647,6 +1893,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cfabb43b6-cc38-4c8a-af50-dc45428fe9ca" priority="normal">
         <source name="spelling">
@@ -1664,6 +1917,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C26f653b0-6158-468b-95ef-4413404e0e6d" priority="normal">
         <target>
@@ -1690,6 +1950,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_Cb562d66d-d71a-4ef6-bacd-a24d624e7524" priority="normal">
         <source name="id">
@@ -1706,6 +1973,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C6f0c9e09-ca9c-4e91-8217-b0b3f24e1c5c" priority="normal">
         <source>
@@ -1753,6 +2027,8 @@ geometries.each { geom -&gt;
 		}
 		geometry(geom)
 	}
+
+	num++
 }
 
 </core:text>
@@ -1763,6 +2039,20 @@ Die Geometrie des Quell-Objekts wird untersucht. Je einzelner Simple-Feature Geo
 
 Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-Objekts und einer aufsteigenden Nummer der Geometrie (1., 2., etc. einzelne Geometrie) gebildet.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C32f776bc-fba8-48e1-bd83-a1e6454656e9" priority="normal">
         <source>
@@ -1810,6 +2100,8 @@ geometries.each { geom -&gt;
 		}
 		geometry(geom)
 	}
+
+	num++
 }
 
 </core:text>
@@ -1820,6 +2112,20 @@ Die Geometrie des Quell-Objekts wird untersucht. Je einzelner Simple-Feature Geo
 
 Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-Objekts und einer aufsteigenden Nummer der Geometrie (1., 2., etc. einzelne Geometrie) gebildet.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_C6f0c9e09-ca9c-4e91-8217-b0b3f24e1c5c" priority="normal">
         <source>
@@ -1838,6 +2144,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_C32f776bc-fba8-48e1-bd83-a1e6454656e9" priority="normal">
         <source>
@@ -1856,6 +2169,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cfae27890-cb6a-48cc-9a66-80a5de4149cb" priority="normal">
         <target>
@@ -1884,6 +2204,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_C32f776bc-fba8-48e1-bd83-a1e6454656e9" priority="normal">
         <source>
@@ -1902,6 +2229,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cfde62eb0-4d0e-47c1-9290-91631c8392d6" priority="normal">
         <source name="spelling">
@@ -1919,6 +2253,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C44c4dc3b-51c0-40a0-bf85-7370a347b617" priority="normal">
         <source name="spelling">
@@ -1936,6 +2277,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cb87056b3-94ba-4a76-9e9a-b61c064bbdf3" priority="normal">
         <target>
@@ -1962,6 +2310,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8c914f39-9647-4653-bd06-c6b8871cd637_C32f776bc-fba8-48e1-bd83-a1e6454656e9" priority="lowest">
         <source name="id">
@@ -1978,6 +2333,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_C6f0c9e09-ca9c-4e91-8217-b0b3f24e1c5c" priority="normal">
         <source name="id">
@@ -1994,6 +2356,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_C32f776bc-fba8-48e1-bd83-a1e6454656e9" priority="normal">
         <source name="id">
@@ -2010,6 +2379,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cae0752b4-933e-4549-8771-2f1e96f6ea98" priority="normal">
         <source>
@@ -2057,6 +2433,8 @@ geometries.each { geom -&gt;
 		}
 		geometry(geom)
 	}
+
+	num++
 }
 
 </core:text>
@@ -2067,6 +2445,20 @@ Die Geometrie des Quell-Objekts wird untersucht. Je einzelner Simple-Feature Geo
 
 Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-Objekts und einer aufsteigenden Nummer der Geometrie (1., 2., etc. einzelne Geometrie) gebildet.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C59e380fc-8670-4e0b-af1f-4a4f3d30d461" priority="normal">
         <source>
@@ -2085,6 +2477,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C02feec04-1e71-4bf6-be77-8cfd9b905943" priority="normal">
         <source>
@@ -2103,6 +2502,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C8220fe6a-8a3e-4807-9d5d-0564bb6df281" priority="normal">
         <source name="spelling">
@@ -2120,6 +2526,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Ca1295cb7-1b8c-4e69-bcf1-7e6c2f967447" priority="normal">
         <target>
@@ -2148,6 +2561,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cd3fdff85-40bd-4c71-a81a-4e749cc4b813" priority="lowest">
         <target>
@@ -2177,6 +2597,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="uom"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_GewaessermerkmalType/objekthoehe/uom found</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C1f48e318-a73d-4dc7-ae83-a03f60aafd65" priority="normal">
         <source>
@@ -2224,6 +2651,8 @@ geometries.each { geom -&gt;
 		}
 		geometry(geom)
 	}
+
+	num++
 }
 
 </core:text>
@@ -2234,6 +2663,20 @@ Die Geometrie des Quell-Objekts wird untersucht. Je einzelner Simple-Feature Geo
 
 Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-Objekts und einer aufsteigenden Nummer der Geometrie (1., 2., etc. einzelne Geometrie) gebildet.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_C1f48e318-a73d-4dc7-ae83-a03f60aafd65" priority="normal">
         <source>
@@ -2252,6 +2695,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cae054665-f39b-4f7b-b627-e387d7781f97" priority="normal">
         <target>
@@ -2280,6 +2730,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbf1cda1f-4b02-4c93-970e-bddaabf3ebfb_C1f48e318-a73d-4dc7-ae83-a03f60aafd65" priority="normal">
         <source name="spelling">
@@ -2300,6 +2757,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </property>
         </target>
         <parameter value="other" name="nameStatus"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbd827f78-2210-4e29-af90-97da9de6e6c4" priority="normal">
         <source name="spelling">
@@ -2317,6 +2781,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cc2a265e2-b44a-4dfa-83f4-d8a85f603307" priority="normal">
         <target>
@@ -2343,6 +2814,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_C1f48e318-a73d-4dc7-ae83-a03f60aafd65" priority="normal">
         <source name="id">
@@ -2359,6 +2837,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C140bf801-ace9-4ad1-9966-5ad0890a5734" priority="normal">
         <source>
@@ -2433,6 +2918,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="true" name="ignoreNamespaces"/>
         <parameter value="true" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_MeerType/position/choice/Polygon/exterior/choice/LinearRing/choice_1/posList found</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf65e8f35-2585-47af-be11-53b988bb1676" priority="normal">
         <source>
@@ -2464,6 +2956,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_MeerType/position/choice/Surface/choice/patches/choice/PolygonPatch/exterior/choice/LinearRing/choice_1/posList found</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cad9d9d2c-bf2b-4bb8-9ea4-89d4a3b38412" priority="normal">
         <source name="id">
@@ -2565,6 +3064,8 @@ geometries.each { geom -&gt;
 		}
 		geometry(geom)
 	}
+
+	num++
 }
 
 </core:text>
@@ -2575,6 +3076,20 @@ Die Geometrie des Quell-Objekts wird untersucht. Je einzelner Simple-Feature Geo
 
 Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-Objekts und einer aufsteigenden Nummer der Geometrie (1., 2., etc. einzelne Geometrie) gebildet.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_C3aac6754-dc82-4824-932a-3df081b6d4a4" priority="normal">
         <source>
@@ -2593,6 +3108,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Ca502ede7-7ddf-4c06-81fd-d22177a90c2f" priority="lowest">
         <target>
@@ -2629,6 +3151,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </lookup-table>
         </complexParameter>
         <parameter value="fixed:http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_C3aac6754-dc82-4824-932a-3df081b6d4a4" priority="normal">
         <source>
@@ -2647,6 +3176,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cedef1a85-0446-4ec8-879f-270116960042" priority="normal">
         <source name="spelling">
@@ -2664,6 +3200,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C04470471-b5db-4bdf-b0d2-cbdf63ae8fb5" priority="normal">
         <target>
@@ -2690,6 +3233,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_C3aac6754-dc82-4824-932a-3df081b6d4a4" priority="normal">
         <source name="id">
@@ -2706,6 +3256,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C73df86e2-4fc8-4e5d-b231-86fa5bc9aa70" priority="normal">
         <source>
@@ -2753,6 +3310,8 @@ geometries.each { geom -&gt;
 		}
 		geometry(geom)
 	}
+
+	num++
 }
 
 </core:text>
@@ -2763,6 +3322,20 @@ Die Geometrie des Quell-Objekts wird untersucht. Je einzelner Simple-Feature Geo
 
 Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-Objekts und einer aufsteigenden Nummer der Geometrie (1., 2., etc. einzelne Geometrie) gebildet.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C207f7171-5f3b-4d66-82bc-57616b98b875" priority="normal">
         <source>
@@ -2781,6 +3354,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2e6f4102-37ea-4794-b984-fafed5c1ee2e" priority="normal">
         <source>
@@ -2799,6 +3379,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C5f7f4bef-d160-4d1c-ae9f-2643c2d57e5b" priority="normal">
         <source name="spelling">
@@ -2816,6 +3403,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C18bc7bb0-8edd-4fa0-8029-94ef246b80bf" priority="normal">
         <source>
@@ -2863,6 +3457,8 @@ geometries.each { geom -&gt;
 		}
 		geometry(geom)
 	}
+
+	num++
 }
 
 </core:text>
@@ -2873,6 +3469,20 @@ Die Geometrie des Quell-Objekts wird untersucht. Je einzelner Simple-Feature Geo
 
 Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-Objekts und einer aufsteigenden Nummer der Geometrie (1., 2., etc. einzelne Geometrie) gebildet.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_C18bc7bb0-8edd-4fa0-8029-94ef246b80bf" priority="normal">
         <source>
@@ -2891,6 +3501,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C19d699a6-88bd-421d-91bb-c89995b95029" priority="lowest">
         <target>
@@ -2931,6 +3548,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </lookup-table>
         </complexParameter>
         <parameter value="fixed:http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_C18bc7bb0-8edd-4fa0-8029-94ef246b80bf" priority="normal">
         <source>
@@ -2949,6 +3573,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbc519d88-61b1-4853-9ca9-2cc035a3eddb" priority="normal">
         <source name="spelling">
@@ -2966,6 +3597,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C0feb8e84-a277-4aba-939c-be963427e1b8" priority="normal">
         <target>
@@ -2992,6 +3630,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_C18bc7bb0-8edd-4fa0-8029-94ef246b80bf" priority="normal">
         <source name="id">
@@ -3008,6 +3653,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cf00631c0-e08c-4d15-8007-fdffe5531785" priority="normal">
         <source>
@@ -3055,6 +3707,8 @@ geometries.each { geom -&gt;
 		}
 		geometry(geom)
 	}
+
+	num++
 }
 
 </core:text>
@@ -3065,6 +3719,20 @@ Die Geometrie des Quell-Objekts wird untersucht. Je einzelner Simple-Feature Geo
 
 Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-Objekts und einer aufsteigenden Nummer der Geometrie (1., 2., etc. einzelne Geometrie) gebildet.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_Cf00631c0-e08c-4d15-8007-fdffe5531785" priority="normal">
         <source>
@@ -3083,6 +3751,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C54bf8de1-32bd-4e96-8599-d0faeff2bbc2" priority="lowest">
         <target>
@@ -3123,6 +3798,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </lookup-table>
         </complexParameter>
         <parameter value="fixed:http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_Cf00631c0-e08c-4d15-8007-fdffe5531785" priority="normal">
         <source>
@@ -3141,6 +3823,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C6ef68b74-d86f-48a8-b598-4f1f0a9ecfe3" priority="normal">
         <source name="spelling">
@@ -3158,6 +3847,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cf9cdf9e5-b65b-4143-b29b-d7ad9eff0da2" priority="normal">
         <target>
@@ -3184,6 +3880,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_Cf00631c0-e08c-4d15-8007-fdffe5531785" priority="normal">
         <source name="id">
@@ -3200,6 +3903,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C79051b3f-be48-4f04-a9ca-bcf3b3194c9d" priority="normal">
         <source>
@@ -3328,6 +4038,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_HafenbeckenType/name/AX_Lagebezeichnung found</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cd6f3ce91-ebb8-4699-aa50-0056bba3c68e" priority="normal">
         <source name="lagebezeichnung">
@@ -3344,6 +4061,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_StehendesGewaesserType/name/AX_Lagebezeichnung found</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C6bb62071-b3db-4f4e-9436-cb23e878618e" priority="normal">
         <target>
@@ -3796,6 +4520,13 @@ if (hatFlaechenhaft) {&#xD;
 
 </core:text>
         </complexParameter>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3" priority="normal">
         <source name="types">
@@ -3920,6 +4651,13 @@ if (hatFlaechenhaft) {&#xD;
 
 </core:text>
         </complexParameter>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
         <source>
@@ -4654,6 +5392,8 @@ geometries.each { geom -&gt;
 		}
 		geometry(geom)
 	}
+
+	num++
 }
 
 </core:text>
@@ -4664,6 +5404,20 @@ Die Geometrie des Quell-Objekts wird untersucht. Je einzelner flächenhafter Sim
 
 Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-Objekts und einer aufsteigenden Nummer der Geometrie (1., 2., etc. einzelne Geometrie) gebildet.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Ca40c749f-4179-4b6b-a68b-b30c4e8c82c8" priority="normal">
         <source>
@@ -4725,6 +5479,8 @@ geometries.each { geom -&gt;
 		}
 		geometry(geom)
 	}
+
+	num++
 }
 
 </core:text>
@@ -4735,6 +5491,20 @@ Die Geometrie des Quell-Objekts wird untersucht. Je einzelner Simple-Feature Geo
 
 Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-Objekts und einer aufsteigenden Nummer der Geometrie (1., 2., etc. einzelne Geometrie) gebildet.
 </documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C62ff5fc1-bfe9-42bd-a0c4-84580da5ab0b" priority="normal">
         <source>
@@ -4753,6 +5523,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C3bf2b790-5c7c-47e1-b72c-6f8ff4242254" priority="normal">
         <source>
@@ -4787,6 +5564,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C05a5d40f-861b-4278-b646-2638ac993bc7" priority="normal">
         <source>
@@ -4805,6 +5589,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C900a9627-9f86-48f1-9e01-92c6ab8bc979" priority="normal">
         <source>
@@ -4839,6 +5630,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cd97765cc-c225-4d5a-8f97-2aeaf227b592" priority="normal">
         <source name="spelling">
@@ -4856,6 +5654,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C76a93599-1a50-47c0-9f39-995d30ea93c3" priority="normal">
         <source name="spelling">
@@ -4873,6 +5678,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cdab0b5b0-ba72-4e79-a826-f86c5e303b0a" priority="normal">
         <target>
@@ -4913,6 +5725,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C58c5f9d9-1800-432a-a0ab-6b3db0d97791_Ca40c749f-4179-4b6b-a68b-b30c4e8c82c8" priority="normal">
         <source name="id">
@@ -4943,6 +5762,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0702079d-c85c-431e-ad2c-fd570baaa99b_C4c0212ea-a994-4344-9aec-580c1420ba86" priority="normal">
         <source name="id">
@@ -4959,6 +5785,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0702079d-c85c-431e-ad2c-fd570baaa99b_Ca40c749f-4179-4b6b-a68b-b30c4e8c82c8" priority="normal">
         <source name="id">
@@ -4989,6 +5822,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C3256c4e5-7a27-45ad-84ab-1096b561f9df" priority="normal">
         <source name="id">
@@ -5040,6 +5880,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </property>
         </target>
         <parameter value="Watt" name="value"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cef6e3f51-e53e-47ec-a3c0-cac604684053" priority="normal">
         <source name="anchor">
@@ -5074,6 +5921,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </property>
         </target>
         <parameter value="Feuchtgebiet" name="value"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cf86dc87c-b335-4067-afab-022ecb37da0c" priority="lowest">
         <target>
@@ -5101,6 +5955,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </property>
         </target>
         <parameter value="true" name="value"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <modifier cell="C0702079d-c85c-431e-ad2c-fd570baaa99b_C4c0212ea-a994-4344-9aec-580c1420ba86">
         <disable-for parent="Cd3ab0ba5-a0cc-4014-99c1-606ebf20eab7"/>
