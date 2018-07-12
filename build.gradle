@@ -270,6 +270,8 @@ transformationFiles.addAll(fileTree(dir: projectDir).matching {
 
 def transformations = Config.load(transformationFiles as File[])
 
+def enabledTransformations = [:]
+
 transformations.tasks.each { name, config ->
   // apply defaults
   if (transformations.defaults) {
@@ -285,6 +287,8 @@ transformations.tasks.each { name, config ->
   if (!config.project) {
     return
   }
+  enabledTransformations[name] = true
+
   def projectId = config.project
   def projectFile = projectFiles[projectId]
 
@@ -739,7 +743,7 @@ task("continueAll", type: GradleBuild) {
 
   def taskList = []
   transformations.tasks.each { name, config ->
-    if (config.enabled) {
+    if (enabledTransformations[name]) {
       taskList << ("continue-$name" as String)
     }
   }
@@ -757,7 +761,7 @@ task("runAll", type: GradleBuild) {
 
   def taskList = []
   transformations.tasks.each { name, config ->
-    if (config.enabled) {
+    if (enabledTransformations[name]) {
       taskList << ("run-$name" as String)
     }
   }
