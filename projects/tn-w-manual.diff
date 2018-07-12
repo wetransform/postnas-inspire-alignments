@@ -1,5 +1,5 @@
 diff --git a/projects/tn-w-auto.halex.alignment.xml b/projects/tn-w-manual.halex.alignment.xml
-index b9107c9..964d3e2 100644
+index 0f4c1a6..cddc873 100644
 --- a/projects/tn-w-auto.halex.alignment.xml
 +++ b/projects/tn-w-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -27,7 +27,7 @@ index b9107c9..964d3e2 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -805,7 +803,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
+@@ -812,7 +810,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  def bwf = _source.p.bauwerksfunktion.value()
@@ -36,7 +36,7 @@ index b9107c9..964d3e2 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -833,13 +831,13 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
+@@ -847,13 +845,13 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -52,7 +52,7 @@ index b9107c9..964d3e2 100644
  
  def _id = "Beacon_$sourceId"
  	
-@@ -856,9 +854,9 @@ withTransformationContext {
+@@ -870,9 +868,9 @@ withTransformationContext {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -64,7 +64,7 @@ index b9107c9..964d3e2 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -966,13 +964,13 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -994,13 +992,13 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -80,7 +80,7 @@ index b9107c9..964d3e2 100644
  
  def _id = "Beacon_$sourceId"
  	
-@@ -989,9 +987,9 @@ withTransformationContext {
+@@ -1017,9 +1015,9 @@ withTransformationContext {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -92,7 +92,7 @@ index b9107c9..964d3e2 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -1576,7 +1574,7 @@ Es werden Referenzen (NetworkReference) zu allen Netzwerk-Elementen (z.B. `Water
+@@ -1730,7 +1728,7 @@ Es werden Referenzen (NetworkReference) zu allen Netzwerk-Elementen (z.B. `Water
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quell-Objekts
@@ -101,7 +101,7 @@ index b9107c9..964d3e2 100644
  
  def collect
  withTransformationContext {
-@@ -1590,7 +1588,7 @@ def _id = "FerryCrossing_$sourceId"
+@@ -1744,7 +1742,7 @@ def _id = "FerryCrossing_$sourceId"
  
  // bestimme FerryUse
  def ferryUse
@@ -110,7 +110,7 @@ index b9107c9..964d3e2 100644
  case '1710': // Autofährverkehr
  	ferryUse = 'cars'
  	break
-@@ -1624,9 +1622,9 @@ if (links) {
+@@ -1778,9 +1776,9 @@ if (links) {
  	/*
  	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  	 */
@@ -122,7 +122,7 @@ index b9107c9..964d3e2 100644
  		if (bwf) {
  			switch (bwf) {
  			// AX_BauwerkImVerkehrsbereich
-@@ -1977,7 +1975,7 @@ Es werden Referenzen (NetworkReference) zu allen `FerryCrossing`s erstellt, welc
+@@ -2138,7 +2136,7 @@ Es werden Referenzen (NetworkReference) zu allen `FerryCrossing`s erstellt, welc
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quell-Objekts
@@ -131,7 +131,7 @@ index b9107c9..964d3e2 100644
  
  def collect
  withTransformationContext {
-@@ -2031,7 +2029,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
+@@ -2206,7 +2204,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quell-Objekts
@@ -140,7 +140,7 @@ index b9107c9..964d3e2 100644
  
  def collect
  withTransformationContext {
-@@ -2361,13 +2359,13 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+@@ -2634,13 +2632,13 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -156,7 +156,7 @@ index b9107c9..964d3e2 100644
  
  def _id = "MarkerPost_$sourceId"
  	
-@@ -2384,9 +2382,9 @@ withTransformationContext {
+@@ -2657,9 +2655,9 @@ withTransformationContext {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -168,9 +168,9 @@ index b9107c9..964d3e2 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2654,16 +2652,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
-         <parameter value="false" name="ignoreNamespaces"/>
-         <parameter value="false" name="structuralRename"/>
+@@ -3004,16 +3002,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+             </core:message>
+         </annotation>
      </cell>
 -    <cell relation="custom:alignment:adv.uom.toucum" id="Cf3eb9a99-85bb-4077-bf11-23888bc6e0c9" priority="normal">
 -        <source name="uom">
@@ -186,15 +186,15 @@ index b9107c9..964d3e2 100644
          <target>
              <property>
                  <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-@@ -2671,6 +2660,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+@@ -3021,6 +3010,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
                  <child name="uom"/>
              </property>
          </target>
 +        <parameter value="km" name="value"/>
-     </cell>
-     <cell relation="eu.esdihumboldt.hale.align.assign" id="C1b5231df-4a28-4162-a8ee-04202c8bb57c" priority="normal">
-         <target>
-@@ -2718,7 +2708,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+         <annotation type="message">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                 <core:content>
+@@ -3075,7 +3065,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quellobjekts
@@ -203,7 +203,7 @@ index b9107c9..964d3e2 100644
  
  def _id = "PortArea_$sourceId"
  	
-@@ -2735,9 +2725,9 @@ withTransformationContext {
+@@ -3092,9 +3082,9 @@ withTransformationContext {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -215,7 +215,7 @@ index b9107c9..964d3e2 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -3323,10 +3313,10 @@ collect.verticalPosition.consume { key, values -&gt;
+@@ -3736,10 +3726,10 @@ collect.verticalPosition.consume { key, values -&gt;
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quell-Objekts
@@ -228,7 +228,7 @@ index b9107c9..964d3e2 100644
  
  if (parentId) {
  	// nur falls ein Kanal verfügbar ist, der die entsprechenden Bedingungen erfüllt
-@@ -3339,7 +3329,7 @@ if (parentId) {
+@@ -3752,7 +3742,7 @@ if (parentId) {
  	
  	// bestimme ConditionOfWaterFacility
  	def conditionOfFacility = 'functional'
@@ -237,7 +237,7 @@ index b9107c9..964d3e2 100644
  	case '2100': // Außer Betrieb, stillgelegt, verlassen
  		conditionOfFacility = 'disused'
  		break
-@@ -3362,9 +3352,9 @@ if (parentId) {
+@@ -3775,9 +3765,9 @@ if (parentId) {
  	/*
  	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  	 */
@@ -249,7 +249,7 @@ index b9107c9..964d3e2 100644
  		if (bwf) {
  			switch (bwf) {
  			// AX_BauwerkImVerkehrsbereich
-@@ -3516,10 +3506,10 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -3943,10 +3933,10 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quell-Objekts
@@ -262,7 +262,7 @@ index b9107c9..964d3e2 100644
  
  if (parentId) {
  	// nur falls ein Wasserlauf verfügbar ist, der die entsprechenden Bedingungen erfüllt
-@@ -3542,9 +3532,9 @@ if (parentId) {
+@@ -3969,9 +3959,9 @@ if (parentId) {
  	/*
  	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  	 */
@@ -274,7 +274,7 @@ index b9107c9..964d3e2 100644
  		if (bwf) {
  			switch (bwf) {
  			// AX_BauwerkImVerkehrsbereich
-@@ -3654,7 +3644,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -4095,7 +4085,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quellobjekts
@@ -283,7 +283,7 @@ index b9107c9..964d3e2 100644
  
  def _id = "WaterwayLink_$sourceId"
  	
-@@ -3671,9 +3661,9 @@ withTransformationContext {
+@@ -4112,9 +4102,9 @@ withTransformationContext {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -295,7 +295,7 @@ index b9107c9..964d3e2 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -3785,9 +3775,11 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -4233,9 +4223,11 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quellobjekts
@@ -309,7 +309,7 @@ index b9107c9..964d3e2 100644
  	// nur Objekte die durch Curve/LineString oder CompositeCurve dargestellt sind
  	
  	def _id = "WaterwayLink_$sourceId"
-@@ -3807,9 +3799,9 @@ if (_source.p.position.CompositeCurve.first() || _source.p.position.Curve.first(
+@@ -4255,9 +4247,9 @@ if (_source.p.position.CompositeCurve.first() || _source.p.position.Curve.first(
  	/*
  	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  	 */
@@ -321,7 +321,7 @@ index b9107c9..964d3e2 100644
  		if (bwf) {
  			switch (bwf) {
  			// AX_BauwerkImVerkehrsbereich
-@@ -3865,8 +3857,7 @@ else {
+@@ -4313,8 +4305,7 @@ else {
  	// das ist die Vorgabe aus der Mapping-Tabelle - heißt das es können keine MultiCurves auftreten?
  	// zur Sicherheit - Warnung falls andere linienartige Geometrie gefunden
  	
@@ -331,7 +331,7 @@ index b9107c9..964d3e2 100644
  		_log.warn("AX_SchifffahrtslinieFaehrverkehr $sourceId enthält wider Erwarten linienartige Geometrie die nicht Curve/LineString/CompositeCurve ist, es wurde kein WaterwayLink gebildet")
  	}
  }
-@@ -4187,51 +4178,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -4642,51 +4633,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
              </property>
          </target>
      </cell>

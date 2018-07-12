@@ -1,5 +1,5 @@
 diff --git a/projects/tn-ra-auto.halex.alignment.xml b/projects/tn-ra-manual.halex.alignment.xml
-index 44ceaa6..b9e1b67 100644
+index 37a1d2f..b5c7b1f 100644
 --- a/projects/tn-ra-auto.halex.alignment.xml
 +++ b/projects/tn-ra-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -27,7 +27,7 @@ index 44ceaa6..b9e1b67 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -805,7 +803,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
+@@ -812,7 +810,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  def bwf = _source.p.bauwerksfunktion.value()
@@ -36,7 +36,7 @@ index 44ceaa6..b9e1b67 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -1088,7 +1086,7 @@ withTransformationContext {
+@@ -1102,7 +1100,7 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -45,7 +45,7 @@ index 44ceaa6..b9e1b67 100644
  
  _target {
  }
-@@ -1096,7 +1094,7 @@ _target {
+@@ -1110,7 +1108,7 @@ _target {
  // bestimme RailwayType(s)
  def railwayTypes = []
  _source.p.bahnkategorie.each { bkt -&gt;
@@ -54,7 +54,7 @@ index 44ceaa6..b9e1b67 100644
  	case '1100': // Eisenbahn
  	case '1102': // Güterverkehr
  	case '1104': // S-Bahn
-@@ -1126,7 +1124,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
+@@ -1140,7 +1138,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
  
  // bestimme ConditionOfFacility
  def conditionOfFacility = 'functional'
@@ -63,7 +63,7 @@ index 44ceaa6..b9e1b67 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -1138,9 +1136,9 @@ case '4000': // Im Bau
+@@ -1152,9 +1150,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -75,7 +75,7 @@ index 44ceaa6..b9e1b67 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -1496,7 +1494,7 @@ Es werden Referenzen (NetworkReference) zu allen Netzwerk-Elementen (z.B.  `Rail
+@@ -1517,7 +1515,7 @@ Es werden Referenzen (NetworkReference) zu allen Netzwerk-Elementen (z.B.  `Rail
          <source>
              <class>
                  <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -84,7 +84,7 @@ index 44ceaa6..b9e1b67 100644
                  </type>
              </class>
          </source>
-@@ -1516,7 +1514,7 @@ _target {
+@@ -1537,7 +1535,7 @@ _target {
  // ID zum hinterlegen in Indizes bestimmen
  
  // alle Quell-IDs als Liste
@@ -93,7 +93,7 @@ index 44ceaa6..b9e1b67 100644
  
  def _id
  
-@@ -1549,7 +1547,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
+@@ -1584,7 +1582,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
          <source name="dates">
              <property>
                  <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -102,7 +102,7 @@ index 44ceaa6..b9e1b67 100644
                  </type>
                  <child name="beginnt"/>
              </property>
-@@ -1565,7 +1563,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
+@@ -1607,7 +1605,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
          <source>
              <property>
                  <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -111,7 +111,7 @@ index 44ceaa6..b9e1b67 100644
                  </type>
                  <child name="beginnt"/>
              </property>
-@@ -1583,7 +1581,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
+@@ -1632,7 +1630,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
          <source name="dates">
              <property>
                  <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -120,7 +120,7 @@ index 44ceaa6..b9e1b67 100644
                  </type>
                  <child name="endet"/>
              </property>
-@@ -1599,7 +1597,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
+@@ -1655,7 +1653,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
          <source>
              <property>
                  <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -129,7 +129,7 @@ index 44ceaa6..b9e1b67 100644
                  </type>
                  <child name="endet"/>
              </property>
-@@ -1617,7 +1615,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
+@@ -1680,7 +1678,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
          <source name="spelling">
              <property>
                  <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -138,7 +138,7 @@ index 44ceaa6..b9e1b67 100644
                  </type>
                  <child name="name"/>
              </property>
-@@ -1644,7 +1642,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
+@@ -1714,7 +1712,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
          <source name="id">
              <property>
                  <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -147,7 +147,7 @@ index 44ceaa6..b9e1b67 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -1660,7 +1658,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
+@@ -1737,7 +1735,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
          <source name="id">
              <property>
                  <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -156,7 +156,7 @@ index 44ceaa6..b9e1b67 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -1691,7 +1689,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+@@ -1775,7 +1773,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
          <source name="id">
              <property>
                  <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -165,7 +165,7 @@ index 44ceaa6..b9e1b67 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -1719,7 +1717,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+@@ -1810,7 +1808,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
          <source name="var">
              <property>
                  <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -174,16 +174,7 @@ index 44ceaa6..b9e1b67 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -1731,7 +1729,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
-                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
-             </property>
-         </target>
--        <parameter value="#RailwayLink_{id}" name="pattern"/>
-+        <parameter value="#RailwayLink_{gml_id}" name="pattern"/>
-     </cell>
-     <cell relation="eu.esdihumboldt.hale.align.assign" id="C0047cb98-5745-4d80-9ea9-5785af1a3809" priority="normal">
-         <target>
-@@ -1747,7 +1745,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+@@ -1845,7 +1843,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
          <source>
              <property>
                  <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -192,7 +183,7 @@ index 44ceaa6..b9e1b67 100644
                  </type>
                  <child name="nummerderbahnstrecke"/>
              </property>
-@@ -1804,7 +1802,7 @@ _target {
+@@ -1909,7 +1907,7 @@ _target {
  
  // bestimme NominalTrackGauge
  def nominalTrackGauge
@@ -201,7 +192,7 @@ index 44ceaa6..b9e1b67 100644
  case '1000': // Normalspur (Regelspur, Vollspur)
  	nominalTrackGauge = 'standard'
  	break
-@@ -1819,7 +1817,7 @@ case '3000': // Breitspur
+@@ -1924,7 +1922,7 @@ case '3000': // Breitspur
  // bestimme RailwayType(s)
  def railwayTypes = []
  _source.p.bahnkategorie.each { bkt -&gt;
@@ -210,7 +201,7 @@ index 44ceaa6..b9e1b67 100644
  	case '1100': // Eisenbahn
  	case '1102': // Güterverkehr
  	case '1104': // S-Bahn
-@@ -1850,7 +1848,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
+@@ -1955,7 +1953,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
  // bestimme RailwayUse(s)
  def railwayUses = []
  _source.p.bahnkategorie.each { bkt -&gt;
@@ -219,7 +210,7 @@ index 44ceaa6..b9e1b67 100644
  	case '1100': // Eisenbahn
  	case '1300': // Seilbahn, Bergbahn
  	case '1302': // Standseilbahn
-@@ -1874,7 +1872,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
+@@ -1979,7 +1977,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
  
  // bestimme NumberOfTracks
  def numberOfTracks
@@ -228,7 +219,7 @@ index 44ceaa6..b9e1b67 100644
  case '1000': // Eingleisig
  	numberOfTracks = 1
  	break
-@@ -1884,11 +1882,11 @@ case '2000': // Zweigleisig
+@@ -1989,11 +1987,11 @@ case '2000': // Zweigleisig
  }
  
  // bestimme RailwayElectrification
@@ -242,7 +233,7 @@ index 44ceaa6..b9e1b67 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -1900,9 +1898,9 @@ case '4000': // Im Bau
+@@ -2005,9 +2003,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -254,7 +245,7 @@ index 44ceaa6..b9e1b67 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2114,7 +2112,7 @@ withTransformationContext {
+@@ -2226,7 +2224,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit linienartigen Geometrien behandeln
@@ -263,7 +254,7 @@ index 44ceaa6..b9e1b67 100644
  
  // Ziel unterstützt keine MultiLineStrings
  def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: false)
-@@ -2123,7 +2121,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
+@@ -2235,7 +2233,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
  _b.strictValueFlags = false
  
@@ -272,7 +263,7 @@ index 44ceaa6..b9e1b67 100644
  
  // bestimme RailwayType
  def railwayType = 'suspendedRail'
-@@ -2131,9 +2129,9 @@ def railwayType = 'suspendedRail'
+@@ -2243,9 +2241,9 @@ def railwayType = 'suspendedRail'
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -284,7 +275,7 @@ index 44ceaa6..b9e1b67 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2519,7 +2517,7 @@ withTransformationContext {
+@@ -2666,7 +2664,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit flächenartigen Geometrien behandeln
@@ -293,7 +284,7 @@ index 44ceaa6..b9e1b67 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def surfaces = _.geom.splitMulti(geometries)
-@@ -2529,11 +2527,11 @@ def surfaces = _.geom.splitMulti(geometries)
+@@ -2676,11 +2674,11 @@ def surfaces = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -307,7 +298,7 @@ index 44ceaa6..b9e1b67 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -2545,9 +2543,9 @@ case '4000': // Im Bau
+@@ -2692,9 +2690,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -319,7 +310,7 @@ index 44ceaa6..b9e1b67 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2874,7 +2872,7 @@ withTransformationContext {
+@@ -3028,7 +3026,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit punkartige Geometrien behandeln
@@ -328,7 +319,7 @@ index 44ceaa6..b9e1b67 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def points = _.geom.splitMulti(geometries)
-@@ -2884,7 +2882,7 @@ def points = _.geom.splitMulti(geometries)
+@@ -3038,7 +3036,7 @@ def points = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -337,7 +328,7 @@ index 44ceaa6..b9e1b67 100644
  
  if (points.size() &gt; 1) {
  	// es wird davon ausgegangen dass es keine MultiPoint-Objekte gibt - falls doch, Fehler ausgeben
-@@ -2902,7 +2900,7 @@ if (points) {
+@@ -3056,7 +3054,7 @@ if (points) {
  	
  	// bestimme ConditionOfFacility
  	def conditionOfFacility = 'functional'
@@ -346,7 +337,7 @@ index 44ceaa6..b9e1b67 100644
  	case '2100': // Außer Betrieb, stillgelegt, verlassen
  		conditionOfFacility = 'disused'
  		break
-@@ -2914,9 +2912,9 @@ if (points) {
+@@ -3068,9 +3066,9 @@ if (points) {
  	/*
  	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  	 */
@@ -358,7 +349,7 @@ index 44ceaa6..b9e1b67 100644
  		if (bwf) {
  			switch (bwf) {
  			// AX_BauwerkImVerkehrsbereich
-@@ -3672,43 +3670,13 @@ collect.verticalPosition.consume { key, values -&gt;
+@@ -3833,43 +3831,13 @@ collect.verticalPosition.consume { key, values -&gt;
          <parameter value="other:unpopulated" name="value"/>
          <documentation>Diese Information ist im 3A-Modell nicht vorhanden.</documentation>
      </cell>

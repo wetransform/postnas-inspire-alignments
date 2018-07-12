@@ -886,6 +886,20 @@ if (positionAdresse) {&#xD;
 }
 </core:text>
         </complexParameter>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C08467f52-22e7-4435-9031-9149c4aac7c6" priority="normal">
         <source name="types">
@@ -1017,6 +1031,20 @@ if (positionAdresse) {&#xD;
 
 </core:text>
         </complexParameter>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf26a5a1b-0059-45d7-82b6-6624cf7a104b_Cd5bb8841-8c5f-4712-bd15-03c3cf5d80ca" priority="normal">
         <source>
@@ -1124,6 +1152,13 @@ if (positionAdresse) {&#xD;
         </target>
         <parameter value="#AdminUnitName_{land}{regierungsbezirk}" name="pattern"/>
         <documentation>Erzeugt die Referenz für das `AdminUnitName`-Objekt für den Regierungsbezirk.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="Cfb05b17a-dca3-486f-bb18-5eca732e1d91_C08467f52-22e7-4435-9031-9149c4aac7c6" priority="normal">
         <source name="var">
@@ -1151,6 +1186,13 @@ if (positionAdresse) {&#xD;
         </target>
         <parameter value="#AdminUnitName_{land}{regierungsbezirk}" name="pattern"/>
         <documentation>Erzeugt die Referenz für das `AdminUnitName`-Objekt für den Regierungsbezirk.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="Cd5f04e1f-ec85-4793-9745-2383cc48abb3_Cd5bb8841-8c5f-4712-bd15-03c3cf5d80ca" priority="normal">
         <source name="var">
@@ -1183,6 +1225,13 @@ if (positionAdresse) {&#xD;
             </property>
         </target>
         <parameter value="#AdminUnitName_{land}{regierungsbezirk}{kreis}" name="pattern"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="Cd5f04e1f-ec85-4793-9745-2383cc48abb3_C08467f52-22e7-4435-9031-9149c4aac7c6" priority="normal">
         <source name="var">
@@ -1215,6 +1264,13 @@ if (positionAdresse) {&#xD;
             </property>
         </target>
         <parameter value="#AdminUnitName_{land}{regierungsbezirk}{kreis}" name="pattern"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C75348f09-eb65-459e-b73f-79a19b3936db" priority="normal">
         <source name="var">
@@ -1232,7 +1288,7 @@ if (positionAdresse) {&#xD;
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
-        <parameter value="#PostalDescriptor_{postalischeAdresse.AX_Post.postleitzahl}" name="pattern"/>
+        <parameter value="#PostalDescriptor_{postleitzahl}" name="pattern"/>
         <documentation>Erzeugt die Referenz auf das passende Objekt vom Typ `PostalDescriptor`.</documentation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C9c13ab33-02fc-4914-8236-c04b84052656_Cd5bb8841-8c5f-4712-bd15-03c3cf5d80ca" priority="normal">
@@ -1273,6 +1329,13 @@ if (positionAdresse) {&#xD;
         </target>
         <parameter value="#AdminUnitName_{land}{regierungsbezirk}{kreis}{gemeinde}" name="pattern"/>
         <documentation>Erzeugt eine Referenz auf das `AdminUnitName`-Objekt für die Gemeinde.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C9c13ab33-02fc-4914-8236-c04b84052656_C08467f52-22e7-4435-9031-9149c4aac7c6" priority="normal">
         <source name="var">
@@ -1312,6 +1375,13 @@ if (positionAdresse) {&#xD;
         </target>
         <parameter value="#AdminUnitName_{land}{regierungsbezirk}{kreis}{gemeinde}" name="pattern"/>
         <documentation>Erzeugt eine Referenz auf das `AdminUnitName`-Objekt für die Gemeinde.</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C5ddc268c-345b-42cb-878c-1aa8f266e86d_Cd5bb8841-8c5f-4712-bd15-03c3cf5d80ca" priority="normal">
         <source name="var">
@@ -1366,6 +1436,13 @@ else {
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C5ddc268c-345b-42cb-878c-1aa8f266e86d_C08467f52-22e7-4435-9031-9149c4aac7c6" priority="normal">
         <source name="var">
@@ -1425,6 +1502,13 @@ else {
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C7d8d1bdc-e6b1-4e69-ae34-e09caa043943_Cd5bb8841-8c5f-4712-bd15-03c3cf5d80ca" priority="normal">
         <source>
@@ -2007,8 +2091,8 @@ else {
         </target>
         <parameter value="true" name="useTargetTypePrefix"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C382953de-65fd-46f6-aea6-7c80734e40ad" priority="normal">
-        <source name="var">
+    <cell relation="custom:alignment:adv.inspire.identifier" id="C03637c18-11f1-4184-92ad-311e18881ead" priority="normal">
+        <source name="id">
             <property>
                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="gml_id"/>
@@ -2020,10 +2104,9 @@ else {
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="Cc179f391-2a24-4500-b41a-5107f8fcb270" priority="normal">
-        <source name="var">
+    <cell relation="custom:alignment:adv.inspire.identifier" id="C9f710d24-fa55-4bd5-8acb-b710231f2dd7" priority="normal">
+        <source name="id">
             <property>
                 <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="gml_id"/>
@@ -2035,10 +2118,9 @@ else {
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C5c107c12-aa5c-4546-82d6-4bac140dccac" priority="normal">
-        <source name="var">
+    <cell relation="custom:alignment:adv.inspire.identifier" id="C4bc9b5df-5bf6-4014-96a0-f7e441935a72" priority="normal">
+        <source name="id">
             <property>
                 <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="gml_id"/>
@@ -2050,10 +2132,23 @@ else {
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C3036c6aa-ef00-4410-abb6-a9f64b7b6203" priority="normal">
-        <source name="var">
+    <cell relation="custom:alignment:adv.inspire.identifier" id="Cf698d364-855f-47dd-8680-7076f04a5ec3" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
+                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.identifier" id="Cfa22cf7c-79bf-4f87-a385-c4c7c0d063eb" priority="normal">
+        <source name="id">
             <property>
                 <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="gml_id"/>
@@ -2065,17 +2160,6 @@ else {
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <parameter value="{{project:INSPIRE_NAMESPACE}}/AdminUnitName_{gml_id}" name="pattern"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C39637ce1-0c45-4334-bddf-1db42f5e0be8" priority="normal">
-        <target>
-            <property>
-                <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
-                <child name="codeSpace"/>
-            </property>
-        </target>
-        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C64322369-f36d-4ee3-beb5-b8ab3ff8c48e" priority="normal">
         <source name="id">
@@ -2157,13 +2241,7 @@ else {
             </property>
         </target>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.string.regexanalysisfunction" id="Caa49d79e-c38e-4d07-96e7-b9b73ee67db3_C8c2bf635-7286-4c70-8f5f-d8589052accd" priority="normal">
-        <source>
-            <property>
-                <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
+    <cell relation="custom:alignment:adv.inspire.namespace" id="C2123165a-4b54-4288-8842-132fcbd91d7a" priority="normal">
         <target>
             <property>
                 <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
@@ -2172,80 +2250,6 @@ else {
                 <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
-        <parameter value="https://registry.gdi-de.org/id/de.{1}/" name="outputFormat"/>
-        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.string.regexanalysisfunction" id="Caa49d79e-c38e-4d07-96e7-b9b73ee67db3_Cef658861-1b2b-4431-b31a-e0ec65c62402" priority="normal">
-        <source>
-            <property>
-                <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="https://registry.gdi-de.org/id/de.{1}/" name="outputFormat"/>
-        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.string.regexanalysisfunction" id="Caa49d79e-c38e-4d07-96e7-b9b73ee67db3_Cbc19c1b0-4c69-4997-8f49-cb02a3332759" priority="normal">
-        <source>
-            <property>
-                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="https://registry.gdi-de.org/id/de.{1}/" name="outputFormat"/>
-        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.string.regexanalysisfunction" id="Caa49d79e-c38e-4d07-96e7-b9b73ee67db3_C42e5309f-ca89-4f2c-af7a-5b01f97c64fb" priority="normal">
-        <source>
-            <property>
-                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="https://registry.gdi-de.org/id/de.{1}/" name="outputFormat"/>
-        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.string.regexanalysisfunction" id="Caa49d79e-c38e-4d07-96e7-b9b73ee67db3_Cd0c5ca3f-089f-4614-9d37-b68c4598281a" priority="normal">
-        <source>
-            <property>
-                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="AdminUnitNameType" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/ad/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <parameter value="https://registry.gdi-de.org/id/de.{1}/" name="outputFormat"/>
-        <parameter value="^.{2}(.{2}).*$" name="regexPattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cd89386a6-97dd-4cb9-979a-c159ce868ff8" priority="normal">
         <source name="anchor">
@@ -2550,6 +2554,13 @@ def id = schluesselgesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C2ba772ba-9381-4ba1-9db4-8bdb0b18254b" priority="normal">
         <source name="var">
@@ -2577,6 +2588,13 @@ if (ns &amp;&amp; !ns.endsWith('/')) {
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C35cc4a66-a7e9-4ed9-897e-00221d22e3f6" priority="normal">
         <target>
@@ -2611,6 +2629,13 @@ def id = schluesselgesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.namespace" id="Cabf5e74f-45b2-4c28-ab8f-32252b9aa862" priority="normal">
         <target>

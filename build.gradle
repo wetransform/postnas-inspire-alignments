@@ -12,8 +12,8 @@ buildscript {
 apply plugin: 'to.wetransform.hale'
 
 hale {
-  cliArtifact = 'to.wetransform:hale-cli-rlp' // RLP custom version (for DB matching)
-  cliVersion = '3.3.1'
+  cliArtifact = 'to.wetransform:hale-cli'
+  cliVersion = '3.4.0'
 }
 
 repositories {
@@ -29,8 +29,9 @@ project.ext.advAlignmentsPath = project.hasProperty('advAlignments') ? project.g
 
 task('dbMatching', type: hale.cli()) {
   args = [
-    'rlp',
-    'match-schemas',
+    'project',
+    'generate',
+    'postnas-matching',
     '--reference-schema',
     advAlignmentsPath + '/schemas/NAS_6.0.1/schema/aaa.xsd',
     '--target-schema',
