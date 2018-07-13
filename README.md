@@ -219,10 +219,10 @@ tasks:
       enabled: false # Aufteilen aktiviert?
       mode: related # Aufteilungs-Modus
       instances: 1000 # Wie viele Objekte sollen in eine Datei (Umsetzung je nach Modus)
-  # Konfiguration für Upload
-  upload:
-    enabled: true # Upload aktiviert?
-    url: http://localhost:8080/services/wfs # Adresse des WFS-T
+    # Konfiguration für Upload
+    upload:
+      enabled: true # Upload aktiviert?
+      url: http://localhost:8080/services/wfs # Adresse des WFS-T
 
   # ... weitere Tasks
 
