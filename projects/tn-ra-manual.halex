@@ -21,7 +21,7 @@ Dieses Verhalten ließe sich auch mit wenigen Änderungen anpassen, so dass für
 
 Im Alignment wird ein *TransportProperty*-Objekt erstellt zusammenfassend für alle Features die auf die gleichen Werte abgebildet werden (z.B. gleicher Zustand für `ConditionOfFacility`). Die Identifier werden dabei basierend auf dem Wert oder den Werten welche die jeweilige *TransportProperty* ausmachen gebildet.</description>
     <created>2015-09-28T11:46:45.435+02:00</created>
-    <modified>2018-07-10T14:45:02.646+02:00</modified>
+    <modified>2018-10-30T15:09:35.247+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -1525,6 +1525,9 @@ Im Alignment wird ein *TransportProperty*-Objekt erstellt zusammenfassend für a
         <core:properties xmlns:core="http://www.esdi-humboldt.eu/hale/core">
             <core:property name="NETWORK_ID">
                 <core:value value="RailwayNetwork"/>
+            </core:property>
+            <core:property name="THEME_DISTINGUISHER">
+                <core:value value=""/>
             </core:property>
             <core:property name="INSPIRE_NAMESPACE">
                 <core:value value="https://registry.gdi-de.org/id/de.____"/>
