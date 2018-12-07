@@ -8440,9 +8440,7 @@ if (point) {
         <target>
             <property>
                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
         <parameter value="true" name="useTargetTypePrefix"/>
