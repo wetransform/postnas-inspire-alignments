@@ -452,6 +452,10 @@ transformations.tasks.each { name, config ->
         assert aggregated['eu.esdihumboldt.hale.instance.validation.internal'].report.warnings == 0 : 'Die hale-interne Validierung ergab Warnungen'
       }
     } catch (Throwable e) {
+      // reset state
+      state.reset()
+      println 'Validation failed and transformation needs to be re-run, resetting state'
+
       evaluationError.text = e.message
       throw e
     }
