@@ -762,6 +762,31 @@ Aktuell ist folgende Abbildung umgesetzt:
             </cf:explanation>
         </cf:custom-property-function>
     </customFunction>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="C69d2dcb1-a278-425f-9b2e-b282471adc4c" priority="normal">
+        <source>
+            <class>
+                <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                </type>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+        <documentation>AX_BesondereFlurstuecksgrenze-Objekte sind gemäß des in Kapitel  5.4.1.5.1. der Datenspezifikation beschriebenen flat data models AdministrativeBoundaries.&#xD;
+Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</documentation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C0763cc94-6454-472a-aaab-966e2c0e3644" priority="normal">
         <source>
             <class>
@@ -795,6 +820,33 @@ Aktuell ist folgende Abbildung umgesetzt:
             </property>
         </target>
         <parameter value="other:unpopulated" name="value"/>
+        <documentation>Wenn dieses Attribut noch gefüllt werden soll, muss eines der in den Kapiteln 5.4.1.5.1. und 5.4.1.5.2. der Datenspezifikation beschriebenen Modelle für die Zuordnung von AdministrativeUnits zu AdministrativeBoundaries verwendet werden. Entsprechende Regeln zur geometrischen Ermittlung müssten festgelegt werden.&#xD;
+Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</documentation>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8ac34369-7034-453d-8db5-575f79445d51_C69d2dcb1-a278-425f-9b2e-b282471adc4c" priority="normal">
+        <source>
+            <property>
+                <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                </type>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce026bc0c-3397-451f-a82d-b9f0d17f2f58_C0763cc94-6454-472a-aaab-966e2c0e3644" priority="normal">
         <source>
@@ -857,6 +909,31 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </target>
         <parameter value="DE" name="value"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C5bd937f2-5d3c-4aa0-bf0d-fd26b3a4997e_C69d2dcb1-a278-425f-9b2e-b282471adc4c" priority="normal">
+        <source>
+            <property>
+                <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                </type>
+                <child name="endet"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd61ba716-99db-4b9a-b02e-3bc27465763f_C0763cc94-6454-472a-aaab-966e2c0e3644" priority="normal">
         <source>
             <property>
@@ -882,6 +959,29 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
             </core:message>
         </annotation>
     </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature" id="Cfc6339a3-a449-4b1b-a3e9-f89914a170dc_C69d2dcb1-a278-425f-9b2e-b282471adc4c" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+            </property>
+        </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C0c484a21-4686-4842-8690-06096a3024e9_C0763cc94-6454-472a-aaab-966e2c0e3644" priority="normal">
         <source name="geometrie">
             <property>
@@ -899,6 +999,29 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </target>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="C8428eb45-220c-46bc-b54c-7ab1713f4975_C69d2dcb1-a278-425f-9b2e-b282471adc4c" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -929,6 +1052,29 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
             </core:message>
         </annotation>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.identifier" id="Cd701538d-470f-4287-ab47-dd493d4fca0b_C69d2dcb1-a278-425f-9b2e-b282471adc4c" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C1c28a6dd-5adc-4957-ac58-fbdc78b1bacb_C0763cc94-6454-472a-aaab-966e2c0e3644" priority="normal">
         <source name="id">
             <property>
@@ -946,6 +1092,31 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </target>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="C22173588-e571-40e4-981f-1ea65be53d2d_C69d2dcb1-a278-425f-9b2e-b282471adc4c" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -997,6 +1168,63 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
             </property>
         </target>
         <parameter value="other:unpopulated" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.classification" id="C2f0af773-ed40-4a23-bd5a-43472a58791e_C69d2dcb1-a278-425f-9b2e-b282471adc4c" priority="normal">
+        <source>
+            <property>
+                <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                </type>
+                <child name="artderflurstuecksgrenze"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <complexParameter name="lookupTable">
+            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+                <entry>
+                    <key value="2500"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/4thOrder"/>
+                </entry>
+                <entry>
+                    <key value="7101"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/1stOrder"/>
+                </entry>
+                <entry>
+                    <key value="7102"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/2ndOrder"/>
+                </entry>
+                <entry>
+                    <key value="7103"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/3rdOrder"/>
+                </entry>
+                <entry>
+                    <key value="7104"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/4thOrder"/>
+                </entry>
+                <entry>
+                    <key value="7106"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/6thOrder"/>
+                </entry>
+                <entry>
+                    <key value="7108"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/AdministrativeHierarchyLevel/5thOrder"/>
+                </entry>
+            </lookup-table>
+        </complexParameter>
+        <parameter value="null" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C7dcc71d4-57ff-4159-a663-0ebac792ba30_C0763cc94-6454-472a-aaab-966e2c0e3644" priority="normal">
         <source>

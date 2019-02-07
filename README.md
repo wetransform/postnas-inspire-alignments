@@ -13,13 +13,13 @@ Folgende Alignments werden hier verwaltet:
 | PostNAS -> Adressen                                   | Migriert       | ad         |
 | PostNAS -> Verwaltungseinheiten                       | Migriert       | au         |
 | PostNAS -> Flurstücke/Grundstücke                     | Migriert       | cp         |
-| PostNAS -> Geografische Bezeichnungen                 | Migriert       | gn         |
-| PostNAS -> Gewässernetz                               | Migriert       | hy-n, hy-p |
-| PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)        | Migriert       | tn-ro      |
-| PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)       | Migriert       | tn-ra      |
-| PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)         | Migriert       | tn-w       |
-| PostNAS -> Verkehrsnetze (Luftverkehrsnetz)           | Migriert       | tn-a       |
-| PostNAS -> Verkehrsnetze (Kabel)                      | Migriert       | tn-c       |
+| PostNAS -> Geografische Bezeichnungen                 | Update nötig   | gn         |
+| PostNAS -> Gewässernetz                               | Update nötig   | hy-n, hy-p |
+| PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)        | Update nötig   | tn-ro      |
+| PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)       | Update nötig   | tn-ra      |
+| PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)         | Update nötig   | tn-w       |
+| PostNAS -> Verkehrsnetze (Luftverkehrsnetz)           | Update nötig   | tn-a       |
+| PostNAS -> Verkehrsnetze (Kabel)                      | Update nötig   | tn-c       |
 
 
 Einrichtung Gradle und hale-cli

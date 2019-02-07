@@ -826,8 +826,8 @@ Aktuell ist folgende Abbildung umgesetzt:
                         <child name="gml_id"/>
                     </property>
                     <property>
-                        <type name="ax_georeferenziertegebaeudeadresse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="hatauch"/>
+                        <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="zeigtauf"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
@@ -836,8 +836,8 @@ Aktuell ist folgende Abbildung umgesetzt:
                         <child name="gml_id"/>
                     </property>
                     <property>
-                        <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="zeigtauf"/>
+                        <type name="ax_georeferenziertegebaeudeadresse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="hatauch"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
@@ -963,8 +963,8 @@ if (positionAdresse) {&#xD;
                         <child name="gml_id"/>
                     </property>
                     <property>
-                        <type name="ax_georeferenziertegebaeudeadresse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="hatauch"/>
+                        <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="zeigtauf"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
@@ -973,8 +973,8 @@ if (positionAdresse) {&#xD;
                         <child name="gml_id"/>
                     </property>
                     <property>
-                        <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="zeigtauf"/>
+                        <type name="ax_georeferenziertegebaeudeadresse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="hatauch"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>

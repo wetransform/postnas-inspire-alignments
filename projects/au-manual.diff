@@ -1,5 +1,5 @@
 diff --git a/projects/au-auto.halex.alignment.xml b/projects/au-manual.halex.alignment.xml
-index 20070c4..a260d20 100644
+index a5d88ba..5f17f6c 100644
 --- a/projects/au-auto.halex.alignment.xml
 +++ b/projects/au-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -21,13 +21,49 @@ index 20070c4..a260d20 100644
 @@ -768,7 +766,7 @@ Aktuell ist folgende Abbildung umgesetzt:
          <source>
              <class>
+                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
++                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                 </type>
+             </class>
+         </source>
+@@ -782,7 +780,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+         <documentation>AX_BesondereFlurstuecksgrenze-Objekte sind gemäß des in Kapitel  5.4.1.5.1. der Datenspezifikation beschriebenen flat data models AdministrativeBoundaries.&#xD;
+ Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                 </core:content>
+@@ -793,7 +791,7 @@ Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</doc
+         <source>
+             <class>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
 -                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
 +                    <condition lang="CQL">artdergebietsgrenze = '7101' or artdergebietsgrenze = '7102' or artdergebietsgrenze = '7103' or artdergebietsgrenze = '7104' or artdergebietsgrenze = '7105' or artdergebietsgrenze = '7106'</condition>
                  </type>
              </class>
          </source>
-@@ -802,7 +800,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+@@ -829,7 +827,7 @@ Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</doc
+         <source>
+             <property>
+                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
++                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -843,7 +841,7 @@ Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</doc
+         <parameter value="false" name="ignoreNamespaces"/>
+         <parameter value="false" name="structuralRename"/>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                 </core:content>
+@@ -854,7 +852,7 @@ Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</doc
          <source>
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -36,7 +72,25 @@ index 20070c4..a260d20 100644
                  </type>
                  <child name="beginnt"/>
              </property>
-@@ -863,7 +861,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -915,7 +913,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <source>
+             <property>
+                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
++                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                 </type>
+                 <child name="endet"/>
+             </property>
+@@ -929,7 +927,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <parameter value="false" name="ignoreNamespaces"/>
+         <parameter value="false" name="structuralRename"/>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                 </core:content>
+@@ -940,7 +938,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source>
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -45,7 +99,25 @@ index 20070c4..a260d20 100644
                  </type>
                  <child name="endet"/>
              </property>
-@@ -888,7 +886,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -965,7 +963,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <source name="geometrie">
+             <property>
+                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
++                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                 </type>
+                 <child name="wkb_geometry"/>
+             </property>
+@@ -977,7 +975,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+             </property>
+         </target>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                 </core:content>
+@@ -988,7 +986,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source name="geometrie">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -54,7 +126,25 @@ index 20070c4..a260d20 100644
                  </type>
                  <child name="wkb_geometry"/>
              </property>
-@@ -911,7 +909,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -1011,7 +1009,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <source name="id">
+             <property>
+                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
++                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -1023,7 +1021,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+             </property>
+         </target>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                 </core:content>
+@@ -1034,7 +1032,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source name="id">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -63,7 +153,25 @@ index 20070c4..a260d20 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -935,7 +933,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -1058,7 +1056,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <source name="id">
+             <property>
+                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
++                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -1070,7 +1068,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+             </property>
+         </target>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                 </core:content>
+@@ -1081,7 +1079,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source name="id">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -72,7 +180,25 @@ index 20070c4..a260d20 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -958,7 +956,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -1104,7 +1102,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <source name="id">
+             <property>
+                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
++                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -1118,7 +1116,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+             </property>
+         </target>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                 </core:content>
+@@ -1129,7 +1127,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source name="id">
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -81,7 +207,25 @@ index 20070c4..a260d20 100644
                  </type>
                  <child name="gml_id"/>
              </property>
-@@ -1004,7 +1002,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -1175,7 +1173,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         <source>
+             <property>
+                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
++                    <condition lang="ECQL">artderflurstuecksgrenze = '2500' or artderflurstuecksgrenze = '7101' or artderflurstuecksgrenze = '7102' or artderflurstuecksgrenze = '7103' or artderflurstuecksgrenze = '7104' or artderflurstuecksgrenze = '7106' or artderflurstuecksgrenze = '7108'</condition>
+                 </type>
+                 <child name="artderflurstuecksgrenze"/>
+             </property>
+@@ -1221,7 +1219,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+         </complexParameter>
+         <parameter value="null" name="notClassifiedAction"/>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                 </core:content>
+@@ -1232,7 +1230,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
          <source>
              <property>
                  <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
@@ -90,7 +234,7 @@ index 20070c4..a260d20 100644
                  </type>
                  <child name="artdergebietsgrenze"/>
              </property>
-@@ -1140,7 +1138,7 @@ class Processor {
+@@ -1368,7 +1366,7 @@ class Processor {
  
  }
  
@@ -99,7 +243,7 @@ index 20070c4..a260d20 100644
  
  // Geometrien aus Lower Level Unit
  def geoms = _.context.collector().LowerLevelGeometrien[_id].clear()
-@@ -1322,7 +1320,7 @@ class Processor {
+@@ -1550,7 +1548,7 @@ class Processor {
  
  
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -108,7 +252,7 @@ index 20070c4..a260d20 100644
  
  // führe den Join nicht aus wenn keine assoziierten Flurstücke
  // vorhanden sind
-@@ -1343,14 +1341,14 @@ def collect
+@@ -1571,14 +1569,14 @@ def collect
  withTransformationContext {
  	collect = _.context.collector(it)
  }
@@ -127,7 +271,7 @@ index 20070c4..a260d20 100644
  	
  	upperLevelUnit =  "AdministrativeUnit_${land}${regBezirk}${kreis}"
  	
-@@ -1536,13 +1534,13 @@ class Processor {
+@@ -1764,13 +1762,13 @@ class Processor {
  
  
  // alle Eigenschaften mit Geometrien aus Flurstücken
@@ -144,7 +288,7 @@ index 20070c4..a260d20 100644
  	if (gemeinden) {
  		_log.warn("Keine Flurstückgeometrien zu Verwaltungsgemeinschaft $sourceId gefunden, zugehörige AdminstrativeUnit wird nicht erstellt")
  	}
-@@ -1553,14 +1551,14 @@ if (!geoms) {
+@@ -1781,14 +1779,14 @@ if (!geoms) {
  }
  
  // Schlüssel für alle Gemeinden der Gemeinschaft
@@ -161,7 +305,7 @@ index 20070c4..a260d20 100644
  
  def union = _.geom.union(geoms)
  
-@@ -1586,7 +1584,7 @@ _target{
+@@ -1814,7 +1812,7 @@ _target{
  
  withTransformationContext {
  	def collect = _.context.collector(it)
@@ -170,7 +314,7 @@ index 20070c4..a260d20 100644
  	// Hinterlege ID je Gemeinde
  	gemeinden.each {
  		collect.verwaltungsGemeinschaft['AdministrativeUnit_' + it] = _id
-@@ -1692,7 +1690,7 @@ class Processor {
+@@ -1920,7 +1918,7 @@ class Processor {
  
  }
  
@@ -179,7 +323,7 @@ index 20070c4..a260d20 100644
  
  // Geometrien aus Lower Level Unit
  def geoms = _.context.collector().LowerLevelGeometrien[_id].clear()
-@@ -1709,8 +1707,8 @@ withTransformationContext {
+@@ -1937,8 +1935,8 @@ withTransformationContext {
  }
  
  // bestimme upperLevelUnit, sammle ID
@@ -190,7 +334,7 @@ index 20070c4..a260d20 100644
  def upperLevelUnit
  if (regBezirk &amp;&amp; regBezirk != '0') {
  	upperLevelUnit = 'AdministrativeUnit_' + land + regBezirk
-@@ -1838,7 +1836,7 @@ class Processor {
+@@ -2066,7 +2064,7 @@ class Processor {
  
  }
  
@@ -199,7 +343,7 @@ index 20070c4..a260d20 100644
  
  // Geometrien aus Lower Level Unit
  def geoms = _.context.collector().LowerLevelGeometrien[_id].clear()
-@@ -1855,7 +1853,7 @@ withTransformationContext {
+@@ -2083,7 +2081,7 @@ withTransformationContext {
  }
  
  // bestimme upperLevelUnit, sammle ID
@@ -208,7 +352,7 @@ index 20070c4..a260d20 100644
  collect.land[upperLevelUnit] &lt;&lt; _id
  
  def union = _.geom.union(geoms)
-@@ -2835,33 +2833,15 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
+@@ -3063,33 +3061,15 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
      <modifier cell="Cbd879726-8cea-4184-9cf3-74593fce4479_C153144ee-8008-471c-a689-adba7e1d10b7">
          <disable-for parent="C153144ee-8008-471c-a689-adba7e1d10b7"/>
      </modifier>
