@@ -272,6 +272,10 @@ def transformations = Config.load(transformationFiles as File[])
 
 def enabledTransformations = [:]
 
+task('stateAll') {
+  group 'Transformation status'
+}
+
 transformations.tasks.each { name, config ->
   // apply defaults
   if (transformations.defaults) {
@@ -299,6 +303,13 @@ transformations.tasks.each { name, config ->
   def targetFolder = new File(baseFolder, '01_transform')
   def targetFile = new File(targetFolder, 'result.gml')
   File statsFile = new File(targetFolder, 'statistics.json')
+
+  task("state-${name}") {
+    group 'Transformation status'
+  }.doLast {
+    println "Status for transformation ${name}:".padRight(40) + ' ' + state.current
+  }
+  tasks['stateAll'].dependsOn("state-${name}")
 
   // Transformation stage
 
