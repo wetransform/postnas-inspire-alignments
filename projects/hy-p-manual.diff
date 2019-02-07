@@ -1,5 +1,5 @@
 diff --git a/projects/hy-p-auto.halex.alignment.xml b/projects/hy-p-manual.halex.alignment.xml
-index d1c81d0..dd6d4c9 100644
+index 6512c6d..ad62f6a 100644
 --- a/projects/hy-p-auto.halex.alignment.xml
 +++ b/projects/hy-p-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -72,6 +72,24 @@ index d1c81d0..dd6d4c9 100644
  
  // Builder konfigurieren
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
+@@ -881,7 +891,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+                         <child name="hatdirektunten"/>
+                     </property>
+                     <property>
+-                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                         <child name="gml_id"/>
+                     </property>
+                 </jp:condition>
+@@ -893,7 +903,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+                         <child name="hatdirektunten"/>
+                     </property>
+                     <property>
+-                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                         <child name="gml_id"/>
+                     </property>
+                 </jp:condition>
 @@ -903,15 +913,15 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // Prüfen, ob tatsächlich eine AX_Gewässerachse und/oder ein AX_Fliessgewaesser zu der Relation hatDirektUnten gefunden wurde&#xD;
@@ -387,7 +405,10 @@ index d1c81d0..dd6d4c9 100644
 -        <source name="lagebezeichnung">
 +    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cd3870b33-cff0-4f43-a422-d73ab401da15" priority="normal">
 +        <source name="lage_gemeinde">
-+            <property>
+             <property>
+-                <type name="AX_StehendesGewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
 +                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
 +                <child name="gemeinde"/>
 +            </property>
@@ -411,10 +432,7 @@ index d1c81d0..dd6d4c9 100644
 +            </property>
 +        </source>
 +        <source name="lage_regierungsbezirk">
-             <property>
--                <type name="AX_StehendesGewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
++            <property>
 +                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
 +                <child name="regierungsbezirk"/>
 +            </property>
@@ -432,8 +450,8 @@ index d1c81d0..dd6d4c9 100644
  &#xD;
 -boolean hatLinienhaft = !!_source.links.AX_Gewaesserachse.p.position.first()&#xD;
 -boolean hatFlaechenhaft = !!_source.links.AX_Fliessgewaesser.p.position.first()&#xD;
-+boolean hatLinienhaft = !!_source.links.ax_fliessgewaesser.p.wkb_geometry.value()&#xD;
-+boolean hatFlaechenhaft = !!_source.links.ax_gewaesserachse.p.wkb_geometry.value()&#xD;
++boolean hatLinienhaft = !!_source.links.ax_gewaesserachse.p.wkb_geometry.value()&#xD;
++boolean hatFlaechenhaft = !!_source.links.ax_fliessgewaesser.p.wkb_geometry.value()&#xD;
  &#xD;
  &#xD;
 -def kanalId = _source.p.id.value()&#xD;
@@ -518,7 +536,7 @@ index d1c81d0..dd6d4c9 100644
  
  // Builder konfigurieren
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
-@@ -5964,362 +5935,97 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+@@ -5964,362 +5935,87 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
          </annotation>
      </cell>
      <modifier cell="C0702079d-c85c-431e-ad2c-fd570baaa99b_C4c0212ea-a994-4344-9aec-580c1420ba86">
@@ -596,8 +614,8 @@ index d1c81d0..dd6d4c9 100644
 -    <modifier cell="C58817263-94ad-47a9-97c5-36968314bc04_Cf00631c0-e08c-4d15-8007-fdffe5531785">
 -        <disable-for parent="Cef61b9c6-e7e9-410d-a70b-ef79522d1d16"/>
 -    </modifier>
-     <modifier cell="C58c5f9d9-1800-432a-a0ab-6b3db0d97791_C4c0212ea-a994-4344-9aec-580c1420ba86">
-         <disable-for parent="Cd3ab0ba5-a0cc-4014-99c1-606ebf20eab7"/>
+-    <modifier cell="C58c5f9d9-1800-432a-a0ab-6b3db0d97791_C4c0212ea-a994-4344-9aec-580c1420ba86">
+-        <disable-for parent="Cd3ab0ba5-a0cc-4014-99c1-606ebf20eab7"/>
 -        <disable-for parent="C4c0212ea-a994-4344-9aec-580c1420ba86"/>
 -    </modifier>
 -    <modifier cell="C58c5f9d9-1800-432a-a0ab-6b3db0d97791_Ca40c749f-4179-4b6b-a68b-b30c4e8c82c8">
@@ -611,18 +629,18 @@ index d1c81d0..dd6d4c9 100644
 -    <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_C79051b3f-be48-4f04-a9ca-bcf3b3194c9d">
 -        <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
 -        <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
-     </modifier>
-     <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Ca4c651ad-57c5-41e0-9a9b-cd82614fec7c">
+-    </modifier>
+-    <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Ca4c651ad-57c5-41e0-9a9b-cd82614fec7c">
 -        <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
-         <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
-     </modifier>
-     <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3">
-         <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
 -        <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
-     </modifier>
+-    </modifier>
+-    <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3">
+-        <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
+-        <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
+-    </modifier>
      <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21">
          <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
-         <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
+-        <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
      </modifier>
      <modifier cell="C8c914f39-9647-4653-bd06-c6b8871cd637_C18bc7bb0-8edd-4fa0-8029-94ef246b80bf">
 -        <disable-for parent="C3aac6754-dc82-4824-932a-3df081b6d4a4"/>

@@ -4432,8 +4432,8 @@ def _ns = _project.vars.INSPIRE_NAMESPACE&#xD;
 &#xD;
 int counter = 1;&#xD;
 &#xD;
-boolean hatLinienhaft = !!_source.links.ax_fliessgewaesser.p.wkb_geometry.value()&#xD;
-boolean hatFlaechenhaft = !!_source.links.ax_gewaesserachse.p.wkb_geometry.value()&#xD;
+boolean hatLinienhaft = !!_source.links.ax_gewaesserachse.p.wkb_geometry.value()&#xD;
+boolean hatFlaechenhaft = !!_source.links.ax_fliessgewaesser.p.wkb_geometry.value()&#xD;
 &#xD;
 &#xD;
 def kanalId = _source.p.gml_id.value()&#xD;
@@ -5949,18 +5949,8 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <modifier cell="C58817263-94ad-47a9-97c5-36968314bc04_Cef61b9c6-e7e9-410d-a70b-ef79522d1d16">
         <disable-for parent="Cef61b9c6-e7e9-410d-a70b-ef79522d1d16"/>
     </modifier>
-    <modifier cell="C58c5f9d9-1800-432a-a0ab-6b3db0d97791_C4c0212ea-a994-4344-9aec-580c1420ba86">
-        <disable-for parent="Cd3ab0ba5-a0cc-4014-99c1-606ebf20eab7"/>
-    </modifier>
-    <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Ca4c651ad-57c5-41e0-9a9b-cd82614fec7c">
-        <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
-    </modifier>
-    <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3">
-        <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
-    </modifier>
     <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21">
         <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
-        <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
     </modifier>
     <modifier cell="C8c914f39-9647-4653-bd06-c6b8871cd637_C18bc7bb0-8edd-4fa0-8029-94ef246b80bf">
         <disable-for parent="C18bc7bb0-8edd-4fa0-8029-94ef246b80bf"/>
