@@ -20,6 +20,10 @@ hale {
 
 repositories {
   // mavenLocal() // XXX for testing
+
+  maven {
+    url 'https://repo.osgeo.org/repository/release/'
+  }
 }
 
 configurations.all {
