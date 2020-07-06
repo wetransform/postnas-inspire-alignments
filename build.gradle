@@ -15,7 +15,7 @@ apply plugin: 'to.wetransform.hale'
 
 hale {
   cliArtifact = 'to.wetransform:hale-cli'
-  cliVersion = '3.4.0'
+  cliVersion = '4.0.0'
 }
 
 repositories {

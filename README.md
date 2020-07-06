@@ -10,9 +10,9 @@ Folgende Alignments werden hier verwaltet:
 
 | Alignment                                             | Status         | Kürzel     |
 | :---------------------------------------------------- | :------------: | :--------- |
-| PostNAS -> Adressen                                   | Migriert       | ad         |
-| PostNAS -> Verwaltungseinheiten                       | Migriert       | au         |
-| PostNAS -> Flurstücke/Grundstücke                     | Migriert       | cp         |
+| PostNAS -> Adressen                                   | Update nötig   | ad         |
+| PostNAS -> Verwaltungseinheiten                       | Update nötig   | au         |
+| PostNAS -> Flurstücke/Grundstücke                     | Update nötig   | cp         |
 | PostNAS -> Geografische Bezeichnungen                 | Update nötig   | gn         |
 | PostNAS -> Gewässernetz                               | Update nötig   | hy-n, hy-p |
 | PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)        | Update nötig   | tn-ro      |
