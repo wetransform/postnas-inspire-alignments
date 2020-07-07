@@ -124,7 +124,10 @@ if (!name) {
 			def collect = _.context.collector(it)
 	  
 			// Name zu Schlüssel der Lagebezeichnung aus Index holen
-			name = collect.lagebezeichnung[schluesselGesamt].value()
+			if (collect.lagebezeichnung[schluesselGesamt].value()){
+				name = collect.lagebezeichnung[schluesselGesamt].value()
+			}
+			else _log.error('Für einen Namen aus einer verschlüsselten Lagebezeichnung liegt kein Katalogeintrag vor.')
 		}
 	}
 }
@@ -221,47 +224,47 @@ else {
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.
-Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.
-Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.
-Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.
-
-Die Sprache des Namens wird als Deutsch angenommen.
-
-&lt;% if (_params.nameStatus) {
-  if (_params.nameStatus == 'unpopulated') {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
-  }
-  else if (_params.nameStatus == 'unknown') {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
-  }
-  else {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
-  }
-}
-else {
-  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
-}
-out &lt;&lt; "\n\n"
-if (_params.nativeness) {
-  if (_params.nativeness == 'unpopulated') {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
-  }
-  else if (_params.nativeness == 'unknown') {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
-  }
-  else {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
-  }
-}
-else {
-  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
-}
-out &lt;&lt; "\n\n"
-if (_params.source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
-} else {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
+Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.&#13;
+Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.&#13;
+Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.&#13;
+Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.&#13;
+&#13;
+Die Sprache des Namens wird als Deutsch angenommen.&#13;
+&#13;
+&lt;% if (_params.nameStatus) {&#13;
+  if (_params.nameStatus == 'unpopulated') {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#13;
+  }&#13;
+  else if (_params.nameStatus == 'unknown') {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#13;
+  }&#13;
+  else {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#13;
+  }&#13;
+}&#13;
+else {&#13;
+  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#13;
+}&#13;
+out &lt;&lt; "\n\n"&#13;
+if (_params.nativeness) {&#13;
+  if (_params.nativeness == 'unpopulated') {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#13;
+  }&#13;
+  else if (_params.nativeness == 'unknown') {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#13;
+  }&#13;
+  else {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#13;
+  }&#13;
+}&#13;
+else {&#13;
+  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#13;
+}&#13;
+out &lt;&lt; "\n\n"&#13;
+if (_params.source) {&#13;&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#13;&#13;
+} else {&#13;&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#13;&#13;
 } %&gt;
 </core:text>
                     </cf:template>
@@ -419,9 +422,9 @@ else {
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Bildet ein GeographicalName-Objekt zu einem einfachen Namen. Der Wert des Quell-Attributs $spelling wird als Schreibweise des Namens übernommen (`SpellingOfName`).&#xD;
-&#xD;
-Die Sprache wird als Deutsch angenommen.&#xD;
+Bildet ein GeographicalName-Objekt zu einem einfachen Namen. Der Wert des Quell-Attributs $spelling wird als Schreibweise des Namens übernommen (`SpellingOfName`).&#13;
+&#13;
+Die Sprache wird als Deutsch angenommen.&#13;
 
 &lt;% if (_params.nameStatus) {
   if (_params.nameStatus == 'unpopulated') {
@@ -453,13 +456,13 @@ else {
   out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
 }
 out &lt;&lt; "\n\n"
-if (_params.source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
-} else if (source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden, andernfalls wird das Quell-Attribut $source dafür herangezogen. "&#xD;
-  out &lt;&lt; "In letzterem Fall kann nur eine von potentiell mehreren im Quellobjekt angegebenen Modellarten übernommen werden."&#xD;
-} else {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
+if (_params.source) {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#13;
+} else if (source) {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden, andernfalls wird das Quell-Attribut $source dafür herangezogen. "&#13;
+  out &lt;&lt; "In letzterem Fall kann nur eine von potentiell mehreren im Quellobjekt angegebenen Modellarten übernommen werden."&#13;
+} else {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#13;
 } %&gt;
 </core:text>
                     </cf:template>
@@ -768,7 +771,7 @@ Aktuell ist folgende Abbildung umgesetzt:
         <source>
             <class>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2010' or bauwerksfunktion = '2011' or bauwerksfunktion = '2012'</condition>
+                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
                 </type>
             </class>
         </source>
@@ -901,48 +904,48 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </complexParameter>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-// Prüfen, ob tatsächlich eine AX_Gewässerachse und/oder ein AX_Fliessgewaesser zu der Relation hatDirektUnten gefunden wurde&#xD;
-&#xD;
-boolean hatReferenz = _source.links.AX_Gewaesserachse.first() || _source.links.AX_Fliessgewaesser.first()&#xD;
-&#xD;
-if (hatReferenz) {&#xD;
-&#xD;
-	// Geometrien aufteilen in einzelne Simple Feature Geometrien&#xD;
-	def geometries = _.geom.toSimpleGeometries(geometries: _source.p.position.first(), collections: false)&#xD;
-	&#xD;
-	// Identifier des Quell-Objekts&#xD;
-	def sourceId = _source.p.id.value()&#xD;
-	&#xD;
-	// Builder konfigurieren&#xD;
-	// - Zuweisung der Geometrie auf Ebene von geometry zulassen&#xD;
-	_b.strictValueFlags = false&#xD;
-	&#xD;
-	// Ziel Objekt je Geometrie erstellen&#xD;
-	int num = 1&#xD;
-	geometries.each { geom -&gt;&#xD;
-		// ID bestimmen&#xD;
-		def _id = "Crossing_${sourceId}_${num}"&#xD;
-		def _ns = _project.vars.INSPIRE_NAMESPACE&#xD;
-	&#xD;
-		// Ziel-Objekt erstellen mit IDs und Geometrie&#xD;
-		_target {&#xD;
-			id( _id )&#xD;
-			inspireId {&#xD;
-				Identifier {&#xD;
-					localId( _id )&#xD;
-					namespace( _ns )&#xD;
-				}&#xD;
-			}&#xD;
-			identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {&#xD;
-				codeSpace( 'http://inspire.ec.europa.eu/ids' )&#xD;
-			}&#xD;
-			geometry(geom)&#xD;
-		}&#xD;
-	&#xD;
-		num++&#xD;
-	}&#xD;
-	&#xD;
-&#xD;
+// Prüfen, ob tatsächlich eine AX_Gewässerachse und/oder ein AX_Fliessgewaesser zu der Relation hatDirektUnten gefunden wurde&#13;
+&#13;
+boolean hatReferenz = _source.links.AX_Gewaesserachse.first() || _source.links.AX_Fliessgewaesser.first()&#13;
+&#13;
+if (hatReferenz) {&#13;
+&#13;
+	// Geometrien aufteilen in einzelne Simple Feature Geometrien&#13;
+	def geometries = _.geom.toSimpleGeometries(geometries: _source.p.position.first(), collections: false)&#13;
+	&#13;
+	// Identifier des Quell-Objekts&#13;
+	def sourceId = _source.p.id.value()&#13;
+	&#13;
+	// Builder konfigurieren&#13;
+	// - Zuweisung der Geometrie auf Ebene von geometry zulassen&#13;
+	_b.strictValueFlags = false&#13;
+	&#13;
+	// Ziel Objekt je Geometrie erstellen&#13;
+	int num = 1&#13;
+	geometries.each { geom -&gt;&#13;
+		// ID bestimmen&#13;
+		def _id = "Crossing_${sourceId}_${num}"&#13;
+		def _ns = _project.vars.INSPIRE_NAMESPACE&#13;
+	&#13;
+		// Ziel-Objekt erstellen mit IDs und Geometrie&#13;
+		_target {&#13;
+			id( _id )&#13;
+			inspireId {&#13;
+				Identifier {&#13;
+					localId( _id )&#13;
+					namespace( _ns )&#13;
+				}&#13;
+			}&#13;
+			identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {&#13;
+				codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
+			}&#13;
+			geometry(geom)&#13;
+		}&#13;
+	&#13;
+		num++&#13;
+	}&#13;
+	&#13;
+&#13;
 }
 </core:text>
         </complexParameter>
@@ -971,7 +974,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <class>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">archaeologischerTyp = '1110'</condition>
+                    <condition lang="CQL">archaeologischertyp = '1110'</condition>
                 </type>
             </class>
         </source>
@@ -1044,7 +1047,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2010' or bauwerksfunktion = '2011' or bauwerksfunktion = '2012'</condition>
+                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -1131,7 +1134,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">archaeologischerTyp = '1110'</condition>
+                    <condition lang="CQL">archaeologischertyp = '1110'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -1156,7 +1159,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="anchor">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2010' or bauwerksfunktion = '2011' or bauwerksfunktion = '2012'</condition>
+                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1181,7 +1184,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2010' or bauwerksfunktion = '2011' or bauwerksfunktion = '2012'</condition>
+                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
                 </type>
                 <child name="zustand"/>
             </property>
@@ -1280,7 +1283,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2010' or bauwerksfunktion = '2011' or bauwerksfunktion = '2012'</condition>
+                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -1367,7 +1370,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">archaeologischerTyp = '1110'</condition>
+                    <condition lang="CQL">archaeologischertyp = '1110'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -1392,7 +1395,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="spelling">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2010' or bauwerksfunktion = '2011' or bauwerksfunktion = '2012'</condition>
+                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
                 </type>
                 <child name="name"/>
             </property>
@@ -1440,7 +1443,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="spelling">
             <property>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">archaeologischerTyp = '1110'</condition>
+                    <condition lang="CQL">archaeologischertyp = '1110'</condition>
                 </type>
                 <child name="name"/>
             </property>
@@ -1474,7 +1477,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="id">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2010' or bauwerksfunktion = '2011' or bauwerksfunktion = '2012'</condition>
+                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1532,7 +1535,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="id">
             <property>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">archaeologischerTyp = '1110'</condition>
+                    <condition lang="CQL">archaeologischertyp = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1555,7 +1558,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="id">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2010' or bauwerksfunktion = '2011' or bauwerksfunktion = '2012'</condition>
+                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1613,7 +1616,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="id">
             <property>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">archaeologischerTyp = '1110'</condition>
+                    <condition lang="CQL">archaeologischertyp = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1636,7 +1639,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2010' or bauwerksfunktion = '2011' or bauwerksfunktion = '2012'</condition>
+                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -1710,7 +1713,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="anchor">
             <property>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">archaeologischerTyp = '1110'</condition>
+                    <condition lang="CQL">archaeologischertyp = '1110'</condition>
                 </type>
                 <child name="archaeologischertyp"/>
             </property>
@@ -1735,7 +1738,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <class>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2030' or bauwerksfunktion = '2040' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2080'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
                 </type>
             </class>
         </source>
@@ -1808,7 +1811,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2030' or bauwerksfunktion = '2040' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2080'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -1843,7 +1846,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2030' or bauwerksfunktion = '2040' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2080'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
                 </type>
                 <child name="zustand"/>
             </property>
@@ -1880,7 +1883,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2030' or bauwerksfunktion = '2040' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2080'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -1905,7 +1908,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="spelling">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2030' or bauwerksfunktion = '2040' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2080'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
                 </type>
                 <child name="name"/>
             </property>
@@ -1939,7 +1942,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="id">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2030' or bauwerksfunktion = '2040' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2080'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1962,7 +1965,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="id">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2030' or bauwerksfunktion = '2040' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2080'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1985,7 +1988,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <class>
                 <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '3001' or funktion = '3003'</condition>
+                    <condition lang="CQL">funktion = '3001' OR funktion = '3003'</condition>
                 </type>
             </class>
         </source>
@@ -2131,7 +2134,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '3001' or funktion = '3003'</condition>
+                    <condition lang="CQL">funktion = '3001' OR funktion = '3003'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2191,7 +2194,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '3001' or funktion = '3003'</condition>
+                    <condition lang="CQL">funktion = '3001' OR funktion = '3003'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -2241,7 +2244,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="spelling">
             <property>
                 <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '3001' or funktion = '3003'</condition>
+                    <condition lang="CQL">funktion = '3001' OR funktion = '3003'</condition>
                 </type>
                 <child name="name"/>
             </property>
@@ -2299,7 +2302,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="id">
             <property>
                 <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '3001' or funktion = '3003'</condition>
+                    <condition lang="CQL">funktion = '3001' OR funktion = '3003'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -2345,7 +2348,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="id">
             <property>
                 <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '3001' or funktion = '3003'</condition>
+                    <condition lang="CQL">funktion = '3001' OR funktion = '3003'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3415,7 +3418,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <class>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2130' or bauwerksfunktion = '2131' or bauwerksfunktion = '2132' or bauwerksfunktion = '2133' or bauwerksfunktion = '2134' or bauwerksfunktion = '2135'  or bauwerksfunktion = '2136'</condition>
+                    <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
                 </type>
             </class>
         </source>
@@ -3488,7 +3491,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2130' or bauwerksfunktion = '2131' or bauwerksfunktion = '2132' or bauwerksfunktion = '2133' or bauwerksfunktion = '2134' or bauwerksfunktion = '2135'  or bauwerksfunktion = '2136'</condition>
+                    <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -3523,7 +3526,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2130' or bauwerksfunktion = '2131' or bauwerksfunktion = '2132' or bauwerksfunktion = '2133' or bauwerksfunktion = '2134' or bauwerksfunktion = '2135'  or bauwerksfunktion = '2136'</condition>
+                    <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
                 </type>
                 <child name="zustand"/>
             </property>
@@ -3560,7 +3563,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2130' or bauwerksfunktion = '2131' or bauwerksfunktion = '2132' or bauwerksfunktion = '2133' or bauwerksfunktion = '2134' or bauwerksfunktion = '2135'  or bauwerksfunktion = '2136'</condition>
+                    <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -3585,7 +3588,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="spelling">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2130' or bauwerksfunktion = '2131' or bauwerksfunktion = '2132' or bauwerksfunktion = '2133' or bauwerksfunktion = '2134' or bauwerksfunktion = '2135'  or bauwerksfunktion = '2136'</condition>
+                    <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
                 </type>
                 <child name="name"/>
             </property>
@@ -3619,7 +3622,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="id">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2130' or bauwerksfunktion = '2131' or bauwerksfunktion = '2132' or bauwerksfunktion = '2133' or bauwerksfunktion = '2134' or bauwerksfunktion = '2135'  or bauwerksfunktion = '2136'</condition>
+                    <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3642,7 +3645,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="id">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2130' or bauwerksfunktion = '2131' or bauwerksfunktion = '2132' or bauwerksfunktion = '2133' or bauwerksfunktion = '2134' or bauwerksfunktion = '2135'  or bauwerksfunktion = '2136'</condition>
+                    <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3665,7 +3668,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <class>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2070'</condition>
+                    <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
                 </type>
             </class>
         </source>
@@ -3738,7 +3741,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2070'</condition>
+                    <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -3773,7 +3776,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2070'</condition>
+                    <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
                 </type>
                 <child name="zustand"/>
             </property>
@@ -3810,7 +3813,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2070'</condition>
+                    <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -3835,7 +3838,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="spelling">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2070'</condition>
+                    <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
                 </type>
                 <child name="name"/>
             </property>
@@ -3869,7 +3872,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="id">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2070'</condition>
+                    <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3892,7 +3895,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <source name="id">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '2070'</condition>
+                    <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3939,6 +3942,29 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
+        <source>
+            <class>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">funktion = 1040</condition>
+                </type>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_C79051b3f-be48-4f04-a9ca-bcf3b3194c9d" priority="normal">
         <source>
             <property>
@@ -3970,6 +3996,41 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
+        <source>
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">funktion = 1040</condition>
+                </type>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="Cefe22c23-667b-4189-805c-7fc14e426d68" priority="normal">
+        <target>
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="drainsBasin" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="nilReason"/>
+            </property>
+        </target>
+        <parameter value="other:unpopulated" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C185887cb-8dde-40f3-8efc-a145cb918b16" priority="normal">
         <target>
@@ -4022,6 +4083,31 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
+        <source>
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">funktion = 1040</condition>
+                </type>
+                <child name="endet"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C45a9e47b-e2c7-408a-a3b8-3e43593337e0" priority="normal">
         <source name="lagebezeichnung">
@@ -4107,6 +4193,29 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </property>
         </target>
     </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature" id="C25bee785-55ad-4f62-b999-8ada1a3b0f85" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">funktion = 1040</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </property>
+        </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C805e9253-34b1-44d6-9a16-310ebe798975" priority="highest">
         <source name="id">
             <property>
@@ -4169,6 +4278,29 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </property>
         </target>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="C1df2b062-9f5b-4cac-80f9-1c8263a0c92f_Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">funktion = 1040</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C8c3983da-2139-4a23-a2ef-fbde3d487718_C79051b3f-be48-4f04-a9ca-bcf3b3194c9d" priority="normal">
         <source name="id">
             <property>
@@ -4197,7 +4329,40 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </property>
         </target>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cfc744e73-d1b2-48a1-b83a-dbb887176b69" priority="normal">
+    <cell relation="custom:alignment:adv.inspire.identifier" id="C8c3983da-2139-4a23-a2ef-fbde3d487718_Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">funktion = 1040</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C3e471e15-5157-4f36-9c01-ae5b3ef99e8a" priority="normal">
+        <target>
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="codeSpace"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Cfc744e73-d1b2-48a1-b83a-dbb887176b69_C79051b3f-be48-4f04-a9ca-bcf3b3194c9d" priority="normal">
         <source name="id">
             <property>
                 <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -4213,7 +4378,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </property>
         </target>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ce47e50b5-1ca6-4ef2-9d78-31f675ea76d9" priority="normal">
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Cfc744e73-d1b2-48a1-b83a-dbb887176b69_Ca4c651ad-57c5-41e0-9a9b-cd82614fec7c" priority="normal">
         <source name="id">
             <property>
                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -4228,6 +4393,31 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Cfc744e73-d1b2-48a1-b83a-dbb887176b69_Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">funktion = 1040</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.namespace" id="C32cdf7c0-ccb7-4529-87f1-f44e6395b883" priority="normal">
         <target>
@@ -4358,6 +4548,43 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.classification" id="C7b422b8e-8e23-4f51-bbbe-25c69116836d_Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
+        <source>
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">funktion = 1040</condition>
+                </type>
+                <child name="hydrologischesmerkmal"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="persistence" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <complexParameter name="lookupTable">
+            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+                <entry>
+                    <key value="2000"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/HydrologicalPersistenceValue/intermittent"/>
+                </entry>
+                <entry>
+                    <key value="3000"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/HydrologicalPersistenceValue/dry"/>
+                </entry>
+            </lookup-table>
+        </complexParameter>
+        <parameter value="null" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatearea" id="C981b5b7e-427e-4b55-a967-92c93ceae02b" priority="normal">
         <source>
             <property>
@@ -4386,6 +4613,49 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </property>
         </target>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C8dbb8703-b255-4eea-b40b-a5226dd7d016_Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">funktion = 1040</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="surfaceArea" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def flaechen = _.geom.findPolygons(position)&#13;
+	&#13;
+def flaeche = _.geom.aggregate(flaechen)&#13;
+	&#13;
+if(flaeche){&#13;
+	def oberflaeche = flaeche.geometry.getArea()&#13;
+	return oberflaeche&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cca0669a8-c03f-479f-9619-fecdcb5faedb" priority="normal">
         <target>
             <property>
@@ -4396,142 +4666,20 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </target>
         <parameter value="m2" name="value"/>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
-        <source name="types">
-            <class>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-            </class>
-        </source>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="Cd7639737-bba1-40a1-a32c-5d4dcb9fe8b4" priority="normal">
+        <target>
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="tidal" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="nilReason"/>
+            </property>
+        </target>
+        <parameter value="other:unpopulated" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.join" id="Cb6a3be00-a71e-4d27-9040-df087e8288f7" priority="normal">
         <source name="types">
             <class>
                 <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-            </class>
-        </source>
-        <source name="types">
-            <class>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-            </class>
-        </source>
-        <target>
-            <class>
-                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
-            </class>
-        </target>
-        <complexParameter name="join">
-            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
-                <class>
-                    <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <class>
-                    <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <class>
-                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <jp:condition>
-                    <property>
-                        <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gml_id"/>
-                    </property>
-                    <property>
-                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="istteilvon"/>
-                    </property>
-                </jp:condition>
-                <jp:condition>
-                    <property>
-                        <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gml_id"/>
-                    </property>
-                    <property>
-                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="istteilvon"/>
-                    </property>
-                </jp:condition>
-            </jp:join-parameter>
-        </complexParameter>
-        <complexParameter name="script">
-            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-// Ermitteln, ob flächenhafte (Aus AX_Fliessgewaesser) und/oder linienhafte (aus AX_Gewaesserachse) Geometrien vorhanden sind &#xD;
-&#xD;
-// Builder konfigurieren&#xD;
-// - Zuweisung der Geometrie auf Ebene von geometry zulassen&#xD;
-_b.strictValueFlags = false&#xD;
-def _ns = _project.vars.INSPIRE_NAMESPACE&#xD;
-&#xD;
-int counter = 1;&#xD;
-&#xD;
-boolean hatLinienhaft = !!_source.links.AX_Gewaesserachse.p.position.first()&#xD;
-boolean hatFlaechenhaft = !!_source.links.AX_Fliessgewaesser.p.position.first()&#xD;
-&#xD;
-&#xD;
-def kanalId = _source.p.id.value()&#xD;
-if (!hatLinienhaft &amp;&amp; !hatFlaechenhaft) {&#xD;
-	_log.warn("Watercourse: Kanal $kanalId hat weder AX_Fliessgewaesser noch AX_Gewaesserachsen")&#xD;
-	throw new NoResultException('Kann kein Watercourse-Objekt ohne Geometrie erstellen')&#xD;
-}&#xD;
-&#xD;
-&#xD;
-def createWatercourse = { aggregate -&gt; &#xD;
-	if (aggregate) {&#xD;
-		def localID = 'Watercourse_' + kanalId + '_' + counter++&#xD;
-		_target {&#xD;
-			geometry(aggregate)&#xD;
-			id( localID )&#xD;
-			inspireId {&#xD;
-				Identifier {&#xD;
-					namespace( _ns )&#xD;
-					localId( localID )&#xD;
-				}&#xD;
-			}&#xD;
-			identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + localID : localID ) {&#xD;
-				codeSpace( 'http://inspire.ec.europa.eu/ids' )&#xD;
-			}&#xD;
-		}&#xD;
-	}&#xD;
-	else {&#xD;
-		_log.warn("Watercourse: Für Kanal $kanalId konnte kein Aggregat gebildet werden.")&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-// erstelle Watercourse&#xD;
-if (hatLinienhaft) {&#xD;
-	def aggregate = _.geom.aggregate(_.geom.findAll(_source.links.AX_Gewaesserachse.p.position.list()))&#xD;
-	def geoms = _.geom.toSimpleGeometries(geometries: aggregate, collections: false)&#xD;
-	if (geoms.size() &gt; 1) {&#xD;
-		_log.warn("${geoms.size()} Geometrien für Kanal $kanalId (aus Gewaesserachsen)")&#xD;
-	}&#xD;
-	geoms.each { geom -&gt;&#xD;
-		createWatercourse(geom)&#xD;
-	}&#xD;
-}&#xD;
-if (hatFlaechenhaft) {&#xD;
-	def aggregate = _.geom.union(_.geom.findAll(_source.links.AX_Fliessgewaesser.p.position.list()))&#xD;
-	def geoms = _.geom.toSimpleGeometries(geometries: aggregate, collections: false)&#xD;
-	if (geoms.size() &gt; 1) {&#xD;
-		_log.warn("${geoms.size()} Geometrien für Kanal $kanalId (aus Fliessgewaessern)")&#xD;
-	}&#xD;
-	geoms.each { geom -&gt;&#xD;
-		createWatercourse(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-
-</core:text>
-        </complexParameter>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3" priority="normal">
-        <source name="types">
-            <class>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
             </class>
         </source>
         <source name="types">
@@ -4541,7 +4689,7 @@ if (hatFlaechenhaft) {&#xD;
         </source>
         <source name="types">
             <class>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
             </class>
         </source>
         <target>
@@ -4552,120 +4700,116 @@ if (hatFlaechenhaft) {&#xD;
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                </class>
-                <class>
                     <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 </class>
                 <class>
-                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <class>
+                    <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 </class>
                 <jp:condition>
-                    <property>
-                        <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                        <child name="gml_id"/>
-                    </property>
                     <property>
                         <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="istteilvon"/>
                     </property>
+                    <property>
+                        <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gml_id"/>
+                    </property>
                 </jp:condition>
                 <jp:condition>
+                    <property>
+                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="istteilvon"/>
+                    </property>
                     <property>
                         <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="gml_id"/>
                     </property>
+                </jp:condition>
+            </jp:join-parameter>
+        </complexParameter>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.join" id="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
+        <source name="types">
+            <class>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+            </class>
+        </source>
+        <source name="types">
+            <class>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+            </class>
+        </source>
+        <source name="types">
+            <class>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </class>
+        </target>
+        <complexParameter name="join">
+            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
+                <class>
+                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <class>
+                    <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <class>
+                    <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                </class>
+                <jp:condition>
                     <property>
                         <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                         <child name="istteilvon"/>
                     </property>
+                    <property>
+                        <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gml_id"/>
+                    </property>
+                </jp:condition>
+                <jp:condition>
+                    <property>
+                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="istteilvon"/>
+                    </property>
+                    <property>
+                        <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <child name="gml_id"/>
+                    </property>
                 </jp:condition>
             </jp:join-parameter>
         </complexParameter>
-        <complexParameter name="script">
-            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-// Ermitteln, ob flächenhafte (Aus AX_Fliessgewaesser) und/oder linienhafte (aus AX_Gewaesserachse) Geometrien vorhanden sind &#xD;
-&#xD;
-// Builder konfigurieren&#xD;
-// - Zuweisung der Geometrie auf Ebene von geometry zulassen&#xD;
-_b.strictValueFlags = false&#xD;
-def _ns = _project.vars.INSPIRE_NAMESPACE&#xD;
-&#xD;
-int counter = 1;&#xD;
-&#xD;
-boolean hatLinienhaft = !!_source.links.AX_Gewaesserachse.p.position.first()&#xD;
-boolean hatFlaechenhaft = !!_source.links.AX_Fliessgewaesser.p.position.first()&#xD;
-&#xD;
-&#xD;
-def wasserlaufId = _source.p.id.value()&#xD;
-if (!hatLinienhaft &amp;&amp; !hatFlaechenhaft) {&#xD;
-	_log.warn("Watercourse: Wasserlauf $wasserlaufId hat weder AX_Fliessgewaesser noch AX_Gewaesserachsen")&#xD;
-	throw new NoResultException('Kann kein Watercourse-Objekt ohne Geometrie erstellen')&#xD;
-}&#xD;
-&#xD;
-&#xD;
-def createWatercourse = { aggregate -&gt; &#xD;
-	if (aggregate) {&#xD;
-		def localID = 'Watercourse_' + wasserlaufId + '_' + counter++&#xD;
-		_target {&#xD;
-			geometry(aggregate)&#xD;
-			id( localID )&#xD;
-			inspireId {&#xD;
-				Identifier {&#xD;
-					namespace( _ns )&#xD;
-					localId( localID )&#xD;
-				}&#xD;
-			}&#xD;
-			identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + localID : localID ) {&#xD;
-				codeSpace( 'http://inspire.ec.europa.eu/ids' )&#xD;
-			}&#xD;
-		}&#xD;
-	}&#xD;
-	else {&#xD;
-		_log.warn("Watercourse: Für Wasserlauf $wasserlaufId konnte kein Aggregat gebildet werden.")&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-// erstelle Watercourse&#xD;
-if (hatLinienhaft) {&#xD;
-	def aggregate = _.geom.aggregate(_.geom.findAll(_source.links.AX_Gewaesserachse.p.position.list()))&#xD;
-	def geoms = _.geom.toSimpleGeometries(geometries: aggregate, collections: false)&#xD;
-	if (geoms.size() &gt; 1) {&#xD;
-		_log.warn("${geoms.size()} Geometrien für Wasserlauf $wasserlaufId (aus Gewaesserachsen)")&#xD;
-	}&#xD;
-	geoms.each { geom -&gt;&#xD;
-		createWatercourse(geom)&#xD;
-	}&#xD;
-}&#xD;
-if (hatFlaechenhaft) {&#xD;
-	def aggregate = _.geom.union(_.geom.findAll(_source.links.AX_Fliessgewaesser.p.position.list()))&#xD;
-	def geoms = _.geom.toSimpleGeometries(geometries: aggregate, collections: false)&#xD;
-	if (geoms.size() &gt; 1) {&#xD;
-		_log.warn("${geoms.size()} Geometrien für Wasserlauf $wasserlaufId (aus Fliessgewaessern)")&#xD;
-	}&#xD;
-	geoms.each { geom -&gt;&#xD;
-		createWatercourse(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-
-</core:text>
-        </complexParameter>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
+        <source>
+            <class>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
+                </type>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                 <core:content>
-                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
             </core:message>
         </annotation>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
-        <source>
-            <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Cb6a3be00-a71e-4d27-9040-df087e8288f7" priority="normal">
         <source>
             <property>
                 <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -4674,7 +4818,13 @@ if (hatFlaechenhaft) {&#xD;
         </source>
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <source>
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -4687,22 +4837,22 @@ if (hatFlaechenhaft) {&#xD;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
         <source>
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <source>
-            <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="beginnt"/>
             </property>
         </source>
         <source>
             <property>
                 <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <source>
+            <property>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -4731,6 +4881,31 @@ if (hatFlaechenhaft) {&#xD;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
+        <source>
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
+                </type>
+                <child name="beginnt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C218f88ef-e885-4ed1-9e73-7ba5837561bf" priority="normal">
         <source>
             <property>
@@ -4747,7 +4922,87 @@ if (hatFlaechenhaft) {&#xD;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C2e857ef5-1506-4ba5-84da-200d88775cf5" priority="lowest">
+    <cell relation="eu.esdihumboldt.hale.align.classification" id="C9707edaf-3714-49ae-8185-3c195d154bb9" priority="normal">
+        <source>
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="zustand">
+                    <condition lang="ECQL">parent.funktion = 8300</condition>
+                </child>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="condition" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <complexParameter name="lookupTable">
+            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+                <entry>
+                    <key value="4000"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/underConstruction"/>
+                </entry>
+                <entry>
+                    <key value="2100"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused"/>
+                </entry>
+            </lookup-table>
+        </complexParameter>
+        <parameter value="null" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.classification" id="Ccd4643eb-a25d-4e93-ab3c-b494ed7b8648" priority="normal">
+        <source>
+            <property>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="zustand">
+                    <condition lang="ECQL">parent.funktion = 8300</condition>
+                </child>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="condition" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <complexParameter name="lookupTable">
+            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+                <entry>
+                    <key value="4000"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/underConstruction"/>
+                </entry>
+                <entry>
+                    <key value="2100"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused"/>
+                </entry>
+            </lookup-table>
+        </complexParameter>
+        <parameter value="null" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C2e857ef5-1506-4ba5-84da-200d88775cf5" priority="lowest">
+        <source name="anchor">
+            <property>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
         <target>
             <property>
                 <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
@@ -4756,62 +5011,6 @@ if (hatFlaechenhaft) {&#xD;
             </property>
         </target>
         <parameter value="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional" name="value"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.classification" id="C9707edaf-3714-49ae-8185-3c195d154bb9" priority="normal">
-        <source>
-            <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="zustand"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
-                <child name="condition" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <complexParameter name="lookupTable">
-            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
-                <entry>
-                    <key value="2100"/>
-                    <value value="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused"/>
-                </entry>
-                <entry>
-                    <key value="4000"/>
-                    <value value="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/underConstruction"/>
-                </entry>
-            </lookup-table>
-        </complexParameter>
-        <parameter value="null" name="notClassifiedAction"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.classification" id="Ccd4643eb-a25d-4e93-ab3c-b494ed7b8648" priority="normal">
-        <source>
-            <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="zustand"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
-                <child name="condition" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <complexParameter name="lookupTable">
-            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
-                <entry>
-                    <key value="2100"/>
-                    <value value="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused"/>
-                </entry>
-                <entry>
-                    <key value="4000"/>
-                    <value value="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/underConstruction"/>
-                </entry>
-            </lookup-table>
-        </complexParameter>
-        <parameter value="null" name="notClassifiedAction"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C5bced241-1331-4582-96f9-b8ee97264c5f" priority="normal">
         <target>
@@ -4822,13 +5021,17 @@ if (hatFlaechenhaft) {&#xD;
         </target>
         <parameter value="true" name="value"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
-        <source>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C58fa02c0-d8d7-442f-a64f-5d2870412594" priority="normal">
+        <target>
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="endet"/>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="drainsBasin" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="nilReason"/>
             </property>
-        </source>
+        </target>
+        <parameter value="other:unpopulated" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cb6a3be00-a71e-4d27-9040-df087e8288f7" priority="normal">
         <source>
             <property>
                 <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -4837,7 +5040,13 @@ if (hatFlaechenhaft) {&#xD;
         </source>
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="endet"/>
+            </property>
+        </source>
+        <source>
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -4850,22 +5059,22 @@ if (hatFlaechenhaft) {&#xD;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
         <source>
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="endet"/>
-            </property>
-        </source>
-        <source>
-            <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="endet"/>
             </property>
         </source>
         <source>
             <property>
                 <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="endet"/>
+            </property>
+        </source>
+        <source>
+            <property>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -4893,6 +5102,31 @@ if (hatFlaechenhaft) {&#xD;
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
+        <source>
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
+                </type>
+                <child name="endet"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca8f9e2c3-f1a3-4a39-93fe-8ac66c12012d" priority="normal">
         <source>
@@ -4962,6 +5196,30 @@ if (hatFlaechenhaft) {&#xD;
         </target>
         <parameter value="official" name="nameStatus"/>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cb2033b87-768b-46ce-ac7f-3aadfd4ee20d_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
+        <source name="spelling">
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
+                </type>
+                <child name="name"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cea58528f-17ec-408c-a064-36835ebad97a" priority="normal">
         <source name="spelling">
             <property>
@@ -5003,6 +5261,57 @@ if (hatFlaechenhaft) {&#xD;
             </property>
         </target>
         <parameter value="unknown" name="value"/>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature" id="C6202185c-4c9c-4a1a-9a0c-31e279370883" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature" id="Cbd8abc75-1f63-4c15-89d6-f66cca71dad5" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.geometry.simplefeature" id="C8709ed4b-550f-4eb6-b54d-a4859b2fc759_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
+        <source name="geometrie">
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </property>
+        </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C4b86b49e-a8df-4c27-96d4-7131b5d17ca3" priority="normal">
         <source name="id">
@@ -5072,7 +5381,202 @@ if (hatFlaechenhaft) {&#xD;
         <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
         <documentation>**Hier sollte wahrscheinlich ein anderer Namespace als der INSPIRE Namespace verwendet werden.**</documentation>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatelength" id="Cbf9b8160-5100-4c0f-9a0f-da4f773aba4d" priority="normal">
+    <cell relation="custom:alignment:adv.inspire.id.default" id="C5454207f-344f-4c5a-9c5b-73d1ec03f65f_Cb6a3be00-a71e-4d27-9040-df087e8288f7" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="C5454207f-344f-4c5a-9c5b-73d1ec03f65f_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="C5454207f-344f-4c5a-9c5b-73d1ec03f65f_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.identifier" id="Ccd2fc3ac-3e44-4e08-8b1e-801af1116258_Cb6a3be00-a71e-4d27-9040-df087e8288f7" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.identifier" id="Ccd2fc3ac-3e44-4e08-8b1e-801af1116258_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.identifier" id="Ccd2fc3ac-3e44-4e08-8b1e-801af1116258_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+            </property>
+        </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ce7e6c9c6-c7a2-409d-ac3a-9b9d823e6dba_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+                <child name="codeSpace"/>
+            </property>
+        </target>
+        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="C69a5523d-7358-491b-8244-bbd2055f32a8_Cb6a3be00-a71e-4d27-9040-df087e8288f7" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="C69a5523d-7358-491b-8244-bbd2055f32a8_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="C69a5523d-7358-491b-8244-bbd2055f32a8_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
+        <source name="id">
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
+                </type>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="Cd44bbea9-2417-4965-a4f1-0e8aa45fffc4" priority="normal">
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+            </property>
+        </target>
+        <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatelength" id="C4d116941-ddfa-4411-b15a-e73a9cc2665a" priority="normal">
         <source>
             <property>
                 <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -5086,7 +5590,60 @@ if (hatFlaechenhaft) {&#xD;
             </property>
         </target>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C728e8e36-3439-4f0b-a5f1-c68295d9c9c3" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cddc34be6-c933-49fb-8e00-083b905fb305_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
+                </type>
+                <child name="wkb_geometry"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def linien = _.geom.findLines(position)&#13;
+&#13;
+def linie = _.geom.aggregate(linien)&#13;
+&#13;
+if(linie){&#13;
+	def laenge = linie.geometry.getLength()&#13;
+	return laenge&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="true" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C92f1e11e-5a80-4baf-a3bc-5b2313cdfaf6" priority="normal">
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="nilReason"/>
+            </property>
+        </target>
+        <parameter value="unknown" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C14230186-8e73-4cae-9542-041b5477a42d" priority="normal">
         <target>
             <property>
                 <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
@@ -5095,6 +5652,16 @@ if (hatFlaechenhaft) {&#xD;
             </property>
         </target>
         <parameter value="m" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C66a4d2be-7b85-495f-bc9b-fc6e81b83eb8" priority="normal">
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="level" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="nilReason"/>
+            </property>
+        </target>
+        <parameter value="other:unpopulated" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C99235916-bba1-4542-a48f-32c839385a66" priority="normal">
         <source>
@@ -5107,7 +5674,7 @@ if (hatFlaechenhaft) {&#xD;
             <property>
                 <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
                 <child name="localType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
             </property>
         </target>
         <complexParameter name="lookupTable">
@@ -5132,7 +5699,7 @@ if (hatFlaechenhaft) {&#xD;
             <property>
                 <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
                 <child name="localType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
             </property>
         </target>
         <complexParameter name="lookupTable">
@@ -5145,6 +5712,67 @@ if (hatFlaechenhaft) {&#xD;
         </complexParameter>
         <parameter value="fixed:Wasserlauf" name="notClassifiedAction"/>
         <documentation>Die Klassifikationsfunktion wird verwendet, da somit unterschieden werden kann, ob ein Join zu einem Kanal oder einem Wasserlauf erfolgte. Alternativ müssten zwei Bound Assigns verwendet werden.</documentation>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.classification" id="Ceab25895-636a-4ef2-8477-34516b553032_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
+        <source>
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
+                </type>
+                <child name="funktion"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
+            </property>
+        </target>
+        <complexParameter name="lookupTable">
+            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+                <entry>
+                    <key value="1010"/>
+                    <value value="Graben"/>
+                </entry>
+                <entry>
+                    <key value="1013"/>
+                    <value value="Graben"/>
+                </entry>
+                <entry>
+                    <key value="1020"/>
+                    <value value="Kanal"/>
+                </entry>
+                <entry>
+                    <key value="1030"/>
+                    <value value="Wasserlauf"/>
+                </entry>
+            </lookup-table>
+        </complexParameter>
+        <parameter value="null" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C798f4a2e-c841-49c6-ac4d-f97cae4e79a0" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gml_id"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="localType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
+            </property>
+        </target>
+        <parameter value="Wasserlauf" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ca6fd253b-5cd2-4b59-93e3-572c96bd73c4" priority="normal">
         <source name="anchor">
@@ -5161,6 +5789,50 @@ if (hatFlaechenhaft) {&#xD;
         </target>
         <parameter value="manMade" name="value"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.classification" id="C6602df75-2182-4d07-ae63-458a3b113a98_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
+        <source>
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
+                </type>
+                <child name="funktion"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="origin" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </property>
+        </target>
+        <complexParameter name="lookupTable">
+            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+                <entry>
+                    <key value="1010"/>
+                    <value value="manMade"/>
+                </entry>
+                <entry>
+                    <key value="1013"/>
+                    <value value="manMade"/>
+                </entry>
+                <entry>
+                    <key value="1020"/>
+                    <value value="manMade"/>
+                </entry>
+                <entry>
+                    <key value="1030"/>
+                    <value value="natural"/>
+                </entry>
+            </lookup-table>
+        </complexParameter>
+        <parameter value="null" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cf6cd33d6-5bd9-4c59-a219-6083c138c97f" priority="normal">
         <source name="anchor">
             <property>
@@ -5175,6 +5847,16 @@ if (hatFlaechenhaft) {&#xD;
             </property>
         </target>
         <parameter value="natural" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C8b9cda33-7c80-4f41-9929-955d5aa59f19" priority="normal">
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="origin" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="nilReason"/>
+            </property>
+        </target>
+        <parameter value="unknown" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C605f30a7-659f-41bc-b213-a68db24e5480" priority="lowest">
         <target>
@@ -5238,6 +5920,43 @@ if (hatFlaechenhaft) {&#xD;
         </complexParameter>
         <parameter value="fixed:http://inspire.ec.europa.eu/codelist/HydrologicalPersistenceValue/perennial" name="notClassifiedAction"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.classification" id="C1267641e-cf8a-44b9-9f90-e7b10da7d500_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
+        <source>
+            <property>
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
+                </type>
+                <child name="hydrologischesmerkmal"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="persistence" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <complexParameter name="lookupTable">
+            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+                <entry>
+                    <key value="2000"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/HydrologicalPersistenceValue/intermittent"/>
+                </entry>
+                <entry>
+                    <key value="3000"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/HydrologicalPersistenceValue/dry"/>
+                </entry>
+            </lookup-table>
+        </complexParameter>
+        <parameter value="null" name="notClassifiedAction"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C23fa0fd8-21c9-4459-872d-13bb7c4e65b8" priority="normal">
         <target>
             <property>
@@ -5247,7 +5966,7 @@ if (hatFlaechenhaft) {&#xD;
         </target>
         <parameter value="false" name="value"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.classification" id="Cb6a3be00-a71e-4d27-9040-df087e8288f7" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8a6b2a77-12cb-470e-b454-69bdbd5eb988" priority="normal">
         <source>
             <property>
                 <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -5262,37 +5981,10 @@ if (hatFlaechenhaft) {&#xD;
                 <child name="lower" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
             </property>
         </target>
-        <complexParameter name="lookupTable">
-            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
-                <entry>
-                    <key value="3"/>
-                    <value value="0.0"/>
-                </entry>
-                <entry>
-                    <key value="6"/>
-                    <value value="3.0"/>
-                </entry>
-                <entry>
-                    <key value="12"/>
-                    <value value="6.0"/>
-                </entry>
-                <entry>
-                    <key value="18"/>
-                    <value value="12.0"/>
-                </entry>
-                <entry>
-                    <key value="30"/>
-                    <value value="18.0"/>
-                </entry>
-                <entry>
-                    <key value="42"/>
-                    <value value="30.0"/>
-                </entry>
-            </lookup-table>
-        </complexParameter>
-        <parameter value="null" name="notClassifiedAction"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cfb32842a-8e05-4d71-8b79-22fa734f20e3" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C7e59b5bc-9f32-403b-892b-917093ea71f8" priority="normal">
         <source name="anchor">
             <property>
                 <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -5310,7 +6002,7 @@ if (hatFlaechenhaft) {&#xD;
         </target>
         <parameter value="m" name="value"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cad422635-0cbb-403b-901f-90c31eed4566" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C42130a1a-cc03-4976-8f07-78c3c8f329f6" priority="normal">
         <source>
             <property>
                 <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -5328,7 +6020,7 @@ if (hatFlaechenhaft) {&#xD;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C09a6b91a-b641-490e-bf2e-c318ce2a1ec0" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C4e29b5a5-7c18-4a9f-b584-f94f0f580ae8" priority="normal">
         <source name="anchor">
             <property>
                 <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
@@ -5345,6 +6037,16 @@ if (hatFlaechenhaft) {&#xD;
             </property>
         </target>
         <parameter value="m" name="value"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="Cf57d9a27-79b5-4793-96e1-1a5a18baa585" priority="normal">
+        <target>
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="width" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="nilReason"/>
+            </property>
+        </target>
+        <parameter value="unknown" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C4c0212ea-a994-4344-9aec-580c1420ba86" priority="normal">
         <source>
@@ -6050,21 +6752,29 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <disable-for parent="Cd3ab0ba5-a0cc-4014-99c1-606ebf20eab7"/>
         <disable-for parent="C4c0212ea-a994-4344-9aec-580c1420ba86"/>
     </modifier>
+    <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32">
+        <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
+        <disable-for parent="Cb6a3be00-a71e-4d27-9040-df087e8288f7"/>
+    </modifier>
     <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_C79051b3f-be48-4f04-a9ca-bcf3b3194c9d">
         <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
-        <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
+        <disable-for parent="Cb6a3be00-a71e-4d27-9040-df087e8288f7"/>
     </modifier>
     <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Ca4c651ad-57c5-41e0-9a9b-cd82614fec7c">
         <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
-        <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
+        <disable-for parent="Cb6a3be00-a71e-4d27-9040-df087e8288f7"/>
     </modifier>
-    <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3">
+    <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cab93792e-2527-48a1-99db-011349314c28">
         <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
-        <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
+        <disable-for parent="Cb6a3be00-a71e-4d27-9040-df087e8288f7"/>
+    </modifier>
+    <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cb6a3be00-a71e-4d27-9040-df087e8288f7">
+        <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
+        <disable-for parent="Cb6a3be00-a71e-4d27-9040-df087e8288f7"/>
     </modifier>
     <modifier cell="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21">
         <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
-        <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
+        <disable-for parent="Cb6a3be00-a71e-4d27-9040-df087e8288f7"/>
     </modifier>
     <modifier cell="C8c914f39-9647-4653-bd06-c6b8871cd637_C18bc7bb0-8edd-4fa0-8029-94ef246b80bf">
         <disable-for parent="C3aac6754-dc82-4824-932a-3df081b6d4a4"/>
@@ -6306,20 +7016,28 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <disable-for parent="C32f776bc-fba8-48e1-bd83-a1e6454656e9"/>
         <disable-for parent="C76a01cce-00b7-4705-8a54-109506ab4fdb"/>
     </modifier>
+    <modifier cell="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32">
+        <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
+        <disable-for parent="Cb6a3be00-a71e-4d27-9040-df087e8288f7"/>
+    </modifier>
     <modifier cell="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_C79051b3f-be48-4f04-a9ca-bcf3b3194c9d">
         <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
-        <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
+        <disable-for parent="Cb6a3be00-a71e-4d27-9040-df087e8288f7"/>
     </modifier>
     <modifier cell="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Ca4c651ad-57c5-41e0-9a9b-cd82614fec7c">
         <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
-        <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
+        <disable-for parent="Cb6a3be00-a71e-4d27-9040-df087e8288f7"/>
     </modifier>
-    <modifier cell="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3">
+    <modifier cell="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Cab93792e-2527-48a1-99db-011349314c28">
         <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
-        <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
+        <disable-for parent="Cb6a3be00-a71e-4d27-9040-df087e8288f7"/>
+    </modifier>
+    <modifier cell="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Cb6a3be00-a71e-4d27-9040-df087e8288f7">
+        <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
+        <disable-for parent="Cb6a3be00-a71e-4d27-9040-df087e8288f7"/>
     </modifier>
     <modifier cell="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21">
         <disable-for parent="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21"/>
-        <disable-for parent="Cf1dd9bd5-614f-4cb7-869d-613bdbcb7ce3"/>
+        <disable-for parent="Cb6a3be00-a71e-4d27-9040-df087e8288f7"/>
     </modifier>
 </alignment>

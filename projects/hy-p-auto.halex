@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hale-project version="3.4.0.release">
-    <name>ALKIS Basis-DLM zu INSPIRE Hydro-Physical Waters</name>
+<hale-project version="4.0.0.release">
+    <name>[Annex I] AdV 3A zu INSPIRE Hydro-Physical Waters</name>
     <author>Thorsten Reitz</author>
     <created>2016-08-11T16:21:55.552+02:00</created>
-    <modified>2019-02-07T06:57:04.099+01:00</modified>
+    <modified>2020-07-07T18:30:18.905+02:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -45,6 +45,19 @@
         <setting name="source">file:/home/simon/repos/rlp-inspire-alignments/database/schema.hsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.common.schema.hsd</setting>
     </resource>
+    <export-config name="hale-connect">
+        <configuration action-id="eu.esdihumboldt.hale.io.instance.write.transformed" provider-id="eu.esdihumboldt.hale.io.gml.writer">
+            <setting name="charset">UTF-8</setting>
+            <setting name="meta.description"></setting>
+            <setting name="geometry.unifyWindingOrder">counterClockwise</setting>
+            <setting name="gml.geometry.simplify">true</setting>
+            <setting name="crs">code:EPSG:4258</setting>
+            <setting name="crs.epsg.prefix">http://www.opengis.net/def/crs/EPSG/0/</setting>
+            <setting name="contentType">eu.esdihumboldt.hale.io.gml</setting>
+            <setting name="xml.notNil.omitNilReason">true</setting>
+            <setting name="xml.pretty">true</setting>
+        </configuration>
+    </export-config>
     <file name="alignment.xml" location="hy-p-auto.halex.alignment.xml"/>
     <complex-property name="codelists">
         <associations>
@@ -1535,6 +1548,7 @@
     <property name="mappableSourceType/15">{jdbc:postgresql:testbed:aaa_ogr}ax_fliessgewaesser</property>
     <property name="mappableSourceType/16">{jdbc:postgresql:testbed:aaa_ogr}ax_wasserlauf</property>
     <property name="mappableSourceType/17">{jdbc:postgresql:testbed:aaa_ogr}ax_kanal</property>
+    <property name="mappableSourceType/18">{jdbc:postgresql:testbed:aaa_ogr}ax_untergeordnetesgewaesser</property>
     <property name="mappableSourceType/2">{jdbc:postgresql:testbed:aaa_ogr}ax_dammwalldeich</property>
     <property name="mappableSourceType/3">{jdbc:postgresql:testbed:aaa_ogr}ax_bauwerkimverkehrsbereich</property>
     <property name="mappableSourceType/4">{jdbc:postgresql:testbed:aaa_ogr}ax_meer</property>
@@ -1543,7 +1557,7 @@
     <property name="mappableSourceType/7">{jdbc:postgresql:testbed:aaa_ogr}ax_gewaessermerkmal</property>
     <property name="mappableSourceType/8">{jdbc:postgresql:testbed:aaa_ogr}ax_strassenverkehrsanlage</property>
     <property name="mappableSourceType/9">{jdbc:postgresql:testbed:aaa_ogr}ax_gewaesserachse</property>
-    <property name="mappableSourceType/count">17</property>
+    <property name="mappableSourceType/count">18</property>
     <property name="mappableTargetType/1">{http://inspire.ec.europa.eu/schemas/hy-p/4.0}RapidsType</property>
     <property name="mappableTargetType/10">{http://inspire.ec.europa.eu/schemas/hy-p/4.0}EmbankmentType</property>
     <property name="mappableTargetType/11">{http://inspire.ec.europa.eu/schemas/hy-p/4.0}WetlandType</property>
@@ -1730,7 +1744,7 @@
     <complex-property name="variables">
         <core:properties xmlns:core="http://www.esdi-humboldt.eu/hale/core">
             <core:property name="INSPIRE_NAMESPACE">
-                <core:value value="https://registry.gdi-de.org/id/de.rp/125cce16-7ae1-3cf0-96e2-05a4453f3cb1"/>
+                <core:value value="https://registry.gdi-de.org/id/de.____/"/>
             </core:property>
         </core:properties>
     </complex-property>
