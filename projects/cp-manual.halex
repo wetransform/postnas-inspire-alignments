@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hale-project version="3.4.0.release">
-    <name>ALKIS zu INSPIRE CadastralParcels</name>
+<hale-project version="4.0.0.release">
+    <name>[Annex I] AdV ALKIS zu INSPIRE Cadastral Parcels</name>
     <author>Simon Templer</author>
-    <description>Alignment von ALKIS zu INSPIRE CadastralParcels.
+    <description>Alignment von ALKIS zu INSPIRE Cadastral Parcels.
 
 Da im Ausgangsmodell keine Geometrien für die entsprechenden INSPIRE *CadastralZonings* vorhanden sind, werden diese in diesem Projekt aus den Flurstücken agreggiert.
 Vorstellbar sind außerdem andere Herangehensweisen, z.B. die Verwendung anderweitig vorhandener oder erzeugter Geometrien.
@@ -13,7 +13,7 @@ Andernfalls erhält man Aggregationen aus einer Untermenge, die natürlich auch 
 Referenzen zwischen *CadastralParcels* und *CadastralZonings*, sowie der *CadastralZonings* untereinander werden als lokale XLink-Referenzen umgesetzt.
 Für konsistente Referenzen wird in den Quell-Daten neben *AX_Gemarkung* und ggf. *AX_GemarkungsteilFlur* auch *AX_Bundesland*  benötigt.</description>
     <created>2015-09-28T11:46:45.435+02:00</created>
-    <modified>2019-02-07T07:18:41.691+01:00</modified>
+    <modified>2020-07-07T17:33:48.278+02:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -36,6 +36,19 @@ Für konsistente Referenzen wird in den Quell-Daten neben *AX_Gemarkung* und ggf
         <setting name="source">file:/home/simon/repos/rlp-inspire-alignments/database/schema.hsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.common.schema.hsd</setting>
     </resource>
+    <export-config name="hale-connect">
+        <configuration action-id="eu.esdihumboldt.hale.io.instance.write.transformed" provider-id="eu.esdihumboldt.hale.io.gml.writer">
+            <setting name="charset">UTF-8</setting>
+            <setting name="meta.description"></setting>
+            <setting name="geometry.unifyWindingOrder">counterClockwise</setting>
+            <setting name="gml.geometry.simplify">true</setting>
+            <setting name="crs">code:EPSG:4258</setting>
+            <setting name="crs.epsg.prefix">http://www.opengis.net/def/crs/EPSG/0/</setting>
+            <setting name="contentType">eu.esdihumboldt.hale.io.gml</setting>
+            <setting name="xml.notNil.omitNilReason">true</setting>
+            <setting name="xml.pretty">true</setting>
+        </configuration>
+    </export-config>
     <file name="alignment.xml" location="cp-manual.halex.alignment.xml"/>
     <complex-property name="codelists">
         <associations>
