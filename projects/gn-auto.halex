@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hale-project version="3.4.0.release">
-    <name>AAA zu Geographical Names</name>
+<hale-project version="4.0.0.release">
+    <name>[Annex I] AdV 3A zu INSPIRE Geographical Names</name>
     <author>Thorsten Reitz</author>
     <created>2016-04-28T13:07:54.568+02:00</created>
-    <modified>2018-07-10T16:07:32.149+02:00</modified>
+    <modified>2020-07-07T17:38:12.475+02:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -27,6 +27,19 @@
         <setting name="source">file:/home/simon/repos/rlp-inspire-alignments/database/schema.hsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.common.schema.hsd</setting>
     </resource>
+    <export-config name="hale-connect">
+        <configuration action-id="eu.esdihumboldt.hale.io.instance.write.transformed" provider-id="eu.esdihumboldt.hale.io.gml.writer">
+            <setting name="charset">UTF-8</setting>
+            <setting name="meta.description"></setting>
+            <setting name="geometry.unifyWindingOrder">counterClockwise</setting>
+            <setting name="gml.geometry.simplify">true</setting>
+            <setting name="crs">code:EPSG:4258</setting>
+            <setting name="crs.epsg.prefix">http://www.opengis.net/def/crs/EPSG/0/</setting>
+            <setting name="contentType">eu.esdihumboldt.hale.io.gml</setting>
+            <setting name="xml.notNil.omitNilReason">true</setting>
+            <setting name="xml.pretty">true</setting>
+        </configuration>
+    </export-config>
     <file name="alignment.xml" location="gn-auto.halex.alignment.xml"/>
     <complex-property name="codelists">
         <associations>
@@ -1471,7 +1484,7 @@
     <complex-property name="variables">
         <core:properties xmlns:core="http://www.esdi-humboldt.eu/hale/core">
             <core:property name="INSPIRE_NAMESPACE">
-                <core:value value="https://registry.gdi-de.org/id/de.by/125cce16-7ae1-3cf0-96e2-05a4453f3cb1/"/>
+                <core:value value="https://registry.gdi-de.org/id/de.____/"/>
             </core:property>
         </core:properties>
     </complex-property>
