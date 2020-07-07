@@ -1,5 +1,5 @@
 diff --git a/projects/tn-ra-auto.halex.alignment.xml b/projects/tn-ra-manual.halex.alignment.xml
-index b9b1075..e5432cb 100644
+index cc5c657..d747ccd 100644
 --- a/projects/tn-ra-auto.halex.alignment.xml
 +++ b/projects/tn-ra-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -10,7 +10,7 @@ index b9b1075..e5432cb 100644
              </cf:input>
              <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
-@@ -276,7 +275,6 @@ if (_params.source) {&#xD;
+@@ -279,7 +278,6 @@ if (_params.source) {&#13;&#13;
              </cf:input>
              <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
@@ -18,7 +18,7 @@ index b9b1075..e5432cb 100644
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-@@ -778,7 +776,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+@@ -781,7 +779,7 @@ Aktuell ist folgende Abbildung umgesetzt:
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  def bwf = _source.p.bauwerksfunktion.value()
@@ -27,7 +27,7 @@ index b9b1075..e5432cb 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -812,7 +810,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
+@@ -815,7 +813,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  def bwf = _source.p.bauwerksfunktion.value()
@@ -36,7 +36,7 @@ index b9b1075..e5432cb 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -1102,7 +1100,7 @@ withTransformationContext {
+@@ -1105,7 +1103,7 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -45,7 +45,7 @@ index b9b1075..e5432cb 100644
  
  _target {
  }
-@@ -1110,7 +1108,7 @@ _target {
+@@ -1113,7 +1111,7 @@ _target {
  // bestimme RailwayType(s)
  def railwayTypes = []
  _source.p.bahnkategorie.each { bkt -&gt;
@@ -54,7 +54,7 @@ index b9b1075..e5432cb 100644
  	case '1100': // Eisenbahn
  	case '1102': // Güterverkehr
  	case '1104': // S-Bahn
-@@ -1140,7 +1138,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
+@@ -1143,7 +1141,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
  
  // bestimme ConditionOfFacility
  def conditionOfFacility = 'functional'
@@ -63,7 +63,7 @@ index b9b1075..e5432cb 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -1152,9 +1150,9 @@ case '4000': // Im Bau
+@@ -1155,9 +1153,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -75,16 +75,7 @@ index b9b1075..e5432cb 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -1517,7 +1515,7 @@ Es werden Referenzen (NetworkReference) zu allen Netzwerk-Elementen (z.B.  `Rail
-         <source>
-             <class>
-                 <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">nummerDerBahnstrecke is not null</condition>
-+                    <condition lang="CQL">nummerderbahnstrecke is not null</condition>
-                 </type>
-             </class>
-         </source>
-@@ -1537,7 +1535,7 @@ _target {
+@@ -1540,7 +1538,7 @@ _target {
  // ID zum hinterlegen in Indizes bestimmen
  
  // alle Quell-IDs als Liste
@@ -93,97 +84,7 @@ index b9b1075..e5432cb 100644
  
  def _id
  
-@@ -1584,7 +1582,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
-         <source name="dates">
-             <property>
-                 <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">nummerDerBahnstrecke is not null</condition>
-+                    <condition lang="CQL">nummerderbahnstrecke is not null</condition>
-                 </type>
-                 <child name="beginnt"/>
-             </property>
-@@ -1607,7 +1605,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
-         <source>
-             <property>
-                 <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">nummerDerBahnstrecke is not null</condition>
-+                    <condition lang="CQL">nummerderbahnstrecke is not null</condition>
-                 </type>
-                 <child name="beginnt"/>
-             </property>
-@@ -1632,7 +1630,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
-         <source name="dates">
-             <property>
-                 <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">nummerDerBahnstrecke is not null</condition>
-+                    <condition lang="CQL">nummerderbahnstrecke is not null</condition>
-                 </type>
-                 <child name="endet"/>
-             </property>
-@@ -1655,7 +1653,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
-         <source>
-             <property>
-                 <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">nummerDerBahnstrecke is not null</condition>
-+                    <condition lang="CQL">nummerderbahnstrecke is not null</condition>
-                 </type>
-                 <child name="endet"/>
-             </property>
-@@ -1680,7 +1678,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
-         <source name="spelling">
-             <property>
-                 <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">nummerDerBahnstrecke is not null</condition>
-+                    <condition lang="CQL">nummerderbahnstrecke is not null</condition>
-                 </type>
-                 <child name="name"/>
-             </property>
-@@ -1714,7 +1712,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
-         <source name="id">
-             <property>
-                 <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">nummerDerBahnstrecke is not null</condition>
-+                    <condition lang="CQL">nummerderbahnstrecke is not null</condition>
-                 </type>
-                 <child name="gml_id"/>
-             </property>
-@@ -1737,7 +1735,7 @@ Die erstellte `RailwayLine` wird dem Index von Netzwerk-Elementen hinzugefügt.<
-         <source name="id">
-             <property>
-                 <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">nummerDerBahnstrecke is not null</condition>
-+                    <condition lang="CQL">nummerderbahnstrecke is not null</condition>
-                 </type>
-                 <child name="gml_id"/>
-             </property>
-@@ -1775,7 +1773,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
-         <source name="id">
-             <property>
-                 <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">nummerDerBahnstrecke is not null</condition>
-+                    <condition lang="CQL">nummerderbahnstrecke is not null</condition>
-                 </type>
-                 <child name="gml_id"/>
-             </property>
-@@ -1810,7 +1808,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
-         <source name="var">
-             <property>
-                 <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">nummerDerBahnstrecke is not null</condition>
-+                    <condition lang="CQL">nummerderbahnstrecke is not null</condition>
-                 </type>
-                 <child name="gml_id"/>
-             </property>
-@@ -1845,7 +1843,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
-         <source>
-             <property>
-                 <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">nummerDerBahnstrecke is not null</condition>
-+                    <condition lang="CQL">nummerderbahnstrecke is not null</condition>
-                 </type>
-                 <child name="nummerderbahnstrecke"/>
-             </property>
-@@ -1909,7 +1907,7 @@ _target {
+@@ -1912,7 +1910,7 @@ _target {
  
  // bestimme NominalTrackGauge
  def nominalTrackGauge
@@ -192,7 +93,7 @@ index b9b1075..e5432cb 100644
  case '1000': // Normalspur (Regelspur, Vollspur)
  	nominalTrackGauge = 'standard'
  	break
-@@ -1924,7 +1922,7 @@ case '3000': // Breitspur
+@@ -1927,7 +1925,7 @@ case '3000': // Breitspur
  // bestimme RailwayType(s)
  def railwayTypes = []
  _source.p.bahnkategorie.each { bkt -&gt;
@@ -201,7 +102,7 @@ index b9b1075..e5432cb 100644
  	case '1100': // Eisenbahn
  	case '1102': // Güterverkehr
  	case '1104': // S-Bahn
-@@ -1955,7 +1953,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
+@@ -1958,7 +1956,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
  // bestimme RailwayUse(s)
  def railwayUses = []
  _source.p.bahnkategorie.each { bkt -&gt;
@@ -210,7 +111,7 @@ index b9b1075..e5432cb 100644
  	case '1100': // Eisenbahn
  	case '1300': // Seilbahn, Bergbahn
  	case '1302': // Standseilbahn
-@@ -1979,7 +1977,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
+@@ -1982,7 +1980,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
  
  // bestimme NumberOfTracks
  def numberOfTracks
@@ -219,7 +120,7 @@ index b9b1075..e5432cb 100644
  case '1000': // Eingleisig
  	numberOfTracks = 1
  	break
-@@ -1989,11 +1987,11 @@ case '2000': // Zweigleisig
+@@ -1992,11 +1990,11 @@ case '2000': // Zweigleisig
  }
  
  // bestimme RailwayElectrification
@@ -233,7 +134,7 @@ index b9b1075..e5432cb 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -2005,9 +2003,9 @@ case '4000': // Im Bau
+@@ -2008,9 +2006,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -245,7 +146,7 @@ index b9b1075..e5432cb 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2226,7 +2224,7 @@ withTransformationContext {
+@@ -2229,7 +2227,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit linienartigen Geometrien behandeln
@@ -254,7 +155,7 @@ index b9b1075..e5432cb 100644
  
  // Ziel unterstützt keine MultiLineStrings
  def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: false)
-@@ -2235,7 +2233,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
+@@ -2238,7 +2236,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
  _b.strictValueFlags = false
  
@@ -263,7 +164,7 @@ index b9b1075..e5432cb 100644
  
  // bestimme RailwayType
  def railwayType = 'suspendedRail'
-@@ -2243,9 +2241,9 @@ def railwayType = 'suspendedRail'
+@@ -2246,9 +2244,9 @@ def railwayType = 'suspendedRail'
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -275,7 +176,7 @@ index b9b1075..e5432cb 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2666,7 +2664,7 @@ withTransformationContext {
+@@ -2669,7 +2667,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit flächenartigen Geometrien behandeln
@@ -284,7 +185,7 @@ index b9b1075..e5432cb 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def surfaces = _.geom.splitMulti(geometries)
-@@ -2676,11 +2674,11 @@ def surfaces = _.geom.splitMulti(geometries)
+@@ -2679,11 +2677,11 @@ def surfaces = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -298,7 +199,7 @@ index b9b1075..e5432cb 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -2692,9 +2690,9 @@ case '4000': // Im Bau
+@@ -2695,9 +2693,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -310,7 +211,7 @@ index b9b1075..e5432cb 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -3028,7 +3026,7 @@ withTransformationContext {
+@@ -3031,7 +3029,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit punkartige Geometrien behandeln
@@ -319,7 +220,7 @@ index b9b1075..e5432cb 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def points = _.geom.splitMulti(geometries)
-@@ -3038,7 +3036,7 @@ def points = _.geom.splitMulti(geometries)
+@@ -3041,7 +3039,7 @@ def points = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -328,7 +229,7 @@ index b9b1075..e5432cb 100644
  
  if (points.size() &gt; 1) {
  	// es wird davon ausgegangen dass es keine MultiPoint-Objekte gibt - falls doch, Fehler ausgeben
-@@ -3056,7 +3054,7 @@ if (points) {
+@@ -3059,7 +3057,7 @@ if (points) {
  	
  	// bestimme ConditionOfFacility
  	def conditionOfFacility = 'functional'
@@ -337,7 +238,7 @@ index b9b1075..e5432cb 100644
  	case '2100': // Außer Betrieb, stillgelegt, verlassen
  		conditionOfFacility = 'disused'
  		break
-@@ -3068,9 +3066,9 @@ if (points) {
+@@ -3071,9 +3069,9 @@ if (points) {
  	/*
  	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  	 */
@@ -349,7 +250,7 @@ index b9b1075..e5432cb 100644
  		if (bwf) {
  			switch (bwf) {
  			// AX_BauwerkImVerkehrsbereich
-@@ -3833,43 +3831,13 @@ collect.verticalPosition.consume { key, values -&gt;
+@@ -3836,43 +3834,13 @@ collect.verticalPosition.consume { key, values -&gt;
          <parameter value="other:unpopulated" name="value"/>
          <documentation>Diese Information ist im 3A-Modell nicht vorhanden.</documentation>
      </cell>
