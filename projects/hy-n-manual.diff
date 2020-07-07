@@ -1,5 +1,5 @@
 diff --git a/projects/hy-n-auto.halex.alignment.xml b/projects/hy-n-manual.halex.alignment.xml
-index d5a7ae7..ccd090e 100644
+index 704abb1..0abf50e 100644
 --- a/projects/hy-n-auto.halex.alignment.xml
 +++ b/projects/hy-n-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -10,7 +10,7 @@ index d5a7ae7..ccd090e 100644
              </cf:input>
              <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
-@@ -276,7 +275,6 @@ if (_params.source) {&#xD;
+@@ -279,7 +278,6 @@ if (_params.source) {&#13;&#13;
              </cf:input>
              <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
@@ -18,7 +18,7 @@ index d5a7ae7..ccd090e 100644
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-@@ -1730,36 +1728,6 @@ _target {&#xD;
+@@ -1733,36 +1731,6 @@ _target {&#13;
          </target>
          <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
      </cell>
@@ -55,7 +55,7 @@ index d5a7ae7..ccd090e 100644
      <cell relation="custom:alignment:adv.inspire.id.default" id="Ca0d6577b-2581-49cd-87d8-8f235e6ce242_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
          <source name="id">
              <property>
-@@ -1852,36 +1820,6 @@ _target {&#xD;
+@@ -1855,36 +1823,6 @@ _target {&#13;
              </property>
          </target>
      </cell>
@@ -91,199 +91,4 @@ index d5a7ae7..ccd090e 100644
 -    </cell>
      <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatelength" id="C7c8926c6-296b-4339-8f52-319848398955_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
          <source>
-             <property>
-@@ -2083,11 +2021,11 @@ _target {&#xD;
-         <complexParameter name="script">
-             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
- // ID des Dükers bestimmen&#xD;
--def duekerID = _source.p.id.value()&#xD;
-+def duekerID = _source.p.gml_id.value()&#xD;
- duekerID = 'WatercourseLink_' + duekerID&#xD;
- &#xD;
- // Wurde eine passende AX_Gewasserachse gefunden? Falls ja, ID bestimmen:&#xD;
--def gewaesserAchseID = _source.links.AX_Gewaesserachse.p.id.value()&#xD;
-+def gewaesserAchseID = _source.links.ax_gewaesserachse.p.gml_id.value()&#xD;
- if (gewaesserAchseID) {&#xD;
- 	gewaesserAchseID = 'WatercourseLink_' + gewaesserAchseID&#xD;
- 	_target {&#xD;
-@@ -2166,11 +2104,11 @@ if (gewaesserAchseID) {&#xD;
-         <complexParameter name="script">
-             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
- // ID der Brücke bestimmen&#xD;
--def brueckeID = _source.p.id.value()&#xD;
-+def brueckeID = _source.p.gml_id.value()&#xD;
- brueckeID = 'WatercourseLink_' + brueckeID&#xD;
- &#xD;
- // Wurde eine passende AX_Gewasserachse gefunden? Falls ja, ID bestimmen:&#xD;
--def gewaesserAchseID = _source.links.AX_Fliessgewaesser.p.id.value()&#xD;
-+def gewaesserAchseID = _source.links.ax_fliessgewaesser.p.gml_id.value()&#xD;
- if (gewaesserAchseID) {&#xD;
- 	gewaesserAchseID = 'WatercourseLink_' + gewaesserAchseID&#xD;
- 	_target {&#xD;
-@@ -2250,11 +2188,11 @@ if (gewaesserAchseID) {&#xD;
-         <complexParameter name="script">
-             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
- // ID der Brücke bestimmen&#xD;
--def brueckeID = _source.p.id.value()&#xD;
-+def brueckeID = _source.p.gml_id.value()&#xD;
- brueckeID = 'WatercourseLink_' + brueckeID&#xD;
- &#xD;
- // Wurde eine passende AX_Gewasserachse gefunden? Falls ja, ID bestimmen:&#xD;
--def gewaesserAchseID = _source.links.AX_Gewaesserachse.p.id.value()&#xD;
-+def gewaesserAchseID = _source.links.ax_gewaesserachse.p.gml_id.value()&#xD;
- if (gewaesserAchseID) {&#xD;
- 	gewaesserAchseID = 'WatercourseLink_' + gewaesserAchseID&#xD;
- 	_target {&#xD;
-@@ -2338,31 +2276,6 @@ if (gewaesserAchseID) {&#xD;
-             </core:message>
-         </annotation>
-     </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8bfb7a01-ae8a-42b9-9f2c-fb708d5b7918_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
--        <source>
--            <property>
--                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
--                </type>
--                <child name="beginnt"/>
--            </property>
--        </source>
--        <target>
--            <property>
--                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
--                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
--            </property>
--        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
--    </cell>
-     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf0510852-3541-4662-ae7f-e275be6973f7_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
-         <source>
-             <property>
-@@ -2413,31 +2326,6 @@ if (gewaesserAchseID) {&#xD;
-             </core:message>
-         </annotation>
-     </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C6d7d8ef1-4c16-4fb6-a635-7355ccafcae6_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
--        <source>
--            <property>
--                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
--                </type>
--                <child name="endet"/>
--            </property>
--        </source>
--        <target>
--            <property>
--                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
--                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
--            </property>
--        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
--    </cell>
-     <cell relation="custom:alignment:adv.inspire.id.default" id="Ca19f26cc-d722-4574-9217-23c1da508d5e_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
-         <source name="id">
-             <property>
-@@ -2556,29 +2444,6 @@ if (gewaesserAchseID) {&#xD;
-             </core:message>
-         </annotation>
-     </cell>
--    <cell relation="custom:alignment:adv.inspire.identifier" id="C37922be7-144a-4018-8f73-def91c4788b4_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
--        <source name="id">
--            <property>
--                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
--                </type>
--                <child name="gml_id"/>
--            </property>
--        </source>
--        <target>
--            <property>
--                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
--                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
--            </property>
--        </target>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
--    </cell>
-     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
-         <target>
-             <property>
-@@ -2589,26 +2454,6 @@ if (gewaesserAchseID) {&#xD;
-         </target>
-         <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
-     </cell>
--    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
--        <target>
--            <property>
--                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
--                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
--                <child name="href" ns="http://www.w3.org/1999/xlink"/>
--            </property>
--        </target>
--        <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
--    </cell>
--    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
--        <target>
--            <property>
--                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
--                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
--                <child name="href" ns="http://www.w3.org/1999/xlink"/>
--            </property>
--        </target>
--        <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
--    </cell>
-     <cell relation="custom:alignment:adv.inspire.id.default" id="Cc56c5410-b9cc-47d8-852b-1ca0a5b8adda_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
-         <source name="id">
-             <property>
-@@ -2659,31 +2504,6 @@ if (gewaesserAchseID) {&#xD;
-             </core:message>
-         </annotation>
-     </cell>
--    <cell relation="custom:alignment:adv.inspire.id.default" id="Cba9bc971-ba94-4dfa-89b3-5edd2a77adfc_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
--        <source name="id">
--            <property>
--                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
--                </type>
--                <child name="gml_id"/>
--            </property>
--        </source>
--        <target>
--            <property>
--                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
--                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
--                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
--                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
--            </property>
--        </target>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
--    </cell>
-     <cell relation="custom:alignment:adv.inspire.namespace" id="C12eaf7f7-c51d-4b2c-9650-a6e2491830d3" priority="normal">
-         <target>
              <property>

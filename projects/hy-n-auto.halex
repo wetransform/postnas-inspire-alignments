@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hale-project version="3.4.0.release">
-    <name>ALKIS Basis-DLM zu INSPIRE Hydro-Network</name>
+<hale-project version="4.0.0.release">
+    <name>[Annex I] AdV 3A zu INSPIRE Hydro-Network</name>
     <author>Thorsten Reitz</author>
-    <description>Aus `AX_BauwerkImGewaesserbereich` mit `bauwerksfunktion=1800` (Brücke) wurde kein `WatercourseLink` abgeleitet, da ein `WatercourseLink` stets Teil eines Gewässers sein soll, was bei Brücken nur gegeben sein kann, wenn diese Brücke ein Gewässer (Kanal) stützt.&#xD;
-&#xD;
+    <description>Aus `AX_BauwerkImGewaesserbereich` mit `bauwerksfunktion=1800` (Brücke) wurde kein `WatercourseLink` abgeleitet, da ein `WatercourseLink` stets Teil eines Gewässers sein soll, was bei Brücken nur gegeben sein kann, wenn diese Brücke ein Gewässer (Kanal) stützt.&#13;
+&#13;
 `WatercourseLinkSequence`s werden nicht gebildet, da in den Quelldaten keine Verknüpfungen zwischen den einzelnen `AX_Gewaesserachsen` existieren, die für eine zuverlässige Bildung der Sequenz herangezogen werden können. Eine geometrische Analyse kann nicht zuverlässig funktionieren.</description>
     <created>2016-08-11T16:21:55.552+02:00</created>
-    <modified>2018-07-10T11:57:42.589+02:00</modified>
+    <modified>2020-07-07T18:23:35.546+02:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -60,6 +60,19 @@
         <setting name="source">file:/home/simon/repos/rlp-inspire-alignments/database/schema.hsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.common.schema.hsd</setting>
     </resource>
+    <export-config name="hale-connect">
+        <configuration action-id="eu.esdihumboldt.hale.io.instance.write.transformed" provider-id="eu.esdihumboldt.hale.io.gml.writer">
+            <setting name="charset">UTF-8</setting>
+            <setting name="meta.description"></setting>
+            <setting name="geometry.unifyWindingOrder">counterClockwise</setting>
+            <setting name="gml.geometry.simplify">true</setting>
+            <setting name="crs">code:EPSG:4258</setting>
+            <setting name="crs.epsg.prefix">http://www.opengis.net/def/crs/EPSG/0/</setting>
+            <setting name="contentType">eu.esdihumboldt.hale.io.gml</setting>
+            <setting name="xml.notNil.omitNilReason">true</setting>
+            <setting name="xml.pretty">true</setting>
+        </configuration>
+    </export-config>
     <file name="alignment.xml" location="hy-n-auto.halex.alignment.xml"/>
     <complex-property name="codelists">
         <associations>
@@ -1732,7 +1745,7 @@
                 <core:value value="HydroNetwork"/>
             </core:property>
             <core:property name="INSPIRE_NAMESPACE">
-                <core:value value="https://registry.gdi-de.org/id/REPLACE_ME"/>
+                <core:value value="https://registry.gdi-de.org/id/de.____/"/>
             </core:property>
         </core:properties>
     </complex-property>
