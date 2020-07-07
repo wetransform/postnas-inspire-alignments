@@ -1,5 +1,5 @@
 diff --git a/projects/tn-ro-auto.halex.alignment.xml b/projects/tn-ro-manual.halex.alignment.xml
-index bd9538d..178e1e7 100644
+index 836728e..93b8709 100644
 --- a/projects/tn-ro-auto.halex.alignment.xml
 +++ b/projects/tn-ro-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -51,7 +51,7 @@ index bd9538d..178e1e7 100644
  
  	if (land &amp;&amp; gemeinde &amp;&amp; kreis &amp;&amp; lage) {
  		if (!reg) reg = '0'
-@@ -276,7 +287,6 @@ if (_params.source) {&#xD;
+@@ -279,7 +290,6 @@ if (_params.source) {&#13;&#13;
              </cf:input>
              <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
@@ -59,7 +59,7 @@ index bd9538d..178e1e7 100644
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-@@ -778,7 +788,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+@@ -781,7 +791,7 @@ Aktuell ist folgende Abbildung umgesetzt:
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  def bwf = _source.p.bauwerksfunktion.value()
@@ -68,7 +68,7 @@ index bd9538d..178e1e7 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -812,7 +822,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
+@@ -815,7 +825,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  def bwf = _source.p.bauwerksfunktion.value()
@@ -77,7 +77,7 @@ index bd9538d..178e1e7 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -846,7 +856,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
+@@ -849,7 +859,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  def name = _source.p.bezeichnung.value()
@@ -86,43 +86,71 @@ index bd9538d..178e1e7 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -950,7 +960,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. *Tra
-         <source name="types">
-             <class>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung = '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung = '2001'</condition>
-                 </type>
-             </class>
-         </source>
-@@ -973,7 +983,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. *Tra
-             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
-                 <class>
-                     <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                        <condition lang="CQL">internationaleBedeutung = '2001'</condition>
-+                        <condition lang="CQL">internationalebedeutung = '2001'</condition>
-                     </type>
-                 </class>
-                 <class>
-@@ -985,7 +995,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. *Tra
-                 <jp:condition>
-                     <property>
-                         <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                            <condition lang="CQL">internationaleBedeutung = '2001'</condition>
-+                            <condition lang="CQL">internationalebedeutung = '2001'</condition>
-                         </type>
-                         <child name="gml_id"/>
-                     </property>
-@@ -997,7 +1007,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. *Tra
-                 <jp:condition>
-                     <property>
-                         <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                            <condition lang="CQL">internationaleBedeutung = '2001'</condition>
-+                            <condition lang="CQL">internationalebedeutung = '2001'</condition>
-                         </type>
-                         <child name="gml_id"/>
-                     </property>
-@@ -1015,10 +1025,10 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. *Tra
+@@ -884,6 +894,8 @@ withTransformationContext {
+ 	collect = _.context.collector(it)
+ }
+ 
++def _refLimit = _project.vars.LIMIT_NETWORK_REFERENCES
++
+ // Erstelle ein ConditionOfFacility-Objekt für jeden vorkommenden Wert
+ //
+ // Inhalt der hier gesetzt wird sind die Identifier und die Verknüpfungen
+@@ -892,27 +904,35 @@ collect.conditionOfFacility.consume { key, values -&gt;
+ 	def _id = 'ConditionOfFacility_' + _project.vars.THEME_DISTINGUISHER + '_' + key
+ 	def _ns = _project.vars.INSPIRE_NAMESPACE
+ 	
+-	_target {
+-		currentStatus {
+-			href( "$codeList/$key" )
++	def valueGroups = _refLimit ? values.collate(_refLimit as int) : [values]
++	def i = 1		
++	valueGroups.each { valueGroup -&gt;
++		def _id2 = _id 
++		if (valueGroups.size &gt; 1) {
++			// Gruppennummer anhängen, falls es mehr als eine Gruppe gibt
++			_id2 += '_' + i++
+ 		}
+-		id( _id )
+-		inspireId {
+-			Identifier {
+-				namespace( _ns )
+-				localId( _id )
++		_target {
++			currentStatus {
++				href( "$codeList/$key" )
+ 			}
+-		}
+-		identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
+-			codeSpace( 'http://inspire.ec.europa.eu/ids' )
+-		}
+-		
+-		// Referenz zu gesammelten Netzwerk-Elementen mit dieser Eigenschaft
+-		values.each { linkId -&gt;
+-			networkRef {
+-				NetworkReference {
+-					element {
+-						href( "#$linkId" )
++			id( _id2 )
++			inspireId {
++				Identifier {
++					namespace( _ns )
++					localId( _id2 )
++				}
++			}
++			identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id2 : _id2 ) {
++				codeSpace( 'http://inspire.ec.europa.eu/ids' )
++			}
++			
++			valueGroup.each { linkId -&gt;
++				networkRef {
++					NetworkReference {
++						element {
++							href( "#$linkId" )
++						}
+ 					}
+ 				}
+ 			}
+@@ -1018,10 +1038,10 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. *Tra
  // Fahrbahnachsen werden präferiert als RoadLink für
  // Strassen verwendet, alternativ verwende Strassenachsen
  
@@ -136,7 +164,7 @@ index bd9538d..178e1e7 100644
  if (!hatFahrbahnachse &amp;&amp; !hatStrassenachse) {
  	_log.warn("ERoad: Strasse $strasseId hat weder Fahrbahnachsen noch Strassenachsen")
  	throw new NoResultException('Kann kein ERoad-Objekt ohne RoadLinks erstellen')
-@@ -1028,16 +1038,16 @@ if (!hatFahrbahnachse &amp;&amp; !hatStrassenachse) {
+@@ -1031,16 +1051,16 @@ if (!hatFahrbahnachse &amp;&amp; !hatStrassenachse) {
  
  _target {
  	if (hatFahrbahnachse) {
@@ -157,70 +185,130 @@ index bd9538d..178e1e7 100644
  			}
  		}
  	}
-@@ -1074,7 +1084,7 @@ Die erstellte `ERoad` wird dem Index von Netzwerk-Elementen hinzugefügt.</docum
-         <source>
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung = '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung = '2001'</condition>
-                 </type>
-                 <child name="beginnt"/>
-             </property>
-@@ -1099,7 +1109,7 @@ Die erstellte `ERoad` wird dem Index von Netzwerk-Elementen hinzugefügt.</docum
-         <source>
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung = '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung = '2001'</condition>
-                 </type>
-                 <child name="endet"/>
-             </property>
-@@ -1124,7 +1134,7 @@ Die erstellte `ERoad` wird dem Index von Netzwerk-Elementen hinzugefügt.</docum
-         <source>
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung = '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung = '2001'</condition>
-                 </type>
-                 <child name="bezeichnung">
-                     <condition lang="CQL">value LIKE 'E%'</condition>
-@@ -1161,7 +1171,7 @@ Die erstellte `ERoad` wird dem Index von Netzwerk-Elementen hinzugefügt.</docum
-         <source name="spelling">
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung = '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung = '2001'</condition>
-                 </type>
-                 <child name="name"/>
-             </property>
-@@ -1185,7 +1195,7 @@ Die erstellte `ERoad` wird dem Index von Netzwerk-Elementen hinzugefügt.</docum
-         <source name="id">
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung = '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung = '2001'</condition>
-                 </type>
-                 <child name="gml_id"/>
-             </property>
-@@ -1209,7 +1219,7 @@ Die erstellte `ERoad` wird dem Index von Netzwerk-Elementen hinzugefügt.</docum
-         <source name="id">
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung = '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung = '2001'</condition>
-                 </type>
-                 <child name="gml_id"/>
-             </property>
-@@ -1247,7 +1257,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
-         <source name="id">
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung = '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung = '2001'</condition>
-                 </type>
-                 <child name="gml_id"/>
-             </property>
-@@ -1475,13 +1485,13 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
+@@ -1328,32 +1348,42 @@ withTransformationContext {
+ 	collect = _.context.collector(it)
+ }
+ 
+-// Erstelle ein FormOfWay-Objekt für jeden vorkommenden Wert
++def _refLimit = _project.vars.LIMIT_NETWORK_REFERENCES
++
+ collect.formOfWay.consume { key, values -&gt;
+ 	def _id = 'FormOfWay_' + key
+ 	def _ns = _project.vars.INSPIRE_NAMESPACE
+ 	
+-	_target {
+-		formOfWay {
+-			href( "$codeList/$key" )
++	def valueGroups = _refLimit ? values.collate(_refLimit as int) : [values]
++	def i = 1		
++	valueGroups.each { valueGroup -&gt;
++		def _id2 = _id 
++		if (valueGroups.size &gt; 1) {
++			// Gruppennummer anhängen, falls es mehr als eine Gruppe gibt
++			_id2 += '_' + i++
+ 		}
+-		id( _id )
+-		inspireId {
+-			Identifier {
+-				namespace( _ns )
+-				localId( _id )
++		_target {
++			formOfWay {
++				href( "$codeList/$key" )
+ 			}
+-		}
+-		identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
+-			codeSpace( 'http://inspire.ec.europa.eu/ids' )
+-		}
+-		
+-		// Referenz zu gesammelten RoadLinks mit dieser Eigenschaft
+-		values.each { linkId -&gt;
+-			networkRef {
+-				NetworkReference {
+-					element {
+-						href( "#$linkId" )
++			id( _id2 )
++			inspireId {
++				Identifier {
++					namespace( _ns )
++					localId( _id2 )
++				}
++			}
++			identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id2 : _id2 ) {
++				codeSpace( 'http://inspire.ec.europa.eu/ids' )
++			}
++			
++			// Referenz zu gesammelten RoadLinks mit dieser Eigenschaft
++			valueGroup.each { linkId -&gt;
++				networkRef {
++					NetworkReference {
++						element {
++							href( "#$linkId" )
++						}
+ 					}
+ 				}
+ 			}
+@@ -1403,30 +1433,41 @@ withTransformationContext {
+ 	collect = _.context.collector(it)
+ }
+ 
++def _refLimit = _project.vars.LIMIT_NETWORK_REFERENCES
++
+ // Erstelle ein FunctionalRoadClass-Objekt für jeden vorkommenden Wert
+ collect.functionalClass.consume { key, values -&gt;
+ 	def _id = 'FunctionalRoadClass_' + key
+ 	def _ns = _project.vars.INSPIRE_NAMESPACE
+ 	
+-	_target {
+-		functionalClass( key )
+-		id( _id )
+-		inspireId {
+-			Identifier {
+-				namespace( _ns )
+-				localId( _id )
+-			}
++	def valueGroups = _refLimit ? values.collate(_refLimit as int) : [values]
++	def i = 1		
++	valueGroups.each { valueGroup -&gt;
++		def _id2 = _id 
++		if (valueGroups.size &gt; 1) {
++			// Gruppennummer anhängen, falls es mehr als eine Gruppe gibt
++			_id2 += '_' + i++
+ 		}
+-		identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
+-			codeSpace( 'http://inspire.ec.europa.eu/ids' )
+-		}
+-		
+-		// Referenz zu gesammelten RoadLinks/RoadAreas mit dieser Eigenschaft
+-		values.each { linkId -&gt;
+-			networkRef {
+-				NetworkReference {
+-					element {
+-						href( "#$linkId" )
++		_target {
++			functionalClass( key )
++			id( _id2 )
++			inspireId {
++				Identifier {
++					namespace( _ns )
++					localId( _id2 )
++				}
++			}
++			identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id2 : _id2 ) {
++				codeSpace( 'http://inspire.ec.europa.eu/ids' )
++			}
++			
++			// Referenz zu gesammelten RoadLinks/RoadAreas mit dieser Eigenschaft
++			valueGroup.each { linkId -&gt;
++				networkRef {
++					NetworkReference {
++						element {
++							href( "#$linkId" )
++						}
+ 					}
+ 				}
+ 			}
+@@ -1478,13 +1519,13 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -236,7 +324,7 @@ index bd9538d..178e1e7 100644
  
  def _id = "MarkerPost_$sourceId"
  	
-@@ -1500,9 +1510,9 @@ withTransformationContext {
+@@ -1503,9 +1544,9 @@ withTransformationContext {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -248,7 +336,76 @@ index bd9538d..178e1e7 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -1975,7 +1985,7 @@ withTransformationContext {
+@@ -1881,36 +1922,46 @@ withTransformationContext {
+ 	collect = _.context.collector(it)
+ }
+ 
+-// Erstelle NumberOfLanes-Objekt für jede Kombination von _numberOfLanes und _direction
++def _refLimit = _project.vars.LIMIT_NETWORK_REFERENCES
++
+ collect.numberOfLanes.eachCollector { _numberOfLanes, next -&gt;
+ 	next.consume { _direction, linkIds -&gt;
+ 		def _id = "NumberOfLanes_${_direction}_${_numberOfLanes}"
+ 		def _ns = _project.vars.INSPIRE_NAMESPACE
+ 		
+ 		def directionRef = "http://inspire.ec.europa.eu/codelist/LinkDirectionValue/$_direction"
+-		
+-		_target {
+-			numberOfLanes( _numberOfLanes )
+-			direction {
+-				href( directionRef )
++
++		def valueGroups = _refLimit ? linkIds.collate(_refLimit as int) : [linkIds]
++		def i = 1		
++		valueGroups.each { valueGroup -&gt;
++			def _id2 = _id 
++			if (valueGroups.size &gt; 1) {
++				// Gruppennummer anhängen, falls es mehr als eine Gruppe gibt
++				_id2 += '_' + i++
+ 			}
+-			id( _id )
+-			inspireId {
+-				Identifier {
+-					namespace( _ns )
+-					localId( _id )
++			_target {
++				numberOfLanes( _numberOfLanes )
++				direction {
++					href( directionRef )
+ 				}
+-			}
+-			identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
+-				codeSpace( 'http://inspire.ec.europa.eu/ids' )
+-			}
+-			
+-			// Referenzen zu RoadLinks
+-			linkIds.each { linkId -&gt;
+-				networkRef {
+-					NetworkReference {
+-						element {
+-							href( '#' + linkId )
++				id( _id2 )
++				inspireId {
++					Identifier {
++						namespace( _ns )
++						localId( _id2 )
++					}
++				}
++				identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id2 : _id2 ) {
++					codeSpace( 'http://inspire.ec.europa.eu/ids' )
++				}
++				
++				// Referenzen zu RoadLinks
++				valueGroup.each { linkId -&gt;
++					networkRef {
++						NetworkReference {
++							element {
++								href( '#' + linkId )
++							}
+ 						}
+ 					}
+ 				}
+@@ -1978,7 +2029,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit flächenartigen Geometrien behandeln
@@ -257,7 +414,7 @@ index bd9538d..178e1e7 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def surfaces = _.geom.splitMulti(geometries)
-@@ -1985,11 +1995,11 @@ def surfaces = _.geom.splitMulti(geometries)
+@@ -1988,11 +2039,11 @@ def surfaces = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -271,7 +428,7 @@ index bd9538d..178e1e7 100644
  case '1110': // Bundesautobahn
  	functionalClass = 'firstClass'
  	break
-@@ -2017,9 +2027,9 @@ case '1190': // Privatstraße
+@@ -2022,9 +2073,9 @@ case '9999': // Sonstiges --&gt; aufgrund von Angaben in https://haleconnect.com
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -283,7 +440,7 @@ index bd9538d..178e1e7 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2188,7 +2198,7 @@ withTransformationContext {
+@@ -2193,7 +2244,7 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -292,7 +449,7 @@ index bd9538d..178e1e7 100644
  
  _target {
  }
-@@ -2196,9 +2206,9 @@ _target {
+@@ -2201,9 +2252,9 @@ _target {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -304,7 +461,7 @@ index bd9538d..178e1e7 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2327,14 +2337,14 @@ withTransformationContext {
+@@ -2332,14 +2383,14 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -321,7 +478,7 @@ index bd9538d..178e1e7 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -2346,9 +2356,9 @@ case '4000': // Im Bau
+@@ -2351,9 +2402,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -333,7 +490,7 @@ index bd9538d..178e1e7 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2490,14 +2500,14 @@ withTransformationContext {
+@@ -2495,14 +2546,14 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -350,7 +507,7 @@ index bd9538d..178e1e7 100644
  case '5210': // Fahrweg
  case '5212': // Wirtschaftsweg
  	functionalClass = 'eighthClass'
-@@ -2515,9 +2525,9 @@ case '5250': // Rad- und Fußweg
+@@ -2520,9 +2571,9 @@ case '5250': // Rad- und Fußweg
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -362,7 +519,7 @@ index bd9538d..178e1e7 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2664,7 +2674,7 @@ withTransformationContext {
+@@ -2669,7 +2720,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit flächenartigen Geometrien behandeln
@@ -371,7 +528,7 @@ index bd9538d..178e1e7 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def surfaces = _.geom.splitMulti(geometries)
-@@ -2674,7 +2684,7 @@ def surfaces = _.geom.splitMulti(geometries)
+@@ -2679,7 +2730,7 @@ def surfaces = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -380,7 +537,7 @@ index bd9538d..178e1e7 100644
  
  // bestimme FunctionalRoadClass
  def functionalClass = 'ninthClass'
-@@ -2682,9 +2692,9 @@ def functionalClass = 'ninthClass'
+@@ -2687,9 +2738,9 @@ def functionalClass = 'ninthClass'
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -392,7 +549,7 @@ index bd9538d..178e1e7 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -3063,13 +3073,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -3068,13 +3119,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          </annotation>
      </cell>
      <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C7701b354-25ce-49a5-baa7-ef1dce6f6bd0_Ca20f2d64-1511-4c47-b43c-ea4f8f9cae05" priority="normal">
@@ -439,7 +596,7 @@ index bd9538d..178e1e7 100644
              </property>
          </source>
          <target>
-@@ -3088,13 +3125,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -3093,13 +3171,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          </annotation>
      </cell>
      <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C56863741-74c0-4bbe-a955-273776c6670e_C0f1c8732-7bcc-4843-abce-025a5c88d4f6" priority="normal">
@@ -486,7 +643,7 @@ index bd9538d..178e1e7 100644
              </property>
          </source>
          <target>
-@@ -3113,13 +3177,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -3118,13 +3223,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          </annotation>
      </cell>
      <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C8efb5887-8982-4d92-a666-4c4b1701e6a1_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990" priority="normal">
@@ -533,7 +690,7 @@ index bd9538d..178e1e7 100644
              </property>
          </source>
          <target>
-@@ -3471,66 +3562,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -3476,66 +3608,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
              </core:message>
          </annotation>
      </cell>
@@ -600,7 +757,7 @@ index bd9538d..178e1e7 100644
      <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990" priority="normal">
          <target name="result">
              <property>
-@@ -3767,11 +3798,11 @@ withTransformationContext {
+@@ -3772,11 +3844,11 @@ withTransformationContext {
  _b.strictValueFlags = false
  
  // ist die Fahrbahn getrennt?
@@ -614,7 +771,7 @@ index bd9538d..178e1e7 100644
  if (getrennt &amp;&amp; widmung != '1301') {
  	formOfWay = 'dualCarriageway'
  }
-@@ -3788,7 +3819,7 @@ def surfaceCategory = 'paved'
+@@ -3793,7 +3865,7 @@ def surfaceCategory = 'paved'
  
  // bestimme FunctionalRoadClass
  def functionalClass
@@ -623,38 +780,7 @@ index bd9538d..178e1e7 100644
  case '1301': // Bundesautobahn
  	functionalClass = 'firstClass'
  	break
-@@ -3805,24 +3836,24 @@ case '1307': // Gemeindestraße
- 	functionalClass = 'sixthClass'
- 	break
- }
--if (_source.p.internationaleBedeutung.value() == '2001') {
-+if (_source.p.internationalebedeutung.value() as String == '2001') {
- 	// internationaleBedeutung "überstimmt" Widmung
- 	functionalClass = 'mainRoad'
- }
- 
- // Hilfsfunktion zum Erstellen eines RoadLink aus einer *achse
- def erstelleRoadLink = { achse -&gt;
--	boolean istFahrbahn = achse.definition.name.localPart.startsWith('AX_Fahrbahn')
-+	boolean istFahrbahn = achse.definition.name.localPart.startsWith('ax_fahrbahn')
- 
--	def sourceId = achse.p.id.value()
-+	def sourceId = achse.p.gml_id.value()
- 	def _id = "RoadLink_$sourceId"
- 	def _ns = _project.vars.INSPIRE_NAMESPACE
- 	
- 	_target {
--		endLifespanVersion( achse.p.lebenszeitintervall.AA_Lebenszeitintervall.beginnt.value() )
--		beginLifespanVersion( achse.p.lebenszeitintervall.AA_Lebenszeitintervall.endet.value() )
-+		endLifespanVersion( achse.p.beginnt.value() )
-+		beginLifespanVersion( achse.p.endet.value() )
- 		id( _id )
--		def geoms = _.geom.toSimpleGeometries(geometries: achse.p.position.first(), collections: false)
-+		def geoms = _.geom.toSimpleGeometries(geometries: achse.p.wkb_geometry.value(), collections: false)
- 		if (geoms.size() &gt; 1) {
- 			_log.error("Zusammenfassung von Geometrie in Achse ${sourceId} nicht möglich")
- 		}
-@@ -3841,22 +3872,22 @@ def erstelleRoadLink = { achse -&gt;
+@@ -3846,22 +3918,22 @@ def erstelleRoadLink = { achse -&gt;
  		
  		// bestimme FormOfWay
  		def formOfWayAchse = formOfWay
@@ -682,7 +808,7 @@ index bd9538d..178e1e7 100644
  		case '2100': // Außer Betrieb, stillgelegt, verlassen
  			conditionOfFacility = 'disused'
  			break
-@@ -3868,9 +3899,9 @@ def erstelleRoadLink = { achse -&gt;
+@@ -3873,9 +3945,9 @@ def erstelleRoadLink = { achse -&gt;
  		/*
  		 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  		 */
@@ -694,7 +820,7 @@ index bd9538d..178e1e7 100644
  			if (bwf) {
  				switch (bwf) {
  				// AX_BauwerkImVerkehrsbereich
-@@ -3948,7 +3979,7 @@ def erstelleRoadLink = { achse -&gt;
+@@ -3953,7 +4025,7 @@ def erstelleRoadLink = { achse -&gt;
  
  boolean hatFahrbahnachse = false
  
@@ -703,7 +829,7 @@ index bd9538d..178e1e7 100644
  	erstelleRoadLink(achse)
  
  	hatFahrbahnachse = true
-@@ -3962,7 +3993,7 @@ if (hatFahrbahnachse) {
+@@ -3967,7 +4039,7 @@ if (hatFahrbahnachse) {
  
  boolean hatStrassenachse = false
  
@@ -712,7 +838,7 @@ index bd9538d..178e1e7 100644
  	erstelleRoadLink(achse)
  
  	hatStrassenachse = true
-@@ -3971,7 +4002,7 @@ _source.links.AX_Strassenachse.each { achse -&gt;
+@@ -3976,7 +4048,7 @@ _source.links.AX_Strassenachse.each { achse -&gt;
  // keine Fahrbahnachsen oder Strassenachsen -&gt; keine Grundlage für RoadLink
  
  if (!hatStrassenachse) {
@@ -721,7 +847,7 @@ index bd9538d..178e1e7 100644
  	_log.warn("RoadLink: Strasse $strasseId hat weder Fahrbahnachsen noch Strassenachsen")
  }
  </core:text>
-@@ -4097,7 +4128,7 @@ withTransformationContext {
+@@ -4102,7 +4174,7 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -730,7 +856,7 @@ index bd9538d..178e1e7 100644
  
  _target {
  }
-@@ -4107,7 +4138,7 @@ _target {
+@@ -4112,7 +4184,7 @@ _target {
  
  // bestimme RoadSurfaceCategory
  def surfaceCategory
@@ -739,7 +865,7 @@ index bd9538d..178e1e7 100644
  case '1000': // Befestigt
  	surfaceCategory = 'paved'
  	break
-@@ -4118,7 +4149,7 @@ case '2000': // Unbefestigt
+@@ -4123,7 +4195,7 @@ case '2000': // Unbefestigt
  
  // bestimme FunctionalRoadClass
  def functionalClass
@@ -748,7 +874,7 @@ index bd9538d..178e1e7 100644
  case '5211': // Hauptwirtschaftsweg
  	functionalClass = 'seventhClass'
  	break
-@@ -4130,9 +4161,9 @@ case '5212': // Wirtschaftsweg
+@@ -4135,9 +4207,9 @@ case '5212': // Wirtschaftsweg
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -760,7 +886,7 @@ index bd9538d..178e1e7 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -4281,7 +4312,7 @@ withTransformationContext {
+@@ -4286,7 +4358,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit linienartigen Geometrien behandeln
@@ -769,7 +895,7 @@ index bd9538d..178e1e7 100644
  
  // Ziel unterstützt keine MultiLineStrings
  def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: false)
-@@ -4291,7 +4322,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
+@@ -4296,7 +4368,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -778,7 +904,7 @@ index bd9538d..178e1e7 100644
  
  // bestimme FormOfWay
  def formOfWay
-@@ -4308,7 +4339,7 @@ case '1103': // Fußweg
+@@ -4313,7 +4385,7 @@ case '1103': // Fußweg
  
  // bestimme RoadSurfaceCategory
  def surfaceCategory
@@ -787,7 +913,7 @@ index bd9538d..178e1e7 100644
  case '1000': // Befestigt
  	surfaceCategory = 'paved'
  	break
-@@ -4323,9 +4354,9 @@ def functionalClass = 'ninthClass'
+@@ -4328,9 +4400,9 @@ def functionalClass = 'ninthClass'
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -799,7 +925,7 @@ index bd9538d..178e1e7 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -4687,36 +4718,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -4692,36 +4764,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
              </property>
          </target>
      </cell>
@@ -836,7 +962,7 @@ index bd9538d..178e1e7 100644
      <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cc8dfcac2-f330-4946-b4d6-8e1a87136c04" priority="normal">
          <target name="result">
              <property>
-@@ -4799,7 +4800,7 @@ withTransformationContext {
+@@ -4804,7 +4846,7 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -845,7 +971,7 @@ index bd9538d..178e1e7 100644
  
  _target {
  }
-@@ -4807,9 +4808,9 @@ _target {
+@@ -4812,9 +4854,9 @@ _target {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -857,7 +983,7 @@ index bd9538d..178e1e7 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -4938,14 +4939,14 @@ withTransformationContext {
+@@ -4943,14 +4985,14 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -874,7 +1000,7 @@ index bd9538d..178e1e7 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -4957,9 +4958,9 @@ case '4000': // Im Bau
+@@ -4962,9 +5004,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -886,7 +1012,7 @@ index bd9538d..178e1e7 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -5192,13 +5193,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -5197,13 +5239,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          </annotation>
      </cell>
      <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C99266668-af5a-41d1-8c0f-761ef6877469_C2676fc94-d50d-4c45-b5b1-e4301a9cfe4a" priority="normal">
@@ -933,7 +1059,7 @@ index bd9538d..178e1e7 100644
              </property>
          </source>
          <target>
-@@ -5356,21 +5384,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -5361,21 +5430,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
              </core:message>
          </annotation>
      </cell>
@@ -955,43 +1081,71 @@ index bd9538d..178e1e7 100644
      <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C2f3a385b-d4d3-4a1e-9999-296f10a58386" priority="normal">
          <target name="result">
              <property>
-@@ -5928,7 +5941,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
-         <source name="types">
-             <class>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung is null or internationaleBedeutung &lt;&gt; '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
-                 </type>
-             </class>
-         </source>
-@@ -5951,7 +5964,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
-             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
-                 <class>
-                     <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                        <condition lang="CQL">internationaleBedeutung is null or internationaleBedeutung &lt;&gt; '2001'</condition>
-+                        <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
-                     </type>
-                 </class>
-                 <class>
-@@ -5963,7 +5976,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
-                 <jp:condition>
-                     <property>
-                         <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                            <condition lang="CQL">internationaleBedeutung is null or internationaleBedeutung &lt;&gt; '2001'</condition>
-+                            <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
-                         </type>
-                         <child name="gml_id"/>
-                     </property>
-@@ -5975,7 +5988,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
-                 <jp:condition>
-                     <property>
-                         <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                            <condition lang="CQL">internationaleBedeutung is null or internationaleBedeutung &lt;&gt; '2001'</condition>
-+                            <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
-                         </type>
-                         <child name="gml_id"/>
-                     </property>
-@@ -5993,10 +6006,10 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
+@@ -5867,32 +5921,42 @@ withTransformationContext {
+ 	collect = _.context.collector(it)
+ }
+ 
+-// Erstelle ein RoadSurfaceCategory-Objekt für jeden vorkommenden Wert
++def _refLimit = _project.vars.LIMIT_NETWORK_REFERENCES
++
+ collect.surfaceCategory.consume { key, values -&gt;
+ 	def _id = 'RoadSurfaceCategory_' + key
+ 	def _ns = _project.vars.INSPIRE_NAMESPACE
+-	
+-	_target {
+-		surfaceCategory {
+-			href( "$codeList/$key" )
++
++	def valueGroups = _refLimit ? values.collate(_refLimit as int) : [values]
++	def i = 1		
++	valueGroups.each { valueGroup -&gt;
++		def _id2 = _id 
++		if (valueGroups.size &gt; 1) {
++			// Gruppennummer anhängen, falls es mehr als eine Gruppe gibt
++			_id2 += '_' + i++
+ 		}
+-		id( _id )
+-		inspireId {
+-			Identifier {
+-				namespace( _ns )
+-				localId( _id )
++		_target {
++			surfaceCategory {
++				href( "$codeList/$key" )
+ 			}
+-		}
+-		identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
+-			codeSpace( 'http://inspire.ec.europa.eu/ids' )
+-		}
+-		
+-		// Referenz zu gesammelten RoadLinks mit dieser Eigenschaft
+-		values.each { linkId -&gt;
+-			networkRef {
+-				NetworkReference {
+-					element {
+-						href( "#$linkId" )
++			id( _id2 )
++			inspireId {
++				Identifier {
++					namespace( _ns )
++					localId( _id2 )
++				}
++			}
++			identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id2 : _id2 ) {
++				codeSpace( 'http://inspire.ec.europa.eu/ids' )
++			}
++			
++			// Referenz zu gesammelten RoadLinks mit dieser Eigenschaft
++			valueGroup.each { linkId -&gt;
++				networkRef {
++					NetworkReference {
++						element {
++							href( "#$linkId" )
++						}
+ 					}
+ 				}
+ 			}
+@@ -5998,10 +6062,10 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
  // Fahrbahnachsen werden präferiert als RoadLink für
  // Strassen verwendet, alternativ verwende Strassenachsen
  
@@ -1005,7 +1159,7 @@ index bd9538d..178e1e7 100644
  if (!hatFahrbahnachse &amp;&amp; !hatStrassenachse) {
  	_log.warn("Road: Strasse $strasseId hat weder Fahrbahnachsen noch Strassenachsen")
  	throw new NoResultException('Kann kein Road-Objekt ohne RoadLinks erstellen')
-@@ -6006,16 +6019,16 @@ if (!hatFahrbahnachse &amp;&amp; !hatStrassenachse) {
+@@ -6011,16 +6075,16 @@ if (!hatFahrbahnachse &amp;&amp; !hatStrassenachse) {
  
  _target {
  	if (hatFahrbahnachse) {
@@ -1026,7 +1180,7 @@ index bd9538d..178e1e7 100644
  			}
  		}
  	}
-@@ -6062,7 +6075,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
+@@ -6067,7 +6131,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -1035,7 +1189,7 @@ index bd9538d..178e1e7 100644
  
  _target {
  }
-@@ -6102,7 +6115,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
+@@ -6107,7 +6171,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // nur Objekt mit linienartigen Geometrien behandeln
  // welche einen RoadLink repräsentieren
@@ -1044,7 +1198,7 @@ index bd9538d..178e1e7 100644
  
  // RoadLinks werden aus den individuellen Geometrien gebildet
  def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: false)
-@@ -6112,7 +6125,7 @@ if (curves) {
+@@ -6117,7 +6181,7 @@ if (curves) {
  	// vorhanden sind (andernfalls wird es eine RoadArea)
  
  	// Identifier des Quell-Objekts
@@ -1053,52 +1207,7 @@ index bd9538d..178e1e7 100644
  	
  	_target {
  		// Verweis auf individuelle RoadLinks erstellen
-@@ -6178,7 +6191,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
-         <source>
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung is null or internationaleBedeutung &lt;&gt; '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
-                 </type>
-                 <child name="beginnt"/>
-             </property>
-@@ -6244,7 +6257,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
-         <source>
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung is null or internationaleBedeutung &lt;&gt; '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
-                 </type>
-                 <child name="endet"/>
-             </property>
-@@ -6309,7 +6322,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
-         <source name="spelling">
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung is null or internationaleBedeutung &lt;&gt; '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
-                 </type>
-                 <child name="name"/>
-             </property>
-@@ -6372,7 +6385,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
-         <source name="id">
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung is null or internationaleBedeutung &lt;&gt; '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
-                 </type>
-                 <child name="gml_id"/>
-             </property>
-@@ -6434,7 +6447,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
-         <source name="id">
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung is null or internationaleBedeutung &lt;&gt; '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
-                 </type>
-                 <child name="gml_id"/>
-             </property>
-@@ -6476,36 +6489,6 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
+@@ -6481,36 +6545,6 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
              </core:message>
          </annotation>
      </cell>
@@ -1135,16 +1244,7 @@ index bd9538d..178e1e7 100644
      <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
          <target name="result">
              <property>
-@@ -6542,7 +6525,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
-         <source name="id">
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung is null or internationaleBedeutung &lt;&gt; '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
-                 </type>
-                 <child name="gml_id"/>
-             </property>
-@@ -6590,36 +6573,6 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+@@ -6595,36 +6629,6 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
              </core:message>
          </annotation>
      </cell>
@@ -1181,25 +1281,7 @@ index bd9538d..178e1e7 100644
      <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C1505c26d-f446-4fad-8d7f-bc3fd3448caf" priority="normal">
          <source name="var">
              <property>
-@@ -6656,7 +6609,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
-         <source>
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung is null or internationaleBedeutung &lt;&gt; '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
-                 </type>
-                 <child name="strassenschluessel"/>
-             </property>
-@@ -6706,7 +6659,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
-         <source>
-             <property>
-                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
--                    <condition lang="CQL">internationaleBedeutung is null or internationaleBedeutung &lt;&gt; '2001'</condition>
-+                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
-                 </type>
-                 <child name="bezeichnung"/>
-             </property>
-@@ -6727,26 +6680,6 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+@@ -6732,26 +6736,6 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
              </core:message>
          </annotation>
      </cell>
@@ -1226,7 +1308,90 @@ index bd9538d..178e1e7 100644
      <cell relation="eu.esdihumboldt.hale.align.assign" id="C6da68b64-b734-429c-acd4-bd1fd5b68db1_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
          <target>
              <property>
-@@ -7159,89 +7092,19 @@ collect.verticalPosition.consume { key, values -&gt;
+@@ -6887,11 +6871,16 @@ withTransformationContext {
+ 	collector = _.context.collector(it)
+ }
+ 
++def _refLimit = _project.vars.LIMIT_NETWORK_REFERENCES
++
+ _target {
+-	// Verknüpfung zu gesammelten Netzwerk-Elementen
+-	collector.network.each { id -&gt;
+-		elements {
+-			href( "#$id" )
++	// Referenzen im TransportNetwork-Objekt nur erzeugen, wenn LIMIT_NETWORK_REFERENCES nicht verwendet wird
++	if (!_refLimit) {
++		// Verknüpfung zu gesammelten Netzwerk-Elementen
++		collector.network.each { id -&gt;
++			elements {
++				href( "#$id" )
++			}
+ 		}
+ 	}
+ }
+@@ -7106,6 +7095,8 @@ withTransformationContext {
+ 	collect = _.context.collector(it)
+ }
+ 
++def _refLimit = _project.vars.LIMIT_NETWORK_REFERENCES
++
+ // Erstelle ein VerticalPosition-Objekt für jeden vorkommenden Wert
+ //
+ // Inhalt der hier gesetzt wird sind die Identifier und die Verknüpfungen
+@@ -7114,25 +7105,34 @@ collect.verticalPosition.consume { key, values -&gt;
+ 	def _id = 'VerticalPosition_' + _project.vars.THEME_DISTINGUISHER + '_' + key
+ 	def _ns = _project.vars.INSPIRE_NAMESPACE
+ 	
+-	_target {
+-		verticalPosition( key )
+-		id( _id )
+-		inspireId {
+-			Identifier {
+-				namespace( _ns )
+-				localId( _id )
+-			}
+-		}
+-		identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
+-			codeSpace( 'http://inspire.ec.europa.eu/ids' )
++	def valueGroups = _refLimit ? values.collate(_refLimit as int) : [values]
++	def i = 1		
++	valueGroups.each { valueGroup -&gt;
++		def _id2 = _id 
++		if (valueGroups.size &gt; 1) {
++			// Gruppennummer anhängen, falls es mehr als eine Gruppe gibt
++			_id2 += '_' + i++
+ 		}
+-		
+-		// Referenz zu gesammelten Netzwerk-Elementen mit dieser Eigenschaft
+-		values.each { linkId -&gt;
+-			networkRef {
+-				NetworkReference {
+-					element {
+-						href( "#$linkId" )
++		_target {
++			verticalPosition( key )
++			id( _id2 )
++			inspireId {
++				Identifier {
++					namespace( _ns )
++					localId( _id2 )
++				}
++			}
++			identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id2 : _id2 ) {
++				codeSpace( 'http://inspire.ec.europa.eu/ids' )
++			}
++			
++			// Referenz zu gesammelten Netzwerk-Elementen mit dieser Eigenschaft
++			valueGroup.each { linkId -&gt;
++				networkRef {
++					NetworkReference {
++						element {
++							href( "#$linkId" )
++						}
+ 					}
+ 				}
+ 			}
+@@ -7164,89 +7164,19 @@ collect.verticalPosition.consume { key, values -&gt;
          <parameter value="other:unpopulated" name="value"/>
          <documentation>Diese Information ist im 3A-Modell nicht vorhanden.</documentation>
      </cell>
@@ -1240,16 +1405,16 @@ index bd9538d..178e1e7 100644
      </modifier>
      <modifier cell="C010d8324-6422-49f2-883a-7ee5d875177b_C2827fa08-a3dd-4539-83de-413c6b922f47">
 -        <disable-for parent="C2581bae5-bd09-416c-948e-bcb8b5835ca3"/>
--        <disable-for parent="C2827fa08-a3dd-4539-83de-413c6b922f47"/>
--    </modifier>
+         <disable-for parent="C2827fa08-a3dd-4539-83de-413c6b922f47"/>
+     </modifier>
 -    <modifier cell="C010d8324-6422-49f2-883a-7ee5d875177b_Ca20f2d64-1511-4c47-b43c-ea4f8f9cae05">
 -        <disable-for parent="C2581bae5-bd09-416c-948e-bcb8b5835ca3"/>
 -        <disable-for parent="C2827fa08-a3dd-4539-83de-413c6b922f47"/>
 -    </modifier>
 -    <modifier cell="C010d8324-6422-49f2-883a-7ee5d875177b_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990">
 -        <disable-for parent="C2581bae5-bd09-416c-948e-bcb8b5835ca3"/>
-         <disable-for parent="C2827fa08-a3dd-4539-83de-413c6b922f47"/>
-     </modifier>
+-        <disable-for parent="C2827fa08-a3dd-4539-83de-413c6b922f47"/>
+-    </modifier>
 -    <modifier cell="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C0f1c8732-7bcc-4843-abce-025a5c88d4f6">
 -        <disable-for parent="Cb090758a-65b1-49f7-a92e-42ef7d8afb04"/>
 -    </modifier>
@@ -1316,7 +1481,7 @@ index bd9538d..178e1e7 100644
          <disable-for parent="C2827fa08-a3dd-4539-83de-413c6b922f47"/>
      </modifier>
      <modifier cell="C87845354-a68e-4c9b-98a0-8d05883d4e0d">
-@@ -7252,24 +7115,10 @@ collect.verticalPosition.consume { key, values -&gt;
+@@ -7257,24 +7187,10 @@ collect.verticalPosition.consume { key, values -&gt;
          <disable-for parent="C3296f18d-e980-40cf-a9f3-9e5187ecf16a"/>
          <disable-for parent="Cc8dfcac2-f330-4946-b4d6-8e1a87136c04"/>
      </modifier>

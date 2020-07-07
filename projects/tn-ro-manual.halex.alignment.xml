@@ -135,7 +135,10 @@ if (!name) {
 			def collect = _.context.collector(it)
 	  
 			// Name zu Schlüssel der Lagebezeichnung aus Index holen
-			name = collect.lagebezeichnung[schluesselGesamt].value()
+			if (collect.lagebezeichnung[schluesselGesamt].value()){
+				name = collect.lagebezeichnung[schluesselGesamt].value()
+			}
+			else _log.error('Für einen Namen aus einer verschlüsselten Lagebezeichnung liegt kein Katalogeintrag vor.')
 		}
 	}
 }
@@ -232,47 +235,47 @@ else {
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.
-Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.
-Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.
-Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.
-
-Die Sprache des Namens wird als Deutsch angenommen.
-
-&lt;% if (_params.nameStatus) {
-  if (_params.nameStatus == 'unpopulated') {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
-  }
-  else if (_params.nameStatus == 'unknown') {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
-  }
-  else {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
-  }
-}
-else {
-  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
-}
-out &lt;&lt; "\n\n"
-if (_params.nativeness) {
-  if (_params.nativeness == 'unpopulated') {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
-  }
-  else if (_params.nativeness == 'unknown') {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
-  }
-  else {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
-  }
-}
-else {
-  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
-}
-out &lt;&lt; "\n\n"
-if (_params.source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
-} else {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
+Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.&#13;
+Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.&#13;
+Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.&#13;
+Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.&#13;
+&#13;
+Die Sprache des Namens wird als Deutsch angenommen.&#13;
+&#13;
+&lt;% if (_params.nameStatus) {&#13;
+  if (_params.nameStatus == 'unpopulated') {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#13;
+  }&#13;
+  else if (_params.nameStatus == 'unknown') {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#13;
+  }&#13;
+  else {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#13;
+  }&#13;
+}&#13;
+else {&#13;
+  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#13;
+}&#13;
+out &lt;&lt; "\n\n"&#13;
+if (_params.nativeness) {&#13;
+  if (_params.nativeness == 'unpopulated') {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#13;
+  }&#13;
+  else if (_params.nativeness == 'unknown') {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#13;
+  }&#13;
+  else {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#13;
+  }&#13;
+}&#13;
+else {&#13;
+  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#13;
+}&#13;
+out &lt;&lt; "\n\n"&#13;
+if (_params.source) {&#13;&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#13;&#13;
+} else {&#13;&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#13;&#13;
 } %&gt;
 </core:text>
                     </cf:template>
@@ -429,9 +432,9 @@ else {
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Bildet ein GeographicalName-Objekt zu einem einfachen Namen. Der Wert des Quell-Attributs $spelling wird als Schreibweise des Namens übernommen (`SpellingOfName`).&#xD;
-&#xD;
-Die Sprache wird als Deutsch angenommen.&#xD;
+Bildet ein GeographicalName-Objekt zu einem einfachen Namen. Der Wert des Quell-Attributs $spelling wird als Schreibweise des Namens übernommen (`SpellingOfName`).&#13;
+&#13;
+Die Sprache wird als Deutsch angenommen.&#13;
 
 &lt;% if (_params.nameStatus) {
   if (_params.nameStatus == 'unpopulated') {
@@ -463,13 +466,13 @@ else {
   out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
 }
 out &lt;&lt; "\n\n"
-if (_params.source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
-} else if (source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden, andernfalls wird das Quell-Attribut $source dafür herangezogen. "&#xD;
-  out &lt;&lt; "In letzterem Fall kann nur eine von potentiell mehreren im Quellobjekt angegebenen Modellarten übernommen werden."&#xD;
-} else {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
+if (_params.source) {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#13;
+} else if (source) {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden, andernfalls wird das Quell-Attribut $source dafür herangezogen. "&#13;
+  out &lt;&lt; "In letzterem Fall kann nur eine von potentiell mehreren im Quellobjekt angegebenen Modellarten übernommen werden."&#13;
+} else {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#13;
 } %&gt;
 </core:text>
                     </cf:template>
@@ -1505,7 +1508,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
         <source>
             <class>
                 <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1410'  and kilometerangabe is not null</condition>
+                    <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
             </class>
         </source>
@@ -1656,7 +1659,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1410'  and kilometerangabe is not null</condition>
+                    <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -1681,7 +1684,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1410'  and kilometerangabe is not null</condition>
+                    <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -1716,7 +1719,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1410'  and kilometerangabe is not null</condition>
+                    <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -1749,7 +1752,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="id">
             <property>
                 <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1410'  and kilometerangabe is not null</condition>
+                    <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1772,7 +1775,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="id">
             <property>
                 <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1410'  and kilometerangabe is not null</condition>
+                    <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1810,7 +1813,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="id">
             <property>
                 <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1410'  and kilometerangabe is not null</condition>
+                    <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1845,7 +1848,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source>
             <property>
                 <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1410'  and kilometerangabe is not null</condition>
+                    <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="kilometerangabe"/>
             </property>
@@ -2061,6 +2064,8 @@ case '1160': // Ortsstraße
 	functionalClass = 'sixthClass'
 	break
 case '1190': // Privatstraße
+case '9997': // Attribut trifft nicht zu --&gt; aufgrund von Angaben in https://haleconnect.com/#/transformation/org/163/63acaf8b-ee09-4a0a-a1e2-635345224f07/tasks/8jg hinzugefügt
+case '9999': // Sonstiges --&gt; aufgrund von Angaben in https://haleconnect.com/#/transformation/org/163/63acaf8b-ee09-4a0a-a1e2-635345224f07/tasks/8jg hinzugefügt
 	functionalClass = 'ninthClass'
 	break
 }
@@ -2362,7 +2367,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <class>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion is null or funktion = '2312' or funktion = '5130'</condition>
+                    <condition lang="CQL">(funktion IS NULL OR funktion = '2312') OR funktion = '5130'</condition>
                 </type>
             </class>
         </source>
@@ -2525,7 +2530,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <class>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion &lt;&gt; '5260' and funktion &lt;&gt; '9999'</condition>
+                    <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
             </class>
         </source>
@@ -2698,7 +2703,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <class>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
             </class>
         </source>
@@ -2926,7 +2931,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion is null or funktion = '2312' or funktion = '5130'</condition>
+                    <condition lang="CQL">(funktion IS NULL OR funktion = '2312') OR funktion = '5130'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2951,7 +2956,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion &lt;&gt; '5260' and funktion &lt;&gt; '9999'</condition>
+                    <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2976,7 +2981,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -3042,7 +3047,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion is null or funktion = '2312' or funktion = '5130'</condition>
+                    <condition lang="CQL">(funktion IS NULL OR funktion = '2312') OR funktion = '5130'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -3067,7 +3072,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion &lt;&gt; '5260' and funktion &lt;&gt; '9999'</condition>
+                    <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -3092,7 +3097,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -3273,7 +3278,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="spelling">
             <property>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion &lt;&gt; '5260' and funktion &lt;&gt; '9999'</condition>
+                    <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
                 <child name="bezeichnung"/>
             </property>
@@ -3297,7 +3302,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="spelling">
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="name"/>
             </property>
@@ -3344,7 +3349,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="geometrie">
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion is null or funktion = '2312' or funktion = '5130'</condition>
+                    <condition lang="CQL">(funktion IS NULL OR funktion = '2312') OR funktion = '5130'</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -3367,7 +3372,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="geometrie">
             <property>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion &lt;&gt; '5260' and funktion &lt;&gt; '9999'</condition>
+                    <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -3429,7 +3434,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="id">
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion is null or funktion = '2312' or funktion = '5130'</condition>
+                    <condition lang="CQL">(funktion IS NULL OR funktion = '2312') OR funktion = '5130'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3453,7 +3458,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="id">
             <property>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion &lt;&gt; '5260' and funktion &lt;&gt; '9999'</condition>
+                    <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3477,7 +3482,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="id">
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3538,7 +3543,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="id">
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion is null or funktion = '2312' or funktion = '5130'</condition>
+                    <condition lang="CQL">(funktion IS NULL OR funktion = '2312') OR funktion = '5130'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3561,7 +3566,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="id">
             <property>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion &lt;&gt; '5260' and funktion &lt;&gt; '9999'</condition>
+                    <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3584,7 +3589,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="id">
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3665,7 +3670,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="id">
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion is null or funktion = '2312' or funktion = '5130'</condition>
+                    <condition lang="CQL">(funktion IS NULL OR funktion = '2312') OR funktion = '5130'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3691,7 +3696,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="id">
             <property>
                 <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion &lt;&gt; '5260' and funktion &lt;&gt; '9999'</condition>
+                    <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3717,7 +3722,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="id">
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3877,24 +3882,24 @@ case '1307': // Gemeindestraße
 	functionalClass = 'sixthClass'
 	break
 }
-if (_source.p.internationalebedeutung.value() as String == '2001') {
+if (_source.p.internationaleBedeutung.value() == '2001') {
 	// internationaleBedeutung "überstimmt" Widmung
 	functionalClass = 'mainRoad'
 }
 
 // Hilfsfunktion zum Erstellen eines RoadLink aus einer *achse
 def erstelleRoadLink = { achse -&gt;
-	boolean istFahrbahn = achse.definition.name.localPart.startsWith('ax_fahrbahn')
+	boolean istFahrbahn = achse.definition.name.localPart.startsWith('AX_Fahrbahn')
 
-	def sourceId = achse.p.gml_id.value()
+	def sourceId = achse.p.id.value()
 	def _id = "RoadLink_$sourceId"
 	def _ns = _project.vars.INSPIRE_NAMESPACE
 	
 	_target {
-		endLifespanVersion( achse.p.beginnt.value() )
-		beginLifespanVersion( achse.p.endet.value() )
+		endLifespanVersion( achse.p.lebenszeitintervall.AA_Lebenszeitintervall.endet.value() )
+		beginLifespanVersion( achse.p.lebenszeitintervall.AA_Lebenszeitintervall.beginnt.value() )
 		id( _id )
-		def geoms = _.geom.toSimpleGeometries(geometries: achse.p.wkb_geometry.value(), collections: false)
+		def geoms = _.geom.toSimpleGeometries(geometries: achse.p.position.first(), collections: false)
 		if (geoms.size() &gt; 1) {
 			_log.error("Zusammenfassung von Geometrie in Achse ${sourceId} nicht möglich")
 		}
@@ -4336,7 +4341,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <class>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
             </class>
         </source>
@@ -4591,7 +4596,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -4646,7 +4651,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -4710,7 +4715,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="spelling">
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="name"/>
             </property>
@@ -4825,7 +4830,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source>
             <class>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
             </class>
         </source>
@@ -4964,7 +4969,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <class>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '2311' or funktion = '2313'</condition>
+                    <condition lang="CQL">funktion = '2311' OR funktion = '2313'</condition>
                 </type>
             </class>
         </source>
@@ -5127,7 +5132,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -5152,7 +5157,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '2311' or funktion = '2313'</condition>
+                    <condition lang="CQL">funktion = '2311' OR funktion = '2313'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -5187,7 +5192,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5212,7 +5217,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source>
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '2311' or funktion = '2313'</condition>
+                    <condition lang="CQL">funktion = '2311' OR funktion = '2313'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5289,7 +5294,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="geometrie">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -5312,7 +5317,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="geometrie">
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '2311' or funktion = '2313'</condition>
+                    <condition lang="CQL">funktion = '2311' OR funktion = '2313'</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -5335,7 +5340,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="id">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5359,7 +5364,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="id">
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '2311' or funktion = '2313'</condition>
+                    <condition lang="CQL">funktion = '2311' OR funktion = '2313'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5383,7 +5388,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="id">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5406,7 +5411,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <source name="id">
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '2311' or funktion = '2313'</condition>
+                    <condition lang="CQL">funktion = '2311' OR funktion = '2313'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5444,7 +5449,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="id">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5470,7 +5475,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="id">
             <property>
                 <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '2311' or funktion = '2313'</condition>
+                    <condition lang="CQL">funktion = '2311' OR funktion = '2313'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5516,7 +5521,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source>
             <class>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
             </class>
         </source>
@@ -5540,7 +5545,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="anchor">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="funktion">
                     <condition lang="CQL">value = '5330'</condition>
@@ -5569,7 +5574,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="anchor">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="funktion">
                     <condition lang="CQL">value = '5330'</condition>
@@ -5598,7 +5603,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="anchor">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="funktion">
                     <condition lang="CQL">value = '5330'</condition>
@@ -5627,7 +5632,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="anchor">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="funktion">
                     <condition lang="CQL">value = '5330'</condition>
@@ -5656,7 +5661,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="anchor">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="funktion">
                     <condition lang="CQL">value = '5330'</condition>
@@ -5685,7 +5690,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="anchor">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="funktion">
                     <condition lang="CQL">value = '5320' or value = '5330'</condition>
@@ -5723,7 +5728,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="var">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="funktion"/>
             </property>
@@ -5747,7 +5752,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="var">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="funktion"/>
             </property>
@@ -5788,7 +5793,7 @@ _target( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
         <source name="var">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="funktion"/>
             </property>
@@ -5824,7 +5829,7 @@ _target( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
         <source name="var">
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5852,7 +5857,7 @@ _target( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
         <source>
             <property>
                 <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '5320' or funktion = '5330' or funktion = '5310'</condition>
+                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
                 </type>
                 <child name="funktion"/>
             </property>
@@ -5992,7 +5997,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
         <source name="types">
             <class>
                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
+                    <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
             </class>
         </source>
@@ -6015,7 +6020,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
                     <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                        <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
+                        <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                     </type>
                 </class>
                 <class>
@@ -6027,7 +6032,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
                 <jp:condition>
                     <property>
                         <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                            <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
+                            <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                         </type>
                         <child name="gml_id"/>
                     </property>
@@ -6039,7 +6044,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
                 <jp:condition>
                     <property>
                         <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                            <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
+                            <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                         </type>
                         <child name="gml_id"/>
                     </property>
@@ -6153,7 +6158,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
         <source>
             <class>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
             </class>
         </source>
@@ -6242,7 +6247,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
         <source>
             <property>
                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
+                    <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -6267,7 +6272,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
         <source>
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -6308,7 +6313,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
         <source>
             <property>
                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
+                    <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -6333,7 +6338,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
         <source>
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -6373,7 +6378,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
         <source name="spelling">
             <property>
                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
+                    <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="name"/>
             </property>
@@ -6397,7 +6402,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
         <source name="spelling">
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="name"/>
             </property>
@@ -6436,7 +6441,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
         <source name="id">
             <property>
                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
+                    <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6460,7 +6465,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
         <source name="id">
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6498,7 +6503,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
         <source name="id">
             <property>
                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
+                    <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6521,7 +6526,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
         <source name="id">
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6576,7 +6581,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="id">
             <property>
                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
+                    <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6602,7 +6607,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source name="id">
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6660,7 +6665,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source>
             <property>
                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
+                    <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="strassenschluessel"/>
             </property>
@@ -6685,7 +6690,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source>
             <property>
                 <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">art = '1103' or art = '1106' or art = '1110'</condition>
+                    <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="strassenschluessel"/>
             </property>
@@ -6710,7 +6715,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <source>
             <property>
                 <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">internationalebedeutung is null or internationalebedeutung &lt;&gt; '2001'</condition>
+                    <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="bezeichnung"/>
             </property>
