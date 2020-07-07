@@ -124,7 +124,10 @@ if (!name) {
 			def collect = _.context.collector(it)
 	  
 			// Name zu Schlüssel der Lagebezeichnung aus Index holen
-			name = collect.lagebezeichnung[schluesselGesamt].value()
+			if (collect.lagebezeichnung[schluesselGesamt].value()){
+				name = collect.lagebezeichnung[schluesselGesamt].value()
+			}
+			else _log.error('Für einen Namen aus einer verschlüsselten Lagebezeichnung liegt kein Katalogeintrag vor.')
 		}
 	}
 }
@@ -221,47 +224,47 @@ else {
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.
-Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.
-Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.
-Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.
-
-Die Sprache des Namens wird als Deutsch angenommen.
-
-&lt;% if (_params.nameStatus) {
-  if (_params.nameStatus == 'unpopulated') {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
-  }
-  else if (_params.nameStatus == 'unknown') {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
-  }
-  else {
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
-  }
-}
-else {
-  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."
-}
-out &lt;&lt; "\n\n"
-if (_params.nativeness) {
-  if (_params.nativeness == 'unpopulated') {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."
-  }
-  else if (_params.nativeness == 'unknown') {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."
-  }
-  else {
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
-  }
-}
-else {
-  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
-}
-out &lt;&lt; "\n\n"
-if (_params.source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
-} else {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
+Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.&#13;
+Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.&#13;
+Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.&#13;
+Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.&#13;
+&#13;
+Die Sprache des Namens wird als Deutsch angenommen.&#13;
+&#13;
+&lt;% if (_params.nameStatus) {&#13;
+  if (_params.nameStatus == 'unpopulated') {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#13;
+  }&#13;
+  else if (_params.nameStatus == 'unknown') {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#13;
+  }&#13;
+  else {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#13;
+  }&#13;
+}&#13;
+else {&#13;
+  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#13;
+}&#13;
+out &lt;&lt; "\n\n"&#13;
+if (_params.nativeness) {&#13;
+  if (_params.nativeness == 'unpopulated') {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#13;
+  }&#13;
+  else if (_params.nativeness == 'unknown') {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#13;
+  }&#13;
+  else {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#13;
+  }&#13;
+}&#13;
+else {&#13;
+  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#13;
+}&#13;
+out &lt;&lt; "\n\n"&#13;
+if (_params.source) {&#13;&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#13;&#13;
+} else {&#13;&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#13;&#13;
 } %&gt;
 </core:text>
                     </cf:template>
@@ -419,9 +422,9 @@ else {
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Bildet ein GeographicalName-Objekt zu einem einfachen Namen. Der Wert des Quell-Attributs $spelling wird als Schreibweise des Namens übernommen (`SpellingOfName`).&#xD;
-&#xD;
-Die Sprache wird als Deutsch angenommen.&#xD;
+Bildet ein GeographicalName-Objekt zu einem einfachen Namen. Der Wert des Quell-Attributs $spelling wird als Schreibweise des Namens übernommen (`SpellingOfName`).&#13;
+&#13;
+Die Sprache wird als Deutsch angenommen.&#13;
 
 &lt;% if (_params.nameStatus) {
   if (_params.nameStatus == 'unpopulated') {
@@ -453,13 +456,13 @@ else {
   out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
 }
 out &lt;&lt; "\n\n"
-if (_params.source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
-} else if (source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden, andernfalls wird das Quell-Attribut $source dafür herangezogen. "&#xD;
-  out &lt;&lt; "In letzterem Fall kann nur eine von potentiell mehreren im Quellobjekt angegebenen Modellarten übernommen werden."&#xD;
-} else {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
+if (_params.source) {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#13;
+} else if (source) {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden, andernfalls wird das Quell-Attribut $source dafür herangezogen. "&#13;
+  out &lt;&lt; "In letzterem Fall kann nur eine von potentiell mehreren im Quellobjekt angegebenen Modellarten übernommen werden."&#13;
+} else {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#13;
 } %&gt;
 </core:text>
                     </cf:template>
@@ -768,7 +771,7 @@ Aktuell ist folgende Abbildung umgesetzt:
         <source>
             <class>
                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
+                    <condition lang="ECQL">(((((artderflurstuecksgrenze IN ('2500','7101')) OR artderflurstuecksgrenze = '7102') OR artderflurstuecksgrenze = '7103') OR artderflurstuecksgrenze = '7104') OR artderflurstuecksgrenze = '7106') OR artderflurstuecksgrenze = '7108'</condition>
                 </type>
             </class>
         </source>
@@ -779,7 +782,7 @@ Aktuell ist folgende Abbildung umgesetzt:
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
-        <documentation>AX_BesondereFlurstuecksgrenze-Objekte sind gemäß des in Kapitel  5.4.1.5.1. der Datenspezifikation beschriebenen flat data models AdministrativeBoundaries.&#xD;
+        <documentation>AX_BesondereFlurstuecksgrenze-Objekte sind gemäß des in Kapitel  5.4.1.5.1. der Datenspezifikation beschriebenen flat data models AdministrativeBoundaries.&#13;
 Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
@@ -793,7 +796,7 @@ Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</doc
         <source>
             <class>
                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
+                    <condition lang="CQL">((((artdergebietsgrenze = '7101' OR artdergebietsgrenze = '7102') OR artdergebietsgrenze = '7103') OR artdergebietsgrenze = '7104') OR artdergebietsgrenze = '7105') OR artdergebietsgrenze = '7106'</condition>
                 </type>
             </class>
         </source>
@@ -822,14 +825,14 @@ Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</doc
             </property>
         </target>
         <parameter value="other:unpopulated" name="value"/>
-        <documentation>Wenn dieses Attribut noch gefüllt werden soll, muss eines der in den Kapiteln 5.4.1.5.1. und 5.4.1.5.2. der Datenspezifikation beschriebenen Modelle für die Zuordnung von AdministrativeUnits zu AdministrativeBoundaries verwendet werden. Entsprechende Regeln zur geometrischen Ermittlung müssten festgelegt werden.&#xD;
+        <documentation>Wenn dieses Attribut noch gefüllt werden soll, muss eines der in den Kapiteln 5.4.1.5.1. und 5.4.1.5.2. der Datenspezifikation beschriebenen Modelle für die Zuordnung von AdministrativeUnits zu AdministrativeBoundaries verwendet werden. Entsprechende Regeln zur geometrischen Ermittlung müssten festgelegt werden.&#13;
 Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</documentation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8ac34369-7034-453d-8db5-575f79445d51_C69d2dcb1-a278-425f-9b2e-b282471adc4c" priority="normal">
         <source>
             <property>
                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
+                    <condition lang="ECQL">(((((artderflurstuecksgrenze IN ('2500','7101')) OR artderflurstuecksgrenze = '7102') OR artderflurstuecksgrenze = '7103') OR artderflurstuecksgrenze = '7104') OR artderflurstuecksgrenze = '7106') OR artderflurstuecksgrenze = '7108'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -854,7 +857,7 @@ Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</doc
         <source>
             <property>
                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
+                    <condition lang="CQL">((((artdergebietsgrenze = '7101' OR artdergebietsgrenze = '7102') OR artdergebietsgrenze = '7103') OR artdergebietsgrenze = '7104') OR artdergebietsgrenze = '7105') OR artdergebietsgrenze = '7106'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -915,7 +918,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         <source>
             <property>
                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
+                    <condition lang="ECQL">(((((artderflurstuecksgrenze IN ('2500','7101')) OR artderflurstuecksgrenze = '7102') OR artderflurstuecksgrenze = '7103') OR artderflurstuecksgrenze = '7104') OR artderflurstuecksgrenze = '7106') OR artderflurstuecksgrenze = '7108'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -940,7 +943,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         <source>
             <property>
                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
+                    <condition lang="CQL">((((artdergebietsgrenze = '7101' OR artdergebietsgrenze = '7102') OR artdergebietsgrenze = '7103') OR artdergebietsgrenze = '7104') OR artdergebietsgrenze = '7105') OR artdergebietsgrenze = '7106'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -965,7 +968,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         <source name="geometrie">
             <property>
                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
+                    <condition lang="ECQL">(((((artderflurstuecksgrenze IN ('2500','7101')) OR artderflurstuecksgrenze = '7102') OR artderflurstuecksgrenze = '7103') OR artderflurstuecksgrenze = '7104') OR artderflurstuecksgrenze = '7106') OR artderflurstuecksgrenze = '7108'</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -988,7 +991,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         <source name="geometrie">
             <property>
                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
+                    <condition lang="CQL">((((artdergebietsgrenze = '7101' OR artdergebietsgrenze = '7102') OR artdergebietsgrenze = '7103') OR artdergebietsgrenze = '7104') OR artdergebietsgrenze = '7105') OR artdergebietsgrenze = '7106'</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -1011,7 +1014,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         <source name="id">
             <property>
                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
+                    <condition lang="ECQL">(((((artderflurstuecksgrenze IN ('2500','7101')) OR artderflurstuecksgrenze = '7102') OR artderflurstuecksgrenze = '7103') OR artderflurstuecksgrenze = '7104') OR artderflurstuecksgrenze = '7106') OR artderflurstuecksgrenze = '7108'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1034,7 +1037,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         <source name="id">
             <property>
                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
+                    <condition lang="CQL">((((artdergebietsgrenze = '7101' OR artdergebietsgrenze = '7102') OR artdergebietsgrenze = '7103') OR artdergebietsgrenze = '7104') OR artdergebietsgrenze = '7105') OR artdergebietsgrenze = '7106'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1058,7 +1061,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         <source name="id">
             <property>
                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
+                    <condition lang="ECQL">(((((artderflurstuecksgrenze IN ('2500','7101')) OR artderflurstuecksgrenze = '7102') OR artderflurstuecksgrenze = '7103') OR artderflurstuecksgrenze = '7104') OR artderflurstuecksgrenze = '7106') OR artderflurstuecksgrenze = '7108'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1081,7 +1084,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         <source name="id">
             <property>
                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
+                    <condition lang="CQL">((((artdergebietsgrenze = '7101' OR artdergebietsgrenze = '7102') OR artdergebietsgrenze = '7103') OR artdergebietsgrenze = '7104') OR artdergebietsgrenze = '7105') OR artdergebietsgrenze = '7106'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1104,7 +1107,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         <source name="id">
             <property>
                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
+                    <condition lang="ECQL">(((((artderflurstuecksgrenze IN ('2500','7101')) OR artderflurstuecksgrenze = '7102') OR artderflurstuecksgrenze = '7103') OR artderflurstuecksgrenze = '7104') OR artderflurstuecksgrenze = '7106') OR artderflurstuecksgrenze = '7108'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1129,7 +1132,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         <source name="id">
             <property>
                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
+                    <condition lang="CQL">((((artdergebietsgrenze = '7101' OR artdergebietsgrenze = '7102') OR artdergebietsgrenze = '7103') OR artdergebietsgrenze = '7104') OR artdergebietsgrenze = '7105') OR artdergebietsgrenze = '7106'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1175,7 +1178,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         <source>
             <property>
                 <type name="ax_besondereflurstuecksgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">artDerFlurstuecksgrenze = '2500' or artDerFlurstuecksgrenze = '7101' or artDerFlurstuecksgrenze = '7102' or artDerFlurstuecksgrenze = '7103' or artDerFlurstuecksgrenze = '7104' or artDerFlurstuecksgrenze = '7106' or artDerFlurstuecksgrenze = '7108'</condition>
+                    <condition lang="ECQL">(((((artderflurstuecksgrenze IN ('2500','7101')) OR artderflurstuecksgrenze = '7102') OR artderflurstuecksgrenze = '7103') OR artderflurstuecksgrenze = '7104') OR artderflurstuecksgrenze = '7106') OR artderflurstuecksgrenze = '7108'</condition>
                 </type>
                 <child name="artderflurstuecksgrenze"/>
             </property>
@@ -1232,7 +1235,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         <source>
             <property>
                 <type name="ax_gebietsgrenze" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">artDerGebietsgrenze = '7101' or artDerGebietsgrenze = '7102' or artDerGebietsgrenze = '7103' or artDerGebietsgrenze = '7104' or artDerGebietsgrenze = '7105' or artDerGebietsgrenze = '7106'</condition>
+                    <condition lang="CQL">((((artdergebietsgrenze = '7101' OR artdergebietsgrenze = '7102') OR artdergebietsgrenze = '7103') OR artdergebietsgrenze = '7104') OR artdergebietsgrenze = '7105') OR artdergebietsgrenze = '7106'</condition>
                 </type>
                 <child name="artdergebietsgrenze"/>
             </property>

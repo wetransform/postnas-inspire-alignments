@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hale-project version="3.4.0.release">
-    <name>3A zu INSPIRE Administrative Units (Variante Flurstücke)</name>
+<hale-project version="4.0.0.release">
+    <name>[Annex I] AdV 3A zu INSPIRE Administrative Units (Variante Flurstücke)</name>
     <author>Simon Templer</author>
     <description>Alignment vom 3A-Modell zum INSPIRE Anwendungsschema Administrative Units.
 
@@ -15,7 +15,7 @@ Das gleiche gilt für die aggregierten Geometrien -- hier werden bei unvollstän
 
 Sofern möglich sollte alternativ für die Transformation das Projekt mit Aggregierung aus `AX_KommunalesGebiet` verwendet werden. Falls diese Objekte nich vorhanden sind, könnten als Zwischenschritt auch `AX_KommunalesGebiet` aus Flurstücken abgeleitet werden.</description>
     <created>2015-09-28T11:46:45.435+02:00</created>
-    <modified>2019-02-07T07:16:55.171+01:00</modified>
+    <modified>2020-07-07T17:26:55.149+02:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -33,6 +33,19 @@ Sofern möglich sollte alternativ für die Transformation das Projekt mit Aggreg
         <setting name="source">file:/home/simon/repos/rlp-inspire-alignments/database/schema.hsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.common.schema.hsd</setting>
     </resource>
+    <export-config name="hale-connect">
+        <configuration action-id="eu.esdihumboldt.hale.io.instance.write.transformed" provider-id="eu.esdihumboldt.hale.io.gml.writer">
+            <setting name="charset">UTF-8</setting>
+            <setting name="meta.description"></setting>
+            <setting name="geometry.unifyWindingOrder">counterClockwise</setting>
+            <setting name="gml.geometry.simplify">true</setting>
+            <setting name="crs">code:EPSG:4258</setting>
+            <setting name="crs.epsg.prefix">http://www.opengis.net/def/crs/EPSG/0/</setting>
+            <setting name="contentType">eu.esdihumboldt.hale.io.gml</setting>
+            <setting name="xml.notNil.omitNilReason">true</setting>
+            <setting name="xml.pretty">true</setting>
+        </configuration>
+    </export-config>
     <file name="alignment.xml" location="au-auto.halex.alignment.xml"/>
     <property name="defaultGeometry:{http://inspire.ec.europa.eu/schemas/au/4.0}AdministrativeBoundaryType/1">{http://inspire.ec.europa.eu/schemas/au/4.0}geometry</property>
     <property name="defaultGeometry:{http://inspire.ec.europa.eu/schemas/au/4.0}AdministrativeBoundaryType/2">{http://www.opengis.net/gml/3.2/AbstractCurve}choice</property>
