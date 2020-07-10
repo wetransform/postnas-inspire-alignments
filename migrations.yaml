@@ -14,6 +14,8 @@ hy-n:
   advProject: annex-1/mappings/Hydrography/aaa-hy-n.halex
 hy-p:
   advProject: annex-1/mappings/Hydrography/aaa-hy-p.halex
+so:
+  advProject: annex-2-3/mappings/Soil/3A2INSPIRE_SO_v2.halex
 tn-ro:
   advProject: annex-1/mappings/RoadTransportNetwork/aaa-tn-ro-01.halex
 tn-ra:

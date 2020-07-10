@@ -1,0 +1,287 @@
+diff --git a/projects/so-auto.halex.alignment.xml b/projects/so-manual.halex.alignment.xml
+index 0033326..c19b2aa 100644
+--- a/projects/so-auto.halex.alignment.xml
++++ b/projects/so-manual.halex.alignment.xml
+@@ -4,7 +4,6 @@
+         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="AX_DQMitDatenerhebung to TimeInstant" name="AX_DQMitDatenerhebung to TimeInstant" type="groovy">
+             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="AX_DQMitDatenerhebung">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AX_DQMitDatenerhebungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:output eager="false" maxOccurs="1" minOccurs="1">
+                 <cf:type name="TimeInstantType" ns="http://www.opengis.net/gml/3.2"/>
+@@ -100,7 +99,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
+         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
+             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+@@ -313,7 +311,6 @@ if (_params.source) {&#xD;&#xD;
+             </cf:input>
+             <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:output eager="false" maxOccurs="1" minOccurs="1">
+                 <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -805,7 +802,6 @@ Aktuell ist folgende Abbildung umgesetzt:
+         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="lebenszeitintervall to TimeInstant" name="lebenszeitintervall to TimeInstant" type="groovy">
+             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lebenszeitintervall">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AA_LebenszeitintervallPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:output eager="false" maxOccurs="1" minOccurs="1">
+                 <cf:type name="TimeInstantType" ns="http://www.opengis.net/gml/3.2"/>
+@@ -831,7 +827,6 @@ _target {&#xD;
+         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="qualitaetsangaben to TimeInstant" name="qualitaetsangaben to TimeInstant" type="groovy">
+             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="qualitaetsangaben">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AX_DQMitDatenerhebungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:output eager="false" maxOccurs="1" minOccurs="1">
+                 <cf:type name="TimeInstantType" ns="http://www.opengis.net/gml/3.2"/>
+@@ -924,7 +919,7 @@ _target {&#xD;
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-if (_source.p.bodenzahlOderGruenlandgrundzahl.value() || _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value()){&#xD;
++if (_source.p.bodenzahlodergruenlandgrundzahl.value() || _source.links.ax_tagesabschnitt.p.tagesabschnittsnummer.value()){&#xD;
+ 	_target {&#xD;
+ 		procedure {&#xD;
+ 			href( '#Process_' + _project.vars['BODSCHAETZG-ID'] )&#xD;
+@@ -935,9 +930,9 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() || _source.links.AX_Tagesa
+ 		resultTime {&#xD;
+ 			nilReason( 'other:unpopulated' )&#xD;
+ 		}&#xD;
+-		if(_source.p.bodenzahlOderGruenlandgrundzahl.value()){&#xD;
++		if(_source.p.bodenzahlodergruenlandgrundzahl.value()){&#xD;
+ 			result {&#xD;
+-				CharacterString('This field contains information about AX_GrablochDerBodenschaetzung - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about bodenzahlOderGruenlandgrundzahl: ' + _source.p.bodenzahlOderGruenlandgrundzahl.value())&#xD;
++				CharacterString('This field contains information about AX_GrablochDerBodenschaetzung - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about bodenzahlOderGruenlandgrundzahl: ' + _source.p.bodenzahlodergruenlandgrundzahl.value())&#xD;
+ 			}&#xD;
+ 			featureOfInterest {&#xD;
+ 				href( '#ObservedSoilProfile_' +  _source.p.id.value())&#xD;
+@@ -956,40 +951,40 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() || _source.links.AX_Tagesa
+ 					name {&#xD;
+ 						title( 'inGemarkung: land_gemarkungsnummer' )&#xD;
+ 					}&#xD;
+-					value( _source.p.inGemarkung.AX_Gemarkung_Schluessel.land.value() + '_' + _source.p.inGemarkung.AX_Gemarkung_Schluessel.gemarkungsnummer.value())&#xD;
++					value( _source.p.ingemarkung_land.value() + '_' + _source.p.ingemarkung_gemarkungsnummer.value())&#xD;
+ 				}&#xD;
+ 			}&#xD;
+ &#xD;
+ 		}&#xD;
+-		if(_source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value()){&#xD;
++		if(_source.links.ax_tagesabschnitt.p.tagesabschnittsnummer.value()){&#xD;
+ 			result{&#xD;
+-				CharacterString('This field contains information about AX_Tagesabschnitt - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about tagesabschnittsnummer: ' + _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value())&#xD;
++				CharacterString('This field contains information about AX_Tagesabschnitt - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about tagesabschnittsnummer: ' + _source.links.ax_tagesabschnitt.p.tagesabschnittsnummer.value())&#xD;
+ 			}&#xD;
+ 			featureOfInterest {&#xD;
+-				href( '#ObservedSoilProfile_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#xD;
++				href( '#ObservedSoilProfile_' +  _source.links.ax_tagesabschnitt.p.id.value())&#xD;
+ 			}&#xD;
+-			identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()) {&#xD;
++			identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.links.ax_tagesabschnitt.p.id.value()) {&#xD;
+ 				codeSpace( 'http://inspire.ec.europa.eu/ids' )&#xD;
+ 			}&#xD;
+ 			observedProperty {&#xD;
+ 				title( 'AX_Tagesabschnitt ' )&#xD;
+ 				href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_Tagesabschnitt' )&#xD;
+ 			}&#xD;
+-			id ('OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#xD;
+-			c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()&#xD;
++			id ('OM_Observation_' +  _source.links.ax_tagesabschnitt.p.id.value())&#xD;
++			c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.ax_tagesabschnitt.p.id.value()&#xD;
+ 			parameter {&#xD;
+ 				NamedValue {&#xD;
+ 					name {&#xD;
+ 						title( 'tagesabschnittsnummer' )&#xD;
+ 					}&#xD;
+-					value( _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value())&#xD;
++					value( _source.links.ax_tagesabschnitt.p.tagesabschnittsnummer.value())&#xD;
+ 				}&#xD;
+ 			}&#xD;
+ 		}&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+-if (_source.p.bodenzahlOderGruenlandgrundzahl.value() &amp;&amp; _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value()){&#xD;
++if (_source.p.bodenzahlodergruenlandgrundzahl.value() &amp;&amp; _source.links.ax_tagesabschnitt.p.tagesabschnittsnummer.value()){&#xD;
+ 	_target {&#xD;
+ 		procedure {&#xD;
+ 			href( '#Process_' + _project.vars['BODSCHAETZG-ID'] )&#xD;
+@@ -1020,7 +1015,7 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() &amp;&amp; _source.links.A
+ 				name {&#xD;
+ 					title( 'inGemarkung: land_gemarkungsnummer' )&#xD;
+ 				}&#xD;
+-				value( _source.p.inGemarkung.AX_Gemarkung_Schluessel.land.value() + '_' + _source.p.inGemarkung.AX_Gemarkung_Schluessel.gemarkungsnummer.value())&#xD;
++				value( _source.p.ingemarkung_land.value() + '_' + _source.p.ingemarkung_gemarkungsnummer.value())&#xD;
+ 			}&#xD;
+ 		}&#xD;
+ 	}&#xD;
+@@ -1035,26 +1030,26 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() &amp;&amp; _source.links.A
+ 			nilReason( 'other:unpopulated' )&#xD;
+ 		}&#xD;
+ 		result {&#xD;
+-			CharacterString ('This field contains information about AX_Tagesabschnitt - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about tagesabschnittsnummer: ' + _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value())&#xD;
++			CharacterString ('This field contains information about AX_Tagesabschnitt - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about tagesabschnittsnummer: ' + _source.links.ax_tagesabschnitt.p.tagesabschnittsnummer.value())&#xD;
+ 		}&#xD;
+ 		featureOfInterest {&#xD;
+-			href( '#ObservedSoilProfile_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#xD;
++			href( '#ObservedSoilProfile_' +  _source.links.ax_tagesabschnitt.p.id.value())&#xD;
+ 		}&#xD;
+-		identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()) {&#xD;
++		identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.links.ax_tagesabschnitt.p.id.value()) {&#xD;
+ 			codeSpace( 'http://inspire.ec.europa.eu/ids' )&#xD;
+ 		}&#xD;
+ 		observedProperty {&#xD;
+ 			title( 'AX_Tagesabschnitt ' )&#xD;
+ 			href ( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_Tagesabschnitt' )&#xD;
+ 		}&#xD;
+-		id ('OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#xD;
+-		c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()&#xD;
++		id ('OM_Observation_' +  _source.links.ax_tagesabschnitt.p.id.value())&#xD;
++		c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.ax_tagesabschnitt.p.id.value()&#xD;
+ 		parameter {&#xD;
+ 			NamedValue {&#xD;
+ 				name {&#xD;
+ 					title( 'tagesabschnittsnummer' )&#xD;
+ 				}&#xD;
+-				value( _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value())&#xD;
++				value( _source.links.ax_tagesabschnitt.p.tagesabschnittsnummer.value())&#xD;
+ 			}&#xD;
+ 		}&#xD;
+ 	}&#xD;
+@@ -1062,7 +1057,7 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() &amp;&amp; _source.links.A
+ </core:text>
+         </complexParameter>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -1132,7 +1127,7 @@ _target{&#xD;
+ </core:text>
+         </complexParameter>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -1610,18 +1605,18 @@ def list = []&#xD;
+ &#xD;
+ //die Werte aus verschiedenen Attributen werden ausgelesen - bei Kardinalität 1 unter Nutzung der oben definierten Methode, bei Kardinalität &gt;1 über einen Join aller enthaltenen Werte &#xD;
+ list &lt;&lt; extractValue(bodenart)&#xD;
+-list &lt;&lt; extractValue(zustandsstufeOderBodenstufe)&#xD;
+-if (entstehungsartOderKlimastufeWasserverhaeltnisse) {&#xD;
++list &lt;&lt; extractValue(zustandsstufeoderbodenstufe)&#xD;
++if (entstehungsartoderklimastufewasserverhaeltnisse) {&#xD;
+   //das encoding ist folgendermaßen: Werte innerhalb dieses Feldes werden mit | getrennt, die einzelnen Felder werden mit Komma getrennt&#xD;
+-  list &lt;&lt; entstehungsartOderKlimastufeWasserverhaeltnisse.p.values().join('|')&#xD;
++  list &lt;&lt; entstehungsartoderklimastufewasserverhaeltnisse.p.values().join('|')&#xD;
+ }&#xD;
+ else {&#xD;
+   list &lt;&lt; ''&#xD;
+ }&#xD;
+-list &lt;&lt; extractValue(bodenzahlOderGruenlandgrundzahl)&#xD;
+-list &lt;&lt; extractValue(ackerzahlOderGruenlandzahl)&#xD;
+-if (sonstigeAngaben) {&#xD;
+-  list &lt;&lt; sonstigeAngaben.p.values().join('|')&#xD;
++list &lt;&lt; extractValue(bodenzahlodergruenlandgrundzahl)&#xD;
++list &lt;&lt; extractValue(ackerzahlodergruenlandzahl)&#xD;
++if (sonstigeangaben) {&#xD;
++  list &lt;&lt; sonstigeangaben.p.values().join('|')&#xD;
+ }&#xD;
+ else {&#xD;
+   list &lt;&lt; ''&#xD;
+@@ -1637,7 +1632,7 @@ return 'This field contains information about AX_Bodenschaetzung - more informat
+ Wie die Angaben innerhalb des DataArrays voneinander getrennt werden, wird im encoding angegeben.&#xD;
+ Die Werte selbst stehen im values-Attribut, das an dieser Stelle gefüllt wird.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -1710,18 +1705,18 @@ def list = []&#xD;
+ &#xD;
+ //die Werte aus verschiedenen Attributen werden ausgelesen - bei Kardinalität 1 unter Nutzung der oben definierten Methode, bei Kardinalität &gt;1 über einen Join aller enthaltenen Werte &#xD;
+ list &lt;&lt; extractValue(bodenart)&#xD;
+-list &lt;&lt; extractValue(zustandsstufeOderBodenstufe)&#xD;
+-if (entstehungsartOderKlimastufeWasserverhaeltnisse) {&#xD;
++list &lt;&lt; extractValue(zustandsstufeoderbodenstufe)&#xD;
++if (entstehungsartoderklimastufewasserverhaeltnisse) {&#xD;
+   //das encoding ist folgendermaßen: Werte innerhalb dieses Feldes werden mit | getrennt, die einzelnen Felder werden mit Komma getrennt&#xD;
+-  list &lt;&lt; entstehungsartOderKlimastufeWasserverhaeltnisse.p.values().join('|')&#xD;
++  list &lt;&lt; entstehungsartoderklimastufewasserverhaeltnisse.p.values().join('|')&#xD;
+ }&#xD;
+ else {&#xD;
+   list &lt;&lt; ''&#xD;
+ }&#xD;
+-list &lt;&lt; extractValue(bodenzahlOderGruenlandgrundzahl)&#xD;
+-list &lt;&lt; extractValue(ackerzahlOderGruenlandzahl)&#xD;
+-if (sonstigeAngaben) {&#xD;
+-  list &lt;&lt; sonstigeAngaben.p.values().join('|')&#xD;
++list &lt;&lt; extractValue(bodenzahlodergruenlandgrundzahl)&#xD;
++list &lt;&lt; extractValue(ackerzahlodergruenlandzahl)&#xD;
++if (sonstigeangaben) {&#xD;
++  list &lt;&lt; sonstigeangaben.p.values().join('|')&#xD;
+ }&#xD;
+ else {&#xD;
+   list &lt;&lt; ''&#xD;
+@@ -1733,7 +1728,7 @@ return 'This field contains information about AX_MusterLandesmusterUndVergleichs
+         </complexParameter>
+         <parameter value="false" name="variablesAsInstances"/>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -1920,10 +1915,10 @@ return 'This field contains information about AX_MusterLandesmusterUndVergleichs
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ //{land}_{gemarkungsnummer}_{nuzmmerierungsbezirk}_{nummerDesGrablochs}&#xD;
+-def land = kennziffer_AX_KennzifferGrabloch_land&#xD;
+-def gemnr = kennziffer_AX_KennzifferGrabloch_gemarkungsnummer&#xD;
+-def numbez = kennziffer_AX_KennzifferGrabloch_nummerierungsbezirk&#xD;
+-def numgl = kennziffer_AX_KennzifferGrabloch_nummerDesGrablochs&#xD;
++def land = kennziffer_land&#xD;
++def gemnr = kennziffer_gemarkungsnummer&#xD;
++def numbez = kennziffer_nummerierungsbezirk&#xD;
++def numgl = nummerdesgrablochs&#xD;
+ &#xD;
+ &#xD;
+ if (land &amp;&amp; gemnr &amp;&amp; numbez) {&#xD;
+@@ -1945,7 +1940,7 @@ else if (gemnr &amp;&amp; numbez){&#xD;
+         </complexParameter>
+         <parameter value="false" name="variablesAsInstances"/>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -1994,7 +1989,7 @@ c.GLobs.each{ _id -&gt;&#xD;
+         </complexParameter>
+         <parameter value="false" name="variablesAsInstances"/>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2569,7 +2564,7 @@ c.GLobs.each{ _id -&gt;&#xD;
+         <parameter value="false" name="ignoreNamespaces"/>
+         <parameter value="false" name="structuralRename"/>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">Inaccurate match of [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_GrablochDerBodenschaetzungType/position/Point to [type] jdbc:postgresql:testbed:aaa_ogr/ax_grablochderbodenschaetzung/wkb_geometry via parent entity</core:text>
+                 </core:content>
