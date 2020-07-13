@@ -8,6 +8,8 @@ au:
   advProject: annex-1/mappings/AdministrativeUnits/aaa-au-flurstuecke.halex
 cp:
   advProject: annex-1/mappings/CadastralParcels/aaa-cp-01.halex
+elu:
+  advProject: annex-2-3/mappings/LandUse/ALKIS2INSPIRE_ELU.halex
 gn:
   advProject: annex-1/mappings/GeographicalNames/aaa-gn-02.halex
 hy-n:

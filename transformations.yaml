@@ -38,6 +38,9 @@ tasks:
   cp:
     project: cp
     model: DLKM
+  elu:
+    project: elu
+    model: DLKM
   gn-dlkm:
     project: gn
     model: DLKM

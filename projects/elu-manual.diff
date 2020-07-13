@@ -1,0 +1,1200 @@
+diff --git a/projects/elu-auto.halex.alignment.xml b/projects/elu-manual.halex.alignment.xml
+index ac3b9b2..d6dd59a 100644
+--- a/projects/elu-auto.halex.alignment.xml
++++ b/projects/elu-manual.halex.alignment.xml
+@@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
+         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
+             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+@@ -277,7 +276,6 @@ if (_params.source) {&#xD;&#xD;
+             </cf:input>
+             <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:output eager="false" maxOccurs="1" minOccurs="1"/>
+             <cf:param maxOccurs="1" minOccurs="0" name="source">
+@@ -2162,7 +2160,7 @@ return c.extent.value()
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2187,7 +2185,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2212,7 +2210,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2237,7 +2235,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2262,7 +2260,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2287,7 +2285,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2312,7 +2310,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2337,7 +2335,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2362,7 +2360,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2387,7 +2385,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2412,7 +2410,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2437,7 +2435,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2462,7 +2460,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2487,7 +2485,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2512,7 +2510,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2537,7 +2535,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2562,7 +2560,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2587,7 +2585,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2612,7 +2610,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2637,7 +2635,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2662,7 +2660,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2687,7 +2685,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2712,7 +2710,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2737,7 +2735,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2762,7 +2760,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2787,7 +2785,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2812,7 +2810,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2837,7 +2835,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2862,7 +2860,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2887,7 +2885,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2912,7 +2910,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2937,7 +2935,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2962,7 +2960,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2987,7 +2985,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3012,7 +3010,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3037,7 +3035,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3062,7 +3060,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3087,7 +3085,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3112,7 +3110,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3137,7 +3135,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3162,7 +3160,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3187,7 +3185,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3212,7 +3210,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3237,7 +3235,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3262,7 +3260,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3287,7 +3285,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3312,7 +3310,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3337,7 +3335,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3362,7 +3360,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3387,7 +3385,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3412,7 +3410,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3437,7 +3435,7 @@ return targeom
+         <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4449,7 +4447,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+         <parameter value="null" name="notClassifiedAction"/>
+         <documentation>Ob die Klassifikation der Werte in foerdergut, lagergut und primaerenergie vorgenommen werden muss, hängt vom Wert in Funktion ab. Da höchstens einer der drei Fälle eintreten kann, können diese mit der gleichen Priorisierung vorgenommen werden.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                 </core:content>
+@@ -4775,7 +4773,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+         <parameter value="null" name="notClassifiedAction"/>
+         <documentation>Ob die Klassifikation der Werte in foerdergut, lagergut und primaerenergie vorgenommen werden muss, hängt vom Wert in Funktion ab. Da höchstens einer der drei Fälle eintreten kann, können diese mit der gleichen Priorisierung vorgenommen werden.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                 </core:content>
+@@ -4849,7 +4847,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+         <parameter value="null" name="notClassifiedAction"/>
+         <documentation>Ob die Klassifikation der Werte in foerdergut, lagergut und primaerenergie vorgenommen werden muss, hängt vom Wert in Funktion ab. Da höchstens einer der drei Fälle eintreten kann, können diese mit der gleichen Priorisierung vorgenommen werden.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                 </core:content>
+@@ -5911,7 +5909,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer
+         </complexParameter>
+         <parameter value="null" name="notClassifiedAction"/>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                 </core:content>
+@@ -7489,14 +7487,14 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -7505,7 +7503,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -7527,14 +7525,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -7543,7 +7541,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -7565,14 +7563,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -7581,7 +7579,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -7603,14 +7601,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -7619,7 +7617,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -7641,14 +7639,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -7657,7 +7655,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -7679,14 +7677,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -7695,7 +7693,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -7717,14 +7715,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -7733,7 +7731,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -7755,14 +7753,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -7771,7 +7769,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -7793,14 +7791,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -7809,7 +7807,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -7831,14 +7829,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -7847,7 +7845,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -7869,14 +7867,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -7885,7 +7883,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -7907,14 +7905,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -7923,7 +7921,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -7945,14 +7943,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -7961,7 +7959,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -7983,14 +7981,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -7999,7 +7997,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -8021,14 +8019,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -8037,7 +8035,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -8059,14 +8057,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -8075,7 +8073,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -8097,14 +8095,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -8113,7 +8111,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -8135,14 +8133,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -8151,7 +8149,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -8173,14 +8171,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -8189,7 +8187,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -8211,14 +8209,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -8227,7 +8225,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -8249,14 +8247,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -8265,7 +8263,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -8287,14 +8285,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -8303,7 +8301,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -8325,14 +8323,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -8341,7 +8339,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -8363,14 +8361,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -8379,7 +8377,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -8401,14 +8399,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -8417,7 +8415,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -8439,14 +8437,14 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-if (!datumDerLetztenUeberpruefung) {&#xD;
++if (!datumderletztenueberpruefung) {&#xD;
+ 	_target {&#xD;
+ 		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
+ 	}&#xD;
+ }&#xD;
+ &#xD;
+ else {&#xD;
+-	_target (datumDerLetztenUeberpruefung)&#xD;
++	_target (datumderletztenueberpruefung)&#xD;
+ }
+ </core:text>
+         </complexParameter>
+@@ -8455,7 +8453,7 @@ else {&#xD;
+ Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
