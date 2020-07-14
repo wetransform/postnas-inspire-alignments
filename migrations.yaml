@@ -16,6 +16,8 @@ hy-n:
   advProject: annex-1/mappings/Hydrography/aaa-hy-n.halex
 hy-p:
   advProject: annex-1/mappings/Hydrography/aaa-hy-p.halex
+lc:
+  advProject: annex-2-3/mappings/LandCover/ALKIS2INSPIRE_LC_v2.halex
 so:
   advProject: annex-2-3/mappings/Soil/3A2INSPIRE_SO_v2.halex
 tn-ro:

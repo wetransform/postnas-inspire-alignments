@@ -1,0 +1,1097 @@
+diff --git a/projects/lc-auto.halex.alignment.xml b/projects/lc-manual.halex.alignment.xml
+index 0c6f68e..378d802 100644
+--- a/projects/lc-auto.halex.alignment.xml
++++ b/projects/lc-manual.halex.alignment.xml
+@@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
+         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
+             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+@@ -279,7 +278,6 @@ if (_params.source) {&#xD;&#xD;
+             </cf:input>
+             <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
+                 <cf:binding>java.lang.String</cf:binding>
+-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+             </cf:input>
+             <cf:output eager="false" maxOccurs="1" minOccurs="1">
+                 <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -2282,7 +2280,7 @@ return c.extent.value()
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2304,7 +2302,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2328,7 +2326,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2350,7 +2348,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2374,7 +2372,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2396,7 +2394,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2420,7 +2418,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2442,7 +2440,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2466,7 +2464,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2488,7 +2486,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2512,7 +2510,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2534,7 +2532,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2558,7 +2556,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2580,7 +2578,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2604,7 +2602,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2626,7 +2624,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2650,7 +2648,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2672,7 +2670,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2696,7 +2694,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2718,7 +2716,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2742,7 +2740,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2764,7 +2762,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2788,7 +2786,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2810,7 +2808,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2834,7 +2832,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2856,7 +2854,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2880,7 +2878,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2902,7 +2900,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2926,7 +2924,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2948,7 +2946,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -2972,7 +2970,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -2994,7 +2992,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3018,7 +3016,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3040,7 +3038,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3064,7 +3062,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3086,7 +3084,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3110,7 +3108,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3132,7 +3130,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3156,7 +3154,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3178,7 +3176,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3202,7 +3200,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3224,7 +3222,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3248,7 +3246,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3270,7 +3268,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3294,7 +3292,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3316,7 +3314,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3340,7 +3338,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3362,7 +3360,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3386,7 +3384,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3408,7 +3406,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -3432,7 +3430,7 @@ return targeom
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#xD;
+ &#xD;
+-def geom = _.geom.find(position.p.first())&#xD;
++def geom = _.geom.find(wkb_geometry)&#xD;
+ if (!geom) {&#xD;
+   _log.error('No geometry found')&#xD;
+   return&#xD;
+@@ -3454,7 +3452,7 @@ return targeom
+         <parameter value="true" name="variablesAsInstances"/>
+         <documentation>Alle FeatureTypes, die für das Mapping genutzt werden, erben von TA_SurfaceComponent. Daher wird das Geometriemapping auf dieser Ebene durchgeführt. Bei der Erzeugung der Geometrie wird eine BoundingBox in einem Collector abgelegt. Diese wird bei der Transformation jeder Instanz ausgelesen und eine neue BoundingBox inklusive der neuen Geometrie erzeugt und diese wiederum in dem Collector abgelegt.</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4268,7 +4266,7 @@ return targeom
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4281,7 +4279,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4305,7 +4303,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4318,7 +4316,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4342,7 +4340,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4355,7 +4353,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4379,7 +4377,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4392,7 +4390,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4416,7 +4414,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4429,7 +4427,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4453,7 +4451,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4466,7 +4464,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4490,7 +4488,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4503,7 +4501,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4527,7 +4525,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4540,7 +4538,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4564,7 +4562,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4577,7 +4575,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4601,7 +4599,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4614,7 +4612,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4638,7 +4636,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4651,7 +4649,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4675,7 +4673,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4688,7 +4686,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4712,7 +4710,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4725,7 +4723,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4749,7 +4747,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4762,7 +4760,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4786,7 +4784,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4799,7 +4797,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4823,7 +4821,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4836,7 +4834,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4860,7 +4858,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4873,7 +4871,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4897,7 +4895,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4910,7 +4908,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4934,7 +4932,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4947,7 +4945,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -4971,7 +4969,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -4984,7 +4982,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -5008,7 +5006,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -5021,7 +5019,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -5045,7 +5043,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -5058,7 +5056,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -5082,7 +5080,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -5095,7 +5093,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -5119,7 +5117,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -5132,7 +5130,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -5156,7 +5154,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -5169,7 +5167,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -5193,7 +5191,7 @@ return objid
+         </target>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def objid = 'LandCoverUnit_' + id&#xD;
++def objid = 'LandCoverUnit_' + gml_id&#xD;
+ &#xD;
+ withTransformationContext {&#xD;
+   def c = _.context.collector(it)&#xD;
+@@ -5206,7 +5204,7 @@ return objid
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Da alle FeatureTypes, die für das Mapping verwendet werden, von AA_Objekt erben, wird das Mapping der id auf dieser Ebene durchgeführt. IDs der erzeugten LandCoverUnits werden mit Hilfe des GroovyScripts gesammelt um sie in einer niedriger priorisierten Transformation dem zugehörigen LandCoverDataset zuzuweisen</documentation>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -7459,6 +7457,78 @@ return objid
+         </target>
+         <parameter value="{{project:LANDCOVER_OBSERVATION_CODELIST}}1" name="value"/>
+     </cell>
++    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C1b18fc42-cc35-4d64-9db6-53065ee9a696" priority="normal">
++        <source name="anchor">
++            <property>
++                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="ECQL">funktion is null and artderbebauung is null</condition>
++                </type>
++                <child name="gml_id"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="LandCoverUnitType" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="landCoverObservation" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="LandCoverObservation" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="mosaic" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0">
++                    <context>0</context>
++                </child>
++                <child name="LandCoverValue" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="class" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="href" ns="http://www.w3.org/1999/xlink"/>
++            </property>
++        </target>
++        <parameter value="{{project:LANDCOVER_OBSERVATION_CODELIST}}1-2" name="value"/>
++    </cell>
++    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cc0ce418e-32fd-4401-8c1a-aeaea0ed02ce" priority="normal">
++        <source name="anchor">
++            <property>
++                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="ECQL">funktion is null and artderbebauung is null</condition>
++                </type>
++                <child name="gml_id"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="LandCoverUnitType" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="landCoverObservation" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="LandCoverObservation" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="mosaic" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0">
++                    <context>0</context>
++                </child>
++                <child name="LandCoverValue" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="class" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="href" ns="http://www.w3.org/1999/xlink"/>
++            </property>
++        </target>
++        <parameter value="{{project:LANDCOVER_OBSERVATION_CODELIST}}1-2" name="value"/>
++    </cell>
++    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C7a6db6c2-cc19-41b5-97c2-5816bfc50e89" priority="normal">
++        <source name="anchor">
++            <property>
++                <type name="ax_flaechegemischternutzung" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="ECQL">artderbebauung is null and funktion is null</condition>
++                </type>
++                <child name="gml_id"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="LandCoverUnitType" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="landCoverObservation" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="LandCoverObservation" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="mosaic" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0">
++                    <context>0</context>
++                </child>
++                <child name="LandCoverValue" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="class" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="href" ns="http://www.w3.org/1999/xlink"/>
++            </property>
++        </target>
++        <parameter value="{{project:LANDCOVER_OBSERVATION_CODELIST}}1-2" name="value"/>
++    </cell>
+     <cell relation="eu.esdihumboldt.hale.align.classification" id="Cee546114-6afa-416e-9592-16b54a4bfe90" priority="normal">
+         <source>
+             <property>
+@@ -7651,6 +7721,30 @@ return objid
+         </complexParameter>
+         <parameter value="null" name="notClassifiedAction"/>
+     </cell>
++    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C6e97aa53-57ff-479c-ba2c-d797cd5ac135" priority="normal">
++        <source name="anchor">
++            <property>
++                <type name="ax_industrieundgewerbeflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="ECQL">funktion is null</condition>
++                </type>
++                <child name="gml_id"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="LandCoverUnitType" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="landCoverObservation" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="LandCoverObservation" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="mosaic" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0">
++                    <context>0</context>
++                </child>
++                <child name="LandCoverValue" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="class" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="href" ns="http://www.w3.org/1999/xlink"/>
++            </property>
++        </target>
++        <parameter value="{{project:LANDCOVER_OBSERVATION_CODELIST}}1-1" name="value"/>
++    </cell>
+     <cell relation="eu.esdihumboldt.hale.align.classification" id="Ced2c30ba-e0ef-413d-ac18-531e5ec63c37" priority="normal">
+         <source>
+             <property>
+@@ -7849,6 +7943,30 @@ return objid
+         </complexParameter>
+         <parameter value="null" name="notClassifiedAction"/>
+     </cell>
++    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C87fa82d4-e0f0-473a-9722-bf06431b049f" priority="normal">
++        <source name="anchor">
++            <property>
++                <type name="ax_wohnbauflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="ECQL">artderbebauung not like '1000' and artderbebauung not like '2000'</condition>
++                </type>
++                <child name="gml_id"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="LandCoverUnitType" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="landCoverObservation" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="LandCoverObservation" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="mosaic" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0">
++                    <context>0</context>
++                </child>
++                <child name="LandCoverValue" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="class" ns="http://inspire.ec.europa.eu/schemas/lcv/4.0"/>
++                <child name="href" ns="http://www.w3.org/1999/xlink"/>
++            </property>
++        </target>
++        <parameter value="{{project:LANDCOVER_OBSERVATION_CODELIST}}1-2" name="value"/>
++    </cell>
+     <cell relation="eu.esdihumboldt.hale.align.classification" id="C68d5a667-ec2e-4844-a0ac-b9bd72098d47" priority="normal">
+         <source>
+             <property>

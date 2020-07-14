@@ -63,6 +63,9 @@ tasks:
   hy-p-basis-dlm:
     project: hy-p
     model: Basis-DLM
+  lc:
+    project: lc
+    model: DLKM
   so:
     project: so
     model: DLKM
