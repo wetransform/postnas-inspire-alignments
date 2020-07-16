@@ -6,6 +6,8 @@ ad:
   advProject: annex-1/mappings/Addresses/aaa-ad-01.halex
 au:
   advProject: annex-1/mappings/AdministrativeUnits/aaa-au-flurstuecke.halex
+bu-2d:
+  advProject: annex-2-3/mappings/Buildings/2D/3A2INSPIRE_BU2D.halex
 cp:
   advProject: annex-1/mappings/CadastralParcels/aaa-cp-01.halex
 elu:

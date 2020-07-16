@@ -35,6 +35,21 @@ tasks:
   au-basis-dlm:
     project: au
     model: Basis-DLM
+  bu-2d-dlkm:
+    project: bu-2d
+    model: DLKM
+  bu-2d-basis-dlm:
+    project: bu-2d
+    model: Basis-DLM
+  bu-2d-dlm50:
+    project: bu-2d
+    model: DLM50
+  bu-2d-dlm250:
+    project: bu-2d
+    model: DLM250
+  bu-2d-dlm1000:
+    project: bu-2d
+    model: DLM1000
   cp:
     project: cp
     model: DLKM
