@@ -1,5 +1,5 @@
 diff --git a/projects/gn-auto.halex.alignment.xml b/projects/gn-manual.halex.alignment.xml
-index c9f05b7..f8addfc 100644
+index c9f05b7..ecd9f19 100644
 --- a/projects/gn-auto.halex.alignment.xml
 +++ b/projects/gn-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -122,66 +122,140 @@ index c9f05b7..f8addfc 100644
  if (point) {
  	_target {
  	}
-@@ -4173,16 +4183,12 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -3632,21 +3642,15 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C6ffe1102-f993-49da-bc1e-7c25ed40b8d2" priority="normal">
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C0745b820-d15a-47ba-83a1-bebdc0d2a2bb" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C3f5941a3-eaf1-4c23-99c8-fd528b94431f" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+         </source>
 -        <source>
 -            <property>
 -                <type name="ax_gebiet_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
 -                <child name="beginnt"/>
 -            </property>
 -        </source>
-+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Ce3e103b6-abfd-4ec2-8fa2-a93dee571cc4" priority="normal">
-         <source>
+         <target>
              <property>
--                <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr">
-+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-+                </type>
-                 <child name="beginnt"/>
-             </property>
-         </source>
-@@ -4597,16 +4603,12 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -3670,21 +3674,15 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cd904c950-4920-42cc-8648-858bf842f64c" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cdc98b28b-8a26-4dbb-bbc7-3f74a20a3203" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+         </source>
+-        <source>
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -3708,21 +3706,15 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C0fe8025f-9b37-46c5-bea0-0fb65743617a" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cd3f90201-f001-41a2-aa78-f5ae7b0568a7" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_bahnverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+         </source>
 -        <source>
 -            <property>
 -                <type name="ax_gebiet_kreis" ns="jdbc:postgresql:testbed:aaa_ogr"/>
 -                <child name="beginnt"/>
 -            </property>
 -        </source>
-+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C5d51dc13-fb05-48cc-b2b7-34099b43f0f9" priority="normal">
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -3746,21 +3738,15 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C874fc701-461b-4bea-a6f4-f5ad6305edb0" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C4b480e69-faf4-4cfd-95b5-7ef9548360d7" priority="normal">
          <source>
              <property>
--                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                <type name="ax_gleis" ns="jdbc:postgresql:testbed:aaa_ogr">
-+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-+                </type>
+-                <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                <type name="ax_baublock" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (baublockbezeichnung IS NULL) AND NOT (baublockbezeichnung = '')</condition>
+                 </type>
                  <child name="beginnt"/>
              </property>
          </source>
-@@ -4619,16 +4621,12 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
-         <parameter value="false" name="ignoreNamespaces"/>
-         <parameter value="false" name="structuralRename"/>
+-        <source>
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -3784,21 +3770,15 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
      </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C09d71e6c-a2f3-4f7e-9ded-0f703cb30bd5" priority="normal">
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C81c816fb-f232-47ff-b1e3-2cc177631b3f" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C5e90ea53-28e2-420c-a733-72baa81d6d9b" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_bauraumoderbodenordnungsrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+         </source>
 -        <source>
 -            <property>
 -                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
 -                <child name="beginnt"/>
 -            </property>
 -        </source>
-+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C91cfafb9-8527-42b6-8415-164af8e56790" priority="normal">
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -3822,21 +3802,15 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cb327b836-6e14-4edd-94ed-52bd21f94b4b" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C3999f6df-645a-41e7-948d-6bb4fd003c59" priority="normal">
          <source>
              <property>
--                <type name="ax_gebiet_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                <type name="ax_grenzuebergang" ns="jdbc:postgresql:testbed:aaa_ogr">
-+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-+                </type>
+-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
                  <child name="beginnt"/>
              </property>
          </source>
@@ -204,17 +278,133 @@ index c9f05b7..f8addfc 100644
 -                <child name="beginnt"/>
 -            </property>
 -        </source>
-+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cb45e5b9b-4355-4872-95a9-68a942feab3c" priority="normal">
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -3860,10 +3834,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C3f5941a3-eaf1-4c23-99c8-fd528b94431f" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C181b71c7-3e7a-4864-b601-4c531390bafe" priority="normal">
          <source>
              <property>
--                <type name="ax_gebiet_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                <type name="ax_hafen" ns="jdbc:postgresql:testbed:aaa_ogr">
-+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
-+                </type>
+-                <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -3892,11 +3866,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cdc98b28b-8a26-4dbb-bbc7-3f74a20a3203" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C14040eeb-5add-4ceb-980e-a280da7043a5" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (bezeichnung IS NULL)</condition>
++                <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -3924,10 +3898,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cd3f90201-f001-41a2-aa78-f5ae7b0568a7" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Caa5b0348-2377-46dd-a6b7-11dab50e9abe" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_bahnverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -3956,11 +3930,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C4b480e69-faf4-4cfd-95b5-7ef9548360d7" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C264dc096-61b5-4a61-acaa-ebd17310de5a" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_baublock" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (baublockbezeichnung IS NULL) AND NOT (baublockbezeichnung = '')</condition>
++                <type name="ax_bergbaubetrieb" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -3981,10 +3955,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C5e90ea53-28e2-420c-a733-72baa81d6d9b" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C0745b820-d15a-47ba-83a1-bebdc0d2a2bb" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_bauraumoderbodenordnungsrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4013,12 +3987,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C3999f6df-645a-41e7-948d-6bb4fd003c59" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C6ffe1102-f993-49da-bc1e-7c25ed40b8d2" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
++                <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
                  <child name="beginnt"/>
              </property>
          </source>
-@@ -6089,6 +6090,22 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -4045,10 +4017,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C181b71c7-3e7a-4864-b601-4c531390bafe" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C10995741-3244-402a-bbe1-2523cb06820e" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4077,10 +4049,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C14040eeb-5add-4ceb-980e-a280da7043a5" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C5e5ccf56-3e69-4f81-9850-18aaf2ff5816" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_denkmalschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4109,10 +4081,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Caa5b0348-2377-46dd-a6b7-11dab50e9abe" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Ce71638b4-1a05-4fc0-919f-5a13504ce727" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_duene" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4141,10 +4113,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
@@ -237,7 +427,13 @@ index c9f05b7..f8addfc 100644
      <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C32f1b9b7-cc60-4cda-ba06-c2e119510be6" priority="normal">
          <source>
              <property>
-@@ -9062,12 +9079,6 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+-                <type name="ax_bergbaubetrieb" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4173,16 +4145,12 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
          </annotation>
      </cell>
      <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C6ffe1102-f993-49da-bc1e-7c25ed40b8d2" priority="normal">
@@ -249,22 +445,40 @@ index c9f05b7..f8addfc 100644
 -        </source>
          <source name="id">
              <property>
-                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-@@ -9370,13 +9381,6 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+-                <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                </type>
+                 <child name="beginnt"/>
              </property>
-         </target>
-         <parameter value="true" name="useTargetTypePrefix"/>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
+         </source>
+@@ -4195,10 +4163,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+         <parameter value="false" name="ignoreNamespaces"/>
+         <parameter value="false" name="structuralRename"/>
      </cell>
-     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cb7ae6516-a081-460b-a977-381f0bff70ef" priority="normal">
-         <source name="id">
-@@ -10048,6 +10052,23 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C10995741-3244-402a-bbe1-2523cb06820e" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cedfa6b22-7e44-4b2c-b463-3c132b1e0d35" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_felsenfelsblockfelsnadel" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4227,10 +4195,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C5e5ccf56-3e69-4f81-9850-18aaf2ff5816" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C60802bb3-6148-4e81-b1a3-204994b51894" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_denkmalschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4259,10 +4227,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
@@ -288,7 +502,12 @@ index c9f05b7..f8addfc 100644
      <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C8eff885e-0122-4b1f-a5b7-47990543d915" priority="normal">
          <source name="id">
              <property>
-@@ -10079,6 +10100,21 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+-                <type name="ax_duene" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_flaechegemischternutzung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4291,11 +4259,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
@@ -310,7 +529,1233 @@ index c9f05b7..f8addfc 100644
      <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C7d69f39d-426f-48c5-becf-9f5392a9ed04" priority="normal">
          <source name="id">
              <property>
-@@ -10227,6 +10263,21 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -4323,11 +4291,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Ce3e103b6-abfd-4ec2-8fa2-a93dee571cc4" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Ce2b69a76-1300-4403-b2fc-5569b6915243" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -4355,10 +4323,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cedfa6b22-7e44-4b2c-b463-3c132b1e0d35" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cb7ae6516-a081-460b-a977-381f0bff70ef" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_felsenfelsblockfelsnadel" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4387,10 +4355,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C60802bb3-6148-4e81-b1a3-204994b51894" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C7f522955-2939-4741-92bb-e0caf45a1333" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_friedhof" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4419,10 +4387,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cd79f9d21-40ec-417b-81bb-ef1d52329f78" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C3d16c037-d22d-46a6-b068-62925103a866" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_flaechegemischternutzung" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4451,11 +4419,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C64c8dfbf-d329-4b9c-af8d-6d846fbec9f9" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cffa80a17-0453-4893-9f20-eac9cffab5de" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">(NOT (unverschluesselt IS NULL) AND NOT (unverschluesselt = '')) OR (NOT (gemeinde IS NULL) AND NOT (gemeinde = ''))</condition>
++                <type name="ax_gehoelz" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -4476,11 +4444,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Ce2b69a76-1300-4403-b2fc-5569b6915243" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cf69e7b2b-192f-4820-bb10-1303afdbb91a" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">(NOT (unverschluesselt IS NULL) AND NOT (unverschluesselt = '')) OR (NOT (gemeinde IS NULL) AND NOT (gemeinde = ''))</condition>
++                <type name="ax_halde" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -4493,6 +4461,13 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+         </target>
+         <parameter value="false" name="ignoreNamespaces"/>
+         <parameter value="false" name="structuralRename"/>
++        <annotation type="message">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++                <core:content>
++                    <core:text xml:space="preserve">Could not find unique reference to name, trying first match</core:text>
++                </core:content>
++            </core:message>
++        </annotation>
+         <annotation type="message">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                 <core:content>
+@@ -4501,10 +4476,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cb7ae6516-a081-460b-a977-381f0bff70ef" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Caf14d6f9-874c-45c9-8387-13b3fb63a0df" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_flugverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4518,25 +4493,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+         </target>
+         <parameter value="false" name="ignoreNamespaces"/>
+         <parameter value="false" name="structuralRename"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Could not find unique reference to name, trying first match</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C7f522955-2939-4741-92bb-e0caf45a1333" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C4932e681-716c-4453-b0b5-f3b82c145490" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_friedhof" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_gewann" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4565,10 +4526,28 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C3d16c037-d22d-46a6-b068-62925103a866" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C5d51dc13-fb05-48cc-b2b7-34099b43f0f9" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_gleis" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                </type>
++                <child name="beginnt"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++            </property>
++        </target>
++        <parameter value="false" name="ignoreNamespaces"/>
++        <parameter value="false" name="structuralRename"/>
++    </cell>
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C91cfafb9-8527-42b6-8415-164af8e56790" priority="normal">
++        <source>
++            <property>
++                <type name="ax_grenzuebergang" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4582,13 +4561,6 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+         </target>
+         <parameter value="false" name="ignoreNamespaces"/>
+         <parameter value="false" name="structuralRename"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Could not find unique reference to name, trying first match</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+         <annotation type="message">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                 <core:content>
+@@ -4597,16 +4569,12 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
+-        <source>
+-            <property>
+-                <type name="ax_gebiet_kreis" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cb45e5b9b-4355-4872-95a9-68a942feab3c" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <type name="ax_hafen" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                </type>
+                 <child name="beginnt"/>
+             </property>
+         </source>
+@@ -4619,78 +4587,12 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+         <parameter value="false" name="ignoreNamespaces"/>
+         <parameter value="false" name="structuralRename"/>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C09d71e6c-a2f3-4f7e-9ded-0f703cb30bd5" priority="normal">
+-        <source>
+-            <property>
+-                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C037d4c48-3d4d-4d47-a528-0a030f971213" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_gebiet_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-        <parameter value="false" name="ignoreNamespaces"/>
+-        <parameter value="false" name="structuralRename"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C9f5c5023-e913-4fb5-8255-2070c0b3399f" priority="normal">
+-        <source>
+-            <property>
+-                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+-        <source>
+-            <property>
+-                <type name="ax_gebiet_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-        <parameter value="false" name="ignoreNamespaces"/>
+-        <parameter value="false" name="structuralRename"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cc97357e7-3242-45b4-9409-7c3a4f78f9be" priority="normal">
+-        <source>
+-            <property>
+-                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+-        <source>
+-            <property>
+-                <type name="ax_gebiet_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-        <parameter value="false" name="ignoreNamespaces"/>
+-        <parameter value="false" name="structuralRename"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cffa80a17-0453-4893-9f20-eac9cffab5de" priority="normal">
+-        <source>
+-            <property>
+-                <type name="ax_gehoelz" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
++                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
++                </type>
+                 <child name="beginnt"/>
+             </property>
+         </source>
+@@ -4787,10 +4689,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Caf14d6f9-874c-45c9-8387-13b3fb63a0df" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cedb06e08-d19a-4c65-a8bc-e56ffd41c7cb" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_heide" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4819,10 +4721,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C4932e681-716c-4453-b0b5-f3b82c145490" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C06d25e67-fb6e-403d-80f0-b7ea03755236" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_gewann" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_heilquellegasquelle" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4851,10 +4753,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C5d51dc13-fb05-48cc-b2b7-34099b43f0f9" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C6dc1680e-7a97-4471-9fd3-eeca419c5c94" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_gleis" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4883,10 +4785,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C91cfafb9-8527-42b6-8415-164af8e56790" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C997fe674-4aab-4528-99f9-754c18dbad2f" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_grenzuebergang" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_hoehleneingang" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4915,10 +4817,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cb45e5b9b-4355-4872-95a9-68a942feab3c" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C4890150f-eb5a-42dc-a7dd-dcbcec92821d" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_hafen" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_industrieundgewerbeflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -4947,11 +4849,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C037d4c48-3d4d-4d47-a528-0a030f971213" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Ccb59433b-5248-4d24-ba37-af409bd0b474" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">(NOT (unverschluesselt IS NULL) AND NOT (unverschluesselt = '')) OR (NOT (gemeinde IS NULL) AND NOT (gemeinde = ''))</condition>
++                <type name="ax_insel" ns="jdbc:postgresql:testbed:aaa_ogr">
++                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -4972,10 +4874,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cf69e7b2b-192f-4820-bb10-1303afdbb91a" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cd904c950-4920-42cc-8648-858bf842f64c" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_halde" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5004,10 +4906,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cedb06e08-d19a-4c65-a8bc-e56ffd41c7cb" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C8eff885e-0122-4b1f-a5b7-47990543d915" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_heide" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_kleinraeumigerlandschaftsteil" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5036,12 +4938,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C06d25e67-fb6e-403d-80f0-b7ea03755236" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_heilquellegasquelle" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
++                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                 <child name="beginnt"/>
+             </property>
+         </source>
+@@ -5068,10 +4968,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C6dc1680e-7a97-4471-9fd3-eeca419c5c94" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C7d69f39d-426f-48c5-becf-9f5392a9ed04" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_landschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5100,10 +5000,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C997fe674-4aab-4528-99f9-754c18dbad2f" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cc19fe862-c5cc-44fa-a8a6-2630210434e5" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_hoehleneingang" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_landwirtschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5132,10 +5032,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C4890150f-eb5a-42dc-a7dd-dcbcec92821d" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C0ff4337a-ee64-4a34-bca1-3d14d9f41f3b" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_industrieundgewerbeflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5164,11 +5064,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Ccb59433b-5248-4d24-ba37-af409bd0b474" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C564aa357-a474-450c-a93e-f0307ac78f9d" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_insel" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -5196,10 +5096,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C8eff885e-0122-4b1f-a5b7-47990543d915" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Ccbbe19ef-bde7-4552-949c-30cbc3bdb553" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_kleinraeumigerlandschaftsteil" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_moor" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5228,12 +5128,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C7d69f39d-426f-48c5-becf-9f5392a9ed04" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C09d71e6c-a2f3-4f7e-9ded-0f703cb30bd5" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_landschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
++                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                 <child name="beginnt"/>
+             </property>
+         </source>
+@@ -5260,10 +5158,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cc19fe862-c5cc-44fa-a8a6-2630210434e5" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C4e6bd141-c081-4b15-b6e8-1314c7f557e1" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_landwirtschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_naturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5292,10 +5190,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C0ff4337a-ee64-4a34-bca1-3d14d9f41f3b" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C4298576c-9794-4ed0-860e-66531fd6bc88" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_ortslage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5324,10 +5222,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C564aa357-a474-450c-a93e-f0307ac78f9d" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C6b0f4934-f8ca-4b4a-b0a1-ae8482ff00c6" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="ECQL">(NOT (unverschluesselt IS NULL) AND NOT (unverschluesselt = '')) OR (NOT (gemeinde IS NULL) AND NOT (gemeinde = ''))</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5349,10 +5247,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Ccbbe19ef-bde7-4552-949c-30cbc3bdb553" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C49e4c2ff-e226-4952-a8e1-20ad6e61fa02" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_moor" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_polder" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5381,12 +5279,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C4e6bd141-c081-4b15-b6e8-1314c7f557e1" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C9f5c5023-e913-4fb5-8255-2070c0b3399f" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_naturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
++                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                 <child name="beginnt"/>
+             </property>
+         </source>
+@@ -5413,10 +5309,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C4298576c-9794-4ed0-860e-66531fd6bc88" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C32f8ed66-29c3-46e6-bb8d-96453f5b93b5" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_ortslage" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5445,10 +5341,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C6b0f4934-f8ca-4b4a-b0a1-ae8482ff00c6" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cc2e7b4d9-c8a5-4727-a8a3-07325dd8744e" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="ECQL">(NOT (unverschluesselt IS NULL) AND NOT (unverschluesselt = '')) OR (NOT (gemeinde IS NULL) AND NOT (gemeinde = ''))</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5470,10 +5366,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C49e4c2ff-e226-4952-a8e1-20ad6e61fa02" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C79ab88ee-e571-4090-a4ff-7ec9d1d63ba1" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_polder" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5502,10 +5398,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C32f8ed66-29c3-46e6-bb8d-96453f5b93b5" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C0fe8025f-9b37-46c5-bea0-0fb65743617a" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5534,35 +5430,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cc2e7b4d9-c8a5-4727-a8a3-07325dd8744e" priority="normal">
+-        <source>
+-            <property>
+-                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">(NOT (unverschluesselt IS NULL) AND NOT (unverschluesselt = '')) OR (NOT (gemeinde IS NULL) AND NOT (gemeinde = ''))</condition>
+-                </type>
+-                <child name="beginnt"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-        <parameter value="false" name="ignoreNamespaces"/>
+-        <parameter value="false" name="structuralRename"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C79ab88ee-e571-4090-a4ff-7ec9d1d63ba1" priority="normal">
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C874fc701-461b-4bea-a6f4-f5ad6305edb0" priority="normal">
+         <source>
+             <property>
+-                <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+@@ -5576,13 +5447,6 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+         </target>
+         <parameter value="false" name="ignoreNamespaces"/>
+         <parameter value="false" name="structuralRename"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Could not find unique reference to name, trying first match</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+         <annotation type="message">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                 <core:content>
+@@ -5787,7 +5651,25 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+         <source>
+             <property>
+                 <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">(NOT (unverschluesselt IS NULL) AND NOT (unverschluesselt = '')) OR (NOT (gemeinde IS NULL) AND NOT (gemeinde = ''))</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
++                </type>
++                <child name="beginnt"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++            </property>
++        </target>
++        <parameter value="false" name="ignoreNamespaces"/>
++        <parameter value="false" name="structuralRename"/>
++    </cell>
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C81c816fb-f232-47ff-b1e3-2cc177631b3f" priority="normal">
++        <source>
++            <property>
++                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="beginnt"/>
+             </property>
+@@ -6089,6 +5971,22 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cc97357e7-3242-45b4-9409-7c3a4f78f9be" priority="normal">
++        <source>
++            <property>
++                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="beginnt"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++            </property>
++        </target>
++        <parameter value="false" name="ignoreNamespaces"/>
++        <parameter value="false" name="structuralRename"/>
++    </cell>
+     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C32f1b9b7-cc60-4cda-ba06-c2e119510be6" priority="normal">
+         <source>
+             <property>
+@@ -6153,6 +6051,24 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
++    <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_Cb327b836-6e14-4edd-94ed-52bd21f94b4b" priority="normal">
++        <source>
++            <property>
++                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                </type>
++                <child name="beginnt"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++            </property>
++        </target>
++        <parameter value="false" name="ignoreNamespaces"/>
++        <parameter value="false" name="structuralRename"/>
++    </cell>
+     <cell relation="eu.esdihumboldt.hale.align.rename" id="C76799f79-133d-4391-a607-300546bcc056_C1ba7535e-a1bb-4db1-9b24-d73899871f56" priority="normal">
+         <source>
+             <property>
+@@ -6308,7 +6224,7 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+         <source name="geometrie">
+             <property>
+                 <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (bezeichnung IS NULL)</condition>
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="wkb_geometry"/>
+             </property>
+@@ -8536,206 +8452,15 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C0745b820-d15a-47ba-83a1-bebdc0d2a2bb" priority="normal">
+-        <source name="id">
+-            <property>
+-                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+-            </property>
+-        </target>
+-        <parameter value="true" name="useTargetTypePrefix"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Could not find unique reference to name, trying first match</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cd904c950-4920-42cc-8648-858bf842f64c" priority="normal">
+-        <source name="id">
+-            <property>
+-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+-            </property>
+-        </target>
+-        <parameter value="true" name="useTargetTypePrefix"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Could not find unique reference to name, trying first match</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C0fe8025f-9b37-46c5-bea0-0fb65743617a" priority="normal">
+-        <source name="id">
+-            <property>
+-                <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+-            </property>
+-        </target>
+-        <parameter value="true" name="useTargetTypePrefix"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Could not find unique reference to name, trying first match</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C874fc701-461b-4bea-a6f4-f5ad6305edb0" priority="normal">
+-        <source name="id">
+-            <property>
+-                <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+-            </property>
+-        </target>
+-        <parameter value="true" name="useTargetTypePrefix"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Could not find unique reference to name, trying first match</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C81c816fb-f232-47ff-b1e3-2cc177631b3f" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="C3cabcfac-9a97-4016-b46d-3559fdaeb52c" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+-            </property>
+-        </target>
+-        <parameter value="true" name="useTargetTypePrefix"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Could not find unique reference to name, trying first match</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cb327b836-6e14-4edd-94ed-52bd21f94b4b" priority="normal">
+-        <source name="id">
+-            <property>
+-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+@@ -8937,10 +8662,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C181b71c7-3e7a-4864-b601-4c531390bafe" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C14040eeb-5add-4ceb-980e-a280da7043a5" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -8968,10 +8693,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C14040eeb-5add-4ceb-980e-a280da7043a5" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Caa5b0348-2377-46dd-a6b7-11dab50e9abe" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -8999,10 +8724,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Caa5b0348-2377-46dd-a6b7-11dab50e9abe" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C264dc096-61b5-4a61-acaa-ebd17310de5a" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_bergbaubetrieb" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -9030,10 +8755,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C264dc096-61b5-4a61-acaa-ebd17310de5a" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C0745b820-d15a-47ba-83a1-bebdc0d2a2bb" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_bergbaubetrieb" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -9062,12 +8787,6 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+         </annotation>
+     </cell>
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C6ffe1102-f993-49da-bc1e-7c25ed40b8d2" priority="normal">
+-        <source name="id">
+-            <property>
+-                <type name="ax_gebiet_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <source name="id">
+             <property>
+                 <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+@@ -9370,13 +9089,6 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </property>
+         </target>
+         <parameter value="true" name="useTargetTypePrefix"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+     </cell>
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cb7ae6516-a081-460b-a977-381f0bff70ef" priority="normal">
+         <source name="id">
+@@ -9394,20 +9106,6 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </property>
+         </target>
+         <parameter value="true" name="useTargetTypePrefix"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Could not find unique reference to name, trying first match</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+     </cell>
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C7f522955-2939-4741-92bb-e0caf45a1333" priority="normal">
+         <source name="id">
+@@ -9456,104 +9154,6 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </property>
+         </target>
+         <parameter value="true" name="useTargetTypePrefix"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Could not find unique reference to name, trying first match</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
+-        <source name="id">
+-            <property>
+-                <type name="ax_gebiet_kreis" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+-                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+-            </property>
+-        </target>
+-        <parameter value="true" name="useTargetTypePrefix"/>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C09d71e6c-a2f3-4f7e-9ded-0f703cb30bd5" priority="normal">
+-        <source name="id">
+-            <property>
+-                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+-                <type name="ax_gebiet_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+-            </property>
+-        </target>
+-        <parameter value="true" name="useTargetTypePrefix"/>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C9f5c5023-e913-4fb5-8255-2070c0b3399f" priority="normal">
+-        <source name="id">
+-            <property>
+-                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+-                <type name="ax_gebiet_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+-            </property>
+-        </target>
+-        <parameter value="true" name="useTargetTypePrefix"/>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cc97357e7-3242-45b4-9409-7c3a4f78f9be" priority="normal">
+-        <source name="id">
+-            <property>
+-                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <source name="id">
+-            <property>
+-                <type name="ax_gebiet_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+-            </property>
+-        </target>
+-        <parameter value="true" name="useTargetTypePrefix"/>
+     </cell>
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cffa80a17-0453-4893-9f20-eac9cffab5de" priority="normal">
+         <source name="id">
+@@ -9601,12 +9201,6 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+         </target>
+     </cell>
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C0607871a-8806-4d7e-bfe2-163ee53a0c07" priority="normal">
+-        <source name="id">
+-            <property>
+-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <source name="id">
+             <property>
+                 <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+@@ -10048,6 +9642,23 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cd904c950-4920-42cc-8648-858bf842f64c" priority="normal">
++        <source name="id">
++            <property>
++                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                </type>
++                <child name="gml_id"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
++            </property>
++        </target>
++        <parameter value="true" name="useTargetTypePrefix"/>
++   </cell>
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C8eff885e-0122-4b1f-a5b7-47990543d915" priority="normal">
+         <source name="id">
+             <property>
+@@ -10079,6 +9690,21 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
++        <source name="id">
++            <property>
++                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gml_id"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
++            </property>
++        </target>
++        <parameter value="true" name="useTargetTypePrefix"/>
++    </cell>
+     <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C7d69f39d-426f-48c5-becf-9f5392a9ed04" priority="normal">
+         <source name="id">
+             <property>
+@@ -10227,6 +9853,21 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
@@ -332,7 +1777,7 @@ index c9f05b7..f8addfc 100644
      <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C4e6bd141-c081-4b15-b6e8-1314c7f557e1" priority="normal">
          <source name="id">
              <property>
-@@ -10344,6 +10395,28 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -10344,6 +9985,28 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
@@ -361,7 +1806,507 @@ index c9f05b7..f8addfc 100644
      <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C32f8ed66-29c3-46e6-bb8d-96453f5b93b5" priority="normal">
          <source name="id">
              <property>
-@@ -14128,13 +14201,26 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -10430,10 +10093,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Ce9cfab3e-112e-4911-a57f-9d69269f1ad4" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C0fe8025f-9b37-46c5-bea0-0fb65743617a" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -10461,10 +10124,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C4d9c12b4-5db6-4133-8aff-2279e46bbd16" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C874fc701-461b-4bea-a6f4-f5ad6305edb0" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -10492,10 +10155,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cf22390c3-9796-4ef3-98c0-a0e836ed7fac" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Ce9cfab3e-112e-4911-a57f-9d69269f1ad4" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_soll" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -10523,10 +10186,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C222a541a-e97f-4fa5-9c26-c92ad8cf9f05" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C4d9c12b4-5db6-4133-8aff-2279e46bbd16" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -10554,10 +10217,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C17e1a935-9c34-4569-aee2-263211a12288" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cf22390c3-9796-4ef3-98c0-a0e836ed7fac" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_sonstigesrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_soll" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -10585,10 +10248,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C1b06eafe-7a44-46fe-aa27-d351e2a82228" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C222a541a-e97f-4fa5-9c26-c92ad8cf9f05" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_sportfreizeitunderholungsflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -10601,26 +10264,12 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </property>
+         </target>
+         <parameter value="true" name="useTargetTypePrefix"/>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Could not find unique reference to name, trying first match</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C07a6fe8a-a792-4b4b-9ade-12c25ebc4697" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C81c816fb-f232-47ff-b1e3-2cc177631b3f" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">(NOT (unverschluesselt IS NULL) AND NOT (unverschluesselt = '')) OR (NOT (gemeinde IS NULL) AND NOT (gemeinde = ''))</condition>
++                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -10640,11 +10289,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C768ef05d-1933-4470-a903-3d486f4d3a5e" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C17e1a935-9c34-4569-aee2-263211a12288" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">(NOT (unverschluesselt IS NULL) AND NOT (unverschluesselt = '')) OR (NOT (gemeinde IS NULL) AND NOT (gemeinde = ''))</condition>
++                <type name="ax_sonstigesrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -10664,10 +10313,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C250ea4ad-4d2c-4f8b-bd36-e5d03b5c9408" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C1b06eafe-7a44-46fe-aa27-d351e2a82228" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_sportfreizeitunderholungsflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -10695,11 +10344,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C02f8401a-0e0e-45e4-890f-59756ef87d46" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C07a6fe8a-a792-4b4b-9ade-12c25ebc4697" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -10726,10 +10375,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cf4ab4650-3ba3-4187-ba43-fd735710495c" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C81c816fb-f232-47ff-b1e3-2cc177631b3f" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_tagebaugrubesteinbruch" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -10757,11 +10406,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C2908730b-c63e-4360-a0f1-c76a0f070c0d" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C768ef05d-1933-4470-a903-3d486f4d3a5e" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_testgelaende" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -10788,10 +10437,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C2a1bac96-3f92-4579-96ef-0e685309ac53" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C250ea4ad-4d2c-4f8b-bd36-e5d03b5c9408" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -10819,10 +10468,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C9c24c044-0e70-4227-8162-80c7f29025df" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C02f8401a-0e0e-45e4-890f-59756ef87d46" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_unlandvegetationsloseflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -10850,10 +10499,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C866f20fd-2906-4595-9347-41efbf70a93e" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cf4ab4650-3ba3-4187-ba43-fd735710495c" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_tagebaugrubesteinbruch" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -10881,10 +10530,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C5846e0ab-4237-4574-8e3f-819826bbcf19" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C2908730b-c63e-4360-a0f1-c76a0f070c0d" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_testgelaende" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -10912,10 +10561,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C32f1b9b7-cc60-4cda-ba06-c2e119510be6" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C2a1bac96-3f92-4579-96ef-0e685309ac53" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -10943,10 +10592,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cec74fdc1-1b26-4430-bef9-244d30df15be" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C9c24c044-0e70-4227-8162-80c7f29025df" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_wald" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_unlandvegetationsloseflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -10974,11 +10623,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C1ba7535e-a1bb-4db1-9b24-d73899871f56" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C866f20fd-2906-4595-9347-41efbf70a93e" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">(NOT (unverschluesselt IS NULL) AND NOT (unverschluesselt = '')) OR (NOT (gemeinde IS NULL) AND NOT (gemeinde = ''))</condition>
++                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -10998,10 +10647,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C8d84f17f-fb36-41f1-97a6-9773178c8b98" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C5846e0ab-4237-4574-8e3f-819826bbcf19" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -11029,12 +10678,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cfb1ef4cf-be19-46af-a44a-1e312eac56fe" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cc97357e7-3242-45b4-9409-7c3a4f78f9be" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_wohnbauflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
++                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                 <child name="gml_id"/>
+             </property>
+         </source>
+@@ -11060,10 +10707,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cb1b4906a-d2ca-4e45-9dfd-db1dc6682b8f" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C32f1b9b7-cc60-4cda-ba06-c2e119510be6" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_wohnplatz" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -13571,27 +13218,19 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+         </target>
+         <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C0745b820-d15a-47ba-83a1-bebdc0d2a2bb" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cec74fdc1-1b26-4430-bef9-244d30df15be" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_wald" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
++                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+             </property>
+         </target>
+         <parameter value="true" name="useTargetTypePrefix"/>
+@@ -13610,27 +13249,19 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cd904c950-4920-42cc-8648-858bf842f64c" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cb327b836-6e14-4edd-94ed-52bd21f94b4b" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
++                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+             </property>
+         </target>
+         <parameter value="true" name="useTargetTypePrefix"/>
+@@ -13649,27 +13280,19 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C0fe8025f-9b37-46c5-bea0-0fb65743617a" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C1ba7535e-a1bb-4db1-9b24-d73899871f56" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
++                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+             </property>
+         </target>
+         <parameter value="true" name="useTargetTypePrefix"/>
+@@ -13688,27 +13311,19 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C874fc701-461b-4bea-a6f4-f5ad6305edb0" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_C8d84f17f-fb36-41f1-97a6-9773178c8b98" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
++                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+             </property>
+         </target>
+         <parameter value="true" name="useTargetTypePrefix"/>
+@@ -13727,27 +13342,19 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C81c816fb-f232-47ff-b1e3-2cc177631b3f" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cfb1ef4cf-be19-46af-a44a-1e312eac56fe" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_wohnbauflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
++                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+             </property>
+         </target>
+         <parameter value="true" name="useTargetTypePrefix"/>
+@@ -13766,27 +13373,19 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cb327b836-6e14-4edd-94ed-52bd21f94b4b" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Cbb91121f-7d7e-40b6-8b95-087d3a05b81e_Cb1b4906a-d2ca-4e45-9dfd-db1dc6682b8f" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_wohnplatz" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+         </source>
+-        <source name="id">
+-            <property>
+-                <type name="ap_pto" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+-                <child name="gml_id"/>
+-            </property>
+-        </source>
+         <target>
+             <property>
+                 <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
++                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
+             </property>
+         </target>
+         <parameter value="true" name="useTargetTypePrefix"/>
+@@ -14128,13 +13727,26 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
@@ -371,7 +2316,7 @@ index c9f05b7..f8addfc 100644
              <property>
 -                <type name="ax_gebiet_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
 +                <type name="ax_boeschungkliff" ns="jdbc:postgresql:testbed:aaa_ogr">
-+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
 +                </type>
                  <child name="gml_id"/>
              </property>
@@ -390,7 +2335,7 @@ index c9f05b7..f8addfc 100644
          <source name="id">
              <property>
                  <type name="ax_bundesland" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-@@ -14566,16 +14652,12 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -14566,16 +14178,12 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
@@ -406,12 +2351,12 @@ index c9f05b7..f8addfc 100644
              <property>
 -                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
 +                <type name="ax_gehoelz" ns="jdbc:postgresql:testbed:aaa_ogr">
-+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
 +                </type>
                  <child name="gml_id"/>
              </property>
          </source>
-@@ -14589,16 +14671,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -14589,16 +14197,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
          </target>
          <parameter value="true" name="useTargetTypePrefix"/>
      </cell>
@@ -430,7 +2375,7 @@ index c9f05b7..f8addfc 100644
                  <child name="gml_id"/>
              </property>
          </source>
-@@ -14612,16 +14688,12 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -14612,16 +14214,12 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
          </target>
          <parameter value="true" name="useTargetTypePrefix"/>
      </cell>
@@ -446,12 +2391,12 @@ index c9f05b7..f8addfc 100644
              <property>
 -                <type name="ax_gebiet_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
 +                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
-+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
 +                </type>
                  <child name="gml_id"/>
              </property>
          </source>
-@@ -14635,16 +14707,31 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -14635,16 +14233,31 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
          </target>
          <parameter value="true" name="useTargetTypePrefix"/>
      </cell>
@@ -461,7 +2406,7 @@ index c9f05b7..f8addfc 100644
              <property>
 -                <type name="ax_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
 +                <type name="ax_halde" ns="jdbc:postgresql:testbed:aaa_ogr">
-+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
 +                </type>
                  <child name="gml_id"/>
              </property>
@@ -481,12 +2426,379 @@ index c9f05b7..f8addfc 100644
              <property>
 -                <type name="ax_gebiet_verwaltungsgemeinschaft" ns="jdbc:postgresql:testbed:aaa_ogr"/>
 +                <type name="ax_heide" ns="jdbc:postgresql:testbed:aaa_ogr">
-+                    <condition lang="CQL">name is not null and name &lt;&gt; ''</condition>
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
 +                </type>
                  <child name="gml_id"/>
              </property>
          </source>
-@@ -16107,6 +16194,23 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -14658,10 +14271,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+         </target>
+         <parameter value="true" name="useTargetTypePrefix"/>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cffa80a17-0453-4893-9f20-eac9cffab5de" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C06d25e67-fb6e-403d-80f0-b7ea03755236" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_gehoelz" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_heilquellegasquelle" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -14707,16 +14320,31 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </property>
+         </target>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C0607871a-8806-4d7e-bfe2-163ee53a0c07" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C91cfafb9-8527-42b6-8415-164af8e56790" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_kommunalesgebiet" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <type name="ax_grenzuebergang" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                </type>
+                 <child name="gml_id"/>
+             </property>
+         </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
++                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
++            </property>
++        </target>
++        <parameter value="true" name="useTargetTypePrefix"/>
++    </cell>
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cb45e5b9b-4355-4872-95a9-68a942feab3c" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_gemeinde" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <type name="ax_hafen" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                </type>
+                 <child name="gml_id"/>
+             </property>
+         </source>
+@@ -14730,11 +14358,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+         </target>
+         <parameter value="true" name="useTargetTypePrefix"/>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cab15e70e-d089-4e3e-8635-fe3d06615fab" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C4890150f-eb5a-42dc-a7dd-dcbcec92821d" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                <type name="ax_industrieundgewerbeflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -14862,10 +14490,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C91cfafb9-8527-42b6-8415-164af8e56790" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C6dc1680e-7a97-4471-9fd3-eeca419c5c94" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_grenzuebergang" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -14895,10 +14523,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cb45e5b9b-4355-4872-95a9-68a942feab3c" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C997fe674-4aab-4528-99f9-754c18dbad2f" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_hafen" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_hoehleneingang" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -14954,10 +14582,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cf69e7b2b-192f-4820-bb10-1303afdbb91a" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Ccb59433b-5248-4d24-ba37-af409bd0b474" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_halde" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_insel" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -14987,10 +14615,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cedb06e08-d19a-4c65-a8bc-e56ffd41c7cb" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cd904c950-4920-42cc-8648-858bf842f64c" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_heide" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -15020,10 +14648,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C06d25e67-fb6e-403d-80f0-b7ea03755236" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C8eff885e-0122-4b1f-a5b7-47990543d915" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_heilquellegasquelle" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_kleinraeumigerlandschaftsteil" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -15053,12 +14681,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C6dc1680e-7a97-4471-9fd3-eeca419c5c94" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C86bdd4fc-6d3e-4919-af38-49dd92fe26aa" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
++                <type name="ax_kreisregion" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                 <child name="gml_id"/>
+             </property>
+         </source>
+@@ -15086,10 +14712,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C997fe674-4aab-4528-99f9-754c18dbad2f" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C7d69f39d-426f-48c5-becf-9f5392a9ed04" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_hoehleneingang" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_landschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -15119,10 +14745,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C4890150f-eb5a-42dc-a7dd-dcbcec92821d" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cc19fe862-c5cc-44fa-a8a6-2630210434e5" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_industrieundgewerbeflaeche" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_landwirtschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -15152,10 +14778,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Ccb59433b-5248-4d24-ba37-af409bd0b474" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C0ff4337a-ee64-4a34-bca1-3d14d9f41f3b" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_insel" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -15185,11 +14811,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C8eff885e-0122-4b1f-a5b7-47990543d915" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C564aa357-a474-450c-a93e-f0307ac78f9d" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_kleinraeumigerlandschaftsteil" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -15218,10 +14844,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C7d69f39d-426f-48c5-becf-9f5392a9ed04" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Ccbbe19ef-bde7-4552-949c-30cbc3bdb553" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_landschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_moor" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -15251,12 +14877,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cc19fe862-c5cc-44fa-a8a6-2630210434e5" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C09d71e6c-a2f3-4f7e-9ded-0f703cb30bd5" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_landwirtschaft" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
++                <type name="ax_nationalstaat" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                 <child name="gml_id"/>
+             </property>
+         </source>
+@@ -15284,10 +14908,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C0ff4337a-ee64-4a34-bca1-3d14d9f41f3b" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C4e6bd141-c081-4b15-b6e8-1314c7f557e1" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_naturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -15317,11 +14941,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C564aa357-a474-450c-a93e-f0307ac78f9d" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C4298576c-9794-4ed0-860e-66531fd6bc88" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">(NOT (unverschluesselt IS NULL) AND NOT (unverschluesselt = '')) OR (NOT (gemeinde IS NULL) AND NOT (gemeinde = ''))</condition>
++                <type name="ax_ortslage" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -15343,11 +14967,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Ccbbe19ef-bde7-4552-949c-30cbc3bdb553" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C6b0f4934-f8ca-4b4a-b0a1-ae8482ff00c6" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_moor" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -15376,10 +15000,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C4e6bd141-c081-4b15-b6e8-1314c7f557e1" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C49e4c2ff-e226-4952-a8e1-20ad6e61fa02" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_naturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_polder" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -15409,12 +15033,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C4298576c-9794-4ed0-860e-66531fd6bc88" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C9f5c5023-e913-4fb5-8255-2070c0b3399f" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_ortslage" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
++                <type name="ax_regierungsbezirk" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                 <child name="gml_id"/>
+             </property>
+         </source>
+@@ -15442,11 +15064,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C6b0f4934-f8ca-4b4a-b0a1-ae8482ff00c6" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C32f8ed66-29c3-46e6-bb8d-96453f5b93b5" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">(NOT (unverschluesselt IS NULL) AND NOT (unverschluesselt = '')) OR (NOT (gemeinde IS NULL) AND NOT (gemeinde = ''))</condition>
++                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -15468,11 +15090,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C49e4c2ff-e226-4952-a8e1-20ad6e61fa02" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cc2e7b4d9-c8a5-4727-a8a3-07325dd8744e" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_polder" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">unverschluesselt is not null or lage is not null</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -15501,10 +15123,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C32f8ed66-29c3-46e6-bb8d-96453f5b93b5" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C79ab88ee-e571-4090-a4ff-7ec9d1d63ba1" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -15534,11 +15156,11 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cc2e7b4d9-c8a5-4727-a8a3-07325dd8744e" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C0fe8025f-9b37-46c5-bea0-0fb65743617a" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="ECQL">(NOT (unverschluesselt IS NULL) AND NOT (unverschluesselt = '')) OR (NOT (gemeinde IS NULL) AND NOT (gemeinde = ''))</condition>
++                <type name="ax_schutzgebietnachnaturumweltoderbodenschutzrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+             </property>
+@@ -15560,10 +15182,10 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C79ab88ee-e571-4090-a4ff-7ec9d1d63ba1" priority="normal">
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C874fc701-461b-4bea-a6f4-f5ad6305edb0" priority="normal">
+         <source name="id">
+             <property>
+-                <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
++                <type name="ax_schutzgebietnachwasserrecht" ns="jdbc:postgresql:testbed:aaa_ogr">
+                     <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+                 <child name="gml_id"/>
+@@ -16107,6 +15729,23 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
@@ -507,10 +2819,323 @@ index c9f05b7..f8addfc 100644
 +        </target>
 +        <parameter value="true" name="useTargetTypePrefix"/>
 +    </cell>
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cedb06e08-d19a-4c65-a8bc-e56ffd41c7cb" priority="normal">
+         <source name="id">
+             <property>
+@@ -16173,6 +15812,25 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
++    <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_Cc97357e7-3242-45b4-9409-7c3a4f78f9be" priority="normal">
++        <source name="id">
++            <property>
++                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
++                </type>
++                <child name="gml_id"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
++                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
++            </property>
++        </target>
++        <parameter value="true" name="useTargetTypePrefix"/>
++    </cell>
      <cell relation="custom:alignment:adv.inspire.id.default" id="Ceb45feb4-16a2-492c-a3c0-58dc956e8005_C32f1b9b7-cc60-4cda-ba06-c2e119510be6" priority="normal">
          <source name="id">
              <property>
-@@ -20140,6 +20244,96 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -19324,139 +18982,13 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cb6bc9ef4-e386-4832-a1e7-b8eeb2037400" priority="normal">
+-        <source name="lagebezeichnung">
+-            <property>
+-                <type name="AX_BahnverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="CQL">bezeichnung is not null</condition>
+-                </type>
+-                <child name="bezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_BahnverkehrType/bezeichnung/AX_Lagebezeichnung found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C286ac70d-25c5-4f7d-a80b-9ca24ccfb119" priority="normal">
+-        <source name="lagebezeichnung">
+-            <property>
+-                <type name="AX_FliessgewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="ECQL">(name.AX_Lagebezeichnung.unverschluesselt is not null and name.AX_Lagebezeichnung.unverschluesselt &lt;&gt; '') OR (name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde is not null and name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde &lt;&gt; '')</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_FliessgewaesserType/name/AX_Lagebezeichnung found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Ca302db1b-ec63-46bc-b5ba-0ca0a349b028" priority="normal">
+-        <source name="lagebezeichnung">
+-            <property>
+-                <type name="AX_FlugverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="ECQL">(name.AX_Lagebezeichnung.unverschluesselt is not null and name.AX_Lagebezeichnung.unverschluesselt &lt;&gt; '') OR (name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde is not null and name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde &lt;&gt; '')</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_FlugverkehrType/name/AX_Lagebezeichnung found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C5f952416-142c-4dbc-bd5e-1850306b0c65" priority="normal">
+-        <source name="lagebezeichnung">
+-            <property>
+-                <type name="AX_HafenbeckenType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="ECQL">(name.AX_Lagebezeichnung.unverschluesselt is not null and name.AX_Lagebezeichnung.unverschluesselt &lt;&gt; '') OR (name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde is not null and name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde &lt;&gt; '')</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_HafenbeckenType/name/AX_Lagebezeichnung found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Ccf7bb2b5-2d33-436a-aefa-c785cf3161d9" priority="normal">
+-        <source name="lagebezeichnung">
+-            <property>
+-                <type name="AX_MeerType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="ECQL">(name.AX_Lagebezeichnung.unverschluesselt is not null and name.AX_Lagebezeichnung.unverschluesselt &lt;&gt; '') OR (name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde is not null and name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde &lt;&gt; '')</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_MeerType/name/AX_Lagebezeichnung found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C0387fa9e-2ba2-4e37-8242-b1a284f952fb" priority="normal">
+-        <source name="lagebezeichnung">
++    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C03a70e9d-239c-4dba-85a1-e26b11bb2524" priority="normal">
++        <source name="spelling">
+             <property>
+-                <type name="AX_PlatzType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="ECQL">(name.AX_Lagebezeichnung.unverschluesselt is not null and name.AX_Lagebezeichnung.unverschluesselt &lt;&gt; '') OR (name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde is not null and name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde &lt;&gt; '')</condition>
++                <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
++                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+                 </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -19474,113 +19006,41 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C001a1ba1-d7ff-4374-89a6-a00fac6bc13a" priority="normal">
+-        <source name="lagebezeichnung">
+-            <property>
+-                <type name="AX_SchiffsverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="ECQL">(name.AX_Lagebezeichnung.unverschluesselt is not null and name.AX_Lagebezeichnung.unverschluesselt &lt;&gt; '') OR (name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde is not null and name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde &lt;&gt; '')</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_SchiffsverkehrType/name/AX_Lagebezeichnung found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C8568e877-b442-4e75-92cf-8dd2504d30bf" priority="normal">
+-        <source name="lagebezeichnung">
+-            <property>
+-                <type name="AX_StehendesGewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="ECQL">(name.AX_Lagebezeichnung.unverschluesselt is not null and name.AX_Lagebezeichnung.unverschluesselt &lt;&gt; '') OR (name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde is not null and name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde &lt;&gt; '')</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-            </property>
+-        </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_StehendesGewaesserType/name/AX_Lagebezeichnung found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cd2f35246-916d-4414-b732-7071be7ad95a" priority="normal">
+-        <source name="lagebezeichnung">
++    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cb6bc9ef4-e386-4832-a1e7-b8eeb2037400" priority="normal">
++        <source name="lage_gemeinde">
+             <property>
+-                <type name="AX_StrassenverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="ECQL">(name.AX_Lagebezeichnung.unverschluesselt is not null and name.AX_Lagebezeichnung.unverschluesselt &lt;&gt; '') OR (name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde is not null and name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde &lt;&gt; '')</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
++                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gemeinde"/>
+             </property>
+         </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_StrassenverkehrType/name/AX_Lagebezeichnung found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C9784554a-ab1b-4e9c-86f9-54929a6e1428" priority="normal">
+-        <source name="lagebezeichnung">
++        <source name="lage_kreis">
+             <property>
+-                <type name="AX_WegType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                    <condition lang="ECQL">(name.AX_Lagebezeichnung.unverschluesselt is not null and name.AX_Lagebezeichnung.unverschluesselt &lt;&gt; '') OR (name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde is not null and name.AX_Lagebezeichnung.verschluesselt.AX_VerschluesselteLagebezeichnung.gemeinde &lt;&gt; '')</condition>
+-                </type>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
++                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="kreis"/>
+             </property>
+         </source>
+-        <target>
+-            <property>
+-                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-            </property>
+-        </target>
+-        <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+-                <core:content>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_WegType/name/AX_Lagebezeichnung found</core:text>
+-                </core:content>
+-            </core:message>
+-        </annotation>
+-    </cell>
+-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C03a70e9d-239c-4dba-85a1-e26b11bb2524" priority="normal">
+-        <source name="spelling">
++        <source name="lage_lage">
+             <property>
+-                <type name="ax_bahnstrecke" ns="jdbc:postgresql:testbed:aaa_ogr">
+-                    <condition lang="CQL">NOT (name IS NULL) AND NOT (name = '')</condition>
+-                </type>
+-                <child name="name"/>
++                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="lage"/>
++            </property>
++        </source>
++        <source name="lage_land">
++            <property>
++                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="land"/>
++            </property>
++        </source>
++        <source name="lage_regierungsbezirk">
++            <property>
++                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="regierungsbezirk"/>
++            </property>
++        </source>
++        <source name="lage_unverschluesselt">
++            <property>
++                <type name="ax_bahnverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="unverschluesselt"/>
+             </property>
+         </source>
+         <target>
+@@ -20140,6 +19600,96 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
@@ -607,7 +3232,7 @@ index c9f05b7..f8addfc 100644
      <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbf5d7902-dea4-4005-9d14-a9609617a40b" priority="normal">
          <source name="spelling">
              <property>
-@@ -20465,6 +20659,51 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -20465,6 +20015,51 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
@@ -659,7 +3284,7 @@ index c9f05b7..f8addfc 100644
      <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C95d17b10-614b-47c9-ad79-57d0368c011c" priority="normal">
          <source name="spelling">
              <property>
-@@ -20852,6 +21091,51 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -20852,6 +20447,51 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
@@ -711,7 +3336,7 @@ index c9f05b7..f8addfc 100644
      <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cf5ac9aff-d3f1-4dba-8845-df403779a6b7" priority="normal">
          <source name="spelling">
              <property>
-@@ -20960,6 +21244,51 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -20960,6 +20600,51 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
@@ -763,7 +3388,7 @@ index c9f05b7..f8addfc 100644
      <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C31e8224f-9a2d-4b91-9f23-8c9f486c14bd" priority="normal">
          <source name="spelling">
              <property>
-@@ -21037,6 +21366,51 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -21037,6 +20722,51 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
@@ -815,7 +3440,7 @@ index c9f05b7..f8addfc 100644
      <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc216d08b-a90d-4afe-86de-a5c4a98fd329" priority="normal">
          <source name="spelling">
              <property>
-@@ -21316,6 +21690,51 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -21316,6 +21046,51 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
@@ -867,7 +3492,59 @@ index c9f05b7..f8addfc 100644
      <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc692daf2-37c9-4219-b740-f3e4ff28d3fe" priority="normal">
          <source name="spelling">
              <property>
-@@ -21728,6 +22147,51 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+@@ -21347,6 +21122,51 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
+             </core:message>
+         </annotation>
+     </cell>
++    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cd2f35246-916d-4414-b732-7071be7ad95a" priority="normal">
++        <source name="lage_gemeinde">
++            <property>
++                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gemeinde"/>
++            </property>
++        </source>
++        <source name="lage_kreis">
++            <property>
++                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="kreis"/>
++            </property>
++        </source>
++        <source name="lage_lage">
++            <property>
++                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="lage"/>
++            </property>
++        </source>
++        <source name="lage_land">
++            <property>
++                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="land"/>
++            </property>
++        </source>
++        <source name="lage_regierungsbezirk">
++            <property>
++                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="regierungsbezirk"/>
++            </property>
++        </source>
++        <source name="lage_unverschluesselt">
++            <property>
++                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="unverschluesselt"/>
++            </property>
++        </source>
++        <target>
++            <property>
++                <type name="NamedPlaceType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="name" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
++            </property>
++        </target>
++    </cell>
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C0e671607-ee4c-4398-bb36-03d5a089d46c" priority="normal">
+         <source name="spelling">
+             <property>
+@@ -21728,6 +21548,51 @@ else _log.warn('Es existieren nicht zu allen Gemeinden kommunale Gebiete mit Geo
              </core:message>
          </annotation>
      </cell>
