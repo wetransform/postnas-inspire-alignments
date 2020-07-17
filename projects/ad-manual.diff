@@ -1,5 +1,5 @@
 diff --git a/projects/ad-auto.halex.alignment.xml b/projects/ad-manual.halex.alignment.xml
-index 2984c4a..24ee9c2 100644
+index 2984c4a..9ee490f 100644
 --- a/projects/ad-auto.halex.alignment.xml
 +++ b/projects/ad-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -18,7 +18,55 @@ index 2984c4a..24ee9c2 100644
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-@@ -1578,11 +1576,6 @@ if (positionAdresse) {&#13;
+@@ -950,18 +948,20 @@ _log.info(_source.p.postalischeAdresse.AX_Post.ortsnamePost.value())
+         </complexParameter>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def positionAdresse = _source.links.AX_GeoreferenzierteGebaeudeadresse.p.position.first()&#13;
++def positionAdresse = _source.links.ax_georeferenziertegebaeudeadresse.p.wkb_geometry.value()&#13;
+ def pointId = ""&#13;
+ def c = _.context.collector()&#13;
+ if (!positionAdresse) {&#13;
+-	positionAdresse = _source.links.AP_PTO.p.position.first()&#13;
++	positionAdresse = _source.links.ap_pto.p.wkb_geometry.value()&#13;
+ 	if (positionAdresse) {&#13;
++		/*&#13;
+ 		pointId = positionAdresse.p.Point.id.value()&#13;
++		*/&#13;
+ 		positionAdresse = _.geom.find(positionAdresse)&#13;
+ 	}&#13;
+ }&#13;
+ if (!positionAdresse) {&#13;
+-	positionAdresse = _source.links.AX_Gebaeude.p.position.first()&#13;
++	positionAdresse = _source.links.ax_gebaeude.p.wkb_geometry.value()&#13;
+ 	if (positionAdresse) {&#13;
+ 		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#13;
+ 	}&#13;
+@@ -1124,18 +1124,20 @@ if (positionAdresse) {&#13;
+         </complexParameter>
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+-def positionAdresse = _source.links.AX_GeoreferenzierteGebaeudeadresse.p.position.first()&#13;
++def positionAdresse = _source.links.ax_georeferenziertegebaeudeadresse.p.wkb_geometry.value()&#13;
+ def pointId = ""&#13;
+ def c = _.context.collector()&#13;
+ if (!positionAdresse) {&#13;
+-	positionAdresse = _source.links.AP_PTO.p.position.first()&#13;
++	positionAdresse = _source.links.ap_pto.p.wkb_geometry.value()&#13;
+ 	if (positionAdresse) {&#13;
++		/*&#13;
+ 		pointId = positionAdresse.p.Point.id.value()&#13;
++		*/&#13;
+ 		positionAdresse = _.geom.find(positionAdresse)&#13;
+ 	}&#13;
+ }&#13;
+ if (!positionAdresse) {&#13;
+-	positionAdresse = _source.links.AX_Gebaeude.p.position.first()&#13;
++	positionAdresse = _source.links.ax_gebaeude.p.wkb_geometry.value()&#13;
+ 	if (positionAdresse) {&#13;
+ 		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#13;
+ 	}&#13;
+@@ -1578,11 +1580,6 @@ if (positionAdresse) {&#13;
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -30,7 +78,7 @@ index 2984c4a..24ee9c2 100644
  if (!regierungsbezirk) {
  	regierungsbezirk = '0'
  }
-@@ -2793,7 +2786,7 @@ c.PLZcollection.each{ key, values -&gt;&#13;
+@@ -2793,7 +2790,7 @@ c.PLZcollection.each{ key, values -&gt;&#13;
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -39,7 +87,7 @@ index 2984c4a..24ee9c2 100644
  
  "ThoroughfareName_$id"
  </core:text>
-@@ -2822,7 +2815,7 @@ def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
+@@ -2822,7 +2819,7 @@ def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -48,7 +96,7 @@ index 2984c4a..24ee9c2 100644
  
  def ns = _project.vars.INSPIRE_NAMESPACE
  if (ns &amp;&amp; !ns.endsWith('/')) {
-@@ -2868,7 +2861,7 @@ if (ns &amp;&amp; !ns.endsWith('/')) {
+@@ -2868,7 +2865,7 @@ if (ns &amp;&amp; !ns.endsWith('/')) {
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -57,7 +105,7 @@ index 2984c4a..24ee9c2 100644
  
  "ThoroughfareName_$id"
  </core:text>
-@@ -2920,4 +2913,8 @@ def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
+@@ -2920,4 +2917,8 @@ def id = schluesselGesamt.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
          </target>
          <parameter value="other:unpopulated" name="value"/>
      </cell>
