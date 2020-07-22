@@ -11,6 +11,7 @@ Folgende Alignments werden hier verwaltet:
 | :---------------------------------------------------- | :------------: | :--------- |
 | PostNAS -> Adressen                                   | Migriert       | ad         |
 | PostNAS -> Verwaltungseinheiten                       | Migriert       | au         |
+| PostNAS -> Gebäude (2D)                               | Migriert       | bu-2d      |
 | PostNAS -> Flurstücke/Grundstücke                     | Migriert       | cp         |
 | PostNAS -> Bodennutzung                               | Migriert       | elu        |
 | PostNAS -> Geografische Bezeichnungen                 | Migriert       | gn         |

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hale-project version="3.5.0.release">
+<hale-project version="4.0.0.release">
     <name>[Annex III] AdV 3A zu INSPIRE Building 2D</name>
     <author>Johanna Ott</author>
-    <description>Hinweis zur Nutzung der Projektvariablen:&#xD;
-    BUILDINGNATURE: URL mit den von Herrn Fuchs und Herrn Schlegel entwickelten Erweiterungen der INSPIRE Codeliste, sobald diese veröffentlicht wurden&#xD;
-    CURRENTUSE: URL mit den von Herrn Fuchs und Herrn Schlegel entwickelten Erweiterungen der INSPIRE Codeliste, sobald diese veröffentlicht wurden&#xD;
-    HORIZONTALGEOMETRYREFERENCEVALUE_AUFGESTAENDERT: default ist "footprint", falls anderer Wert aus der Codeliste (http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue) erwünscht --&gt; angeben&#xD;
-    HORIZONTALGEOMETRYREFERENCEVALUE_BEFLIEGUNGSGEBAEUDE: default ist "footprint", falls anderer Wert aus der Codeliste (http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue) erwünscht --&gt; angeben&#xD;
+    <description>Hinweis zur Nutzung der Projektvariablen:&#13;
+    BUILDINGNATURE: URL mit den von Herrn Fuchs und Herrn Schlegel entwickelten Erweiterungen der INSPIRE Codeliste, sobald diese veröffentlicht wurden&#13;
+    CURRENTUSE: URL mit den von Herrn Fuchs und Herrn Schlegel entwickelten Erweiterungen der INSPIRE Codeliste, sobald diese veröffentlicht wurden&#13;
+    HORIZONTALGEOMETRYREFERENCEVALUE_AUFGESTAENDERT: default ist "footprint", falls anderer Wert aus der Codeliste (http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue) erwünscht --&gt; angeben&#13;
+    HORIZONTALGEOMETRYREFERENCEVALUE_BEFLIEGUNGSGEBAEUDE: default ist "footprint", falls anderer Wert aus der Codeliste (http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue) erwünscht --&gt; angeben&#13;
     INSPIRE_NAMESPACE: gewünschten Namespace eingeben</description>
     <created>2018-04-10T10:51:13.547+02:00</created>
-    <modified>2020-07-16T19:26:42.906+02:00</modified>
+    <modified>2020-07-22T17:42:44.310+02:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>

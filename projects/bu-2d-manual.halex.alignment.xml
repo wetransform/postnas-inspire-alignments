@@ -238,47 +238,47 @@ else {
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.&#xD;
-Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.&#xD;
-Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.&#xD;
-Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.&#xD;
-&#xD;
-Die Sprache des Namens wird als Deutsch angenommen.&#xD;
-&#xD;
-&lt;% if (_params.nameStatus) {&#xD;
-  if (_params.nameStatus == 'unpopulated') {&#xD;
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#xD;
-  }&#xD;
-  else if (_params.nameStatus == 'unknown') {&#xD;
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#xD;
-  }&#xD;
-  else {&#xD;
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#xD;
-  }&#xD;
-}&#xD;
-else {&#xD;
-  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#xD;
-}&#xD;
-out &lt;&lt; "\n\n"&#xD;
-if (_params.nativeness) {&#xD;
-  if (_params.nativeness == 'unpopulated') {&#xD;
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#xD;
-  }&#xD;
-  else if (_params.nativeness == 'unknown') {&#xD;
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#xD;
-  }&#xD;
-  else {&#xD;
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#xD;
-  }&#xD;
-}&#xD;
-else {&#xD;
-  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#xD;
-}&#xD;
-out &lt;&lt; "\n\n"&#xD;
-if (_params.source) {&#xD;&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;&#xD;
-} else {&#xD;&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;&#xD;
+Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.&#13;
+Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.&#13;
+Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.&#13;
+Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.&#13;
+&#13;
+Die Sprache des Namens wird als Deutsch angenommen.&#13;
+&#13;
+&lt;% if (_params.nameStatus) {&#13;
+  if (_params.nameStatus == 'unpopulated') {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#13;
+  }&#13;
+  else if (_params.nameStatus == 'unknown') {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#13;
+  }&#13;
+  else {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#13;
+  }&#13;
+}&#13;
+else {&#13;
+  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#13;
+}&#13;
+out &lt;&lt; "\n\n"&#13;
+if (_params.nativeness) {&#13;
+  if (_params.nativeness == 'unpopulated') {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#13;
+  }&#13;
+  else if (_params.nativeness == 'unknown') {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#13;
+  }&#13;
+  else {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#13;
+  }&#13;
+}&#13;
+else {&#13;
+  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#13;
+}&#13;
+out &lt;&lt; "\n\n"&#13;
+if (_params.source) {&#13;&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#13;&#13;
+} else {&#13;&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#13;&#13;
 } %&gt;
 </core:text>
                     </cf:template>
@@ -435,9 +435,9 @@ else {
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Bildet ein GeographicalName-Objekt zu einem einfachen Namen. Der Wert des Quell-Attributs $spelling wird als Schreibweise des Namens übernommen (`SpellingOfName`).&#xD;
-&#xD;
-Die Sprache wird als Deutsch angenommen.&#xD;
+Bildet ein GeographicalName-Objekt zu einem einfachen Namen. Der Wert des Quell-Attributs $spelling wird als Schreibweise des Namens übernommen (`SpellingOfName`).&#13;
+&#13;
+Die Sprache wird als Deutsch angenommen.&#13;
 
 &lt;% if (_params.nameStatus) {
   if (_params.nameStatus == 'unpopulated') {
@@ -469,13 +469,13 @@ else {
   out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
 }
 out &lt;&lt; "\n\n"
-if (_params.source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
-} else if (source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden, andernfalls wird das Quell-Attribut $source dafür herangezogen. "&#xD;
-  out &lt;&lt; "In letzterem Fall kann nur eine von potentiell mehreren im Quellobjekt angegebenen Modellarten übernommen werden."&#xD;
-} else {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
+if (_params.source) {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#13;
+} else if (source) {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden, andernfalls wird das Quell-Attribut $source dafür herangezogen. "&#13;
+  out &lt;&lt; "In letzterem Fall kann nur eine von potentiell mehreren im Quellobjekt angegebenen Modellarten übernommen werden."&#13;
+} else {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#13;
 } %&gt;
 </core:text>
                     </cf:template>
@@ -784,7 +784,7 @@ Aktuell ist folgende Abbildung umgesetzt:
         <source>
             <class>
                 <type name="ax_bauteil" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((((((("bauart" IN ('1100','1200')) OR "bauart" = '1300') OR "bauart" = '1400') OR "bauart" = '2500') OR "bauart" = '2510') OR "bauart" = '2520') OR "bauart" = '2710') OR "bauart" = '2720'</condition>
+                    <condition lang="ECQL">(((((((bauart IN ('1100','1200')) OR bauart = '1300') OR bauart = '1400') OR bauart = '2500') OR bauart = '2510') OR bauart = '2520') OR bauart = '2710') OR bauart = '2720'</condition>
                 </type>
             </class>
         </source>
@@ -795,58 +795,58 @@ Aktuell ist folgende Abbildung umgesetzt:
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def candidates = _.geom.spatialIndexQuery(geometry: _source.p.wkb_geometry.value(), types: 'ax_gebaeude')&#xD;
-if (!candidates){&#xD;
-	_log.warn("keine Kandidaten")&#xD;
-}&#xD;
-&#xD;
-//mit geom.find findet man Geometrie. Mit .geometry bekommt man jts&#xD;
-//Geometrie des Bauteils auslesen&#xD;
-def baugeom = (_.geom.find(_source.p.wkb_geometry.value())).geometry&#xD;
-&#xD;
-//Hinweis: Ab hale 4 Gebäude schon oben vorgefiltert, dieser Teil wird für Rückwärtskompatibilität beibehalten:&#xD;
-//Liste von allen Gebäuden erzeugen, die mit der Bauteil-Geometrie in irgendeiner Beziehung stehen&#xD;
-def gebaeude = candidates.findAll{ geb -&gt;&#xD;
-//Geometrie jedes potentiellen Gebäudes auslesen&#xD;
-	'AX_Gebaeude'.equalsIgnoreCase(geb.definition.getDisplayName())&#xD;
-}&#xD;
-&#xD;
-//Fehlermeldung, falls ein Bauteil vorkommt, für das die Liste der potentiellen Gebäude leer bleibt&#xD;
-if (gebaeude.size()==0){&#xD;
-	_log.warn("Für das Bauteil mit der folgenden id konnte kein zugehöriges Gebäude identifiziert werden: " + _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-def geb_id&#xD;
-def area&#xD;
-def intersection&#xD;
-def gebgeom&#xD;
- &#xD;
-gebaeude.each { geb -&gt;&#xD;
-	gebgeom = (_.geom.find(geb.p.wkb_geometry.value())).geometry&#xD;
-	//für jedes potentielle Gebäude prüfen, ob das Bauteil innerhalb des Gebäudes liegt --&gt; Zuordnung&#xD;
-	if (baugeom.coveredBy(gebgeom)){&#xD;
-		geb_id = geb.p.gml_id.value()&#xD;
-	}&#xD;
-	//für lageZurErdoberfläche = 1200 (unter der Erdoberfläche) prüfen, mit welchem das Gebäude das Bauteil die größte gemeinsame Überschneidungsfläche hat --&gt; dieses&#xD;
-	//Gebäude wird ausgewählt&#xD;
-	if (_source.p.lagezurerdoberflaeche.value() == '1200'){&#xD;
-		if(baugeom.intersects(gebgeom)){&#xD;
-			intersection = gebgeom.intersection(baugeom).getArea()&#xD;
-			if (intersection&gt;area){&#xD;
-				area = intersection&#xD;
-				geb_id = geb.p.gml_id.value()&#xD;
-			}&#xD;
-		}&#xD;
-	}&#xD;
-}	&#xD;
-&#xD;
-//in einem Kollektor wird über die Gebäude-ID als Schlüssel gespeichert, welche Bauteile diesem zugehören und welche Bauarten diese Bauteile haben. Bei der späteren Erzeugung der Gebäude wird&#xD;
-//auf diese Informationen zugegriffen&#xD;
-def c = _.context.collector()&#xD;
-_log.info('in den Kollektor gehen für ' + geb_id + ' die Gebäudeteile: ' + _source.p.gml_id.value() + ' mit Bauart ' + _source.p.bauart.value())&#xD;
-c.bauid[geb_id] &lt;&lt; _source.p.gml_id.value()&#xD;
-c.bauart[geb_id] &lt;&lt; _source.p.bauart.value()&#xD;
-&#xD;
+def candidates = _.geom.spatialIndexQuery(geometry: _source.p.wkb_geometry.value(), types: 'ax_gebaeude')&#13;
+if (!candidates){&#13;
+	_log.warn("keine Kandidaten")&#13;
+}&#13;
+&#13;
+//mit geom.find findet man Geometrie. Mit .geometry bekommt man jts&#13;
+//Geometrie des Bauteils auslesen&#13;
+def baugeom = (_.geom.find(_source.p.wkb_geometry.value())).geometry&#13;
+&#13;
+//Hinweis: Ab hale 4 Gebäude schon oben vorgefiltert, dieser Teil wird für Rückwärtskompatibilität beibehalten:&#13;
+//Liste von allen Gebäuden erzeugen, die mit der Bauteil-Geometrie in irgendeiner Beziehung stehen&#13;
+def gebaeude = candidates.findAll{ geb -&gt;&#13;
+//Geometrie jedes potentiellen Gebäudes auslesen&#13;
+	'AX_Gebaeude'.equalsIgnoreCase(geb.definition.getDisplayName())&#13;
+}&#13;
+&#13;
+//Fehlermeldung, falls ein Bauteil vorkommt, für das die Liste der potentiellen Gebäude leer bleibt&#13;
+if (gebaeude.size()==0){&#13;
+	_log.warn("Für das Bauteil mit der folgenden id konnte kein zugehöriges Gebäude identifiziert werden: " + _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+def geb_id&#13;
+def area&#13;
+def intersection&#13;
+def gebgeom&#13;
+ &#13;
+gebaeude.each { geb -&gt;&#13;
+	gebgeom = (_.geom.find(geb.p.position.first())).geometry&#13;
+	//für jedes potentielle Gebäude prüfen, ob das Bauteil innerhalb des Gebäudes liegt --&gt; Zuordnung&#13;
+	if (baugeom.coveredBy(gebgeom)){&#13;
+		geb_id = geb.p.gml_id.value()&#13;
+	}&#13;
+	//für lageZurErdoberfläche = 1200 (unter der Erdoberfläche) prüfen, mit welchem das Gebäude das Bauteil die größte gemeinsame Überschneidungsfläche hat --&gt; dieses&#13;
+	//Gebäude wird ausgewählt&#13;
+	if (_source.p.lagezurerdoberflaeche.value() == '1200'){&#13;
+		if(baugeom.intersects(gebgeom)){&#13;
+			intersection = gebgeom.intersection(baugeom).getArea()&#13;
+			if (intersection&gt;area){&#13;
+				area = intersection&#13;
+				geb_id = geb.p.gml_id.value()&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}	&#13;
+&#13;
+//in einem Kollektor wird über die Gebäude-ID als Schlüssel gespeichert, welche Bauteile diesem zugehören und welche Bauarten diese Bauteile haben. Bei der späteren Erzeugung der Gebäude wird&#13;
+//auf diese Informationen zugegriffen&#13;
+def c = _.context.collector()&#13;
+_log.info('in den Kollektor gehen für ' + geb_id + ' die Gebäudeteile: ' + _source.p.gml_id.value() + ' mit Bauart ' + _source.p.bauart.value())&#13;
+c.bauid[geb_id] &lt;&lt; _source.p.gml_id.value()&#13;
+c.bauart[geb_id] &lt;&lt; _source.p.bauart.value()&#13;
+&#13;
 _target{}
 </core:text>
         </complexParameter>
@@ -869,7 +869,7 @@ _target{}
         <source>
             <property>
                 <type name="ax_bauteil" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((((((("bauart" IN ('1100','1200')) OR "bauart" = '1300') OR "bauart" = '1400') OR "bauart" = '2500') OR "bauart" = '2510') OR "bauart" = '2520') OR "bauart" = '2710') OR "bauart" = '2720'</condition>
+                    <condition lang="ECQL">(((((((bauart IN ('1100','1200')) OR bauart = '1300') OR bauart = '1400') OR bauart = '2500') OR bauart = '2510') OR bauart = '2520') OR bauart = '2710') OR bauart = '2720'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -895,7 +895,7 @@ _target{}
         <source>
             <property>
                 <type name="ax_bauteil" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((((((("bauart" IN ('1100','1200')) OR "bauart" = '1300') OR "bauart" = '1400') OR "bauart" = '2500') OR "bauart" = '2510') OR "bauart" = '2520') OR "bauart" = '2710') OR "bauart" = '2720'</condition>
+                    <condition lang="ECQL">(((((((bauart IN ('1100','1200')) OR bauart = '1300') OR bauart = '1400') OR bauart = '2500') OR bauart = '2510') OR bauart = '2520') OR bauart = '2710') OR bauart = '2720'</condition>
                 </type>
                 <child name="bauart"/>
             </property>
@@ -942,7 +942,7 @@ _target{}
         <source name="var">
             <property>
                 <type name="ax_bauteil" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((((((("bauart" IN ('1100','1200')) OR "bauart" = '1300') OR "bauart" = '1400') OR "bauart" = '2500') OR "bauart" = '2510') OR "bauart" = '2520') OR "bauart" = '2710') OR "bauart" = '2720'</condition>
+                    <condition lang="ECQL">(((((((bauart IN ('1100','1200')) OR bauart = '1300') OR bauart = '1400') OR bauart = '2500') OR bauart = '2510') OR bauart = '2520') OR bauart = '2710') OR bauart = '2720'</condition>
                 </type>
                 <child name="baujahr"/>
             </property>
@@ -957,19 +957,19 @@ _target{}
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (baujahr){&#xD;
-	def construction = baujahr.p.value()&#xD;
-	&#xD;
-	baujahr.p.each {bauj -&gt;&#xD;
-		if (bauj &lt; construction){&#xD;
-			construction = bauj&#xD;
-		}&#xD;
-	}&#xD;
-	&#xD;
-		&#xD;
-	construction = new java.text.SimpleDateFormat('yyyy', Locale.US).parse(construction.toString())&#xD;
-	&#xD;
-	return construction&#xD;
+if (baujahr){&#13;
+	def construction = baujahr.p.value()&#13;
+	&#13;
+	baujahr.p.each {bauj -&gt;&#13;
+		if (bauj &lt; construction){&#13;
+			construction = bauj&#13;
+		}&#13;
+	}&#13;
+	&#13;
+		&#13;
+	construction = new java.text.SimpleDateFormat('yyyy', Locale.US).parse(construction.toString())&#13;
+	&#13;
+	return construction&#13;
 }
 </core:text>
         </complexParameter>
@@ -993,7 +993,7 @@ if (baujahr){&#xD;
         <source name="var">
             <property>
                 <type name="ax_bauteil" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((((((("bauart" IN ('1100','1200')) OR "bauart" = '1300') OR "bauart" = '1400') OR "bauart" = '2500') OR "bauart" = '2510') OR "bauart" = '2520') OR "bauart" = '2710') OR "bauart" = '2720'</condition>
+                    <condition lang="ECQL">(((((((bauart IN ('1100','1200')) OR bauart = '1300') OR bauart = '1400') OR bauart = '2500') OR bauart = '2510') OR bauart = '2520') OR bauart = '2710') OR bauart = '2720'</condition>
                 </type>
                 <child name="baujahr"/>
             </property>
@@ -1008,20 +1008,20 @@ if (baujahr){&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (baujahr){&#xD;
-	if (baujahr.p.values().size() &gt; 1){&#xD;
-		def renovation = baujahr.p.value()&#xD;
-		&#xD;
-		baujahr.p.each {bauj -&gt;&#xD;
-			if (bauj &gt; renovation){&#xD;
-				renovation = bauj&#xD;
-			}&#xD;
-		}&#xD;
-	&#xD;
-		renovation = new java.text.SimpleDateFormat('yyyy', Locale.US).parse(renovation.toString())&#xD;
-	&#xD;
-		return renovation&#xD;
-	}&#xD;
+if (baujahr){&#13;
+	if (baujahr.p.values().size() &gt; 1){&#13;
+		def renovation = baujahr.p.value()&#13;
+		&#13;
+		baujahr.p.each {bauj -&gt;&#13;
+			if (bauj &gt; renovation){&#13;
+				renovation = bauj&#13;
+			}&#13;
+		}&#13;
+	&#13;
+		renovation = new java.text.SimpleDateFormat('yyyy', Locale.US).parse(renovation.toString())&#13;
+	&#13;
+		return renovation&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -1045,7 +1045,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_bauteil" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((((((("bauart" IN ('1100','1200')) OR "bauart" = '1300') OR "bauart" = '1400') OR "bauart" = '2500') OR "bauart" = '2510') OR "bauart" = '2520') OR "bauart" = '2710') OR "bauart" = '2720'</condition>
+                    <condition lang="ECQL">(((((((bauart IN ('1100','1200')) OR bauart = '1300') OR bauart = '1400') OR bauart = '2500') OR bauart = '2510') OR bauart = '2520') OR bauart = '2710') OR bauart = '2720'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -1071,7 +1071,7 @@ if (baujahr){&#xD;
         <source name="geometrie">
             <property>
                 <type name="ax_bauteil" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((((((("bauart" IN ('1100','1200')) OR "bauart" = '1300') OR "bauart" = '1400') OR "bauart" = '2500') OR "bauart" = '2510') OR "bauart" = '2520') OR "bauart" = '2710') OR "bauart" = '2720'</condition>
+                    <condition lang="ECQL">(((((((bauart IN ('1100','1200')) OR bauart = '1300') OR bauart = '1400') OR bauart = '2500') OR bauart = '2510') OR bauart = '2520') OR bauart = '2710') OR bauart = '2720'</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -1133,7 +1133,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_bauteil" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((((((("bauart" IN ('1100','1200')) OR "bauart" = '1300') OR "bauart" = '1400') OR "bauart" = '2500') OR "bauart" = '2510') OR "bauart" = '2520') OR "bauart" = '2710') OR "bauart" = '2720'</condition>
+                    <condition lang="ECQL">(((((((bauart IN ('1100','1200')) OR bauart = '1300') OR bauart = '1400') OR bauart = '2500') OR bauart = '2510') OR bauart = '2520') OR bauart = '2710') OR bauart = '2720'</condition>
                 </type>
                 <child name="bauart"/>
             </property>
@@ -1207,7 +1207,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauteil" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((((((("bauart" IN ('1100','1200')) OR "bauart" = '1300') OR "bauart" = '1400') OR "bauart" = '2500') OR "bauart" = '2510') OR "bauart" = '2520') OR "bauart" = '2710') OR "bauart" = '2720'</condition>
+                    <condition lang="ECQL">(((((((bauart IN ('1100','1200')) OR bauart = '1300') OR bauart = '1400') OR bauart = '2500') OR bauart = '2510') OR bauart = '2520') OR bauart = '2710') OR bauart = '2720'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1231,7 +1231,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauteil" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((((((("bauart" IN ('1100','1200')) OR "bauart" = '1300') OR "bauart" = '1400') OR "bauart" = '2500') OR "bauart" = '2510') OR "bauart" = '2520') OR "bauart" = '2710') OR "bauart" = '2720'</condition>
+                    <condition lang="ECQL">(((((((bauart IN ('1100','1200')) OR bauart = '1300') OR bauart = '1400') OR bauart = '2500') OR bauart = '2510') OR bauart = '2520') OR bauart = '2710') OR bauart = '2720'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1264,7 +1264,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauteil" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((((((("bauart" IN ('1100','1200')) OR "bauart" = '1300') OR "bauart" = '1400') OR "bauart" = '2500') OR "bauart" = '2510') OR "bauart" = '2520') OR "bauart" = '2710') OR "bauart" = '2720'</condition>
+                    <condition lang="ECQL">(((((((bauart IN ('1100','1200')) OR bauart = '1300') OR bauart = '1400') OR bauart = '2500') OR bauart = '2510') OR bauart = '2520') OR bauart = '2710') OR bauart = '2720'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1300,7 +1300,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_bauteil" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((((((("bauart" IN ('1100','1200')) OR "bauart" = '1300') OR "bauart" = '1400') OR "bauart" = '2500') OR "bauart" = '2510') OR "bauart" = '2520') OR "bauart" = '2710') OR "bauart" = '2720'</condition>
+                    <condition lang="ECQL">(((((((bauart IN ('1100','1200')) OR bauart = '1300') OR bauart = '1400') OR bauart = '2500') OR bauart = '2510') OR bauart = '2520') OR bauart = '2710') OR bauart = '2720'</condition>
                 </type>
                 <child name="anzahlderoberirdischengeschosse"/>
             </property>
@@ -1325,7 +1325,7 @@ if (baujahr){&#xD;
         <source>
             <class>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('2030','2050')) OR "bauwerksfunktion" = '2060') OR "bauwerksfunktion" = '2070') OR "bauwerksfunktion" = '2080') OR "bauwerksfunktion" = '2090'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('2030','2050')) OR bauwerksfunktion = '2060') OR bauwerksfunktion = '2070') OR bauwerksfunktion = '2080') OR bauwerksfunktion = '2090'</condition>
                 </type>
             </class>
         </source>
@@ -1336,59 +1336,59 @@ if (baujahr){&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-//bauwerksfunktion = '2030' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2070' or bauwerksfunktion = '2080' or bauwerksfunktion = '2090'&#xD;
-&#xD;
-def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#xD;
-def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#xD;
-def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#xD;
-def baufun = _source.p.bauwerksfunktion.value()&#xD;
-def targeom&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#xD;
-if (polgeom){&#xD;
-	targeom = polgeom&#xD;
-}&#xD;
-//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#xD;
-else if (poigeom){&#xD;
-	targeom = poigeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie eine Linie ist, werden Standardwerte für die Breite des Objektes verwendet&#xD;
-else if (lingeom){&#xD;
-	switch ( baufun ) {&#xD;
-	    case ['2030', '2070', '2080']:&#xD;
-	        targeom = _.geom.buffer(geometry: lingeom, distance: 8)&#xD;
-	        break&#xD;
-	    case ['2050', '2060', '2090']:&#xD;
-	        targeom = _.geom.buffer(geometry: lingeom, distance: 5)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else{&#xD;
-	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-_target{&#xD;
-	geometry2D {&#xD;
-		BuildingGeometry2D {&#xD;
-			geometry { &#xD;
-				if(polgeom||lingeom){&#xD;
-					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#xD;
-				}&#xD;
-				else if (poigeom){&#xD;
-					Point (poigeom)&#xD;
-				}&#xD;
-			}&#xD;
-			horizontalGeometryEstimatedAccuracy() {&#xD;
-				nilReason( 'other:unpopulated' )&#xD;
-				uom( 'm' )&#xD;
-			}&#xD;
-			horizontalGeometryReference {&#xD;
-				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#xD;
-			}&#xD;
-			referenceGeometry( true )&#xD;
-		}&#xD;
-	}&#xD;
+//bauwerksfunktion = '2030' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2070' or bauwerksfunktion = '2080' or bauwerksfunktion = '2090'&#13;
+&#13;
+def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#13;
+def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#13;
+def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#13;
+def baufun = _source.p.bauwerksfunktion.value()&#13;
+def targeom&#13;
+&#13;
+//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
+if (polgeom){&#13;
+	targeom = polgeom&#13;
+}&#13;
+//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#13;
+else if (poigeom){&#13;
+	targeom = poigeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie eine Linie ist, werden Standardwerte für die Breite des Objektes verwendet&#13;
+else if (lingeom){&#13;
+	switch ( baufun ) {&#13;
+	    case ['2030', '2070', '2080']:&#13;
+	        targeom = _.geom.buffer(geometry: lingeom, distance: 8)&#13;
+	        break&#13;
+	    case ['2050', '2060', '2090']:&#13;
+	        targeom = _.geom.buffer(geometry: lingeom, distance: 5)&#13;
+	}&#13;
+}&#13;
+&#13;
+else{&#13;
+	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+_target{&#13;
+	geometry2D {&#13;
+		BuildingGeometry2D {&#13;
+			geometry { &#13;
+				if(polgeom||lingeom){&#13;
+					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#13;
+				}&#13;
+				else if (poigeom){&#13;
+					Point (poigeom)&#13;
+				}&#13;
+			}&#13;
+			horizontalGeometryEstimatedAccuracy() {&#13;
+				nilReason( 'other:unpopulated' )&#13;
+				uom( 'm' )&#13;
+			}&#13;
+			horizontalGeometryReference {&#13;
+				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#13;
+			}&#13;
+			referenceGeometry( true )&#13;
+		}&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -1411,7 +1411,7 @@ _target{&#xD;
         <source>
             <class>
                 <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1800','1830')) OR "bauwerksfunktion" = '1880') OR "bauwerksfunktion" = '1890'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1800','1830')) OR bauwerksfunktion = '1880') OR bauwerksfunktion = '1890'</condition>
                 </type>
             </class>
         </source>
@@ -1422,60 +1422,60 @@ _target{&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-//bauwerksfunktion = '1800' or bauwerksfunktion = '1830' or bauwerksfunktion = '1880' or bauwerksfunktion = '1890'&#xD;
-&#xD;
-def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#xD;
-def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#xD;
-def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#xD;
-def baufun = _source.p.bauwerksfunktion.value()&#xD;
-def targeom&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#xD;
-if (polgeom){&#xD;
-	targeom = polgeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#xD;
-else if (poigeom){&#xD;
-	targeom = poigeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie eine Linie ist, werden Standardwerte für die Breite des Objektes verwendet&#xD;
-else if (lingeom){&#xD;
-	switch ( baufun ) {&#xD;
-	    case ['1800', '1830', '1880']:&#xD;
-	        targeom = _.geom.buffer(geometry: lingeom, distance: 8)&#xD;
-	        break&#xD;
-	    case '1890':&#xD;
-	    	_log.error("Es liegt eine Liniengeometrie vor, für die keine Standardbreite angegeben ist. Bauwerk-id: " +  _source.p.gml_id.value())&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else{&#xD;
-	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-_target{&#xD;
-	geometry2D {&#xD;
-		BuildingGeometry2D {&#xD;
-			geometry { &#xD;
-				if(polgeom||lingeom){&#xD;
-					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#xD;
-				}&#xD;
-				else if (poigeom){&#xD;
-					Point (poigeom)&#xD;
-				}&#xD;
-			}&#xD;
-			horizontalGeometryEstimatedAccuracy() {&#xD;
-				nilReason( 'other:unpopulated' )&#xD;
-				uom( 'm' )&#xD;
-			}&#xD;
-			horizontalGeometryReference {&#xD;
-				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#xD;
-			}&#xD;
-			referenceGeometry( true )&#xD;
-		}&#xD;
-	}&#xD;
+//bauwerksfunktion = '1800' or bauwerksfunktion = '1830' or bauwerksfunktion = '1880' or bauwerksfunktion = '1890'&#13;
+&#13;
+def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#13;
+def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#13;
+def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#13;
+def baufun = _source.p.bauwerksfunktion.value()&#13;
+def targeom&#13;
+&#13;
+//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
+if (polgeom){&#13;
+	targeom = polgeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#13;
+else if (poigeom){&#13;
+	targeom = poigeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie eine Linie ist, werden Standardwerte für die Breite des Objektes verwendet&#13;
+else if (lingeom){&#13;
+	switch ( baufun ) {&#13;
+	    case ['1800', '1830', '1880']:&#13;
+	        targeom = _.geom.buffer(geometry: lingeom, distance: 8)&#13;
+	        break&#13;
+	    case '1890':&#13;
+	    	_log.error("Es liegt eine Liniengeometrie vor, für die keine Standardbreite angegeben ist. Bauwerk-id: " +  _source.p.gml_id.value())&#13;
+	}&#13;
+}&#13;
+&#13;
+else{&#13;
+	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+_target{&#13;
+	geometry2D {&#13;
+		BuildingGeometry2D {&#13;
+			geometry { &#13;
+				if(polgeom||lingeom){&#13;
+					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#13;
+				}&#13;
+				else if (poigeom){&#13;
+					Point (poigeom)&#13;
+				}&#13;
+			}&#13;
+			horizontalGeometryEstimatedAccuracy() {&#13;
+				nilReason( 'other:unpopulated' )&#13;
+				uom( 'm' )&#13;
+			}&#13;
+			horizontalGeometryReference {&#13;
+				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#13;
+			}&#13;
+			referenceGeometry( true )&#13;
+		}&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -1498,7 +1498,7 @@ _target{&#xD;
         <source>
             <class>
                 <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((((((((((("bauwerksfunktion" IN ('1215','1220')) OR "bauwerksfunktion" = '1250') OR "bauwerksfunktion" = '1251') OR "bauwerksfunktion" = '1260') OR "bauwerksfunktion" = '1270') OR "bauwerksfunktion" = '1280') OR "bauwerksfunktion" = '1290') OR "bauwerksfunktion" = '1330') OR "bauwerksfunktion" = '1331') OR "bauwerksfunktion" = '1332') OR "bauwerksfunktion" = '1333') OR "bauwerksfunktion" = '1340') OR "bauwerksfunktion" = '1350'</condition>
+                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
                 </type>
             </class>
         </source>
@@ -1509,56 +1509,56 @@ _target{&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-//bauwerksfunktion = '1215' or bauwerksfunktion = '1220' or bauwerksfunktion = '1250' or bauwerksfunktion = '1251' or bauwerksfunktion = '1260' or&#xD;
-//bauwerksfunktion = '1270' or bauwerksfunktion = '1280' or bauwerksfunktion = '1290' or bauwerksfunktion = '1330' or bauwerksfunktion = '1331' or&#xD;
-//bauwerksfunktion = '1332' or bauwerksfunktion = '1333' or bauwerksfunktion = '1340' or bauwerksfunktion = '1350'&#xD;
-&#xD;
-def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#xD;
-def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#xD;
-def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#xD;
-def baufun = _source.p.bauwerksfunktion.value()&#xD;
-def targeom&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#xD;
-if (polgeom){&#xD;
-	targeom = polgeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#xD;
-else if (poigeom){&#xD;
-	targeom = poigeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#xD;
-else if (lingeom){&#xD;
-	_log.error("Es liegt eine Liniengeometrie vor, für die keine Standardbreite angegeben ist. Bauwerk-id: " +  _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-else{&#xD;
-	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-_target{&#xD;
-	geometry2D {&#xD;
-		BuildingGeometry2D {&#xD;
-			geometry { &#xD;
-				if(polgeom||lingeom){&#xD;
-					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#xD;
-				}&#xD;
-				else if (poigeom){&#xD;
-					Point (poigeom)&#xD;
-				}&#xD;
-			}&#xD;
-			horizontalGeometryEstimatedAccuracy() {&#xD;
-				nilReason( 'other:unpopulated' )&#xD;
-				uom( 'm' )&#xD;
-			}&#xD;
-			horizontalGeometryReference {&#xD;
-				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#xD;
-			}&#xD;
-			referenceGeometry( true )&#xD;
-		}&#xD;
-	}&#xD;
+//bauwerksfunktion = '1215' or bauwerksfunktion = '1220' or bauwerksfunktion = '1250' or bauwerksfunktion = '1251' or bauwerksfunktion = '1260' or&#13;
+//bauwerksfunktion = '1270' or bauwerksfunktion = '1280' or bauwerksfunktion = '1290' or bauwerksfunktion = '1330' or bauwerksfunktion = '1331' or&#13;
+//bauwerksfunktion = '1332' or bauwerksfunktion = '1333' or bauwerksfunktion = '1340' or bauwerksfunktion = '1350'&#13;
+&#13;
+def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#13;
+def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#13;
+def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#13;
+def baufun = _source.p.bauwerksfunktion.value()&#13;
+def targeom&#13;
+&#13;
+//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
+if (polgeom){&#13;
+	targeom = polgeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#13;
+else if (poigeom){&#13;
+	targeom = poigeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
+else if (lingeom){&#13;
+	_log.error("Es liegt eine Liniengeometrie vor, für die keine Standardbreite angegeben ist. Bauwerk-id: " +  _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+else{&#13;
+	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+_target{&#13;
+	geometry2D {&#13;
+		BuildingGeometry2D {&#13;
+			geometry { &#13;
+				if(polgeom||lingeom){&#13;
+					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#13;
+				}&#13;
+				else if (poigeom){&#13;
+					Point (poigeom)&#13;
+				}&#13;
+			}&#13;
+			horizontalGeometryEstimatedAccuracy() {&#13;
+				nilReason( 'other:unpopulated' )&#13;
+				uom( 'm' )&#13;
+			}&#13;
+			horizontalGeometryReference {&#13;
+				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#13;
+			}&#13;
+			referenceGeometry( true )&#13;
+		}&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -1581,7 +1581,7 @@ _target{&#xD;
         <source>
             <class>
                 <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('1430','1431')) OR "bauwerksfunktion" = '1432') OR "bauwerksfunktion" = '1440') OR "bauwerksfunktion" = '1470') OR "bauwerksfunktion" = '1490'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('1430','1431')) OR bauwerksfunktion = '1432') OR bauwerksfunktion = '1440') OR bauwerksfunktion = '1470') OR bauwerksfunktion = '1490'</condition>
                 </type>
             </class>
         </source>
@@ -1592,64 +1592,64 @@ _target{&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-//bauwerksfunktion = '1430' or bauwerksfunktion = '1431' or bauwerksfunktion = '1432' or bauwerksfunktion = '1440' or bauwerksfunktion = '1470' or&#xD;
-//bauwerksfunktion = '1490'&#xD;
-&#xD;
-def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#xD;
-def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#xD;
-def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#xD;
-def baufun = _source.p.bauwerksfunktion.value()&#xD;
-def targeom&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#xD;
-if (polgeom){&#xD;
-	targeom = polgeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#xD;
-else if (poigeom){&#xD;
-	targeom = poigeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie eine Linie ist, werden Standardwerte für die Breite des Objektes verwendet&#xD;
-else if (lingeom){&#xD;
-	switch ( baufun ) {&#xD;
-	    case ['1430', '1490']:&#xD;
-	        targeom = _.geom.buffer(geometry: lingeom, distance: 5)&#xD;
-	        break&#xD;
-	    case '1440':&#xD;
-	        targeom = _.geom.buffer(geometry: lingeom, distance: 10)&#xD;
-	        break&#xD;
-	    case ['1431', '1432', '1470']:&#xD;
-	    	_log.error("Es liegt eine Liniengeometrie vor, für die keine Standardbreite angegeben ist. Bauwerk-id: " +  _source.p.gml_id.value())&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else{&#xD;
-	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-_target{&#xD;
-	geometry2D {&#xD;
-		BuildingGeometry2D {&#xD;
-			geometry { &#xD;
-				if(polgeom||lingeom){&#xD;
-					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#xD;
-				}&#xD;
-				else if (poigeom){&#xD;
-					Point (poigeom)&#xD;
-				}&#xD;
-			}&#xD;
-			horizontalGeometryEstimatedAccuracy() {&#xD;
-				nilReason( 'other:unpopulated' )&#xD;
-				uom( 'm' )&#xD;
-			}&#xD;
-			horizontalGeometryReference {&#xD;
-				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#xD;
-			}&#xD;
-			referenceGeometry( true )&#xD;
-		}&#xD;
-	}&#xD;
+//bauwerksfunktion = '1430' or bauwerksfunktion = '1431' or bauwerksfunktion = '1432' or bauwerksfunktion = '1440' or bauwerksfunktion = '1470' or&#13;
+//bauwerksfunktion = '1490'&#13;
+&#13;
+def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#13;
+def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#13;
+def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#13;
+def baufun = _source.p.bauwerksfunktion.value()&#13;
+def targeom&#13;
+&#13;
+//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
+if (polgeom){&#13;
+	targeom = polgeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#13;
+else if (poigeom){&#13;
+	targeom = poigeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie eine Linie ist, werden Standardwerte für die Breite des Objektes verwendet&#13;
+else if (lingeom){&#13;
+	switch ( baufun ) {&#13;
+	    case ['1430', '1490']:&#13;
+	        targeom = _.geom.buffer(geometry: lingeom, distance: 5)&#13;
+	        break&#13;
+	    case '1440':&#13;
+	        targeom = _.geom.buffer(geometry: lingeom, distance: 10)&#13;
+	        break&#13;
+	    case ['1431', '1432', '1470']:&#13;
+	    	_log.error("Es liegt eine Liniengeometrie vor, für die keine Standardbreite angegeben ist. Bauwerk-id: " +  _source.p.gml_id.value())&#13;
+	}&#13;
+}&#13;
+&#13;
+else{&#13;
+	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+_target{&#13;
+	geometry2D {&#13;
+		BuildingGeometry2D {&#13;
+			geometry { &#13;
+				if(polgeom||lingeom){&#13;
+					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#13;
+				}&#13;
+				else if (poigeom){&#13;
+					Point (poigeom)&#13;
+				}&#13;
+			}&#13;
+			horizontalGeometryEstimatedAccuracy() {&#13;
+				nilReason( 'other:unpopulated' )&#13;
+				uom( 'm' )&#13;
+			}&#13;
+			horizontalGeometryReference {&#13;
+				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#13;
+			}&#13;
+			referenceGeometry( true )&#13;
+		}&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -1672,7 +1672,7 @@ _target{&#xD;
         <source>
             <class>
                 <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"art" = '1420'</condition>
+                    <condition lang="ECQL">art = '1420'</condition>
                 </type>
             </class>
         </source>
@@ -1683,52 +1683,52 @@ _target{&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#xD;
-def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#xD;
-def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#xD;
-def art = _source.p.art.value()&#xD;
-def targeom&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#xD;
-if (polgeom){&#xD;
-	targeom = polgeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#xD;
-else if (poigeom){&#xD;
-	targeom = poigeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#xD;
-else if (lingeom){&#xD;
-	_log.error('Es wurde eine Liniengeometrie gefunden, für die es keine Standardbreite gibt. Bauwerk-id: ' +  _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-else{&#xD;
-	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-_target{&#xD;
-	geometry2D {&#xD;
-		BuildingGeometry2D {&#xD;
-			geometry { &#xD;
-				if(polgeom||lingeom){&#xD;
-					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#xD;
-				}&#xD;
-				else if (poigeom){&#xD;
-					Point (poigeom)&#xD;
-				}&#xD;
-			}&#xD;
-			horizontalGeometryEstimatedAccuracy() {&#xD;
-				nilReason( 'other:unpopulated' )&#xD;
-				uom( 'm' )&#xD;
-			}&#xD;
-			horizontalGeometryReference {&#xD;
-				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#xD;
-			}&#xD;
-			referenceGeometry( true )&#xD;
-		}&#xD;
-	}&#xD;
+def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#13;
+def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#13;
+def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#13;
+def art = _source.p.art.value()&#13;
+def targeom&#13;
+&#13;
+//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
+if (polgeom){&#13;
+	targeom = polgeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#13;
+else if (poigeom){&#13;
+	targeom = poigeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
+else if (lingeom){&#13;
+	_log.error('Es wurde eine Liniengeometrie gefunden, für die es keine Standardbreite gibt. Bauwerk-id: ' +  _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+else{&#13;
+	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+_target{&#13;
+	geometry2D {&#13;
+		BuildingGeometry2D {&#13;
+			geometry { &#13;
+				if(polgeom||lingeom){&#13;
+					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#13;
+				}&#13;
+				else if (poigeom){&#13;
+					Point (poigeom)&#13;
+				}&#13;
+			}&#13;
+			horizontalGeometryEstimatedAccuracy() {&#13;
+				nilReason( 'other:unpopulated' )&#13;
+				uom( 'm' )&#13;
+			}&#13;
+			horizontalGeometryReference {&#13;
+				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#13;
+			}&#13;
+			referenceGeometry( true )&#13;
+		}&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -1760,80 +1760,80 @@ _target{&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-//die Werte aus dem Kollektor, der bei der Erzeugung der Bauteile erstellt wurde, werden ausgelesen&#xD;
-def c = _.context.collector()&#xD;
-//die IDs aller zu dem Gebäude gehörigen Bauteile werden in eine Liste geschrieben&#xD;
-_log.info('Aus dem Kollektor kommt ' + c.bauid[ _source.p.gml_id.value()].values())&#xD;
-def bauteile = c.bauid[ _source.p.gml_id.value()].values()&#xD;
-//alle in diesen Bauteilen vorkommenden Bauarten werden in eine Liste geschrieben&#xD;
-def bauarten = c.bauart[ _source.p.gml_id.value()].values()&#xD;
-&#xD;
-def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#xD;
-def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#xD;
-def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#xD;
-def gebfun = _source.p.gebaeudefunktion.value()&#xD;
-def targeom&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#xD;
-if (polgeom){&#xD;
-	targeom = polgeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#xD;
-else if (poigeom){&#xD;
-	targeom = poigeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#xD;
-else if (lingeom){&#xD;
-	_log.error('Es wurde eine Liniengeometrie gefunden, für die es keine Standardbreite gibt. Gebaeude-id: ' +  _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-else{&#xD;
-	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-_target{&#xD;
-	geometry2D {&#xD;
-		BuildingGeometry2D {&#xD;
-			geometry { &#xD;
-				if(polgeom||lingeom){&#xD;
-					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#xD;
-				}&#xD;
-				else if (poigeom){&#xD;
-					Point (poigeom)&#xD;
-				}&#xD;
-			}&#xD;
-			horizontalGeometryEstimatedAccuracy() {&#xD;
-				nilReason( 'other:unpopulated' )&#xD;
-				uom( 'm' )&#xD;
-			}&#xD;
-			//für Befliegungsgebäude und aufgeständerte Gebäude können die Werte der horizontalGeometryReference je nach Datensatz unterschiedlich sein. Daher wird der Wert in diesen Fälllen über&#xD;
-			//eine Projektvariable übergeben und an dieser Stelle verwendet&#xD;
-			horizontalGeometryReference {&#xD;
-				if (_source.p.herkunft_source_source_ax_datenerhebung.value() == '2000'){&#xD;
-					href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/' + _project.vars.HORIZONTALGEOMETRYREFERENCEVALUE_BEFLIEGUNGSGEBAEUDE )&#xD;
-				}&#xD;
-				else if (_source.p.lagezurerdoberflaeche.value() == '1400'){&#xD;
-					href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/' + _project.vars.HORIZONTALGEOMETRYREFERENCEVALUE_AUFGESTAENDERT )&#xD;
-				}&#xD;
-				//für Gebäude, deren Bauteile bestimmte Bauarten haben, muss der Wert combined gesetzt werden&#xD;
-				else if ( bauarten.contains('1100') || bauarten.contains('1200') || bauarten.contains('1300') || bauarten.contains('1400') || bauarten.contains('2500') || bauarten.contains('2510') || bauarten.contains('2520') || bauarten.contains('2720')){&#xD;
-					href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/combined')&#xD;
-				}&#xD;
-				else {&#xD;
-					href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint')&#xD;
-				}&#xD;
-			}&#xD;
-			referenceGeometry( true )&#xD;
-		}&#xD;
-	}&#xD;
-	//für jedes zu dem Gebäude gehöriges Bauteil wird ein part erzeugt&#xD;
-	bauteile.each{ part -&gt;&#xD;
-		parts {&#xD;
-			href( '#BuildingPart_'+ part )&#xD;
-		}&#xD;
-	}&#xD;
+//die Werte aus dem Kollektor, der bei der Erzeugung der Bauteile erstellt wurde, werden ausgelesen&#13;
+def c = _.context.collector()&#13;
+//die IDs aller zu dem Gebäude gehörigen Bauteile werden in eine Liste geschrieben&#13;
+_log.info('Aus dem Kollektor kommt ' + c.bauid[ _source.p.gml_id.value()].values())&#13;
+def bauteile = c.bauid[ _source.p.gml_id.value()].values()&#13;
+//alle in diesen Bauteilen vorkommenden Bauarten werden in eine Liste geschrieben&#13;
+def bauarten = c.bauart[ _source.p.gml_id.value()].values()&#13;
+&#13;
+def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#13;
+def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#13;
+def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#13;
+def gebfun = _source.p.gebaeudefunktion.value()&#13;
+def targeom&#13;
+&#13;
+//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
+if (polgeom){&#13;
+	targeom = polgeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#13;
+else if (poigeom){&#13;
+	targeom = poigeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
+else if (lingeom){&#13;
+	_log.error('Es wurde eine Liniengeometrie gefunden, für die es keine Standardbreite gibt. Gebaeude-id: ' +  _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+else{&#13;
+	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+_target{&#13;
+	geometry2D {&#13;
+		BuildingGeometry2D {&#13;
+			geometry { &#13;
+				if(polgeom||lingeom){&#13;
+					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#13;
+				}&#13;
+				else if (poigeom){&#13;
+					Point (poigeom)&#13;
+				}&#13;
+			}&#13;
+			horizontalGeometryEstimatedAccuracy() {&#13;
+				nilReason( 'other:unpopulated' )&#13;
+				uom( 'm' )&#13;
+			}&#13;
+			//für Befliegungsgebäude und aufgeständerte Gebäude können die Werte der horizontalGeometryReference je nach Datensatz unterschiedlich sein. Daher wird der Wert in diesen Fälllen über&#13;
+			//eine Projektvariable übergeben und an dieser Stelle verwendet&#13;
+			horizontalGeometryReference {&#13;
+				if (_source.p.herkunft_source_source_ax_datenerhebung.value() == '2000'){&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/' + _project.vars.HORIZONTALGEOMETRYREFERENCEVALUE_BEFLIEGUNGSGEBAEUDE )&#13;
+				}&#13;
+				else if (_source.p.lagezurerdoberflaeche.value() == '1400'){&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/' + _project.vars.HORIZONTALGEOMETRYREFERENCEVALUE_AUFGESTAENDERT )&#13;
+				}&#13;
+				//für Gebäude, deren Bauteile bestimmte Bauarten haben, muss der Wert combined gesetzt werden&#13;
+				else if ( bauarten.contains('1100') || bauarten.contains('1200') || bauarten.contains('1300') || bauarten.contains('1400') || bauarten.contains('2500') || bauarten.contains('2510') || bauarten.contains('2520') || bauarten.contains('2720')){&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/combined')&#13;
+				}&#13;
+				else {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint')&#13;
+				}&#13;
+			}&#13;
+			referenceGeometry( true )&#13;
+		}&#13;
+	}&#13;
+	//für jedes zu dem Gebäude gehöriges Bauteil wird ein part erzeugt&#13;
+	bauteile.each{ part -&gt;&#13;
+		parts {&#13;
+			href( '#BuildingPart_'+ part )&#13;
+		}&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -1849,7 +1849,7 @@ _target{&#xD;
         <source>
             <class>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("archaeologischertyp" IN ('1100','1110')) OR "archaeologischertyp" = '1210') OR "archaeologischertyp" = '1410'</condition>
+                    <condition lang="ECQL">((archaeologischertyp IN ('1100','1110')) OR archaeologischertyp = '1210') OR archaeologischertyp = '1410'</condition>
                 </type>
             </class>
         </source>
@@ -1860,63 +1860,63 @@ _target{&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-//archaeologischerTyp = '1100' or archaeologischerTyp = '1110' or archaeologischerTyp = '1210' or archaeologischerTyp = '1410'&#xD;
-&#xD;
-def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#xD;
-def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#xD;
-def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#xD;
-def arctyp = _source.p.archaeologischertyp.value()&#xD;
-def targeom&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#xD;
-if (polgeom){&#xD;
-	targeom = polgeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#xD;
-else if (poigeom){&#xD;
-	targeom = poigeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie eine Linie ist, werden Standardwerte für die Breite des Objektes verwendet&#xD;
-else if (lingeom){&#xD;
-	switch ( arctyp ) {&#xD;
-	    case '1100':&#xD;
-	        targeom = _.geom.buffer(geometry: lingeom, distance: 1)&#xD;
-	        break&#xD;
-	    case '1110':&#xD;
-	        targeom = _.geom.buffer(geometry: lingeom, distance: 5)&#xD;
-	        break&#xD;
-	    case ['1210', '1410']:&#xD;
-	    	_log.error("Es liegt eine Liniengeometrie vor, für die keine Standardbreite angegeben ist. Bauwerk-id: " +  _source.p.gml_id.value())&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else{&#xD;
-	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-_target{&#xD;
-	geometry2D {&#xD;
-		BuildingGeometry2D {&#xD;
-			geometry { &#xD;
-				if(polgeom||lingeom){&#xD;
-					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#xD;
-				}&#xD;
-				else if (poigeom){&#xD;
-					Point (poigeom)&#xD;
-				}&#xD;
-			}&#xD;
-			horizontalGeometryEstimatedAccuracy() {&#xD;
-				nilReason( 'other:unpopulated' )&#xD;
-				uom( 'm' )&#xD;
-			}&#xD;
-			horizontalGeometryReference {&#xD;
-				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#xD;
-			}&#xD;
-			referenceGeometry( true )&#xD;
-		}&#xD;
-	}&#xD;
+//archaeologischerTyp = '1100' or archaeologischerTyp = '1110' or archaeologischerTyp = '1210' or archaeologischerTyp = '1410'&#13;
+&#13;
+def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#13;
+def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#13;
+def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#13;
+def arctyp = _source.p.archaeologischerTyp.value()&#13;
+def targeom&#13;
+&#13;
+//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
+if (polgeom){&#13;
+	targeom = polgeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#13;
+else if (poigeom){&#13;
+	targeom = poigeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie eine Linie ist, werden Standardwerte für die Breite des Objektes verwendet&#13;
+else if (lingeom){&#13;
+	switch ( arctyp ) {&#13;
+	    case '1100':&#13;
+	        targeom = _.geom.buffer(geometry: lingeom, distance: 1)&#13;
+	        break&#13;
+	    case '1110':&#13;
+	        targeom = _.geom.buffer(geometry: lingeom, distance: 5)&#13;
+	        break&#13;
+	    case ['1210', '1410']:&#13;
+	    	_log.error("Es liegt eine Liniengeometrie vor, für die keine Standardbreite angegeben ist. Bauwerk-id: " +  _source.p.gml_id.value())&#13;
+	}&#13;
+}&#13;
+&#13;
+else{&#13;
+	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+_target{&#13;
+	geometry2D {&#13;
+		BuildingGeometry2D {&#13;
+			geometry { &#13;
+				if(polgeom||lingeom){&#13;
+					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#13;
+				}&#13;
+				else if (poigeom){&#13;
+					Point (poigeom)&#13;
+				}&#13;
+			}&#13;
+			horizontalGeometryEstimatedAccuracy() {&#13;
+				nilReason( 'other:unpopulated' )&#13;
+				uom( 'm' )&#13;
+			}&#13;
+			horizontalGeometryReference {&#13;
+				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#13;
+			}&#13;
+			referenceGeometry( true )&#13;
+		}&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -1939,7 +1939,7 @@ _target{&#xD;
         <source>
             <class>
                 <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"bauwerksfunktion" = '1110'</condition>
+                    <condition lang="ECQL">bauwerksfunktion = '1110'</condition>
                 </type>
             </class>
         </source>
@@ -1950,51 +1950,51 @@ _target{&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-//Leitungen sollen ständardmäßig mit 0,5 m gebuffert werden&#xD;
-def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#xD;
-def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#xD;
-def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#xD;
-def targeom&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#xD;
-if (polgeom){&#xD;
-	targeom = polgeom&#xD;
-}&#xD;
-//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#xD;
-else if (poigeom){&#xD;
-	targeom = poigeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie eine Linie ist, werden Standardwerte für die Breite des Objektes verwendet&#xD;
-else if (lingeom){&#xD;
-	targeom = _.geom.buffer(geometry: lingeom, distance: 0.5)&#xD;
-}&#xD;
-&#xD;
-if(!targeom){&#xD;
-	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-_target{&#xD;
-	geometry2D {&#xD;
-		BuildingGeometry2D {&#xD;
-			geometry { &#xD;
-				if(polgeom||lingeom){&#xD;
-					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#xD;
-				}&#xD;
-				else if (poigeom){&#xD;
-					Point (poigeom)&#xD;
-				}&#xD;
-			}&#xD;
-			horizontalGeometryEstimatedAccuracy() {&#xD;
-				nilReason( 'other:unpopulated' )&#xD;
-				uom( 'm' )&#xD;
-			}&#xD;
-			horizontalGeometryReference {&#xD;
-				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#xD;
-			}&#xD;
-			referenceGeometry( true )&#xD;
-		}&#xD;
-	}&#xD;
+//Leitungen sollen ständardmäßig mit 0,5 m gebuffert werden&#13;
+def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#13;
+def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#13;
+def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#13;
+def targeom&#13;
+&#13;
+//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
+if (polgeom){&#13;
+	targeom = polgeom&#13;
+}&#13;
+//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#13;
+else if (poigeom){&#13;
+	targeom = poigeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie eine Linie ist, werden Standardwerte für die Breite des Objektes verwendet&#13;
+else if (lingeom){&#13;
+	targeom = _.geom.buffer(geometry: lingeom, distance: 0.5)&#13;
+}&#13;
+&#13;
+if(!targeom){&#13;
+	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+_target{&#13;
+	geometry2D {&#13;
+		BuildingGeometry2D {&#13;
+			geometry { &#13;
+				if(polgeom||lingeom){&#13;
+					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#13;
+				}&#13;
+				else if (poigeom){&#13;
+					Point (poigeom)&#13;
+				}&#13;
+			}&#13;
+			horizontalGeometryEstimatedAccuracy() {&#13;
+				nilReason( 'other:unpopulated' )&#13;
+				uom( 'm' )&#13;
+			}&#13;
+			horizontalGeometryReference {&#13;
+				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#13;
+			}&#13;
+			referenceGeometry( true )&#13;
+		}&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -2017,7 +2017,7 @@ _target{&#xD;
         <source>
             <class>
                 <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"konstruktionsmerkmalbauart" IN ('1010','1020')</condition>
+                    <condition lang="ECQL">konstruktionsmerkmalbauart IN ('1010','1020')</condition>
                 </type>
             </class>
         </source>
@@ -2028,52 +2028,52 @@ _target{&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#xD;
-def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#xD;
-def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#xD;
-def konmer = _source.p.konstruktionsmerkmalbauart.value()&#xD;
-def targeom&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#xD;
-if (polgeom){&#xD;
-	targeom = polgeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#xD;
-else if (poigeom){&#xD;
-	targeom = poigeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#xD;
-else if (lingeom){&#xD;
-	_log.error('Es wurde eine Liniengeometrie gefunden, für die es keine Standardbreite gibt. Bauwerk-id: ' +  _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-else{&#xD;
-	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-_target{&#xD;
-	geometry2D {&#xD;
-		BuildingGeometry2D {&#xD;
-			geometry { &#xD;
-				if(polgeom||lingeom){&#xD;
-					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#xD;
-				}&#xD;
-				else if (poigeom){&#xD;
-					Point (poigeom)&#xD;
-				}&#xD;
-			}&#xD;
-			horizontalGeometryEstimatedAccuracy() {&#xD;
-				nilReason( 'other:unpopulated' )&#xD;
-				uom( 'm' )&#xD;
-			}&#xD;
-			horizontalGeometryReference {&#xD;
-				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#xD;
-			}&#xD;
-			referenceGeometry( true )&#xD;
-		}&#xD;
-	}&#xD;
+def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#13;
+def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#13;
+def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#13;
+def konmer = _source.p.konstruktionsmerkmalBauart.value()&#13;
+def targeom&#13;
+&#13;
+//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
+if (polgeom){&#13;
+	targeom = polgeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#13;
+else if (poigeom){&#13;
+	targeom = poigeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
+else if (lingeom){&#13;
+	_log.error('Es wurde eine Liniengeometrie gefunden, für die es keine Standardbreite gibt. Bauwerk-id: ' +  _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+else{&#13;
+	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+_target{&#13;
+	geometry2D {&#13;
+		BuildingGeometry2D {&#13;
+			geometry { &#13;
+				if(polgeom||lingeom){&#13;
+					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#13;
+				}&#13;
+				else if (poigeom){&#13;
+					Point (poigeom)&#13;
+				}&#13;
+			}&#13;
+			horizontalGeometryEstimatedAccuracy() {&#13;
+				nilReason( 'other:unpopulated' )&#13;
+				uom( 'm' )&#13;
+			}&#13;
+			horizontalGeometryReference {&#13;
+				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#13;
+			}&#13;
+			referenceGeometry( true )&#13;
+		}&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -2096,7 +2096,7 @@ _target{&#xD;
         <source>
             <class>
                 <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((("bahnkategorie" IN ('2100','2200')) OR "bahnkategorie" = '2300') OR "bahnkategorie" = '2500') OR "bahnkategorie" = '2600'</condition>
+                    <condition lang="ECQL">(((bahnkategorie IN ('2100','2200')) OR bahnkategorie = '2300') OR bahnkategorie = '2500') OR bahnkategorie = '2600'</condition>
                 </type>
             </class>
         </source>
@@ -2107,50 +2107,50 @@ _target{&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#xD;
-def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#xD;
-def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#xD;
-def targeom&#xD;
-//Pufferwert ist derzeit angenommen durch jo - auf Angaben von Gebäudeexperten wird gewartet&#xD;
-//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#xD;
-if (polgeom){&#xD;
-	targeom = polgeom&#xD;
-}&#xD;
-//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#xD;
-else if (poigeom){&#xD;
-	targeom = poigeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie eine Linie ist, werden Standardwerte für die Breite des Objektes verwendet&#xD;
-else if (lingeom){&#xD;
-	targeom = _.geom.buffer(geometry: lingeom, distance: 0.5)&#xD;
-}&#xD;
-&#xD;
-if(!targeom){&#xD;
-	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-_target{&#xD;
-	geometry2D {&#xD;
-		BuildingGeometry2D {&#xD;
-			geometry { &#xD;
-				if(polgeom||lingeom){&#xD;
-					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#xD;
-				}&#xD;
-				else if (poigeom){&#xD;
-					Point (poigeom)&#xD;
-				}&#xD;
-			}&#xD;
-			horizontalGeometryEstimatedAccuracy() {&#xD;
-				nilReason( 'other:unpopulated' )&#xD;
-				uom( 'm' )&#xD;
-			}&#xD;
-			horizontalGeometryReference {&#xD;
-				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#xD;
-			}&#xD;
-			referenceGeometry( true )&#xD;
-		}&#xD;
-	}&#xD;
+def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#13;
+def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#13;
+def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#13;
+def targeom&#13;
+//Pufferwert ist derzeit angenommen durch jo - auf Angaben von Gebäudeexperten wird gewartet&#13;
+//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
+if (polgeom){&#13;
+	targeom = polgeom&#13;
+}&#13;
+//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#13;
+else if (poigeom){&#13;
+	targeom = poigeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie eine Linie ist, werden Standardwerte für die Breite des Objektes verwendet&#13;
+else if (lingeom){&#13;
+	targeom = _.geom.buffer(geometry: lingeom, distance: 0.5)&#13;
+}&#13;
+&#13;
+if(!targeom){&#13;
+	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+_target{&#13;
+	geometry2D {&#13;
+		BuildingGeometry2D {&#13;
+			geometry { &#13;
+				if(polgeom||lingeom){&#13;
+					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#13;
+				}&#13;
+				else if (poigeom){&#13;
+					Point (poigeom)&#13;
+				}&#13;
+			}&#13;
+			horizontalGeometryEstimatedAccuracy() {&#13;
+				nilReason( 'other:unpopulated' )&#13;
+				uom( 'm' )&#13;
+			}&#13;
+			horizontalGeometryReference {&#13;
+				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#13;
+			}&#13;
+			referenceGeometry( true )&#13;
+		}&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -2173,7 +2173,7 @@ _target{&#xD;
         <source>
             <class>
                 <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">("bauwerksfunktion" IN ('1610','1611')) OR "bauwerksfunktion" = '1700'</condition>
+                    <condition lang="ECQL">(bauwerksfunktion IN ('1610','1611')) OR bauwerksfunktion = '1700'</condition>
                 </type>
             </class>
         </source>
@@ -2184,60 +2184,60 @@ _target{&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-//bauwerksfunktion = '1610' or bauwerksfunktion = '1611' or bauwerksfunktion = '1700'&#xD;
-&#xD;
-def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#xD;
-def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#xD;
-def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#xD;
-def baufun = _source.p.bauwerksfunktion.value()&#xD;
-def targeom&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#xD;
-if (polgeom){&#xD;
-	targeom = polgeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#xD;
-else if (poigeom){&#xD;
-	targeom = poigeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie eine Linie ist, werden Standardwerte für die Breite des Objektes verwendet&#xD;
-else if (lingeom){&#xD;
-	switch ( baufun ) {&#xD;
-	    case '1700':&#xD;
-	        targeom = _.geom.buffer(geometry: lingeom, distance: 0.5)&#xD;
-	        break&#xD;
-	    case ['1610', '1611']:&#xD;
-	    	_log.error("Es liegt eine Liniengeometrie vor, für die keine Standardbreite angegeben ist. Bauwerk-id: " +  _source.p.gml_id.value())&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else{&#xD;
-	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-_target{&#xD;
-	geometry2D {&#xD;
-		BuildingGeometry2D {&#xD;
-			geometry { &#xD;
-				if(polgeom||lingeom){&#xD;
-					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#xD;
-				}&#xD;
-				else if (poigeom){&#xD;
-					Point (poigeom)&#xD;
-				}&#xD;
-			}&#xD;
-			horizontalGeometryEstimatedAccuracy() {&#xD;
-				nilReason( 'other:unpopulated' )&#xD;
-				uom( 'm' )&#xD;
-			}&#xD;
-			horizontalGeometryReference {&#xD;
-				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#xD;
-			}&#xD;
-			referenceGeometry( true )&#xD;
-		}&#xD;
-	}&#xD;
+//bauwerksfunktion = '1610' or bauwerksfunktion = '1611' or bauwerksfunktion = '1700'&#13;
+&#13;
+def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#13;
+def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#13;
+def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#13;
+def baufun = _source.p.bauwerksfunktion.value()&#13;
+def targeom&#13;
+&#13;
+//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
+if (polgeom){&#13;
+	targeom = polgeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#13;
+else if (poigeom){&#13;
+	targeom = poigeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie eine Linie ist, werden Standardwerte für die Breite des Objektes verwendet&#13;
+else if (lingeom){&#13;
+	switch ( baufun ) {&#13;
+	    case '1700':&#13;
+	        targeom = _.geom.buffer(geometry: lingeom, distance: 0.5)&#13;
+	        break&#13;
+	    case ['1610', '1611']:&#13;
+	    	_log.error("Es liegt eine Liniengeometrie vor, für die keine Standardbreite angegeben ist. Bauwerk-id: " +  _source.p.gml_id.value())&#13;
+	}&#13;
+}&#13;
+&#13;
+else{&#13;
+	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+_target{&#13;
+	geometry2D {&#13;
+		BuildingGeometry2D {&#13;
+			geometry { &#13;
+				if(polgeom||lingeom){&#13;
+					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#13;
+				}&#13;
+				else if (poigeom){&#13;
+					Point (poigeom)&#13;
+				}&#13;
+			}&#13;
+			horizontalGeometryEstimatedAccuracy() {&#13;
+				nilReason( 'other:unpopulated' )&#13;
+				uom( 'm' )&#13;
+			}&#13;
+			horizontalGeometryReference {&#13;
+				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#13;
+			}&#13;
+			referenceGeometry( true )&#13;
+		}&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -2269,52 +2269,52 @@ _target{&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#xD;
-def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#xD;
-def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#xD;
-def baufun = _source.p.bauwerksfunktion.value()&#xD;
-def targeom&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#xD;
-if (polgeom){&#xD;
-	targeom = polgeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#xD;
-else if (poigeom){&#xD;
-	targeom = poigeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#xD;
-else if (lingeom){&#xD;
-	_log.error("Es liegt eine Liniengeometrie vor, für die keine Standardbreite angegeben ist. Bauwerk-id: " +  _source.p.gml_id.value()) &#xD;
-}&#xD;
-&#xD;
-else{&#xD;
-	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-_target{&#xD;
-	geometry2D {&#xD;
-		BuildingGeometry2D {&#xD;
-			geometry { &#xD;
-				if(polgeom||lingeom){&#xD;
-					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#xD;
-				}&#xD;
-				else if (poigeom){&#xD;
-					Point (poigeom)&#xD;
-				}&#xD;
-			}&#xD;
-			horizontalGeometryEstimatedAccuracy() {&#xD;
-				nilReason( 'other:unpopulated' )&#xD;
-				uom( 'm' )&#xD;
-			}&#xD;
-			horizontalGeometryReference {&#xD;
-				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#xD;
-			}&#xD;
-			referenceGeometry( true )&#xD;
-		}&#xD;
-	}&#xD;
+def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#13;
+def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#13;
+def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#13;
+def baufun = _source.p.bauwerksfunktion.value()&#13;
+def targeom&#13;
+&#13;
+//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
+if (polgeom){&#13;
+	targeom = polgeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#13;
+else if (poigeom){&#13;
+	targeom = poigeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
+else if (lingeom){&#13;
+	_log.error("Es liegt eine Liniengeometrie vor, für die keine Standardbreite angegeben ist. Bauwerk-id: " +  _source.p.gml_id.value()) &#13;
+}&#13;
+&#13;
+else{&#13;
+	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+_target{&#13;
+	geometry2D {&#13;
+		BuildingGeometry2D {&#13;
+			geometry { &#13;
+				if(polgeom||lingeom){&#13;
+					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#13;
+				}&#13;
+				else if (poigeom){&#13;
+					Point (poigeom)&#13;
+				}&#13;
+			}&#13;
+			horizontalGeometryEstimatedAccuracy() {&#13;
+				nilReason( 'other:unpopulated' )&#13;
+				uom( 'm' )&#13;
+			}&#13;
+			horizontalGeometryReference {&#13;
+				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#13;
+			}&#13;
+			referenceGeometry( true )&#13;
+		}&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -2330,7 +2330,7 @@ _target{&#xD;
         <source>
             <class>
                 <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1201','1203')) OR "bauwerksfunktion" = '1205') OR "bauwerksfunktion" = '1206'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1201','1203')) OR bauwerksfunktion = '1205') OR bauwerksfunktion = '1206'</condition>
                 </type>
             </class>
         </source>
@@ -2341,52 +2341,52 @@ _target{&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#xD;
-def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#xD;
-def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#xD;
-def baufun = _source.p.bauwerksfunktion.value()&#xD;
-def targeom&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#xD;
-if (polgeom){&#xD;
-	targeom = polgeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#xD;
-else if (poigeom){&#xD;
-	targeom = poigeom&#xD;
-}&#xD;
-&#xD;
-//wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#xD;
-else if (lingeom){&#xD;
-	_log.error('Es wurde eine Liniengeometrie gefunden, für die es keine Standardbreite gibt. Bauwerk-id: ' +  _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-else{&#xD;
-	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#xD;
-}&#xD;
-&#xD;
-_target{&#xD;
-	geometry2D {&#xD;
-		BuildingGeometry2D {&#xD;
-			geometry { &#xD;
-				if(polgeom||lingeom){&#xD;
-					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#xD;
-				}&#xD;
-				else if (poigeom){&#xD;
-					Point (poigeom)&#xD;
-				}&#xD;
-			}&#xD;
-			horizontalGeometryEstimatedAccuracy() {&#xD;
-				nilReason( 'other:unpopulated' )&#xD;
-				uom( 'm' )&#xD;
-			}&#xD;
-			horizontalGeometryReference {&#xD;
-				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#xD;
-			}&#xD;
-			referenceGeometry( true )&#xD;
-		}&#xD;
-	}&#xD;
+def poigeom = _.geom.findPoints(_source.p.wkb_geometry.value())&#13;
+def lingeom = _.geom.findLines(_source.p.wkb_geometry.value())&#13;
+def polgeom = _.geom.findPolygons(_source.p.wkb_geometry.value())&#13;
+def baufun = _source.p.bauwerksfunktion.value()&#13;
+def targeom&#13;
+&#13;
+//wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
+if (polgeom){&#13;
+	targeom = polgeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie ein Punkt ist, wird diese übernommen&#13;
+else if (poigeom){&#13;
+	targeom = poigeom&#13;
+}&#13;
+&#13;
+//wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
+else if (lingeom){&#13;
+	_log.error('Es wurde eine Liniengeometrie gefunden, für die es keine Standardbreite gibt. Bauwerk-id: ' +  _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+else{&#13;
+	_log.error("Dieses Objekt hat keine Geometrie: " + _source.p.gml_id.value())&#13;
+}&#13;
+&#13;
+_target{&#13;
+	geometry2D {&#13;
+		BuildingGeometry2D {&#13;
+			geometry { &#13;
+				if(polgeom||lingeom){&#13;
+					MultiSurface(_.geom.toSimpleGeometries(geometries:targeom, collections:true))&#13;
+				}&#13;
+				else if (poigeom){&#13;
+					Point (poigeom)&#13;
+				}&#13;
+			}&#13;
+			horizontalGeometryEstimatedAccuracy() {&#13;
+				nilReason( 'other:unpopulated' )&#13;
+				uom( 'm' )&#13;
+			}&#13;
+			horizontalGeometryReference {&#13;
+				href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/footPrint' )&#13;
+			}&#13;
+			referenceGeometry( true )&#13;
+		}&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -2409,7 +2409,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('2030','2050')) OR "bauwerksfunktion" = '2060') OR "bauwerksfunktion" = '2070') OR "bauwerksfunktion" = '2080') OR "bauwerksfunktion" = '2090'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('2030','2050')) OR bauwerksfunktion = '2060') OR bauwerksfunktion = '2070') OR bauwerksfunktion = '2080') OR bauwerksfunktion = '2090'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2435,7 +2435,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1800','1830')) OR "bauwerksfunktion" = '1880') OR "bauwerksfunktion" = '1890'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1800','1830')) OR bauwerksfunktion = '1880') OR bauwerksfunktion = '1890'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2461,7 +2461,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((((((((((("bauwerksfunktion" IN ('1215','1220')) OR "bauwerksfunktion" = '1250') OR "bauwerksfunktion" = '1251') OR "bauwerksfunktion" = '1260') OR "bauwerksfunktion" = '1270') OR "bauwerksfunktion" = '1280') OR "bauwerksfunktion" = '1290') OR "bauwerksfunktion" = '1330') OR "bauwerksfunktion" = '1331') OR "bauwerksfunktion" = '1332') OR "bauwerksfunktion" = '1333') OR "bauwerksfunktion" = '1340') OR "bauwerksfunktion" = '1350'</condition>
+                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2487,7 +2487,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('1430','1431')) OR "bauwerksfunktion" = '1432') OR "bauwerksfunktion" = '1440') OR "bauwerksfunktion" = '1470') OR "bauwerksfunktion" = '1490'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('1430','1431')) OR bauwerksfunktion = '1432') OR bauwerksfunktion = '1440') OR bauwerksfunktion = '1470') OR bauwerksfunktion = '1490'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2513,7 +2513,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"art" = '1420'</condition>
+                    <condition lang="ECQL">art = '1420'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2556,7 +2556,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("archaeologischertyp" IN ('1100','1110')) OR "archaeologischertyp" = '1210') OR "archaeologischertyp" = '1410'</condition>
+                    <condition lang="ECQL">((archaeologischertyp IN ('1100','1110')) OR archaeologischertyp = '1210') OR archaeologischertyp = '1410'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2582,7 +2582,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"bauwerksfunktion" = '1110'</condition>
+                    <condition lang="ECQL">bauwerksfunktion = '1110'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2608,7 +2608,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"konstruktionsmerkmalbauart" IN ('1010','1020')</condition>
+                    <condition lang="ECQL">konstruktionsmerkmalbauart IN ('1010','1020')</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2634,7 +2634,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((("bahnkategorie" IN ('2100','2200')) OR "bahnkategorie" = '2300') OR "bahnkategorie" = '2500') OR "bahnkategorie" = '2600'</condition>
+                    <condition lang="ECQL">(((bahnkategorie IN ('2100','2200')) OR bahnkategorie = '2300') OR bahnkategorie = '2500') OR bahnkategorie = '2600'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2660,7 +2660,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">("bauwerksfunktion" IN ('1610','1611')) OR "bauwerksfunktion" = '1700'</condition>
+                    <condition lang="ECQL">(bauwerksfunktion IN ('1610','1611')) OR bauwerksfunktion = '1700'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2703,7 +2703,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1201','1203')) OR "bauwerksfunktion" = '1205') OR "bauwerksfunktion" = '1206'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1201','1203')) OR bauwerksfunktion = '1205') OR bauwerksfunktion = '1206'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2755,7 +2755,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('2030','2050')) OR "bauwerksfunktion" = '2060') OR "bauwerksfunktion" = '2070') OR "bauwerksfunktion" = '2080') OR "bauwerksfunktion" = '2090'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('2030','2050')) OR bauwerksfunktion = '2060') OR bauwerksfunktion = '2070') OR bauwerksfunktion = '2080') OR bauwerksfunktion = '2090'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -2812,7 +2812,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1800','1830')) OR "bauwerksfunktion" = '1880') OR "bauwerksfunktion" = '1890'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1800','1830')) OR bauwerksfunktion = '1880') OR bauwerksfunktion = '1890'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -2857,7 +2857,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((((((((((("bauwerksfunktion" IN ('1215','1220')) OR "bauwerksfunktion" = '1250') OR "bauwerksfunktion" = '1251') OR "bauwerksfunktion" = '1260') OR "bauwerksfunktion" = '1270') OR "bauwerksfunktion" = '1280') OR "bauwerksfunktion" = '1290') OR "bauwerksfunktion" = '1330') OR "bauwerksfunktion" = '1331') OR "bauwerksfunktion" = '1332') OR "bauwerksfunktion" = '1333') OR "bauwerksfunktion" = '1340') OR "bauwerksfunktion" = '1350'</condition>
+                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -2918,7 +2918,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('1430','1431')) OR "bauwerksfunktion" = '1432') OR "bauwerksfunktion" = '1440') OR "bauwerksfunktion" = '1470') OR "bauwerksfunktion" = '1490'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('1430','1431')) OR bauwerksfunktion = '1432') OR bauwerksfunktion = '1440') OR bauwerksfunktion = '1470') OR bauwerksfunktion = '1490'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -2963,7 +2963,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"art" = '1420'</condition>
+                    <condition lang="ECQL">art = '1420'</condition>
                 </type>
                 <child name="art"/>
             </property>
@@ -3064,7 +3064,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("archaeologischertyp" IN ('1100','1110')) OR "archaeologischertyp" = '1210') OR "archaeologischertyp" = '1410'</condition>
+                    <condition lang="ECQL">((archaeologischertyp IN ('1100','1110')) OR archaeologischertyp = '1210') OR archaeologischertyp = '1410'</condition>
                 </type>
                 <child name="archaeologischertyp"/>
             </property>
@@ -3109,7 +3109,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"bauwerksfunktion" = '1110'</condition>
+                    <condition lang="ECQL">bauwerksfunktion = '1110'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -3142,7 +3142,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"konstruktionsmerkmalbauart" IN ('1010','1020')</condition>
+                    <condition lang="ECQL">konstruktionsmerkmalbauart IN ('1010','1020')</condition>
                 </type>
                 <child name="konstruktionsmerkmalbauart"/>
             </property>
@@ -3179,7 +3179,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((("bahnkategorie" IN ('2100','2200')) OR "bahnkategorie" = '2300') OR "bahnkategorie" = '2500') OR "bahnkategorie" = '2600'</condition>
+                    <condition lang="ECQL">(((bahnkategorie IN ('2100','2200')) OR bahnkategorie = '2300') OR bahnkategorie = '2500') OR bahnkategorie = '2600'</condition>
                 </type>
                 <child name="bahnkategorie"/>
             </property>
@@ -3228,7 +3228,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">("bauwerksfunktion" IN ('1610','1611')) OR "bauwerksfunktion" = '1700'</condition>
+                    <condition lang="ECQL">(bauwerksfunktion IN ('1610','1611')) OR bauwerksfunktion = '1700'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -3325,7 +3325,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1201','1203')) OR "bauwerksfunktion" = '1205') OR "bauwerksfunktion" = '1206'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1201','1203')) OR bauwerksfunktion = '1205') OR bauwerksfunktion = '1206'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -3376,7 +3376,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('2030','2050')) OR "bauwerksfunktion" = '2060') OR "bauwerksfunktion" = '2070') OR "bauwerksfunktion" = '2080') OR "bauwerksfunktion" = '2090'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('2030','2050')) OR bauwerksfunktion = '2060') OR bauwerksfunktion = '2070') OR bauwerksfunktion = '2080') OR bauwerksfunktion = '2090'</condition>
                 </type>
                 <child name="zustand"/>
             </property>
@@ -3414,7 +3414,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1800','1830')) OR "bauwerksfunktion" = '1880') OR "bauwerksfunktion" = '1890'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1800','1830')) OR bauwerksfunktion = '1880') OR bauwerksfunktion = '1890'</condition>
                 </type>
                 <child name="zustand"/>
             </property>
@@ -3448,7 +3448,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((((((((((("bauwerksfunktion" IN ('1215','1220')) OR "bauwerksfunktion" = '1250') OR "bauwerksfunktion" = '1251') OR "bauwerksfunktion" = '1260') OR "bauwerksfunktion" = '1270') OR "bauwerksfunktion" = '1280') OR "bauwerksfunktion" = '1290') OR "bauwerksfunktion" = '1330') OR "bauwerksfunktion" = '1331') OR "bauwerksfunktion" = '1332') OR "bauwerksfunktion" = '1333') OR "bauwerksfunktion" = '1340') OR "bauwerksfunktion" = '1350'</condition>
+                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
                 </type>
                 <child name="zustand"/>
             </property>
@@ -3796,7 +3796,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('2030','2050')) OR "bauwerksfunktion" = '2060') OR "bauwerksfunktion" = '2070') OR "bauwerksfunktion" = '2080') OR "bauwerksfunktion" = '2090'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('2030','2050')) OR bauwerksfunktion = '2060') OR bauwerksfunktion = '2070') OR bauwerksfunktion = '2080') OR bauwerksfunktion = '2090'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -3855,7 +3855,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1800','1830')) OR "bauwerksfunktion" = '1880') OR "bauwerksfunktion" = '1890'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1800','1830')) OR bauwerksfunktion = '1880') OR bauwerksfunktion = '1890'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -3902,7 +3902,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((((((((((("bauwerksfunktion" IN ('1215','1220')) OR "bauwerksfunktion" = '1250') OR "bauwerksfunktion" = '1251') OR "bauwerksfunktion" = '1260') OR "bauwerksfunktion" = '1270') OR "bauwerksfunktion" = '1280') OR "bauwerksfunktion" = '1290') OR "bauwerksfunktion" = '1330') OR "bauwerksfunktion" = '1331') OR "bauwerksfunktion" = '1332') OR "bauwerksfunktion" = '1333') OR "bauwerksfunktion" = '1340') OR "bauwerksfunktion" = '1350'</condition>
+                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -3985,7 +3985,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('1430','1431')) OR "bauwerksfunktion" = '1432') OR "bauwerksfunktion" = '1440') OR "bauwerksfunktion" = '1470') OR "bauwerksfunktion" = '1490'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('1430','1431')) OR bauwerksfunktion = '1432') OR bauwerksfunktion = '1440') OR bauwerksfunktion = '1470') OR bauwerksfunktion = '1490'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -4040,7 +4040,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"art" = '1420'</condition>
+                    <condition lang="ECQL">art = '1420'</condition>
                 </type>
                 <child name="art"/>
             </property>
@@ -4889,7 +4889,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("archaeologischertyp" IN ('1100','1110')) OR "archaeologischertyp" = '1210') OR "archaeologischertyp" = '1410'</condition>
+                    <condition lang="ECQL">((archaeologischertyp IN ('1100','1110')) OR archaeologischertyp = '1210') OR archaeologischertyp = '1410'</condition>
                 </type>
                 <child name="archaeologischertyp"/>
             </property>
@@ -4936,7 +4936,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"bauwerksfunktion" = '1110'</condition>
+                    <condition lang="ECQL">bauwerksfunktion = '1110'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -4971,7 +4971,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"konstruktionsmerkmalbauart" IN ('1010','1020')</condition>
+                    <condition lang="ECQL">konstruktionsmerkmalbauart IN ('1010','1020')</condition>
                 </type>
                 <child name="konstruktionsmerkmalbauart"/>
             </property>
@@ -5010,7 +5010,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((("bahnkategorie" IN ('2100','2200')) OR "bahnkategorie" = '2300') OR "bahnkategorie" = '2500') OR "bahnkategorie" = '2600'</condition>
+                    <condition lang="ECQL">(((bahnkategorie IN ('2100','2200')) OR bahnkategorie = '2300') OR bahnkategorie = '2500') OR bahnkategorie = '2600'</condition>
                 </type>
                 <child name="bahnkategorie"/>
             </property>
@@ -5061,7 +5061,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">("bauwerksfunktion" IN ('1610','1611')) OR "bauwerksfunktion" = '1700'</condition>
+                    <condition lang="ECQL">(bauwerksfunktion IN ('1610','1611')) OR bauwerksfunktion = '1700'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -5182,7 +5182,7 @@ _target{&#xD;
         <source>
             <property>
                 <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1201','1203')) OR "bauwerksfunktion" = '1205') OR "bauwerksfunktion" = '1206'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1201','1203')) OR bauwerksfunktion = '1205') OR bauwerksfunktion = '1206'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -5254,18 +5254,18 @@ _target{&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (baujahr){&#xD;
-	def construction = baujahr.p.value()&#xD;
-	&#xD;
-	baujahr.p.each {bauj -&gt;&#xD;
-		if (bauj &lt; construction){&#xD;
-			construction = bauj&#xD;
-		}&#xD;
-	}&#xD;
-&#xD;
-	construction = new java.text.SimpleDateFormat('yyyy', Locale.US).parse(construction.toString())&#xD;
-	&#xD;
-	return construction&#xD;
+if (baujahr){&#13;
+	def construction = baujahr.p.value()&#13;
+	&#13;
+	baujahr.p.each {bauj -&gt;&#13;
+		if (bauj &lt; construction){&#13;
+			construction = bauj&#13;
+		}&#13;
+	}&#13;
+&#13;
+	construction = new java.text.SimpleDateFormat('yyyy', Locale.US).parse(construction.toString())&#13;
+	&#13;
+	return construction&#13;
 }
 </core:text>
         </complexParameter>
@@ -5295,20 +5295,20 @@ if (baujahr){&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (baujahr){&#xD;
-	if (baujahr.p.values().size() &gt; 1){&#xD;
-		def renovation = baujahr.p.value()&#xD;
-		&#xD;
-		baujahr.p.each {bauj -&gt;&#xD;
-			if (bauj &gt; renovation){&#xD;
-				renovation = bauj&#xD;
-			}&#xD;
-		}&#xD;
-		&#xD;
-		renovation = new java.text.SimpleDateFormat('yyyy', Locale.US).parse(renovation.toString())&#xD;
-		&#xD;
-		return renovation&#xD;
-	}&#xD;
+if (baujahr){&#13;
+	if (baujahr.p.values().size() &gt; 1){&#13;
+		def renovation = baujahr.p.value()&#13;
+		&#13;
+		baujahr.p.each {bauj -&gt;&#13;
+			if (bauj &gt; renovation){&#13;
+				renovation = bauj&#13;
+			}&#13;
+		}&#13;
+		&#13;
+		renovation = new java.text.SimpleDateFormat('yyyy', Locale.US).parse(renovation.toString())&#13;
+		&#13;
+		return renovation&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -5325,7 +5325,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('2030','2050')) OR "bauwerksfunktion" = '2060') OR "bauwerksfunktion" = '2070') OR "bauwerksfunktion" = '2080') OR "bauwerksfunktion" = '2090'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('2030','2050')) OR bauwerksfunktion = '2060') OR bauwerksfunktion = '2070') OR bauwerksfunktion = '2080') OR bauwerksfunktion = '2090'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5351,7 +5351,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1800','1830')) OR "bauwerksfunktion" = '1880') OR "bauwerksfunktion" = '1890'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1800','1830')) OR bauwerksfunktion = '1880') OR bauwerksfunktion = '1890'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5377,7 +5377,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((((((((((("bauwerksfunktion" IN ('1215','1220')) OR "bauwerksfunktion" = '1250') OR "bauwerksfunktion" = '1251') OR "bauwerksfunktion" = '1260') OR "bauwerksfunktion" = '1270') OR "bauwerksfunktion" = '1280') OR "bauwerksfunktion" = '1290') OR "bauwerksfunktion" = '1330') OR "bauwerksfunktion" = '1331') OR "bauwerksfunktion" = '1332') OR "bauwerksfunktion" = '1333') OR "bauwerksfunktion" = '1340') OR "bauwerksfunktion" = '1350'</condition>
+                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5403,7 +5403,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('1430','1431')) OR "bauwerksfunktion" = '1432') OR "bauwerksfunktion" = '1440') OR "bauwerksfunktion" = '1470') OR "bauwerksfunktion" = '1490'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('1430','1431')) OR bauwerksfunktion = '1432') OR bauwerksfunktion = '1440') OR bauwerksfunktion = '1470') OR bauwerksfunktion = '1490'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5429,7 +5429,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"art" = '1420'</condition>
+                    <condition lang="ECQL">art = '1420'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5472,7 +5472,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("archaeologischertyp" IN ('1100','1110')) OR "archaeologischertyp" = '1210') OR "archaeologischertyp" = '1410'</condition>
+                    <condition lang="ECQL">((archaeologischertyp IN ('1100','1110')) OR archaeologischertyp = '1210') OR archaeologischertyp = '1410'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5498,7 +5498,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"bauwerksfunktion" = '1110'</condition>
+                    <condition lang="ECQL">bauwerksfunktion = '1110'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5524,7 +5524,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"konstruktionsmerkmalbauart" IN ('1010','1020')</condition>
+                    <condition lang="ECQL">konstruktionsmerkmalbauart IN ('1010','1020')</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5550,7 +5550,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((("bahnkategorie" IN ('2100','2200')) OR "bahnkategorie" = '2300') OR "bahnkategorie" = '2500') OR "bahnkategorie" = '2600'</condition>
+                    <condition lang="ECQL">(((bahnkategorie IN ('2100','2200')) OR bahnkategorie = '2300') OR bahnkategorie = '2500') OR bahnkategorie = '2600'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5576,7 +5576,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">("bauwerksfunktion" IN ('1610','1611')) OR "bauwerksfunktion" = '1700'</condition>
+                    <condition lang="ECQL">(bauwerksfunktion IN ('1610','1611')) OR bauwerksfunktion = '1700'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5619,7 +5619,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1201','1203')) OR "bauwerksfunktion" = '1205') OR "bauwerksfunktion" = '1206'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1201','1203')) OR bauwerksfunktion = '1205') OR bauwerksfunktion = '1206'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5645,7 +5645,7 @@ if (baujahr){&#xD;
         <source name="anchor">
             <property>
                 <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((((((((((("bauwerksfunktion" IN ('1215','1220')) OR "bauwerksfunktion" = '1250') OR "bauwerksfunktion" = '1251') OR "bauwerksfunktion" = '1260') OR "bauwerksfunktion" = '1270') OR "bauwerksfunktion" = '1280') OR "bauwerksfunktion" = '1290') OR "bauwerksfunktion" = '1330') OR "bauwerksfunktion" = '1331') OR "bauwerksfunktion" = '1332') OR "bauwerksfunktion" = '1333') OR "bauwerksfunktion" = '1340') OR "bauwerksfunktion" = '1350'</condition>
+                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
                 </type>
                 <child name="objekthoehe"/>
             </property>
@@ -5690,7 +5690,7 @@ if (baujahr){&#xD;
         <source name="anchor">
             <property>
                 <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">("bauwerksfunktion" IN ('1610','1611')) OR "bauwerksfunktion" = '1700'</condition>
+                    <condition lang="ECQL">(bauwerksfunktion IN ('1610','1611')) OR bauwerksfunktion = '1700'</condition>
                 </type>
                 <child name="objekthoehe"/>
             </property>
@@ -5735,7 +5735,7 @@ if (baujahr){&#xD;
         <source name="anchor">
             <property>
                 <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1201','1203')) OR "bauwerksfunktion" = '1205') OR "bauwerksfunktion" = '1206'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1201','1203')) OR bauwerksfunktion = '1205') OR bauwerksfunktion = '1206'</condition>
                 </type>
                 <child name="objekthoehe"/>
             </property>
@@ -5762,7 +5762,7 @@ if (baujahr){&#xD;
         <source name="anchor">
             <property>
                 <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((((((((((("bauwerksfunktion" IN ('1215','1220')) OR "bauwerksfunktion" = '1250') OR "bauwerksfunktion" = '1251') OR "bauwerksfunktion" = '1260') OR "bauwerksfunktion" = '1270') OR "bauwerksfunktion" = '1280') OR "bauwerksfunktion" = '1290') OR "bauwerksfunktion" = '1330') OR "bauwerksfunktion" = '1331') OR "bauwerksfunktion" = '1332') OR "bauwerksfunktion" = '1333') OR "bauwerksfunktion" = '1340') OR "bauwerksfunktion" = '1350'</condition>
+                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
                 </type>
                 <child name="objekthoehe"/>
             </property>
@@ -5807,7 +5807,7 @@ if (baujahr){&#xD;
         <source name="anchor">
             <property>
                 <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">("bauwerksfunktion" IN ('1610','1611')) OR "bauwerksfunktion" = '1700'</condition>
+                    <condition lang="ECQL">(bauwerksfunktion IN ('1610','1611')) OR bauwerksfunktion = '1700'</condition>
                 </type>
                 <child name="objekthoehe"/>
             </property>
@@ -5852,7 +5852,7 @@ if (baujahr){&#xD;
         <source name="anchor">
             <property>
                 <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1201','1203')) OR "bauwerksfunktion" = '1205') OR "bauwerksfunktion" = '1206'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1201','1203')) OR bauwerksfunktion = '1205') OR bauwerksfunktion = '1206'</condition>
                 </type>
                 <child name="objekthoehe"/>
             </property>
@@ -5879,7 +5879,7 @@ if (baujahr){&#xD;
         <source name="anchor">
             <property>
                 <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((((((((((("bauwerksfunktion" IN ('1215','1220')) OR "bauwerksfunktion" = '1250') OR "bauwerksfunktion" = '1251') OR "bauwerksfunktion" = '1260') OR "bauwerksfunktion" = '1270') OR "bauwerksfunktion" = '1280') OR "bauwerksfunktion" = '1290') OR "bauwerksfunktion" = '1330') OR "bauwerksfunktion" = '1331') OR "bauwerksfunktion" = '1332') OR "bauwerksfunktion" = '1333') OR "bauwerksfunktion" = '1340') OR "bauwerksfunktion" = '1350'</condition>
+                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
                 </type>
                 <child name="objekthoehe"/>
             </property>
@@ -5924,7 +5924,7 @@ if (baujahr){&#xD;
         <source name="anchor">
             <property>
                 <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">("bauwerksfunktion" IN ('1610','1611')) OR "bauwerksfunktion" = '1700'</condition>
+                    <condition lang="ECQL">(bauwerksfunktion IN ('1610','1611')) OR bauwerksfunktion = '1700'</condition>
                 </type>
                 <child name="objekthoehe"/>
             </property>
@@ -5969,7 +5969,7 @@ if (baujahr){&#xD;
         <source name="anchor">
             <property>
                 <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1201','1203')) OR "bauwerksfunktion" = '1205') OR "bauwerksfunktion" = '1206'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1201','1203')) OR bauwerksfunktion = '1205') OR bauwerksfunktion = '1206'</condition>
                 </type>
                 <child name="objekthoehe"/>
             </property>
@@ -5996,7 +5996,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((((((((((("bauwerksfunktion" IN ('1215','1220')) OR "bauwerksfunktion" = '1250') OR "bauwerksfunktion" = '1251') OR "bauwerksfunktion" = '1260') OR "bauwerksfunktion" = '1270') OR "bauwerksfunktion" = '1280') OR "bauwerksfunktion" = '1290') OR "bauwerksfunktion" = '1330') OR "bauwerksfunktion" = '1331') OR "bauwerksfunktion" = '1332') OR "bauwerksfunktion" = '1333') OR "bauwerksfunktion" = '1340') OR "bauwerksfunktion" = '1350'</condition>
+                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
                 </type>
                 <child name="objekthoehe"/>
             </property>
@@ -6041,7 +6041,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">("bauwerksfunktion" IN ('1610','1611')) OR "bauwerksfunktion" = '1700'</condition>
+                    <condition lang="ECQL">(bauwerksfunktion IN ('1610','1611')) OR bauwerksfunktion = '1700'</condition>
                 </type>
                 <child name="objekthoehe"/>
             </property>
@@ -6086,7 +6086,7 @@ if (baujahr){&#xD;
         <source>
             <property>
                 <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1201','1203')) OR "bauwerksfunktion" = '1205') OR "bauwerksfunktion" = '1206'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1201','1203')) OR bauwerksfunktion = '1205') OR bauwerksfunktion = '1206'</condition>
                 </type>
                 <child name="objekthoehe"/>
             </property>
@@ -6244,7 +6244,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('2030','2050')) OR "bauwerksfunktion" = '2060') OR "bauwerksfunktion" = '2070') OR "bauwerksfunktion" = '2080') OR "bauwerksfunktion" = '2090'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('2030','2050')) OR bauwerksfunktion = '2060') OR bauwerksfunktion = '2070') OR bauwerksfunktion = '2080') OR bauwerksfunktion = '2090'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6268,7 +6268,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1800','1830')) OR "bauwerksfunktion" = '1880') OR "bauwerksfunktion" = '1890'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1800','1830')) OR bauwerksfunktion = '1880') OR bauwerksfunktion = '1890'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6292,7 +6292,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((((((((((("bauwerksfunktion" IN ('1215','1220')) OR "bauwerksfunktion" = '1250') OR "bauwerksfunktion" = '1251') OR "bauwerksfunktion" = '1260') OR "bauwerksfunktion" = '1270') OR "bauwerksfunktion" = '1280') OR "bauwerksfunktion" = '1290') OR "bauwerksfunktion" = '1330') OR "bauwerksfunktion" = '1331') OR "bauwerksfunktion" = '1332') OR "bauwerksfunktion" = '1333') OR "bauwerksfunktion" = '1340') OR "bauwerksfunktion" = '1350'</condition>
+                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6316,7 +6316,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('1430','1431')) OR "bauwerksfunktion" = '1432') OR "bauwerksfunktion" = '1440') OR "bauwerksfunktion" = '1470') OR "bauwerksfunktion" = '1490'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('1430','1431')) OR bauwerksfunktion = '1432') OR bauwerksfunktion = '1440') OR bauwerksfunktion = '1470') OR bauwerksfunktion = '1490'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6340,7 +6340,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"art" = '1420'</condition>
+                    <condition lang="ECQL">art = '1420'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6379,7 +6379,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("archaeologischertyp" IN ('1100','1110')) OR "archaeologischertyp" = '1210') OR "archaeologischertyp" = '1410'</condition>
+                    <condition lang="ECQL">((archaeologischertyp IN ('1100','1110')) OR archaeologischertyp = '1210') OR archaeologischertyp = '1410'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6403,7 +6403,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"bauwerksfunktion" = '1110'</condition>
+                    <condition lang="ECQL">bauwerksfunktion = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6427,7 +6427,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"konstruktionsmerkmalbauart" IN ('1010','1020')</condition>
+                    <condition lang="ECQL">konstruktionsmerkmalbauart IN ('1010','1020')</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6451,7 +6451,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((("bahnkategorie" IN ('2100','2200')) OR "bahnkategorie" = '2300') OR "bahnkategorie" = '2500') OR "bahnkategorie" = '2600'</condition>
+                    <condition lang="ECQL">(((bahnkategorie IN ('2100','2200')) OR bahnkategorie = '2300') OR bahnkategorie = '2500') OR bahnkategorie = '2600'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6475,7 +6475,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">("bauwerksfunktion" IN ('1610','1611')) OR "bauwerksfunktion" = '1700'</condition>
+                    <condition lang="ECQL">(bauwerksfunktion IN ('1610','1611')) OR bauwerksfunktion = '1700'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6514,7 +6514,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1201','1203')) OR "bauwerksfunktion" = '1205') OR "bauwerksfunktion" = '1206'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1201','1203')) OR bauwerksfunktion = '1205') OR bauwerksfunktion = '1206'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6538,7 +6538,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('2030','2050')) OR "bauwerksfunktion" = '2060') OR "bauwerksfunktion" = '2070') OR "bauwerksfunktion" = '2080') OR "bauwerksfunktion" = '2090'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('2030','2050')) OR bauwerksfunktion = '2060') OR bauwerksfunktion = '2070') OR bauwerksfunktion = '2080') OR bauwerksfunktion = '2090'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6561,7 +6561,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1800','1830')) OR "bauwerksfunktion" = '1880') OR "bauwerksfunktion" = '1890'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1800','1830')) OR bauwerksfunktion = '1880') OR bauwerksfunktion = '1890'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6584,7 +6584,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((((((((((("bauwerksfunktion" IN ('1215','1220')) OR "bauwerksfunktion" = '1250') OR "bauwerksfunktion" = '1251') OR "bauwerksfunktion" = '1260') OR "bauwerksfunktion" = '1270') OR "bauwerksfunktion" = '1280') OR "bauwerksfunktion" = '1290') OR "bauwerksfunktion" = '1330') OR "bauwerksfunktion" = '1331') OR "bauwerksfunktion" = '1332') OR "bauwerksfunktion" = '1333') OR "bauwerksfunktion" = '1340') OR "bauwerksfunktion" = '1350'</condition>
+                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6607,7 +6607,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('1430','1431')) OR "bauwerksfunktion" = '1432') OR "bauwerksfunktion" = '1440') OR "bauwerksfunktion" = '1470') OR "bauwerksfunktion" = '1490'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('1430','1431')) OR bauwerksfunktion = '1432') OR bauwerksfunktion = '1440') OR bauwerksfunktion = '1470') OR bauwerksfunktion = '1490'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6630,7 +6630,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"art" = '1420'</condition>
+                    <condition lang="ECQL">art = '1420'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6667,7 +6667,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("archaeologischertyp" IN ('1100','1110')) OR "archaeologischertyp" = '1210') OR "archaeologischertyp" = '1410'</condition>
+                    <condition lang="ECQL">((archaeologischertyp IN ('1100','1110')) OR archaeologischertyp = '1210') OR archaeologischertyp = '1410'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6690,7 +6690,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"bauwerksfunktion" = '1110'</condition>
+                    <condition lang="ECQL">bauwerksfunktion = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6713,7 +6713,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"konstruktionsmerkmalbauart" IN ('1010','1020')</condition>
+                    <condition lang="ECQL">konstruktionsmerkmalbauart IN ('1010','1020')</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6736,7 +6736,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((("bahnkategorie" IN ('2100','2200')) OR "bahnkategorie" = '2300') OR "bahnkategorie" = '2500') OR "bahnkategorie" = '2600'</condition>
+                    <condition lang="ECQL">(((bahnkategorie IN ('2100','2200')) OR bahnkategorie = '2300') OR bahnkategorie = '2500') OR bahnkategorie = '2600'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6759,7 +6759,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">("bauwerksfunktion" IN ('1610','1611')) OR "bauwerksfunktion" = '1700'</condition>
+                    <condition lang="ECQL">(bauwerksfunktion IN ('1610','1611')) OR bauwerksfunktion = '1700'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6796,7 +6796,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1201','1203')) OR "bauwerksfunktion" = '1205') OR "bauwerksfunktion" = '1206'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1201','1203')) OR bauwerksfunktion = '1205') OR bauwerksfunktion = '1206'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6949,7 +6949,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('2030','2050')) OR "bauwerksfunktion" = '2060') OR "bauwerksfunktion" = '2070') OR "bauwerksfunktion" = '2080') OR "bauwerksfunktion" = '2090'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('2030','2050')) OR bauwerksfunktion = '2060') OR bauwerksfunktion = '2070') OR bauwerksfunktion = '2080') OR bauwerksfunktion = '2090'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6974,7 +6974,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1800','1830')) OR "bauwerksfunktion" = '1880') OR "bauwerksfunktion" = '1890'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1800','1830')) OR bauwerksfunktion = '1880') OR bauwerksfunktion = '1890'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6999,7 +6999,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((((((((((("bauwerksfunktion" IN ('1215','1220')) OR "bauwerksfunktion" = '1250') OR "bauwerksfunktion" = '1251') OR "bauwerksfunktion" = '1260') OR "bauwerksfunktion" = '1270') OR "bauwerksfunktion" = '1280') OR "bauwerksfunktion" = '1290') OR "bauwerksfunktion" = '1330') OR "bauwerksfunktion" = '1331') OR "bauwerksfunktion" = '1332') OR "bauwerksfunktion" = '1333') OR "bauwerksfunktion" = '1340') OR "bauwerksfunktion" = '1350'</condition>
+                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -7024,7 +7024,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(((("bauwerksfunktion" IN ('1430','1431')) OR "bauwerksfunktion" = '1432') OR "bauwerksfunktion" = '1440') OR "bauwerksfunktion" = '1470') OR "bauwerksfunktion" = '1490'</condition>
+                    <condition lang="ECQL">((((bauwerksfunktion IN ('1430','1431')) OR bauwerksfunktion = '1432') OR bauwerksfunktion = '1440') OR bauwerksfunktion = '1470') OR bauwerksfunktion = '1490'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -7049,7 +7049,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"art" = '1420'</condition>
+                    <condition lang="ECQL">art = '1420'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -7090,7 +7090,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("archaeologischertyp" IN ('1100','1110')) OR "archaeologischertyp" = '1210') OR "archaeologischertyp" = '1410'</condition>
+                    <condition lang="ECQL">((archaeologischertyp IN ('1100','1110')) OR archaeologischertyp = '1210') OR archaeologischertyp = '1410'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -7115,7 +7115,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_leitung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"bauwerksfunktion" = '1110'</condition>
+                    <condition lang="ECQL">bauwerksfunktion = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -7140,7 +7140,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_schleuse" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">"konstruktionsmerkmalbauart" IN ('1010','1020')</condition>
+                    <condition lang="ECQL">konstruktionsmerkmalbauart IN ('1010','1020')</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -7165,7 +7165,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">((("bahnkategorie" IN ('2100','2200')) OR "bahnkategorie" = '2300') OR "bahnkategorie" = '2500') OR "bahnkategorie" = '2600'</condition>
+                    <condition lang="ECQL">(((bahnkategorie IN ('2100','2200')) OR bahnkategorie = '2300') OR bahnkategorie = '2500') OR bahnkategorie = '2600'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -7190,7 +7190,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">("bauwerksfunktion" IN ('1610','1611')) OR "bauwerksfunktion" = '1700'</condition>
+                    <condition lang="ECQL">(bauwerksfunktion IN ('1610','1611')) OR bauwerksfunktion = '1700'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -7231,7 +7231,7 @@ if (baujahr){&#xD;
         <source name="id">
             <property>
                 <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1201','1203')) OR "bauwerksfunktion" = '1205') OR "bauwerksfunktion" = '1206'</condition>
+                    <condition lang="ECQL">((bauwerksfunktion IN ('1201','1203')) OR bauwerksfunktion = '1205') OR bauwerksfunktion = '1206'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
