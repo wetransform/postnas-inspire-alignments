@@ -2,7 +2,6 @@ PostNAS INSPIRE Alignments
 ==========================
 
 Aus den AdV-Alignments abgeleitete Alignments (PostNAS nach INSPIRE)
-Herkunft: Komplementärbeauftragung Rheinland-Pfalz
 
 Die Ableitung erfolgt teils automatisch (`projects/*-auto.halex`) und wird durch manuelle Anpassungen ergänzt (`projects/*-manual.halex`). Um die manuellen Anpassungen nachvollziehen zu können unterliegen auch die generierten Projekte der Versionskontrolle.
 

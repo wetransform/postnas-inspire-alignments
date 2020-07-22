@@ -61,7 +61,7 @@ task('dbMatching', type: hale.cli()) {
     'database/matching.halex'
   ]
 
-  description "Generate matching project between AAA XSD and RLP PostNAS schemas"
+  description "Generate matching project between AAA XSD and PostNAS schemas"
   group 'Alignment migration'
 }
 
