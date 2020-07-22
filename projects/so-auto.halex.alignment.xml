@@ -11,17 +11,17 @@
             </cf:output>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def values = qualitaetsangaben.p.herkunft.LI_Lineage.processStep.LI_ProcessStep.dateTime.DateTime.values()&#xD;
-&#xD;
-// sort dates&#xD;
-values.sort()&#xD;
-&#xD;
-// yield last date&#xD;
-def date = values[-1].toInstant() as String&#xD;
-&#xD;
-_target {&#xD;
-	timePosition( date)&#xD;
-	id( 'TimeInstant_' + UUID.randomUUID())&#xD;
+def values = qualitaetsangaben.p.herkunft.LI_Lineage.processStep.LI_ProcessStep.dateTime.DateTime.values()&#13;
+&#13;
+// sort dates&#13;
+values.sort()&#13;
+&#13;
+// yield last date&#13;
+def date = values[-1].toInstant() as String&#13;
+&#13;
+_target {&#13;
+	timePosition( date)&#13;
+	id( 'TimeInstant_' + UUID.randomUUID())&#13;
 }
 </core:text>
             </cf:definition>
@@ -258,47 +258,47 @@ else {
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.&#xD;
-Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.&#xD;
-Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.&#xD;
-Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.&#xD;
-&#xD;
-Die Sprache des Namens wird als Deutsch angenommen.&#xD;
-&#xD;
-&lt;% if (_params.nameStatus) {&#xD;
-  if (_params.nameStatus == 'unpopulated') {&#xD;
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#xD;
-  }&#xD;
-  else if (_params.nameStatus == 'unknown') {&#xD;
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#xD;
-  }&#xD;
-  else {&#xD;
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#xD;
-  }&#xD;
-}&#xD;
-else {&#xD;
-  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#xD;
-}&#xD;
-out &lt;&lt; "\n\n"&#xD;
-if (_params.nativeness) {&#xD;
-  if (_params.nativeness == 'unpopulated') {&#xD;
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#xD;
-  }&#xD;
-  else if (_params.nativeness == 'unknown') {&#xD;
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#xD;
-  }&#xD;
-  else {&#xD;
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#xD;
-  }&#xD;
-}&#xD;
-else {&#xD;
-  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#xD;
-}&#xD;
-out &lt;&lt; "\n\n"&#xD;
-if (_params.source) {&#xD;&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;&#xD;
-} else {&#xD;&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;&#xD;
+Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.&#13;
+Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.&#13;
+Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.&#13;
+Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.&#13;
+&#13;
+Die Sprache des Namens wird als Deutsch angenommen.&#13;
+&#13;
+&lt;% if (_params.nameStatus) {&#13;
+  if (_params.nameStatus == 'unpopulated') {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#13;
+  }&#13;
+  else if (_params.nameStatus == 'unknown') {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#13;
+  }&#13;
+  else {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#13;
+  }&#13;
+}&#13;
+else {&#13;
+  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#13;
+}&#13;
+out &lt;&lt; "\n\n"&#13;
+if (_params.nativeness) {&#13;
+  if (_params.nativeness == 'unpopulated') {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#13;
+  }&#13;
+  else if (_params.nativeness == 'unknown') {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#13;
+  }&#13;
+  else {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#13;
+  }&#13;
+}&#13;
+else {&#13;
+  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#13;
+}&#13;
+out &lt;&lt; "\n\n"&#13;
+if (_params.source) {&#13;&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#13;&#13;
+} else {&#13;&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#13;&#13;
 } %&gt;
 </core:text>
                     </cf:template>
@@ -456,9 +456,9 @@ else {
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Bildet ein GeographicalName-Objekt zu einem einfachen Namen. Der Wert des Quell-Attributs $spelling wird als Schreibweise des Namens übernommen (`SpellingOfName`).&#xD;
-&#xD;
-Die Sprache wird als Deutsch angenommen.&#xD;
+Bildet ein GeographicalName-Objekt zu einem einfachen Namen. Der Wert des Quell-Attributs $spelling wird als Schreibweise des Namens übernommen (`SpellingOfName`).&#13;
+&#13;
+Die Sprache wird als Deutsch angenommen.&#13;
 
 &lt;% if (_params.nameStatus) {
   if (_params.nameStatus == 'unpopulated') {
@@ -490,13 +490,13 @@ else {
   out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
 }
 out &lt;&lt; "\n\n"
-if (_params.source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
-} else if (source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden, andernfalls wird das Quell-Attribut $source dafür herangezogen. "&#xD;
-  out &lt;&lt; "In letzterem Fall kann nur eine von potentiell mehreren im Quellobjekt angegebenen Modellarten übernommen werden."&#xD;
-} else {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
+if (_params.source) {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#13;
+} else if (source) {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden, andernfalls wird das Quell-Attribut $source dafür herangezogen. "&#13;
+  out &lt;&lt; "In letzterem Fall kann nur eine von potentiell mehreren im Quellobjekt angegebenen Modellarten übernommen werden."&#13;
+} else {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#13;
 } %&gt;
 </core:text>
                     </cf:template>
@@ -812,9 +812,9 @@ Aktuell ist folgende Abbildung umgesetzt:
             </cf:output>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-_target {&#xD;
-	timePosition(  lebenszeitintervall.p.AA_Lebenszeitintervall.beginnt.value().toInstant() as String)&#xD;
-	id( 'TimeInstant_' + UUID.randomUUID() )&#xD;
+_target {&#13;
+	timePosition(  lebenszeitintervall.p.AA_Lebenszeitintervall.beginnt.value().toInstant() as String)&#13;
+	id( 'TimeInstant_' + UUID.randomUUID() )&#13;
 }
 </core:text>
             </cf:definition>
@@ -838,26 +838,26 @@ _target {&#xD;
             </cf:output>
             <cf:definition>
                 <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-/*def resulttime = qualitaetsangaben.p.herkunft.LI_Lineage.processStep.LI_ProcessStep.dateTime.DateTime.value().toInstant()&#xD;
-&#xD;
-qualitaetsangaben.p.herkunft.LI_Lineage.processStep.each {&#xD;
-	instance -&gt;&#xD;
-	if (instance.LI_ProcessStep.dateTime.DateTime.value().toInstant().isAfter(resulttime)) {&#xD;
-		resulttime = instance.LI_ProcessStep.dateTime.DateTime.value().toInstant()&#xD;
-	}&#xD;
-}*/&#xD;
-&#xD;
-def values = qualitaetsangaben.p.herkunft.LI_Lineage.processStep.LI_ProcessStep.dateTime.DateTime.values()&#xD;
-&#xD;
-// sort dates&#xD;
-values.sort()&#xD;
-&#xD;
-// yield last date&#xD;
-def date = values[-1].toInstant() as String&#xD;
-&#xD;
-_target {&#xD;
-	timePosition( date)&#xD;
-	id( 'TimeInstant_' + UUID.randomUUID())&#xD;
+/*def resulttime = qualitaetsangaben.p.herkunft.LI_Lineage.processStep.LI_ProcessStep.dateTime.DateTime.value().toInstant()&#13;
+&#13;
+qualitaetsangaben.p.herkunft.LI_Lineage.processStep.each {&#13;
+	instance -&gt;&#13;
+	if (instance.LI_ProcessStep.dateTime.DateTime.value().toInstant().isAfter(resulttime)) {&#13;
+		resulttime = instance.LI_ProcessStep.dateTime.DateTime.value().toInstant()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+def values = qualitaetsangaben.p.herkunft.LI_Lineage.processStep.LI_ProcessStep.dateTime.DateTime.values()&#13;
+&#13;
+// sort dates&#13;
+values.sort()&#13;
+&#13;
+// yield last date&#13;
+def date = values[-1].toInstant() as String&#13;
+&#13;
+_target {&#13;
+	timePosition( date)&#13;
+	id( 'TimeInstant_' + UUID.randomUUID())&#13;
 }
 </core:text>
             </cf:definition>
@@ -922,142 +922,142 @@ _target {&#xD;
         </complexParameter>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-if (_source.p.bodenzahlOderGruenlandgrundzahl.value() || _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value()){&#xD;
-	_target {&#xD;
-		procedure {&#xD;
-			href( '#Process_' + _project.vars['BODSCHAETZG-ID'] )&#xD;
-		}&#xD;
-		phenomenonTime {&#xD;
-			nilReason( 'other:unpopulated' )&#xD;
-		}&#xD;
-		resultTime {&#xD;
-			nilReason( 'other:unpopulated' )&#xD;
-		}&#xD;
-		if(_source.p.bodenzahlOderGruenlandgrundzahl.value()){&#xD;
-			result {&#xD;
-				CharacterString('This field contains information about AX_GrablochDerBodenschaetzung - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about bodenzahlOderGruenlandgrundzahl: ' + _source.p.bodenzahlOderGruenlandgrundzahl.value())&#xD;
-			}&#xD;
-			featureOfInterest {&#xD;
-				href( '#ObservedSoilProfile_' +  _source.p.id.value())&#xD;
-			}&#xD;
-			identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.p.id.value()) {&#xD;
-				codeSpace( 'http://inspire.ec.europa.eu/ids' )&#xD;
-			}&#xD;
-			observedProperty {&#xD;
-				title( 'AX_GrablochDerBodenschaetzung ' )&#xD;
-				href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_GrablochDerBodenschaetzung' )&#xD;
-			}&#xD;
-			id( 'OM_Observation_' +  _source.p.id.value() )&#xD;
-			c.GLobs &lt;&lt; '#OM_Observation' +  _source.p.id.value()&#xD;
-			parameter {&#xD;
-				NamedValue {&#xD;
-					name {&#xD;
-						title( 'inGemarkung: land_gemarkungsnummer' )&#xD;
-					}&#xD;
-					value( _source.p.inGemarkung.AX_Gemarkung_Schluessel.land.value() + '_' + _source.p.inGemarkung.AX_Gemarkung_Schluessel.gemarkungsnummer.value())&#xD;
-				}&#xD;
-			}&#xD;
-&#xD;
-		}&#xD;
-		if(_source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value()){&#xD;
-			result{&#xD;
-				CharacterString('This field contains information about AX_Tagesabschnitt - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about tagesabschnittsnummer: ' + _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value())&#xD;
-			}&#xD;
-			featureOfInterest {&#xD;
-				href( '#ObservedSoilProfile_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#xD;
-			}&#xD;
-			identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()) {&#xD;
-				codeSpace( 'http://inspire.ec.europa.eu/ids' )&#xD;
-			}&#xD;
-			observedProperty {&#xD;
-				title( 'AX_Tagesabschnitt ' )&#xD;
-				href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_Tagesabschnitt' )&#xD;
-			}&#xD;
-			id ('OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#xD;
-			c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()&#xD;
-			parameter {&#xD;
-				NamedValue {&#xD;
-					name {&#xD;
-						title( 'tagesabschnittsnummer' )&#xD;
-					}&#xD;
-					value( _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value())&#xD;
-				}&#xD;
-			}&#xD;
-		}&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-if (_source.p.bodenzahlOderGruenlandgrundzahl.value() &amp;&amp; _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value()){&#xD;
-	_target {&#xD;
-		procedure {&#xD;
-			href( '#Process_' + _project.vars['BODSCHAETZG-ID'] )&#xD;
-		}&#xD;
-		phenomenonTime {&#xD;
-			nilReason( 'other:unpopulated' )&#xD;
-		}&#xD;
-		resultTime {&#xD;
-			nilReason( 'other:unpopulated' )&#xD;
-		}&#xD;
-		result {&#xD;
-			CharacterString ('This field contains information about AX_GrablochDerBodenschaetzung - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about bodenzahlOderGruenlandgrundzahl: ' + _source.p.bodenzahlOderGruenlandgrundzahl.value())&#xD;
-		}&#xD;
-		featureOfInterest {&#xD;
-			href( '#ObservedSoilProfile_' +  _source.p.id.value())&#xD;
-		}&#xD;
-		identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.p.id.value()) {&#xD;
-			codeSpace( 'http://inspire.ec.europa.eu/ids' )&#xD;
-		}&#xD;
-		observedProperty {&#xD;
-			title( 'AX_GrablochDerBodenschaetzung ' )&#xD;
-			href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_GrablochDerBodenschaetzung' )&#xD;
-		}&#xD;
-		id( 'OM_Observation_' +  _source.p.id.value() )&#xD;
-		c.GLobs &lt;&lt; '#OM_Observation_' +  _source.p.id.value()&#xD;
-		parameter {&#xD;
-			NamedValue {&#xD;
-				name {&#xD;
-					title( 'inGemarkung: land_gemarkungsnummer' )&#xD;
-				}&#xD;
-				value( _source.p.inGemarkung.AX_Gemarkung_Schluessel.land.value() + '_' + _source.p.inGemarkung.AX_Gemarkung_Schluessel.gemarkungsnummer.value())&#xD;
-			}&#xD;
-		}&#xD;
-	}&#xD;
-	_target{&#xD;
-		procedure {&#xD;
-			href( '#Process_' + _project.vars['BODSCHAETZG-ID'] )&#xD;
-		}&#xD;
-		phenomenonTime {&#xD;
-			nilReason( 'other:unpopulated' )&#xD;
-		}&#xD;
-		resultTime {&#xD;
-			nilReason( 'other:unpopulated' )&#xD;
-		}&#xD;
-		result {&#xD;
-			CharacterString ('This field contains information about AX_Tagesabschnitt - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about tagesabschnittsnummer: ' + _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value())&#xD;
-		}&#xD;
-		featureOfInterest {&#xD;
-			href( '#ObservedSoilProfile_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#xD;
-		}&#xD;
-		identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()) {&#xD;
-			codeSpace( 'http://inspire.ec.europa.eu/ids' )&#xD;
-		}&#xD;
-		observedProperty {&#xD;
-			title( 'AX_Tagesabschnitt ' )&#xD;
-			href ( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_Tagesabschnitt' )&#xD;
-		}&#xD;
-		id ('OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#xD;
-		c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()&#xD;
-		parameter {&#xD;
-			NamedValue {&#xD;
-				name {&#xD;
-					title( 'tagesabschnittsnummer' )&#xD;
-				}&#xD;
-				value( _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value())&#xD;
-			}&#xD;
-		}&#xD;
-	}&#xD;
+def c = _.context.collector()&#13;
+&#13;
+if (_source.p.bodenzahlOderGruenlandgrundzahl.value() || _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value()){&#13;
+	_target {&#13;
+		procedure {&#13;
+			href( '#Process_' + _project.vars['BODSCHAETZG-ID'] )&#13;
+		}&#13;
+		phenomenonTime {&#13;
+			nilReason( 'other:unpopulated' )&#13;
+		}&#13;
+		resultTime {&#13;
+			nilReason( 'other:unpopulated' )&#13;
+		}&#13;
+		if(_source.p.bodenzahlOderGruenlandgrundzahl.value()){&#13;
+			result {&#13;
+				CharacterString('This field contains information about AX_GrablochDerBodenschaetzung - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about bodenzahlOderGruenlandgrundzahl: ' + _source.p.bodenzahlOderGruenlandgrundzahl.value())&#13;
+			}&#13;
+			featureOfInterest {&#13;
+				href( '#ObservedSoilProfile_' +  _source.p.id.value())&#13;
+			}&#13;
+			identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.p.id.value()) {&#13;
+				codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
+			}&#13;
+			observedProperty {&#13;
+				title( 'AX_GrablochDerBodenschaetzung ' )&#13;
+				href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_GrablochDerBodenschaetzung' )&#13;
+			}&#13;
+			id( 'OM_Observation_' +  _source.p.id.value() )&#13;
+			c.GLobs &lt;&lt; '#OM_Observation' +  _source.p.id.value()&#13;
+			parameter {&#13;
+				NamedValue {&#13;
+					name {&#13;
+						title( 'inGemarkung: land_gemarkungsnummer' )&#13;
+					}&#13;
+					value( _source.p.inGemarkung.AX_Gemarkung_Schluessel.land.value() + '_' + _source.p.inGemarkung.AX_Gemarkung_Schluessel.gemarkungsnummer.value())&#13;
+				}&#13;
+			}&#13;
+&#13;
+		}&#13;
+		if(_source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value()){&#13;
+			result{&#13;
+				CharacterString('This field contains information about AX_Tagesabschnitt - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about tagesabschnittsnummer: ' + _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value())&#13;
+			}&#13;
+			featureOfInterest {&#13;
+				href( '#ObservedSoilProfile_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#13;
+			}&#13;
+			identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()) {&#13;
+				codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
+			}&#13;
+			observedProperty {&#13;
+				title( 'AX_Tagesabschnitt ' )&#13;
+				href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_Tagesabschnitt' )&#13;
+			}&#13;
+			id ('OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#13;
+			c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()&#13;
+			parameter {&#13;
+				NamedValue {&#13;
+					name {&#13;
+						title( 'tagesabschnittsnummer' )&#13;
+					}&#13;
+					value( _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value())&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}&#13;
+&#13;
+if (_source.p.bodenzahlOderGruenlandgrundzahl.value() &amp;&amp; _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value()){&#13;
+	_target {&#13;
+		procedure {&#13;
+			href( '#Process_' + _project.vars['BODSCHAETZG-ID'] )&#13;
+		}&#13;
+		phenomenonTime {&#13;
+			nilReason( 'other:unpopulated' )&#13;
+		}&#13;
+		resultTime {&#13;
+			nilReason( 'other:unpopulated' )&#13;
+		}&#13;
+		result {&#13;
+			CharacterString ('This field contains information about AX_GrablochDerBodenschaetzung - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about bodenzahlOderGruenlandgrundzahl: ' + _source.p.bodenzahlOderGruenlandgrundzahl.value())&#13;
+		}&#13;
+		featureOfInterest {&#13;
+			href( '#ObservedSoilProfile_' +  _source.p.id.value())&#13;
+		}&#13;
+		identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.p.id.value()) {&#13;
+			codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
+		}&#13;
+		observedProperty {&#13;
+			title( 'AX_GrablochDerBodenschaetzung ' )&#13;
+			href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_GrablochDerBodenschaetzung' )&#13;
+		}&#13;
+		id( 'OM_Observation_' +  _source.p.id.value() )&#13;
+		c.GLobs &lt;&lt; '#OM_Observation_' +  _source.p.id.value()&#13;
+		parameter {&#13;
+			NamedValue {&#13;
+				name {&#13;
+					title( 'inGemarkung: land_gemarkungsnummer' )&#13;
+				}&#13;
+				value( _source.p.inGemarkung.AX_Gemarkung_Schluessel.land.value() + '_' + _source.p.inGemarkung.AX_Gemarkung_Schluessel.gemarkungsnummer.value())&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+	_target{&#13;
+		procedure {&#13;
+			href( '#Process_' + _project.vars['BODSCHAETZG-ID'] )&#13;
+		}&#13;
+		phenomenonTime {&#13;
+			nilReason( 'other:unpopulated' )&#13;
+		}&#13;
+		resultTime {&#13;
+			nilReason( 'other:unpopulated' )&#13;
+		}&#13;
+		result {&#13;
+			CharacterString ('This field contains information about AX_Tagesabschnitt - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about tagesabschnittsnummer: ' + _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value())&#13;
+		}&#13;
+		featureOfInterest {&#13;
+			href( '#ObservedSoilProfile_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#13;
+		}&#13;
+		identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()) {&#13;
+			codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
+		}&#13;
+		observedProperty {&#13;
+			title( 'AX_Tagesabschnitt ' )&#13;
+			href ( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_Tagesabschnitt' )&#13;
+		}&#13;
+		id ('OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#13;
+		c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()&#13;
+		parameter {&#13;
+			NamedValue {&#13;
+				name {&#13;
+					title( 'tagesabschnittsnummer' )&#13;
+				}&#13;
+				value( _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value())&#13;
+			}&#13;
+		}&#13;
+	}&#13;
 }	
 </core:text>
         </complexParameter>
@@ -1096,38 +1096,38 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() &amp;&amp; _source.links.A
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-_target{&#xD;
-	procedure {&#xD;
-		href( '#Process_' + _project.vars['BODSCHAETZG-ID'] )&#xD;
-	}&#xD;
-	phenomenonTime {&#xD;
-		nilReason( 'other:unpopulated' )&#xD;
-	}&#xD;
-	resultTime {&#xD;
-		nilReason( 'other:unpopulated' )&#xD;
-	}&#xD;
-	result {&#xD;
-		CharacterString ('This field contains information about AX_Tagesabschnitt - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about tagesabschnittsnummer: ' + _source.p.tagesabschnittsnummer.value())&#xD;
-	}&#xD;
-	featureOfInterest {&#xD;
-		href( '#ObservedSoilProfile_' +  _source.p.id.value())&#xD;
-	}&#xD;
-	identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.p.id.value()) {&#xD;
-		codeSpace( 'http://inspire.ec.europa.eu/ids' )&#xD;
-	}&#xD;
-	observedProperty {&#xD;
-		title( 'AX_Tagesabschnitt ' )&#xD;
-		href ( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_Tagesabschnitt' )&#xD;
-	}&#xD;
-	id ('OM_Observation_' +  _source.p.id.value())&#xD;
-	parameter {&#xD;
-		NamedValue {&#xD;
-			name {&#xD;
-				title( 'tagesabschnittsnummer' )&#xD;
-			}&#xD;
-			value( _source.p.tagesabschnittsnummer.value())&#xD;
-		}&#xD;
-	}&#xD;
+_target{&#13;
+	procedure {&#13;
+		href( '#Process_' + _project.vars['BODSCHAETZG-ID'] )&#13;
+	}&#13;
+	phenomenonTime {&#13;
+		nilReason( 'other:unpopulated' )&#13;
+	}&#13;
+	resultTime {&#13;
+		nilReason( 'other:unpopulated' )&#13;
+	}&#13;
+	result {&#13;
+		CharacterString ('This field contains information about AX_Tagesabschnitt - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about tagesabschnittsnummer: ' + _source.p.tagesabschnittsnummer.value())&#13;
+	}&#13;
+	featureOfInterest {&#13;
+		href( '#ObservedSoilProfile_' +  _source.p.id.value())&#13;
+	}&#13;
+	identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.p.id.value()) {&#13;
+		codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
+	}&#13;
+	observedProperty {&#13;
+		title( 'AX_Tagesabschnitt ' )&#13;
+		href ( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_Tagesabschnitt' )&#13;
+	}&#13;
+	id ('OM_Observation_' +  _source.p.id.value())&#13;
+	parameter {&#13;
+		NamedValue {&#13;
+			name {&#13;
+				title( 'tagesabschnittsnummer' )&#13;
+			}&#13;
+			value( _source.p.tagesabschnittsnummer.value())&#13;
+		}&#13;
+	}&#13;
 }
 </core:text>
         </complexParameter>
@@ -1592,49 +1592,49 @@ _target{&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-//für die Repräsentation des result-Attributs von OM_Observation wurde sich für die Nutzung eines CharacterString entschieden. Laute Datenspezifikation sind nur die Typen Number, CharacterString und RangeType zulässig,&#xD;
-//von denen CharacterString am besten passt.&#xD;
-&#xD;
-//Methode, die den Wert eines Attributs oder, wenn keiner vorhanden ist, einen leeren String zurückgibt&#xD;
-def extractValue = {&#xD;
-  if (it) {&#xD;
-    it.p.value()&#xD;
-  }&#xD;
-  else {&#xD;
-    ''&#xD;
-  }&#xD;
-}&#xD;
-&#xD;
-//in der Liste werden alle Einträge gesammelt, die in das CharacterString-Attribut geschrieben werden sollen, mit dessen Hilfe das result repräsentiert wird&#xD;
-def list = []&#xD;
-&#xD;
-//die Werte aus verschiedenen Attributen werden ausgelesen - bei Kardinalität 1 unter Nutzung der oben definierten Methode, bei Kardinalität &gt;1 über einen Join aller enthaltenen Werte &#xD;
-list &lt;&lt; extractValue(bodenart)&#xD;
-list &lt;&lt; extractValue(zustandsstufeOderBodenstufe)&#xD;
-if (entstehungsartOderKlimastufeWasserverhaeltnisse) {&#xD;
-  //das encoding ist folgendermaßen: Werte innerhalb dieses Feldes werden mit | getrennt, die einzelnen Felder werden mit Komma getrennt&#xD;
-  list &lt;&lt; entstehungsartOderKlimastufeWasserverhaeltnisse.p.values().join('|')&#xD;
-}&#xD;
-else {&#xD;
-  list &lt;&lt; ''&#xD;
-}&#xD;
-list &lt;&lt; extractValue(bodenzahlOderGruenlandgrundzahl)&#xD;
-list &lt;&lt; extractValue(ackerzahlOderGruenlandzahl)&#xD;
-if (sonstigeAngaben) {&#xD;
-  list &lt;&lt; sonstigeAngaben.p.values().join('|')&#xD;
-}&#xD;
-else {&#xD;
-  list &lt;&lt; ''&#xD;
-}&#xD;
-list &lt;&lt; extractValue(jahreszahl)&#xD;
-&#xD;
-//die gesamte Liste wird in das Ziel-Attribut geschrieben. Das encoding ist folgendermaßen:Werte innerhalb dieses Attributs werden mit Komma getrennt&#xD;
+//für die Repräsentation des result-Attributs von OM_Observation wurde sich für die Nutzung eines CharacterString entschieden. Laute Datenspezifikation sind nur die Typen Number, CharacterString und RangeType zulässig,&#13;
+//von denen CharacterString am besten passt.&#13;
+&#13;
+//Methode, die den Wert eines Attributs oder, wenn keiner vorhanden ist, einen leeren String zurückgibt&#13;
+def extractValue = {&#13;
+  if (it) {&#13;
+    it.p.value()&#13;
+  }&#13;
+  else {&#13;
+    ''&#13;
+  }&#13;
+}&#13;
+&#13;
+//in der Liste werden alle Einträge gesammelt, die in das CharacterString-Attribut geschrieben werden sollen, mit dessen Hilfe das result repräsentiert wird&#13;
+def list = []&#13;
+&#13;
+//die Werte aus verschiedenen Attributen werden ausgelesen - bei Kardinalität 1 unter Nutzung der oben definierten Methode, bei Kardinalität &gt;1 über einen Join aller enthaltenen Werte &#13;
+list &lt;&lt; extractValue(bodenart)&#13;
+list &lt;&lt; extractValue(zustandsstufeOderBodenstufe)&#13;
+if (entstehungsartOderKlimastufeWasserverhaeltnisse) {&#13;
+  //das encoding ist folgendermaßen: Werte innerhalb dieses Feldes werden mit | getrennt, die einzelnen Felder werden mit Komma getrennt&#13;
+  list &lt;&lt; entstehungsartOderKlimastufeWasserverhaeltnisse.p.values().join('|')&#13;
+}&#13;
+else {&#13;
+  list &lt;&lt; ''&#13;
+}&#13;
+list &lt;&lt; extractValue(bodenzahlOderGruenlandgrundzahl)&#13;
+list &lt;&lt; extractValue(ackerzahlOderGruenlandzahl)&#13;
+if (sonstigeAngaben) {&#13;
+  list &lt;&lt; sonstigeAngaben.p.values().join('|')&#13;
+}&#13;
+else {&#13;
+  list &lt;&lt; ''&#13;
+}&#13;
+list &lt;&lt; extractValue(jahreszahl)&#13;
+&#13;
+//die gesamte Liste wird in das Ziel-Attribut geschrieben. Das encoding ist folgendermaßen:Werte innerhalb dieses Attributs werden mit Komma getrennt&#13;
 return 'This field contains information about AX_Bodenschaetzung - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given is given in the following pattern: bodenart, zustandsstufeOderBodenstufe, entstehungsartOderKlimastufeWasserverhaeltnisse, bodezahlOderGruenlandgrundzahl, ackerOderGruenlandzahl, sonstigeAngaben, jahreszahl:' + list.join(',')
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Alle Werte, die als result gewertet sind, werden in einem gemeinsamen DataArray gesammelt. Dabei werden unter elementType --&gt; DataRecord Felder definiert, welche die Struktur des results angeben.&#xD;
-Wie die Angaben innerhalb des DataArrays voneinander getrennt werden, wird im encoding angegeben.&#xD;
+        <documentation>Alle Werte, die als result gewertet sind, werden in einem gemeinsamen DataArray gesammelt. Dabei werden unter elementType --&gt; DataRecord Felder definiert, welche die Struktur des results angeben.&#13;
+Wie die Angaben innerhalb des DataArrays voneinander getrennt werden, wird im encoding angegeben.&#13;
 Die Werte selbst stehen im values-Attribut, das an dieser Stelle gefüllt wird.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
@@ -1691,43 +1691,43 @@ Die Werte selbst stehen im values-Attribut, das an dieser Stelle gefüllt wird.<
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-//für die Repräsentation des result-Attributs von OM_Observation wurde sich für die Nutzung eines CharacterString entschieden. Laute Datenspezifikation sind nur die Typen Number, CharacterString und RangeType zulässig,&#xD;
-//von denen CharacterString am besten passt.&#xD;
-&#xD;
-&#xD;
-//Methode, die den Wert eines Attributs oder, wenn keiner vorhanden ist, einen leeren String zurückgibt&#xD;
-def extractValue = {&#xD;
-  if (it) {&#xD;
-    it.p.value()&#xD;
-  }&#xD;
-  else {&#xD;
-    ''&#xD;
-  }&#xD;
-}&#xD;
-&#xD;
-//in der Liste werden alle Einträge gesammelt, die in das CharacterString-Attribut geschrieben werden sollen, mit dessen Hilfe das result repräsentiert wird&#xD;
-def list = []&#xD;
-&#xD;
-//die Werte aus verschiedenen Attributen werden ausgelesen - bei Kardinalität 1 unter Nutzung der oben definierten Methode, bei Kardinalität &gt;1 über einen Join aller enthaltenen Werte &#xD;
-list &lt;&lt; extractValue(bodenart)&#xD;
-list &lt;&lt; extractValue(zustandsstufeOderBodenstufe)&#xD;
-if (entstehungsartOderKlimastufeWasserverhaeltnisse) {&#xD;
-  //das encoding ist folgendermaßen: Werte innerhalb dieses Feldes werden mit | getrennt, die einzelnen Felder werden mit Komma getrennt&#xD;
-  list &lt;&lt; entstehungsartOderKlimastufeWasserverhaeltnisse.p.values().join('|')&#xD;
-}&#xD;
-else {&#xD;
-  list &lt;&lt; ''&#xD;
-}&#xD;
-list &lt;&lt; extractValue(bodenzahlOderGruenlandgrundzahl)&#xD;
-list &lt;&lt; extractValue(ackerzahlOderGruenlandzahl)&#xD;
-if (sonstigeAngaben) {&#xD;
-  list &lt;&lt; sonstigeAngaben.p.values().join('|')&#xD;
-}&#xD;
-else {&#xD;
-  list &lt;&lt; ''&#xD;
-}&#xD;
-&#xD;
-//die gesamte Liste wird in das Ziel-Attribut geschrieben. Das encoding (Werte innerhalb dieses Attributs werden mit , getrennt), wird an einer anderen Stelle dieses DataArrays beschrieben&#xD;
+//für die Repräsentation des result-Attributs von OM_Observation wurde sich für die Nutzung eines CharacterString entschieden. Laute Datenspezifikation sind nur die Typen Number, CharacterString und RangeType zulässig,&#13;
+//von denen CharacterString am besten passt.&#13;
+&#13;
+&#13;
+//Methode, die den Wert eines Attributs oder, wenn keiner vorhanden ist, einen leeren String zurückgibt&#13;
+def extractValue = {&#13;
+  if (it) {&#13;
+    it.p.value()&#13;
+  }&#13;
+  else {&#13;
+    ''&#13;
+  }&#13;
+}&#13;
+&#13;
+//in der Liste werden alle Einträge gesammelt, die in das CharacterString-Attribut geschrieben werden sollen, mit dessen Hilfe das result repräsentiert wird&#13;
+def list = []&#13;
+&#13;
+//die Werte aus verschiedenen Attributen werden ausgelesen - bei Kardinalität 1 unter Nutzung der oben definierten Methode, bei Kardinalität &gt;1 über einen Join aller enthaltenen Werte &#13;
+list &lt;&lt; extractValue(bodenart)&#13;
+list &lt;&lt; extractValue(zustandsstufeOderBodenstufe)&#13;
+if (entstehungsartOderKlimastufeWasserverhaeltnisse) {&#13;
+  //das encoding ist folgendermaßen: Werte innerhalb dieses Feldes werden mit | getrennt, die einzelnen Felder werden mit Komma getrennt&#13;
+  list &lt;&lt; entstehungsartOderKlimastufeWasserverhaeltnisse.p.values().join('|')&#13;
+}&#13;
+else {&#13;
+  list &lt;&lt; ''&#13;
+}&#13;
+list &lt;&lt; extractValue(bodenzahlOderGruenlandgrundzahl)&#13;
+list &lt;&lt; extractValue(ackerzahlOderGruenlandzahl)&#13;
+if (sonstigeAngaben) {&#13;
+  list &lt;&lt; sonstigeAngaben.p.values().join('|')&#13;
+}&#13;
+else {&#13;
+  list &lt;&lt; ''&#13;
+}&#13;
+&#13;
+//die gesamte Liste wird in das Ziel-Attribut geschrieben. Das encoding (Werte innerhalb dieses Attributs werden mit , getrennt), wird an einer anderen Stelle dieses DataArrays beschrieben&#13;
 return 'This field contains information about AX_MusterLandesmusterUndVergleichsstueck - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given is given in the following pattern: bodenart, zustandsstufeOderBodenstufe, entstehungsartOderKlimastufeWasserverhaeltnisse, bodezahlOderGruenlandgrundzahl, ackerOderGruenlandzahl, sonstigeAngaben' + list.join(',')
 </core:text>
         </complexParameter>
@@ -1919,27 +1919,27 @@ return 'This field contains information about AX_MusterLandesmusterUndVergleichs
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-//{land}_{gemarkungsnummer}_{nuzmmerierungsbezirk}_{nummerDesGrablochs}&#xD;
-def land = kennziffer_AX_KennzifferGrabloch_land&#xD;
-def gemnr = kennziffer_AX_KennzifferGrabloch_gemarkungsnummer&#xD;
-def numbez = kennziffer_AX_KennzifferGrabloch_nummerierungsbezirk&#xD;
-def numgl = kennziffer_AX_KennzifferGrabloch_nummerDesGrablochs&#xD;
-&#xD;
-&#xD;
-if (land &amp;&amp; gemnr &amp;&amp; numbez) {&#xD;
-	return land + '_' + gemnr + '_' + numbez + '_' + numgl&#xD;
-}&#xD;
-&#xD;
-else if (land &amp;&amp; gemnr){&#xD;
-	return land + '_' + gemnr + '__' + numgl&#xD;
-}&#xD;
-&#xD;
-else if (land &amp;&amp; numbez){&#xD;
-	return land + '__' + numbez + '_' + numgl&#xD;
-}&#xD;
-&#xD;
-else if (gemnr &amp;&amp; numbez){&#xD;
-	return '_' + gemnr + '_' + numbez + '_' + numgl&#xD;
+//{land}_{gemarkungsnummer}_{nuzmmerierungsbezirk}_{nummerDesGrablochs}&#13;
+def land = kennziffer_AX_KennzifferGrabloch_land&#13;
+def gemnr = kennziffer_AX_KennzifferGrabloch_gemarkungsnummer&#13;
+def numbez = kennziffer_AX_KennzifferGrabloch_nummerierungsbezirk&#13;
+def numgl = kennziffer_AX_KennzifferGrabloch_nummerDesGrablochs&#13;
+&#13;
+&#13;
+if (land &amp;&amp; gemnr &amp;&amp; numbez) {&#13;
+	return land + '_' + gemnr + '_' + numbez + '_' + numgl&#13;
+}&#13;
+&#13;
+else if (land &amp;&amp; gemnr){&#13;
+	return land + '_' + gemnr + '__' + numgl&#13;
+}&#13;
+&#13;
+else if (land &amp;&amp; numbez){&#13;
+	return land + '__' + numbez + '_' + numgl&#13;
+}&#13;
+&#13;
+else if (gemnr &amp;&amp; numbez){&#13;
+	return '_' + gemnr + '_' + numbez + '_' + numgl&#13;
 }
 </core:text>
         </complexParameter>
@@ -1985,10 +1985,10 @@ else if (gemnr &amp;&amp; numbez){&#xD;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-c.GLobs.each{ _id -&gt;&#xD;
-	return _id&#xD;
+def c = _.context.collector()&#13;
+&#13;
+c.GLobs.each{ _id -&gt;&#13;
+	return _id&#13;
 }
 </core:text>
         </complexParameter>
