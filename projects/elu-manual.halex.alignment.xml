@@ -233,47 +233,47 @@ else {
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.&#xD;
-Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.&#xD;
-Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.&#xD;
-Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.&#xD;
-&#xD;
-Die Sprache des Namens wird als Deutsch angenommen.&#xD;
-&#xD;
-&lt;% if (_params.nameStatus) {&#xD;
-  if (_params.nameStatus == 'unpopulated') {&#xD;
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#xD;
-  }&#xD;
-  else if (_params.nameStatus == 'unknown') {&#xD;
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#xD;
-  }&#xD;
-  else {&#xD;
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#xD;
-  }&#xD;
-}&#xD;
-else {&#xD;
-  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#xD;
-}&#xD;
-out &lt;&lt; "\n\n"&#xD;
-if (_params.nativeness) {&#xD;
-  if (_params.nativeness == 'unpopulated') {&#xD;
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#xD;
-  }&#xD;
-  else if (_params.nativeness == 'unknown') {&#xD;
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#xD;
-  }&#xD;
-  else {&#xD;
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#xD;
-  }&#xD;
-}&#xD;
-else {&#xD;
-  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#xD;
-}&#xD;
-out &lt;&lt; "\n\n"&#xD;
-if (_params.source) {&#xD;&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;&#xD;
-} else {&#xD;&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;&#xD;
+Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.&#13;
+Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.&#13;
+Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.&#13;
+Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.&#13;
+&#13;
+Die Sprache des Namens wird als Deutsch angenommen.&#13;
+&#13;
+&lt;% if (_params.nameStatus) {&#13;
+  if (_params.nameStatus == 'unpopulated') {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#13;
+  }&#13;
+  else if (_params.nameStatus == 'unknown') {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#13;
+  }&#13;
+  else {&#13;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#13;
+  }&#13;
+}&#13;
+else {&#13;
+  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#13;
+}&#13;
+out &lt;&lt; "\n\n"&#13;
+if (_params.nativeness) {&#13;
+  if (_params.nativeness == 'unpopulated') {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#13;
+  }&#13;
+  else if (_params.nativeness == 'unknown') {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#13;
+  }&#13;
+  else {&#13;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#13;
+  }&#13;
+}&#13;
+else {&#13;
+  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#13;
+}&#13;
+out &lt;&lt; "\n\n"&#13;
+if (_params.source) {&#13;&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#13;&#13;
+} else {&#13;&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#13;&#13;
 } %&gt;
 </core:text>
                     </cf:template>
@@ -428,9 +428,9 @@ else {
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Bildet ein GeographicalName-Objekt zu einem einfachen Namen. Der Wert des Quell-Attributs $spelling wird als Schreibweise des Namens übernommen (`SpellingOfName`).&#xD;
-&#xD;
-Die Sprache wird als Deutsch angenommen.&#xD;
+Bildet ein GeographicalName-Objekt zu einem einfachen Namen. Der Wert des Quell-Attributs $spelling wird als Schreibweise des Namens übernommen (`SpellingOfName`).&#13;
+&#13;
+Die Sprache wird als Deutsch angenommen.&#13;
 
 &lt;% if (_params.nameStatus) {
   if (_params.nameStatus == 'unpopulated') {
@@ -462,13 +462,13 @@ else {
   out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
 }
 out &lt;&lt; "\n\n"
-if (_params.source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
-} else if (source) {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden, andernfalls wird das Quell-Attribut $source dafür herangezogen. "&#xD;
-  out &lt;&lt; "In letzterem Fall kann nur eine von potentiell mehreren im Quellobjekt angegebenen Modellarten übernommen werden."&#xD;
-} else {&#xD;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
+if (_params.source) {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#13;
+} else if (source) {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden, andernfalls wird das Quell-Attribut $source dafür herangezogen. "&#13;
+  out &lt;&lt; "In letzterem Fall kann nur eine von potentiell mehreren im Quellobjekt angegebenen Modellarten übernommen werden."&#13;
+} else {&#13;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#13;
 } %&gt;
 </core:text>
                     </cf:template>
@@ -812,8 +812,8 @@ Aktuell ist folgende Abbildung umgesetzt:
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
+def c = _.context.collector()&#13;
+&#13;
 return c.extent.value()
 </core:text>
         </complexParameter>
@@ -2170,31 +2170,31 @@ return c.extent.value()
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2220,31 +2220,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2270,31 +2270,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2320,31 +2320,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2370,31 +2370,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2420,31 +2420,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2470,31 +2470,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2520,31 +2520,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2570,31 +2570,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2620,31 +2620,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2670,31 +2670,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2720,31 +2720,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2770,31 +2770,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2820,31 +2820,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2870,31 +2870,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2920,31 +2920,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -2970,31 +2970,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -3020,31 +3020,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -3070,31 +3070,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -3120,31 +3120,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -3170,31 +3170,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -3220,31 +3220,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -3270,31 +3270,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -3320,31 +3320,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -3370,31 +3370,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -3420,31 +3420,31 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#xD;
-&#xD;
-def geom = _.geom.find(wkb_geometry)&#xD;
-if (!geom) {&#xD;
-  _log.error('No geometry found')&#xD;
-  return&#xD;
-}&#xD;
-&#xD;
-withTransformationContext {&#xD;
-	if(c.extent.value()){&#xD;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#xD;
-		c.extent = ext&#xD;
-	}&#xD;
-	else {&#xD;
-		c.extent = _.geom.bbox(geom)&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#xD;
+def c = _.context.collector()&#13;
+&#13;
+def geom = _.geom.find(wkb_geometry)&#13;
+if (!geom) {&#13;
+  _log.error('No geometry found')&#13;
+  return&#13;
+}&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.bbox(geom)&#13;
+	}&#13;
+}&#13;
+&#13;
+&#13;
+targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
 </core:text>
         </complexParameter>
         <parameter value="true" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer niedriger Priorisierten Zelle zur Erzeugung des ExistingLandUseDataSets für den extent genutzt wird. Bei dem Mapping jeder Geometrie wird eine BoundingBox von der bisher im Collector enthaltenen BoundingBox und der neuen Geometrie gebildet und diese neu gebildete BoundingBox in den Collector geschrieben</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -6151,7 +6151,7 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C910bb205-daf3-41c6-a713-3d75d0b48633" priority="normal">
@@ -6167,7 +6167,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C8c812c08-4a4e-49ee-9bf3-1f76714dfaad" priority="normal">
@@ -6183,7 +6183,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_Cf36d162b-9e20-47df-822b-de2988500d83" priority="normal">
@@ -6199,7 +6199,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C5488242b-c4b5-446a-99bd-916779b1f84f" priority="normal">
@@ -6215,7 +6215,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C7b8af96b-5a5f-4ebf-97fb-fd6a5110b4a6" priority="normal">
@@ -6231,7 +6231,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C695db0de-d31e-4cf1-9ef4-e6bd392f421c" priority="normal">
@@ -6247,7 +6247,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_Cef2a6f1a-abf3-4f6d-a0c2-6348a3b0f2bc" priority="normal">
@@ -6263,7 +6263,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_Cb27a3c27-cb44-4d65-b4da-dbad453c3142" priority="normal">
@@ -6279,7 +6279,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_Ca6ac7645-14c7-4b79-bfd7-7ca28197727e" priority="normal">
@@ -6295,7 +6295,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C6d4caec2-4f46-4101-b7ad-4451292eb435" priority="normal">
@@ -6311,7 +6311,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C794cef6a-a77a-4342-b666-695f6f63d14a" priority="normal">
@@ -6327,7 +6327,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_Cfd1b27f8-98c7-4bfc-8b78-5108fd88bc62" priority="normal">
@@ -6343,7 +6343,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C15d075db-607a-48db-86c4-cdda4c8ca781" priority="normal">
@@ -6359,7 +6359,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C1dc3b3f8-c40b-4fac-9069-6dc31f113814" priority="normal">
@@ -6375,7 +6375,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_Ca68e54b8-9fa9-4283-abec-7424e23119df" priority="normal">
@@ -6391,7 +6391,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_Cd8e82566-1e38-4987-bc61-61e59f1434dd" priority="normal">
@@ -6407,7 +6407,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_Cc3935b17-9feb-4f9a-9710-f32701e2c6bc" priority="normal">
@@ -6423,7 +6423,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_Cf3d54731-d46d-4ebe-8a4f-ff46745cf7f4" priority="normal">
@@ -6439,7 +6439,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C3f398760-4e06-4535-889f-d31f1acb36e0" priority="normal">
@@ -6455,7 +6455,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C04436a2d-d62f-4895-afe8-deeca9134314" priority="normal">
@@ -6471,7 +6471,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C8746e163-ba32-45ba-8e86-3c61b5abd3d1" priority="normal">
@@ -6487,7 +6487,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C92ec3534-8c3d-4ed3-a993-f6d6ba15fa63" priority="normal">
@@ -6503,7 +6503,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C060016b0-144d-4b8e-ad9a-77bcc95cdc41" priority="normal">
@@ -6519,7 +6519,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_C011fb7b5-d273-4a04-8179-febd227cc8d3" priority="normal">
@@ -6535,7 +6535,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9bdaee38-f838-4c25-bc06-1a1a598de4ba_Cef4c0152-9188-4af6-b7b0-c84c2e169620" priority="normal">
@@ -6551,7 +6551,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_Cb18b28f6-d344-40e7-ad1a-5f1b10f5b649" priority="normal">
@@ -6567,7 +6567,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C910bb205-daf3-41c6-a713-3d75d0b48633" priority="normal">
@@ -6583,7 +6583,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C8c812c08-4a4e-49ee-9bf3-1f76714dfaad" priority="normal">
@@ -6599,7 +6599,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_Cf36d162b-9e20-47df-822b-de2988500d83" priority="normal">
@@ -6615,7 +6615,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C5488242b-c4b5-446a-99bd-916779b1f84f" priority="normal">
@@ -6631,7 +6631,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C7b8af96b-5a5f-4ebf-97fb-fd6a5110b4a6" priority="normal">
@@ -6647,7 +6647,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C695db0de-d31e-4cf1-9ef4-e6bd392f421c" priority="normal">
@@ -6663,7 +6663,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_Cef2a6f1a-abf3-4f6d-a0c2-6348a3b0f2bc" priority="normal">
@@ -6679,7 +6679,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_Cb27a3c27-cb44-4d65-b4da-dbad453c3142" priority="normal">
@@ -6695,7 +6695,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_Ca6ac7645-14c7-4b79-bfd7-7ca28197727e" priority="normal">
@@ -6711,7 +6711,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C6d4caec2-4f46-4101-b7ad-4451292eb435" priority="normal">
@@ -6727,7 +6727,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C794cef6a-a77a-4342-b666-695f6f63d14a" priority="normal">
@@ -6743,7 +6743,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_Cfd1b27f8-98c7-4bfc-8b78-5108fd88bc62" priority="normal">
@@ -6759,7 +6759,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C15d075db-607a-48db-86c4-cdda4c8ca781" priority="normal">
@@ -6775,7 +6775,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C1dc3b3f8-c40b-4fac-9069-6dc31f113814" priority="normal">
@@ -6791,7 +6791,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_Ca68e54b8-9fa9-4283-abec-7424e23119df" priority="normal">
@@ -6807,7 +6807,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_Cd8e82566-1e38-4987-bc61-61e59f1434dd" priority="normal">
@@ -6823,7 +6823,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_Cc3935b17-9feb-4f9a-9710-f32701e2c6bc" priority="normal">
@@ -6839,7 +6839,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_Cf3d54731-d46d-4ebe-8a4f-ff46745cf7f4" priority="normal">
@@ -6855,7 +6855,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C3f398760-4e06-4535-889f-d31f1acb36e0" priority="normal">
@@ -6871,7 +6871,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C04436a2d-d62f-4895-afe8-deeca9134314" priority="normal">
@@ -6887,7 +6887,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C8746e163-ba32-45ba-8e86-3c61b5abd3d1" priority="normal">
@@ -6903,7 +6903,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C92ec3534-8c3d-4ed3-a993-f6d6ba15fa63" priority="normal">
@@ -6919,7 +6919,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C060016b0-144d-4b8e-ad9a-77bcc95cdc41" priority="normal">
@@ -6935,7 +6935,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_C011fb7b5-d273-4a04-8179-febd227cc8d3" priority="normal">
@@ -6951,7 +6951,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0fbf7aff-d9d9-4c42-90bf-04f4a614d9d1_Cef4c0152-9188-4af6-b7b0-c84c2e169620" priority="normal">
@@ -6967,7 +6967,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</documentation>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cf2260f48-d985-499b-936f-b8928a406073" priority="normal">
@@ -6996,7 +6996,7 @@ Für Nutzung der CustomFunction --&gt; base-functions-alignment importieren</doc
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C910bb205-daf3-41c6-a713-3d75d0b48633" priority="normal">
@@ -7015,7 +7015,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C8c812c08-4a4e-49ee-9bf3-1f76714dfaad" priority="normal">
@@ -7034,7 +7034,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_Cf36d162b-9e20-47df-822b-de2988500d83" priority="normal">
@@ -7053,7 +7053,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C5488242b-c4b5-446a-99bd-916779b1f84f" priority="normal">
@@ -7072,7 +7072,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C7b8af96b-5a5f-4ebf-97fb-fd6a5110b4a6" priority="normal">
@@ -7091,7 +7091,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C695db0de-d31e-4cf1-9ef4-e6bd392f421c" priority="normal">
@@ -7110,7 +7110,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_Cef2a6f1a-abf3-4f6d-a0c2-6348a3b0f2bc" priority="normal">
@@ -7129,7 +7129,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_Cb27a3c27-cb44-4d65-b4da-dbad453c3142" priority="normal">
@@ -7148,7 +7148,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_Ca6ac7645-14c7-4b79-bfd7-7ca28197727e" priority="normal">
@@ -7167,7 +7167,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C6d4caec2-4f46-4101-b7ad-4451292eb435" priority="normal">
@@ -7186,7 +7186,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C794cef6a-a77a-4342-b666-695f6f63d14a" priority="normal">
@@ -7205,7 +7205,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_Cfd1b27f8-98c7-4bfc-8b78-5108fd88bc62" priority="normal">
@@ -7224,7 +7224,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C15d075db-607a-48db-86c4-cdda4c8ca781" priority="normal">
@@ -7243,7 +7243,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C1dc3b3f8-c40b-4fac-9069-6dc31f113814" priority="normal">
@@ -7262,7 +7262,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_Ca68e54b8-9fa9-4283-abec-7424e23119df" priority="normal">
@@ -7281,7 +7281,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_Cd8e82566-1e38-4987-bc61-61e59f1434dd" priority="normal">
@@ -7300,7 +7300,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_Cc3935b17-9feb-4f9a-9710-f32701e2c6bc" priority="normal">
@@ -7319,7 +7319,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_Cf3d54731-d46d-4ebe-8a4f-ff46745cf7f4" priority="normal">
@@ -7338,7 +7338,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C3f398760-4e06-4535-889f-d31f1acb36e0" priority="normal">
@@ -7357,7 +7357,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C04436a2d-d62f-4895-afe8-deeca9134314" priority="normal">
@@ -7376,7 +7376,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C8746e163-ba32-45ba-8e86-3c61b5abd3d1" priority="normal">
@@ -7395,7 +7395,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C92ec3534-8c3d-4ed3-a993-f6d6ba15fa63" priority="normal">
@@ -7414,7 +7414,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C060016b0-144d-4b8e-ad9a-77bcc95cdc41" priority="normal">
@@ -7433,7 +7433,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_C011fb7b5-d273-4a04-8179-febd227cc8d3" priority="normal">
@@ -7452,7 +7452,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0677d234-06bf-4f83-9543-5d10a3174559_Cef4c0152-9188-4af6-b7b0-c84c2e169620" priority="normal">
@@ -7471,7 +7471,7 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
             </property>
         </target>
         <parameter value="dataset" name="collectorName"/>
-        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#xD;
+        <documentation>Mapping auf Ebene von AA_Objekt, weil alle verwendeten FeatureTypes davon abgeleitet sind.&#13;
 Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammeln und in einer niedriger priorisierten Zelle für die Erzeugung des ExistingLandUseDataSets als member zu nutzen</documentation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.namespace" id="Ccb3ac0f3-ba79-4bcc-b188-bfa7f08e5fc9" priority="normal">
@@ -7499,20 +7499,20 @@ Groovy-Funktion genutzt, um alle erzeugten localIds in einem Kollektor zu sammel
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -7537,20 +7537,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -7575,20 +7575,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -7613,20 +7613,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -7651,20 +7651,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -7689,20 +7689,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -7727,20 +7727,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -7765,20 +7765,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -7803,20 +7803,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -7841,20 +7841,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -7879,20 +7879,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -7917,20 +7917,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -7955,20 +7955,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -7993,20 +7993,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -8031,20 +8031,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -8069,20 +8069,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -8107,20 +8107,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -8145,20 +8145,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -8183,20 +8183,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -8221,20 +8221,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -8259,20 +8259,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -8297,20 +8297,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -8335,20 +8335,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -8373,20 +8373,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -8411,20 +8411,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
@@ -8449,20 +8449,20 @@ Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observation
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if (!datumderletztenueberpruefung) {&#xD;
-	_target {&#xD;
-		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#xD;
-	}&#xD;
-}&#xD;
-&#xD;
-else {&#xD;
-	_target (datumderletztenueberpruefung)&#xD;
+if (!datumderletztenueberpruefung) {&#13;
+	_target {&#13;
+		nilReason( _project.vars.VOID_REASON_OBSERVATIONDATE )&#13;
+	}&#13;
+}&#13;
+&#13;
+else {&#13;
+	_target (datumderletztenueberpruefung)&#13;
 }
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
-        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#xD;
-Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#xD;
+        <documentation>Mapping auf Ebene von AX_Tatsaechliche Nutzung, weil alle verwendeten Polygon-FeatureTypes davon abgeleitet sind.&#13;
+Der nilReason wird abhängig von der Angabe in der Projektvariablen gefüllt.  Eingabe von "other:unpopulated" für alle ATKIS-Datensätze und solche ALKIS-Datensätze, in denen datumDerLetztenUeberpruefung nie gefüllt ist, Eingabe von "unknown" für ALKIS-Datensätze, in denen es manchmal gefüllt ist.&#13;
 Liegt ein Wert für datumDerLetztenUeberpruefung vor, wird dieser in observationDate geschrieben.</documentation>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">

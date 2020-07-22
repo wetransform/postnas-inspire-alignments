@@ -12,6 +12,7 @@ Folgende Alignments werden hier verwaltet:
 | PostNAS -> Adressen                                   | Migriert       | ad         |
 | PostNAS -> Verwaltungseinheiten                       | Migriert       | au         |
 | PostNAS -> Flurstücke/Grundstücke                     | Migriert       | cp         |
+| PostNAS -> Bodennutzung                               | Migriert       | elu        |
 | PostNAS -> Geografische Bezeichnungen                 | Migriert       | gn         |
 | PostNAS -> Gewässernetz                               | Migriert       | hy-n, hy-p |
 | PostNAS -> Boden                                      | Migriert       | so         |
