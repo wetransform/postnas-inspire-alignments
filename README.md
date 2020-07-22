@@ -15,6 +15,7 @@ Folgende Alignments werden hier verwaltet:
 | PostNAS -> Bodennutzung                               | Migriert       | elu        |
 | PostNAS -> Geografische Bezeichnungen                 | Migriert       | gn         |
 | PostNAS -> Gewässernetz                               | Migriert       | hy-n, hy-p |
+| PostNAS -> Landbedeckung                              | Migriert       | lc         |
 | PostNAS -> Boden                                      | Migriert       | so         |
 | PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)        | Migriert       | tn-ro      |
 | PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)       | Migriert       | tn-ra      |
