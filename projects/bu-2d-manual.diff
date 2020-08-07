@@ -1,5 +1,5 @@
 diff --git a/projects/bu-2d-auto.halex.alignment.xml b/projects/bu-2d-manual.halex.alignment.xml
-index 78e6192..1f96f73 100644
+index a103747..933270e 100644
 --- a/projects/bu-2d-auto.halex.alignment.xml
 +++ b/projects/bu-2d-manual.halex.alignment.xml
 @@ -64,11 +64,25 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -62,10 +62,10 @@ index 78e6192..1f96f73 100644
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-@@ -782,25 +795,25 @@ Aktuell ist folgende Abbildung umgesetzt:
-         </target>
+@@ -783,25 +796,25 @@ Aktuell ist folgende Abbildung umgesetzt:
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ //identifiziert alle Quellobjekte vom Typ AX_Gebäude, deren BoundingBox nicht mit der BoundingBox der untersuchten Geometrie disjunkt ist&#13;
 -def candidates = _.geom.spatialIndexQuery(geometry: _source.p.position.first(), types: 'AX_Gebaeude')&#13;
 +def candidates = _.geom.spatialIndexQuery(geometry: _source.p.wkb_geometry.value(), types: 'ax_gebaeude')&#13;
  if (!candidates){&#13;
@@ -92,8 +92,12 @@ index 78e6192..1f96f73 100644
  }&#13;
  &#13;
  def geb_id&#13;
-@@ -812,16 +825,16 @@ gebaeude.each { geb -&gt;&#13;
- 	gebgeom = (_.geom.find(geb.p.position.first())).geometry&#13;
+@@ -810,19 +823,19 @@ def intersection&#13;
+ def gebgeom&#13;
+  &#13;
+ gebaeude.each { geb -&gt;&#13;
+-	gebgeom = (_.geom.find(geb.p.position.first())).geometry&#13;
++	gebgeom = (_.geom.find(geb.p.wkb_geometry.value())).geometry&#13;
  	//für jedes potentielle Gebäude prüfen, ob das Bauteil innerhalb des Gebäudes liegt --&gt; Zuordnung&#13;
  	if (baugeom.coveredBy(gebgeom)){&#13;
 -		geb_id = geb.p.id.value()&#13;
@@ -112,7 +116,7 @@ index 78e6192..1f96f73 100644
  			}&#13;
  		}&#13;
  	}&#13;
-@@ -830,22 +843,22 @@ gebaeude.each { geb -&gt;&#13;
+@@ -831,22 +844,22 @@ gebaeude.each { geb -&gt;&#13;
  //in einem Kollektor wird über die Gebäude-ID als Schlüssel gespeichert, welche Bauteile diesem zugehören und welche Bauarten diese Bauteile haben. Bei der späteren Erzeugung der Gebäude wird&#13;
  //auf diese Informationen zugegriffen&#13;
  def c = _.context.collector()&#13;
@@ -139,7 +143,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -871,7 +884,7 @@ _target{}
+@@ -872,7 +885,7 @@ _target{}
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -148,7 +152,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -908,7 +921,7 @@ _target{}
+@@ -909,7 +922,7 @@ _target{}
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -157,7 +161,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -962,14 +975,14 @@ if (baujahr){&#13;
+@@ -963,14 +976,14 @@ if (baujahr){&#13;
          </complexParameter>
          <parameter value="false" name="variablesAsInstances"/>
          <annotation type="message">
@@ -174,7 +178,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1014,14 +1027,14 @@ if (baujahr){&#13;
+@@ -1015,14 +1028,14 @@ if (baujahr){&#13;
          </complexParameter>
          <parameter value="false" name="variablesAsInstances"/>
          <annotation type="message">
@@ -191,7 +195,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1047,7 +1060,7 @@ if (baujahr){&#13;
+@@ -1048,7 +1061,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -200,7 +204,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -1073,7 +1086,7 @@ if (baujahr){&#13;
+@@ -1074,7 +1087,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AG_Flaechenobjekt durchgeführt, weil auf dieser Ebene Unterscheidung zwischen Building und BuildingPart möglich ist. Von AG_Flaechenobjekt erbt der einzige FeatureType, aus dem BuildingParts hervorgehen: AX_Bauteil</documentation>
          <annotation type="message">
@@ -209,7 +213,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -1172,7 +1185,7 @@ if (baujahr){&#13;
+@@ -1173,7 +1186,7 @@ if (baujahr){&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -218,7 +222,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -1207,7 +1220,7 @@ if (baujahr){&#13;
+@@ -1208,7 +1221,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -227,7 +231,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -1230,7 +1243,7 @@ if (baujahr){&#13;
+@@ -1231,7 +1244,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -236,7 +240,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -1265,7 +1278,7 @@ if (baujahr){&#13;
+@@ -1266,7 +1279,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -245,7 +249,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -1283,36 +1296,6 @@ if (baujahr){&#13;
+@@ -1284,36 +1297,6 @@ if (baujahr){&#13;
          </target>
          <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
      </cell>
@@ -282,7 +286,7 @@ index 78e6192..1f96f73 100644
      <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc8fd8e45-bc44-4aae-aa33-f036ade25274" priority="normal">
          <source>
              <property>
-@@ -1331,7 +1314,7 @@ if (baujahr){&#13;
+@@ -1332,7 +1315,7 @@ if (baujahr){&#13;
          <parameter value="false" name="ignoreNamespaces"/>
          <parameter value="false" name="structuralRename"/>
          <annotation type="message">
@@ -291,7 +295,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -1355,9 +1338,9 @@ if (baujahr){&#13;
+@@ -1356,9 +1339,9 @@ if (baujahr){&#13;
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  //bauwerksfunktion = '2030' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2070' or bauwerksfunktion = '2080' or bauwerksfunktion = '2090'&#13;
  &#13;
@@ -304,7 +308,7 @@ index 78e6192..1f96f73 100644
  def baufun = _source.p.bauwerksfunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -1382,7 +1365,7 @@ else if (lingeom){&#13;
+@@ -1383,7 +1366,7 @@ else if (lingeom){&#13;
  }&#13;
  &#13;
  else{&#13;
@@ -313,7 +317,7 @@ index 78e6192..1f96f73 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -1410,14 +1393,14 @@ _target{&#13;
+@@ -1411,14 +1394,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -330,7 +334,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1441,9 +1424,9 @@ _target{&#13;
+@@ -1442,9 +1425,9 @@ _target{&#13;
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  //bauwerksfunktion = '1800' or bauwerksfunktion = '1830' or bauwerksfunktion = '1880' or bauwerksfunktion = '1890'&#13;
  &#13;
@@ -343,7 +347,7 @@ index 78e6192..1f96f73 100644
  def baufun = _source.p.bauwerksfunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -1464,12 +1447,12 @@ else if (lingeom){&#13;
+@@ -1465,12 +1448,12 @@ else if (lingeom){&#13;
  	        targeom = _.geom.buffer(geometry: lingeom, distance: 8)&#13;
  	        break&#13;
  	    case '1890':&#13;
@@ -358,7 +362,7 @@ index 78e6192..1f96f73 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -1497,14 +1480,14 @@ _target{&#13;
+@@ -1498,14 +1481,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -375,7 +379,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1530,9 +1513,9 @@ _target{&#13;
+@@ -1531,9 +1514,9 @@ _target{&#13;
  //bauwerksfunktion = '1270' or bauwerksfunktion = '1280' or bauwerksfunktion = '1290' or bauwerksfunktion = '1330' or bauwerksfunktion = '1331' or&#13;
  //bauwerksfunktion = '1332' or bauwerksfunktion = '1333' or bauwerksfunktion = '1340' or bauwerksfunktion = '1350'&#13;
  &#13;
@@ -388,7 +392,7 @@ index 78e6192..1f96f73 100644
  def baufun = _source.p.bauwerksfunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -1548,11 +1531,11 @@ else if (poigeom){&#13;
+@@ -1549,11 +1532,11 @@ else if (poigeom){&#13;
  &#13;
  //wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
  else if (lingeom){&#13;
@@ -402,7 +406,7 @@ index 78e6192..1f96f73 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -1580,14 +1563,14 @@ _target{&#13;
+@@ -1581,14 +1564,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -419,7 +423,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1612,9 +1595,9 @@ _target{&#13;
+@@ -1613,9 +1596,9 @@ _target{&#13;
  //bauwerksfunktion = '1430' or bauwerksfunktion = '1431' or bauwerksfunktion = '1432' or bauwerksfunktion = '1440' or bauwerksfunktion = '1470' or&#13;
  //bauwerksfunktion = '1490'&#13;
  &#13;
@@ -432,7 +436,7 @@ index 78e6192..1f96f73 100644
  def baufun = _source.p.bauwerksfunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -1638,12 +1621,12 @@ else if (lingeom){&#13;
+@@ -1639,12 +1622,12 @@ else if (lingeom){&#13;
  	        targeom = _.geom.buffer(geometry: lingeom, distance: 10)&#13;
  	        break&#13;
  	    case ['1431', '1432', '1470']:&#13;
@@ -447,7 +451,7 @@ index 78e6192..1f96f73 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -1671,14 +1654,14 @@ _target{&#13;
+@@ -1672,14 +1655,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -464,7 +468,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1700,9 +1683,9 @@ _target{&#13;
+@@ -1701,9 +1684,9 @@ _target{&#13;
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -477,7 +481,7 @@ index 78e6192..1f96f73 100644
  def art = _source.p.art.value()&#13;
  def targeom&#13;
  &#13;
-@@ -1718,11 +1701,11 @@ else if (poigeom){&#13;
+@@ -1719,11 +1702,11 @@ else if (poigeom){&#13;
  &#13;
  //wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
  else if (lingeom){&#13;
@@ -491,7 +495,7 @@ index 78e6192..1f96f73 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -1750,14 +1733,14 @@ _target{&#13;
+@@ -1751,14 +1734,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -508,7 +512,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1780,14 +1763,14 @@ _target{&#13;
+@@ -1781,14 +1764,14 @@ _target{&#13;
  //die Werte aus dem Kollektor, der bei der Erzeugung der Bauteile erstellt wurde, werden ausgelesen&#13;
  def c = _.context.collector()&#13;
  //die IDs aller zu dem Gebäude gehörigen Bauteile werden in eine Liste geschrieben&#13;
@@ -529,7 +533,7 @@ index 78e6192..1f96f73 100644
  def gebfun = _source.p.gebaeudefunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -1803,11 +1786,11 @@ else if (poigeom){&#13;
+@@ -1804,11 +1787,11 @@ else if (poigeom){&#13;
  &#13;
  //wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
  else if (lingeom){&#13;
@@ -543,7 +547,7 @@ index 78e6192..1f96f73 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -1828,10 +1811,10 @@ _target{&#13;
+@@ -1829,10 +1812,10 @@ _target{&#13;
  			//für Befliegungsgebäude und aufgeständerte Gebäude können die Werte der horizontalGeometryReference je nach Datensatz unterschiedlich sein. Daher wird der Wert in diesen Fälllen über&#13;
  			//eine Projektvariable übergeben und an dieser Stelle verwendet&#13;
  			horizontalGeometryReference {&#13;
@@ -556,7 +560,7 @@ index 78e6192..1f96f73 100644
  					href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/' + _project.vars.HORIZONTALGEOMETRYREFERENCEVALUE_AUFGESTAENDERT )&#13;
  				}&#13;
  				//für Gebäude, deren Bauteile bestimmte Bauarten haben, muss der Wert combined gesetzt werden&#13;
-@@ -1855,7 +1838,7 @@ _target{&#13;
+@@ -1856,7 +1839,7 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -565,7 +569,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1879,9 +1862,9 @@ _target{&#13;
+@@ -1880,9 +1863,9 @@ _target{&#13;
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  //archaeologischerTyp = '1100' or archaeologischerTyp = '1110' or archaeologischerTyp = '1210' or archaeologischerTyp = '1410'&#13;
  &#13;
@@ -578,7 +582,7 @@ index 78e6192..1f96f73 100644
  def arctyp = _source.p.archaeologischerTyp.value()&#13;
  def targeom&#13;
  &#13;
-@@ -1905,12 +1888,12 @@ else if (lingeom){&#13;
+@@ -1906,12 +1889,12 @@ else if (lingeom){&#13;
  	        targeom = _.geom.buffer(geometry: lingeom, distance: 5)&#13;
  	        break&#13;
  	    case ['1210', '1410']:&#13;
@@ -593,7 +597,7 @@ index 78e6192..1f96f73 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -1938,14 +1921,14 @@ _target{&#13;
+@@ -1939,14 +1922,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -610,7 +614,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1968,9 +1951,9 @@ _target{&#13;
+@@ -1969,9 +1952,9 @@ _target{&#13;
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  //Leitungen sollen ständardmäßig mit 0,5 m gebuffert werden&#13;
@@ -623,7 +627,7 @@ index 78e6192..1f96f73 100644
  def targeom&#13;
  &#13;
  //wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
-@@ -1988,7 +1971,7 @@ else if (lingeom){&#13;
+@@ -1989,7 +1972,7 @@ else if (lingeom){&#13;
  }&#13;
  &#13;
  if(!targeom){&#13;
@@ -632,7 +636,7 @@ index 78e6192..1f96f73 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -2016,14 +1999,14 @@ _target{&#13;
+@@ -2017,14 +2000,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -649,7 +653,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -2045,9 +2028,9 @@ _target{&#13;
+@@ -2046,9 +2029,9 @@ _target{&#13;
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -662,7 +666,7 @@ index 78e6192..1f96f73 100644
  def konmer = _source.p.konstruktionsmerkmalBauart.value()&#13;
  def targeom&#13;
  &#13;
-@@ -2063,11 +2046,11 @@ else if (poigeom){&#13;
+@@ -2064,11 +2047,11 @@ else if (poigeom){&#13;
  &#13;
  //wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
  else if (lingeom){&#13;
@@ -676,7 +680,7 @@ index 78e6192..1f96f73 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -2095,14 +2078,14 @@ _target{&#13;
+@@ -2096,14 +2079,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -693,7 +697,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -2124,9 +2107,9 @@ _target{&#13;
+@@ -2125,9 +2108,9 @@ _target{&#13;
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -706,7 +710,7 @@ index 78e6192..1f96f73 100644
  def targeom&#13;
  //Pufferwert ist derzeit angenommen durch jo - auf Angaben von Gebäudeexperten wird gewartet&#13;
  //wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
-@@ -2144,7 +2127,7 @@ else if (lingeom){&#13;
+@@ -2145,7 +2128,7 @@ else if (lingeom){&#13;
  }&#13;
  &#13;
  if(!targeom){&#13;
@@ -715,7 +719,7 @@ index 78e6192..1f96f73 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -2172,14 +2155,14 @@ _target{&#13;
+@@ -2173,14 +2156,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -732,7 +736,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -2203,9 +2186,9 @@ _target{&#13;
+@@ -2204,9 +2187,9 @@ _target{&#13;
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  //bauwerksfunktion = '1610' or bauwerksfunktion = '1611' or bauwerksfunktion = '1700'&#13;
  &#13;
@@ -745,7 +749,7 @@ index 78e6192..1f96f73 100644
  def baufun = _source.p.bauwerksfunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -2226,12 +2209,12 @@ else if (lingeom){&#13;
+@@ -2227,12 +2210,12 @@ else if (lingeom){&#13;
  	        targeom = _.geom.buffer(geometry: lingeom, distance: 0.5)&#13;
  	        break&#13;
  	    case ['1610', '1611']:&#13;
@@ -760,7 +764,7 @@ index 78e6192..1f96f73 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -2259,14 +2242,14 @@ _target{&#13;
+@@ -2260,14 +2243,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -777,7 +781,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -2286,9 +2269,9 @@ _target{&#13;
+@@ -2287,9 +2270,9 @@ _target{&#13;
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -790,7 +794,7 @@ index 78e6192..1f96f73 100644
  def baufun = _source.p.bauwerksfunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -2304,11 +2287,11 @@ else if (poigeom){&#13;
+@@ -2305,11 +2288,11 @@ else if (poigeom){&#13;
  &#13;
  //wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
  else if (lingeom){&#13;
@@ -804,7 +808,7 @@ index 78e6192..1f96f73 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -2336,7 +2319,7 @@ _target{&#13;
+@@ -2337,7 +2320,7 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -813,7 +817,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -2358,9 +2341,9 @@ _target{&#13;
+@@ -2359,9 +2342,9 @@ _target{&#13;
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -826,7 +830,7 @@ index 78e6192..1f96f73 100644
  def baufun = _source.p.bauwerksfunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -2376,11 +2359,11 @@ else if (poigeom){&#13;
+@@ -2377,11 +2360,11 @@ else if (poigeom){&#13;
  &#13;
  //wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
  else if (lingeom){&#13;
@@ -840,7 +844,7 @@ index 78e6192..1f96f73 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -2408,14 +2391,14 @@ _target{&#13;
+@@ -2409,14 +2392,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -857,7 +861,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -2441,7 +2424,7 @@ _target{&#13;
+@@ -2442,7 +2425,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -866,7 +870,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2467,7 +2450,7 @@ _target{&#13;
+@@ -2468,7 +2451,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -875,7 +879,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2493,7 +2476,7 @@ _target{&#13;
+@@ -2494,7 +2477,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -884,7 +888,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2519,7 +2502,7 @@ _target{&#13;
+@@ -2520,7 +2503,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -893,7 +897,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2545,7 +2528,7 @@ _target{&#13;
+@@ -2546,7 +2529,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -902,7 +906,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2588,7 +2571,7 @@ _target{&#13;
+@@ -2589,7 +2572,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -911,7 +915,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2614,7 +2597,7 @@ _target{&#13;
+@@ -2615,7 +2598,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -920,7 +924,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2640,7 +2623,7 @@ _target{&#13;
+@@ -2641,7 +2624,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -929,7 +933,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2666,7 +2649,7 @@ _target{&#13;
+@@ -2667,7 +2650,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -938,7 +942,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2692,7 +2675,7 @@ _target{&#13;
+@@ -2693,7 +2676,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -947,7 +951,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2735,7 +2718,7 @@ _target{&#13;
+@@ -2736,7 +2719,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -956,7 +960,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2818,7 +2801,7 @@ _target{&#13;
+@@ -2819,7 +2802,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -965,7 +969,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2863,7 +2846,7 @@ _target{&#13;
+@@ -2864,7 +2847,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -974,7 +978,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2924,7 +2907,7 @@ _target{&#13;
+@@ -2925,7 +2908,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -983,7 +987,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2969,7 +2952,7 @@ _target{&#13;
+@@ -2970,7 +2953,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -992,7 +996,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3002,7 +2985,7 @@ _target{&#13;
+@@ -3003,7 +2986,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1001,7 +1005,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3115,7 +3098,7 @@ _target{&#13;
+@@ -3116,7 +3099,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1010,7 +1014,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3148,7 +3131,7 @@ _target{&#13;
+@@ -3149,7 +3132,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1019,7 +1023,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3185,7 +3168,7 @@ _target{&#13;
+@@ -3186,7 +3169,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1028,7 +1032,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3234,7 +3217,7 @@ _target{&#13;
+@@ -3235,7 +3218,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1037,7 +1041,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3275,7 +3258,7 @@ _target{&#13;
+@@ -3276,7 +3259,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1046,7 +1050,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3372,7 +3355,7 @@ _target{&#13;
+@@ -3373,7 +3356,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1055,7 +1059,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3420,7 +3403,7 @@ _target{&#13;
+@@ -3421,7 +3404,7 @@ _target{&#13;
          <parameter value="null" name="notClassifiedAction"/>
          <documentation>Platzhalter weil Abbildung noch fehlt</documentation>
          <annotation type="message">
@@ -1064,7 +1068,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3454,7 +3437,7 @@ _target{&#13;
+@@ -3455,7 +3438,7 @@ _target{&#13;
          <parameter value="null" name="notClassifiedAction"/>
          <documentation>Platzhalter weil Abbildung noch fehlt</documentation>
          <annotation type="message">
@@ -1073,7 +1077,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3500,7 +3483,7 @@ _target{&#13;
+@@ -3501,7 +3484,7 @@ _target{&#13;
          <parameter value="null" name="notClassifiedAction"/>
          <documentation>Platzhalter weil Abbildung noch fehlt</documentation>
          <annotation type="message">
@@ -1082,7 +1086,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3861,7 +3844,7 @@ _target{&#13;
+@@ -3862,7 +3845,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1091,7 +1095,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3908,7 +3891,7 @@ _target{&#13;
+@@ -3909,7 +3892,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1100,7 +1104,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3991,7 +3974,7 @@ _target{&#13;
+@@ -3992,7 +3975,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1109,7 +1113,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -4046,7 +4029,7 @@ _target{&#13;
+@@ -4047,7 +4030,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1118,7 +1122,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -4081,7 +4064,7 @@ _target{&#13;
+@@ -4082,7 +4065,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1127,7 +1131,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -4942,7 +4925,7 @@ _target{&#13;
+@@ -4943,7 +4926,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1136,7 +1140,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -4977,7 +4960,7 @@ _target{&#13;
+@@ -4978,7 +4961,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1145,7 +1149,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5016,7 +4999,7 @@ _target{&#13;
+@@ -5017,7 +5000,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1154,7 +1158,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5067,7 +5050,7 @@ _target{&#13;
+@@ -5068,7 +5051,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1163,7 +1167,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5110,7 +5093,7 @@ _target{&#13;
+@@ -5111,7 +5094,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1172,7 +1176,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5235,7 +5218,7 @@ _target{&#13;
+@@ -5236,7 +5219,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1181,7 +1185,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5288,7 +5271,7 @@ if (baujahr){&#13;
+@@ -5289,7 +5272,7 @@ if (baujahr){&#13;
          </complexParameter>
          <parameter value="false" name="variablesAsInstances"/>
          <annotation type="message">
@@ -1190,7 +1194,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -5331,7 +5314,7 @@ if (baujahr){&#13;
+@@ -5332,7 +5315,7 @@ if (baujahr){&#13;
          </complexParameter>
          <parameter value="false" name="variablesAsInstances"/>
          <annotation type="message">
@@ -1199,7 +1203,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -5357,7 +5340,7 @@ if (baujahr){&#13;
+@@ -5358,7 +5341,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1208,7 +1212,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5383,7 +5366,7 @@ if (baujahr){&#13;
+@@ -5384,7 +5367,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1217,7 +1221,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5409,7 +5392,7 @@ if (baujahr){&#13;
+@@ -5410,7 +5393,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1226,7 +1230,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5435,7 +5418,7 @@ if (baujahr){&#13;
+@@ -5436,7 +5419,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1235,7 +1239,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5461,7 +5444,7 @@ if (baujahr){&#13;
+@@ -5462,7 +5445,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1244,7 +1248,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5504,7 +5487,7 @@ if (baujahr){&#13;
+@@ -5505,7 +5488,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1253,7 +1257,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5530,7 +5513,7 @@ if (baujahr){&#13;
+@@ -5531,7 +5514,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1262,7 +1266,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5556,7 +5539,7 @@ if (baujahr){&#13;
+@@ -5557,7 +5540,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1271,7 +1275,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5582,7 +5565,7 @@ if (baujahr){&#13;
+@@ -5583,7 +5566,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1280,7 +1284,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5608,7 +5591,7 @@ if (baujahr){&#13;
+@@ -5609,7 +5592,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1289,7 +1293,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5651,7 +5634,7 @@ if (baujahr){&#13;
+@@ -5652,7 +5635,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1298,7 +1302,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5678,7 +5661,7 @@ if (baujahr){&#13;
+@@ -5679,7 +5662,7 @@ if (baujahr){&#13;
          </target>
          <parameter value="http://inspire.ec.europa.eu/codelist/ElevationReferenceValue/topOfConstruction" name="value"/>
          <annotation type="message">
@@ -1307,7 +1311,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5723,7 +5706,7 @@ if (baujahr){&#13;
+@@ -5724,7 +5707,7 @@ if (baujahr){&#13;
          </target>
          <parameter value="http://inspire.ec.europa.eu/codelist/ElevationReferenceValue/topOfConstruction" name="value"/>
          <annotation type="message">
@@ -1316,7 +1320,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5768,7 +5751,7 @@ if (baujahr){&#13;
+@@ -5769,7 +5752,7 @@ if (baujahr){&#13;
          </target>
          <parameter value="http://inspire.ec.europa.eu/codelist/ElevationReferenceValue/topOfConstruction" name="value"/>
          <annotation type="message">
@@ -1325,7 +1329,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5795,7 +5778,7 @@ if (baujahr){&#13;
+@@ -5796,7 +5779,7 @@ if (baujahr){&#13;
          </target>
          <parameter value="http://inspire.ec.europa.eu/codelist/ElevationReferenceValue/generalGround" name="value"/>
          <annotation type="message">
@@ -1334,7 +1338,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5840,7 +5823,7 @@ if (baujahr){&#13;
+@@ -5841,7 +5824,7 @@ if (baujahr){&#13;
          </target>
          <parameter value="http://inspire.ec.europa.eu/codelist/ElevationReferenceValue/generalGround" name="value"/>
          <annotation type="message">
@@ -1343,7 +1347,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5885,7 +5868,7 @@ if (baujahr){&#13;
+@@ -5886,7 +5869,7 @@ if (baujahr){&#13;
          </target>
          <parameter value="http://inspire.ec.europa.eu/codelist/ElevationReferenceValue/generalGround" name="value"/>
          <annotation type="message">
@@ -1352,7 +1356,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5912,7 +5895,7 @@ if (baujahr){&#13;
+@@ -5913,7 +5896,7 @@ if (baujahr){&#13;
          </target>
          <parameter value="http://inspire.ec.europa.eu/codelist/HeightStatusValue/measured" name="value"/>
          <annotation type="message">
@@ -1361,7 +1365,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5957,7 +5940,7 @@ if (baujahr){&#13;
+@@ -5958,7 +5941,7 @@ if (baujahr){&#13;
          </target>
          <parameter value="http://inspire.ec.europa.eu/codelist/HeightStatusValue/measured" name="value"/>
          <annotation type="message">
@@ -1370,7 +1374,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6002,7 +5985,7 @@ if (baujahr){&#13;
+@@ -6003,7 +5986,7 @@ if (baujahr){&#13;
          </target>
          <parameter value="http://inspire.ec.europa.eu/codelist/HeightStatusValue/measured" name="value"/>
          <annotation type="message">
@@ -1379,7 +1383,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6029,7 +6012,7 @@ if (baujahr){&#13;
+@@ -6030,7 +6013,7 @@ if (baujahr){&#13;
          <parameter value="false" name="ignoreNamespaces"/>
          <parameter value="false" name="structuralRename"/>
          <annotation type="message">
@@ -1388,7 +1392,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6074,7 +6057,7 @@ if (baujahr){&#13;
+@@ -6075,7 +6058,7 @@ if (baujahr){&#13;
          <parameter value="false" name="ignoreNamespaces"/>
          <parameter value="false" name="structuralRename"/>
          <annotation type="message">
@@ -1397,7 +1401,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6119,21 +6102,20 @@ if (baujahr){&#13;
+@@ -6120,21 +6103,20 @@ if (baujahr){&#13;
          <parameter value="false" name="ignoreNamespaces"/>
          <parameter value="false" name="structuralRename"/>
          <annotation type="message">
@@ -1425,7 +1429,7 @@ index 78e6192..1f96f73 100644
              </property>
          </source>
          <target>
-@@ -6145,22 +6127,20 @@ if (baujahr){&#13;
+@@ -6146,22 +6128,20 @@ if (baujahr){&#13;
                  <child name="uom"/>
              </property>
          </target>
@@ -1454,7 +1458,7 @@ index 78e6192..1f96f73 100644
              </property>
          </source>
          <target>
-@@ -6172,24 +6152,22 @@ if (baujahr){&#13;
+@@ -6173,24 +6153,22 @@ if (baujahr){&#13;
                  <child name="uom"/>
              </property>
          </target>
@@ -1486,7 +1490,7 @@ index 78e6192..1f96f73 100644
              </property>
          </source>
          <target>
-@@ -6201,22 +6179,20 @@ if (baujahr){&#13;
+@@ -6202,22 +6180,20 @@ if (baujahr){&#13;
                  <child name="uom"/>
              </property>
          </target>
@@ -1515,7 +1519,7 @@ index 78e6192..1f96f73 100644
              </property>
          </source>
          <target>
-@@ -6228,24 +6204,22 @@ if (baujahr){&#13;
+@@ -6229,24 +6205,22 @@ if (baujahr){&#13;
                  <child name="uom"/>
              </property>
          </target>
@@ -1547,7 +1551,7 @@ index 78e6192..1f96f73 100644
              </property>
          </source>
          <target>
-@@ -6257,10 +6231,9 @@ if (baujahr){&#13;
+@@ -6258,10 +6232,9 @@ if (baujahr){&#13;
                  <child name="uom"/>
              </property>
          </target>
@@ -1560,7 +1564,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_VorratsbehaelterSpeicherbauwerkType/objekthoehe/uom found</core:text>
                  </core:content>
-@@ -6284,7 +6257,7 @@ if (baujahr){&#13;
+@@ -6285,7 +6258,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1569,7 +1573,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6308,7 +6281,7 @@ if (baujahr){&#13;
+@@ -6309,7 +6282,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1578,7 +1582,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6332,7 +6305,7 @@ if (baujahr){&#13;
+@@ -6333,7 +6306,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1587,7 +1591,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6356,7 +6329,7 @@ if (baujahr){&#13;
+@@ -6357,7 +6330,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1596,7 +1600,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6380,7 +6353,7 @@ if (baujahr){&#13;
+@@ -6381,7 +6354,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1605,7 +1609,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6419,7 +6392,7 @@ if (baujahr){&#13;
+@@ -6420,7 +6393,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1614,7 +1618,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6443,7 +6416,7 @@ if (baujahr){&#13;
+@@ -6444,7 +6417,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1623,7 +1627,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6467,7 +6440,7 @@ if (baujahr){&#13;
+@@ -6468,7 +6441,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1632,7 +1636,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6491,7 +6464,7 @@ if (baujahr){&#13;
+@@ -6492,7 +6465,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1641,7 +1645,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6515,7 +6488,7 @@ if (baujahr){&#13;
+@@ -6516,7 +6489,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1650,7 +1654,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6554,7 +6527,7 @@ if (baujahr){&#13;
+@@ -6555,7 +6528,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1659,7 +1663,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6577,7 +6550,7 @@ if (baujahr){&#13;
+@@ -6578,7 +6551,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1668,7 +1672,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6600,7 +6573,7 @@ if (baujahr){&#13;
+@@ -6601,7 +6574,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1677,7 +1681,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6623,7 +6596,7 @@ if (baujahr){&#13;
+@@ -6624,7 +6597,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1686,7 +1690,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6646,7 +6619,7 @@ if (baujahr){&#13;
+@@ -6647,7 +6620,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1695,7 +1699,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6669,7 +6642,7 @@ if (baujahr){&#13;
+@@ -6670,7 +6643,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1704,7 +1708,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6706,7 +6679,7 @@ if (baujahr){&#13;
+@@ -6707,7 +6680,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1713,7 +1717,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6729,7 +6702,7 @@ if (baujahr){&#13;
+@@ -6730,7 +6703,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1722,7 +1726,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6752,7 +6725,7 @@ if (baujahr){&#13;
+@@ -6753,7 +6726,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1731,7 +1735,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6775,7 +6748,7 @@ if (baujahr){&#13;
+@@ -6776,7 +6749,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1740,7 +1744,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6798,7 +6771,7 @@ if (baujahr){&#13;
+@@ -6799,7 +6772,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1749,7 +1753,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6835,7 +6808,7 @@ if (baujahr){&#13;
+@@ -6836,7 +6809,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1758,7 +1762,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6990,7 +6963,7 @@ if (baujahr){&#13;
+@@ -6991,7 +6964,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1767,7 +1771,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7015,7 +6988,7 @@ if (baujahr){&#13;
+@@ -7016,7 +6989,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1776,7 +1780,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7040,7 +7013,7 @@ if (baujahr){&#13;
+@@ -7041,7 +7014,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1785,7 +1789,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7065,7 +7038,7 @@ if (baujahr){&#13;
+@@ -7066,7 +7039,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1794,7 +1798,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7090,7 +7063,7 @@ if (baujahr){&#13;
+@@ -7091,7 +7064,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1803,7 +1807,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7131,7 +7104,7 @@ if (baujahr){&#13;
+@@ -7132,7 +7105,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1812,7 +1816,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7156,7 +7129,7 @@ if (baujahr){&#13;
+@@ -7157,7 +7130,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1821,7 +1825,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7181,7 +7154,7 @@ if (baujahr){&#13;
+@@ -7182,7 +7155,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1830,7 +1834,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7206,7 +7179,7 @@ if (baujahr){&#13;
+@@ -7207,7 +7180,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1839,7 +1843,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7231,7 +7204,7 @@ if (baujahr){&#13;
+@@ -7232,7 +7205,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1848,7 +1852,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7272,7 +7245,7 @@ if (baujahr){&#13;
+@@ -7273,7 +7246,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1857,7 +1861,7 @@ index 78e6192..1f96f73 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7422,392 +7395,6 @@ if (baujahr){&#13;
+@@ -7423,392 +7396,6 @@ if (baujahr){&#13;
          </target>
          <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
      </cell>

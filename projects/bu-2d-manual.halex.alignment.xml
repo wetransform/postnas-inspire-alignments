@@ -795,6 +795,7 @@ Aktuell ist folgende Abbildung umgesetzt:
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+//identifiziert alle Quellobjekte vom Typ AX_Gebäude, deren BoundingBox nicht mit der BoundingBox der untersuchten Geometrie disjunkt ist&#13;
 def candidates = _.geom.spatialIndexQuery(geometry: _source.p.wkb_geometry.value(), types: 'ax_gebaeude')&#13;
 if (!candidates){&#13;
 	_log.warn("keine Kandidaten")&#13;
@@ -822,7 +823,7 @@ def intersection&#13;
 def gebgeom&#13;
  &#13;
 gebaeude.each { geb -&gt;&#13;
-	gebgeom = (_.geom.find(geb.p.position.first())).geometry&#13;
+	gebgeom = (_.geom.find(geb.p.wkb_geometry.value())).geometry&#13;
 	//für jedes potentielle Gebäude prüfen, ob das Bauteil innerhalb des Gebäudes liegt --&gt; Zuordnung&#13;
 	if (baugeom.coveredBy(gebgeom)){&#13;
 		geb_id = geb.p.gml_id.value()&#13;
