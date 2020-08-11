@@ -24,11 +24,11 @@ Im Projekt gibt es drei verschiedene Herangehensweisen zur Bildung von *Transpor
 2. Ein *TransportProperty*-Objekt für alle Features die in den Quell-Daten die gleichen relevanten Informationen aufweisen. Die Identifier werden dabei basierend auf dem Quell-Wert oder -Werten gebildet. Umgesetzt wurde das so für `RoadServiceType`.
 3. Ein *TransportProperty*-Objekt für jedes Feature dass über entsprechende Eigenschaften verfügt. Dabei gibt es ggf. sehr viele redundante Informationen in den Objekten. Umgesetzt wurde das so für `RoadWidth`.</description>
     <created>2015-09-28T11:46:45.435+02:00</created>
-    <modified>2020-07-07T18:32:42.535+02:00</modified>
+    <modified>2020-08-11T22:46:37.413+02:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
-        <setting name="target">file:/home/simon/repos/rlp-inspire-alignments/projects/tn-ro-manual.halex</setting>
+        <setting name="target">file:/home/simon/repos/postnas-inspire-alignments/projects/tn-ro-manual.halex</setting>
     </save-config>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.target" provider-id="eu.esdihumboldt.hale.io.xsd.reader">
         <setting name="charset">UTF-8</setting>
@@ -57,7 +57,7 @@ Im Projekt gibt es drei verschiedene Herangehensweisen zur Bildung von *Transpor
     </resource>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.source" provider-id="eu.esdihumboldt.hale.common.schema.persist.hsd.read">
         <setting name="charset">UTF-8</setting>
-        <setting name="source">file:/home/simon/repos/rlp-inspire-alignments/database/schema.hsd</setting>
+        <setting name="source">file:/home/simon/repos/postnas-inspire-alignments/database/schema.hsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.common.schema.hsd</setting>
     </resource>
     <export-config name="hale-connect">

@@ -1,5 +1,5 @@
 diff --git a/projects/tn-a-auto.halex.alignment.xml b/projects/tn-a-manual.halex.alignment.xml
-index af0b1a7..ca5ecb2 100644
+index 5010362..f92ee16 100644
 --- a/projects/tn-a-auto.halex.alignment.xml
 +++ b/projects/tn-a-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.

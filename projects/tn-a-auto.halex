@@ -24,11 +24,11 @@ Im Projekt gibt es zwei verschiedene Herangehensweisen zur Bildung von *Transpor
 1. Ein *TransportProperty*-Objekt für alle Features die auf die gleichen Werte abgebildet werden. Die Identifier werden dabei basierend auf dem Wert oder den Werten welche die jeweilige *TransportProperty* ausmachen gebildet. Umgesetzt wurde das so für `ConditionOfAirFacility`, `SurfaceComposition`, `AerodromeCategory`, `AerodromeType`, und `UseRestriction`.
 2. Ein *TransportProperty*-Objekt für jedes (Quell-)Feature dass über entsprechende Eigenschaften verfügt. Dabei gibt es ggf. sehr viele redundante Informationen in den Objekten. Umgesetzt wurde das so für `ElementWidth`.</description>
     <created>2015-09-28T11:46:45.435+02:00</created>
-    <modified>2020-07-07T21:37:29.635+02:00</modified>
+    <modified>2020-08-11T22:43:32.332+02:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
-        <setting name="target">file:/home/simon/repos/rlp-inspire-alignments/projects/tn-a-auto.halex</setting>
+        <setting name="target">file:/home/simon/repos/postnas-inspire-alignments/projects/tn-a-auto.halex</setting>
     </save-config>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.target" provider-id="eu.esdihumboldt.hale.io.xsd.reader">
         <setting name="charset">UTF-8</setting>
@@ -51,7 +51,7 @@ Im Projekt gibt es zwei verschiedene Herangehensweisen zur Bildung von *Transpor
     </resource>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.source" provider-id="eu.esdihumboldt.hale.common.schema.persist.hsd.read">
         <setting name="charset">UTF-8</setting>
-        <setting name="source">file:/home/simon/repos/rlp-inspire-alignments/database/schema.hsd</setting>
+        <setting name="source">file:/home/simon/repos/postnas-inspire-alignments/database/schema.hsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.common.schema.hsd</setting>
     </resource>
     <export-config name="hale-connect">

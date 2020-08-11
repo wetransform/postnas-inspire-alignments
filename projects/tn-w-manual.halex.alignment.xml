@@ -917,7 +917,7 @@ if (!verticalPositions) {
 }
 else {
 	verticalPosition = verticalPositions.iterator().next()
-	if (verticalPositions.size() &gt;= 1) {
+	if (verticalPositions.size() &gt; 1) {
 		_log.error('Multiple different values for vertical position of an object: ' + verticalPositions)
 	}
 }
@@ -1064,7 +1064,7 @@ if (!verticalPositions) {
 }
 else {
 	verticalPosition = verticalPositions.iterator().next()
-	if (verticalPositions.size() &gt;= 1) {
+	if (verticalPositions.size() &gt; 1) {
 		_log.error('Multiple different values for vertical position of an object: ' + verticalPositions)
 	}
 }
@@ -1825,7 +1825,7 @@ if (links) {
 	}
 	else {
 		verticalPosition = verticalPositions.iterator().next()
-		if (verticalPositions.size() &gt;= 1) {
+		if (verticalPositions.size() &gt; 1) {
 			_log.error('Multiple different values for vertical position of an object: ' + verticalPositions)
 		}
 	}
@@ -2704,7 +2704,7 @@ if (!verticalPositions) {
 }
 else {
 	verticalPosition = verticalPositions.iterator().next()
-	if (verticalPositions.size() &gt;= 1) {
+	if (verticalPositions.size() &gt; 1) {
 		_log.error('Multiple different values for vertical position of an object: ' + verticalPositions)
 	}
 }
@@ -3131,7 +3131,7 @@ if (!verticalPositions) {
 }
 else {
 	verticalPosition = verticalPositions.iterator().next()
-	if (verticalPositions.size() &gt;= 1) {
+	if (verticalPositions.size() &gt; 1) {
 		_log.error('Multiple different values for vertical position of an object: ' + verticalPositions)
 	}
 }
@@ -3814,7 +3814,7 @@ if (parentId) {
 	}
 	else {
 		verticalPosition = verticalPositions.iterator().next()
-		if (verticalPositions.size() &gt;= 1) {
+		if (verticalPositions.size() &gt; 1) {
 			_log.error('Multiple different values for vertical position of an object: ' + verticalPositions)
 		}
 	}
@@ -4008,7 +4008,7 @@ if (parentId) {
 	}
 	else {
 		verticalPosition = verticalPositions.iterator().next()
-		if (verticalPositions.size() &gt;= 1) {
+		if (verticalPositions.size() &gt; 1) {
 			_log.error('Multiple different values for vertical position of an object: ' + verticalPositions)
 		}
 	}
@@ -4151,7 +4151,7 @@ if (!verticalPositions) {
 }
 else {
 	verticalPosition = verticalPositions.iterator().next()
-	if (verticalPositions.size() &gt;= 1) {
+	if (verticalPositions.size() &gt; 1) {
 		_log.error('Multiple different values for vertical position of an object: ' + verticalPositions)
 	}
 }
@@ -4296,7 +4296,7 @@ if (geoms &amp;&amp; geoms.size() == 1) {
 	}
 	else {
 		verticalPosition = verticalPositions.iterator().next()
-		if (verticalPositions.size() &gt;= 1) {
+		if (verticalPositions.size() &gt; 1) {
 			_log.error('Multiple different values for vertical position of an object: ' + verticalPositions)
 		}
 	}
