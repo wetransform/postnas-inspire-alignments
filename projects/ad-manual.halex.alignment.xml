@@ -223,47 +223,47 @@ else {
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.&#13;
-Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.&#13;
-Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.&#13;
-Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.&#13;
-&#13;
-Die Sprache des Namens wird als Deutsch angenommen.&#13;
-&#13;
-&lt;% if (_params.nameStatus) {&#13;
-  if (_params.nameStatus == 'unpopulated') {&#13;
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#13;
-  }&#13;
-  else if (_params.nameStatus == 'unknown') {&#13;
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#13;
-  }&#13;
-  else {&#13;
-    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#13;
-  }&#13;
-}&#13;
-else {&#13;
-  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#13;
-}&#13;
-out &lt;&lt; "\n\n"&#13;
-if (_params.nativeness) {&#13;
-  if (_params.nativeness == 'unpopulated') {&#13;
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#13;
-  }&#13;
-  else if (_params.nativeness == 'unknown') {&#13;
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#13;
-  }&#13;
-  else {&#13;
-    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#13;
-  }&#13;
-}&#13;
-else {&#13;
-  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#13;
-}&#13;
-out &lt;&lt; "\n\n"&#13;
-if (_params.source) {&#13;&#13;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#13;&#13;
-} else {&#13;&#13;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#13;&#13;
+Erstellt ein GeographicalName-Objekt aus einer Lagebezeichnung.&#xD;
+Eine unverschlüsselte Lagebezeichnung wird direkt als Name übernommen.&#xD;
+Falls stattdessen eine verschlüsselte Lagebezeichnung vorliegt (nur in ALKIS/DLKM möglich), wird versucht den Namen über den Schlüssel in einem Index nachzuschlagen.&#xD;
+Trifft keiner der beiden Fälle zu, oder kann der Name nicht nachgeschlagen werden, wird kein GeographicalName erzeugt.&#xD;
+&#xD;
+Die Sprache des Namens wird als Deutsch angenommen.&#xD;
+&#xD;
+&lt;% if (_params.nameStatus) {&#xD;
+  if (_params.nameStatus == 'unpopulated') {&#xD;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#xD;
+  }&#xD;
+  else if (_params.nameStatus == 'unknown') {&#xD;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#xD;
+  }&#xD;
+  else {&#xD;
+    out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als ${_params.nameStatus} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#xD;
+  }&#xD;
+}&#xD;
+else {&#xD;
+  out &lt;&lt; "Der Status des Namens (`nameStatus`) wird als *official* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NameStatusValue&gt;)."&#xD;
+}&#xD;
+out &lt;&lt; "\n\n"&#xD;
+if (_params.nativeness) {&#xD;
+  if (_params.nativeness == 'unpopulated') {&#xD;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `other:unpopulated` angegeben."&#xD;
+  }&#xD;
+  else if (_params.nativeness == 'unknown') {&#xD;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird nicht angegeben, als *nilReason* wird `unknown` angegeben."&#xD;
+  }&#xD;
+  else {&#xD;
+    out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als ${_params.nativeness} angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#xD;
+  }&#xD;
+}&#xD;
+else {&#xD;
+  out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."&#xD;
+}&#xD;
+out &lt;&lt; "\n\n"&#xD;
+if (_params.source) {&#xD;&#xD;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;&#xD;
+} else {&#xD;&#xD;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;&#xD;
 } %&gt;
 </core:text>
                     </cf:template>
@@ -420,9 +420,9 @@ else {
                 <cf:locale country="" language="" variant="">
                     <cf:template>
                         <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-Bildet ein GeographicalName-Objekt zu einem einfachen Namen. Der Wert des Quell-Attributs $spelling wird als Schreibweise des Namens übernommen (`SpellingOfName`).&#13;
-&#13;
-Die Sprache wird als Deutsch angenommen.&#13;
+Bildet ein GeographicalName-Objekt zu einem einfachen Namen. Der Wert des Quell-Attributs $spelling wird als Schreibweise des Namens übernommen (`SpellingOfName`).&#xD;
+&#xD;
+Die Sprache wird als Deutsch angenommen.&#xD;
 
 &lt;% if (_params.nameStatus) {
   if (_params.nameStatus == 'unpopulated') {
@@ -454,13 +454,13 @@ else {
   out &lt;&lt; "Die Ortsüblichkeit (`nativeness`) wird als *endonym* angegeben (siehe &lt;http://inspire.ec.europa.eu/codelist/NativenessValue&gt;)."
 }
 out &lt;&lt; "\n\n"
-if (_params.source) {&#13;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#13;
-} else if (source) {&#13;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden, andernfalls wird das Quell-Attribut $source dafür herangezogen. "&#13;
-  out &lt;&lt; "In letzterem Fall kann nur eine von potentiell mehreren im Quellobjekt angegebenen Modellarten übernommen werden."&#13;
-} else {&#13;
-  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#13;
+if (_params.source) {&#xD;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird als ${_params.source} angegeben."&#xD;
+} else if (source) {&#xD;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden, andernfalls wird das Quell-Attribut $source dafür herangezogen. "&#xD;
+  out &lt;&lt; "In letzterem Fall kann nur eine von potentiell mehreren im Quellobjekt angegebenen Modellarten übernommen werden."&#xD;
+} else {&#xD;
+  out &lt;&lt; "Die Quelle des Namens (`sourceOfName`) wird aus einer Projekt-Variable (`ADV_MODELLART`) bestimmt, falls vorhanden."&#xD;
 } %&gt;
 </core:text>
                     </cf:template>
@@ -778,21 +778,21 @@ Aktuell ist folgende Abbildung umgesetzt:
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-//Das ist eine Dummy Groovy Retype-Funktion. Sie dient dazu, alle relevanten Informationen aus AX_Flurstueck in einem Kollektor zu sammeln, die für den Verweis auf ein Flurstück in Address.parcel benötigt werden.&#13;
-&#13;
-def c = _.context.collector()&#13;
-&#13;
-//Kollektor wird lt. Aussage Herr Weichand in zugehöriger haleconnect Aufgabe nicht benötigt - Verweis nur von Flurstück auf Lagebezeichnung (nicht anders herum)&#13;
-//c.flurstueck[_source.p.identifier.value()] &lt;&lt; _source.p.flurstueckskennzeichen.value()&#13;
-&#13;
-_source.p.weistAuf.each { instance -&gt;&#13;
-	c.weistAuf[instance.p.href.value() as String] &lt;&lt; _source.p.flurstueckskennzeichen.value()&#13;
-	//_log.info(instance.p.href.value() as String)&#13;
-	//_log.info(_source.p.flurstueckskennzeichen.value())&#13;
-}&#13;
-&#13;
-_source.p.zeigtAuf.each { instance -&gt;&#13;
-	c.zeigtAuf[instance.p.href.value() as String] &lt;&lt; _source.p.flurstueckskennzeichen.value()&#13;
+//Das ist eine Dummy Groovy Retype-Funktion. Sie dient dazu, alle relevanten Informationen aus AX_Flurstueck in einem Kollektor zu sammeln, die für den Verweis auf ein Flurstück in Address.parcel benötigt werden.&#xD;
+&#xD;
+def c = _.context.collector()&#xD;
+&#xD;
+//Kollektor wird lt. Aussage Herr Weichand in zugehöriger haleconnect Aufgabe nicht benötigt - Verweis nur von Flurstück auf Lagebezeichnung (nicht anders herum)&#xD;
+//c.flurstueck[_source.p.identifier.value()] &lt;&lt; _source.p.flurstueckskennzeichen.value()&#xD;
+&#xD;
+_source.p.weistAuf.each { instance -&gt;&#xD;
+	c.weistAuf[instance.p.href.value() as String] &lt;&lt; _source.p.flurstueckskennzeichen.value()&#xD;
+	//_log.info(instance.p.href.value() as String)&#xD;
+	//_log.info(_source.p.flurstueckskennzeichen.value())&#xD;
+}&#xD;
+&#xD;
+_source.p.zeigtAuf.each { instance -&gt;&#xD;
+	c.zeigtAuf[instance.p.href.value() as String] &lt;&lt; _source.p.flurstueckskennzeichen.value()&#xD;
 }
 </core:text>
         </complexParameter>
@@ -817,16 +817,16 @@ _source.p.zeigtAuf.each { instance -&gt;&#13;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-//Das ist eine Dummy Groovy Retype-Funktion. Sie dient dazu, alle relevanten Informationen aus AX_Gebaeude in einem Kollektor zu sammeln, die für den Verweis auf ein Gebäude in Address.building benötigt werden.&#13;
-&#13;
-def c = _.context.collector()&#13;
-&#13;
-//dieser Kollektor betrifft die inverse Relationsrichtung und muss daher lt. Kommentar von Herrn Weichand zur entsprechenden hale connect-Aufgabe nicht berücksichtigt werden&#13;
-//c.gebaeude[_source.p.identifier.value()] &lt;&lt; _source.p.id.value()&#13;
-&#13;
-_source.p.zeigtAuf.each { instance -&gt;&#13;
-	c.gebZeigtAuf[instance.p.href.value() as String] &lt;&lt; _source.p.id.value()&#13;
-}&#13;
+//Das ist eine Dummy Groovy Retype-Funktion. Sie dient dazu, alle relevanten Informationen aus AX_Gebaeude in einem Kollektor zu sammeln, die für den Verweis auf ein Gebäude in Address.building benötigt werden.&#xD;
+&#xD;
+def c = _.context.collector()&#xD;
+&#xD;
+//dieser Kollektor betrifft die inverse Relationsrichtung und muss daher lt. Kommentar von Herrn Weichand zur entsprechenden hale connect-Aufgabe nicht berücksichtigt werden&#xD;
+//c.gebaeude[_source.p.identifier.value()] &lt;&lt; _source.p.id.value()&#xD;
+&#xD;
+_source.p.zeigtAuf.each { instance -&gt;&#xD;
+	c.gebZeigtAuf[instance.p.href.value() as String] &lt;&lt; _source.p.id.value()&#xD;
+}&#xD;
 
 </core:text>
         </complexParameter>
@@ -851,12 +851,12 @@ _source.p.zeigtAuf.each { instance -&gt;&#13;
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#13;
-&#13;
-&#13;
-c.PLZcollection[_source.p.postalischeAdresse.AX_Post.postleitzahl.value()] &lt;&lt; _source.p.postalischeAdresse.AX_Post.ortsnamePost.value()&#13;
-&#13;
-_log.info(_source.p.postalischeAdresse.AX_Post.postleitzahl.value())&#13;
+def c = _.context.collector()&#xD;
+&#xD;
+&#xD;
+c.PLZcollection[_source.p.postalischeAdresse.AX_Post.postleitzahl.value()] &lt;&lt; _source.p.postalischeAdresse.AX_Post.ortsnamePost.value()&#xD;
+&#xD;
+_log.info(_source.p.postalischeAdresse.AX_Post.postleitzahl.value())&#xD;
 _log.info(_source.p.postalischeAdresse.AX_Post.ortsnamePost.value())
 </core:text>
         </complexParameter>
@@ -948,84 +948,84 @@ _log.info(_source.p.postalischeAdresse.AX_Post.ortsnamePost.value())
         </complexParameter>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def positionAdresse = _source.links.ax_georeferenziertegebaeudeadresse.p.wkb_geometry.value()&#13;
-def pointId = ""&#13;
-def c = _.context.collector()&#13;
-if (!positionAdresse) {&#13;
-	positionAdresse = _source.links.ap_pto.p.wkb_geometry.value()&#13;
-	if (positionAdresse) {&#13;
-		/*&#13;
-		pointId = positionAdresse.p.Point.id.value()&#13;
-		*/&#13;
-		positionAdresse = _.geom.find(positionAdresse)&#13;
-	}&#13;
-}&#13;
-if (!positionAdresse) {&#13;
-	positionAdresse = _source.links.ax_gebaeude.p.wkb_geometry.value()&#13;
-	if (positionAdresse) {&#13;
-		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#13;
-	}&#13;
-}&#13;
-&#13;
-def parcels = new HashSet()&#13;
-//lt. Kommentar Herr Weichand zu entpsrechender Aufgabe in haleconnect wird diese Richtung des Verweises nicht genutzt&#13;
-/*_source.p.gehoertZu.each {&#13;
-	instance -&gt;&#13;
-	if (c.flurstueck[instance.p.href.value()].value()){&#13;
-		parcels &lt;&lt; c.flurstueck[instance.p.href.value()].value()&#13;
-	}&#13;
-}*/&#13;
-c.weistAuf[ _source.p.identifier.value() as String].each{ value -&gt;&#13;
-	//_log.info(value)&#13;
-	parcels &lt;&lt; value&#13;
-}&#13;
-&#13;
-def buildings = new HashSet()&#13;
-//lt. Kommentar Herr Weichand zu entpsrechender Aufgabe in haleconnect wird diese Richtung des Verweises nicht genutzt&#13;
-/*_source.p.beziehtSichAuf.each {&#13;
-	instance -&gt;&#13;
-	if (c.gebaeude[instance.p.href.value()].value()){&#13;
-		buildings &lt;&lt; c.gebaeude[instance.p.href.value()].value()&#13;
-	}&#13;
-}*/&#13;
-c.gebZeigtAuf[ _source.p.identifier.value() as String].each{ value -&gt;&#13;
-	buildings &lt;&lt; value&#13;
-}&#13;
-&#13;
-if (positionAdresse) {&#13;
-	_target {&#13;
-		position {&#13;
-			GeographicPosition {&#13;
-				specification {&#13;
-					href( 'http://inspire.ec.europa.eu/codelist/GeometrySpecificationValue/building' )&#13;
-					title( 'building' )&#13;
-				}&#13;
-				geometry {&#13;
-					Point(_.geom.find(positionAdresse))&#13;
-					{&#13;
-						if (pointId) {&#13;
-							id(pointId)&#13;
-						}&#13;
-					}&#13;
-				}&#13;
-				method {&#13;
-					href( 'http://inspire.ec.europa.eu/codelist/GeometryMethodValue/byAdministrator' )&#13;
-					title( 'by administrator' )&#13;
-				}&#13;
-				'default'( 'true' )&#13;
-			}&#13;
-		}&#13;
-		parcels.each{ value -&gt;&#13;
-			parcel {&#13;
-				href(  _project.vars.CROSSTHEME_CADASTRALPARCELS_URL + 'CadastralParcel_' + value )&#13;
-			}&#13;
-		}&#13;
-		buildings.each{ value -&gt;&#13;
-			building {&#13;
-				href(  _project.vars.CROSSTHEME_BUILDINGS_URL + 'Building_' + value )&#13;
-			}&#13;
-		}&#13;
-	}&#13;
+def positionAdresse = _source.links.ax_georeferenziertegebaeudeadresse.p.wkb_geometry.value()&#xD;
+def pointId = ""&#xD;
+def c = _.context.collector()&#xD;
+if (!positionAdresse) {&#xD;
+	positionAdresse = _source.links.ap_pto.p.wkb_geometry.value()&#xD;
+	if (positionAdresse) {&#xD;
+		/*&#xD;
+		pointId = positionAdresse.p.Point.id.value()&#xD;
+		*/&#xD;
+		positionAdresse = _.geom.find(positionAdresse)&#xD;
+	}&#xD;
+}&#xD;
+if (!positionAdresse) {&#xD;
+	positionAdresse = _source.links.ax_gebaeude.p.wkb_geometry.value()&#xD;
+	if (positionAdresse) {&#xD;
+		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#xD;
+	}&#xD;
+}&#xD;
+&#xD;
+def parcels = new HashSet()&#xD;
+//lt. Kommentar Herr Weichand zu entpsrechender Aufgabe in haleconnect wird diese Richtung des Verweises nicht genutzt&#xD;
+/*_source.p.gehoertZu.each {&#xD;
+	instance -&gt;&#xD;
+	if (c.flurstueck[instance.p.href.value()].value()){&#xD;
+		parcels &lt;&lt; c.flurstueck[instance.p.href.value()].value()&#xD;
+	}&#xD;
+}*/&#xD;
+c.weistAuf[ _source.p.identifier.value() as String].each{ value -&gt;&#xD;
+	//_log.info(value)&#xD;
+	parcels &lt;&lt; value&#xD;
+}&#xD;
+&#xD;
+def buildings = new HashSet()&#xD;
+//lt. Kommentar Herr Weichand zu entpsrechender Aufgabe in haleconnect wird diese Richtung des Verweises nicht genutzt&#xD;
+/*_source.p.beziehtSichAuf.each {&#xD;
+	instance -&gt;&#xD;
+	if (c.gebaeude[instance.p.href.value()].value()){&#xD;
+		buildings &lt;&lt; c.gebaeude[instance.p.href.value()].value()&#xD;
+	}&#xD;
+}*/&#xD;
+c.gebZeigtAuf[ _source.p.identifier.value() as String].each{ value -&gt;&#xD;
+	buildings &lt;&lt; value&#xD;
+}&#xD;
+&#xD;
+if (positionAdresse) {&#xD;
+	_target {&#xD;
+		position {&#xD;
+			GeographicPosition {&#xD;
+				specification {&#xD;
+					href( 'http://inspire.ec.europa.eu/codelist/GeometrySpecificationValue/building' )&#xD;
+					title( 'building' )&#xD;
+				}&#xD;
+				geometry {&#xD;
+					Point(_.geom.find(positionAdresse))&#xD;
+					{&#xD;
+						if (pointId) {&#xD;
+							id(pointId)&#xD;
+						}&#xD;
+					}&#xD;
+				}&#xD;
+				method {&#xD;
+					href( 'http://inspire.ec.europa.eu/codelist/GeometryMethodValue/byAdministrator' )&#xD;
+					title( 'by administrator' )&#xD;
+				}&#xD;
+				'default'( 'true' )&#xD;
+			}&#xD;
+		}&#xD;
+		parcels.each{ value -&gt;&#xD;
+			parcel {&#xD;
+				href(  _project.vars.CROSSTHEME_CADASTRALPARCELS_URL + 'CadastralParcel_' + value )&#xD;
+			}&#xD;
+		}&#xD;
+		buildings.each{ value -&gt;&#xD;
+			building {&#xD;
+				href(  _project.vars.CROSSTHEME_BUILDINGS_URL + 'Building_' + value )&#xD;
+			}&#xD;
+		}&#xD;
+	}&#xD;
 }
 </core:text>
         </complexParameter>
@@ -1124,67 +1124,67 @@ if (positionAdresse) {&#13;
         </complexParameter>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def positionAdresse = _source.links.ax_georeferenziertegebaeudeadresse.p.wkb_geometry.value()&#13;
-def pointId = ""&#13;
-def c = _.context.collector()&#13;
-if (!positionAdresse) {&#13;
-	positionAdresse = _source.links.ap_pto.p.wkb_geometry.value()&#13;
-	if (positionAdresse) {&#13;
-		/*&#13;
-		pointId = positionAdresse.p.Point.id.value()&#13;
-		*/&#13;
-		positionAdresse = _.geom.find(positionAdresse)&#13;
-	}&#13;
-}&#13;
-if (!positionAdresse) {&#13;
-	positionAdresse = _source.links.ax_gebaeude.p.wkb_geometry.value()&#13;
-	if (positionAdresse) {&#13;
-		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#13;
-	}&#13;
-}&#13;
- &#13;
-def parcels = new HashSet()&#13;
-//lt. Kommentar Herr Weichand zu entpsrechender Aufgabe in haleconnect wird diese Richtung des Verweises nicht genutzt&#13;
-/*_source.p.gehoertZu.each {&#13;
-	instance -&gt;&#13;
-	if (c.flurstueck[instance.p.href.value()].value()){&#13;
-		parcels &lt;&lt; c.flurstueck[instance.p.href.value()].value()&#13;
-	}&#13;
-}*/&#13;
-c.zeigtAuf[ _source.p.identifier.value() as String].each{ value -&gt;&#13;
-	parcels &lt;&lt; value&#13;
-}&#13;
-&#13;
-if (positionAdresse) {&#13;
-	_target {&#13;
-		position {&#13;
-			GeographicPosition {&#13;
-				specification {&#13;
-					href( 'http://inspire.ec.europa.eu/codelist/GeometrySpecificationValue/building' )&#13;
-					title( 'building' )&#13;
-				}&#13;
-				geometry {&#13;
-					Point(_.geom.find(positionAdresse))&#13;
-					{&#13;
-						if (pointId) {&#13;
-							id(pointId)&#13;
-						}&#13;
-					}&#13;
-				}&#13;
-				method {&#13;
-					href( 'http://inspire.ec.europa.eu/codelist/GeometryMethodValue/byAdministrator' )&#13;
-					title( 'by administrator' )&#13;
-				}&#13;
-				parcels.each{ value -&gt;&#13;
-					parcel {&#13;
-						href(  _project.vars.CROSSTHEME_CADASTRALPARCELS_URL + 'CadastralParcel_' + value )&#13;
-					}&#13;
-				}&#13;
-				'default'( 'true' )&#13;
-			}&#13;
-		}&#13;
-	}&#13;
-}&#13;
+def positionAdresse = _source.links.ax_georeferenziertegebaeudeadresse.p.wkb_geometry.value()&#xD;
+def pointId = ""&#xD;
+def c = _.context.collector()&#xD;
+if (!positionAdresse) {&#xD;
+	positionAdresse = _source.links.ap_pto.p.wkb_geometry.value()&#xD;
+	if (positionAdresse) {&#xD;
+		/*&#xD;
+		pointId = positionAdresse.p.Point.id.value()&#xD;
+		*/&#xD;
+		positionAdresse = _.geom.find(positionAdresse)&#xD;
+	}&#xD;
+}&#xD;
+if (!positionAdresse) {&#xD;
+	positionAdresse = _source.links.ax_gebaeude.p.wkb_geometry.value()&#xD;
+	if (positionAdresse) {&#xD;
+		positionAdresse = _.geom.centroid(_.geom.find(positionAdresse))&#xD;
+	}&#xD;
+}&#xD;
+ &#xD;
+def parcels = new HashSet()&#xD;
+//lt. Kommentar Herr Weichand zu entpsrechender Aufgabe in haleconnect wird diese Richtung des Verweises nicht genutzt&#xD;
+/*_source.p.gehoertZu.each {&#xD;
+	instance -&gt;&#xD;
+	if (c.flurstueck[instance.p.href.value()].value()){&#xD;
+		parcels &lt;&lt; c.flurstueck[instance.p.href.value()].value()&#xD;
+	}&#xD;
+}*/&#xD;
+c.zeigtAuf[ _source.p.identifier.value() as String].each{ value -&gt;&#xD;
+	parcels &lt;&lt; value&#xD;
+}&#xD;
+&#xD;
+if (positionAdresse) {&#xD;
+	_target {&#xD;
+		position {&#xD;
+			GeographicPosition {&#xD;
+				specification {&#xD;
+					href( 'http://inspire.ec.europa.eu/codelist/GeometrySpecificationValue/building' )&#xD;
+					title( 'building' )&#xD;
+				}&#xD;
+				geometry {&#xD;
+					Point(_.geom.find(positionAdresse))&#xD;
+					{&#xD;
+						if (pointId) {&#xD;
+							id(pointId)&#xD;
+						}&#xD;
+					}&#xD;
+				}&#xD;
+				method {&#xD;
+					href( 'http://inspire.ec.europa.eu/codelist/GeometryMethodValue/byAdministrator' )&#xD;
+					title( 'by administrator' )&#xD;
+				}&#xD;
+				parcels.each{ value -&gt;&#xD;
+					parcel {&#xD;
+						href(  _project.vars.CROSSTHEME_CADASTRALPARCELS_URL + 'CadastralParcel_' + value )&#xD;
+					}&#xD;
+				}&#xD;
+				'default'( 'true' )&#xD;
+			}&#xD;
+		}&#xD;
+	}&#xD;
+}&#xD;
 
 </core:text>
         </complexParameter>
@@ -1641,17 +1641,14 @@ else {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def lage = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_lage?.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
-def gemeinde = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_gemeinde
-def kreis = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_kreis
-def land = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_land
-def regierungsbezirk = lagebezeichnung_AX_Lagebezeichnung_choice_1_verschluesselt_AX_VerschluesselteLagebezeichnung_regierungsbezirk
+def _lage = lage?.replaceAll(/[^a-zA-Z_0-9\-]/, '_')
+
 if (!regierungsbezirk) {
 	regierungsbezirk = '0'
 }
 
 if (lage) {
-	"#ThoroughfareName_${land}${regierungsbezirk}${kreis}${gemeinde}${lage}"
+	"#ThoroughfareName_${land}${regierungsbezirk}${kreis}${gemeinde}${_lage}"
 }
 else {
 	throw new NoResultException()
@@ -2650,55 +2647,55 @@ else {
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-def c = _.context.collector()&#13;
-&#13;
-c.PLZcollection.each{ key, values -&gt;&#13;
-	if(key){&#13;
-			_target{&#13;
-				inspireId {&#13;
-				Identifier {&#13;
-						namespace( _project.vars.INSPIRE_NAMESPACE )&#13;
-						localId( 'PostalDescriptor_' + key )&#13;
-					}&#13;
-				}&#13;
-				id( 'PostalDescriptor_' + key )&#13;
-				validFrom( ) {&#13;
-					nilReason( 'other:unpopulated' )&#13;
-				}&#13;
-				postCode( key )&#13;
-				beginLifespanVersion( ) {&#13;
-					nilReason( 'other:unpopulated' )&#13;
-				}&#13;
-				identifier( _project.vars.INSPIRE_NAMESPACE + 'PostalDescriptor_' + key ) {&#13;
-					codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
-				}&#13;
-				postName {&#13;
-					GeographicalName {&#13;
-						sourceOfName( ) {&#13;
-							nilReason( 'other:unpopulated' )&#13;
-						}&#13;
-						values.each{value -&gt;&#13;
-							spelling {&#13;
-								SpellingOfName {&#13;
-									text( value )&#13;
-									script( 'Latn' )&#13;
-								}&#13;
-							}&#13;
-						}&#13;
-						pronunciation {&#13;
-							nilReason( 'other:unpopulated' )&#13;
-						}&#13;
-						language( 'deu' )&#13;
-						nameStatus {&#13;
-							href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/official' )&#13;
-						}&#13;
-						nativeness {&#13;
-							href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
-						}&#13;
-					}&#13;
-				}&#13;
-			}&#13;
-	}&#13;
+def c = _.context.collector()&#xD;
+&#xD;
+c.PLZcollection.each{ key, values -&gt;&#xD;
+	if(key){&#xD;
+			_target{&#xD;
+				inspireId {&#xD;
+				Identifier {&#xD;
+						namespace( _project.vars.INSPIRE_NAMESPACE )&#xD;
+						localId( 'PostalDescriptor_' + key )&#xD;
+					}&#xD;
+				}&#xD;
+				id( 'PostalDescriptor_' + key )&#xD;
+				validFrom( ) {&#xD;
+					nilReason( 'other:unpopulated' )&#xD;
+				}&#xD;
+				postCode( key )&#xD;
+				beginLifespanVersion( ) {&#xD;
+					nilReason( 'other:unpopulated' )&#xD;
+				}&#xD;
+				identifier( _project.vars.INSPIRE_NAMESPACE + 'PostalDescriptor_' + key ) {&#xD;
+					codeSpace( 'http://inspire.ec.europa.eu/ids' )&#xD;
+				}&#xD;
+				postName {&#xD;
+					GeographicalName {&#xD;
+						sourceOfName( ) {&#xD;
+							nilReason( 'other:unpopulated' )&#xD;
+						}&#xD;
+						values.each{value -&gt;&#xD;
+							spelling {&#xD;
+								SpellingOfName {&#xD;
+									text( value )&#xD;
+									script( 'Latn' )&#xD;
+								}&#xD;
+							}&#xD;
+						}&#xD;
+						pronunciation {&#xD;
+							nilReason( 'other:unpopulated' )&#xD;
+						}&#xD;
+						language( 'deu' )&#xD;
+						nameStatus {&#xD;
+							href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/official' )&#xD;
+						}&#xD;
+						nativeness {&#xD;
+							href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#xD;
+						}&#xD;
+					}&#xD;
+				}&#xD;
+			}&#xD;
+	}&#xD;
 }
 </core:text>
         </complexParameter>
