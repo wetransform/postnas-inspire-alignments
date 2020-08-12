@@ -498,12 +498,20 @@ values = values.collect { value -&gt;
 	//	result = value
 	//}
 	//TODO also support parsing based on provided pattern?
+	
 	if (result == null) {
-		result = Date.parse('yyyy-MM-ddTHH:mm:ssZ', value)
+		//try block to make sure the function is not cancelled in case an error occurs
+		try {
+			//specific format reported by RLP
+			result = Date.parse("yyyy-MM-dd'T'HH:mm:ss", value)
+		}
 	}
 	if (result == null) {
 		// try hale conversion
-		result = _.convert(value: value, to: Date)
+				//try block to make sure the function is not cancelled in case an error occurs
+		try{
+			result = _.convert(value: value, to: Date)
+		}
 	}
 	if (result == null) {
 		result = value as Date
