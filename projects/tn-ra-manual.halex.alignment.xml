@@ -505,6 +505,9 @@ values = values.collect { value -&gt;
 			//specific format reported by RLP
 			result = Date.parse("yyyy-MM-dd'T'HH:mm:ss", value)
 		}
+		catch (e) {
+  			// ignore, try next variant
+  		}
 	}
 	if (result == null) {
 		// try hale conversion
@@ -512,6 +515,9 @@ values = values.collect { value -&gt;
 		try{
 			result = _.convert(value: value, to: Date)
 		}
+		catch (e) {
+  			// ignore, try next variant
+  		}
 	}
 	if (result == null) {
 		result = value as Date
