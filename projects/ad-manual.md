@@ -13,3 +13,5 @@ Notizen zu manuellen Anpassungen
 - Mapping von `AX_Post` bzw. zu `PostalDescriptor` entfernt (es scheint keine Entsprechung zu `AX_Post` im Datenbank-Schema zu geben)
 - Mappings aus `postleitzahl` zu `Address` deaktiviert um keine fehlerhaften Referenzen zu (nicht vorhandenen) `PostalDescriptor`s zu erstellen
 - `FormattedString` mit Quelle `gml_id` auf geänderten Namen der Quelle angepasst
+- Custom function die als Quelle eine komplexe AX_Lagebezeichnung verwendet wurde entfernt (da nicht anwendbar)
+
