@@ -1,5 +1,5 @@
 diff --git a/projects/elu-auto.halex.alignment.xml b/projects/elu-manual.halex.alignment.xml
-index 2733818..1cf4245 100644
+index 2733818..0c87a5e 100644
 --- a/projects/elu-auto.halex.alignment.xml
 +++ b/projects/elu-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -576,7 +576,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -602,7 +602,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -628,7 +628,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -654,7 +654,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -680,7 +680,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -706,7 +706,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -732,7 +732,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -758,7 +758,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -784,7 +784,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -810,7 +810,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -836,7 +836,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -862,7 +862,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -888,7 +888,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -914,7 +914,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -940,7 +940,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -966,7 +966,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -992,7 +992,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -1018,7 +1018,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -1044,7 +1044,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -1070,7 +1070,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -1096,7 +1096,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -1122,7 +1122,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -1148,7 +1148,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -1174,7 +1174,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -1200,7 +1200,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
@@ -1226,7 +1226,7 @@ index 2733818..1cf4245 100644
  &#13;
  else {&#13;
 -	_target (datumDerLetztenUeberpruefung)&#13;
-+	_target (datumderletztenueberpruefung)&#13;
++	_target (new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).parse(datumderletztenueberpruefung))&#13;
  }
  </core:text>
          </complexParameter>
