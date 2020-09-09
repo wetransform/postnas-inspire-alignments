@@ -3891,7 +3891,7 @@ if (_source.p.internationaleBedeutung.value() == '2001') {
 def erstelleRoadLink = { achse -&gt;
 	boolean istFahrbahn = achse.definition.name.localPart.startsWith('AX_Fahrbahn')
 
-	def sourceId = achse.p.id.value()
+	def sourceId = achse.p.gml_id.value()
 	def _id = "RoadLink_$sourceId"
 	def _ns = _project.vars.INSPIRE_NAMESPACE
 	
