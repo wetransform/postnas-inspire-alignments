@@ -1,5 +1,5 @@
 diff --git a/projects/tn-ro-auto.halex.alignment.xml b/projects/tn-ro-manual.halex.alignment.xml
-index 3042dc1..2e61310 100644
+index 3042dc1..632ed76 100644
 --- a/projects/tn-ro-auto.halex.alignment.xml
 +++ b/projects/tn-ro-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -780,6 +780,15 @@ index 3042dc1..2e61310 100644
  case '1301': // Bundesautobahn
  	functionalClass = 'firstClass'
  	break
+@@ -3819,7 +3891,7 @@ if (_source.p.internationaleBedeutung.value() == '2001') {
+ def erstelleRoadLink = { achse -&gt;
+ 	boolean istFahrbahn = achse.definition.name.localPart.startsWith('AX_Fahrbahn')
+ 
+-	def sourceId = achse.p.id.value()
++	def sourceId = achse.p.gml_id.value()
+ 	def _id = "RoadLink_$sourceId"
+ 	def _ns = _project.vars.INSPIRE_NAMESPACE
+ 	
 @@ -3846,22 +3918,22 @@ def erstelleRoadLink = { achse -&gt;
  		
  		// bestimme FormOfWay
