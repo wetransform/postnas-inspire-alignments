@@ -15,7 +15,7 @@ Das gleiche gilt für die aggregierten Geometrien -- hier werden bei unvollstän
 
 Sofern möglich sollte alternativ für die Transformation das Projekt mit Aggregierung aus `AX_KommunalesGebiet` verwendet werden. Falls diese Objekte nich vorhanden sind, könnten als Zwischenschritt auch `AX_KommunalesGebiet` aus Flurstücken abgeleitet werden.</description>
     <created>2015-09-28T11:46:45.435+02:00</created>
-    <modified>2020-07-17T14:53:35.122+02:00</modified>
+    <modified>2021-12-20T17:46:08.970+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -25,7 +25,7 @@ Sofern möglich sollte alternativ für die Transformation das Projekt mit Aggreg
         <setting name="charset">UTF-8</setting>
         <setting name="onlyElementsMappable">true</setting>
         <setting name="resourceId">6507af8a-c2a1-4b2f-8135-94292763afa6</setting>
-        <setting name="source">http://inspire.ec.europa.eu/schemas/au/4.0/AdministrativeUnits.xsd</setting>
+        <setting name="source">https://inspire.ec.europa.eu/schemas/au/4.0/AdministrativeUnits.xsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xsd</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.source" provider-id="eu.esdihumboldt.hale.common.schema.persist.hsd.read">
