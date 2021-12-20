@@ -616,7 +616,7 @@ def c = _.context.collector()&#13;
 //c.gebaeude[_source.p.identifier.value()] &lt;&lt; _source.p.id.value()&#13;
 &#13;
 _source.p.zeigtAuf.each { instance -&gt;&#13;
-	c.gebZeigtAuf[instance.p.href.value() as String] &lt;&lt; _source.p.id.value()&#13;
+	c.gebZeigtAuf[instance.p.href.value() as String] &lt;&lt; _source.p.gml_id.value()&#13;
 }&#13;
 
 </core:text>

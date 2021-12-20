@@ -3,7 +3,7 @@
     <name>[Annex I] AdV ALKIS zu INSPIRE Addresses</name>
     <author>Thorsten Reitz</author>
     <created>2016-06-14T14:18:58.157+02:00</created>
-    <modified>2020-07-17T14:05:47.113+02:00</modified>
+    <modified>2021-12-20T17:38:03.159+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -13,7 +13,7 @@
         <setting name="charset">UTF-8</setting>
         <setting name="onlyElementsMappable">true</setting>
         <setting name="resourceId">4eee5fe2-0b59-4f4c-9ff2-4adc0e40a888</setting>
-        <setting name="source">http://inspire.ec.europa.eu/schemas/ad/4.0/Addresses.xsd</setting>
+        <setting name="source">https://inspire.ec.europa.eu/schemas/ad/4.0/Addresses.xsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xsd</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.codelist.read" provider-id="eu.esdihumboldt.hale.io.codelist.inspire.reader">
