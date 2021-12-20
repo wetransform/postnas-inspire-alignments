@@ -3,32 +3,32 @@
 # Defines projects to migrate.
 #
 ad:
-  advProject: annex-1/mappings/Addresses/aaa-ad-01.halex
+  advProject: annex-1/mappings6.0/Addresses/aaa-ad-01.halex
 au:
-  advProject: annex-1/mappings/AdministrativeUnits/aaa-au-flurstuecke.halex
+  advProject: annex-1/mappings6.0/AdministrativeUnits/aaa-au-flurstuecke.halex
 bu-2d:
-  advProject: annex-2-3/mappings/Buildings/2D/3A2INSPIRE_BU2D.halex
+  advProject: annex-2-3/mappings6.0/Buildings/2D/3A2INSPIRE_BU2D.halex
 cp:
-  advProject: annex-1/mappings/CadastralParcels/aaa-cp-01.halex
+  advProject: annex-1/mappings6.0/CadastralParcels/aaa-cp-01.halex
 elu:
-  advProject: annex-2-3/mappings/LandUse/ALKIS2INSPIRE_ELU.halex
+  advProject: annex-2-3/mappings6.0/LandUse/ALKIS2INSPIRE_ELU.halex
 gn:
-  advProject: annex-1/mappings/GeographicalNames/aaa-gn-02.halex
+  advProject: annex-1/mappings6.0/GeographicalNames/aaa-gn-02.halex
 hy-n:
-  advProject: annex-1/mappings/Hydrography/aaa-hy-n.halex
+  advProject: annex-1/mappings6.0/Hydrography/aaa-hy-n.halex
 hy-p:
-  advProject: annex-1/mappings/Hydrography/aaa-hy-p.halex
+  advProject: annex-1/mappings6.0/Hydrography/aaa-hy-p.halex
 lc:
-  advProject: annex-2-3/mappings/LandCover/ALKIS2INSPIRE_LC_v2.halex
+  advProject: annex-2-3/mappings6.0/LandCover/ALKIS2INSPIRE_LC_v2.halex
 so:
-  advProject: annex-2-3/mappings/Soil/3A2INSPIRE_SO_v2.halex
+  advProject: annex-2-3/mappings6.0/Soil/3A2INSPIRE_SO_v2.halex
 tn-ro:
-  advProject: annex-1/mappings/RoadTransportNetwork/aaa-tn-ro-01.halex
+  advProject: annex-1/mappings6.0/RoadTransportNetwork/aaa-tn-ro-01.halex
 tn-ra:
-  advProject: annex-1/mappings/RailroadTransportNetwork/aaa-tn-ra-01.halex
+  advProject: annex-1/mappings6.0/RailroadTransportNetwork/aaa-tn-ra-01.halex
 tn-w:
-  advProject: annex-1/mappings/WaterTransportNetwork/aaa-tn-w-01.halex
+  advProject: annex-1/mappings6.0/WaterTransportNetwork/aaa-tn-w-01.halex
 tn-a:
-  advProject: annex-1/mappings/AirTransportNetwork/aaa-tn-a-01.halex
+  advProject: annex-1/mappings6.0/AirTransportNetwork/aaa-tn-a-01.halex
 tn-c:
-  advProject: annex-1/mappings/CableTransportNetwork/aaa-tn-c-01.halex
+  advProject: annex-1/mappings6.0/CableTransportNetwork/aaa-tn-c-01.halex
