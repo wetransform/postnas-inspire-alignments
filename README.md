@@ -9,20 +9,20 @@ Folgende Alignments werden hier verwaltet:
 
 | Alignment                                             | Status         | Kürzel     |
 | :---------------------------------------------------- | :------------: | :--------- |
-| PostNAS -> Adressen                                   | Migriert       | ad         |
-| PostNAS -> Verwaltungseinheiten                       | Migriert       | au         |
-| PostNAS -> Gebäude (2D)                               | Migriert       | bu-2d      |
-| PostNAS -> Flurstücke/Grundstücke                     | Migriert       | cp         |
-| PostNAS -> Bodennutzung                               | Migriert       | elu        |
-| PostNAS -> Geografische Bezeichnungen                 | Migriert       | gn         |
-| PostNAS -> Gewässernetz                               | Migriert       | hy-n, hy-p |
-| PostNAS -> Landbedeckung                              | Migriert       | lc         |
-| PostNAS -> Boden                                      | Migriert       | so         |
-| PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)        | Migriert       | tn-ro      |
-| PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)       | Migriert       | tn-ra      |
-| PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)         | Migriert       | tn-w       |
-| PostNAS -> Verkehrsnetze (Luftverkehrsnetz)           | Migriert       | tn-a       |
-| PostNAS -> Verkehrsnetze (Kabel)                      | Migriert       | tn-c       |
+| PostNAS -> Adressen                                   | Update nötig   | ad         |
+| PostNAS -> Verwaltungseinheiten                       | Update nötig   | au         |
+| PostNAS -> Gebäude (2D)                               | Update nötig   | bu-2d      |
+| PostNAS -> Flurstücke/Grundstücke                     | Update nötig   | cp         |
+| PostNAS -> Bodennutzung                               | Update nötig   | elu        |
+| PostNAS -> Geografische Bezeichnungen                 | Update nötig   | gn         |
+| PostNAS -> Gewässernetz                               | Update nötig   | hy-n, hy-p |
+| PostNAS -> Landbedeckung                              | Update nötig   | lc         |
+| PostNAS -> Boden                                      | Update nötig   | so         |
+| PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)        | Update nötig   | tn-ro      |
+| PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)       | Update nötig   | tn-ra      |
+| PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)         | Update nötig   | tn-w       |
+| PostNAS -> Verkehrsnetze (Luftverkehrsnetz)           | Update nötig   | tn-a       |
+| PostNAS -> Verkehrsnetze (Kabel)                      | Update nötig   | tn-c       |
 
 
 Einrichtung Gradle und hale-cli
