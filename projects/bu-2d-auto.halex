@@ -9,17 +9,17 @@
     HORIZONTALGEOMETRYREFERENCEVALUE_BEFLIEGUNGSGEBAEUDE: default ist "footprint", falls anderer Wert aus der Codeliste (http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue) erwünscht --&gt; angeben&#13;
     INSPIRE_NAMESPACE: gewünschten Namespace eingeben</description>
     <created>2018-04-10T10:51:13.547+02:00</created>
-    <modified>2020-08-17T16:10:55.824+02:00</modified>
+    <modified>2021-12-22T17:53:22.107+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
-        <setting name="target">file:/home/flo/src/wetransform/rlp-inspire-alignments/projects/bu-2d-auto.halex</setting>
+        <setting name="target">file:/home/flo/src/wetransform/postnas-inspire-alignments/projects/bu-2d-auto.halex</setting>
     </save-config>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.target" provider-id="eu.esdihumboldt.hale.io.xsd.reader">
         <setting name="charset">UTF-8</setting>
         <setting name="onlyElementsMappable">true</setting>
         <setting name="resourceId">df997a44-47bf-4b09-a753-2a61e7a9b964</setting>
-        <setting name="source">http://inspire.ec.europa.eu/schemas/bu-core2d/4.0/BuildingsCore2D.xsd</setting>
+        <setting name="source">https://inspire.ec.europa.eu/schemas/bu-core2d/4.0/BuildingsCore2D.xsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xsd</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.codelist.read" provider-id="eu.esdihumboldt.hale.io.codelist.inspire.reader">
@@ -60,7 +60,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">1</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenCurrentUse/AX_Gebaudefunktion_Gebaeude.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenCurrentUse/AX_Gebaudefunktion_Gebaeude.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -71,7 +71,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenCurrentUse/AX_KonstruktionsmerkmalBauart_Schleuse.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenCurrentUse/AX_KonstruktionsmerkmalBauart_Schleuse.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -82,7 +82,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">1</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenCurrentUse/AX_Bauwerksfunktion_BauwerkImVerkehrsbereich.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenCurrentUse/AX_Bauwerksfunktion_BauwerkImVerkehrsbereich.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -93,7 +93,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenCurrentUse/AX_Bahnkategorie_SeilbahnSchwebebahn.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenCurrentUse/AX_Bahnkategorie_SeilbahnSchwebebahn.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -104,7 +104,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Gebaeudefunktion_Gebaeude.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Gebaeudefunktion_Gebaeude.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -115,7 +115,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_SonstigesBauwerkOderSonstigeEinrichtung.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_SonstigesBauwerkOderSonstigeEinrichtung.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -126,7 +126,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_ArchaeologischerTyp_HistorischesBauwerkOderHistorischeEinrichtung.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_ArchaeologischerTyp_HistorischesBauwerkOderHistorischeEinrichtung.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -137,7 +137,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_BauwerkImGewaesserbereich.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_BauwerkImGewaesserbereich.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -148,7 +148,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_Turm.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_Turm.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -159,7 +159,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_VorratsbehaelterSpeicherbauwerk.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_VorratsbehaelterSpeicherbauwerk.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -170,7 +170,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_BauwerkOderAnlageFuerSportFreizeitUndErholung.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_BauwerkOderAnlageFuerSportFreizeitUndErholung.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -181,7 +181,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_BauwerkOderAnlageFuerIndustrieUndGewerbe.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_BauwerkOderAnlageFuerIndustrieUndGewerbe.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -192,7 +192,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bahnkategorie_SeilbahnSchwebebahn.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bahnkategorie_SeilbahnSchwebebahn.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -203,7 +203,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Art_EinrichtungenFuerDenSchiffsverkehr.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Art_EinrichtungenFuerDenSchiffsverkehr.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -214,7 +214,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_Leitung.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_Leitung.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -225,7 +225,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_BauwerkImVerkehrsbereich.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_Bauwerksfunktion_BauwerkImVerkehrsbereich.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -236,7 +236,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">2</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_KonstruktionsmerkmalBauart_Schleuse.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenBuildingNature/AX_KonstruktionsmerkmalBauart_Schleuse.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.lookup.import" provider-id="eu.esdihumboldt.hale.io.xls.reader.lookup">
@@ -247,7 +247,7 @@
         <setting name="name"></setting>
         <setting name="valueColumn">1</setting>
         <setting name="skip">true</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/adv-alignments/annex-2-3/mappings/Buildings/2D/Unterlagen/TabellenCurrentUse/AX_Bauwerksfunktion_BauwerkOderAnlageFuerSportFreizeitUndErholung.xlsx</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/adv-alignments/annex-2-3/mappings6.0/Buildings/2D/Unterlagen/TabellenCurrentUse/AX_Bauwerksfunktion_BauwerkOderAnlageFuerSportFreizeitUndErholung.xlsx</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xls.xlsx</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.codelist.read" provider-id="eu.esdihumboldt.hale.io.codelist.inspire.reader">
@@ -258,7 +258,7 @@
     </resource>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.source" provider-id="eu.esdihumboldt.hale.common.schema.persist.hsd.read">
         <setting name="charset">UTF-8</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/database/schema.hsd</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/database/schema.hsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.common.schema.hsd</setting>
     </resource>
     <export-config name="hale-connect">
@@ -277,31 +277,10 @@
     <file name="alignment.xml" location="bu-2d-auto.halex.alignment.xml"/>
     <complex-property name="codelists">
         <associations>
-            <codeList identifier="//inspire.ec.europa.eu/codelist/CurrentUseValue" namespace="http://inspire.ec.europa.eu/codelist/CurrentUseValue">
-                <entity>
-                    <type name="BuildingType" namespace="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
-                    <property name="currentUse" namespace="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
-                    <property name="CurrentUse" namespace="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
-                    <property name="currentUse" namespace="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
-                    <property name="href" namespace="http://www.w3.org/1999/xlink"/>
-                </entity>
-            </codeList>
             <codeList identifier="//inspire.ec.europa.eu/codelist/ConditionOfConstructionValue" namespace="http://inspire.ec.europa.eu/codelist/ConditionOfConstructionValue">
                 <entity>
                     <type name="BuildingType" namespace="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
                     <property name="conditionOfConstruction" namespace="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
-                    <property name="href" namespace="http://www.w3.org/1999/xlink"/>
-                </entity>
-            </codeList>
-            <codeList identifier="//inspire.ec.europa.eu/codelist/BuildingNatureValue" namespace="http://inspire.ec.europa.eu/codelist/BuildingNatureValue">
-                <entity>
-                    <type name="BuildingType" namespace="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
-                    <property name="buildingNature" namespace="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
-                    <property name="href" namespace="http://www.w3.org/1999/xlink"/>
-                </entity>
-                <entity>
-                    <type name="BuildingPartType" namespace="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
-                    <property name="buildingNature" namespace="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
                     <property name="href" namespace="http://www.w3.org/1999/xlink"/>
                 </entity>
             </codeList>
@@ -1657,13 +1636,13 @@
                 <core:value value="footPrint"/>
             </core:property>
             <core:property name="BUILDINGNATURE">
-                <core:value value="https://registry.gdi-de.org/id/de.____/"/>
+                <core:value value="https://registry.gdi-de.org/codelist/de.adv-online.inspire/BuildingNatureValue/"/>
             </core:property>
             <core:property name="INSPIRE_NAMESPACE">
                 <core:value value="https://registry.gdi-de.org/id/de.____/"/>
             </core:property>
             <core:property name="CURRENTUSE">
-                <core:value value="https://registry.gdi-de.org/id/de.____/"/>
+                <core:value value="https://registry.gdi-de.org/codelist/de.adv-online.inspire/CurrentUseValue/"/>
             </core:property>
             <core:property name="HORIZONTALGEOMETRYREFERENCEVALUE_BEFLIEGUNGSGEBAEUDE">
                 <core:value value="footPrint"/>
