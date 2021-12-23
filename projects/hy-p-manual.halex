@@ -3,7 +3,7 @@
     <name>[Annex I] AdV 3A zu INSPIRE Hydro-Physical Waters</name>
     <author>Thorsten Reitz</author>
     <created>2016-08-11T16:21:55.552+02:00</created>
-    <modified>2020-07-07T18:30:18.905+02:00</modified>
+    <modified>2022-01-05T11:55:17.546+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -13,7 +13,7 @@
         <setting name="charset">UTF-8</setting>
         <setting name="onlyElementsMappable">true</setting>
         <setting name="resourceId">4694facd-f8be-41dc-af01-5472d8b22b9f</setting>
-        <setting name="source">http://inspire.ec.europa.eu/schemas/hy-p/4.0/HydroPhysicalWaters.xsd</setting>
+        <setting name="source">https://inspire.ec.europa.eu/schemas/hy-p/4.0/HydroPhysicalWaters.xsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xsd</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.codelist.read" provider-id="eu.esdihumboldt.hale.io.codelist.inspire.reader">

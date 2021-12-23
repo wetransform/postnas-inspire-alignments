@@ -916,7 +916,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 // Prüfen, ob tatsächlich eine AX_Gewässerachse und/oder ein AX_Fliessgewaesser zu der Relation hatDirektUnten gefunden wurde&#13;
 &#13;
-boolean hatReferenz = _source.links.AX_Gewaesserachse.first() || _source.links.AX_Fliessgewaesser.first()&#13;
+boolean hatReferenz = _source.links.ax_gewaesserachse.first() || _source.links.ax_fliessgewaesser.first()&#13;
 &#13;
 if (hatReferenz) {&#13;
 &#13;
@@ -924,7 +924,7 @@ if (hatReferenz) {&#13;
 	def geometries = _.geom.toSimpleGeometries(geometries: _source.p.position.first(), collections: false)&#13;
 	&#13;
 	// Identifier des Quell-Objekts&#13;
-	def sourceId = _source.p.id.value()&#13;
+	def sourceId = _source.p.gml_id.value()&#13;
 	&#13;
 	// Builder konfigurieren&#13;
 	// - Zuweisung der Geometrie auf Ebene von geometry zulassen&#13;
@@ -4023,11 +4023,40 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C45a9e47b-e2c7-408a-a3b8-3e43593337e0" priority="normal">
-        <source name="lagebezeichnung">
+        <source name="lage_gemeinde">
             <property>
-                <type name="AX_HafenbeckenType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="gemeinde"/>
+            </property>
+        </source>
+        <source name="lage_kreis">
+            <property>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="kreis"/>
+            </property>
+        </source>
+        <source name="lage_lage">
+            <property>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="lage"/>
+            </property>
+        </source>
+        <source name="lage_land">
+            <property>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="land"/>
+            </property>
+        </source>
+        <source name="lage_regierungsbezirk">
+            <property>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="regierungsbezirk"/>
+            </property>
+        </source>
+        <source name="lage_unverschluesselt">
+            <property>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <child name="unverschluesselt"/>
             </property>
         </source>
         <target>
