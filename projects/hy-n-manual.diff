@@ -1,5 +1,5 @@
 diff --git a/projects/hy-n-auto.halex.alignment.xml b/projects/hy-n-manual.halex.alignment.xml
-index 704abb1..0abf50e 100644
+index 704abb1..46b4451 100644
 --- a/projects/hy-n-auto.halex.alignment.xml
 +++ b/projects/hy-n-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -92,3 +92,79 @@ index 704abb1..0abf50e 100644
      <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatelength" id="C7c8926c6-296b-4339-8f52-319848398955_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
          <source>
              <property>
+@@ -2113,12 +2051,12 @@ _target {&#13;
+ //Kollektor hat Brücken/Düker-id als key und Fliessgewässer-id als Wert&#13;
+ def c = _.context.collector()&#13;
+ &#13;
+-if (_source.links.AX_BauwerkImVerkehrsbereich.first()){&#13;
+-	c.crossing[_source.links.AX_BauwerkImVerkehrsbereich.p.id.value()] &lt;&lt; _source.p.id.value()&#13;
++if (_source.links.ax_bauwerkimverkehrsbereich.first()){&#13;
++	c.crossing[_source.links.ax_bauwerkimverkehrsbereich.p.gml_id.value()] &lt;&lt; _source.p.gml_id.value()&#13;
+ }&#13;
+ &#13;
+-if (_source.links.AX_BauwerkImGewaesserbereich.first()){&#13;
+-	c.crossing[_source.links.AX_BauwerkImGewaesserbereich.p.id.value()] &lt;&lt; _source.p.id.value()&#13;
++if (_source.links.ax_bauwerkimgewaesserbereich.first()){&#13;
++	c.crossing[_source.links.ax_bauwerkimgewaesserbereich.p.gml_id.value()] &lt;&lt; _source.p.gml_id.value()&#13;
+ }&#13;
+ &#13;
+ //an dieser Stelle wird keine Ziel-Instanz erzeugt, sondern lediglich Wasserläufe und Brücken/Düker gesammelt, bei denen der Wasserlauf über der Brücke/dem Düker liegt&#13;
+@@ -2212,12 +2150,12 @@ if (_source.links.AX_BauwerkImGewaesserbereich.first()){&#13;
+ //Kollektor hat Brücken/Düker-id als key und Gewässerachsen-id als Wert&#13;
+ def c = _.context.collector()&#13;
+ &#13;
+-if (_source.links.AX_BauwerkImVerkehrsbereich.first()){&#13;
+-	c.crossing[_source.links.AX_BauwerkImVerkehrsbereich.p.id.value()] &lt;&lt; _source.p.id.value()&#13;
++if (_source.links.ax_bauwerkimverkehrsbereich.first()){&#13;
++	c.crossing[_source.links.ax_bauwerkimverkehrsbereich.p.gml_id.value()] &lt;&lt; _source.p.gml_id.value()&#13;
+ }&#13;
+ &#13;
+-if (_source.links.AX_BauwerkImGewaesserbereich.first()){&#13;
+-	c.crossing[_source.links.AX_BauwerkImGewaesserbereich.p.id.value()] &lt;&lt; _source.p.id.value()&#13;
++if (_source.links.ax_bauwerkimgewaesserbereich.first()){&#13;
++	c.crossing[_source.links.ax_bauwerkimgewaesserbereich.p.gml_id.value()] &lt;&lt; _source.p.gml_id.value()&#13;
+ }&#13;
+ &#13;
+ //an dieser Stelle wird keine Ziel-Instanz erzeugt, sondern lediglich Wasserläufe und Brücken/Düker gesammelt, bei denen der Wasserlauf über der Brücke/dem Düker liegt&#13;
+@@ -2285,11 +2223,11 @@ if (_source.links.AX_BauwerkImGewaesserbereich.first()){&#13;
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def c = _.context.collector()&#13;
+ &#13;
+-def obereGewaesserAchseIDs = c.crossing[_source.p.id.value()].values()&#13;
++def obereGewaesserAchseIDs = c.crossing[_source.p.gml_id.value()].values()&#13;
+ &#13;
+ if(obereGewaesserAchseIDs){&#13;
+ 	obereGewaesserAchseIDs.each{ obereGewaesserAchseID -&gt;&#13;
+-		_source.links.AX_Gewaesserachse.p.id.each { gewaesserachseID -&gt;&#13;
++		_source.links.ax_gewaesserachse.p.gml_id.each { gewaesserachseID -&gt;&#13;
+ 			gewaesserachseID = 'WatercourseLink_' + gewaesserachseID&#13;
+ 			_target {&#13;
+ 			//https://inspire.ec.europa.eu/data-model/approved/r4618-ir/html/EARoot/EA3/EA1/EA5/EA9018.htm: "The order reflects their elevation; the first link is the lower link. "&#13;
+@@ -2371,11 +2309,11 @@ if(obereGewaesserAchseIDs){&#13;
+ &#13;
+ def c = _.context.collector()&#13;
+ &#13;
+-def obereGewaesserAchseIDs = c.crossing[_source.p.id.value()].values()&#13;
++def obereGewaesserAchseIDs = c.crossing[_source.p.gml_id.value()].values()&#13;
+ &#13;
+ if(obereGewaesserAchseIDs){&#13;
+ 	obereGewaesserAchseIDs.each{ obereGewaesserAchseID -&gt;&#13;
+-		_source.links.AX_Fliessgewaesser.p.id.each { fliessgewaesserID -&gt;&#13;
++		_source.links.ax_fliessgewaesser.p.gml_id.each { fliessgewaesserID -&gt;&#13;
+ 			fliessgewaesserID = 'WatercourseLink_' + fliessgewaesserID&#13;
+ 			_target {&#13;
+ 			//https://inspire.ec.europa.eu/data-model/approved/r4618-ir/html/EARoot/EA3/EA1/EA5/EA9018.htm: "The order reflects their elevation; the first link is the lower link. "&#13;
+@@ -2457,11 +2395,11 @@ if(obereGewaesserAchseIDs){&#13;
+ &#13;
+ def c = _.context.collector()&#13;
+ &#13;
+-def obereGewaesserAchseIDs = c.crossing[_source.p.id.value()].values()&#13;
++def obereGewaesserAchseIDs = c.crossing[_source.p.gml_id.value()].values()&#13;
+ &#13;
+ if(obereGewaesserAchseIDs){&#13;
+ 	obereGewaesserAchseIDs.each{ obereGewaesserAchseID -&gt;&#13;
+-		_source.links.AX_Gewaesserachse.p.id.each { gewaesserachseID -&gt;&#13;
++		_source.links.ax_gewaesserachse.p.gml_id.each { gewaesserachseID -&gt;&#13;
+ 			gewaesserAchseID = 'WatercourseLink_' + gewaesserAchseID&#13;
+ 			_target {&#13;
+ 			//https://inspire.ec.europa.eu/data-model/approved/r4618-ir/html/EARoot/EA3/EA1/EA5/EA9018.htm: "The order reflects their elevation; the first link is the lower link. "&#13;
