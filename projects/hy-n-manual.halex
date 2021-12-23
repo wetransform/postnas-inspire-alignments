@@ -6,7 +6,7 @@
 &#13;
 `WatercourseLinkSequence`s werden nicht gebildet, da in den Quelldaten keine Verknüpfungen zwischen den einzelnen `AX_Gewaesserachsen` existieren, die für eine zuverlässige Bildung der Sequenz herangezogen werden können. Eine geometrische Analyse kann nicht zuverlässig funktionieren.</description>
     <created>2016-08-11T16:21:55.552+02:00</created>
-    <modified>2020-07-07T18:23:35.546+02:00</modified>
+    <modified>2022-01-05T15:44:15.837+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -34,7 +34,7 @@
         <setting name="charset">UTF-8</setting>
         <setting name="onlyElementsMappable">true</setting>
         <setting name="resourceId">d3386ea5-a92d-4fe2-aa92-0a41005c86e5</setting>
-        <setting name="source">http://inspire.ec.europa.eu/schemas/hy-n/4.0/HydroNetwork.xsd</setting>
+        <setting name="source">https://inspire.ec.europa.eu/schemas/hy-n/4.0/HydroNetwork.xsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xsd</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.codelist.read" provider-id="eu.esdihumboldt.hale.io.codelist.inspire.reader">
