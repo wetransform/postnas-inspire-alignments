@@ -772,6 +772,34 @@ Aktuell ist folgende Abbildung umgesetzt:
         <parameter value="1" name="number"/>
         <documentation>Es wird ein ExistingLandUseDataSet erzeugt, das aus allen in diesem Alignment erzeugten ExistingLandUseObjects besteht. Die Erzeugung ist niedriger priorisiert als die der ExistingLandUseObjects, da dabei in Collectoren gesammelte Informationen für die Erzegung des ExistingLandUseDataSets Verwendung finden.</documentation>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C40961cf5-b96a-4105-a945-d0b32805f640" priority="normal">
+        <source>
+            <class>
+                <type name="extentBundesland"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="ExistingLandUseDataSetType" ns="http://inspire.ec.europa.eu/schemas/elu/4.0"/>
+            </class>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+//Dummy-Funktion, um die in der zusätzlichen Datei bereitgestellte Bundesland-Geometrie in einem Kollektor zu speichern&#13;
+&#13;
+def c = _.context.collector()&#13;
+&#13;
+c.wkt &lt;&lt; _source.p.WKT.value()
+</core:text>
+        </complexParameter>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">No match for entity [type] /extentBundesland found</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C98668671-5805-4f8f-beb5-ecf1cae9c40b" priority="normal">
         <target>
             <property>
@@ -804,7 +832,12 @@ Aktuell ist folgende Abbildung umgesetzt:
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
 def c = _.context.collector()&#13;
 &#13;
-return c.extent.value()
+if (c.wkt.value() &amp;&amp; !c.wkt.value().equals('MULTIPOLYGON ((()))')) {&#13;
+	return _.geom.with(geometry: c.wkt.value(), crs:"EPSG:25832")	&#13;
+}&#13;
+else {&#13;
+	return c.extent.value()&#13;
+}
 </core:text>
         </complexParameter>
         <parameter value="false" name="variablesAsInstances"/>
@@ -2160,6 +2193,8 @@ return c.extent.value()
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2168,16 +2203,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2210,6 +2265,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2218,16 +2275,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2260,6 +2337,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2268,16 +2347,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2310,6 +2409,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2318,16 +2419,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2360,6 +2481,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2368,16 +2491,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2410,6 +2553,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2418,16 +2563,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2460,6 +2625,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2468,16 +2635,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2510,6 +2697,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2518,16 +2707,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2560,6 +2769,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2568,16 +2779,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2610,6 +2841,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2618,16 +2851,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2660,6 +2913,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2668,16 +2923,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2710,6 +2985,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2718,16 +2995,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2760,6 +3057,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2768,16 +3067,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2810,6 +3129,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2818,16 +3139,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2860,6 +3201,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2868,16 +3211,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2910,6 +3273,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2918,16 +3283,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -2960,6 +3345,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -2968,16 +3355,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -3010,6 +3417,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -3018,16 +3427,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -3060,6 +3489,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -3068,16 +3499,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -3110,6 +3561,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -3118,16 +3571,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -3160,6 +3633,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -3168,16 +3643,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -3210,6 +3705,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -3218,16 +3715,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -3260,6 +3777,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -3268,16 +3787,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -3310,6 +3849,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -3318,16 +3859,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -3360,6 +3921,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -3368,16 +3931,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
@@ -3410,6 +3993,8 @@ Groovy-Script bildet BoundingBox von allen verwendeten Geometrien, die in einer 
         </target>
         <complexParameter name="script">
             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+import com.vividsolutions.jts.geom.Geometry&#13;
+&#13;
 def c = _.context.collector()&#13;
 &#13;
 def geom = _.geom.find(position.p.first())&#13;
@@ -3418,16 +4003,36 @@ if (!geom) {&#13;
   return&#13;
 }&#13;
 &#13;
-withTransformationContext {&#13;
+/*withTransformationContext {&#13;
 	if(c.extent.value()){&#13;
-		def ext= _.geom.bbox([c.extent.value(), geom])&#13;
+		def ext= _.geom.union([c.extent.value(), geom])&#13;
 		c.extent = ext&#13;
 	}&#13;
 	else {&#13;
-		c.extent = _.geom.bbox(geom)&#13;
+		c.extent = _.geom.union(geom)&#13;
+	}&#13;
+}*/&#13;
+&#13;
+&#13;
+/*withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= geom.geometry.union(c.extent.value())&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = geom.geometry.union()&#13;
+	}&#13;
+}*/&#13;
+&#13;
+withTransformationContext {&#13;
+	if(c.extent.value()){&#13;
+		def ext= _.geom.convexHull([c.extent.value(), geom])&#13;
+		c.extent = ext&#13;
+	}&#13;
+	else {&#13;
+		c.extent = _.geom.convexHull(geom)&#13;
 	}&#13;
 }&#13;
-&#13;
 &#13;
 targeom = _.geom.toSimpleGeometries(geometries:geom, collections:true)&#13;
 return targeom
