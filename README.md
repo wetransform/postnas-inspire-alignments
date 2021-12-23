@@ -13,7 +13,7 @@ Folgende Alignments werden hier verwaltet:
 | PostNAS -> Verwaltungseinheiten                       | migriert       | au         |
 | PostNAS -> Gebäude (2D)                               | migriert       | bu-2d      |
 | PostNAS -> Flurstücke/Grundstücke                     | migriert       | cp         |
-| PostNAS -> Bodennutzung                               | Update nötig   | elu        |
+| PostNAS -> Bodennutzung                               | migriert       | elu        |
 | PostNAS -> Geografische Bezeichnungen                 | Update nötig   | gn         |
 | PostNAS -> Gewässernetz                               | Update nötig   | hy-n, hy-p |
 | PostNAS -> Landbedeckung                              | Update nötig   | lc         |
