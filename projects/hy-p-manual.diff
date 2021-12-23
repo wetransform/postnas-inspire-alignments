@@ -1,5 +1,5 @@
 diff --git a/projects/hy-p-auto.halex.alignment.xml b/projects/hy-p-manual.halex.alignment.xml
-index 61a8231..c30a628 100644
+index 61a8231..73e0688 100644
 --- a/projects/hy-p-auto.halex.alignment.xml
 +++ b/projects/hy-p-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -90,6 +90,24 @@ index 61a8231..c30a628 100644
                          <child name="gml_id"/>
                      </property>
                  </jp:condition>
+@@ -906,7 +916,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ // Prüfen, ob tatsächlich eine AX_Gewässerachse und/oder ein AX_Fliessgewaesser zu der Relation hatDirektUnten gefunden wurde&#13;
+ &#13;
+-boolean hatReferenz = _source.links.AX_Gewaesserachse.first() || _source.links.AX_Fliessgewaesser.first()&#13;
++boolean hatReferenz = _source.links.ax_gewaesserachse.first() || _source.links.ax_fliessgewaesser.first()&#13;
+ &#13;
+ if (hatReferenz) {&#13;
+ &#13;
+@@ -914,7 +924,7 @@ if (hatReferenz) {&#13;
+ 	def geometries = _.geom.toSimpleGeometries(geometries: _source.p.position.first(), collections: false)&#13;
+ 	&#13;
+ 	// Identifier des Quell-Objekts&#13;
+-	def sourceId = _source.p.id.value()&#13;
++	def sourceId = _source.p.gml_id.value()&#13;
+ 	&#13;
+ 	// Builder konfigurieren&#13;
+ 	// - Zuweisung der Geometrie auf Ebene von geometry zulassen&#13;
 @@ -986,10 +996,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -331,7 +349,52 @@ index 61a8231..c30a628 100644
  
  // Builder konfigurieren
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
-@@ -4132,12 +4045,41 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+@@ -4110,11 +4023,40 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+         </annotation>
+     </cell>
+     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C45a9e47b-e2c7-408a-a3b8-3e43593337e0" priority="normal">
+-        <source name="lagebezeichnung">
++        <source name="lage_gemeinde">
++            <property>
++                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="gemeinde"/>
++            </property>
++        </source>
++        <source name="lage_kreis">
++            <property>
++                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="kreis"/>
++            </property>
++        </source>
++        <source name="lage_lage">
+             <property>
+-                <type name="AX_HafenbeckenType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
++                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="lage"/>
++            </property>
++        </source>
++        <source name="lage_land">
++            <property>
++                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="land"/>
++            </property>
++        </source>
++        <source name="lage_regierungsbezirk">
++            <property>
++                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="regierungsbezirk"/>
++            </property>
++        </source>
++        <source name="lage_unverschluesselt">
++            <property>
++                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <child name="unverschluesselt"/>
+             </property>
+         </source>
+         <target>
+@@ -4132,12 +4074,41 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
              </core:message>
          </annotation>
      </cell>
@@ -339,10 +402,7 @@ index 61a8231..c30a628 100644
 -        <source name="lagebezeichnung">
 +    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cd3870b33-cff0-4f43-a422-d73ab401da15" priority="normal">
 +        <source name="lage_gemeinde">
-             <property>
--                <type name="AX_StehendesGewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
++            <property>
 +                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
 +                <child name="gemeinde"/>
 +            </property>
@@ -354,7 +414,10 @@ index 61a8231..c30a628 100644
 +            </property>
 +        </source>
 +        <source name="lage_lage">
-+            <property>
+             <property>
+-                <type name="AX_StehendesGewaesserType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
 +                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
 +                <child name="lage"/>
 +            </property>
@@ -378,7 +441,7 @@ index 61a8231..c30a628 100644
              </property>
          </source>
          <target>
-@@ -6064,10 +6006,10 @@ if(linie){&#13;
+@@ -6064,10 +6035,10 @@ if(linie){&#13;
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // Geometrien aufteilen in einzelne Flächen
@@ -391,7 +454,7 @@ index 61a8231..c30a628 100644
  
  // Builder konfigurieren
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
-@@ -6151,10 +6093,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
+@@ -6151,10 +6122,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // Geometrien aufteilen in einzelne Flächen
