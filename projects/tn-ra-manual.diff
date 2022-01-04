@@ -1,5 +1,5 @@
 diff --git a/projects/tn-ra-auto.halex.alignment.xml b/projects/tn-ra-manual.halex.alignment.xml
-index 4e0e123..4275fc3 100644
+index 4e0e123..74ff0df 100644
 --- a/projects/tn-ra-auto.halex.alignment.xml
 +++ b/projects/tn-ra-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -18,7 +18,35 @@ index 4e0e123..4275fc3 100644
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-@@ -781,7 +779,7 @@ Aktuell ist folgende Abbildung umgesetzt:
+@@ -500,9 +498,26 @@ values = values.collect { value -&gt;
+ 	//	result = value
+ 	//}
+ 	//TODO also support parsing based on provided pattern?
++	
++	if (result == null) {
++		//try block to make sure the function is not cancelled in case an error occurs
++		try {
++			//specific format reported by RLP
++			result = Date.parse("yyyy-MM-dd'T'HH:mm:ss", value)
++		}
++		catch (e) {
++  			// ignore, try next variant
++  		}
++	}
+ 	if (result == null) {
+ 		// try hale conversion
+-		result = _.convert(value: value, to: Date)
++				//try block to make sure the function is not cancelled in case an error occurs
++		try{
++			result = _.convert(value: value, to: Date)
++		}
++		catch (e) {
++  			// ignore, try next variant
++  		}
+ 	}
+ 	if (result == null) {
+ 		result = value as Date
+@@ -781,7 +796,7 @@ Aktuell ist folgende Abbildung umgesetzt:
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  def bwf = _source.p.bauwerksfunktion.value()
@@ -27,7 +55,7 @@ index 4e0e123..4275fc3 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -815,7 +813,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
+@@ -815,7 +830,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  def bwf = _source.p.bauwerksfunktion.value()
@@ -36,7 +64,7 @@ index 4e0e123..4275fc3 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -1105,7 +1103,7 @@ withTransformationContext {
+@@ -1105,7 +1120,7 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -45,7 +73,7 @@ index 4e0e123..4275fc3 100644
  
  _target {
  }
-@@ -1113,7 +1111,7 @@ _target {
+@@ -1113,7 +1128,7 @@ _target {
  // bestimme RailwayType(s)
  def railwayTypes = []
  _source.p.bahnkategorie.each { bkt -&gt;
@@ -54,7 +82,7 @@ index 4e0e123..4275fc3 100644
  	case '1100': // Eisenbahn
  	case '1102': // Güterverkehr
  	case '1104': // S-Bahn
-@@ -1143,7 +1141,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
+@@ -1143,7 +1158,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
  
  // bestimme ConditionOfFacility
  def conditionOfFacility = 'functional'
@@ -63,7 +91,7 @@ index 4e0e123..4275fc3 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -1155,9 +1153,9 @@ case '4000': // Im Bau
+@@ -1155,9 +1170,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -75,7 +103,7 @@ index 4e0e123..4275fc3 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -1540,7 +1538,7 @@ _target {
+@@ -1540,7 +1555,7 @@ _target {
  // ID zum hinterlegen in Indizes bestimmen
  
  // alle Quell-IDs als Liste
@@ -84,7 +112,7 @@ index 4e0e123..4275fc3 100644
  
  def _id
  
-@@ -1912,7 +1910,7 @@ _target {
+@@ -1912,7 +1927,7 @@ _target {
  
  // bestimme NominalTrackGauge
  def nominalTrackGauge
@@ -93,7 +121,7 @@ index 4e0e123..4275fc3 100644
  case '1000': // Normalspur (Regelspur, Vollspur)
  	nominalTrackGauge = 'standard'
  	break
-@@ -1927,7 +1925,7 @@ case '3000': // Breitspur
+@@ -1927,7 +1942,7 @@ case '3000': // Breitspur
  // bestimme RailwayType(s)
  def railwayTypes = []
  _source.p.bahnkategorie.each { bkt -&gt;
@@ -102,7 +130,7 @@ index 4e0e123..4275fc3 100644
  	case '1100': // Eisenbahn
  	case '1102': // Güterverkehr
  	case '1104': // S-Bahn
-@@ -1958,7 +1956,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
+@@ -1958,7 +1973,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
  // bestimme RailwayUse(s)
  def railwayUses = []
  _source.p.bahnkategorie.each { bkt -&gt;
@@ -111,7 +139,7 @@ index 4e0e123..4275fc3 100644
  	case '1100': // Eisenbahn
  	case '1300': // Seilbahn, Bergbahn
  	case '1302': // Standseilbahn
-@@ -1982,7 +1980,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
+@@ -1982,7 +1997,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
  
  // bestimme NumberOfTracks
  def numberOfTracks
@@ -120,7 +148,7 @@ index 4e0e123..4275fc3 100644
  case '1000': // Eingleisig
  	numberOfTracks = 1
  	break
-@@ -1992,11 +1990,11 @@ case '2000': // Zweigleisig
+@@ -1992,11 +2007,11 @@ case '2000': // Zweigleisig
  }
  
  // bestimme RailwayElectrification
@@ -134,7 +162,7 @@ index 4e0e123..4275fc3 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -2008,9 +2006,9 @@ case '4000': // Im Bau
+@@ -2008,9 +2023,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -146,7 +174,16 @@ index 4e0e123..4275fc3 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2229,7 +2227,7 @@ withTransformationContext {
+@@ -2060,7 +2075,7 @@ else {
+ }
+ 
+ // ID zum hinterlegen in Indizes
+-def sourceId = _source.p.id.value()
++def sourceId = _source.p.gml_id.value()
+ def _id = "RailwayLink_${sourceId}"
+ 
+ // Sammle ID für Netzwerk
+@@ -2229,7 +2244,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit linienartigen Geometrien behandeln
@@ -155,7 +192,7 @@ index 4e0e123..4275fc3 100644
  
  // Ziel unterstützt keine MultiLineStrings
  def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: false)
-@@ -2238,7 +2236,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
+@@ -2238,7 +2253,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
  _b.strictValueFlags = false
  
@@ -164,7 +201,7 @@ index 4e0e123..4275fc3 100644
  
  // bestimme RailwayType
  def railwayType = 'suspendedRail'
-@@ -2246,9 +2244,9 @@ def railwayType = 'suspendedRail'
+@@ -2246,9 +2261,9 @@ def railwayType = 'suspendedRail'
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -176,7 +213,7 @@ index 4e0e123..4275fc3 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2669,7 +2667,7 @@ withTransformationContext {
+@@ -2669,7 +2684,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit flächenartigen Geometrien behandeln
@@ -185,7 +222,7 @@ index 4e0e123..4275fc3 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def surfaces = _.geom.splitMulti(geometries)
-@@ -2679,11 +2677,11 @@ def surfaces = _.geom.splitMulti(geometries)
+@@ -2679,11 +2694,11 @@ def surfaces = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -199,7 +236,7 @@ index 4e0e123..4275fc3 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -2695,9 +2693,9 @@ case '4000': // Im Bau
+@@ -2695,9 +2710,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -211,7 +248,7 @@ index 4e0e123..4275fc3 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -3031,7 +3029,7 @@ withTransformationContext {
+@@ -3031,7 +3046,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit punkartige Geometrien behandeln
@@ -220,7 +257,7 @@ index 4e0e123..4275fc3 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def points = _.geom.splitMulti(geometries)
-@@ -3041,7 +3039,7 @@ def points = _.geom.splitMulti(geometries)
+@@ -3041,7 +3056,7 @@ def points = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -229,7 +266,7 @@ index 4e0e123..4275fc3 100644
  
  if (points.size() &gt; 1) {
  	// es wird davon ausgegangen dass es keine MultiPoint-Objekte gibt - falls doch, Fehler ausgeben
-@@ -3059,7 +3057,7 @@ if (points) {
+@@ -3059,7 +3074,7 @@ if (points) {
  	
  	// bestimme ConditionOfFacility
  	def conditionOfFacility = 'functional'
@@ -238,7 +275,7 @@ index 4e0e123..4275fc3 100644
  	case '2100': // Außer Betrieb, stillgelegt, verlassen
  		conditionOfFacility = 'disused'
  		break
-@@ -3071,9 +3069,9 @@ if (points) {
+@@ -3071,9 +3086,9 @@ if (points) {
  	/*
  	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  	 */
@@ -250,7 +287,7 @@ index 4e0e123..4275fc3 100644
  		if (bwf) {
  			switch (bwf) {
  			// AX_BauwerkImVerkehrsbereich
-@@ -3836,43 +3834,13 @@ collect.verticalPosition.consume { key, values -&gt;
+@@ -3836,43 +3851,13 @@ collect.verticalPosition.consume { key, values -&gt;
          <parameter value="other:unpopulated" name="value"/>
          <documentation>Diese Information ist im 3A-Modell nicht vorhanden.</documentation>
      </cell>

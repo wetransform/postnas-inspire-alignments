@@ -2075,7 +2075,7 @@ else {
 }
 
 // ID zum hinterlegen in Indizes
-def sourceId = _source.p.id.value()
+def sourceId = _source.p.gml_id.value()
 def _id = "RailwayLink_${sourceId}"
 
 // Sammle ID für Netzwerk
