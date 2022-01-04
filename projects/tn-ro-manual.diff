@@ -1,5 +1,5 @@
 diff --git a/projects/tn-ro-auto.halex.alignment.xml b/projects/tn-ro-manual.halex.alignment.xml
-index 3042dc1..632ed76 100644
+index 33dbb0d..04a5866 100644
 --- a/projects/tn-ro-auto.halex.alignment.xml
 +++ b/projects/tn-ro-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -267,6 +267,9 @@ index 3042dc1..632ed76 100644
 -				namespace( _ns )
 -				localId( _id )
 -			}
+-		}
+-		identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
+-			codeSpace( 'http://inspire.ec.europa.eu/ids' )
 +	def valueGroups = _refLimit ? values.collate(_refLimit as int) : [values]
 +	def i = 1		
 +	valueGroups.each { valueGroup -&gt;
@@ -275,9 +278,6 @@ index 3042dc1..632ed76 100644
 +			// Gruppennummer anhängen, falls es mehr als eine Gruppe gibt
 +			_id2 += '_' + i++
  		}
--		identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
--			codeSpace( 'http://inspire.ec.europa.eu/ids' )
--		}
 -		
 -		// Referenz zu gesammelten RoadLinks/RoadAreas mit dieser Eigenschaft
 -		values.each { linkId -&gt;
@@ -971,7 +971,16 @@ index 3042dc1..632ed76 100644
      <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cc8dfcac2-f330-4946-b4d6-8e1a87136c04" priority="normal">
          <target name="result">
              <property>
-@@ -4804,7 +4846,7 @@ withTransformationContext {
+@@ -4804,7 +4846,7 @@ withTransformationContext {&#13;
+ 	collect = _.context.collector(it)&#13;
+ }&#13;
+ &#13;
+-def _id = 'RoadServiceArea_' + _source.p.id.value()&#13;
++def _id = 'RoadServiceArea_' + _source.p.gml_id.value()&#13;
+ &#13;
+ _target {&#13;
+ }&#13;
+@@ -4920,7 +4962,7 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -980,7 +989,7 @@ index 3042dc1..632ed76 100644
  
  _target {
  }
-@@ -4812,9 +4854,9 @@ _target {
+@@ -4928,9 +4970,9 @@ _target {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -992,7 +1001,7 @@ index 3042dc1..632ed76 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -4943,14 +4985,14 @@ withTransformationContext {
+@@ -5059,14 +5101,14 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -1009,7 +1018,7 @@ index 3042dc1..632ed76 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -4962,9 +5004,9 @@ case '4000': // Im Bau
+@@ -5078,9 +5120,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -1021,7 +1030,7 @@ index 3042dc1..632ed76 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -5197,13 +5239,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -5363,13 +5405,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          </annotation>
      </cell>
      <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C99266668-af5a-41d1-8c0f-761ef6877469_C2676fc94-d50d-4c45-b5b1-e4301a9cfe4a" priority="normal">
@@ -1068,7 +1077,7 @@ index 3042dc1..632ed76 100644
              </property>
          </source>
          <target>
-@@ -5361,21 +5430,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -5621,21 +5690,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
              </core:message>
          </annotation>
      </cell>
@@ -1090,7 +1099,7 @@ index 3042dc1..632ed76 100644
      <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C2f3a385b-d4d3-4a1e-9999-296f10a58386" priority="normal">
          <target name="result">
              <property>
-@@ -5867,32 +5921,42 @@ withTransformationContext {
+@@ -6409,32 +6463,42 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -1154,7 +1163,7 @@ index 3042dc1..632ed76 100644
  					}
  				}
  			}
-@@ -5998,10 +6062,10 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
+@@ -6540,10 +6604,10 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
  // Fahrbahnachsen werden präferiert als RoadLink für
  // Strassen verwendet, alternativ verwende Strassenachsen
  
@@ -1168,7 +1177,7 @@ index 3042dc1..632ed76 100644
  if (!hatFahrbahnachse &amp;&amp; !hatStrassenachse) {
  	_log.warn("Road: Strasse $strasseId hat weder Fahrbahnachsen noch Strassenachsen")
  	throw new NoResultException('Kann kein Road-Objekt ohne RoadLinks erstellen')
-@@ -6011,16 +6075,16 @@ if (!hatFahrbahnachse &amp;&amp; !hatStrassenachse) {
+@@ -6553,16 +6617,16 @@ if (!hatFahrbahnachse &amp;&amp; !hatStrassenachse) {
  
  _target {
  	if (hatFahrbahnachse) {
@@ -1189,7 +1198,7 @@ index 3042dc1..632ed76 100644
  			}
  		}
  	}
-@@ -6067,7 +6131,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
+@@ -6609,7 +6673,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -1198,7 +1207,7 @@ index 3042dc1..632ed76 100644
  
  _target {
  }
-@@ -6107,7 +6171,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
+@@ -6649,7 +6713,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // nur Objekt mit linienartigen Geometrien behandeln
  // welche einen RoadLink repräsentieren
@@ -1207,7 +1216,7 @@ index 3042dc1..632ed76 100644
  
  // RoadLinks werden aus den individuellen Geometrien gebildet
  def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: false)
-@@ -6117,7 +6181,7 @@ if (curves) {
+@@ -6659,7 +6723,7 @@ if (curves) {
  	// vorhanden sind (andernfalls wird es eine RoadArea)
  
  	// Identifier des Quell-Objekts
@@ -1216,7 +1225,7 @@ index 3042dc1..632ed76 100644
  	
  	_target {
  		// Verweis auf individuelle RoadLinks erstellen
-@@ -6481,36 +6545,6 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
+@@ -7023,36 +7087,6 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
              </core:message>
          </annotation>
      </cell>
@@ -1253,7 +1262,7 @@ index 3042dc1..632ed76 100644
      <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
          <target name="result">
              <property>
-@@ -6595,36 +6629,6 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+@@ -7137,36 +7171,6 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
              </core:message>
          </annotation>
      </cell>
@@ -1290,7 +1299,7 @@ index 3042dc1..632ed76 100644
      <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C1505c26d-f446-4fad-8d7f-bc3fd3448caf" priority="normal">
          <source name="var">
              <property>
-@@ -6732,26 +6736,6 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+@@ -7274,26 +7278,6 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
              </core:message>
          </annotation>
      </cell>
@@ -1317,7 +1326,7 @@ index 3042dc1..632ed76 100644
      <cell relation="eu.esdihumboldt.hale.align.assign" id="C6da68b64-b734-429c-acd4-bd1fd5b68db1_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
          <target>
              <property>
-@@ -6887,11 +6871,16 @@ withTransformationContext {
+@@ -7429,11 +7413,16 @@ withTransformationContext {
  	collector = _.context.collector(it)
  }
  
@@ -1338,7 +1347,7 @@ index 3042dc1..632ed76 100644
  		}
  	}
  }
-@@ -7106,6 +7095,8 @@ withTransformationContext {
+@@ -7648,6 +7637,8 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -1347,7 +1356,7 @@ index 3042dc1..632ed76 100644
  // Erstelle ein VerticalPosition-Objekt für jeden vorkommenden Wert
  //
  // Inhalt der hier gesetzt wird sind die Identifier und die Verknüpfungen
-@@ -7114,25 +7105,34 @@ collect.verticalPosition.consume { key, values -&gt;
+@@ -7656,25 +7647,34 @@ collect.verticalPosition.consume { key, values -&gt;
  	def _id = 'VerticalPosition_' + _project.vars.THEME_DISTINGUISHER + '_' + key
  	def _ns = _project.vars.INSPIRE_NAMESPACE
  	
@@ -1400,7 +1409,7 @@ index 3042dc1..632ed76 100644
  					}
  				}
  			}
-@@ -7164,89 +7164,19 @@ collect.verticalPosition.consume { key, values -&gt;
+@@ -7706,92 +7706,19 @@ collect.verticalPosition.consume { key, values -&gt;
          <parameter value="other:unpopulated" name="value"/>
          <documentation>Diese Information ist im 3A-Modell nicht vorhanden.</documentation>
      </cell>
@@ -1457,6 +1466,9 @@ index 3042dc1..632ed76 100644
 -    <modifier cell="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3">
 -        <disable-for parent="Cb090758a-65b1-49f7-a92e-42ef7d8afb04"/>
 -    </modifier>
+     <modifier cell="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cab1f0844-ca2a-404f-818b-c72553e7a069">
+         <disable-for parent="Cb090758a-65b1-49f7-a92e-42ef7d8afb04"/>
+     </modifier>
      <modifier cell="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cb090758a-65b1-49f7-a92e-42ef7d8afb04">
          <disable-for parent="Cb090758a-65b1-49f7-a92e-42ef7d8afb04"/>
      </modifier>
@@ -1473,11 +1485,11 @@ index 3042dc1..632ed76 100644
 -        <disable-for parent="C2581bae5-bd09-416c-948e-bcb8b5835ca3"/>
 -        <disable-for parent="C2827fa08-a3dd-4539-83de-413c6b922f47"/>
 -    </modifier>
-     <modifier cell="C4e7669e8-0669-46a5-9836-ff86d7f43672_C2581bae5-bd09-416c-948e-bcb8b5835ca3">
-         <disable-for parent="C2581bae5-bd09-416c-948e-bcb8b5835ca3"/>
+-    <modifier cell="C4e7669e8-0669-46a5-9836-ff86d7f43672_C2581bae5-bd09-416c-948e-bcb8b5835ca3">
+-        <disable-for parent="C2581bae5-bd09-416c-948e-bcb8b5835ca3"/>
 -        <disable-for parent="C2827fa08-a3dd-4539-83de-413c6b922f47"/>
-     </modifier>
-     <modifier cell="C4e7669e8-0669-46a5-9836-ff86d7f43672_C2827fa08-a3dd-4539-83de-413c6b922f47">
+-    </modifier>
+-    <modifier cell="C4e7669e8-0669-46a5-9836-ff86d7f43672_C2827fa08-a3dd-4539-83de-413c6b922f47">
 -        <disable-for parent="C2581bae5-bd09-416c-948e-bcb8b5835ca3"/>
 -        <disable-for parent="C2827fa08-a3dd-4539-83de-413c6b922f47"/>
 -    </modifier>
@@ -1485,12 +1497,12 @@ index 3042dc1..632ed76 100644
 -        <disable-for parent="C2581bae5-bd09-416c-948e-bcb8b5835ca3"/>
 -        <disable-for parent="C2827fa08-a3dd-4539-83de-413c6b922f47"/>
 -    </modifier>
--    <modifier cell="C4e7669e8-0669-46a5-9836-ff86d7f43672_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990">
+     <modifier cell="C4e7669e8-0669-46a5-9836-ff86d7f43672_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990">
 -        <disable-for parent="C2581bae5-bd09-416c-948e-bcb8b5835ca3"/>
          <disable-for parent="C2827fa08-a3dd-4539-83de-413c6b922f47"/>
      </modifier>
-     <modifier cell="C87845354-a68e-4c9b-98a0-8d05883d4e0d">
-@@ -7257,24 +7187,10 @@ collect.verticalPosition.consume { key, values -&gt;
+     <modifier cell="C6563043b-57b7-4264-b3ff-6264b547216f_C00cccf8c-b815-4fa9-b89c-6f37d12ae435">
+@@ -7878,24 +7805,10 @@ collect.verticalPosition.consume { key, values -&gt;
          <disable-for parent="C3296f18d-e980-40cf-a9f3-9e5187ecf16a"/>
          <disable-for parent="Cc8dfcac2-f330-4946-b4d6-8e1a87136c04"/>
      </modifier>

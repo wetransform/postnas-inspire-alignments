@@ -18,7 +18,7 @@ Folgende Alignments werden hier verwaltet:
 | PostNAS -> Gewässernetz                               | migriert       | hy-n, hy-p |
 | PostNAS -> Landbedeckung                              | migriert       | lc         |
 | PostNAS -> Boden                                      | migriert       | so         |
-| PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)        | Update nötig   | tn-ro      |
+| PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)        | migriert       | tn-ro      |
 | PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)       | Update nötig   | tn-ra      |
 | PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)         | Update nötig   | tn-w       |
 | PostNAS -> Verkehrsnetze (Luftverkehrsnetz)           | Update nötig   | tn-a       |
