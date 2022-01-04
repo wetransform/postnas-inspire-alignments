@@ -24,7 +24,7 @@ Im Projekt gibt es drei verschiedene Herangehensweisen zur Bildung von *Transpor
 2. Ein *TransportProperty*-Objekt für alle Features die in den Quell-Daten die gleichen relevanten Informationen aufweisen. Die Identifier werden dabei basierend auf dem Quell-Wert oder -Werten gebildet. Umgesetzt wurde das so für `RoadServiceType`.
 3. Ein *TransportProperty*-Objekt für jedes Feature dass über entsprechende Eigenschaften verfügt. Dabei gibt es ggf. sehr viele redundante Informationen in den Objekten. Umgesetzt wurde das so für `RoadWidth`.</description>
     <created>2015-09-28T11:46:45.435+02:00</created>
-    <modified>2020-09-09T19:28:51.499+02:00</modified>
+    <modified>2022-01-04T16:40:07.803+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -34,7 +34,7 @@ Im Projekt gibt es drei verschiedene Herangehensweisen zur Bildung von *Transpor
         <setting name="charset">UTF-8</setting>
         <setting name="onlyElementsMappable">true</setting>
         <setting name="resourceId">4a849539-5e6b-4a95-ba10-f4b2339dc1a5</setting>
-        <setting name="source">http://inspire.ec.europa.eu/schemas/tn-ro/4.0/RoadTransportNetwork.xsd</setting>
+        <setting name="source">https://inspire.ec.europa.eu/schemas/tn-ro/4.0/RoadTransportNetwork.xsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xsd</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.codelist.read" provider-id="eu.esdihumboldt.hale.io.codelist.inspire.reader">
@@ -1512,6 +1512,7 @@ Im Projekt gibt es drei verschiedene Herangehensweisen zur Bildung von *Transpor
     <property name="mappableSourceType/11">{jdbc:postgresql:testbed:aaa_ogr}ax_bauwerkimverkehrsbereich</property>
     <property name="mappableSourceType/12">{jdbc:postgresql:testbed:aaa_ogr}ax_bauwerkimgewaesserbereich</property>
     <property name="mappableSourceType/13">{jdbc:postgresql:testbed:aaa_ogr}ax_einrichtunginoeffentlichenbereichen</property>
+    <property name="mappableSourceType/14">{jdbc:postgresql:testbed:aaa_ogr}ax_flaechebesondererfunktionalerpraegung</property>
     <property name="mappableSourceType/2">{jdbc:postgresql:testbed:aaa_ogr}ax_platz</property>
     <property name="mappableSourceType/3">{jdbc:postgresql:testbed:aaa_ogr}ax_klassifizierungnachstrassenrecht</property>
     <property name="mappableSourceType/4">{jdbc:postgresql:testbed:aaa_ogr}ax_strassenverkehr</property>
@@ -1520,7 +1521,7 @@ Im Projekt gibt es drei verschiedene Herangehensweisen zur Bildung von *Transpor
     <property name="mappableSourceType/7">{jdbc:postgresql:testbed:aaa_ogr}ax_strasse</property>
     <property name="mappableSourceType/8">{jdbc:postgresql:testbed:aaa_ogr}ax_fahrbahnachse</property>
     <property name="mappableSourceType/9">{jdbc:postgresql:testbed:aaa_ogr}ax_strassenachse</property>
-    <property name="mappableSourceType/count">13</property>
+    <property name="mappableSourceType/count">14</property>
     <property name="mappableTargetType/1">{http://inspire.ec.europa.eu/schemas/tn-ro/4.0}RoadLinkSequenceType</property>
     <property name="mappableTargetType/10">{http://inspire.ec.europa.eu/schemas/tn-ro/4.0}RoadServiceTypeType</property>
     <property name="mappableTargetType/11">{http://inspire.ec.europa.eu/schemas/tn-ro/4.0}FunctionalRoadClassType</property>
