@@ -1,5 +1,5 @@
 diff --git a/projects/so-auto.halex.alignment.xml b/projects/so-manual.halex.alignment.xml
-index 64ad49e..6bfbbc2 100644
+index 56e91b1..d6eba10 100644
 --- a/projects/so-auto.halex.alignment.xml
 +++ b/projects/so-manual.halex.alignment.xml
 @@ -4,7 +4,6 @@
@@ -92,7 +92,7 @@ index 64ad49e..6bfbbc2 100644
  	_target {&#13;
  		procedure {&#13;
  			href( '#Process_' + _project.vars['BODSCHAETZG-ID'] )&#13;
-@@ -935,9 +942,9 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() || _source.links.AX_Tagesa
+@@ -935,61 +942,61 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() || _source.links.AX_Tagesa
  		resultTime {&#13;
  			nilReason( 'other:unpopulated' )&#13;
  		}&#13;
@@ -103,8 +103,23 @@ index 64ad49e..6bfbbc2 100644
 +				CharacterString('This field contains information about AX_GrablochDerBodenschaetzung - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about bodenzahlOderGruenlandgrundzahl: ' + _source.p.bodenzahlodergruenlandgrundzahl.value())&#13;
  			}&#13;
  			featureOfInterest {&#13;
- 				href( '#ObservedSoilProfile_' +  _source.p.id.value())&#13;
-@@ -956,40 +963,40 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() || _source.links.AX_Tagesa
+-				href( '#ObservedSoilProfile_' +  _source.p.id.value())&#13;
++				href( '#ObservedSoilProfile_' +  _source.p.gml_id.value())&#13;
+ 			}&#13;
+-			identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.p.id.value()) {&#13;
++			identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.p.gml_id.value()) {&#13;
+ 				codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
+ 			}&#13;
+ 			observedProperty {&#13;
+ 				title( 'AX_GrablochDerBodenschaetzung' )&#13;
+ 				href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'AX_GrablochDerBodenschaetzung' )&#13;
+ 			}&#13;
+-			id( 'OM_Observation_' +  _source.p.id.value() )&#13;
+-			c.GLobs &lt;&lt; '#OM_Observation' +  _source.p.id.value()&#13;
++			id( 'OM_Observation_' +  _source.p.gml_id.value() )&#13;
++			c.GLobs &lt;&lt; '#OM_Observation' +  _source.p.gml_id.value()&#13;
+ 			parameter {&#13;
+ 				NamedValue {&#13;
  					name {&#13;
  						title( 'inGemarkung: land_gemarkungsnummer' )&#13;
  					}&#13;
@@ -122,20 +137,20 @@ index 64ad49e..6bfbbc2 100644
  			}&#13;
  			featureOfInterest {&#13;
 -				href( '#ObservedSoilProfile_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#13;
-+				href( '#ObservedSoilProfile_' +  _source.links.ax_tagesabschnitt.p.id.value())&#13;
++				href( '#ObservedSoilProfile_' +  _source.links.ax_tagesabschnitt.p.gml_id.value())&#13;
  			}&#13;
 -			identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()) {&#13;
-+			identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.links.ax_tagesabschnitt.p.id.value()) {&#13;
++			identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.links.ax_tagesabschnitt.p.gml_id.value()) {&#13;
  				codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
  			}&#13;
  			observedProperty {&#13;
- 				title( 'AX_Tagesabschnitt ' )&#13;
- 				href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_Tagesabschnitt' )&#13;
+ 				title( 'AX_Tagesabschnitt' )&#13;
+ 				href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'AX_Tagesabschnitt' )&#13;
  			}&#13;
 -			id ('OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#13;
 -			c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()&#13;
-+			id ('OM_Observation_' +  _source.links.ax_tagesabschnitt.p.id.value())&#13;
-+			c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.ax_tagesabschnitt.p.id.value()&#13;
++			id ('OM_Observation_' +  _source.links.ax_tagesabschnitt.p.gml_id.value())&#13;
++			c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.ax_tagesabschnitt.p.gml_id.value()&#13;
  			parameter {&#13;
  				NamedValue {&#13;
  					name {&#13;
@@ -154,7 +169,31 @@ index 64ad49e..6bfbbc2 100644
  	_target {&#13;
  		procedure {&#13;
  			href( '#Process_' + _project.vars['BODSCHAETZG-ID'] )&#13;
-@@ -1020,7 +1027,7 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() &amp;&amp; _source.links.A
+@@ -1001,26 +1008,26 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() &amp;&amp; _source.links.A
+ 			nilReason( 'other:unpopulated' )&#13;
+ 		}&#13;
+ 		result {&#13;
+-			CharacterString ('This field contains information about AX_GrablochDerBodenschaetzung - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about bodenzahlOderGruenlandgrundzahl: ' + _source.p.bodenzahlOderGruenlandgrundzahl.value())&#13;
++			CharacterString ('This field contains information about AX_GrablochDerBodenschaetzung - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about bodenzahlodergruenlandgrundzahl: ' + _source.p.bodenzahlodergruenlandgrundzahl.value())&#13;
+ 		}&#13;
+ 		featureOfInterest {&#13;
+-			href( '#ObservedSoilProfile_' +  _source.p.id.value())&#13;
++			href( '#ObservedSoilProfile_' +  _source.p.gml_id.value())&#13;
+ 		}&#13;
+-		identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.p.id.value()) {&#13;
++		identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.p.gml_id.value()) {&#13;
+ 			codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
+ 		}&#13;
+ 		observedProperty {&#13;
+ 			title( 'AX_GrablochDerBodenschaetzung' )&#13;
+ 			href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'AX_GrablochDerBodenschaetzung' )&#13;
+ 		}&#13;
+-		id( 'OM_Observation_' +  _source.p.id.value() )&#13;
+-		c.GLobs &lt;&lt; '#OM_Observation_' +  _source.p.id.value()&#13;
++		id( 'OM_Observation_' +  _source.p.gml_id.value() )&#13;
++		c.GLobs &lt;&lt; '#OM_Observation_' +  _source.p.gml_id.value()&#13;
+ 		parameter {&#13;
+ 			NamedValue {&#13;
  				name {&#13;
  					title( 'inGemarkung: land_gemarkungsnummer' )&#13;
  				}&#13;
@@ -168,24 +207,24 @@ index 64ad49e..6bfbbc2 100644
  		}&#13;
  		result {&#13;
 -			CharacterString ('This field contains information about AX_Tagesabschnitt - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about tagesabschnittsnummer: ' + _source.links.AX_Tagesabschnitt.p.tagesabschnittsnummer.value())&#13;
-+			CharacterString ('This field contains information about AX_Tagesabschnitt - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about tagesabschnittsnummer: ' + _source.links.ax_tagesabschnitt.p.tagesabschnittsnummer.value())&#13;
++			CharacterString ('This field contains information about AX_Tagesabschnitt - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about tagesabschnittsnummer: ' +ax_tagesabschnitt.p.tagesabschnittsnummer.value())&#13;
  		}&#13;
  		featureOfInterest {&#13;
 -			href( '#ObservedSoilProfile_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#13;
-+			href( '#ObservedSoilProfile_' +  _source.links.ax_tagesabschnitt.p.id.value())&#13;
++			href( '#ObservedSoilProfile_' +  _source.links.ax_tagesabschnitt.p.gml_id.value())&#13;
  		}&#13;
 -		identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()) {&#13;
-+		identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.links.ax_tagesabschnitt.p.id.value()) {&#13;
++		identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.links.ax_tagesabschnitt.p.gml_id.value()) {&#13;
  			codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
  		}&#13;
  		observedProperty {&#13;
- 			title( 'AX_Tagesabschnitt ' )&#13;
- 			href ( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_Tagesabschnitt' )&#13;
+ 			title( 'AX_Tagesabschnitt' )&#13;
+ 			href ( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'AX_Tagesabschnitt' )&#13;
  		}&#13;
 -		id ('OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#13;
 -		c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()&#13;
-+		id ('OM_Observation_' +  _source.links.ax_tagesabschnitt.p.id.value())&#13;
-+		c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.ax_tagesabschnitt.p.id.value()&#13;
++		id ('OM_Observation_' +  _source.links.ax_tagesabschnitt.p.gml_id.value())&#13;
++		c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.ax_tagesabschnitt.p.gml_id.value()&#13;
  		parameter {&#13;
  			NamedValue {&#13;
  				name {&#13;
@@ -205,6 +244,26 @@ index 64ad49e..6bfbbc2 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
+@@ -1110,16 +1117,16 @@ _target{&#13;
+ 		CharacterString ('This field contains information about AX_Tagesabschnitt - more information in ALKIS 6.0 feature catalogue (OK, available in German and English) - see link in observedProperty. The data given holds information about tagesabschnittsnummer: ' + _source.p.tagesabschnittsnummer.value())&#13;
+ 	}&#13;
+ 	featureOfInterest {&#13;
+-		href( '#ObservedSoilProfile_' +  _source.p.id.value())&#13;
++		href( '#ObservedSoilProfile_' +  _source.p.gml_id.value())&#13;
+ 	}&#13;
+-	identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.p.id.value()) {&#13;
++	identifier( _project.vars.INSPIRE_NAMESPACE + 'OM_Observation_' +  _source.p.gml_id.value()) {&#13;
+ 		codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
+ 	}&#13;
+ 	observedProperty {&#13;
+ 		title( 'AX_Tagesabschnitt' )&#13;
+ 		href ( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'AX_Tagesabschnitt' )&#13;
+ 	}&#13;
+-	id ('OM_Observation_' +  _source.p.id.value())&#13;
++	id ('OM_Observation_' +  _source.p.gml_id.value())&#13;
+ 	parameter {&#13;
+ 		NamedValue {&#13;
+ 			name {&#13;
 @@ -1132,7 +1139,7 @@ _target{&#13;
  </core:text>
          </complexParameter>

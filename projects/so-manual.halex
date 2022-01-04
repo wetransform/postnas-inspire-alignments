@@ -8,11 +8,11 @@ Hinweis zur Nutzung der Projektvariablen:&#13;
        INSPIRE_NAMESPACE: gewünschten Namespace eingeben&#13;
 	BODSCHAETZG-ID: gewünschte ID für die Angabe des Bodenschaetzungsgesetzes eingeben</description>
     <created>2018-04-24T15:58:22.449+02:00</created>
-    <modified>2020-07-22T16:02:05.548+02:00</modified>
+    <modified>2022-01-04T16:02:12.049+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
-        <setting name="target">file:/home/flo/src/wetransform/rlp-inspire-alignments/projects/so-manual.halex</setting>
+        <setting name="target">file:/home/flo/src/wetransform/postnas-inspire-alignments/projects/so-manual.halex</setting>
     </save-config>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.target" provider-id="eu.esdihumboldt.hale.io.xsd.reader">
         <setting name="charset">UTF-8</setting>
@@ -60,7 +60,7 @@ Hinweis zur Nutzung der Projektvariablen:&#13;
     </resource>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.source" provider-id="eu.esdihumboldt.hale.common.schema.persist.hsd.read">
         <setting name="charset">UTF-8</setting>
-        <setting name="source">file:/home/flo/src/wetransform/rlp-inspire-alignments/database/schema.hsd</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/database/schema.hsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.common.schema.hsd</setting>
     </resource>
     <export-config name="hale-connect">
@@ -2174,7 +2174,7 @@ Hinweis zur Nutzung der Projektvariablen:&#13;
     <complex-property name="variables">
         <core:properties xmlns:core="http://www.esdi-humboldt.eu/hale/core">
             <core:property name="URL_CODELIST_SOILDERIVEDOBJECTPARAMETERNAMEVALUE">
-                <core:value value="https://registry.gdi-de.org/id/de.____/"/>
+                <core:value value="https://registry.gdi-de.org/codelist/de.adv-online.inspire/SoilDerivedObjectParameterNameValue/"/>
             </core:property>
             <core:property name="BODSCHAETZG-ID">
                 <core:value value="BodSchaetzG"/>
@@ -2183,7 +2183,7 @@ Hinweis zur Nutzung der Projektvariablen:&#13;
                 <core:value value="https://registry.gdi-de.org/id/de.____/"/>
             </core:property>
             <core:property name="URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE">
-                <core:value value="https://registry.gdi-de.org/id/de.____/"/>
+                <core:value value="https://registry.gdi-de.org/codelist/de.adv-online.inspire/SoilProfileParameterNameValue/"/>
             </core:property>
         </core:properties>
     </complex-property>
