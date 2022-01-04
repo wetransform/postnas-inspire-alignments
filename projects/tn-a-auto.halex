@@ -24,7 +24,7 @@ Im Projekt gibt es zwei verschiedene Herangehensweisen zur Bildung von *Transpor
 1. Ein *TransportProperty*-Objekt für alle Features die auf die gleichen Werte abgebildet werden. Die Identifier werden dabei basierend auf dem Wert oder den Werten welche die jeweilige *TransportProperty* ausmachen gebildet. Umgesetzt wurde das so für `ConditionOfAirFacility`, `SurfaceComposition`, `AerodromeCategory`, `AerodromeType`, und `UseRestriction`.
 2. Ein *TransportProperty*-Objekt für jedes (Quell-)Feature dass über entsprechende Eigenschaften verfügt. Dabei gibt es ggf. sehr viele redundante Informationen in den Objekten. Umgesetzt wurde das so für `ElementWidth`.</description>
     <created>2015-09-28T11:46:45.435+02:00</created>
-    <modified>2020-08-11T22:43:32.332+02:00</modified>
+    <modified>2022-01-04T17:04:30.495+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -34,7 +34,7 @@ Im Projekt gibt es zwei verschiedene Herangehensweisen zur Bildung von *Transpor
         <setting name="charset">UTF-8</setting>
         <setting name="onlyElementsMappable">true</setting>
         <setting name="resourceId">55b1c0a5-367a-4ab1-a123-99ed0df1a501</setting>
-        <setting name="source">http://inspire.ec.europa.eu/schemas/tn-a/4.0/AirTransportNetwork.xsd</setting>
+        <setting name="source">https://inspire.ec.europa.eu/schemas/tn-a/4.0/AirTransportNetwork.xsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.io.xsd</setting>
     </resource>
     <resource action-id="eu.esdihumboldt.hale.codelist.read" provider-id="eu.esdihumboldt.hale.io.codelist.inspire.reader">
