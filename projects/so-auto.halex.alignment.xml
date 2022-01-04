@@ -946,8 +946,8 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() || _source.links.AX_Tagesa
 				codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
 			}&#13;
 			observedProperty {&#13;
-				title( 'AX_GrablochDerBodenschaetzung ' )&#13;
-				href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_GrablochDerBodenschaetzung' )&#13;
+				title( 'AX_GrablochDerBodenschaetzung' )&#13;
+				href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'AX_GrablochDerBodenschaetzung' )&#13;
 			}&#13;
 			id( 'OM_Observation_' +  _source.p.id.value() )&#13;
 			c.GLobs &lt;&lt; '#OM_Observation' +  _source.p.id.value()&#13;
@@ -972,8 +972,8 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() || _source.links.AX_Tagesa
 				codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
 			}&#13;
 			observedProperty {&#13;
-				title( 'AX_Tagesabschnitt ' )&#13;
-				href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_Tagesabschnitt' )&#13;
+				title( 'AX_Tagesabschnitt' )&#13;
+				href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'AX_Tagesabschnitt' )&#13;
 			}&#13;
 			id ('OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#13;
 			c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()&#13;
@@ -1010,8 +1010,8 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() &amp;&amp; _source.links.A
 			codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
 		}&#13;
 		observedProperty {&#13;
-			title( 'AX_GrablochDerBodenschaetzung ' )&#13;
-			href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_GrablochDerBodenschaetzung' )&#13;
+			title( 'AX_GrablochDerBodenschaetzung' )&#13;
+			href( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'AX_GrablochDerBodenschaetzung' )&#13;
 		}&#13;
 		id( 'OM_Observation_' +  _source.p.id.value() )&#13;
 		c.GLobs &lt;&lt; '#OM_Observation_' +  _source.p.id.value()&#13;
@@ -1044,8 +1044,8 @@ if (_source.p.bodenzahlOderGruenlandgrundzahl.value() &amp;&amp; _source.links.A
 			codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
 		}&#13;
 		observedProperty {&#13;
-			title( 'AX_Tagesabschnitt ' )&#13;
-			href ( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_Tagesabschnitt' )&#13;
+			title( 'AX_Tagesabschnitt' )&#13;
+			href ( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'AX_Tagesabschnitt' )&#13;
 		}&#13;
 		id ('OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value())&#13;
 		c.GLobs &lt;&lt; '#OM_Observation_' +  _source.links.AX_Tagesabschnitt.p.id.value()&#13;
@@ -1116,8 +1116,8 @@ _target{&#13;
 		codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
 	}&#13;
 	observedProperty {&#13;
-		title( 'AX_Tagesabschnitt ' )&#13;
-		href ( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_Tagesabschnitt' )&#13;
+		title( 'AX_Tagesabschnitt' )&#13;
+		href ( _project.vars.URL_CODELIST_SOILPROFILEPARAMETERNAMEVALUE + 'AX_Tagesabschnitt' )&#13;
 	}&#13;
 	id ('OM_Observation_' +  _source.p.id.value())&#13;
 	parameter {&#13;
@@ -1273,7 +1273,7 @@ _target{&#13;
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
-        <parameter value="{{project:URL_CODELIST_SOILDERIVEDOBJECTPARAMETERNAMEVALUE}}http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_Bodenschaetzung" name="value"/>
+        <parameter value="{{project:URL_CODELIST_SOILDERIVEDOBJECTPARAMETERNAMEVALUE}}AX_Bodenschaetzung" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cb355922e-0db0-4345-b85c-376682898fb3" priority="normal">
         <source name="anchor">
@@ -1289,7 +1289,7 @@ _target{&#13;
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
-        <parameter value="{{project:URL_CODELIST_SOILDERIVEDOBJECTPARAMETERNAMEVALUE}}http://www.adv-online.de/AAA-Modell/Dokumente-der-GeoInfoDok/GeoInfoDok-6.0/AX_MusterLandesmusterUndVergleichsstueck" name="value"/>
+        <parameter value="{{project:URL_CODELIST_SOILDERIVEDOBJECTPARAMETERNAMEVALUE}}AX_MusterLandesmusterUndVergleichsstueck" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C988cdb08-aa85-4996-8117-4cbf041b86e1" priority="normal">
         <source name="anchor">
@@ -1305,7 +1305,7 @@ _target{&#13;
                 <child name="title" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
-        <parameter value="AX_Bodenschätzung" name="value"/>
+        <parameter value="AX_Bodenschaetzung" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cedf2320a-ae53-45df-baa8-9a3d24ed018b" priority="normal">
         <source name="anchor">
