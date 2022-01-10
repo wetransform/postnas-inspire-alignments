@@ -3882,24 +3882,24 @@ case '1307': // Gemeindestraße
 	functionalClass = 'sixthClass'
 	break
 }
-if (_source.p.internationaleBedeutung.value() == '2001') {
+if (_source.p.internationalebedeutung.value() == '2001') {
 	// internationaleBedeutung "überstimmt" Widmung
 	functionalClass = 'mainRoad'
 }
 
 // Hilfsfunktion zum Erstellen eines RoadLink aus einer *achse
 def erstelleRoadLink = { achse -&gt;
-	boolean istFahrbahn = achse.definition.name.localPart.startsWith('AX_Fahrbahn')
+	boolean istFahrbahn = achse.definition.name.localPart.startsWith('ax_fahrbahn')
 
 	def sourceId = achse.p.gml_id.value()
 	def _id = "RoadLink_$sourceId"
 	def _ns = _project.vars.INSPIRE_NAMESPACE
 	
 	_target {
-		endLifespanVersion( achse.p.lebenszeitintervall.AA_Lebenszeitintervall.endet.value() )
-		beginLifespanVersion( achse.p.lebenszeitintervall.AA_Lebenszeitintervall.beginnt.value() )
+		endLifespanVersion( achse.p.endet.value() )
+		beginLifespanVersion( achse.p.beginnt.value() )
 		id( _id )
-		def geoms = _.geom.toSimpleGeometries(geometries: achse.p.position.first(), collections: false)
+		def geoms = _.geom.toSimpleGeometries(geometries: achse.p.wkb_geometry.value(), collections: false)
 		if (geoms.size() &gt; 1) {
 			_log.error("Zusammenfassung von Geometrie in Achse ${sourceId} nicht möglich")
 		}
