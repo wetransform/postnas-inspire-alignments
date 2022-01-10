@@ -1,5 +1,5 @@
 diff --git a/projects/tn-ro-auto.halex.alignment.xml b/projects/tn-ro-manual.halex.alignment.xml
-index 33dbb0d..04a5866 100644
+index 33dbb0d..23cc337 100644
 --- a/projects/tn-ro-auto.halex.alignment.xml
 +++ b/projects/tn-ro-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -780,15 +780,37 @@ index 33dbb0d..04a5866 100644
  case '1301': // Bundesautobahn
  	functionalClass = 'firstClass'
  	break
-@@ -3819,7 +3891,7 @@ if (_source.p.internationaleBedeutung.value() == '2001') {
+@@ -3810,24 +3882,24 @@ case '1307': // Gemeindestraße
+ 	functionalClass = 'sixthClass'
+ 	break
+ }
+-if (_source.p.internationaleBedeutung.value() == '2001') {
++if (_source.p.internationalebedeutung.value() == '2001') {
+ 	// internationaleBedeutung "überstimmt" Widmung
+ 	functionalClass = 'mainRoad'
+ }
+ 
+ // Hilfsfunktion zum Erstellen eines RoadLink aus einer *achse
  def erstelleRoadLink = { achse -&gt;
- 	boolean istFahrbahn = achse.definition.name.localPart.startsWith('AX_Fahrbahn')
+-	boolean istFahrbahn = achse.definition.name.localPart.startsWith('AX_Fahrbahn')
++	boolean istFahrbahn = achse.definition.name.localPart.startsWith('ax_fahrbahn')
  
 -	def sourceId = achse.p.id.value()
 +	def sourceId = achse.p.gml_id.value()
  	def _id = "RoadLink_$sourceId"
  	def _ns = _project.vars.INSPIRE_NAMESPACE
  	
+ 	_target {
+-		endLifespanVersion( achse.p.lebenszeitintervall.AA_Lebenszeitintervall.endet.value() )
+-		beginLifespanVersion( achse.p.lebenszeitintervall.AA_Lebenszeitintervall.beginnt.value() )
++		endLifespanVersion( achse.p.endet.value() )
++		beginLifespanVersion( achse.p.beginnt.value() )
+ 		id( _id )
+-		def geoms = _.geom.toSimpleGeometries(geometries: achse.p.position.first(), collections: false)
++		def geoms = _.geom.toSimpleGeometries(geometries: achse.p.wkb_geometry.value(), collections: false)
+ 		if (geoms.size() &gt; 1) {
+ 			_log.error("Zusammenfassung von Geometrie in Achse ${sourceId} nicht möglich")
+ 		}
 @@ -3846,22 +3918,22 @@ def erstelleRoadLink = { achse -&gt;
  		
  		// bestimme FormOfWay
