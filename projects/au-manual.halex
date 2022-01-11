@@ -15,11 +15,11 @@ Das gleiche gilt für die aggregierten Geometrien -- hier werden bei unvollstän
 
 Sofern möglich sollte alternativ für die Transformation das Projekt mit Aggregierung aus `AX_KommunalesGebiet` verwendet werden. Falls diese Objekte nich vorhanden sind, könnten als Zwischenschritt auch `AX_KommunalesGebiet` aus Flurstücken abgeleitet werden.</description>
     <created>2015-09-28T11:46:45.435+02:00</created>
-    <modified>2021-12-20T17:46:08.970+01:00</modified>
+    <modified>2022-01-11T12:03:36.927+01:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
-        <setting name="target">file:/home/simon/repos/rlp-inspire-alignments/projects/au-manual.halex</setting>
+        <setting name="target">file:/home/flo/src/wetransform/postnas-inspire-alignments/projects/au-manual.halex</setting>
     </save-config>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.target" provider-id="eu.esdihumboldt.hale.io.xsd.reader">
         <setting name="charset">UTF-8</setting>
@@ -30,7 +30,7 @@ Sofern möglich sollte alternativ für die Transformation das Projekt mit Aggreg
     </resource>
     <resource action-id="eu.esdihumboldt.hale.io.schema.read.source" provider-id="eu.esdihumboldt.hale.common.schema.persist.hsd.read">
         <setting name="charset">UTF-8</setting>
-        <setting name="source">file:/home/simon/repos/rlp-inspire-alignments/database/schema.hsd</setting>
+        <setting name="source">file:/home/flo/src/wetransform/postnas-inspire-alignments/database/schema.hsd</setting>
         <setting name="contentType">eu.esdihumboldt.hale.common.schema.hsd</setting>
     </resource>
     <export-config name="hale-connect">
