@@ -10,7 +10,7 @@ Folgende Alignments werden hier verwaltet:
 | Alignment                                             | Status         | Kürzel     |
 | :---------------------------------------------------- | :------------: | :--------- |
 | PostNAS -> Adressen                                   | migriert       | ad         |
-| PostNAS -> Verwaltungseinheiten                       | migriert       | au         |
+| PostNAS -> Verwaltungseinheiten                       | Update nötig   | au         |
 | PostNAS -> Gebäude (2D)                               | migriert       | bu-2d      |
 | PostNAS -> Flurstücke/Grundstücke                     | migriert       | cp         |
 | PostNAS -> Bodennutzung                               | migriert       | elu        |
