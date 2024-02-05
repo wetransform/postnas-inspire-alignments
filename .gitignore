@@ -6,6 +6,7 @@ gradle.properties
 *.rej
 
 /logs/
+/workspace/
 
 transformations-override.yaml
 results/
