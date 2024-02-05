@@ -848,9 +848,6 @@ gradle.addListener( (TaskExecutionListener) reporter)
 gradle.addListener( (BuildListener) reporter)
 
 
-/*
- * Gradle wrapper
- */
-task wrapper(type: Wrapper) {
-  gradleVersion = '4.8'
+wrapper {
+  gradleVersion = '8.6'
 }
