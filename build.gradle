@@ -57,7 +57,7 @@ task('dbMatching', type: hale.cli()) {
     'generate',
     'postnas-matching',
     '--reference-schema',
-    advAlignmentsPath + '/schemas/NAS_6.0.1/schema/aaa.xsd',
+    'https://repository.gdi-de.org/schemas/adv/nas/7.1/aaa.xsd',
     '--target-schema',
     'database/schema.hsd',
     '--target',
