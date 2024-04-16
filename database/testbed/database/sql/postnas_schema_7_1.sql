@@ -9981,7 +9981,7 @@ COMMENT ON COLUMN public.ax_abschnitt.processstep_positionname IS 'qualitaetsang
 -- Name: COLUMN ax_abschnitt.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_abschnitt.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_abschnitt.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -9995,7 +9995,7 @@ COMMENT ON COLUMN public.ax_abschnitt.processstep_address IS 'qualitaetsangaben|
 -- Name: COLUMN ax_abschnitt.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_abschnitt.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_abschnitt.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -10030,14 +10030,14 @@ COMMENT ON COLUMN public.ax_abschnitt.processstep_ax_datenerhebung IS 'qualitaet
 -- Name: COLUMN ax_abschnitt.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_abschnitt.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_abschnitt.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_abschnitt.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_abschnitt.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_abschnitt.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -10051,7 +10051,7 @@ COMMENT ON COLUMN public.ax_abschnitt.processstep_sourceextent IS 'qualitaetsang
 -- Name: COLUMN ax_abschnitt.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_abschnitt.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_abschnitt.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -10065,14 +10065,14 @@ COMMENT ON COLUMN public.ax_abschnitt.herkunft_source_source_ax_datenerhebung IS
 -- Name: COLUMN ax_abschnitt.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_abschnitt.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_abschnitt.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_abschnitt.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_abschnitt.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_abschnitt.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -10086,7 +10086,7 @@ COMMENT ON COLUMN public.ax_abschnitt.herkunft_source_source_sourceextent IS 'qu
 -- Name: COLUMN ax_abschnitt.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_abschnitt.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_abschnitt.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -10329,7 +10329,7 @@ COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.processstep_positi
 -- Name: COLUMN ax_anderefestlegungnachstrassenrecht.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -10343,7 +10343,7 @@ COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.processstep_addres
 -- Name: COLUMN ax_anderefestlegungnachstrassenrecht.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -10378,14 +10378,14 @@ COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.processstep_ax_dat
 -- Name: COLUMN ax_anderefestlegungnachstrassenrecht.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_anderefestlegungnachstrassenrecht.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -10399,7 +10399,7 @@ COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.processstep_source
 -- Name: COLUMN ax_anderefestlegungnachstrassenrecht.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -10413,14 +10413,14 @@ COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.herkunft_source_so
 -- Name: COLUMN ax_anderefestlegungnachstrassenrecht.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_anderefestlegungnachstrassenrecht.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -10434,7 +10434,7 @@ COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.herkunft_source_so
 -- Name: COLUMN ax_anderefestlegungnachstrassenrecht.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_anderefestlegungnachstrassenrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -10670,7 +10670,7 @@ COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.processstep_position
 -- Name: COLUMN ax_anderefestlegungnachwasserrecht.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -10684,7 +10684,7 @@ COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.processstep_address 
 -- Name: COLUMN ax_anderefestlegungnachwasserrecht.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -10719,14 +10719,14 @@ COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.processstep_ax_daten
 -- Name: COLUMN ax_anderefestlegungnachwasserrecht.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_anderefestlegungnachwasserrecht.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -10740,7 +10740,7 @@ COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.processstep_sourceex
 -- Name: COLUMN ax_anderefestlegungnachwasserrecht.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -10754,14 +10754,14 @@ COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.herkunft_source_sour
 -- Name: COLUMN ax_anderefestlegungnachwasserrecht.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_anderefestlegungnachwasserrecht.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -10775,7 +10775,7 @@ COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.herkunft_source_sour
 -- Name: COLUMN ax_anderefestlegungnachwasserrecht.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_anderefestlegungnachwasserrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -11052,7 +11052,7 @@ COMMENT ON COLUMN public.ax_anschrift.processstep_positionname IS 'qualitaetsang
 -- Name: COLUMN ax_anschrift.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anschrift.processstep_phone IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anschrift.processstep_phone IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -11066,7 +11066,7 @@ COMMENT ON COLUMN public.ax_anschrift.processstep_address IS 'qualitaetsangaben|
 -- Name: COLUMN ax_anschrift.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anschrift.processstep_onlineresource IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anschrift.processstep_onlineresource IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -11101,14 +11101,14 @@ COMMENT ON COLUMN public.ax_anschrift.processstep_ax_datenerhebung IS 'qualitaet
 -- Name: COLUMN ax_anschrift.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anschrift.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anschrift.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_anschrift.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anschrift.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anschrift.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -11122,7 +11122,7 @@ COMMENT ON COLUMN public.ax_anschrift.processstep_sourceextent IS 'qualitaetsang
 -- Name: COLUMN ax_anschrift.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anschrift.processstep_sourcestep IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_anschrift.processstep_sourcestep IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -11136,14 +11136,14 @@ COMMENT ON COLUMN public.ax_anschrift.herkunft_source_source_ax_datenerhebung IS
 -- Name: COLUMN ax_anschrift.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anschrift.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anschrift.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_anschrift.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anschrift.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_anschrift.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -11157,7 +11157,7 @@ COMMENT ON COLUMN public.ax_anschrift.herkunft_source_source_sourceextent IS 'qu
 -- Name: COLUMN ax_anschrift.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_anschrift.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_anschrift.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -12006,7 +12006,7 @@ COMMENT ON COLUMN public.ax_ast.processstep_positionname IS 'qualitaetsangaben|A
 -- Name: COLUMN ax_ast.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ast.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_ast.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -12020,7 +12020,7 @@ COMMENT ON COLUMN public.ax_ast.processstep_address IS 'qualitaetsangaben|AX_DQM
 -- Name: COLUMN ax_ast.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ast.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_ast.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -12055,14 +12055,14 @@ COMMENT ON COLUMN public.ax_ast.processstep_ax_datenerhebung IS 'qualitaetsangab
 -- Name: COLUMN ax_ast.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ast.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_ast.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_ast.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ast.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_ast.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -12076,7 +12076,7 @@ COMMENT ON COLUMN public.ax_ast.processstep_sourceextent IS 'qualitaetsangaben|A
 -- Name: COLUMN ax_ast.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ast.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_ast.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -12090,14 +12090,14 @@ COMMENT ON COLUMN public.ax_ast.herkunft_source_source_ax_datenerhebung IS 'qual
 -- Name: COLUMN ax_ast.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ast.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_ast.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_ast.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ast.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_ast.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -12111,7 +12111,7 @@ COMMENT ON COLUMN public.ax_ast.herkunft_source_source_sourceextent IS 'qualitae
 -- Name: COLUMN ax_ast.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ast.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_ast.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -12933,7 +12933,7 @@ COMMENT ON COLUMN public.ax_bahnverkehr.processstep_positionname IS 'qualitaetsa
 -- Name: COLUMN ax_bahnverkehr.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehr.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bahnverkehr.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -12947,7 +12947,7 @@ COMMENT ON COLUMN public.ax_bahnverkehr.processstep_address IS 'qualitaetsangabe
 -- Name: COLUMN ax_bahnverkehr.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehr.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bahnverkehr.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -12982,14 +12982,14 @@ COMMENT ON COLUMN public.ax_bahnverkehr.processstep_ax_datenerhebung IS 'qualita
 -- Name: COLUMN ax_bahnverkehr.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehr.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bahnverkehr.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bahnverkehr.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehr.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bahnverkehr.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -13003,7 +13003,7 @@ COMMENT ON COLUMN public.ax_bahnverkehr.processstep_sourceextent IS 'qualitaetsa
 -- Name: COLUMN ax_bahnverkehr.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehr.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bahnverkehr.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -13017,14 +13017,14 @@ COMMENT ON COLUMN public.ax_bahnverkehr.herkunft_source_source_ax_datenerhebung 
 -- Name: COLUMN ax_bahnverkehr.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehr.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bahnverkehr.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bahnverkehr.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehr.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bahnverkehr.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -13038,7 +13038,7 @@ COMMENT ON COLUMN public.ax_bahnverkehr.herkunft_source_source_sourceextent IS '
 -- Name: COLUMN ax_bahnverkehr.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehr.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bahnverkehr.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -13362,7 +13362,7 @@ COMMENT ON COLUMN public.ax_bahnverkehrsanlage.processstep_positionname IS 'qual
 -- Name: COLUMN ax_bahnverkehrsanlage.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehrsanlage.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bahnverkehrsanlage.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -13376,7 +13376,7 @@ COMMENT ON COLUMN public.ax_bahnverkehrsanlage.processstep_address IS 'qualitaet
 -- Name: COLUMN ax_bahnverkehrsanlage.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehrsanlage.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bahnverkehrsanlage.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -13411,14 +13411,14 @@ COMMENT ON COLUMN public.ax_bahnverkehrsanlage.processstep_ax_datenerhebung IS '
 -- Name: COLUMN ax_bahnverkehrsanlage.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehrsanlage.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bahnverkehrsanlage.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bahnverkehrsanlage.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehrsanlage.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bahnverkehrsanlage.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -13432,7 +13432,7 @@ COMMENT ON COLUMN public.ax_bahnverkehrsanlage.processstep_sourceextent IS 'qual
 -- Name: COLUMN ax_bahnverkehrsanlage.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehrsanlage.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bahnverkehrsanlage.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -13446,14 +13446,14 @@ COMMENT ON COLUMN public.ax_bahnverkehrsanlage.herkunft_source_source_ax_datener
 -- Name: COLUMN ax_bahnverkehrsanlage.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehrsanlage.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bahnverkehrsanlage.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bahnverkehrsanlage.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehrsanlage.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bahnverkehrsanlage.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -13467,7 +13467,7 @@ COMMENT ON COLUMN public.ax_bahnverkehrsanlage.herkunft_source_source_sourceexte
 -- Name: COLUMN ax_bahnverkehrsanlage.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bahnverkehrsanlage.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bahnverkehrsanlage.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -13926,7 +13926,7 @@ COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.processstep_positionna
 -- Name: COLUMN ax_bauraumoderbodenordnungsrecht.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -13940,7 +13940,7 @@ COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.processstep_address IS
 -- Name: COLUMN ax_bauraumoderbodenordnungsrecht.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -13975,14 +13975,14 @@ COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.processstep_ax_datener
 -- Name: COLUMN ax_bauraumoderbodenordnungsrecht.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauraumoderbodenordnungsrecht.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -13996,7 +13996,7 @@ COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.processstep_sourceexte
 -- Name: COLUMN ax_bauraumoderbodenordnungsrecht.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -14010,14 +14010,14 @@ COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.herkunft_source_source
 -- Name: COLUMN ax_bauraumoderbodenordnungsrecht.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauraumoderbodenordnungsrecht.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -14031,7 +14031,7 @@ COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.herkunft_source_source
 -- Name: COLUMN ax_bauraumoderbodenordnungsrecht.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauraumoderbodenordnungsrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -14558,7 +14558,7 @@ COMMENT ON COLUMN public.ax_bauteil.processstep_positionname IS 'qualitaetsangab
 -- Name: COLUMN ax_bauteil.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -14572,7 +14572,7 @@ COMMENT ON COLUMN public.ax_bauteil.processstep_address IS 'qualitaetsangaben|AX
 -- Name: COLUMN ax_bauteil.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -14607,14 +14607,14 @@ COMMENT ON COLUMN public.ax_bauteil.processstep_ax_datenerhebung IS 'qualitaetsa
 -- Name: COLUMN ax_bauteil.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauteil.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -14628,7 +14628,7 @@ COMMENT ON COLUMN public.ax_bauteil.processstep_sourceextent IS 'qualitaetsangab
 -- Name: COLUMN ax_bauteil.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauteil.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -14642,14 +14642,14 @@ COMMENT ON COLUMN public.ax_bauteil.herkunft_source_source_ax_datenerhebung IS '
 -- Name: COLUMN ax_bauteil.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauteil.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -14663,7 +14663,7 @@ COMMENT ON COLUMN public.ax_bauteil.herkunft_source_source_sourceextent IS 'qual
 -- Name: COLUMN ax_bauteil.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauteil.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15023,7 +15023,7 @@ COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_ps_positionname IS 'qualitaetB
 -- Name: COLUMN ax_bauteil3d.qbodenhoehe_ps_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_ps_phone IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_ps_phone IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15037,7 +15037,7 @@ COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_ps_address IS 'qualitaetBodenh
 -- Name: COLUMN ax_bauteil3d.qbodenhoehe_ps_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_ps_onlineresource IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_ps_onlineresource IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -15072,14 +15072,14 @@ COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_ps_src_description IS 'qualita
 -- Name: COLUMN ax_bauteil3d.qbodenhoehe_ps_src_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_ps_src_scaledenominator IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_ps_src_scaledenominator IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauteil3d.qbodenhoehe_ps_src_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_ps_src_sourcereferencesystem IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_ps_src_sourcereferencesystem IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15093,7 +15093,7 @@ COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_ps_src_sourceextent IS 'qualit
 -- Name: COLUMN ax_bauteil3d.qbodenhoehe_ps_src_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_ps_src_sourcestep IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_ps_src_sourcestep IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15107,14 +15107,14 @@ COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_src_description IS 'qualitaetB
 -- Name: COLUMN ax_bauteil3d.qbodenhoehe_src_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_src_scaledenominator IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_src_scaledenominator IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauteil3d.qbodenhoehe_src_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_src_sourcereferencesystem IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_src_sourcereferencesystem IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15128,7 +15128,7 @@ COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_src_sourceextent IS 'qualitaet
 -- Name: COLUMN ax_bauteil3d.qbodenhoehe_src_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_src_sourcestep IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauteil3d.qbodenhoehe_src_sourcestep IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15184,7 +15184,7 @@ COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_ps_positionname IS 'qualitaetDa
 -- Name: COLUMN ax_bauteil3d.qdachhoehe_ps_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_ps_phone IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_ps_phone IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15198,7 +15198,7 @@ COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_ps_address IS 'qualitaetDachhoe
 -- Name: COLUMN ax_bauteil3d.qdachhoehe_ps_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_ps_onlineresource IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_ps_onlineresource IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -15233,14 +15233,14 @@ COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_ps_src_description IS 'qualitae
 -- Name: COLUMN ax_bauteil3d.qdachhoehe_ps_src_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_ps_src_scaledenominator IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_ps_src_scaledenominator IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauteil3d.qdachhoehe_ps_src_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_ps_src_sourcereferencesystem IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_ps_src_sourcereferencesystem IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15254,7 +15254,7 @@ COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_ps_src_sourceextent IS 'qualita
 -- Name: COLUMN ax_bauteil3d.qdachhoehe_ps_src_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_ps_src_sourcestep IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_ps_src_sourcestep IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15268,14 +15268,14 @@ COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_src_description IS 'qualitaetDa
 -- Name: COLUMN ax_bauteil3d.qdachhoehe_src_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_src_scaledenominator IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_src_scaledenominator IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauteil3d.qdachhoehe_src_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_src_sourcereferencesystem IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_src_sourcereferencesystem IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15289,7 +15289,7 @@ COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_src_sourceextent IS 'qualitaetD
 -- Name: COLUMN ax_bauteil3d.qdachhoehe_src_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_src_sourcestep IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauteil3d.qdachhoehe_src_sourcestep IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15345,7 +15345,7 @@ COMMENT ON COLUMN public.ax_bauteil3d.processstep_positionname IS 'qualitaetsang
 -- Name: COLUMN ax_bauteil3d.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15359,7 +15359,7 @@ COMMENT ON COLUMN public.ax_bauteil3d.processstep_address IS 'qualitaetsangaben|
 -- Name: COLUMN ax_bauteil3d.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -15394,14 +15394,14 @@ COMMENT ON COLUMN public.ax_bauteil3d.processstep_ax_datenerhebung IS 'qualitaet
 -- Name: COLUMN ax_bauteil3d.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauteil3d.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15415,7 +15415,7 @@ COMMENT ON COLUMN public.ax_bauteil3d.processstep_sourceextent IS 'qualitaetsang
 -- Name: COLUMN ax_bauteil3d.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauteil3d.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15429,14 +15429,14 @@ COMMENT ON COLUMN public.ax_bauteil3d.herkunft_source_source_ax_datenerhebung IS
 -- Name: COLUMN ax_bauteil3d.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauteil3d.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauteil3d.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15450,7 +15450,7 @@ COMMENT ON COLUMN public.ax_bauteil3d.herkunft_source_source_sourceextent IS 'qu
 -- Name: COLUMN ax_bauteil3d.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauteil3d.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauteil3d.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15802,7 +15802,7 @@ COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_ps_positionname IS 'qualitaetB
 -- Name: COLUMN ax_bauwerk3d.qbodenhoehe_ps_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_ps_phone IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_ps_phone IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15816,7 +15816,7 @@ COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_ps_address IS 'qualitaetBodenh
 -- Name: COLUMN ax_bauwerk3d.qbodenhoehe_ps_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_ps_onlineresource IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_ps_onlineresource IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -15851,14 +15851,14 @@ COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_ps_src_description IS 'qualita
 -- Name: COLUMN ax_bauwerk3d.qbodenhoehe_ps_src_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_ps_src_scaledenominator IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_ps_src_scaledenominator IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauwerk3d.qbodenhoehe_ps_src_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_ps_src_sourcereferencesystem IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_ps_src_sourcereferencesystem IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15872,7 +15872,7 @@ COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_ps_src_sourceextent IS 'qualit
 -- Name: COLUMN ax_bauwerk3d.qbodenhoehe_ps_src_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_ps_src_sourcestep IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_ps_src_sourcestep IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15886,14 +15886,14 @@ COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_src_description IS 'qualitaetB
 -- Name: COLUMN ax_bauwerk3d.qbodenhoehe_src_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_src_scaledenominator IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_src_scaledenominator IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauwerk3d.qbodenhoehe_src_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_src_sourcereferencesystem IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_src_sourcereferencesystem IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15907,7 +15907,7 @@ COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_src_sourceextent IS 'qualitaet
 -- Name: COLUMN ax_bauwerk3d.qbodenhoehe_src_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_src_sourcestep IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauwerk3d.qbodenhoehe_src_sourcestep IS 'qualitaetBodenhoehe|AX_DQBodenhoehe|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15963,7 +15963,7 @@ COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_ps_positionname IS 'qualitaetDa
 -- Name: COLUMN ax_bauwerk3d.qdachhoehe_ps_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_ps_phone IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_ps_phone IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -15977,7 +15977,7 @@ COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_ps_address IS 'qualitaetDachhoe
 -- Name: COLUMN ax_bauwerk3d.qdachhoehe_ps_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_ps_onlineresource IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_ps_onlineresource IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -16012,14 +16012,14 @@ COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_ps_src_description IS 'qualitae
 -- Name: COLUMN ax_bauwerk3d.qdachhoehe_ps_src_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_ps_src_scaledenominator IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_ps_src_scaledenominator IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauwerk3d.qdachhoehe_ps_src_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_ps_src_sourcereferencesystem IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_ps_src_sourcereferencesystem IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -16033,7 +16033,7 @@ COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_ps_src_sourceextent IS 'qualita
 -- Name: COLUMN ax_bauwerk3d.qdachhoehe_ps_src_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_ps_src_sourcestep IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_ps_src_sourcestep IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -16047,14 +16047,14 @@ COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_src_description IS 'qualitaetDa
 -- Name: COLUMN ax_bauwerk3d.qdachhoehe_src_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_src_scaledenominator IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_src_scaledenominator IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauwerk3d.qdachhoehe_src_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_src_sourcereferencesystem IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_src_sourcereferencesystem IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -16068,7 +16068,7 @@ COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_src_sourceextent IS 'qualitaetD
 -- Name: COLUMN ax_bauwerk3d.qdachhoehe_src_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_src_sourcestep IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauwerk3d.qdachhoehe_src_sourcestep IS 'qualitaetDachhoehe|AX_DQDachhoehe|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -16618,7 +16618,7 @@ COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.processstep_positionname I
 -- Name: COLUMN ax_bauwerkimgewaesserbereich.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -16632,7 +16632,7 @@ COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.processstep_address IS 'qu
 -- Name: COLUMN ax_bauwerkimgewaesserbereich.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -16667,14 +16667,14 @@ COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.processstep_ax_datenerhebu
 -- Name: COLUMN ax_bauwerkimgewaesserbereich.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauwerkimgewaesserbereich.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -16688,7 +16688,7 @@ COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.processstep_sourceextent I
 -- Name: COLUMN ax_bauwerkimgewaesserbereich.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -16702,14 +16702,14 @@ COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.herkunft_source_source_ax_
 -- Name: COLUMN ax_bauwerkimgewaesserbereich.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauwerkimgewaesserbereich.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -16723,7 +16723,7 @@ COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.herkunft_source_source_sou
 -- Name: COLUMN ax_bauwerkimgewaesserbereich.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauwerkimgewaesserbereich.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17022,7 +17022,7 @@ COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.processstep_positionname IS
 -- Name: COLUMN ax_bauwerkimverkehrsbereich.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17036,7 +17036,7 @@ COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.processstep_address IS 'qua
 -- Name: COLUMN ax_bauwerkimverkehrsbereich.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -17071,14 +17071,14 @@ COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.processstep_ax_datenerhebun
 -- Name: COLUMN ax_bauwerkimverkehrsbereich.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauwerkimverkehrsbereich.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17092,7 +17092,7 @@ COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.processstep_sourceextent IS
 -- Name: COLUMN ax_bauwerkimverkehrsbereich.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17106,14 +17106,14 @@ COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.herkunft_source_source_ax_d
 -- Name: COLUMN ax_bauwerkimverkehrsbereich.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauwerkimverkehrsbereich.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17127,7 +17127,7 @@ COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.herkunft_source_source_sour
 -- Name: COLUMN ax_bauwerkimverkehrsbereich.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauwerkimverkehrsbereich.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17403,7 +17403,7 @@ COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep
 -- Name: COLUMN ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17417,7 +17417,7 @@ COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep
 -- Name: COLUMN ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -17452,14 +17452,14 @@ COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep
 -- Name: COLUMN ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17473,7 +17473,7 @@ COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep
 -- Name: COLUMN ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17487,14 +17487,14 @@ COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.herkunft_so
 -- Name: COLUMN ax_bauwerkoderanlagefuerindustrieundgewerbe.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauwerkoderanlagefuerindustrieundgewerbe.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17508,7 +17508,7 @@ COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.herkunft_so
 -- Name: COLUMN ax_bauwerkoderanlagefuerindustrieundgewerbe.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuerindustrieundgewerbe.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17785,7 +17785,7 @@ COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.proces
 -- Name: COLUMN ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17799,7 +17799,7 @@ COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.proces
 -- Name: COLUMN ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -17834,14 +17834,14 @@ COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.proces
 -- Name: COLUMN ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17855,7 +17855,7 @@ COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.proces
 -- Name: COLUMN ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17869,14 +17869,14 @@ COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.herkun
 -- Name: COLUMN ax_bauwerkoderanlagefuersportfreizeitunderholung.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bauwerkoderanlagefuersportfreizeitunderholung.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -17890,7 +17890,7 @@ COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.herkun
 -- Name: COLUMN ax_bauwerkoderanlagefuersportfreizeitunderholung.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bauwerkoderanlagefuersportfreizeitunderholung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -19080,7 +19080,7 @@ COMMENT ON COLUMN public.ax_bergbaubetrieb.processstep_positionname IS 'qualitae
 -- Name: COLUMN ax_bergbaubetrieb.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bergbaubetrieb.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bergbaubetrieb.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -19094,7 +19094,7 @@ COMMENT ON COLUMN public.ax_bergbaubetrieb.processstep_address IS 'qualitaetsang
 -- Name: COLUMN ax_bergbaubetrieb.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bergbaubetrieb.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bergbaubetrieb.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -19129,14 +19129,14 @@ COMMENT ON COLUMN public.ax_bergbaubetrieb.processstep_ax_datenerhebung IS 'qual
 -- Name: COLUMN ax_bergbaubetrieb.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bergbaubetrieb.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bergbaubetrieb.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bergbaubetrieb.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bergbaubetrieb.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bergbaubetrieb.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -19150,7 +19150,7 @@ COMMENT ON COLUMN public.ax_bergbaubetrieb.processstep_sourceextent IS 'qualitae
 -- Name: COLUMN ax_bergbaubetrieb.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bergbaubetrieb.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bergbaubetrieb.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -19164,14 +19164,14 @@ COMMENT ON COLUMN public.ax_bergbaubetrieb.herkunft_source_source_ax_datenerhebu
 -- Name: COLUMN ax_bergbaubetrieb.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bergbaubetrieb.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bergbaubetrieb.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bergbaubetrieb.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bergbaubetrieb.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bergbaubetrieb.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -19185,7 +19185,7 @@ COMMENT ON COLUMN public.ax_bergbaubetrieb.herkunft_source_source_sourceextent I
 -- Name: COLUMN ax_bergbaubetrieb.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bergbaubetrieb.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bergbaubetrieb.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -20243,7 +20243,7 @@ COMMENT ON COLUMN public.ax_bewertung.processstep_positionname IS 'qualitaetsang
 -- Name: COLUMN ax_bewertung.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bewertung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bewertung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -20257,7 +20257,7 @@ COMMENT ON COLUMN public.ax_bewertung.processstep_address IS 'qualitaetsangaben|
 -- Name: COLUMN ax_bewertung.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bewertung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bewertung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -20292,14 +20292,14 @@ COMMENT ON COLUMN public.ax_bewertung.processstep_ax_datenerhebung IS 'qualitaet
 -- Name: COLUMN ax_bewertung.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bewertung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bewertung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bewertung.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bewertung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bewertung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -20313,7 +20313,7 @@ COMMENT ON COLUMN public.ax_bewertung.processstep_sourceextent IS 'qualitaetsang
 -- Name: COLUMN ax_bewertung.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bewertung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bewertung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -20327,14 +20327,14 @@ COMMENT ON COLUMN public.ax_bewertung.herkunft_source_source_ax_datenerhebung IS
 -- Name: COLUMN ax_bewertung.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bewertung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bewertung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bewertung.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bewertung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bewertung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -20348,7 +20348,7 @@ COMMENT ON COLUMN public.ax_bewertung.herkunft_source_source_sourceextent IS 'qu
 -- Name: COLUMN ax_bewertung.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bewertung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bewertung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -20828,7 +20828,7 @@ COMMENT ON COLUMN public.ax_bodenschaetzung.processstep_positionname IS 'qualita
 -- Name: COLUMN ax_bodenschaetzung.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bodenschaetzung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bodenschaetzung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -20842,7 +20842,7 @@ COMMENT ON COLUMN public.ax_bodenschaetzung.processstep_address IS 'qualitaetsan
 -- Name: COLUMN ax_bodenschaetzung.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bodenschaetzung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bodenschaetzung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -20877,14 +20877,14 @@ COMMENT ON COLUMN public.ax_bodenschaetzung.processstep_ax_datenerhebung IS 'qua
 -- Name: COLUMN ax_bodenschaetzung.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bodenschaetzung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bodenschaetzung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bodenschaetzung.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bodenschaetzung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bodenschaetzung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -20898,7 +20898,7 @@ COMMENT ON COLUMN public.ax_bodenschaetzung.processstep_sourceextent IS 'qualita
 -- Name: COLUMN ax_bodenschaetzung.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bodenschaetzung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bodenschaetzung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -20912,14 +20912,14 @@ COMMENT ON COLUMN public.ax_bodenschaetzung.herkunft_source_source_ax_datenerheb
 -- Name: COLUMN ax_bodenschaetzung.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bodenschaetzung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bodenschaetzung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_bodenschaetzung.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bodenschaetzung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_bodenschaetzung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -20933,7 +20933,7 @@ COMMENT ON COLUMN public.ax_bodenschaetzung.herkunft_source_source_sourceextent 
 -- Name: COLUMN ax_bodenschaetzung.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_bodenschaetzung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_bodenschaetzung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -21199,7 +21199,7 @@ COMMENT ON COLUMN public.ax_boeschungkliff.processstep_positionname IS 'qualitae
 -- Name: COLUMN ax_boeschungkliff.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_boeschungkliff.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_boeschungkliff.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -21213,7 +21213,7 @@ COMMENT ON COLUMN public.ax_boeschungkliff.processstep_address IS 'qualitaetsang
 -- Name: COLUMN ax_boeschungkliff.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_boeschungkliff.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_boeschungkliff.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -21248,14 +21248,14 @@ COMMENT ON COLUMN public.ax_boeschungkliff.processstep_ax_datenerhebung IS 'qual
 -- Name: COLUMN ax_boeschungkliff.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_boeschungkliff.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_boeschungkliff.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_boeschungkliff.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_boeschungkliff.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_boeschungkliff.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -21269,7 +21269,7 @@ COMMENT ON COLUMN public.ax_boeschungkliff.processstep_sourceextent IS 'qualitae
 -- Name: COLUMN ax_boeschungkliff.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_boeschungkliff.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_boeschungkliff.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -21283,14 +21283,14 @@ COMMENT ON COLUMN public.ax_boeschungkliff.herkunft_source_source_ax_datenerhebu
 -- Name: COLUMN ax_boeschungkliff.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_boeschungkliff.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_boeschungkliff.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_boeschungkliff.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_boeschungkliff.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_boeschungkliff.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -21304,7 +21304,7 @@ COMMENT ON COLUMN public.ax_boeschungkliff.herkunft_source_source_sourceextent I
 -- Name: COLUMN ax_boeschungkliff.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_boeschungkliff.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_boeschungkliff.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -22693,7 +22693,7 @@ COMMENT ON COLUMN public.ax_dammwalldeich.processstep_positionname IS 'qualitaet
 -- Name: COLUMN ax_dammwalldeich.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_dammwalldeich.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_dammwalldeich.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -22707,7 +22707,7 @@ COMMENT ON COLUMN public.ax_dammwalldeich.processstep_address IS 'qualitaetsanga
 -- Name: COLUMN ax_dammwalldeich.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_dammwalldeich.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_dammwalldeich.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -22742,14 +22742,14 @@ COMMENT ON COLUMN public.ax_dammwalldeich.processstep_ax_datenerhebung IS 'quali
 -- Name: COLUMN ax_dammwalldeich.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_dammwalldeich.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_dammwalldeich.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_dammwalldeich.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_dammwalldeich.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_dammwalldeich.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -22763,7 +22763,7 @@ COMMENT ON COLUMN public.ax_dammwalldeich.processstep_sourceextent IS 'qualitaet
 -- Name: COLUMN ax_dammwalldeich.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_dammwalldeich.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_dammwalldeich.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -22777,14 +22777,14 @@ COMMENT ON COLUMN public.ax_dammwalldeich.herkunft_source_source_ax_datenerhebun
 -- Name: COLUMN ax_dammwalldeich.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_dammwalldeich.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_dammwalldeich.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_dammwalldeich.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_dammwalldeich.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_dammwalldeich.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -22798,7 +22798,7 @@ COMMENT ON COLUMN public.ax_dammwalldeich.herkunft_source_source_sourceextent IS
 -- Name: COLUMN ax_dammwalldeich.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_dammwalldeich.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_dammwalldeich.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -23162,7 +23162,7 @@ COMMENT ON COLUMN public.ax_denkmalschutzrecht.processstep_positionname IS 'qual
 -- Name: COLUMN ax_denkmalschutzrecht.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_denkmalschutzrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_denkmalschutzrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -23176,7 +23176,7 @@ COMMENT ON COLUMN public.ax_denkmalschutzrecht.processstep_address IS 'qualitaet
 -- Name: COLUMN ax_denkmalschutzrecht.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_denkmalschutzrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_denkmalschutzrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -23211,14 +23211,14 @@ COMMENT ON COLUMN public.ax_denkmalschutzrecht.processstep_ax_datenerhebung IS '
 -- Name: COLUMN ax_denkmalschutzrecht.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_denkmalschutzrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_denkmalschutzrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_denkmalschutzrecht.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_denkmalschutzrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_denkmalschutzrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -23232,7 +23232,7 @@ COMMENT ON COLUMN public.ax_denkmalschutzrecht.processstep_sourceextent IS 'qual
 -- Name: COLUMN ax_denkmalschutzrecht.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_denkmalschutzrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_denkmalschutzrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -23246,14 +23246,14 @@ COMMENT ON COLUMN public.ax_denkmalschutzrecht.herkunft_source_source_ax_datener
 -- Name: COLUMN ax_denkmalschutzrecht.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_denkmalschutzrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_denkmalschutzrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_denkmalschutzrecht.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_denkmalschutzrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_denkmalschutzrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -23267,7 +23267,7 @@ COMMENT ON COLUMN public.ax_denkmalschutzrecht.herkunft_source_source_sourceexte
 -- Name: COLUMN ax_denkmalschutzrecht.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_denkmalschutzrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_denkmalschutzrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -23930,7 +23930,7 @@ COMMENT ON COLUMN public.ax_duene.processstep_positionname IS 'qualitaetsangaben
 -- Name: COLUMN ax_duene.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_duene.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_duene.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -23944,7 +23944,7 @@ COMMENT ON COLUMN public.ax_duene.processstep_address IS 'qualitaetsangaben|AX_D
 -- Name: COLUMN ax_duene.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_duene.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_duene.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -23979,14 +23979,14 @@ COMMENT ON COLUMN public.ax_duene.processstep_ax_datenerhebung IS 'qualitaetsang
 -- Name: COLUMN ax_duene.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_duene.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_duene.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_duene.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_duene.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_duene.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -24000,7 +24000,7 @@ COMMENT ON COLUMN public.ax_duene.processstep_sourceextent IS 'qualitaetsangaben
 -- Name: COLUMN ax_duene.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_duene.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_duene.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -24014,14 +24014,14 @@ COMMENT ON COLUMN public.ax_duene.herkunft_source_source_ax_datenerhebung IS 'qu
 -- Name: COLUMN ax_duene.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_duene.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_duene.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_duene.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_duene.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_duene.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -24035,7 +24035,7 @@ COMMENT ON COLUMN public.ax_duene.herkunft_source_source_sourceextent IS 'qualit
 -- Name: COLUMN ax_duene.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_duene.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_duene.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -24281,7 +24281,7 @@ COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.processstep_posit
 -- Name: COLUMN ax_einrichtungenfuerdenschiffsverkehr.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -24295,7 +24295,7 @@ COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.processstep_addre
 -- Name: COLUMN ax_einrichtungenfuerdenschiffsverkehr.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -24330,14 +24330,14 @@ COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.processstep_ax_da
 -- Name: COLUMN ax_einrichtungenfuerdenschiffsverkehr.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_einrichtungenfuerdenschiffsverkehr.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -24351,7 +24351,7 @@ COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.processstep_sourc
 -- Name: COLUMN ax_einrichtungenfuerdenschiffsverkehr.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -24365,14 +24365,14 @@ COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.herkunft_source_s
 -- Name: COLUMN ax_einrichtungenfuerdenschiffsverkehr.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_einrichtungenfuerdenschiffsverkehr.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -24386,7 +24386,7 @@ COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.herkunft_source_s
 -- Name: COLUMN ax_einrichtungenfuerdenschiffsverkehr.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_einrichtungenfuerdenschiffsverkehr.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -24629,7 +24629,7 @@ COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.processstep_posi
 -- Name: COLUMN ax_einrichtunginoeffentlichenbereichen.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -24643,7 +24643,7 @@ COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.processstep_addr
 -- Name: COLUMN ax_einrichtunginoeffentlichenbereichen.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -24678,14 +24678,14 @@ COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.processstep_ax_d
 -- Name: COLUMN ax_einrichtunginoeffentlichenbereichen.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_einrichtunginoeffentlichenbereichen.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -24699,7 +24699,7 @@ COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.processstep_sour
 -- Name: COLUMN ax_einrichtunginoeffentlichenbereichen.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -24713,14 +24713,14 @@ COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.herkunft_source_
 -- Name: COLUMN ax_einrichtunginoeffentlichenbereichen.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_einrichtunginoeffentlichenbereichen.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -24734,7 +24734,7 @@ COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.herkunft_source_
 -- Name: COLUMN ax_einrichtunginoeffentlichenbereichen.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_einrichtunginoeffentlichenbereichen.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -25596,7 +25596,7 @@ COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.processstep_positionname IS
 -- Name: COLUMN ax_felsenfelsblockfelsnadel.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -25610,7 +25610,7 @@ COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.processstep_address IS 'qua
 -- Name: COLUMN ax_felsenfelsblockfelsnadel.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -25645,14 +25645,14 @@ COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.processstep_ax_datenerhebun
 -- Name: COLUMN ax_felsenfelsblockfelsnadel.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_felsenfelsblockfelsnadel.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -25666,7 +25666,7 @@ COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.processstep_sourceextent IS
 -- Name: COLUMN ax_felsenfelsblockfelsnadel.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -25680,14 +25680,14 @@ COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.herkunft_source_source_ax_d
 -- Name: COLUMN ax_felsenfelsblockfelsnadel.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_felsenfelsblockfelsnadel.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -25701,7 +25701,7 @@ COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.herkunft_source_source_sour
 -- Name: COLUMN ax_felsenfelsblockfelsnadel.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_felsenfelsblockfelsnadel.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -26645,7 +26645,7 @@ COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.processstep_po
 -- Name: COLUMN ax_flaechebesondererfunktionalerpraegung.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -26659,7 +26659,7 @@ COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.processstep_ad
 -- Name: COLUMN ax_flaechebesondererfunktionalerpraegung.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -26694,14 +26694,14 @@ COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.processstep_ax
 -- Name: COLUMN ax_flaechebesondererfunktionalerpraegung.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_flaechebesondererfunktionalerpraegung.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -26715,7 +26715,7 @@ COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.processstep_so
 -- Name: COLUMN ax_flaechebesondererfunktionalerpraegung.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -26729,14 +26729,14 @@ COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.herkunft_sourc
 -- Name: COLUMN ax_flaechebesondererfunktionalerpraegung.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_flaechebesondererfunktionalerpraegung.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -26750,7 +26750,7 @@ COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.herkunft_sourc
 -- Name: COLUMN ax_flaechebesondererfunktionalerpraegung.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_flaechebesondererfunktionalerpraegung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27010,7 +27010,7 @@ COMMENT ON COLUMN public.ax_flaechegemischternutzung.processstep_positionname IS
 -- Name: COLUMN ax_flaechegemischternutzung.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechegemischternutzung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flaechegemischternutzung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27024,7 +27024,7 @@ COMMENT ON COLUMN public.ax_flaechegemischternutzung.processstep_address IS 'qua
 -- Name: COLUMN ax_flaechegemischternutzung.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechegemischternutzung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flaechegemischternutzung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -27059,14 +27059,14 @@ COMMENT ON COLUMN public.ax_flaechegemischternutzung.processstep_ax_datenerhebun
 -- Name: COLUMN ax_flaechegemischternutzung.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechegemischternutzung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flaechegemischternutzung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_flaechegemischternutzung.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechegemischternutzung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flaechegemischternutzung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27080,7 +27080,7 @@ COMMENT ON COLUMN public.ax_flaechegemischternutzung.processstep_sourceextent IS
 -- Name: COLUMN ax_flaechegemischternutzung.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechegemischternutzung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_flaechegemischternutzung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27094,14 +27094,14 @@ COMMENT ON COLUMN public.ax_flaechegemischternutzung.herkunft_source_source_ax_d
 -- Name: COLUMN ax_flaechegemischternutzung.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechegemischternutzung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flaechegemischternutzung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_flaechegemischternutzung.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechegemischternutzung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flaechegemischternutzung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27115,7 +27115,7 @@ COMMENT ON COLUMN public.ax_flaechegemischternutzung.herkunft_source_source_sour
 -- Name: COLUMN ax_flaechegemischternutzung.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flaechegemischternutzung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_flaechegemischternutzung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27380,7 +27380,7 @@ COMMENT ON COLUMN public.ax_fliessgewaesser.processstep_positionname IS 'qualita
 -- Name: COLUMN ax_fliessgewaesser.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_fliessgewaesser.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_fliessgewaesser.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27394,7 +27394,7 @@ COMMENT ON COLUMN public.ax_fliessgewaesser.processstep_address IS 'qualitaetsan
 -- Name: COLUMN ax_fliessgewaesser.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_fliessgewaesser.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_fliessgewaesser.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -27429,14 +27429,14 @@ COMMENT ON COLUMN public.ax_fliessgewaesser.processstep_ax_datenerhebung IS 'qua
 -- Name: COLUMN ax_fliessgewaesser.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_fliessgewaesser.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_fliessgewaesser.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_fliessgewaesser.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_fliessgewaesser.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_fliessgewaesser.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27450,7 +27450,7 @@ COMMENT ON COLUMN public.ax_fliessgewaesser.processstep_sourceextent IS 'qualita
 -- Name: COLUMN ax_fliessgewaesser.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_fliessgewaesser.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_fliessgewaesser.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27464,14 +27464,14 @@ COMMENT ON COLUMN public.ax_fliessgewaesser.herkunft_source_source_ax_datenerheb
 -- Name: COLUMN ax_fliessgewaesser.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_fliessgewaesser.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_fliessgewaesser.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_fliessgewaesser.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_fliessgewaesser.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_fliessgewaesser.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27485,7 +27485,7 @@ COMMENT ON COLUMN public.ax_fliessgewaesser.herkunft_source_source_sourceextent 
 -- Name: COLUMN ax_fliessgewaesser.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_fliessgewaesser.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_fliessgewaesser.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27788,7 +27788,7 @@ COMMENT ON COLUMN public.ax_flugverkehr.processstep_positionname IS 'qualitaetsa
 -- Name: COLUMN ax_flugverkehr.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehr.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flugverkehr.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27802,7 +27802,7 @@ COMMENT ON COLUMN public.ax_flugverkehr.processstep_address IS 'qualitaetsangabe
 -- Name: COLUMN ax_flugverkehr.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehr.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flugverkehr.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -27837,14 +27837,14 @@ COMMENT ON COLUMN public.ax_flugverkehr.processstep_ax_datenerhebung IS 'qualita
 -- Name: COLUMN ax_flugverkehr.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehr.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flugverkehr.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_flugverkehr.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehr.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flugverkehr.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27858,7 +27858,7 @@ COMMENT ON COLUMN public.ax_flugverkehr.processstep_sourceextent IS 'qualitaetsa
 -- Name: COLUMN ax_flugverkehr.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehr.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_flugverkehr.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27872,14 +27872,14 @@ COMMENT ON COLUMN public.ax_flugverkehr.herkunft_source_source_ax_datenerhebung 
 -- Name: COLUMN ax_flugverkehr.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehr.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flugverkehr.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_flugverkehr.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehr.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flugverkehr.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -27893,7 +27893,7 @@ COMMENT ON COLUMN public.ax_flugverkehr.herkunft_source_source_sourceextent IS '
 -- Name: COLUMN ax_flugverkehr.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehr.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_flugverkehr.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -28232,7 +28232,7 @@ COMMENT ON COLUMN public.ax_flugverkehrsanlage.processstep_positionname IS 'qual
 -- Name: COLUMN ax_flugverkehrsanlage.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehrsanlage.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flugverkehrsanlage.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -28246,7 +28246,7 @@ COMMENT ON COLUMN public.ax_flugverkehrsanlage.processstep_address IS 'qualitaet
 -- Name: COLUMN ax_flugverkehrsanlage.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehrsanlage.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flugverkehrsanlage.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -28281,14 +28281,14 @@ COMMENT ON COLUMN public.ax_flugverkehrsanlage.processstep_ax_datenerhebung IS '
 -- Name: COLUMN ax_flugverkehrsanlage.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehrsanlage.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flugverkehrsanlage.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_flugverkehrsanlage.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehrsanlage.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flugverkehrsanlage.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -28302,7 +28302,7 @@ COMMENT ON COLUMN public.ax_flugverkehrsanlage.processstep_sourceextent IS 'qual
 -- Name: COLUMN ax_flugverkehrsanlage.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehrsanlage.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_flugverkehrsanlage.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -28316,14 +28316,14 @@ COMMENT ON COLUMN public.ax_flugverkehrsanlage.herkunft_source_source_ax_datener
 -- Name: COLUMN ax_flugverkehrsanlage.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehrsanlage.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flugverkehrsanlage.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_flugverkehrsanlage.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehrsanlage.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_flugverkehrsanlage.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -28337,7 +28337,7 @@ COMMENT ON COLUMN public.ax_flugverkehrsanlage.herkunft_source_source_sourceexte
 -- Name: COLUMN ax_flugverkehrsanlage.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_flugverkehrsanlage.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_flugverkehrsanlage.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -29006,7 +29006,7 @@ COMMENT ON COLUMN public.ax_forstrecht.processstep_positionname IS 'qualitaetsan
 -- Name: COLUMN ax_forstrecht.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_forstrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_forstrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -29020,7 +29020,7 @@ COMMENT ON COLUMN public.ax_forstrecht.processstep_address IS 'qualitaetsangaben
 -- Name: COLUMN ax_forstrecht.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_forstrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_forstrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -29055,14 +29055,14 @@ COMMENT ON COLUMN public.ax_forstrecht.processstep_ax_datenerhebung IS 'qualitae
 -- Name: COLUMN ax_forstrecht.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_forstrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_forstrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_forstrecht.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_forstrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_forstrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -29076,7 +29076,7 @@ COMMENT ON COLUMN public.ax_forstrecht.processstep_sourceextent IS 'qualitaetsan
 -- Name: COLUMN ax_forstrecht.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_forstrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_forstrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -29090,14 +29090,14 @@ COMMENT ON COLUMN public.ax_forstrecht.herkunft_source_source_ax_datenerhebung I
 -- Name: COLUMN ax_forstrecht.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_forstrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_forstrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_forstrecht.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_forstrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_forstrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -29111,7 +29111,7 @@ COMMENT ON COLUMN public.ax_forstrecht.herkunft_source_source_sourceextent IS 'q
 -- Name: COLUMN ax_forstrecht.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_forstrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_forstrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -30219,7 +30219,7 @@ COMMENT ON COLUMN public.ax_friedhof.processstep_positionname IS 'qualitaetsanga
 -- Name: COLUMN ax_friedhof.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_friedhof.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_friedhof.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -30233,7 +30233,7 @@ COMMENT ON COLUMN public.ax_friedhof.processstep_address IS 'qualitaetsangaben|A
 -- Name: COLUMN ax_friedhof.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_friedhof.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_friedhof.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -30268,14 +30268,14 @@ COMMENT ON COLUMN public.ax_friedhof.processstep_ax_datenerhebung IS 'qualitaets
 -- Name: COLUMN ax_friedhof.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_friedhof.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_friedhof.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_friedhof.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_friedhof.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_friedhof.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -30289,7 +30289,7 @@ COMMENT ON COLUMN public.ax_friedhof.processstep_sourceextent IS 'qualitaetsanga
 -- Name: COLUMN ax_friedhof.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_friedhof.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_friedhof.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -30303,14 +30303,14 @@ COMMENT ON COLUMN public.ax_friedhof.herkunft_source_source_ax_datenerhebung IS 
 -- Name: COLUMN ax_friedhof.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_friedhof.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_friedhof.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_friedhof.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_friedhof.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_friedhof.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -30324,7 +30324,7 @@ COMMENT ON COLUMN public.ax_friedhof.herkunft_source_source_sourceextent IS 'qua
 -- Name: COLUMN ax_friedhof.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_friedhof.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_friedhof.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -31273,7 +31273,7 @@ COMMENT ON COLUMN public.ax_gebaeude.processstep_positionname IS 'qualitaetsanga
 -- Name: COLUMN ax_gebaeude.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gebaeude.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gebaeude.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -31287,7 +31287,7 @@ COMMENT ON COLUMN public.ax_gebaeude.processstep_address IS 'qualitaetsangaben|A
 -- Name: COLUMN ax_gebaeude.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gebaeude.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gebaeude.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -31322,14 +31322,14 @@ COMMENT ON COLUMN public.ax_gebaeude.processstep_ax_datenerhebung IS 'qualitaets
 -- Name: COLUMN ax_gebaeude.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gebaeude.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gebaeude.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_gebaeude.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gebaeude.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gebaeude.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -31343,7 +31343,7 @@ COMMENT ON COLUMN public.ax_gebaeude.processstep_sourceextent IS 'qualitaetsanga
 -- Name: COLUMN ax_gebaeude.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gebaeude.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_gebaeude.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -31357,14 +31357,14 @@ COMMENT ON COLUMN public.ax_gebaeude.herkunft_source_source_ax_datenerhebung IS 
 -- Name: COLUMN ax_gebaeude.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gebaeude.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gebaeude.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_gebaeude.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gebaeude.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gebaeude.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -31378,7 +31378,7 @@ COMMENT ON COLUMN public.ax_gebaeude.herkunft_source_source_sourceextent IS 'qua
 -- Name: COLUMN ax_gebaeude.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gebaeude.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_gebaeude.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -32905,7 +32905,7 @@ COMMENT ON COLUMN public.ax_gehoelz.processstep_positionname IS 'qualitaetsangab
 -- Name: COLUMN ax_gehoelz.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gehoelz.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gehoelz.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -32919,7 +32919,7 @@ COMMENT ON COLUMN public.ax_gehoelz.processstep_address IS 'qualitaetsangaben|AX
 -- Name: COLUMN ax_gehoelz.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gehoelz.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gehoelz.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -32954,14 +32954,14 @@ COMMENT ON COLUMN public.ax_gehoelz.processstep_ax_datenerhebung IS 'qualitaetsa
 -- Name: COLUMN ax_gehoelz.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gehoelz.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gehoelz.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_gehoelz.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gehoelz.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gehoelz.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -32975,7 +32975,7 @@ COMMENT ON COLUMN public.ax_gehoelz.processstep_sourceextent IS 'qualitaetsangab
 -- Name: COLUMN ax_gehoelz.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gehoelz.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_gehoelz.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -32989,14 +32989,14 @@ COMMENT ON COLUMN public.ax_gehoelz.herkunft_source_source_ax_datenerhebung IS '
 -- Name: COLUMN ax_gehoelz.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gehoelz.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gehoelz.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_gehoelz.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gehoelz.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gehoelz.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -33010,7 +33010,7 @@ COMMENT ON COLUMN public.ax_gehoelz.herkunft_source_source_sourceextent IS 'qual
 -- Name: COLUMN ax_gehoelz.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gehoelz.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_gehoelz.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -34680,7 +34680,7 @@ COMMENT ON COLUMN public.ax_gewaessermerkmal.processstep_positionname IS 'qualit
 -- Name: COLUMN ax_gewaessermerkmal.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaessermerkmal.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gewaessermerkmal.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -34694,7 +34694,7 @@ COMMENT ON COLUMN public.ax_gewaessermerkmal.processstep_address IS 'qualitaetsa
 -- Name: COLUMN ax_gewaessermerkmal.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaessermerkmal.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gewaessermerkmal.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -34729,14 +34729,14 @@ COMMENT ON COLUMN public.ax_gewaessermerkmal.processstep_ax_datenerhebung IS 'qu
 -- Name: COLUMN ax_gewaessermerkmal.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaessermerkmal.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gewaessermerkmal.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_gewaessermerkmal.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaessermerkmal.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gewaessermerkmal.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -34750,7 +34750,7 @@ COMMENT ON COLUMN public.ax_gewaessermerkmal.processstep_sourceextent IS 'qualit
 -- Name: COLUMN ax_gewaessermerkmal.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaessermerkmal.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_gewaessermerkmal.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -34764,14 +34764,14 @@ COMMENT ON COLUMN public.ax_gewaessermerkmal.herkunft_source_source_ax_datenerhe
 -- Name: COLUMN ax_gewaessermerkmal.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaessermerkmal.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gewaessermerkmal.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_gewaessermerkmal.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaessermerkmal.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gewaessermerkmal.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -34785,7 +34785,7 @@ COMMENT ON COLUMN public.ax_gewaessermerkmal.herkunft_source_source_sourceextent
 -- Name: COLUMN ax_gewaessermerkmal.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaessermerkmal.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_gewaessermerkmal.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -35062,7 +35062,7 @@ COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.processstep_positionnam
 -- Name: COLUMN ax_gewaesserstationierungsachse.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -35076,7 +35076,7 @@ COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.processstep_address IS 
 -- Name: COLUMN ax_gewaesserstationierungsachse.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -35111,14 +35111,14 @@ COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.processstep_ax_datenerh
 -- Name: COLUMN ax_gewaesserstationierungsachse.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_gewaesserstationierungsachse.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -35132,7 +35132,7 @@ COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.processstep_sourceexten
 -- Name: COLUMN ax_gewaesserstationierungsachse.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -35146,14 +35146,14 @@ COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.herkunft_source_source_
 -- Name: COLUMN ax_gewaesserstationierungsachse.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_gewaesserstationierungsachse.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -35167,7 +35167,7 @@ COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.herkunft_source_source_
 -- Name: COLUMN ax_gewaesserstationierungsachse.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_gewaesserstationierungsachse.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -35573,7 +35573,7 @@ COMMENT ON COLUMN public.ax_gleis.processstep_positionname IS 'qualitaetsangaben
 -- Name: COLUMN ax_gleis.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gleis.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gleis.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -35587,7 +35587,7 @@ COMMENT ON COLUMN public.ax_gleis.processstep_address IS 'qualitaetsangaben|AX_D
 -- Name: COLUMN ax_gleis.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gleis.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gleis.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -35622,14 +35622,14 @@ COMMENT ON COLUMN public.ax_gleis.processstep_ax_datenerhebung IS 'qualitaetsang
 -- Name: COLUMN ax_gleis.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gleis.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gleis.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_gleis.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gleis.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gleis.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -35643,7 +35643,7 @@ COMMENT ON COLUMN public.ax_gleis.processstep_sourceextent IS 'qualitaetsangaben
 -- Name: COLUMN ax_gleis.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gleis.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_gleis.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -35657,14 +35657,14 @@ COMMENT ON COLUMN public.ax_gleis.herkunft_source_source_ax_datenerhebung IS 'qu
 -- Name: COLUMN ax_gleis.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gleis.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gleis.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_gleis.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gleis.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_gleis.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -35678,7 +35678,7 @@ COMMENT ON COLUMN public.ax_gleis.herkunft_source_source_sourceextent IS 'qualit
 -- Name: COLUMN ax_gleis.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_gleis.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_gleis.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -36032,7 +36032,7 @@ COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.processstep_positionname 
 -- Name: COLUMN ax_grablochderbodenschaetzung.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -36046,7 +36046,7 @@ COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.processstep_address IS 'q
 -- Name: COLUMN ax_grablochderbodenschaetzung.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -36081,14 +36081,14 @@ COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.processstep_ax_datenerheb
 -- Name: COLUMN ax_grablochderbodenschaetzung.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_grablochderbodenschaetzung.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -36102,7 +36102,7 @@ COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.processstep_sourceextent 
 -- Name: COLUMN ax_grablochderbodenschaetzung.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -36116,14 +36116,14 @@ COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.herkunft_source_source_ax
 -- Name: COLUMN ax_grablochderbodenschaetzung.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_grablochderbodenschaetzung.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -36137,7 +36137,7 @@ COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.herkunft_source_source_so
 -- Name: COLUMN ax_grablochderbodenschaetzung.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_grablochderbodenschaetzung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -36638,7 +36638,7 @@ COMMENT ON COLUMN public.ax_grenzuebergang.processstep_positionname IS 'qualitae
 -- Name: COLUMN ax_grenzuebergang.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grenzuebergang.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_grenzuebergang.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -36652,7 +36652,7 @@ COMMENT ON COLUMN public.ax_grenzuebergang.processstep_address IS 'qualitaetsang
 -- Name: COLUMN ax_grenzuebergang.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grenzuebergang.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_grenzuebergang.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -36687,14 +36687,14 @@ COMMENT ON COLUMN public.ax_grenzuebergang.processstep_ax_datenerhebung IS 'qual
 -- Name: COLUMN ax_grenzuebergang.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grenzuebergang.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_grenzuebergang.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_grenzuebergang.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grenzuebergang.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_grenzuebergang.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -36708,7 +36708,7 @@ COMMENT ON COLUMN public.ax_grenzuebergang.processstep_sourceextent IS 'qualitae
 -- Name: COLUMN ax_grenzuebergang.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grenzuebergang.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_grenzuebergang.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -36722,14 +36722,14 @@ COMMENT ON COLUMN public.ax_grenzuebergang.herkunft_source_source_ax_datenerhebu
 -- Name: COLUMN ax_grenzuebergang.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grenzuebergang.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_grenzuebergang.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_grenzuebergang.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grenzuebergang.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_grenzuebergang.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -36743,7 +36743,7 @@ COMMENT ON COLUMN public.ax_grenzuebergang.herkunft_source_source_sourceextent I
 -- Name: COLUMN ax_grenzuebergang.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_grenzuebergang.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_grenzuebergang.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37007,7 +37007,7 @@ COMMENT ON COLUMN public.ax_hafen.processstep_positionname IS 'qualitaetsangaben
 -- Name: COLUMN ax_hafen.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafen.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hafen.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37021,7 +37021,7 @@ COMMENT ON COLUMN public.ax_hafen.processstep_address IS 'qualitaetsangaben|AX_D
 -- Name: COLUMN ax_hafen.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafen.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hafen.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -37056,14 +37056,14 @@ COMMENT ON COLUMN public.ax_hafen.processstep_ax_datenerhebung IS 'qualitaetsang
 -- Name: COLUMN ax_hafen.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafen.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hafen.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_hafen.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafen.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hafen.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37077,7 +37077,7 @@ COMMENT ON COLUMN public.ax_hafen.processstep_sourceextent IS 'qualitaetsangaben
 -- Name: COLUMN ax_hafen.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafen.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_hafen.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37091,14 +37091,14 @@ COMMENT ON COLUMN public.ax_hafen.herkunft_source_source_ax_datenerhebung IS 'qu
 -- Name: COLUMN ax_hafen.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafen.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hafen.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_hafen.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafen.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hafen.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37112,7 +37112,7 @@ COMMENT ON COLUMN public.ax_hafen.herkunft_source_source_sourceextent IS 'qualit
 -- Name: COLUMN ax_hafen.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafen.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_hafen.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37356,7 +37356,7 @@ COMMENT ON COLUMN public.ax_hafenbecken.processstep_positionname IS 'qualitaetsa
 -- Name: COLUMN ax_hafenbecken.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafenbecken.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hafenbecken.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37370,7 +37370,7 @@ COMMENT ON COLUMN public.ax_hafenbecken.processstep_address IS 'qualitaetsangabe
 -- Name: COLUMN ax_hafenbecken.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafenbecken.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hafenbecken.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -37405,14 +37405,14 @@ COMMENT ON COLUMN public.ax_hafenbecken.processstep_ax_datenerhebung IS 'qualita
 -- Name: COLUMN ax_hafenbecken.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafenbecken.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hafenbecken.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_hafenbecken.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafenbecken.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hafenbecken.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37426,7 +37426,7 @@ COMMENT ON COLUMN public.ax_hafenbecken.processstep_sourceextent IS 'qualitaetsa
 -- Name: COLUMN ax_hafenbecken.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafenbecken.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_hafenbecken.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37440,14 +37440,14 @@ COMMENT ON COLUMN public.ax_hafenbecken.herkunft_source_source_ax_datenerhebung 
 -- Name: COLUMN ax_hafenbecken.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafenbecken.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hafenbecken.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_hafenbecken.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafenbecken.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hafenbecken.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37461,7 +37461,7 @@ COMMENT ON COLUMN public.ax_hafenbecken.herkunft_source_source_sourceextent IS '
 -- Name: COLUMN ax_hafenbecken.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hafenbecken.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_hafenbecken.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37775,7 +37775,7 @@ COMMENT ON COLUMN public.ax_halde.processstep_positionname IS 'qualitaetsangaben
 -- Name: COLUMN ax_halde.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_halde.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_halde.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37789,7 +37789,7 @@ COMMENT ON COLUMN public.ax_halde.processstep_address IS 'qualitaetsangaben|AX_D
 -- Name: COLUMN ax_halde.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_halde.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_halde.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -37824,14 +37824,14 @@ COMMENT ON COLUMN public.ax_halde.processstep_ax_datenerhebung IS 'qualitaetsang
 -- Name: COLUMN ax_halde.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_halde.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_halde.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_halde.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_halde.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_halde.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37845,7 +37845,7 @@ COMMENT ON COLUMN public.ax_halde.processstep_sourceextent IS 'qualitaetsangaben
 -- Name: COLUMN ax_halde.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_halde.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_halde.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37859,14 +37859,14 @@ COMMENT ON COLUMN public.ax_halde.herkunft_source_source_ax_datenerhebung IS 'qu
 -- Name: COLUMN ax_halde.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_halde.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_halde.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_halde.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_halde.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_halde.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -37880,7 +37880,7 @@ COMMENT ON COLUMN public.ax_halde.herkunft_source_source_sourceextent IS 'qualit
 -- Name: COLUMN ax_halde.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_halde.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_halde.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38130,7 +38130,7 @@ COMMENT ON COLUMN public.ax_heide.processstep_positionname IS 'qualitaetsangaben
 -- Name: COLUMN ax_heide.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heide.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_heide.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38144,7 +38144,7 @@ COMMENT ON COLUMN public.ax_heide.processstep_address IS 'qualitaetsangaben|AX_D
 -- Name: COLUMN ax_heide.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heide.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_heide.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -38179,14 +38179,14 @@ COMMENT ON COLUMN public.ax_heide.processstep_ax_datenerhebung IS 'qualitaetsang
 -- Name: COLUMN ax_heide.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heide.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_heide.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_heide.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heide.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_heide.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38200,7 +38200,7 @@ COMMENT ON COLUMN public.ax_heide.processstep_sourceextent IS 'qualitaetsangaben
 -- Name: COLUMN ax_heide.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heide.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_heide.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38214,14 +38214,14 @@ COMMENT ON COLUMN public.ax_heide.herkunft_source_source_ax_datenerhebung IS 'qu
 -- Name: COLUMN ax_heide.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heide.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_heide.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_heide.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heide.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_heide.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38235,7 +38235,7 @@ COMMENT ON COLUMN public.ax_heide.herkunft_source_source_sourceextent IS 'qualit
 -- Name: COLUMN ax_heide.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heide.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_heide.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38479,7 +38479,7 @@ COMMENT ON COLUMN public.ax_heilquellegasquelle.processstep_positionname IS 'qua
 -- Name: COLUMN ax_heilquellegasquelle.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heilquellegasquelle.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_heilquellegasquelle.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38493,7 +38493,7 @@ COMMENT ON COLUMN public.ax_heilquellegasquelle.processstep_address IS 'qualitae
 -- Name: COLUMN ax_heilquellegasquelle.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heilquellegasquelle.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_heilquellegasquelle.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -38528,14 +38528,14 @@ COMMENT ON COLUMN public.ax_heilquellegasquelle.processstep_ax_datenerhebung IS 
 -- Name: COLUMN ax_heilquellegasquelle.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heilquellegasquelle.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_heilquellegasquelle.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_heilquellegasquelle.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heilquellegasquelle.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_heilquellegasquelle.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38549,7 +38549,7 @@ COMMENT ON COLUMN public.ax_heilquellegasquelle.processstep_sourceextent IS 'qua
 -- Name: COLUMN ax_heilquellegasquelle.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heilquellegasquelle.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_heilquellegasquelle.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38563,14 +38563,14 @@ COMMENT ON COLUMN public.ax_heilquellegasquelle.herkunft_source_source_ax_datene
 -- Name: COLUMN ax_heilquellegasquelle.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heilquellegasquelle.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_heilquellegasquelle.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_heilquellegasquelle.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heilquellegasquelle.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_heilquellegasquelle.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38584,7 +38584,7 @@ COMMENT ON COLUMN public.ax_heilquellegasquelle.herkunft_source_source_sourceext
 -- Name: COLUMN ax_heilquellegasquelle.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_heilquellegasquelle.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_heilquellegasquelle.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38844,7 +38844,7 @@ COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.proces
 -- Name: COLUMN ax_historischesbauwerkoderhistorischeeinrichtung.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38858,7 +38858,7 @@ COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.proces
 -- Name: COLUMN ax_historischesbauwerkoderhistorischeeinrichtung.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -38893,14 +38893,14 @@ COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.proces
 -- Name: COLUMN ax_historischesbauwerkoderhistorischeeinrichtung.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_historischesbauwerkoderhistorischeeinrichtung.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38914,7 +38914,7 @@ COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.proces
 -- Name: COLUMN ax_historischesbauwerkoderhistorischeeinrichtung.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38928,14 +38928,14 @@ COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.herkun
 -- Name: COLUMN ax_historischesbauwerkoderhistorischeeinrichtung.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_historischesbauwerkoderhistorischeeinrichtung.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -38949,7 +38949,7 @@ COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.herkun
 -- Name: COLUMN ax_historischesbauwerkoderhistorischeeinrichtung.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_historischesbauwerkoderhistorischeeinrichtung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -40652,7 +40652,7 @@ COMMENT ON COLUMN public.ax_hoehenlinie.processstep_positionname IS 'qualitaetsa
 -- Name: COLUMN ax_hoehenlinie.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehenlinie.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hoehenlinie.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -40666,7 +40666,7 @@ COMMENT ON COLUMN public.ax_hoehenlinie.processstep_address IS 'qualitaetsangabe
 -- Name: COLUMN ax_hoehenlinie.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehenlinie.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hoehenlinie.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -40701,14 +40701,14 @@ COMMENT ON COLUMN public.ax_hoehenlinie.processstep_ax_datenerhebung IS 'qualita
 -- Name: COLUMN ax_hoehenlinie.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehenlinie.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hoehenlinie.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_hoehenlinie.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehenlinie.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hoehenlinie.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -40722,7 +40722,7 @@ COMMENT ON COLUMN public.ax_hoehenlinie.processstep_sourceextent IS 'qualitaetsa
 -- Name: COLUMN ax_hoehenlinie.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehenlinie.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_hoehenlinie.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -40736,14 +40736,14 @@ COMMENT ON COLUMN public.ax_hoehenlinie.herkunft_source_source_ax_datenerhebung 
 -- Name: COLUMN ax_hoehenlinie.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehenlinie.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hoehenlinie.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_hoehenlinie.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehenlinie.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hoehenlinie.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -40757,7 +40757,7 @@ COMMENT ON COLUMN public.ax_hoehenlinie.herkunft_source_source_sourceextent IS '
 -- Name: COLUMN ax_hoehenlinie.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehenlinie.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_hoehenlinie.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -40971,7 +40971,7 @@ COMMENT ON COLUMN public.ax_hoehleneingang.processstep_positionname IS 'qualitae
 -- Name: COLUMN ax_hoehleneingang.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehleneingang.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hoehleneingang.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -40985,7 +40985,7 @@ COMMENT ON COLUMN public.ax_hoehleneingang.processstep_address IS 'qualitaetsang
 -- Name: COLUMN ax_hoehleneingang.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehleneingang.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hoehleneingang.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -41020,14 +41020,14 @@ COMMENT ON COLUMN public.ax_hoehleneingang.processstep_ax_datenerhebung IS 'qual
 -- Name: COLUMN ax_hoehleneingang.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehleneingang.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hoehleneingang.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_hoehleneingang.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehleneingang.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hoehleneingang.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -41041,7 +41041,7 @@ COMMENT ON COLUMN public.ax_hoehleneingang.processstep_sourceextent IS 'qualitae
 -- Name: COLUMN ax_hoehleneingang.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehleneingang.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_hoehleneingang.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -41055,14 +41055,14 @@ COMMENT ON COLUMN public.ax_hoehleneingang.herkunft_source_source_ax_datenerhebu
 -- Name: COLUMN ax_hoehleneingang.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehleneingang.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hoehleneingang.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_hoehleneingang.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehleneingang.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_hoehleneingang.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -41076,7 +41076,7 @@ COMMENT ON COLUMN public.ax_hoehleneingang.herkunft_source_source_sourceextent I
 -- Name: COLUMN ax_hoehleneingang.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_hoehleneingang.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_hoehleneingang.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -41465,7 +41465,7 @@ COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.processstep_positionname 
 -- Name: COLUMN ax_industrieundgewerbeflaeche.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -41479,7 +41479,7 @@ COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.processstep_address IS 'q
 -- Name: COLUMN ax_industrieundgewerbeflaeche.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -41514,14 +41514,14 @@ COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.processstep_ax_datenerheb
 -- Name: COLUMN ax_industrieundgewerbeflaeche.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_industrieundgewerbeflaeche.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -41535,7 +41535,7 @@ COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.processstep_sourceextent 
 -- Name: COLUMN ax_industrieundgewerbeflaeche.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -41549,14 +41549,14 @@ COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.herkunft_source_source_ax
 -- Name: COLUMN ax_industrieundgewerbeflaeche.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_industrieundgewerbeflaeche.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -41570,7 +41570,7 @@ COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.herkunft_source_source_so
 -- Name: COLUMN ax_industrieundgewerbeflaeche.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_industrieundgewerbeflaeche.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -42247,7 +42247,7 @@ COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.processstep_positio
 -- Name: COLUMN ax_klassifizierungnachstrassenrecht.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -42261,7 +42261,7 @@ COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.processstep_address
 -- Name: COLUMN ax_klassifizierungnachstrassenrecht.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -42296,14 +42296,14 @@ COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.processstep_ax_date
 -- Name: COLUMN ax_klassifizierungnachstrassenrecht.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_klassifizierungnachstrassenrecht.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -42317,7 +42317,7 @@ COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.processstep_sourcee
 -- Name: COLUMN ax_klassifizierungnachstrassenrecht.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -42331,14 +42331,14 @@ COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.herkunft_source_sou
 -- Name: COLUMN ax_klassifizierungnachstrassenrecht.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_klassifizierungnachstrassenrecht.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -42352,7 +42352,7 @@ COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.herkunft_source_sou
 -- Name: COLUMN ax_klassifizierungnachstrassenrecht.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_klassifizierungnachstrassenrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -42596,7 +42596,7 @@ COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.processstep_positionn
 -- Name: COLUMN ax_klassifizierungnachwasserrecht.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -42610,7 +42610,7 @@ COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.processstep_address I
 -- Name: COLUMN ax_klassifizierungnachwasserrecht.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -42645,14 +42645,14 @@ COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.processstep_ax_datene
 -- Name: COLUMN ax_klassifizierungnachwasserrecht.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_klassifizierungnachwasserrecht.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -42666,7 +42666,7 @@ COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.processstep_sourceext
 -- Name: COLUMN ax_klassifizierungnachwasserrecht.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -42680,14 +42680,14 @@ COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.herkunft_source_sourc
 -- Name: COLUMN ax_klassifizierungnachwasserrecht.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_klassifizierungnachwasserrecht.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -42701,7 +42701,7 @@ COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.herkunft_source_sourc
 -- Name: COLUMN ax_klassifizierungnachwasserrecht.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_klassifizierungnachwasserrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -45457,7 +45457,7 @@ COMMENT ON COLUMN public.ax_landwirtschaft.processstep_positionname IS 'qualitae
 -- Name: COLUMN ax_landwirtschaft.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_landwirtschaft.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_landwirtschaft.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -45471,7 +45471,7 @@ COMMENT ON COLUMN public.ax_landwirtschaft.processstep_address IS 'qualitaetsang
 -- Name: COLUMN ax_landwirtschaft.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_landwirtschaft.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_landwirtschaft.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -45506,14 +45506,14 @@ COMMENT ON COLUMN public.ax_landwirtschaft.processstep_ax_datenerhebung IS 'qual
 -- Name: COLUMN ax_landwirtschaft.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_landwirtschaft.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_landwirtschaft.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_landwirtschaft.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_landwirtschaft.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_landwirtschaft.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -45527,7 +45527,7 @@ COMMENT ON COLUMN public.ax_landwirtschaft.processstep_sourceextent IS 'qualitae
 -- Name: COLUMN ax_landwirtschaft.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_landwirtschaft.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_landwirtschaft.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -45541,14 +45541,14 @@ COMMENT ON COLUMN public.ax_landwirtschaft.herkunft_source_source_ax_datenerhebu
 -- Name: COLUMN ax_landwirtschaft.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_landwirtschaft.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_landwirtschaft.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_landwirtschaft.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_landwirtschaft.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_landwirtschaft.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -45562,7 +45562,7 @@ COMMENT ON COLUMN public.ax_landwirtschaft.herkunft_source_source_sourceextent I
 -- Name: COLUMN ax_landwirtschaft.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_landwirtschaft.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_landwirtschaft.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -45806,7 +45806,7 @@ COMMENT ON COLUMN public.ax_leitung.processstep_positionname IS 'qualitaetsangab
 -- Name: COLUMN ax_leitung.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_leitung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_leitung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -45820,7 +45820,7 @@ COMMENT ON COLUMN public.ax_leitung.processstep_address IS 'qualitaetsangaben|AX
 -- Name: COLUMN ax_leitung.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_leitung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_leitung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -45855,14 +45855,14 @@ COMMENT ON COLUMN public.ax_leitung.processstep_ax_datenerhebung IS 'qualitaetsa
 -- Name: COLUMN ax_leitung.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_leitung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_leitung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_leitung.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_leitung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_leitung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -45876,7 +45876,7 @@ COMMENT ON COLUMN public.ax_leitung.processstep_sourceextent IS 'qualitaetsangab
 -- Name: COLUMN ax_leitung.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_leitung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_leitung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -45890,14 +45890,14 @@ COMMENT ON COLUMN public.ax_leitung.herkunft_source_source_ax_datenerhebung IS '
 -- Name: COLUMN ax_leitung.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_leitung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_leitung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_leitung.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_leitung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_leitung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -45911,7 +45911,7 @@ COMMENT ON COLUMN public.ax_leitung.herkunft_source_source_sourceextent IS 'qual
 -- Name: COLUMN ax_leitung.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_leitung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_leitung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -46479,7 +46479,7 @@ COMMENT ON COLUMN public.ax_meer.processstep_positionname IS 'qualitaetsangaben|
 -- Name: COLUMN ax_meer.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_meer.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_meer.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -46493,7 +46493,7 @@ COMMENT ON COLUMN public.ax_meer.processstep_address IS 'qualitaetsangaben|AX_DQ
 -- Name: COLUMN ax_meer.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_meer.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_meer.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -46528,14 +46528,14 @@ COMMENT ON COLUMN public.ax_meer.processstep_ax_datenerhebung IS 'qualitaetsanga
 -- Name: COLUMN ax_meer.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_meer.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_meer.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_meer.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_meer.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_meer.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -46549,7 +46549,7 @@ COMMENT ON COLUMN public.ax_meer.processstep_sourceextent IS 'qualitaetsangaben|
 -- Name: COLUMN ax_meer.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_meer.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_meer.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -46563,14 +46563,14 @@ COMMENT ON COLUMN public.ax_meer.herkunft_source_source_ax_datenerhebung IS 'qua
 -- Name: COLUMN ax_meer.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_meer.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_meer.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_meer.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_meer.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_meer.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -46584,7 +46584,7 @@ COMMENT ON COLUMN public.ax_meer.herkunft_source_source_sourceextent IS 'qualita
 -- Name: COLUMN ax_meer.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_meer.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_meer.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -46930,7 +46930,7 @@ COMMENT ON COLUMN public.ax_moor.processstep_positionname IS 'qualitaetsangaben|
 -- Name: COLUMN ax_moor.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_moor.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_moor.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -46944,7 +46944,7 @@ COMMENT ON COLUMN public.ax_moor.processstep_address IS 'qualitaetsangaben|AX_DQ
 -- Name: COLUMN ax_moor.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_moor.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_moor.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -46979,14 +46979,14 @@ COMMENT ON COLUMN public.ax_moor.processstep_ax_datenerhebung IS 'qualitaetsanga
 -- Name: COLUMN ax_moor.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_moor.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_moor.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_moor.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_moor.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_moor.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -47000,7 +47000,7 @@ COMMENT ON COLUMN public.ax_moor.processstep_sourceextent IS 'qualitaetsangaben|
 -- Name: COLUMN ax_moor.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_moor.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_moor.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -47014,14 +47014,14 @@ COMMENT ON COLUMN public.ax_moor.herkunft_source_source_ax_datenerhebung IS 'qua
 -- Name: COLUMN ax_moor.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_moor.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_moor.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_moor.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_moor.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_moor.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -47035,7 +47035,7 @@ COMMENT ON COLUMN public.ax_moor.herkunft_source_source_sourceextent IS 'qualita
 -- Name: COLUMN ax_moor.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_moor.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_moor.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -47330,7 +47330,7 @@ COMMENT ON COLUMN public.ax_musterundvergleichsstueck.processstep_positionname I
 -- Name: COLUMN ax_musterundvergleichsstueck.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_musterundvergleichsstueck.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_musterundvergleichsstueck.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -47344,7 +47344,7 @@ COMMENT ON COLUMN public.ax_musterundvergleichsstueck.processstep_address IS 'qu
 -- Name: COLUMN ax_musterundvergleichsstueck.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_musterundvergleichsstueck.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_musterundvergleichsstueck.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -47379,14 +47379,14 @@ COMMENT ON COLUMN public.ax_musterundvergleichsstueck.processstep_ax_datenerhebu
 -- Name: COLUMN ax_musterundvergleichsstueck.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_musterundvergleichsstueck.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_musterundvergleichsstueck.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_musterundvergleichsstueck.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_musterundvergleichsstueck.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_musterundvergleichsstueck.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -47400,7 +47400,7 @@ COMMENT ON COLUMN public.ax_musterundvergleichsstueck.processstep_sourceextent I
 -- Name: COLUMN ax_musterundvergleichsstueck.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_musterundvergleichsstueck.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_musterundvergleichsstueck.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -47414,14 +47414,14 @@ COMMENT ON COLUMN public.ax_musterundvergleichsstueck.herkunft_source_source_ax_
 -- Name: COLUMN ax_musterundvergleichsstueck.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_musterundvergleichsstueck.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_musterundvergleichsstueck.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_musterundvergleichsstueck.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_musterundvergleichsstueck.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_musterundvergleichsstueck.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -47435,7 +47435,7 @@ COMMENT ON COLUMN public.ax_musterundvergleichsstueck.herkunft_source_source_sou
 -- Name: COLUMN ax_musterundvergleichsstueck.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_musterundvergleichsstueck.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_musterundvergleichsstueck.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48096,7 +48096,7 @@ COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.processstep_position
 -- Name: COLUMN ax_naturumweltoderbodenschutzrecht.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48110,7 +48110,7 @@ COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.processstep_address 
 -- Name: COLUMN ax_naturumweltoderbodenschutzrecht.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -48145,14 +48145,14 @@ COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.processstep_ax_daten
 -- Name: COLUMN ax_naturumweltoderbodenschutzrecht.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_naturumweltoderbodenschutzrecht.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48166,7 +48166,7 @@ COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.processstep_sourceex
 -- Name: COLUMN ax_naturumweltoderbodenschutzrecht.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48180,14 +48180,14 @@ COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.herkunft_source_sour
 -- Name: COLUMN ax_naturumweltoderbodenschutzrecht.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_naturumweltoderbodenschutzrecht.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48201,7 +48201,7 @@ COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.herkunft_source_sour
 -- Name: COLUMN ax_naturumweltoderbodenschutzrecht.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_naturumweltoderbodenschutzrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48426,7 +48426,7 @@ COMMENT ON COLUMN public.ax_netzknoten.processstep_positionname IS 'qualitaetsan
 -- Name: COLUMN ax_netzknoten.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_netzknoten.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_netzknoten.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48440,7 +48440,7 @@ COMMENT ON COLUMN public.ax_netzknoten.processstep_address IS 'qualitaetsangaben
 -- Name: COLUMN ax_netzknoten.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_netzknoten.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_netzknoten.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -48475,14 +48475,14 @@ COMMENT ON COLUMN public.ax_netzknoten.processstep_ax_datenerhebung IS 'qualitae
 -- Name: COLUMN ax_netzknoten.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_netzknoten.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_netzknoten.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_netzknoten.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_netzknoten.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_netzknoten.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48496,7 +48496,7 @@ COMMENT ON COLUMN public.ax_netzknoten.processstep_sourceextent IS 'qualitaetsan
 -- Name: COLUMN ax_netzknoten.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_netzknoten.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_netzknoten.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48510,14 +48510,14 @@ COMMENT ON COLUMN public.ax_netzknoten.herkunft_source_source_ax_datenerhebung I
 -- Name: COLUMN ax_netzknoten.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_netzknoten.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_netzknoten.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_netzknoten.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_netzknoten.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_netzknoten.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48531,7 +48531,7 @@ COMMENT ON COLUMN public.ax_netzknoten.herkunft_source_source_sourceextent IS 'q
 -- Name: COLUMN ax_netzknoten.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_netzknoten.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_netzknoten.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48780,7 +48780,7 @@ COMMENT ON COLUMN public.ax_nullpunkt.processstep_positionname IS 'qualitaetsang
 -- Name: COLUMN ax_nullpunkt.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_nullpunkt.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_nullpunkt.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48794,7 +48794,7 @@ COMMENT ON COLUMN public.ax_nullpunkt.processstep_address IS 'qualitaetsangaben|
 -- Name: COLUMN ax_nullpunkt.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_nullpunkt.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_nullpunkt.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -48829,14 +48829,14 @@ COMMENT ON COLUMN public.ax_nullpunkt.processstep_ax_datenerhebung IS 'qualitaet
 -- Name: COLUMN ax_nullpunkt.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_nullpunkt.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_nullpunkt.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_nullpunkt.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_nullpunkt.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_nullpunkt.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48850,7 +48850,7 @@ COMMENT ON COLUMN public.ax_nullpunkt.processstep_sourceextent IS 'qualitaetsang
 -- Name: COLUMN ax_nullpunkt.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_nullpunkt.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_nullpunkt.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48864,14 +48864,14 @@ COMMENT ON COLUMN public.ax_nullpunkt.herkunft_source_source_ax_datenerhebung IS
 -- Name: COLUMN ax_nullpunkt.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_nullpunkt.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_nullpunkt.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_nullpunkt.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_nullpunkt.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_nullpunkt.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -48885,7 +48885,7 @@ COMMENT ON COLUMN public.ax_nullpunkt.herkunft_source_source_sourceextent IS 'qu
 -- Name: COLUMN ax_nullpunkt.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_nullpunkt.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_nullpunkt.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -49335,7 +49335,7 @@ COMMENT ON COLUMN public.ax_ortslage.processstep_positionname IS 'qualitaetsanga
 -- Name: COLUMN ax_ortslage.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ortslage.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_ortslage.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -49349,7 +49349,7 @@ COMMENT ON COLUMN public.ax_ortslage.processstep_address IS 'qualitaetsangaben|A
 -- Name: COLUMN ax_ortslage.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ortslage.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_ortslage.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -49384,14 +49384,14 @@ COMMENT ON COLUMN public.ax_ortslage.processstep_ax_datenerhebung IS 'qualitaets
 -- Name: COLUMN ax_ortslage.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ortslage.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_ortslage.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_ortslage.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ortslage.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_ortslage.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -49405,7 +49405,7 @@ COMMENT ON COLUMN public.ax_ortslage.processstep_sourceextent IS 'qualitaetsanga
 -- Name: COLUMN ax_ortslage.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ortslage.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_ortslage.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -49419,14 +49419,14 @@ COMMENT ON COLUMN public.ax_ortslage.herkunft_source_source_ax_datenerhebung IS 
 -- Name: COLUMN ax_ortslage.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ortslage.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_ortslage.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_ortslage.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ortslage.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_ortslage.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -49440,7 +49440,7 @@ COMMENT ON COLUMN public.ax_ortslage.herkunft_source_source_sourceextent IS 'qua
 -- Name: COLUMN ax_ortslage.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_ortslage.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_ortslage.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -49738,7 +49738,7 @@ COMMENT ON COLUMN public.ax_person.processstep_positionname IS 'qualitaetsangabe
 -- Name: COLUMN ax_person.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_person.processstep_phone IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_person.processstep_phone IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -49752,7 +49752,7 @@ COMMENT ON COLUMN public.ax_person.processstep_address IS 'qualitaetsangaben|AX_
 -- Name: COLUMN ax_person.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_person.processstep_onlineresource IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_person.processstep_onlineresource IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -49787,14 +49787,14 @@ COMMENT ON COLUMN public.ax_person.processstep_ax_datenerhebung IS 'qualitaetsan
 -- Name: COLUMN ax_person.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_person.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_person.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_person.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_person.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_person.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -49808,7 +49808,7 @@ COMMENT ON COLUMN public.ax_person.processstep_sourceextent IS 'qualitaetsangabe
 -- Name: COLUMN ax_person.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_person.processstep_sourcestep IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_person.processstep_sourcestep IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -49822,14 +49822,14 @@ COMMENT ON COLUMN public.ax_person.herkunft_source_source_ax_datenerhebung IS 'q
 -- Name: COLUMN ax_person.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_person.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_person.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_person.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_person.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_person.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -49843,7 +49843,7 @@ COMMENT ON COLUMN public.ax_person.herkunft_source_source_sourceextent IS 'quali
 -- Name: COLUMN ax_person.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_person.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_person.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -50295,7 +50295,7 @@ COMMENT ON COLUMN public.ax_platz.processstep_positionname IS 'qualitaetsangaben
 -- Name: COLUMN ax_platz.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_platz.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_platz.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -50309,7 +50309,7 @@ COMMENT ON COLUMN public.ax_platz.processstep_address IS 'qualitaetsangaben|AX_D
 -- Name: COLUMN ax_platz.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_platz.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_platz.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -50344,14 +50344,14 @@ COMMENT ON COLUMN public.ax_platz.processstep_ax_datenerhebung IS 'qualitaetsang
 -- Name: COLUMN ax_platz.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_platz.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_platz.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_platz.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_platz.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_platz.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -50365,7 +50365,7 @@ COMMENT ON COLUMN public.ax_platz.processstep_sourceextent IS 'qualitaetsangaben
 -- Name: COLUMN ax_platz.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_platz.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_platz.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -50379,14 +50379,14 @@ COMMENT ON COLUMN public.ax_platz.herkunft_source_source_ax_datenerhebung IS 'qu
 -- Name: COLUMN ax_platz.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_platz.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_platz.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_platz.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_platz.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_platz.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -50400,7 +50400,7 @@ COMMENT ON COLUMN public.ax_platz.herkunft_source_source_sourceextent IS 'qualit
 -- Name: COLUMN ax_platz.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_platz.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_platz.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -50707,7 +50707,7 @@ COMMENT ON COLUMN public.ax_polder.processstep_positionname IS 'qualitaetsangabe
 -- Name: COLUMN ax_polder.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_polder.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_polder.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -50721,7 +50721,7 @@ COMMENT ON COLUMN public.ax_polder.processstep_address IS 'qualitaetsangaben|AX_
 -- Name: COLUMN ax_polder.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_polder.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_polder.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -50756,14 +50756,14 @@ COMMENT ON COLUMN public.ax_polder.processstep_ax_datenerhebung IS 'qualitaetsan
 -- Name: COLUMN ax_polder.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_polder.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_polder.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_polder.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_polder.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_polder.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -50777,7 +50777,7 @@ COMMENT ON COLUMN public.ax_polder.processstep_sourceextent IS 'qualitaetsangabe
 -- Name: COLUMN ax_polder.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_polder.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_polder.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -50791,14 +50791,14 @@ COMMENT ON COLUMN public.ax_polder.herkunft_source_source_ax_datenerhebung IS 'q
 -- Name: COLUMN ax_polder.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_polder.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_polder.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_polder.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_polder.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_polder.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -50812,7 +50812,7 @@ COMMENT ON COLUMN public.ax_polder.herkunft_source_source_sourceextent IS 'quali
 -- Name: COLUMN ax_polder.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_polder.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_polder.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -51815,7 +51815,7 @@ COMMENT ON COLUMN public.ax_punktortag.processstep_positionname IS 'qualitaetsan
 -- Name: COLUMN ax_punktortag.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortag.processstep_phone IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortag.processstep_phone IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -51829,7 +51829,7 @@ COMMENT ON COLUMN public.ax_punktortag.processstep_address IS 'qualitaetsangaben
 -- Name: COLUMN ax_punktortag.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortag.processstep_onlineresource IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortag.processstep_onlineresource IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -51864,14 +51864,14 @@ COMMENT ON COLUMN public.ax_punktortag.processstep_ax_datenerhebung_punktort IS 
 -- Name: COLUMN ax_punktortag.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortag.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortag.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_punktortag.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortag.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortag.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -51885,7 +51885,7 @@ COMMENT ON COLUMN public.ax_punktortag.processstep_sourceextent IS 'qualitaetsan
 -- Name: COLUMN ax_punktortag.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortag.processstep_sourcestep IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_punktortag.processstep_sourcestep IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -51899,14 +51899,14 @@ COMMENT ON COLUMN public.ax_punktortag.herkunft_source_source_ax_datenerhebung_p
 -- Name: COLUMN ax_punktortag.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortag.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortag.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_punktortag.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortag.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortag.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -51920,7 +51920,7 @@ COMMENT ON COLUMN public.ax_punktortag.herkunft_source_source_sourceextent IS 'q
 -- Name: COLUMN ax_punktortag.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortag.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_punktortag.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -52188,7 +52188,7 @@ COMMENT ON COLUMN public.ax_punktortau.processstep_positionname IS 'qualitaetsan
 -- Name: COLUMN ax_punktortau.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortau.processstep_phone IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortau.processstep_phone IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -52202,7 +52202,7 @@ COMMENT ON COLUMN public.ax_punktortau.processstep_address IS 'qualitaetsangaben
 -- Name: COLUMN ax_punktortau.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortau.processstep_onlineresource IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortau.processstep_onlineresource IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -52237,14 +52237,14 @@ COMMENT ON COLUMN public.ax_punktortau.processstep_ax_datenerhebung_punktort IS 
 -- Name: COLUMN ax_punktortau.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortau.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortau.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_punktortau.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortau.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortau.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -52258,7 +52258,7 @@ COMMENT ON COLUMN public.ax_punktortau.processstep_sourceextent IS 'qualitaetsan
 -- Name: COLUMN ax_punktortau.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortau.processstep_sourcestep IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_punktortau.processstep_sourcestep IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -52272,14 +52272,14 @@ COMMENT ON COLUMN public.ax_punktortau.herkunft_source_source_ax_datenerhebung_p
 -- Name: COLUMN ax_punktortau.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortau.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortau.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_punktortau.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortau.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortau.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -52293,7 +52293,7 @@ COMMENT ON COLUMN public.ax_punktortau.herkunft_source_source_sourceextent IS 'q
 -- Name: COLUMN ax_punktortau.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortau.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_punktortau.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -52561,7 +52561,7 @@ COMMENT ON COLUMN public.ax_punktortta.processstep_positionname IS 'qualitaetsan
 -- Name: COLUMN ax_punktortta.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortta.processstep_phone IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortta.processstep_phone IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -52575,7 +52575,7 @@ COMMENT ON COLUMN public.ax_punktortta.processstep_address IS 'qualitaetsangaben
 -- Name: COLUMN ax_punktortta.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortta.processstep_onlineresource IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortta.processstep_onlineresource IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -52610,14 +52610,14 @@ COMMENT ON COLUMN public.ax_punktortta.processstep_ax_datenerhebung_punktort IS 
 -- Name: COLUMN ax_punktortta.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortta.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortta.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_punktortta.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortta.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortta.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -52631,7 +52631,7 @@ COMMENT ON COLUMN public.ax_punktortta.processstep_sourceextent IS 'qualitaetsan
 -- Name: COLUMN ax_punktortta.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortta.processstep_sourcestep IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_punktortta.processstep_sourcestep IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -52645,14 +52645,14 @@ COMMENT ON COLUMN public.ax_punktortta.herkunft_source_source_ax_datenerhebung_p
 -- Name: COLUMN ax_punktortta.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortta.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortta.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_punktortta.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortta.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_punktortta.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -52666,7 +52666,7 @@ COMMENT ON COLUMN public.ax_punktortta.herkunft_source_source_sourceextent IS 'q
 -- Name: COLUMN ax_punktortta.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_punktortta.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_punktortta.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQPunktort|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -54360,7 +54360,7 @@ COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.processstep_positionna
 -- Name: COLUMN ax_schifffahrtsliniefaehrverkehr.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -54374,7 +54374,7 @@ COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.processstep_address IS
 -- Name: COLUMN ax_schifffahrtsliniefaehrverkehr.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -54409,14 +54409,14 @@ COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.processstep_ax_datener
 -- Name: COLUMN ax_schifffahrtsliniefaehrverkehr.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_schifffahrtsliniefaehrverkehr.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -54430,7 +54430,7 @@ COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.processstep_sourceexte
 -- Name: COLUMN ax_schifffahrtsliniefaehrverkehr.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -54444,14 +54444,14 @@ COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.herkunft_source_source
 -- Name: COLUMN ax_schifffahrtsliniefaehrverkehr.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_schifffahrtsliniefaehrverkehr.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -54465,7 +54465,7 @@ COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.herkunft_source_source
 -- Name: COLUMN ax_schifffahrtsliniefaehrverkehr.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_schifffahrtsliniefaehrverkehr.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -54708,7 +54708,7 @@ COMMENT ON COLUMN public.ax_schiffsverkehr.processstep_positionname IS 'qualitae
 -- Name: COLUMN ax_schiffsverkehr.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schiffsverkehr.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schiffsverkehr.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -54722,7 +54722,7 @@ COMMENT ON COLUMN public.ax_schiffsverkehr.processstep_address IS 'qualitaetsang
 -- Name: COLUMN ax_schiffsverkehr.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schiffsverkehr.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schiffsverkehr.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -54757,14 +54757,14 @@ COMMENT ON COLUMN public.ax_schiffsverkehr.processstep_ax_datenerhebung IS 'qual
 -- Name: COLUMN ax_schiffsverkehr.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schiffsverkehr.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schiffsverkehr.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_schiffsverkehr.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schiffsverkehr.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schiffsverkehr.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -54778,7 +54778,7 @@ COMMENT ON COLUMN public.ax_schiffsverkehr.processstep_sourceextent IS 'qualitae
 -- Name: COLUMN ax_schiffsverkehr.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schiffsverkehr.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_schiffsverkehr.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -54792,14 +54792,14 @@ COMMENT ON COLUMN public.ax_schiffsverkehr.herkunft_source_source_ax_datenerhebu
 -- Name: COLUMN ax_schiffsverkehr.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schiffsverkehr.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schiffsverkehr.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_schiffsverkehr.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schiffsverkehr.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schiffsverkehr.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -54813,7 +54813,7 @@ COMMENT ON COLUMN public.ax_schiffsverkehr.herkunft_source_source_sourceextent I
 -- Name: COLUMN ax_schiffsverkehr.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schiffsverkehr.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_schiffsverkehr.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55131,7 +55131,7 @@ COMMENT ON COLUMN public.ax_schleuse.processstep_positionname IS 'qualitaetsanga
 -- Name: COLUMN ax_schleuse.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schleuse.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schleuse.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55145,7 +55145,7 @@ COMMENT ON COLUMN public.ax_schleuse.processstep_address IS 'qualitaetsangaben|A
 -- Name: COLUMN ax_schleuse.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schleuse.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schleuse.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -55180,14 +55180,14 @@ COMMENT ON COLUMN public.ax_schleuse.processstep_ax_datenerhebung IS 'qualitaets
 -- Name: COLUMN ax_schleuse.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schleuse.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schleuse.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_schleuse.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schleuse.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schleuse.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55201,7 +55201,7 @@ COMMENT ON COLUMN public.ax_schleuse.processstep_sourceextent IS 'qualitaetsanga
 -- Name: COLUMN ax_schleuse.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schleuse.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_schleuse.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55215,14 +55215,14 @@ COMMENT ON COLUMN public.ax_schleuse.herkunft_source_source_ax_datenerhebung IS 
 -- Name: COLUMN ax_schleuse.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schleuse.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schleuse.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_schleuse.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schleuse.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schleuse.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55236,7 +55236,7 @@ COMMENT ON COLUMN public.ax_schleuse.herkunft_source_source_sourceextent IS 'qua
 -- Name: COLUMN ax_schleuse.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schleuse.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_schleuse.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55491,7 +55491,7 @@ COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.proc
 -- Name: COLUMN ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55505,7 +55505,7 @@ COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.proc
 -- Name: COLUMN ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -55540,14 +55540,14 @@ COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.proc
 -- Name: COLUMN ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55561,7 +55561,7 @@ COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.proc
 -- Name: COLUMN ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55575,14 +55575,14 @@ COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.herk
 -- Name: COLUMN ax_schutzgebietnachnaturumweltoderbodenschutzrecht.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_schutzgebietnachnaturumweltoderbodenschutzrecht.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55596,7 +55596,7 @@ COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.herk
 -- Name: COLUMN ax_schutzgebietnachnaturumweltoderbodenschutzrecht.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_schutzgebietnachnaturumweltoderbodenschutzrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55838,7 +55838,7 @@ COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.processstep_positionname
 -- Name: COLUMN ax_schutzgebietnachwasserrecht.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55852,7 +55852,7 @@ COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.processstep_address IS '
 -- Name: COLUMN ax_schutzgebietnachwasserrecht.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -55887,14 +55887,14 @@ COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.processstep_ax_datenerhe
 -- Name: COLUMN ax_schutzgebietnachwasserrecht.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_schutzgebietnachwasserrecht.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55908,7 +55908,7 @@ COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.processstep_sourceextent
 -- Name: COLUMN ax_schutzgebietnachwasserrecht.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55922,14 +55922,14 @@ COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.herkunft_source_source_a
 -- Name: COLUMN ax_schutzgebietnachwasserrecht.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_schutzgebietnachwasserrecht.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -55943,7 +55943,7 @@ COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.herkunft_source_source_s
 -- Name: COLUMN ax_schutzgebietnachwasserrecht.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_schutzgebietnachwasserrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -57079,7 +57079,7 @@ COMMENT ON COLUMN public.ax_seilbahnschwebebahn.processstep_positionname IS 'qua
 -- Name: COLUMN ax_seilbahnschwebebahn.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_seilbahnschwebebahn.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_seilbahnschwebebahn.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -57093,7 +57093,7 @@ COMMENT ON COLUMN public.ax_seilbahnschwebebahn.processstep_address IS 'qualitae
 -- Name: COLUMN ax_seilbahnschwebebahn.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_seilbahnschwebebahn.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_seilbahnschwebebahn.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -57128,14 +57128,14 @@ COMMENT ON COLUMN public.ax_seilbahnschwebebahn.processstep_ax_datenerhebung IS 
 -- Name: COLUMN ax_seilbahnschwebebahn.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_seilbahnschwebebahn.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_seilbahnschwebebahn.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_seilbahnschwebebahn.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_seilbahnschwebebahn.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_seilbahnschwebebahn.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -57149,7 +57149,7 @@ COMMENT ON COLUMN public.ax_seilbahnschwebebahn.processstep_sourceextent IS 'qua
 -- Name: COLUMN ax_seilbahnschwebebahn.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_seilbahnschwebebahn.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_seilbahnschwebebahn.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -57163,14 +57163,14 @@ COMMENT ON COLUMN public.ax_seilbahnschwebebahn.herkunft_source_source_ax_datene
 -- Name: COLUMN ax_seilbahnschwebebahn.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_seilbahnschwebebahn.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_seilbahnschwebebahn.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_seilbahnschwebebahn.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_seilbahnschwebebahn.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_seilbahnschwebebahn.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -57184,7 +57184,7 @@ COMMENT ON COLUMN public.ax_seilbahnschwebebahn.herkunft_source_source_sourceext
 -- Name: COLUMN ax_seilbahnschwebebahn.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_seilbahnschwebebahn.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_seilbahnschwebebahn.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -57644,7 +57644,7 @@ COMMENT ON COLUMN public.ax_sickerstrecke.processstep_positionname IS 'qualitaet
 -- Name: COLUMN ax_sickerstrecke.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sickerstrecke.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sickerstrecke.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -57658,7 +57658,7 @@ COMMENT ON COLUMN public.ax_sickerstrecke.processstep_address IS 'qualitaetsanga
 -- Name: COLUMN ax_sickerstrecke.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sickerstrecke.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sickerstrecke.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -57693,14 +57693,14 @@ COMMENT ON COLUMN public.ax_sickerstrecke.processstep_ax_datenerhebung IS 'quali
 -- Name: COLUMN ax_sickerstrecke.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sickerstrecke.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sickerstrecke.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_sickerstrecke.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sickerstrecke.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sickerstrecke.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -57714,7 +57714,7 @@ COMMENT ON COLUMN public.ax_sickerstrecke.processstep_sourceextent IS 'qualitaet
 -- Name: COLUMN ax_sickerstrecke.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sickerstrecke.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_sickerstrecke.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -57728,14 +57728,14 @@ COMMENT ON COLUMN public.ax_sickerstrecke.herkunft_source_source_ax_datenerhebun
 -- Name: COLUMN ax_sickerstrecke.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sickerstrecke.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sickerstrecke.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_sickerstrecke.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sickerstrecke.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sickerstrecke.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -57749,7 +57749,7 @@ COMMENT ON COLUMN public.ax_sickerstrecke.herkunft_source_source_sourceextent IS
 -- Name: COLUMN ax_sickerstrecke.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sickerstrecke.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_sickerstrecke.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -57995,7 +57995,7 @@ COMMENT ON COLUMN public.ax_siedlungsflaeche.processstep_positionname IS 'qualit
 -- Name: COLUMN ax_siedlungsflaeche.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_siedlungsflaeche.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_siedlungsflaeche.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -58009,7 +58009,7 @@ COMMENT ON COLUMN public.ax_siedlungsflaeche.processstep_address IS 'qualitaetsa
 -- Name: COLUMN ax_siedlungsflaeche.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_siedlungsflaeche.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_siedlungsflaeche.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -58044,14 +58044,14 @@ COMMENT ON COLUMN public.ax_siedlungsflaeche.processstep_ax_datenerhebung IS 'qu
 -- Name: COLUMN ax_siedlungsflaeche.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_siedlungsflaeche.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_siedlungsflaeche.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_siedlungsflaeche.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_siedlungsflaeche.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_siedlungsflaeche.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -58065,7 +58065,7 @@ COMMENT ON COLUMN public.ax_siedlungsflaeche.processstep_sourceextent IS 'qualit
 -- Name: COLUMN ax_siedlungsflaeche.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_siedlungsflaeche.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_siedlungsflaeche.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -58079,14 +58079,14 @@ COMMENT ON COLUMN public.ax_siedlungsflaeche.herkunft_source_source_ax_datenerhe
 -- Name: COLUMN ax_siedlungsflaeche.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_siedlungsflaeche.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_siedlungsflaeche.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_siedlungsflaeche.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_siedlungsflaeche.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_siedlungsflaeche.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -58100,7 +58100,7 @@ COMMENT ON COLUMN public.ax_siedlungsflaeche.herkunft_source_source_sourceextent
 -- Name: COLUMN ax_siedlungsflaeche.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_siedlungsflaeche.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_siedlungsflaeche.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -58478,7 +58478,7 @@ COMMENT ON COLUMN public.ax_soll.processstep_positionname IS 'qualitaetsangaben|
 -- Name: COLUMN ax_soll.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_soll.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_soll.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -58492,7 +58492,7 @@ COMMENT ON COLUMN public.ax_soll.processstep_address IS 'qualitaetsangaben|AX_DQ
 -- Name: COLUMN ax_soll.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_soll.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_soll.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -58527,14 +58527,14 @@ COMMENT ON COLUMN public.ax_soll.processstep_ax_datenerhebung IS 'qualitaetsanga
 -- Name: COLUMN ax_soll.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_soll.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_soll.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_soll.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_soll.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_soll.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -58548,7 +58548,7 @@ COMMENT ON COLUMN public.ax_soll.processstep_sourceextent IS 'qualitaetsangaben|
 -- Name: COLUMN ax_soll.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_soll.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_soll.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -58562,14 +58562,14 @@ COMMENT ON COLUMN public.ax_soll.herkunft_source_source_ax_datenerhebung IS 'qua
 -- Name: COLUMN ax_soll.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_soll.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_soll.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_soll.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_soll.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_soll.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -58583,7 +58583,7 @@ COMMENT ON COLUMN public.ax_soll.herkunft_source_source_sourceextent IS 'qualita
 -- Name: COLUMN ax_soll.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_soll.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_soll.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -59156,7 +59156,7 @@ COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_
 -- Name: COLUMN ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -59170,7 +59170,7 @@ COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_
 -- Name: COLUMN ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -59205,14 +59205,14 @@ COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_
 -- Name: COLUMN ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -59226,7 +59226,7 @@ COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_
 -- Name: COLUMN ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -59240,14 +59240,14 @@ COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.herkunft_sou
 -- Name: COLUMN ax_sonstigesbauwerkodersonstigeeinrichtung.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_sonstigesbauwerkodersonstigeeinrichtung.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -59261,7 +59261,7 @@ COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.herkunft_sou
 -- Name: COLUMN ax_sonstigesbauwerkodersonstigeeinrichtung.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_sonstigesbauwerkodersonstigeeinrichtung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -59771,7 +59771,7 @@ COMMENT ON COLUMN public.ax_sonstigesrecht.processstep_positionname IS 'qualitae
 -- Name: COLUMN ax_sonstigesrecht.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sonstigesrecht.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -59785,7 +59785,7 @@ COMMENT ON COLUMN public.ax_sonstigesrecht.processstep_address IS 'qualitaetsang
 -- Name: COLUMN ax_sonstigesrecht.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sonstigesrecht.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -59820,14 +59820,14 @@ COMMENT ON COLUMN public.ax_sonstigesrecht.processstep_ax_datenerhebung IS 'qual
 -- Name: COLUMN ax_sonstigesrecht.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sonstigesrecht.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_sonstigesrecht.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sonstigesrecht.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -59841,7 +59841,7 @@ COMMENT ON COLUMN public.ax_sonstigesrecht.processstep_sourceextent IS 'qualitae
 -- Name: COLUMN ax_sonstigesrecht.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_sonstigesrecht.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -59855,14 +59855,14 @@ COMMENT ON COLUMN public.ax_sonstigesrecht.herkunft_source_source_ax_datenerhebu
 -- Name: COLUMN ax_sonstigesrecht.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sonstigesrecht.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_sonstigesrecht.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sonstigesrecht.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -59876,7 +59876,7 @@ COMMENT ON COLUMN public.ax_sonstigesrecht.herkunft_source_source_sourceextent I
 -- Name: COLUMN ax_sonstigesrecht.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sonstigesrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_sonstigesrecht.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -60128,7 +60128,7 @@ COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.processstep_positio
 -- Name: COLUMN ax_sportfreizeitunderholungsflaeche.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -60142,7 +60142,7 @@ COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.processstep_address
 -- Name: COLUMN ax_sportfreizeitunderholungsflaeche.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -60177,14 +60177,14 @@ COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.processstep_ax_date
 -- Name: COLUMN ax_sportfreizeitunderholungsflaeche.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_sportfreizeitunderholungsflaeche.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -60198,7 +60198,7 @@ COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.processstep_sourcee
 -- Name: COLUMN ax_sportfreizeitunderholungsflaeche.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -60212,14 +60212,14 @@ COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.herkunft_source_sou
 -- Name: COLUMN ax_sportfreizeitunderholungsflaeche.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_sportfreizeitunderholungsflaeche.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -60233,7 +60233,7 @@ COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.herkunft_source_sou
 -- Name: COLUMN ax_sportfreizeitunderholungsflaeche.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_sportfreizeitunderholungsflaeche.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -60526,7 +60526,7 @@ COMMENT ON COLUMN public.ax_stehendesgewaesser.processstep_positionname IS 'qual
 -- Name: COLUMN ax_stehendesgewaesser.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_stehendesgewaesser.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_stehendesgewaesser.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -60540,7 +60540,7 @@ COMMENT ON COLUMN public.ax_stehendesgewaesser.processstep_address IS 'qualitaet
 -- Name: COLUMN ax_stehendesgewaesser.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_stehendesgewaesser.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_stehendesgewaesser.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -60575,14 +60575,14 @@ COMMENT ON COLUMN public.ax_stehendesgewaesser.processstep_ax_datenerhebung IS '
 -- Name: COLUMN ax_stehendesgewaesser.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_stehendesgewaesser.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_stehendesgewaesser.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_stehendesgewaesser.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_stehendesgewaesser.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_stehendesgewaesser.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -60596,7 +60596,7 @@ COMMENT ON COLUMN public.ax_stehendesgewaesser.processstep_sourceextent IS 'qual
 -- Name: COLUMN ax_stehendesgewaesser.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_stehendesgewaesser.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_stehendesgewaesser.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -60610,14 +60610,14 @@ COMMENT ON COLUMN public.ax_stehendesgewaesser.herkunft_source_source_ax_datener
 -- Name: COLUMN ax_stehendesgewaesser.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_stehendesgewaesser.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_stehendesgewaesser.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_stehendesgewaesser.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_stehendesgewaesser.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_stehendesgewaesser.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -60631,7 +60631,7 @@ COMMENT ON COLUMN public.ax_stehendesgewaesser.herkunft_source_source_sourceexte
 -- Name: COLUMN ax_stehendesgewaesser.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_stehendesgewaesser.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_stehendesgewaesser.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -61363,7 +61363,7 @@ COMMENT ON COLUMN public.ax_strassenverkehr.processstep_positionname IS 'qualita
 -- Name: COLUMN ax_strassenverkehr.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehr.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_strassenverkehr.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -61377,7 +61377,7 @@ COMMENT ON COLUMN public.ax_strassenverkehr.processstep_address IS 'qualitaetsan
 -- Name: COLUMN ax_strassenverkehr.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehr.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_strassenverkehr.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -61412,14 +61412,14 @@ COMMENT ON COLUMN public.ax_strassenverkehr.processstep_ax_datenerhebung IS 'qua
 -- Name: COLUMN ax_strassenverkehr.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehr.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_strassenverkehr.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_strassenverkehr.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehr.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_strassenverkehr.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -61433,7 +61433,7 @@ COMMENT ON COLUMN public.ax_strassenverkehr.processstep_sourceextent IS 'qualita
 -- Name: COLUMN ax_strassenverkehr.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehr.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_strassenverkehr.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -61447,14 +61447,14 @@ COMMENT ON COLUMN public.ax_strassenverkehr.herkunft_source_source_ax_datenerheb
 -- Name: COLUMN ax_strassenverkehr.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehr.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_strassenverkehr.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_strassenverkehr.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehr.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_strassenverkehr.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -61468,7 +61468,7 @@ COMMENT ON COLUMN public.ax_strassenverkehr.herkunft_source_source_sourceextent 
 -- Name: COLUMN ax_strassenverkehr.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehr.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_strassenverkehr.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -61770,7 +61770,7 @@ COMMENT ON COLUMN public.ax_strassenverkehrsanlage.processstep_positionname IS '
 -- Name: COLUMN ax_strassenverkehrsanlage.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehrsanlage.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_strassenverkehrsanlage.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -61784,7 +61784,7 @@ COMMENT ON COLUMN public.ax_strassenverkehrsanlage.processstep_address IS 'quali
 -- Name: COLUMN ax_strassenverkehrsanlage.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehrsanlage.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_strassenverkehrsanlage.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -61819,14 +61819,14 @@ COMMENT ON COLUMN public.ax_strassenverkehrsanlage.processstep_ax_datenerhebung 
 -- Name: COLUMN ax_strassenverkehrsanlage.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehrsanlage.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_strassenverkehrsanlage.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_strassenverkehrsanlage.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehrsanlage.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_strassenverkehrsanlage.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -61840,7 +61840,7 @@ COMMENT ON COLUMN public.ax_strassenverkehrsanlage.processstep_sourceextent IS '
 -- Name: COLUMN ax_strassenverkehrsanlage.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehrsanlage.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_strassenverkehrsanlage.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -61854,14 +61854,14 @@ COMMENT ON COLUMN public.ax_strassenverkehrsanlage.herkunft_source_source_ax_dat
 -- Name: COLUMN ax_strassenverkehrsanlage.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehrsanlage.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_strassenverkehrsanlage.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_strassenverkehrsanlage.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehrsanlage.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_strassenverkehrsanlage.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -61875,7 +61875,7 @@ COMMENT ON COLUMN public.ax_strassenverkehrsanlage.herkunft_source_source_source
 -- Name: COLUMN ax_strassenverkehrsanlage.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_strassenverkehrsanlage.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_strassenverkehrsanlage.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -62602,7 +62602,7 @@ COMMENT ON COLUMN public.ax_sumpf.processstep_positionname IS 'qualitaetsangaben
 -- Name: COLUMN ax_sumpf.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sumpf.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sumpf.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -62616,7 +62616,7 @@ COMMENT ON COLUMN public.ax_sumpf.processstep_address IS 'qualitaetsangaben|AX_D
 -- Name: COLUMN ax_sumpf.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sumpf.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sumpf.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -62651,14 +62651,14 @@ COMMENT ON COLUMN public.ax_sumpf.processstep_ax_datenerhebung IS 'qualitaetsang
 -- Name: COLUMN ax_sumpf.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sumpf.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sumpf.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_sumpf.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sumpf.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sumpf.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -62672,7 +62672,7 @@ COMMENT ON COLUMN public.ax_sumpf.processstep_sourceextent IS 'qualitaetsangaben
 -- Name: COLUMN ax_sumpf.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sumpf.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_sumpf.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -62686,14 +62686,14 @@ COMMENT ON COLUMN public.ax_sumpf.herkunft_source_source_ax_datenerhebung IS 'qu
 -- Name: COLUMN ax_sumpf.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sumpf.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sumpf.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_sumpf.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sumpf.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_sumpf.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -62707,7 +62707,7 @@ COMMENT ON COLUMN public.ax_sumpf.herkunft_source_source_sourceextent IS 'qualit
 -- Name: COLUMN ax_sumpf.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_sumpf.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_sumpf.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -62947,7 +62947,7 @@ COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.processstep_positionname IS '
 -- Name: COLUMN ax_tagebaugrubesteinbruch.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -62961,7 +62961,7 @@ COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.processstep_address IS 'quali
 -- Name: COLUMN ax_tagebaugrubesteinbruch.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -62996,14 +62996,14 @@ COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.processstep_ax_datenerhebung 
 -- Name: COLUMN ax_tagebaugrubesteinbruch.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_tagebaugrubesteinbruch.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -63017,7 +63017,7 @@ COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.processstep_sourceextent IS '
 -- Name: COLUMN ax_tagebaugrubesteinbruch.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -63031,14 +63031,14 @@ COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.herkunft_source_source_ax_dat
 -- Name: COLUMN ax_tagebaugrubesteinbruch.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_tagebaugrubesteinbruch.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -63052,7 +63052,7 @@ COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.herkunft_source_source_source
 -- Name: COLUMN ax_tagebaugrubesteinbruch.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_tagebaugrubesteinbruch.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -63461,7 +63461,7 @@ COMMENT ON COLUMN public.ax_testgelaende.processstep_positionname IS 'qualitaets
 -- Name: COLUMN ax_testgelaende.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_testgelaende.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_testgelaende.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -63475,7 +63475,7 @@ COMMENT ON COLUMN public.ax_testgelaende.processstep_address IS 'qualitaetsangab
 -- Name: COLUMN ax_testgelaende.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_testgelaende.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_testgelaende.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -63510,14 +63510,14 @@ COMMENT ON COLUMN public.ax_testgelaende.processstep_ax_datenerhebung IS 'qualit
 -- Name: COLUMN ax_testgelaende.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_testgelaende.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_testgelaende.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_testgelaende.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_testgelaende.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_testgelaende.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -63531,7 +63531,7 @@ COMMENT ON COLUMN public.ax_testgelaende.processstep_sourceextent IS 'qualitaets
 -- Name: COLUMN ax_testgelaende.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_testgelaende.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_testgelaende.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -63545,14 +63545,14 @@ COMMENT ON COLUMN public.ax_testgelaende.herkunft_source_source_ax_datenerhebung
 -- Name: COLUMN ax_testgelaende.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_testgelaende.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_testgelaende.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_testgelaende.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_testgelaende.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_testgelaende.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -63566,7 +63566,7 @@ COMMENT ON COLUMN public.ax_testgelaende.herkunft_source_source_sourceextent IS 
 -- Name: COLUMN ax_testgelaende.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_testgelaende.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_testgelaende.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -64162,7 +64162,7 @@ COMMENT ON COLUMN public.ax_transportanlage.processstep_positionname IS 'qualita
 -- Name: COLUMN ax_transportanlage.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_transportanlage.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_transportanlage.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -64176,7 +64176,7 @@ COMMENT ON COLUMN public.ax_transportanlage.processstep_address IS 'qualitaetsan
 -- Name: COLUMN ax_transportanlage.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_transportanlage.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_transportanlage.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -64211,14 +64211,14 @@ COMMENT ON COLUMN public.ax_transportanlage.processstep_ax_datenerhebung IS 'qua
 -- Name: COLUMN ax_transportanlage.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_transportanlage.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_transportanlage.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_transportanlage.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_transportanlage.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_transportanlage.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -64232,7 +64232,7 @@ COMMENT ON COLUMN public.ax_transportanlage.processstep_sourceextent IS 'qualita
 -- Name: COLUMN ax_transportanlage.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_transportanlage.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_transportanlage.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -64246,14 +64246,14 @@ COMMENT ON COLUMN public.ax_transportanlage.herkunft_source_source_ax_datenerheb
 -- Name: COLUMN ax_transportanlage.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_transportanlage.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_transportanlage.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_transportanlage.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_transportanlage.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_transportanlage.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -64267,7 +64267,7 @@ COMMENT ON COLUMN public.ax_transportanlage.herkunft_source_source_sourceextent 
 -- Name: COLUMN ax_transportanlage.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_transportanlage.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_transportanlage.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -64663,7 +64663,7 @@ COMMENT ON COLUMN public.ax_turm.processstep_positionname IS 'qualitaetsangaben|
 -- Name: COLUMN ax_turm.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_turm.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_turm.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -64677,7 +64677,7 @@ COMMENT ON COLUMN public.ax_turm.processstep_address IS 'qualitaetsangaben|AX_DQ
 -- Name: COLUMN ax_turm.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_turm.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_turm.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -64712,14 +64712,14 @@ COMMENT ON COLUMN public.ax_turm.processstep_ax_datenerhebung IS 'qualitaetsanga
 -- Name: COLUMN ax_turm.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_turm.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_turm.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_turm.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_turm.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_turm.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -64733,7 +64733,7 @@ COMMENT ON COLUMN public.ax_turm.processstep_sourceextent IS 'qualitaetsangaben|
 -- Name: COLUMN ax_turm.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_turm.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_turm.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -64747,14 +64747,14 @@ COMMENT ON COLUMN public.ax_turm.herkunft_source_source_ax_datenerhebung IS 'qua
 -- Name: COLUMN ax_turm.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_turm.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_turm.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_turm.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_turm.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_turm.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -64768,7 +64768,7 @@ COMMENT ON COLUMN public.ax_turm.herkunft_source_source_sourceextent IS 'qualita
 -- Name: COLUMN ax_turm.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_turm.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_turm.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65020,7 +65020,7 @@ COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.processstep_positionnam
 -- Name: COLUMN ax_unlandvegetationsloseflaeche.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65034,7 +65034,7 @@ COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.processstep_address IS 
 -- Name: COLUMN ax_unlandvegetationsloseflaeche.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -65069,14 +65069,14 @@ COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.processstep_ax_datenerh
 -- Name: COLUMN ax_unlandvegetationsloseflaeche.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_unlandvegetationsloseflaeche.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65090,7 +65090,7 @@ COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.processstep_sourceexten
 -- Name: COLUMN ax_unlandvegetationsloseflaeche.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65104,14 +65104,14 @@ COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.herkunft_source_source_
 -- Name: COLUMN ax_unlandvegetationsloseflaeche.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_unlandvegetationsloseflaeche.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65125,7 +65125,7 @@ COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.herkunft_source_source_
 -- Name: COLUMN ax_unlandvegetationsloseflaeche.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_unlandvegetationsloseflaeche.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65391,7 +65391,7 @@ COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.processstep_positionname IS
 -- Name: COLUMN ax_untergeordnetesgewaesser.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65405,7 +65405,7 @@ COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.processstep_address IS 'qua
 -- Name: COLUMN ax_untergeordnetesgewaesser.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -65440,14 +65440,14 @@ COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.processstep_ax_datenerhebun
 -- Name: COLUMN ax_untergeordnetesgewaesser.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_untergeordnetesgewaesser.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65461,7 +65461,7 @@ COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.processstep_sourceextent IS
 -- Name: COLUMN ax_untergeordnetesgewaesser.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65475,14 +65475,14 @@ COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.herkunft_source_source_ax_d
 -- Name: COLUMN ax_untergeordnetesgewaesser.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_untergeordnetesgewaesser.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65496,7 +65496,7 @@ COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.herkunft_source_source_sour
 -- Name: COLUMN ax_untergeordnetesgewaesser.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_untergeordnetesgewaesser.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65757,7 +65757,7 @@ COMMENT ON COLUMN public.ax_vegetationsmerkmal.processstep_positionname IS 'qual
 -- Name: COLUMN ax_vegetationsmerkmal.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vegetationsmerkmal.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_vegetationsmerkmal.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65771,7 +65771,7 @@ COMMENT ON COLUMN public.ax_vegetationsmerkmal.processstep_address IS 'qualitaet
 -- Name: COLUMN ax_vegetationsmerkmal.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vegetationsmerkmal.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_vegetationsmerkmal.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -65806,14 +65806,14 @@ COMMENT ON COLUMN public.ax_vegetationsmerkmal.processstep_ax_datenerhebung IS '
 -- Name: COLUMN ax_vegetationsmerkmal.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vegetationsmerkmal.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_vegetationsmerkmal.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_vegetationsmerkmal.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vegetationsmerkmal.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_vegetationsmerkmal.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65827,7 +65827,7 @@ COMMENT ON COLUMN public.ax_vegetationsmerkmal.processstep_sourceextent IS 'qual
 -- Name: COLUMN ax_vegetationsmerkmal.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vegetationsmerkmal.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_vegetationsmerkmal.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65841,14 +65841,14 @@ COMMENT ON COLUMN public.ax_vegetationsmerkmal.herkunft_source_source_ax_datener
 -- Name: COLUMN ax_vegetationsmerkmal.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vegetationsmerkmal.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_vegetationsmerkmal.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_vegetationsmerkmal.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vegetationsmerkmal.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_vegetationsmerkmal.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -65862,7 +65862,7 @@ COMMENT ON COLUMN public.ax_vegetationsmerkmal.herkunft_source_source_sourceexte
 -- Name: COLUMN ax_vegetationsmerkmal.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vegetationsmerkmal.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_vegetationsmerkmal.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -66626,7 +66626,7 @@ COMMENT ON COLUMN public.ax_verwaltung.processstep_positionname IS 'qualitaetsan
 -- Name: COLUMN ax_verwaltung.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_verwaltung.processstep_phone IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_verwaltung.processstep_phone IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -66640,7 +66640,7 @@ COMMENT ON COLUMN public.ax_verwaltung.processstep_address IS 'qualitaetsangaben
 -- Name: COLUMN ax_verwaltung.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_verwaltung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_verwaltung.processstep_onlineresource IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -66675,14 +66675,14 @@ COMMENT ON COLUMN public.ax_verwaltung.processstep_ax_datenerhebung IS 'qualitae
 -- Name: COLUMN ax_verwaltung.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_verwaltung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_verwaltung.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_verwaltung.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_verwaltung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_verwaltung.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -66696,7 +66696,7 @@ COMMENT ON COLUMN public.ax_verwaltung.processstep_sourceextent IS 'qualitaetsan
 -- Name: COLUMN ax_verwaltung.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_verwaltung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_verwaltung.processstep_sourcestep IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -66710,14 +66710,14 @@ COMMENT ON COLUMN public.ax_verwaltung.herkunft_source_source_ax_datenerhebung I
 -- Name: COLUMN ax_verwaltung.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_verwaltung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_verwaltung.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_verwaltung.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_verwaltung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_verwaltung.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -66731,7 +66731,7 @@ COMMENT ON COLUMN public.ax_verwaltung.herkunft_source_source_sourceextent IS 'q
 -- Name: COLUMN ax_verwaltung.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_verwaltung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_verwaltung.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQOhneDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -67211,7 +67211,7 @@ COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.processstep_position
 -- Name: COLUMN ax_vorratsbehaelterspeicherbauwerk.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -67225,7 +67225,7 @@ COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.processstep_address 
 -- Name: COLUMN ax_vorratsbehaelterspeicherbauwerk.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -67260,14 +67260,14 @@ COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.processstep_ax_daten
 -- Name: COLUMN ax_vorratsbehaelterspeicherbauwerk.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_vorratsbehaelterspeicherbauwerk.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -67281,7 +67281,7 @@ COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.processstep_sourceex
 -- Name: COLUMN ax_vorratsbehaelterspeicherbauwerk.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -67295,14 +67295,14 @@ COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.herkunft_source_sour
 -- Name: COLUMN ax_vorratsbehaelterspeicherbauwerk.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_vorratsbehaelterspeicherbauwerk.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -67316,7 +67316,7 @@ COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.herkunft_source_sour
 -- Name: COLUMN ax_vorratsbehaelterspeicherbauwerk.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_vorratsbehaelterspeicherbauwerk.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -67564,7 +67564,7 @@ COMMENT ON COLUMN public.ax_wald.processstep_positionname IS 'qualitaetsangaben|
 -- Name: COLUMN ax_wald.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wald.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wald.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -67578,7 +67578,7 @@ COMMENT ON COLUMN public.ax_wald.processstep_address IS 'qualitaetsangaben|AX_DQ
 -- Name: COLUMN ax_wald.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wald.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wald.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -67613,14 +67613,14 @@ COMMENT ON COLUMN public.ax_wald.processstep_ax_datenerhebung IS 'qualitaetsanga
 -- Name: COLUMN ax_wald.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wald.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wald.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_wald.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wald.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wald.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -67634,7 +67634,7 @@ COMMENT ON COLUMN public.ax_wald.processstep_sourceextent IS 'qualitaetsangaben|
 -- Name: COLUMN ax_wald.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wald.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_wald.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -67648,14 +67648,14 @@ COMMENT ON COLUMN public.ax_wald.herkunft_source_source_ax_datenerhebung IS 'qua
 -- Name: COLUMN ax_wald.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wald.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wald.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_wald.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wald.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wald.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -67669,7 +67669,7 @@ COMMENT ON COLUMN public.ax_wald.herkunft_source_source_sourceextent IS 'qualita
 -- Name: COLUMN ax_wald.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wald.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_wald.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -68231,7 +68231,7 @@ COMMENT ON COLUMN public.ax_wasserspiegelhoehe.processstep_positionname IS 'qual
 -- Name: COLUMN ax_wasserspiegelhoehe.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wasserspiegelhoehe.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wasserspiegelhoehe.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -68245,7 +68245,7 @@ COMMENT ON COLUMN public.ax_wasserspiegelhoehe.processstep_address IS 'qualitaet
 -- Name: COLUMN ax_wasserspiegelhoehe.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wasserspiegelhoehe.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wasserspiegelhoehe.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -68280,14 +68280,14 @@ COMMENT ON COLUMN public.ax_wasserspiegelhoehe.processstep_ax_datenerhebung IS '
 -- Name: COLUMN ax_wasserspiegelhoehe.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wasserspiegelhoehe.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wasserspiegelhoehe.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_wasserspiegelhoehe.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wasserspiegelhoehe.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wasserspiegelhoehe.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -68301,7 +68301,7 @@ COMMENT ON COLUMN public.ax_wasserspiegelhoehe.processstep_sourceextent IS 'qual
 -- Name: COLUMN ax_wasserspiegelhoehe.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wasserspiegelhoehe.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_wasserspiegelhoehe.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -68315,14 +68315,14 @@ COMMENT ON COLUMN public.ax_wasserspiegelhoehe.herkunft_source_source_ax_datener
 -- Name: COLUMN ax_wasserspiegelhoehe.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wasserspiegelhoehe.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wasserspiegelhoehe.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_wasserspiegelhoehe.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wasserspiegelhoehe.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wasserspiegelhoehe.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -68336,7 +68336,7 @@ COMMENT ON COLUMN public.ax_wasserspiegelhoehe.herkunft_source_source_sourceexte
 -- Name: COLUMN ax_wasserspiegelhoehe.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wasserspiegelhoehe.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_wasserspiegelhoehe.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -68599,7 +68599,7 @@ COMMENT ON COLUMN public.ax_weg.processstep_positionname IS 'qualitaetsangaben|A
 -- Name: COLUMN ax_weg.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_weg.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_weg.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -68613,7 +68613,7 @@ COMMENT ON COLUMN public.ax_weg.processstep_address IS 'qualitaetsangaben|AX_DQM
 -- Name: COLUMN ax_weg.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_weg.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_weg.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -68648,14 +68648,14 @@ COMMENT ON COLUMN public.ax_weg.processstep_ax_datenerhebung IS 'qualitaetsangab
 -- Name: COLUMN ax_weg.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_weg.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_weg.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_weg.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_weg.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_weg.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -68669,7 +68669,7 @@ COMMENT ON COLUMN public.ax_weg.processstep_sourceextent IS 'qualitaetsangaben|A
 -- Name: COLUMN ax_weg.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_weg.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_weg.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -68683,14 +68683,14 @@ COMMENT ON COLUMN public.ax_weg.herkunft_source_source_ax_datenerhebung IS 'qual
 -- Name: COLUMN ax_weg.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_weg.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_weg.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_weg.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_weg.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_weg.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -68704,7 +68704,7 @@ COMMENT ON COLUMN public.ax_weg.herkunft_source_source_sourceextent IS 'qualitae
 -- Name: COLUMN ax_weg.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_weg.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_weg.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -69024,7 +69024,7 @@ COMMENT ON COLUMN public.ax_wegpfadsteig.processstep_positionname IS 'qualitaets
 -- Name: COLUMN ax_wegpfadsteig.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wegpfadsteig.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wegpfadsteig.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -69038,7 +69038,7 @@ COMMENT ON COLUMN public.ax_wegpfadsteig.processstep_address IS 'qualitaetsangab
 -- Name: COLUMN ax_wegpfadsteig.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wegpfadsteig.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wegpfadsteig.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -69073,14 +69073,14 @@ COMMENT ON COLUMN public.ax_wegpfadsteig.processstep_ax_datenerhebung IS 'qualit
 -- Name: COLUMN ax_wegpfadsteig.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wegpfadsteig.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wegpfadsteig.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_wegpfadsteig.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wegpfadsteig.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wegpfadsteig.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -69094,7 +69094,7 @@ COMMENT ON COLUMN public.ax_wegpfadsteig.processstep_sourceextent IS 'qualitaets
 -- Name: COLUMN ax_wegpfadsteig.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wegpfadsteig.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_wegpfadsteig.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -69108,14 +69108,14 @@ COMMENT ON COLUMN public.ax_wegpfadsteig.herkunft_source_source_ax_datenerhebung
 -- Name: COLUMN ax_wegpfadsteig.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wegpfadsteig.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wegpfadsteig.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_wegpfadsteig.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wegpfadsteig.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wegpfadsteig.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -69129,7 +69129,7 @@ COMMENT ON COLUMN public.ax_wegpfadsteig.herkunft_source_source_sourceextent IS 
 -- Name: COLUMN ax_wegpfadsteig.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wegpfadsteig.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_wegpfadsteig.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -69565,7 +69565,7 @@ COMMENT ON COLUMN public.ax_wohnbauflaeche.processstep_positionname IS 'qualitae
 -- Name: COLUMN ax_wohnbauflaeche.processstep_phone; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wohnbauflaeche.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wohnbauflaeche.processstep_phone IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|phone|CI_Telephone|voice|CharacterString  CharacterString 0..1';
 
 
 --
@@ -69579,7 +69579,7 @@ COMMENT ON COLUMN public.ax_wohnbauflaeche.processstep_address IS 'qualitaetsang
 -- Name: COLUMN ax_wohnbauflaeche.processstep_onlineresource; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wohnbauflaeche.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wohnbauflaeche.processstep_onlineresource IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|processor|CI_ResponsibleParty|contactInfo|CI_Contact|onlineResource|CI_OnlineResource|linkage|URL  CharacterString 0..1';
 
 
 --
@@ -69614,14 +69614,14 @@ COMMENT ON COLUMN public.ax_wohnbauflaeche.processstep_ax_datenerhebung IS 'qual
 -- Name: COLUMN ax_wohnbauflaeche.processstep_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wohnbauflaeche.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wohnbauflaeche.processstep_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_wohnbauflaeche.processstep_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wohnbauflaeche.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wohnbauflaeche.processstep_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -69635,7 +69635,7 @@ COMMENT ON COLUMN public.ax_wohnbauflaeche.processstep_sourceextent IS 'qualitae
 -- Name: COLUMN ax_wohnbauflaeche.processstep_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wohnbauflaeche.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_wohnbauflaeche.processstep_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|processStep|LI_ProcessStep|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
@@ -69649,14 +69649,14 @@ COMMENT ON COLUMN public.ax_wohnbauflaeche.herkunft_source_source_ax_datenerhebu
 -- Name: COLUMN ax_wohnbauflaeche.herkunft_source_source_scaledenominator; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wohnbauflaeche.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wohnbauflaeche.herkunft_source_source_scaledenominator IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|scaleDenominator|MD_RepresentativeFraction|denominator|Integer  Integer 0..1';
 
 
 --
 -- Name: COLUMN ax_wohnbauflaeche.herkunft_source_source_sourcereferencesystem; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wohnbauflaeche.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|CharacterString  CharacterString 0..1';
+COMMENT ON COLUMN public.ax_wohnbauflaeche.herkunft_source_source_sourcereferencesystem IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceReferenceSystem|MD_ReferenceSystem|referenceSystemIdentifier|RS_Identifier|code|CharacterString  CharacterString 0..1';
 
 
 --
@@ -69670,7 +69670,7 @@ COMMENT ON COLUMN public.ax_wohnbauflaeche.herkunft_source_source_sourceextent I
 -- Name: COLUMN ax_wohnbauflaeche.herkunft_source_source_sourcestep; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN public.ax_wohnbauflaeche.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|CharacterString  CharacterString 0..*';
+COMMENT ON COLUMN public.ax_wohnbauflaeche.herkunft_source_source_sourcestep IS 'qualitaetsangaben|AX_DQMitDatenerhebung|herkunft|LI_Lineage|source|LI_Source|sourceStep|LI_ProcessStep|description|CharacterString  CharacterString 0..1';
 
 
 --
