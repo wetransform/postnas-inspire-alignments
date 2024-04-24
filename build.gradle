@@ -99,8 +99,8 @@ migrations.each { name, config ->
     if (manualProjectFile.exists()) {
       exec {
         commandLine'git', 'diff', '-p', '--no-index',
-          projectDir.toPath().relativize(autoProjectFile.toPath()).toString() + '.alignment.xml',
-          projectDir.toPath().relativize(manualProjectFile.toPath()).toString() + '.alignment.xml'
+          (projectDir.toPath().relativize(autoProjectFile.toPath()).toString() + '.alignment.xml').replace('\\', '/'),
+          (projectDir.toPath().relativize(manualProjectFile.toPath()).toString() + '.alignment.xml').replace('\\', '/')
 
         // git seems to always return with an exit code here
         ignoreExitValue = true
@@ -177,7 +177,7 @@ migrations.each { name, config ->
         // try at least a partial apply
         // see also http://stackoverflow.com/questions/15796528/partial-git-apply
         exec {
-          commandLine 'git', 'apply', '--reject', '--verbose', projectDir.toPath().relativize(diffFile.toPath()).toString()
+          commandLine 'git', 'apply', '--reject', '--verbose', '--ignore-whitespace', projectDir.toPath().relativize(diffFile.toPath()).toString()
         }
       } catch (e) {
         error = e
