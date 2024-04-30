@@ -1,5 +1,5 @@
 diff --git a/projects/tn-a-auto.halex.alignment.xml b/projects/tn-a-manual.halex.alignment.xml
-index 5010362..f92ee16 100644
+index 4b5c860..aba4e32 100644
 --- a/projects/tn-a-auto.halex.alignment.xml
 +++ b/projects/tn-a-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -9,7 +9,7 @@ index 5010362..f92ee16 100644
 -            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
 +            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_unverschluesselt">
                  <cf:binding>java.lang.String</cf:binding>
--                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
              </cf:input>
 -            <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
 +            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_land">
@@ -55,7 +55,7 @@ index 5010362..f92ee16 100644
              </cf:input>
              <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
--                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -77,7 +77,25 @@ index 5010362..f92ee16 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -854,14 +864,14 @@ withTransformationContext {
+@@ -849,7 +859,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
+         <complexParameter name="script">
+             <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+ def name = _source.p.bezeichnung.value()&#13;
+-def schluessel = _source.p.schluesselGesamt.value()&#13;
++def schluessel = _source.p.schluesselgesamt.value()&#13;
+ &#13;
+ withTransformationContext {&#13;
+   def collect = _.context.collector(it)&#13;
+@@ -861,7 +871,7 @@ withTransformationContext {&#13;
+ </core:text>
+         </complexParameter>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                 </core:content>
+@@ -887,14 +897,14 @@ withTransformationContext {
  }
  
  
@@ -94,7 +112,7 @@ index 5010362..f92ee16 100644
  case '5511': // Internationaler Flughafen
  	aerodromeCategory = 'international'
  	break
-@@ -879,7 +889,7 @@ case '5550': // Segelfluggelände
+@@ -912,7 +922,7 @@ case '5550': // Segelfluggelände
  
  // bestimme AerodromeType
  def aerodromeType
@@ -103,7 +121,7 @@ index 5010362..f92ee16 100644
  case '5510': // Flughafen
  case '5511': // Internationaler Flughafen
  case '5512': // Regionalflughafen
-@@ -897,7 +907,7 @@ case '5530': // Hubschrauberflugplatz
+@@ -931,7 +941,7 @@ case '5530': // Hubschrauberflugplatz
  
  // bestimme ConditionOfFacility
  def conditionOfFacility = 'functional'
@@ -112,7 +130,7 @@ index 5010362..f92ee16 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -909,9 +919,9 @@ case '4000': // Im Bau
+@@ -946,9 +956,9 @@ case '8000': // Erweiterung, Neuansiedlung
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -124,52 +142,164 @@ index 5010362..f92ee16 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -1096,11 +1106,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -1121,7 +1131,7 @@ withTransformationContext {&#13;
+ }&#13;
+ &#13;
+ &#13;
+-def _id = 'AerodromeArea_' + _source.p.id.value() &#13;
++def _id = 'AerodromeArea_' + _source.p.gml_id.value() &#13;
+ &#13;
+ _target {&#13;
+ }&#13;
+@@ -1131,7 +1141,7 @@ def aerodromeType = 'landingSite'&#13;
+ &#13;
+ // bestimme ConditionOfFacility&#13;
+ def conditionOfFacility = 'functional'&#13;
+-switch (_source.p.zustand.value()) {&#13;
++switch (_source.p.zustand.value() as String) {&#13;
+ case '2100': // Außer Betrieb, stillgelegt, verlassen&#13;
+ 	conditionOfFacility = 'disused'&#13;
+ 	break&#13;
+@@ -1146,9 +1156,9 @@ case '8000': // Erweiterung, Neuansiedlung&#13;
+ /*&#13;
+  * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition&#13;
+  */&#13;
+-def untenRefs = _source.p.hatDirektUnten.href.values()&#13;
++def untenRefs = _source.p.hatdirektunten.values()&#13;
+ def verticalPositions = untenRefs.findResults { identifier -&gt;&#13;
+-	def bwf = collect.bauwerksfunktion[identifier].value()&#13;
++	def bwf = collect.bauwerksfunktion[identifier].value() as String&#13;
+ 	if (bwf) {&#13;
+ 		switch (bwf) {&#13;
+ 		// AX_BauwerkImVerkehrsbereich&#13;
+@@ -1305,7 +1315,7 @@ collect.verticalPosition[verticalPosition] &lt;&lt; _id&#13;
+         <parameter value="false" name="ignoreNamespaces"/>
          <parameter value="false" name="structuralRename"/>
+         <annotation type="message">
+-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
++            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                 <core:content>
+                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                 </core:content>
+@@ -1313,11 +1323,40 @@ collect.verticalPosition[verticalPosition] &lt;&lt; _id&#13;
+         </annotation>
      </cell>
      <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C013ef1ce-3389-4a12-9e43-299c5877d6dd_Cd2d3c726-c951-484a-8bb0-c17504676eeb" priority="normal">
 -        <source name="lagebezeichnung">
 +        <source name="lage_gemeinde">
-+            <property>
-+                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+             <property>
+-                <type name="AX_FlugverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:public"/>
 +                <child name="gemeinde"/>
 +            </property>
 +        </source>
 +        <source name="lage_kreis">
 +            <property>
-+                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:public"/>
 +                <child name="kreis"/>
 +            </property>
 +        </source>
 +        <source name="lage_lage">
 +            <property>
-+                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:public"/>
 +                <child name="lage"/>
 +            </property>
 +        </source>
 +        <source name="lage_land">
-             <property>
--                <type name="AX_FlugverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
-+                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++            <property>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:public"/>
 +                <child name="land"/>
 +            </property>
 +        </source>
 +        <source name="lage_regierungsbezirk">
 +            <property>
-+                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:public"/>
 +                <child name="regierungsbezirk"/>
 +            </property>
 +        </source>
 +        <source name="lage_unverschluesselt">
 +            <property>
-+                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
++                <type name="ax_flugverkehr" ns="jdbc:postgresql:testbed:public"/>
 +                <child name="unverschluesselt"/>
              </property>
          </source>
          <target>
-@@ -1415,7 +1454,7 @@ withTransformationContext {
+@@ -1360,16 +1399,6 @@ collect.verticalPosition[verticalPosition] &lt;&lt; _id&#13;
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C8a99d139-a728-44e1-99c4-47b1ad65625d_Cc7bb4b8b-965c-4b8f-8d2d-6848f95fdfe3" priority="normal">
+-        <target>
+-            <property>
+-                <type name="AerodromeAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-a/4.0"/>
+-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+-                <child name="nilReason"/>
+-            </property>
+-        </target>
+-        <parameter value="unknown" name="value"/>
+-    </cell>
+     <cell relation="eu.esdihumboldt.hale.align.assign" id="C8a99d139-a728-44e1-99c4-47b1ad65625d_Cd2d3c726-c951-484a-8bb0-c17504676eeb" priority="normal">
+         <target>
+             <property>
+@@ -1435,21 +1464,6 @@ collect.verticalPosition[verticalPosition] &lt;&lt; _id&#13;
+         </complexParameter>
+         <parameter value="false" name="variablesAsInstances"/>
+         <documentation>Verknüpft das Netzwerk-Element mit dem entsprechenden *TransportNetwork*.
+-Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</documentation>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cd2d3c726-c951-484a-8bb0-c17504676eeb" priority="normal">
+-        <target name="result">
+-            <property>
+-                <type name="AerodromeAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-a/4.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+-            </property>
+-        </target>
+-        <complexParameter name="script">
+-            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">'#' + _project.vars.NETWORK_ID</core:text>
+-        </complexParameter>
+-        <parameter value="false" name="variablesAsInstances"/>
+-        <documentation>Verknüpft das Netzwerk-Element mit dem entsprechenden *TransportNetwork*.
+ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</documentation>
+     </cell>
+     <cell relation="custom:alignment:adv.inspire.id.default" id="C2cc0d75c-81b6-47c7-8476-a51f4bc8d872_Cd2d3c726-c951-484a-8bb0-c17504676eeb" priority="normal">
+@@ -1488,16 +1502,6 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+         </target>
+         <parameter value="other:unpopulated" name="value"/>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C59f463b4-e885-4c0d-be10-9372532edeaf_Cd2d3c726-c951-484a-8bb0-c17504676eeb" priority="normal">
+-        <target>
+-            <property>
+-                <type name="AerodromeAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-a/4.0"/>
+-                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+-                <child name="nilReason"/>
+-            </property>
+-        </target>
+-        <parameter value="other:unpopulated" name="value"/>
+-    </cell>
+     <cell relation="eu.esdihumboldt.hale.align.assign" id="C847695bb-1eeb-4c82-9398-b6cb66a774da_Cc7bb4b8b-965c-4b8f-8d2d-6848f95fdfe3" priority="normal">
+         <target>
+             <property>
+@@ -1508,16 +1512,6 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+         </target>
+         <parameter value="other:unpopulated" name="value"/>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C847695bb-1eeb-4c82-9398-b6cb66a774da_Cd2d3c726-c951-484a-8bb0-c17504676eeb" priority="normal">
+-        <target>
+-            <property>
+-                <type name="AerodromeAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-a/4.0"/>
+-                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+-                <child name="nilReason"/>
+-            </property>
+-        </target>
+-        <parameter value="other:unpopulated" name="value"/>
+-    </cell>
+     <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="C29954e8c-8766-4a4a-9dbb-4e3371b9adff" priority="low">
+         <target>
+             <class>
+@@ -1701,7 +1695,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit flächenartigen Geometrien behandeln
@@ -178,7 +308,7 @@ index 5010362..f92ee16 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def surfaces = _.geom.splitMulti(geometries)
-@@ -1425,11 +1464,11 @@ def surfaces = _.geom.splitMulti(geometries)
+@@ -1711,11 +1705,11 @@ def surfaces = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -192,7 +322,7 @@ index 5010362..f92ee16 100644
  case '1210': // Gras, Rasen
  	surfaceComposition = 'grass'
  	break
-@@ -1444,9 +1483,9 @@ case '1230': // Bitumen, Asphalt
+@@ -1730,9 +1724,9 @@ case '1230': // Bitumen, Asphalt
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -204,7 +334,7 @@ index 5010362..f92ee16 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -1903,7 +1942,7 @@ withTransformationContext {
+@@ -2189,7 +2183,7 @@ withTransformationContext {
  }
  
  // ID des Quell-Objekts
@@ -213,17 +343,17 @@ index 5010362..f92ee16 100644
  
  _target {
  	// Referenz zu jedem NetworkElement das aus der Flugverkehrs-
-@@ -2066,16 +2105,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
+@@ -2352,16 +2346,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
              </core:message>
          </annotation>
      </cell>
 -    <cell relation="custom:alignment:adv.uom.toucum" id="Cc3659e5d-d3a3-464a-bc59-506edd1b7763_Cbfe48734-25e9-488c-bb87-cb9913240d13" priority="normal">
 -        <source name="uom">
 -            <property>
--                <type name="AX_FlugverkehrsanlageType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                <type name="AX_FlugverkehrsanlageType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
 -                    <condition lang="CQL">breiteDesObjekts is not null and (art = '1310' or art = '1320')</condition>
 -                </type>
--                <child name="breiteDesObjekts" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="breiteDesObjekts" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
 -                <child name="uom"/>
 -            </property>
 -        </source>
@@ -231,7 +361,7 @@ index 5010362..f92ee16 100644
          <target>
              <property>
                  <type name="ElementWidthType" ns="http://inspire.ec.europa.eu/schemas/tn-a/4.0"/>
-@@ -2083,6 +2113,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
+@@ -2369,6 +2354,7 @@ Die Referenzen zu den Netzwerk-Elementen mit dieser Eigenschaft wird über die G
                  <child name="uom"/>
              </property>
          </target>
@@ -239,7 +369,7 @@ index 5010362..f92ee16 100644
          <annotation type="message">
              <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                  <core:content>
-@@ -2112,7 +2143,7 @@ withTransformationContext {
+@@ -2398,7 +2384,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit flächenartigen Geometrien behandeln
@@ -248,7 +378,7 @@ index 5010362..f92ee16 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def surfaces = _.geom.splitMulti(geometries)
-@@ -2122,11 +2153,11 @@ def surfaces = _.geom.splitMulti(geometries)
+@@ -2408,11 +2394,11 @@ def surfaces = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -262,7 +392,7 @@ index 5010362..f92ee16 100644
  case '1210': // Gras, Rasen
  	surfaceComposition = 'grass'
  	break
-@@ -2141,9 +2172,9 @@ case '1230': // Bitumen, Asphalt
+@@ -2427,9 +2413,9 @@ case '1230': // Bitumen, Asphalt
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -274,7 +404,7 @@ index 5010362..f92ee16 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2591,7 +2622,7 @@ withTransformationContext {
+@@ -2877,7 +2863,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit flächenartigen Geometrien behandeln
@@ -283,7 +413,7 @@ index 5010362..f92ee16 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def surfaces = _.geom.splitMulti(geometries)
-@@ -2601,11 +2632,11 @@ def surfaces = _.geom.splitMulti(geometries)
+@@ -2887,11 +2873,11 @@ def surfaces = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -297,7 +427,7 @@ index 5010362..f92ee16 100644
  case '1210': // Gras, Rasen
  	surfaceComposition = 'grass'
  	break
-@@ -2620,9 +2651,9 @@ case '1230': // Bitumen, Asphalt
+@@ -2906,9 +2892,9 @@ case '1230': // Bitumen, Asphalt
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
