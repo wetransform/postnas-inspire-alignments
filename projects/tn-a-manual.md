@@ -7,3 +7,5 @@ Notizen zu manuellen Anpassungen
 - Anpassung von Groovy Typ-Relationen mit korrigierten Typ- und Eigenschafts-Namen
 - Explizite Behandlung von Codes als Strings in Groovy Typ-Relationen (um Logik kompatibel zu halten)
 - Bedingungen mit `breiteDesObjekts` angepasst (zu `breitedesobjekts`)
+- Mehrfach vorhandene Relationen zu Attributen von `AerodromeArea` gelöscht.
+
