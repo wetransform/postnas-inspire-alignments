@@ -66,7 +66,7 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann. 
         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
                 <cf:binding>java.lang.String</cf:binding>
-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
             </cf:input>
             <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                 <cf:binding>java.lang.String</cf:binding>
@@ -127,7 +127,7 @@ if (!name) {
 			if (collect.lagebezeichnung[schluesselGesamt].value()){
 				name = collect.lagebezeichnung[schluesselGesamt].value()
 			}
-			else _log.error('Für einen Namen aus einer verschlüsselten Lagebezeichnung liegt kein Katalogeintrag vor.')
+			else _log.error("Für einen Namen aus einer verschlüsselten Lagebezeichnung mit Schlüssel ${schluesselGesamt} liegt kein Katalogeintrag vor.")
 		}
 	}
 }
@@ -279,7 +279,7 @@ if (_params.source) {&#13;&#13;
             </cf:input>
             <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                 <cf:binding>java.lang.String</cf:binding>
-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
             </cf:input>
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
                 <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -770,7 +770,7 @@ Aktuell ist folgende Abbildung umgesetzt:
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C33b5349d-fb85-4c7d-8519-ac27e4c49867" priority="highest">
         <source>
             <class>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -804,7 +804,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C43232927-f863-47e3-b297-dd8902f4bbc7" priority="highest">
         <source>
             <class>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -838,7 +838,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C433d8afa-844b-4e56-b6c8-82e369fd15ea" priority="normal">
         <source>
             <class>
-                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (bahnkategorie = '2500')</condition>
                 </type>
             </class>
@@ -920,7 +920,7 @@ Die erstellten `CablewayLink`s werden dem Index von Netzwerk-Elementen hinzugef�
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C51932291-90fa-45c4-9625-e372e60f65a2_C433d8afa-844b-4e56-b6c8-82e369fd15ea" priority="normal">
         <source>
             <property>
-                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (bahnkategorie = '2500')</condition>
                 </type>
                 <child name="beginnt"/>
@@ -945,7 +945,7 @@ Die erstellten `CablewayLink`s werden dem Index von Netzwerk-Elementen hinzugef�
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C5f8353d2-54ee-47d4-8abb-62c2c585ba41_C433d8afa-844b-4e56-b6c8-82e369fd15ea" priority="normal">
         <source>
             <property>
-                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (bahnkategorie = '2500')</condition>
                 </type>
                 <child name="bahnkategorie"/>
@@ -1000,7 +1000,7 @@ Die erstellten `CablewayLink`s werden dem Index von Netzwerk-Elementen hinzugef�
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C81ac1a4a-1acc-42f8-b12b-4758e5ce12b7_C433d8afa-844b-4e56-b6c8-82e369fd15ea" priority="normal">
         <source>
             <property>
-                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (bahnkategorie = '2500')</condition>
                 </type>
                 <child name="endet"/>
@@ -1034,7 +1034,7 @@ Die erstellten `CablewayLink`s werden dem Index von Netzwerk-Elementen hinzugef�
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C5ee0f9dd-3579-4712-a379-af803911bc0e_C433d8afa-844b-4e56-b6c8-82e369fd15ea" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (bahnkategorie = '2500')</condition>
                 </type>
                 <child name="name"/>
