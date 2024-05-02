@@ -138,7 +138,7 @@ if (!name) {
 			if (collect.lagebezeichnung[schluesselGesamt].value()){
 				name = collect.lagebezeichnung[schluesselGesamt].value()
 			}
-			else _log.error('Für einen Namen aus einer verschlüsselten Lagebezeichnung liegt kein Katalogeintrag vor.')
+			else _log.error("Für einen Namen aus einer verschlüsselten Lagebezeichnung mit Schlüssel ${schluesselGesamt} liegt kein Katalogeintrag vor.")
 		}
 	}
 }
@@ -780,7 +780,7 @@ Aktuell ist folgende Abbildung umgesetzt:
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C33b5349d-fb85-4c7d-8519-ac27e4c49867" priority="highest">
         <source>
             <class>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -814,7 +814,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C43232927-f863-47e3-b297-dd8902f4bbc7" priority="highest">
         <source>
             <class>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -848,7 +848,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C44422922-aa67-4d00-bc52-a77a4ed816b8" priority="highest">
         <source>
             <class>
-                <type name="ax_lagebezeichnungkatalogeintrag" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_lagebezeichnungkatalogeintrag" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -877,6 +877,76 @@ withTransformationContext {
                 </core:content>
             </core:message>
         </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="Ce6d4faab-cbaa-40c4-a1bf-76463a654af1" priority="low">
+        <target>
+            <class>
+                <type name="AccessRestrictionType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+            </class>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def collect&#13;
+withTransformationContext {&#13;
+	collect = _.context.collector(it)&#13;
+}&#13;
+&#13;
+// Erstelle ein AccessRestriction-Objekt für jeden vorkommenden Wert&#13;
+collect.accessRestriction.consume { key, values -&gt;&#13;
+	def _id = 'AccessRestriction_' + key&#13;
+	def _ns = _project.vars.INSPIRE_NAMESPACE&#13;
+	&#13;
+	_target {&#13;
+		restriction {&#13;
+			href( 'http://inspire.ec.europa.eu/codelist/AccessRestrictionValue/' + key)&#13;
+		}&#13;
+		id( _id )&#13;
+		inspireId {&#13;
+			Identifier {&#13;
+				namespace( _ns )&#13;
+				localId( _id )&#13;
+			}&#13;
+		}&#13;
+		identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {&#13;
+			codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
+		}&#13;
+		&#13;
+		// Referenz zu gesammelten RoadLinks/RoadAreas mit dieser Eigenschaft&#13;
+		values.each { linkId -&gt;&#13;
+			networkRef {&#13;
+				NetworkReference {&#13;
+					element {&#13;
+						href( "#$linkId" )&#13;
+					}&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C6563043b-57b7-4264-b3ff-6264b547216f_Ce6d4faab-cbaa-40c4-a1bf-76463a654af1" priority="normal">
+        <target>
+            <property>
+                <type name="AccessRestrictionType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <child name="nilReason"/>
+            </property>
+        </target>
+        <parameter value="other:unpopulated" name="value"/>
+        <documentation>`TransportProperty`-Objekte sind im Rahmen der Transformation neu gebildete Objekte und übernehmen daher keine Information für `beginLifespanVersion` aus den Quell-Daten.</documentation>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C9fbdcf9a-e35a-4f33-b915-77155350de27_Ce6d4faab-cbaa-40c4-a1bf-76463a654af1" priority="normal">
+        <target>
+            <property>
+                <type name="AccessRestrictionType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <child name="nilReason"/>
+            </property>
+        </target>
+        <parameter value="other:unpopulated" name="value"/>
+        <documentation>Diese Information ist im 3A-Modell nicht vorhanden.</documentation>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="C1eb2d011-34d1-4077-8388-f7fbdb1659b9" priority="low">
         <target>
@@ -972,19 +1042,19 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. *Tra
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="Cb6bd7b9a-eadf-48f2-9232-260ac1bf2c10" priority="normal">
         <source name="types">
             <class>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung = '2001'</condition>
                 </type>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -995,37 +1065,37 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. *Tra
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                         <condition lang="CQL">internationalebedeutung = '2001'</condition>
                     </type>
                 </class>
                 <class>
-                    <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <class>
-                    <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">internationalebedeutung = '2001'</condition>
                         </type>
                         <child name="gml_id"/>
                     </property>
                     <property>
-                        <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="istteilvon"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
                     <property>
-                        <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">internationalebedeutung = '2001'</condition>
                         </type>
                         <child name="gml_id"/>
                     </property>
                     <property>
-                        <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="istteilvon"/>
                     </property>
                 </jp:condition>
@@ -1096,7 +1166,7 @@ Die erstellte `ERoad` wird dem Index von Netzwerk-Elementen hinzugefügt.</docum
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf04bf7cb-0c75-4a85-a346-ff2791070e27_Cb6bd7b9a-eadf-48f2-9232-260ac1bf2c10" priority="normal">
         <source>
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung = '2001'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -1121,7 +1191,7 @@ Die erstellte `ERoad` wird dem Index von Netzwerk-Elementen hinzugefügt.</docum
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca5cd019b-6e90-4f57-b478-94908d192233_Cb6bd7b9a-eadf-48f2-9232-260ac1bf2c10" priority="normal">
         <source>
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung = '2001'</condition>
                 </type>
                 <child name="endet"/>
@@ -1146,7 +1216,7 @@ Die erstellte `ERoad` wird dem Index von Netzwerk-Elementen hinzugefügt.</docum
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cca1117da-b1b7-438c-a90d-89e71b6e0c72" priority="normal">
         <source>
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung = '2001'</condition>
                 </type>
                 <child name="bezeichnung">
@@ -1183,7 +1253,7 @@ Die erstellte `ERoad` wird dem Index von Netzwerk-Elementen hinzugefügt.</docum
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C055eee92-8f70-4d3b-9771-2b7346cd7f6f_Cb6bd7b9a-eadf-48f2-9232-260ac1bf2c10" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung = '2001'</condition>
                 </type>
                 <child name="name"/>
@@ -1207,7 +1277,7 @@ Die erstellte `ERoad` wird dem Index von Netzwerk-Elementen hinzugefügt.</docum
     <cell relation="custom:alignment:adv.inspire.id.default" id="C5855cff4-b320-4f0c-bd53-c8d282791687_Cb6bd7b9a-eadf-48f2-9232-260ac1bf2c10" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung = '2001'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1231,7 +1301,7 @@ Die erstellte `ERoad` wird dem Index von Netzwerk-Elementen hinzugefügt.</docum
     <cell relation="custom:alignment:adv.inspire.identifier" id="C683c368a-e836-4ee4-9c47-abce43294ae6_Cb6bd7b9a-eadf-48f2-9232-260ac1bf2c10" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung = '2001'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1269,7 +1339,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8a40758b-371a-4883-9294-1adafd5bc376_Cb6bd7b9a-eadf-48f2-9232-260ac1bf2c10" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung = '2001'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1507,7 +1577,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cb090758a-65b1-49f7-a92e-42ef7d8afb04" priority="normal">
         <source>
             <class>
-                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
             </class>
@@ -1658,7 +1728,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cce124c8f-8e7c-498c-9d01-a04f526147af_Cb090758a-65b1-49f7-a92e-42ef7d8afb04" priority="normal">
         <source>
             <property>
-                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="beginnt"/>
@@ -1683,7 +1753,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cb7df5a6e-5206-42db-8b74-43600a5462ce_Cb090758a-65b1-49f7-a92e-42ef7d8afb04" priority="normal">
         <source>
             <property>
-                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="endet"/>
@@ -1718,7 +1788,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C46d6c8f8-2fa7-411f-983a-f894528dcc5a_Cb090758a-65b1-49f7-a92e-42ef7d8afb04" priority="normal">
         <source>
             <property>
-                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -1736,7 +1806,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                 <core:content>
-                    <core:text xml:space="preserve">Inaccurate match of [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_EinrichtungInOeffentlichenBereichenType/position/choice/Point to [type] jdbc:postgresql:testbed:aaa_ogr/ax_einrichtunginoeffentlichenbereichen/wkb_geometry via parent entity</core:text>
+                    <core:text xml:space="preserve">Inaccurate match of [type] http://www.adv-online.de/namespaces/adv/gid/7.1/AX_EinrichtungInOeffentlichenBereichenType/position/choice/Point to [type] jdbc:postgresql:testbed:public/ax_einrichtunginoeffentlichenbereichen/wkb_geometry via parent entity</core:text>
                 </core:content>
             </core:message>
         </annotation>
@@ -1751,7 +1821,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="C83afa9d7-186c-4df3-b0ad-79672f3a17c3_Cb090758a-65b1-49f7-a92e-42ef7d8afb04" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1774,7 +1844,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="Ccfbdb83c-2028-4682-b4d1-bc4c4a87f907_Cb090758a-65b1-49f7-a92e-42ef7d8afb04" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1812,7 +1882,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="C2c8e10e4-55f9-410e-99b1-081b69c96388_Cb090758a-65b1-49f7-a92e-42ef7d8afb04" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1847,7 +1917,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cb0fd2ad8-360a-46f4-b1c4-a932d628ddda_Cb090758a-65b1-49f7-a92e-42ef7d8afb04" priority="normal">
         <source>
             <property>
-                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtunginoeffentlichenbereichen" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1410' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="kilometerangabe"/>
@@ -2013,7 +2083,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C2581bae5-bd09-416c-948e-bcb8b5835ca3" priority="normal">
         <source>
             <class>
-                <type name="ax_klassifizierungnachstrassenrecht" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_klassifizierungnachstrassenrecht" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -2227,7 +2297,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Ca20f2d64-1511-4c47-b43c-ea4f8f9cae05" priority="normal">
         <source>
             <class>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '5130'</condition>
                 </type>
             </class>
@@ -2366,8 +2436,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C0f1c8732-7bcc-4843-abce-025a5c88d4f6" priority="normal">
         <source>
             <class>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion IS NULL OR funktion = '2312') OR funktion = '5130'</condition>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IS NULL OR funktion = '2312') OR funktion = '2315') OR funktion = '5130'</condition>
                 </type>
             </class>
         </source>
@@ -2396,6 +2466,9 @@ case '2100': // Außer Betrieb, stillgelegt, verlassen
 	break
 case '4000': // Im Bau
 	conditionOfFacility = 'underConstruction'
+	break
+case '8000': // Erweiterung, Neuansiedlung
+	conditionOfFacility = 'projected'
 	break
 }
 
@@ -2529,7 +2602,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990" priority="normal">
         <source>
             <class>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
             </class>
@@ -2702,7 +2775,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C2827fa08-a3dd-4539-83de-413c6b922f47" priority="normal">
         <source>
             <class>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
             </class>
@@ -2889,7 +2962,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc08e41ed-4753-4bff-880c-4e02752007c7_C2581bae5-bd09-416c-948e-bcb8b5835ca3" priority="normal">
         <source>
             <property>
-                <type name="ax_klassifizierungnachstrassenrecht" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_klassifizierungnachstrassenrecht" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -2905,7 +2978,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc08e41ed-4753-4bff-880c-4e02752007c7_Ca20f2d64-1511-4c47-b43c-ea4f8f9cae05" priority="normal">
         <source>
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '5130'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -2930,8 +3003,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc08e41ed-4753-4bff-880c-4e02752007c7_C0f1c8732-7bcc-4843-abce-025a5c88d4f6" priority="normal">
         <source>
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion IS NULL OR funktion = '2312') OR funktion = '5130'</condition>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IS NULL OR funktion = '2312') OR funktion = '2315') OR funktion = '5130'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -2955,7 +3028,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc08e41ed-4753-4bff-880c-4e02752007c7_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990" priority="normal">
         <source>
             <property>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
                 <child name="beginnt"/>
@@ -2980,7 +3053,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc08e41ed-4753-4bff-880c-4e02752007c7_C2827fa08-a3dd-4539-83de-413c6b922f47" priority="normal">
         <source>
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -3005,7 +3078,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbb136720-e720-41bb-b7e0-faa34263f64a_C2581bae5-bd09-416c-948e-bcb8b5835ca3" priority="normal">
         <source>
             <property>
-                <type name="ax_klassifizierungnachstrassenrecht" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_klassifizierungnachstrassenrecht" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -3021,7 +3094,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbb136720-e720-41bb-b7e0-faa34263f64a_Ca20f2d64-1511-4c47-b43c-ea4f8f9cae05" priority="normal">
         <source>
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '5130'</condition>
                 </type>
                 <child name="endet"/>
@@ -3046,8 +3119,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbb136720-e720-41bb-b7e0-faa34263f64a_C0f1c8732-7bcc-4843-abce-025a5c88d4f6" priority="normal">
         <source>
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion IS NULL OR funktion = '2312') OR funktion = '5130'</condition>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IS NULL OR funktion = '2312') OR funktion = '2315') OR funktion = '5130'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -3071,7 +3144,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbb136720-e720-41bb-b7e0-faa34263f64a_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990" priority="normal">
         <source>
             <property>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
                 <child name="endet"/>
@@ -3096,7 +3169,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbb136720-e720-41bb-b7e0-faa34263f64a_C2827fa08-a3dd-4539-83de-413c6b922f47" priority="normal">
         <source>
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="endet"/>
@@ -3121,37 +3194,37 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C7701b354-25ce-49a5-baa7-ef1dce6f6bd0_Ca20f2d64-1511-4c47-b43c-ea4f8f9cae05" priority="normal">
         <source name="lage_gemeinde">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gemeinde"/>
             </property>
         </source>
         <source name="lage_kreis">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public"/>
                 <child name="kreis"/>
             </property>
         </source>
         <source name="lage_lage">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public"/>
                 <child name="lage"/>
             </property>
         </source>
         <source name="lage_land">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public"/>
                 <child name="land"/>
             </property>
         </source>
         <source name="lage_regierungsbezirk">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public"/>
                 <child name="regierungsbezirk"/>
             </property>
         </source>
         <source name="lage_unverschluesselt">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public"/>
                 <child name="unverschluesselt"/>
             </property>
         </source>
@@ -3165,7 +3238,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                 <core:content>
-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_PlatzType/name/AX_Lagebezeichnung found</core:text>
+                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/7.1/AX_PlatzType/name/AX_Lagebezeichnung found</core:text>
                 </core:content>
             </core:message>
         </annotation>
@@ -3173,37 +3246,37 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C56863741-74c0-4bbe-a955-273776c6670e_C0f1c8732-7bcc-4843-abce-025a5c88d4f6" priority="normal">
         <source name="lage_gemeinde">
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gemeinde"/>
             </property>
         </source>
         <source name="lage_kreis">
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="kreis"/>
             </property>
         </source>
         <source name="lage_lage">
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="lage"/>
             </property>
         </source>
         <source name="lage_land">
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="land"/>
             </property>
         </source>
         <source name="lage_regierungsbezirk">
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="regierungsbezirk"/>
             </property>
         </source>
         <source name="lage_unverschluesselt">
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="unverschluesselt"/>
             </property>
         </source>
@@ -3217,7 +3290,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                 <core:content>
-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_StrassenverkehrType/name/AX_Lagebezeichnung found</core:text>
+                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/7.1/AX_StrassenverkehrType/name/AX_Lagebezeichnung found</core:text>
                 </core:content>
             </core:message>
         </annotation>
@@ -3225,37 +3298,37 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C8efb5887-8982-4d92-a666-4c4b1701e6a1_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990" priority="normal">
         <source name="lage_gemeinde">
             <property>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gemeinde"/>
             </property>
         </source>
         <source name="lage_kreis">
             <property>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:public"/>
                 <child name="kreis"/>
             </property>
         </source>
         <source name="lage_lage">
             <property>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:public"/>
                 <child name="lage"/>
             </property>
         </source>
         <source name="lage_land">
             <property>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:public"/>
                 <child name="land"/>
             </property>
         </source>
         <source name="lage_regierungsbezirk">
             <property>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:public"/>
                 <child name="regierungsbezirk"/>
             </property>
         </source>
         <source name="lage_unverschluesselt">
             <property>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:public"/>
                 <child name="unverschluesselt"/>
             </property>
         </source>
@@ -3269,7 +3342,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                 <core:content>
-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_WegType/name/AX_Lagebezeichnung found</core:text>
+                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/7.1/AX_WegType/name/AX_Lagebezeichnung found</core:text>
                 </core:content>
             </core:message>
         </annotation>
@@ -3277,7 +3350,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C97f8dc8e-cdff-4310-90c1-5a5fffea2ee4_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990" priority="high">
         <source name="spelling">
             <property>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
                 <child name="bezeichnung"/>
@@ -3301,7 +3374,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C17a29f5c-b3aa-487a-b62d-46bccb2ce299_C2827fa08-a3dd-4539-83de-413c6b922f47" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="name"/>
@@ -3325,7 +3398,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C03242cf4-d306-48d3-b28c-36ca110b9268_Ca20f2d64-1511-4c47-b43c-ea4f8f9cae05" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '5130'</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -3348,8 +3421,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C14b7beec-415e-4a5e-bdf1-d522c580c2a7_C0f1c8732-7bcc-4843-abce-025a5c88d4f6" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion IS NULL OR funktion = '2312') OR funktion = '5130'</condition>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IS NULL OR funktion = '2312') OR funktion = '2315') OR funktion = '5130'</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -3371,7 +3444,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="Cfa221ae9-32f8-4cd2-a17e-e70893ce5865_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -3394,7 +3467,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="C4e7669e8-0669-46a5-9836-ff86d7f43672_C2581bae5-bd09-416c-948e-bcb8b5835ca3" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_klassifizierungnachstrassenrecht" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_klassifizierungnachstrassenrecht" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -3409,7 +3482,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="C4e7669e8-0669-46a5-9836-ff86d7f43672_Ca20f2d64-1511-4c47-b43c-ea4f8f9cae05" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '5130'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3433,8 +3506,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="C4e7669e8-0669-46a5-9836-ff86d7f43672_C0f1c8732-7bcc-4843-abce-025a5c88d4f6" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion IS NULL OR funktion = '2312') OR funktion = '5130'</condition>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IS NULL OR funktion = '2312') OR funktion = '2315') OR funktion = '5130'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3457,7 +3530,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="C4e7669e8-0669-46a5-9836-ff86d7f43672_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3481,7 +3554,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="C4e7669e8-0669-46a5-9836-ff86d7f43672_C2827fa08-a3dd-4539-83de-413c6b922f47" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3505,7 +3578,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="C010d8324-6422-49f2-883a-7ee5d875177b_C2581bae5-bd09-416c-948e-bcb8b5835ca3" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_klassifizierungnachstrassenrecht" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_klassifizierungnachstrassenrecht" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -3519,7 +3592,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="C010d8324-6422-49f2-883a-7ee5d875177b_Ca20f2d64-1511-4c47-b43c-ea4f8f9cae05" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '5130'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3542,8 +3615,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="C010d8324-6422-49f2-883a-7ee5d875177b_C0f1c8732-7bcc-4843-abce-025a5c88d4f6" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion IS NULL OR funktion = '2312') OR funktion = '5130'</condition>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IS NULL OR funktion = '2312') OR funktion = '2315') OR funktion = '5130'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3565,7 +3638,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="C010d8324-6422-49f2-883a-7ee5d875177b_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3588,7 +3661,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="C010d8324-6422-49f2-883a-7ee5d875177b_C2827fa08-a3dd-4539-83de-413c6b922f47" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3626,7 +3699,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ce5efa00a-e0b4-4541-bb3d-332da94c1c7e_C2581bae5-bd09-416c-948e-bcb8b5835ca3" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_klassifizierungnachstrassenrecht" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_klassifizierungnachstrassenrecht" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -3643,7 +3716,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ce5efa00a-e0b4-4541-bb3d-332da94c1c7e_Ca20f2d64-1511-4c47-b43c-ea4f8f9cae05" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '5130'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3669,8 +3742,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ce5efa00a-e0b4-4541-bb3d-332da94c1c7e_C0f1c8732-7bcc-4843-abce-025a5c88d4f6" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion IS NULL OR funktion = '2312') OR funktion = '5130'</condition>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IS NULL OR funktion = '2312') OR funktion = '2315') OR funktion = '5130'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -3695,7 +3768,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ce5efa00a-e0b4-4541-bb3d-332da94c1c7e_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_weg" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_weg" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '5260') AND NOT (funktion = '9999')</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3721,7 +3794,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ce5efa00a-e0b4-4541-bb3d-332da94c1c7e_C2827fa08-a3dd-4539-83de-413c6b922f47" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3777,17 +3850,17 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="Cc8dfcac2-f330-4946-b4d6-8e1a87136c04" priority="normal">
         <source name="types">
             <class>
-                <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -3798,31 +3871,31 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_strasse" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <class>
-                    <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <class>
-                    <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_strasse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="gml_id"/>
                     </property>
                     <property>
-                        <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="istteilvon"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
                     <property>
-                        <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_strasse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="gml_id"/>
                     </property>
                     <property>
-                        <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="istteilvon"/>
                     </property>
                 </jp:condition>
@@ -3942,6 +4015,16 @@ def erstelleRoadLink = { achse -&gt;
 			break
 		}
 		
+		//bestimme TrafficFlowDirection
+		def trafficFlowDirection
+
+		if (achse.p.fahrtrichtung.value().toString() == 'true') {
+			trafficFlowDirection = 'inDirection'
+		}
+		else if (achse.p.fahrtrichtung.value().toString() == 'false') {
+			trafficFlowDirection = 'inOppositeDirection'
+		}
+		
 		/*
 		 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
 		 */
@@ -4016,6 +4099,10 @@ def erstelleRoadLink = { achse -&gt;
 		}
 		// Sammle ID für ConditionOfFacility
 		collect.conditionOfFacility[conditionOfFacility] &lt;&lt; _id
+		// Sammle ID für TrafficFlowDirection
+		if (trafficFlowDirection) {
+			collect.trafficFlowDirection[trafficFlowDirection] &lt;&lt; _id
+		}
 		// Sammle ID für VerticalPosition
 		collect.verticalPosition[verticalPosition] &lt;&lt; _id
 	}
@@ -4159,7 +4246,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Ca2c2e18b-a4f7-4f75-8f33-c9f97ac16b08" priority="normal">
         <source>
             <class>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -4202,6 +4289,23 @@ case '5211': // Hauptwirtschaftsweg
 case '5212': // Wirtschaftsweg
 	functionalClass = 'eighthClass'
 	break
+}
+
+//bestimme AccessRestriction
+def accessRestriction
+switch (_source.p.befahrbarkeit.value() as String) {
+case '2000': // Eingeschränkt befahrbar
+	accessRestriction = 'seasonal'
+	break
+}
+
+//bestimme TrafficFlowDirection
+def trafficFlowDirection
+if (_source.p.fahrtrichtung.value().toString() == 'true') {
+	trafficFlowDirection = 'inDirection'
+}
+else if (_source.p.fahrtrichtung.value().toString() == 'false') {
+	trafficFlowDirection = 'inOppositeDirection'
 }
 
 /*
@@ -4267,6 +4371,14 @@ if (surfaceCategory) {
 // Sammle ID für FunctionalRoadClass
 if (functionalClass) {
 	collect.functionalClass[functionalClass] &lt;&lt; _id
+}
+// Sammle ID für AccessRestriction
+if (accessRestriction) {
+	collect.accessRestriction[accessRestriction] &lt;&lt; _id
+}
+// Sammle ID für TrafficFlowDirection
+if (trafficFlowDirection) {
+	collect.trafficFlowDirection[trafficFlowDirection] &lt;&lt; _id
 }
 // Sammle ID für VerticalPosition
 collect.verticalPosition[verticalPosition] &lt;&lt; _id
@@ -4340,7 +4452,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C3296f18d-e980-40cf-a9f3-9e5187ecf16a" priority="normal">
         <source>
             <class>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
             </class>
@@ -4579,7 +4691,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ceb60a943-e6d4-45c8-8692-2509eb1a7320" priority="normal">
         <source>
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -4595,7 +4707,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce6f245ee-1436-45f8-a16d-78424c92b543_C3296f18d-e980-40cf-a9f3-9e5187ecf16a" priority="normal">
         <source>
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -4620,7 +4732,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="Cea0e0475-9496-4b4f-92a9-6f2a1d12bc85" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -4634,7 +4746,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C28de3162-ee30-4e33-a023-c790c0626889" priority="normal">
         <source>
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -4650,7 +4762,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf2ebdda1-3be7-4874-b722-5771fb39d520_C3296f18d-e980-40cf-a9f3-9e5187ecf16a" priority="normal">
         <source>
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="endet"/>
@@ -4684,7 +4796,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Ca2037be2-6ca4-4d8b-9f8c-0ca7b00923b0" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="name"/>
             </property>
         </source>
@@ -4699,7 +4811,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C1187dcaa-1077-4af5-8635-a8d4afd72e05" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="name"/>
             </property>
         </source>
@@ -4714,7 +4826,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cc282d381-71a7-42c0-ad00-3db811354191_C3296f18d-e980-40cf-a9f3-9e5187ecf16a" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="name"/>
@@ -4738,7 +4850,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ca2b6c098-4854-4d90-a534-81d0f7c5ad8b" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4753,7 +4865,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cdd81c01e-7dae-452d-b14f-7c8f76f43c67" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4782,7 +4894,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="C0720c2b6-cc98-42b3-9407-05b4b5cdb1b8" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4829,7 +4941,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cab1f0844-ca2a-404f-818b-c72553e7a069" priority="normal">
         <source>
             <class>
-                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1200</condition>
                 </type>
             </class>
@@ -4945,8 +5057,8 @@ collect.verticalPosition[verticalPosition] &lt;&lt; _id
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C2676fc94-d50d-4c45-b5b1-e4301a9cfe4a" priority="normal">
         <source>
             <class>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
             </class>
         </source>
@@ -4965,6 +5077,14 @@ withTransformationContext {
 def _id = 'RoadServiceArea_' + _source.p.gml_id.value()
 
 _target {
+}
+
+// bestimme RoadServiceType
+def serviceType
+switch (_source.p.funktion.value() as String) {
+case '5360': // Busbahnhof
+	serviceType = 'busStation'
+	break
 }
 
 /*
@@ -5021,6 +5141,10 @@ else {
 	}
 }
 
+// Sammle ID für RoadServiceType
+if (serviceType) {
+	collect.serviceType[serviceType] &lt;&lt; _id
+}
 // Sammle ID für Netzwerk
 collect.network &lt;&lt; _id
 // Sammle ID für VerticalPosition
@@ -5084,8 +5208,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C2f3a385b-d4d3-4a1e-9999-296f10a58386" priority="normal">
         <source>
             <class>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '2311' OR funktion = '2313'</condition>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">(funktion IN ('2311','2313')) OR funktion = '2314'</condition>
                 </type>
             </class>
         </source>
@@ -5114,6 +5238,9 @@ case '2100': // Außer Betrieb, stillgelegt, verlassen
 	break
 case '4000': // Im Bau
 	conditionOfFacility = 'underConstruction'
+	break
+case '8000': // Erweiterung, Neuansiedlung
+	conditionOfFacility = 'projected'
 	break
 }
 
@@ -5247,7 +5374,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C061eaac0-9374-4b3e-b1e9-d153a8be91b5_Cab1f0844-ca2a-404f-818b-c72553e7a069" priority="normal">
         <source>
             <property>
-                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1200</condition>
                 </type>
                 <child name="beginnt"/>
@@ -5272,8 +5399,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C061eaac0-9374-4b3e-b1e9-d153a8be91b5_C2676fc94-d50d-4c45-b5b1-e4301a9cfe4a" priority="normal">
         <source>
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -5297,8 +5424,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C061eaac0-9374-4b3e-b1e9-d153a8be91b5_C2f3a385b-d4d3-4a1e-9999-296f10a58386" priority="normal">
         <source>
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '2311' OR funktion = '2313'</condition>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">(funktion IN ('2311','2313')) OR funktion = '2314'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -5332,7 +5459,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cfcddb090-1dd1-47f2-b215-20490d0372cc_Cab1f0844-ca2a-404f-818b-c72553e7a069" priority="normal">
         <source>
             <property>
-                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1200</condition>
                 </type>
                 <child name="endet"/>
@@ -5357,8 +5484,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cfcddb090-1dd1-47f2-b215-20490d0372cc_C2676fc94-d50d-4c45-b5b1-e4301a9cfe4a" priority="normal">
         <source>
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5382,8 +5509,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cfcddb090-1dd1-47f2-b215-20490d0372cc_C2f3a385b-d4d3-4a1e-9999-296f10a58386" priority="normal">
         <source>
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '2311' OR funktion = '2313'</condition>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">(funktion IN ('2311','2313')) OR funktion = '2314'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -5404,62 +5531,10 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
             </core:message>
         </annotation>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C99266668-af5a-41d1-8c0f-761ef6877469_C2676fc94-d50d-4c45-b5b1-e4301a9cfe4a" priority="normal">
-        <source name="lage_gemeinde">
-            <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gemeinde"/>
-            </property>
-        </source>
-        <source name="lage_kreis">
-            <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="kreis"/>
-            </property>
-        </source>
-        <source name="lage_lage">
-            <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="lage"/>
-            </property>
-        </source>
-        <source name="lage_land">
-            <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="land"/>
-            </property>
-        </source>
-        <source name="lage_regierungsbezirk">
-            <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="regierungsbezirk"/>
-            </property>
-        </source>
-        <source name="lage_unverschluesselt">
-            <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="unverschluesselt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="RoadServiceAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_PlatzType/name/AX_Lagebezeichnung found</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C29af463b-32e7-4faf-9c91-7d222cbc6030" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1200</condition>
                 </type>
                 <child name="name"/>
@@ -5480,10 +5555,62 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
             </core:message>
         </annotation>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C99266668-af5a-41d1-8c0f-761ef6877469_C2676fc94-d50d-4c45-b5b1-e4301a9cfe4a" priority="normal">
+        <source name="lage_gemeinde">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public"/>
+                <child name="gemeinde"/>
+            </property>
+        </source>
+        <source name="lage_kreis">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public"/>
+                <child name="kreis"/>
+            </property>
+        </source>
+        <source name="lage_lage">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public"/>
+                <child name="lage"/>
+            </property>
+        </source>
+        <source name="lage_land">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public"/>
+                <child name="land"/>
+            </property>
+        </source>
+        <source name="lage_regierungsbezirk">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public"/>
+                <child name="regierungsbezirk"/>
+            </property>
+        </source>
+        <source name="lage_unverschluesselt">
+            <property>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public"/>
+                <child name="unverschluesselt"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="RoadServiceAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+            </property>
+        </target>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/7.1/AX_PlatzType/name/AX_Lagebezeichnung found</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C073255ea-ac1a-4066-965a-7aa87cc9babc" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1200</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -5506,8 +5633,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="Cd93d26ce-75f5-4a6a-9d4f-5e15f288d6f8_C2676fc94-d50d-4c45-b5b1-e4301a9cfe4a" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -5529,8 +5656,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="Cabfa9b04-be6c-4af3-a77c-09348ea070a1_C2f3a385b-d4d3-4a1e-9999-296f10a58386" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '2311' OR funktion = '2313'</condition>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">(funktion IN ('2311','2313')) OR funktion = '2314'</condition>
                 </type>
                 <child name="wkb_geometry"/>
             </property>
@@ -5552,7 +5679,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="C28588120-6d5c-4d16-b0e8-2b7a10d53c4c_Cab1f0844-ca2a-404f-818b-c72553e7a069" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1200</condition>
                 </type>
                 <child name="gml_id"/>
@@ -5576,8 +5703,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="C28588120-6d5c-4d16-b0e8-2b7a10d53c4c_C2676fc94-d50d-4c45-b5b1-e4301a9cfe4a" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5600,8 +5727,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="C28588120-6d5c-4d16-b0e8-2b7a10d53c4c_C2f3a385b-d4d3-4a1e-9999-296f10a58386" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '2311' OR funktion = '2313'</condition>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">(funktion IN ('2311','2313')) OR funktion = '2314'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5624,7 +5751,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="C36b5c984-cffc-4e48-98fe-38cd877b5b8e_Cab1f0844-ca2a-404f-818b-c72553e7a069" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1200</condition>
                 </type>
                 <child name="gml_id"/>
@@ -5647,8 +5774,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="C36b5c984-cffc-4e48-98fe-38cd877b5b8e_C2676fc94-d50d-4c45-b5b1-e4301a9cfe4a" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5670,8 +5797,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="C36b5c984-cffc-4e48-98fe-38cd877b5b8e_C2f3a385b-d4d3-4a1e-9999-296f10a58386" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '2311' OR funktion = '2313'</condition>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">(funktion IN ('2311','2313')) OR funktion = '2314'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5723,7 +5850,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="C63af76cc-1c77-4b8e-b20c-c63b749b972b_Cab1f0844-ca2a-404f-818b-c72553e7a069" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1200</condition>
                 </type>
                 <child name="gml_id"/>
@@ -5749,8 +5876,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="C63af76cc-1c77-4b8e-b20c-c63b749b972b_C2676fc94-d50d-4c45-b5b1-e4301a9cfe4a" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5775,8 +5902,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="C63af76cc-1c77-4b8e-b20c-c63b749b972b_C2f3a385b-d4d3-4a1e-9999-296f10a58386" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">funktion = '2311' OR funktion = '2313'</condition>
+                <type name="ax_strassenverkehr" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">(funktion IN ('2311','2313')) OR funktion = '2314'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -5871,8 +5998,8 @@ if (!collect.roadServiceType.values().contains('5310')){&#13;
     <cell relation="eu.esdihumboldt.cst.functions.groovy.merge" id="C7167685d-1927-4e65-82f3-b01258f955b4" priority="low">
         <source>
             <class>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
             </class>
         </source>
@@ -5914,8 +6041,8 @@ _target{}
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cccc9812b-cbe4-47a6-ab03-5e4e8e237b2f_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="funktion">
                     <condition lang="CQL">value = '5330'</condition>
@@ -5943,8 +6070,8 @@ _target{}
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C82f4f042-2fa9-48f2-9212-1607e76c1fe1_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="funktion">
                     <condition lang="CQL">value = '5330'</condition>
@@ -5972,8 +6099,8 @@ _target{}
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cebd7cdea-2694-4960-89ef-1cbc876bb136_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="funktion">
                     <condition lang="CQL">value = '5330'</condition>
@@ -6001,8 +6128,8 @@ _target{}
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C194d59be-3cd4-4730-9280-b7159a68190f_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="funktion">
                     <condition lang="CQL">value = '5330'</condition>
@@ -6030,8 +6157,8 @@ _target{}
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cbe1e3f30-5acf-4eb2-85e2-e51713896d7b_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="funktion">
                     <condition lang="CQL">value = '5330'</condition>
@@ -6059,8 +6186,8 @@ _target{}
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C764250f9-a589-443e-b75b-b19525bc4a25_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="funktion">
                     <condition lang="CQL">value = '5320' or value = '5330'</condition>
@@ -6108,8 +6235,8 @@ _target{}
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C16d977ed-3a0e-450d-9304-e5b9ab61d589_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="funktion"/>
             </property>
@@ -6133,8 +6260,8 @@ _target{}
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C06c4fa21-f02d-428e-9a48-6de08e035852_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source name="var">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="funktion"/>
             </property>
@@ -6157,8 +6284,8 @@ _target{}
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C2f39c383-6a2c-4d96-86fa-13b70fb05164_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source name="var">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="funktion"/>
             </property>
@@ -6198,8 +6325,8 @@ _target( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C2144d1d2-7e84-480c-88f5-69b8d027ea97_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source name="var">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="funktion"/>
             </property>
@@ -6234,8 +6361,8 @@ _target( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cb23dec73-0344-4ce3-8680-f66ef3dd2625_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="funktion"/>
             </property>
@@ -6260,8 +6387,8 @@ _target( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C5751a76b-1feb-4a49-9cd3-1eec3fe57799_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source name="var">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="funktion">
                     <condition lang="ECQL">value = '5310'</condition>
@@ -6334,8 +6461,8 @@ _log.info('Schleife läuft für ' + flaeche)&#13;
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C52ac1d6a-4b79-4afa-988a-ff6f351d3c52_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source name="var">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -6362,8 +6489,8 @@ _log.info('Schleife läuft für ' + flaeche)&#13;
     <cell relation="eu.esdihumboldt.hale.align.classification" id="Cb822d066-69fc-4cf8-8d8d-7e957bf43384_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source>
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="funktion"/>
             </property>
@@ -6378,16 +6505,20 @@ _log.info('Schleife läuft für ' + flaeche)&#13;
         <complexParameter name="lookupTable">
             <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
                 <entry>
-                    <key value="5310"/>
-                    <value value="http://inspire.ec.europa.eu/codelist/RoadServiceTypeValue/parking"/>
+                    <key value="5330"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/RoadServiceTypeValue/restArea"/>
                 </entry>
                 <entry>
                     <key value="5320"/>
                     <value value="http://inspire.ec.europa.eu/codelist/RoadServiceTypeValue/restArea"/>
                 </entry>
                 <entry>
-                    <key value="5330"/>
-                    <value value="http://inspire.ec.europa.eu/codelist/RoadServiceTypeValue/restArea"/>
+                    <key value="5310"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/RoadServiceTypeValue/parking"/>
+                </entry>
+                <entry>
+                    <key value="5360"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/RoadServiceTypeValue/busStation"/>
                 </entry>
             </lookup-table>
         </complexParameter>
@@ -6425,8 +6556,8 @@ _log.info('Schleife läuft für ' + flaeche)&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C76b7838c-63ba-405d-b3d8-4e82221002a8_C7167685d-1927-4e65-82f3-b01258f955b4" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_platz" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(funktion = '5320' OR funktion = '5330') OR funktion = '5310'</condition>
+                <type name="ax_platz" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((funktion IN ('5320','5330')) OR funktion = '5310') OR funktion = '5360'</condition>
                 </type>
                 <child name="funktion"/>
             </property>
@@ -6538,19 +6669,19 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
         <source name="types">
             <class>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -6561,37 +6692,37 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                         <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                     </type>
                 </class>
                 <class>
-                    <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <class>
-                    <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                         </type>
                         <child name="gml_id"/>
                     </property>
                     <property>
-                        <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_fahrbahnachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="istteilvon"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
                     <property>
-                        <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                         </type>
                         <child name="gml_id"/>
                     </property>
                     <property>
-                        <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_strassenachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="istteilvon"/>
                     </property>
                 </jp:condition>
@@ -6663,7 +6794,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C3d378c6d-c4c0-4bfe-9748-be28f5908f38" priority="normal">
         <source>
             <class>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -6699,7 +6830,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C949d36a1-b1e9-4c1d-9fab-584d6ff7bee2" priority="normal">
         <source>
             <class>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
             </class>
@@ -6772,7 +6903,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce6146fb9-6ab3-4d76-a0f8-ebf3c9e66667" priority="normal">
         <source>
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -6788,7 +6919,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf04bf7cb-0c75-4a85-a346-ff2791070e27_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
         <source>
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="beginnt"/>
@@ -6813,7 +6944,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C43612668-3d9d-4857-ac31-d510c15bc312_C949d36a1-b1e9-4c1d-9fab-584d6ff7bee2" priority="normal">
         <source>
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -6838,7 +6969,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C957cc3cc-ece3-459a-9ab0-61b8dc612bcd" priority="normal">
         <source>
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -6854,7 +6985,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca5cd019b-6e90-4f57-b478-94908d192233_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
         <source>
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="endet"/>
@@ -6879,7 +7010,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C9503659f-1365-4672-8cfb-1600e40207a5_C949d36a1-b1e9-4c1d-9fab-584d6ff7bee2" priority="normal">
         <source>
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="endet"/>
@@ -6904,7 +7035,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cedb16141-aec0-4c8d-a70a-302e12648ea7_C3d378c6d-c4c0-4bfe-9748-be28f5908f38" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="name"/>
             </property>
         </source>
@@ -6919,7 +7050,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C055eee92-8f70-4d3b-9771-2b7346cd7f6f_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="name"/>
@@ -6943,7 +7074,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C71badf51-3d25-4822-a1b3-c342ce7dd357_C949d36a1-b1e9-4c1d-9fab-584d6ff7bee2" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="name"/>
@@ -6967,7 +7098,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cd8e7f411-44b2-422e-8f5e-09112b56e2a1" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -6982,7 +7113,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="custom:alignment:adv.inspire.id.default" id="C5855cff4-b320-4f0c-bd53-c8d282791687_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="gml_id"/>
@@ -7006,7 +7137,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="custom:alignment:adv.inspire.id.default" id="C92e8561d-980c-40f4-aa8e-834f628f8e3d_C949d36a1-b1e9-4c1d-9fab-584d6ff7bee2" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -7030,7 +7161,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="custom:alignment:adv.inspire.identifier" id="Ccec81252-a0b4-4f4a-b6cf-1859e4cd3223" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -7044,7 +7175,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="custom:alignment:adv.inspire.identifier" id="C683c368a-e836-4ee4-9c47-abce43294ae6_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="gml_id"/>
@@ -7067,7 +7198,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cc4d83d5a-b9af-4a97-ad33-d69a0e2777b8_C949d36a1-b1e9-4c1d-9fab-584d6ff7bee2" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -7105,7 +7236,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="C25b81492-3b0f-4ffb-be0e-7ff925713e47" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -7122,7 +7253,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8a40758b-371a-4883-9294-1adafd5bc376_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="gml_id"/>
@@ -7148,7 +7279,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cde61c643-ff7b-4c72-9383-b958edf7654d_C949d36a1-b1e9-4c1d-9fab-584d6ff7bee2" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -7174,7 +7305,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C1505c26d-f446-4fad-8d7f-bc3fd3448caf" priority="normal">
         <source name="var">
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -7190,7 +7321,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C713718d5-a92b-4d39-a5e8-b55d5d88aca8" priority="normal">
         <source>
             <property>
-                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fahrwegachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="strassenschluessel"/>
             </property>
         </source>
@@ -7206,7 +7337,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce681d243-749e-4941-ab0d-02a2b7d3b7ec_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
         <source>
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="strassenschluessel"/>
@@ -7231,7 +7362,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C15dccdb1-4388-4632-a0b2-c40a9f31b855_C949d36a1-b1e9-4c1d-9fab-584d6ff7bee2" priority="normal">
         <source>
             <property>
-                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wegpfadsteig" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(art = '1103' OR art = '1106') OR art = '1110'</condition>
                 </type>
                 <child name="strassenschluessel"/>
@@ -7256,7 +7387,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C3966b6d7-6d7f-4015-989d-68838f82deb5_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
         <source>
             <property>
-                <type name="ax_strasse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strasse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">internationalebedeutung IS NULL OR NOT (internationalebedeutung = '2001')</condition>
                 </type>
                 <child name="bezeichnung"/>
@@ -7392,6 +7523,76 @@ Die gesammelten Daten werden verwendet um die Informationen zu Breite, Maßeinhe
         <target>
             <property>
                 <type name="RoadWidthType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
+                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <child name="nilReason"/>
+            </property>
+        </target>
+        <parameter value="other:unpopulated" name="value"/>
+        <documentation>Diese Information ist im 3A-Modell nicht vorhanden.</documentation>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="C6955e1ef-56ba-4ac9-9507-4203fc556956" priority="low">
+        <target>
+            <class>
+                <type name="TrafficFlowDirectionType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+            </class>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def collect&#13;
+withTransformationContext {&#13;
+	collect = _.context.collector(it)&#13;
+}&#13;
+&#13;
+// Erstelle ein TrafficFlowDirection-Objekt für jeden vorkommenden Wert&#13;
+collect.trafficFlowDirection.consume { key, values -&gt;&#13;
+	def _id = 'TrafficFlowDirection' + key&#13;
+	def _ns = _project.vars.INSPIRE_NAMESPACE&#13;
+	&#13;
+	_target {&#13;
+		direction {&#13;
+			href( 'http://inspire.ec.europa.eu/codelist/LinkDirectionValue/' + key)&#13;
+		}&#13;
+		id( _id )&#13;
+		inspireId {&#13;
+			Identifier {&#13;
+				namespace( _ns )&#13;
+				localId( _id )&#13;
+			}&#13;
+		}&#13;
+		identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {&#13;
+			codeSpace( 'http://inspire.ec.europa.eu/ids' )&#13;
+		}&#13;
+		&#13;
+		// Referenz zu gesammelten RoadLinks/RoadAreas mit dieser Eigenschaft&#13;
+		values.each { linkId -&gt;&#13;
+			networkRef {&#13;
+				NetworkReference {&#13;
+					element {&#13;
+						href( "#$linkId" )&#13;
+					}&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C6563043b-57b7-4264-b3ff-6264b547216f_C6955e1ef-56ba-4ac9-9507-4203fc556956" priority="normal">
+        <target>
+            <property>
+                <type name="TrafficFlowDirectionType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <child name="nilReason"/>
+            </property>
+        </target>
+        <parameter value="other:unpopulated" name="value"/>
+        <documentation>`TransportProperty`-Objekte sind im Rahmen der Transformation neu gebildete Objekte und übernehmen daher keine Information für `beginLifespanVersion` aus den Quell-Daten.</documentation>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign" id="C9fbdcf9a-e35a-4f33-b915-77155350de27_C6955e1ef-56ba-4ac9-9507-4203fc556956" priority="normal">
+        <target>
+            <property>
+                <type name="TrafficFlowDirectionType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
                 <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
                 <child name="nilReason"/>
             </property>
@@ -7712,48 +7913,14 @@ collect.verticalPosition.consume { key, values -&gt;
     <modifier cell="C010d8324-6422-49f2-883a-7ee5d875177b_C2827fa08-a3dd-4539-83de-413c6b922f47">
         <disable-for parent="C2827fa08-a3dd-4539-83de-413c6b922f47"/>
     </modifier>
-    <modifier cell="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cab1f0844-ca2a-404f-818b-c72553e7a069">
-        <disable-for parent="Cb090758a-65b1-49f7-a92e-42ef7d8afb04"/>
-    </modifier>
     <modifier cell="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cb090758a-65b1-49f7-a92e-42ef7d8afb04">
         <disable-for parent="Cb090758a-65b1-49f7-a92e-42ef7d8afb04"/>
-    </modifier>
-    <modifier cell="C4e7669e8-0669-46a5-9836-ff86d7f43672_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990">
-        <disable-for parent="C2827fa08-a3dd-4539-83de-413c6b922f47"/>
-    </modifier>
-    <modifier cell="C6563043b-57b7-4264-b3ff-6264b547216f_C00cccf8c-b815-4fa9-b89c-6f37d12ae435">
-        <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
-        <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
-    </modifier>
-    <modifier cell="C6563043b-57b7-4264-b3ff-6264b547216f_C01d34ad8-6db2-4d58-8bfa-5ef45239e015">
-        <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
-        <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
-    </modifier>
-    <modifier cell="C6563043b-57b7-4264-b3ff-6264b547216f_C1eb2d011-34d1-4077-8388-f7fbdb1659b9">
-        <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
-        <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
-    </modifier>
-    <modifier cell="C6563043b-57b7-4264-b3ff-6264b547216f_C58fab7dc-5037-41c6-97cd-b69550c0ec51">
-        <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
-        <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
     </modifier>
     <modifier cell="C6563043b-57b7-4264-b3ff-6264b547216f_C7167685d-1927-4e65-82f3-b01258f955b4">
         <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
         <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
     </modifier>
-    <modifier cell="C6563043b-57b7-4264-b3ff-6264b547216f_C76d28e9a-d217-4c2e-9b95-1597e9fe07de">
-        <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
-        <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
-    </modifier>
     <modifier cell="C6563043b-57b7-4264-b3ff-6264b547216f_Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd">
-        <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
-        <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
-    </modifier>
-    <modifier cell="C6563043b-57b7-4264-b3ff-6264b547216f_Cdea13ccc-cf83-4aa5-ac9d-9c076505f176">
-        <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
-        <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
-    </modifier>
-    <modifier cell="C6563043b-57b7-4264-b3ff-6264b547216f_Cf936785f-5456-4fc6-bd62-f55395169e5a">
         <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
         <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
     </modifier>
@@ -7765,39 +7932,11 @@ collect.verticalPosition.consume { key, values -&gt;
         <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
         <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
     </modifier>
-    <modifier cell="C9fbdcf9a-e35a-4f33-b915-77155350de27_C00cccf8c-b815-4fa9-b89c-6f37d12ae435">
-        <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
-        <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
-    </modifier>
-    <modifier cell="C9fbdcf9a-e35a-4f33-b915-77155350de27_C01d34ad8-6db2-4d58-8bfa-5ef45239e015">
-        <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
-        <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
-    </modifier>
-    <modifier cell="C9fbdcf9a-e35a-4f33-b915-77155350de27_C1eb2d011-34d1-4077-8388-f7fbdb1659b9">
-        <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
-        <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
-    </modifier>
-    <modifier cell="C9fbdcf9a-e35a-4f33-b915-77155350de27_C58fab7dc-5037-41c6-97cd-b69550c0ec51">
-        <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
-        <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
-    </modifier>
     <modifier cell="C9fbdcf9a-e35a-4f33-b915-77155350de27_C7167685d-1927-4e65-82f3-b01258f955b4">
         <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
         <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
     </modifier>
-    <modifier cell="C9fbdcf9a-e35a-4f33-b915-77155350de27_C76d28e9a-d217-4c2e-9b95-1597e9fe07de">
-        <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
-        <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
-    </modifier>
     <modifier cell="C9fbdcf9a-e35a-4f33-b915-77155350de27_Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd">
-        <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
-        <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
-    </modifier>
-    <modifier cell="C9fbdcf9a-e35a-4f33-b915-77155350de27_Cdea13ccc-cf83-4aa5-ac9d-9c076505f176">
-        <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
-        <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
-    </modifier>
-    <modifier cell="C9fbdcf9a-e35a-4f33-b915-77155350de27_Cf936785f-5456-4fc6-bd62-f55395169e5a">
         <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
         <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
     </modifier>
