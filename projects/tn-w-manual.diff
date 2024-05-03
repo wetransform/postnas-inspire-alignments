@@ -1,12 +1,12 @@
 diff --git a/projects/tn-w-auto.halex.alignment.xml b/projects/tn-w-manual.halex.alignment.xml
-index 91bfea4..3b72679 100644
+index 0ad9b4b..a637c81 100644
 --- a/projects/tn-w-auto.halex.alignment.xml
 +++ b/projects/tn-w-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
          <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
              <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
                  <cf:binding>java.lang.String</cf:binding>
--                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
              </cf:input>
              <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
@@ -14,7 +14,7 @@ index 91bfea4..3b72679 100644
              </cf:input>
              <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
--                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -175,10 +175,10 @@ index 91bfea4..3b72679 100644
 -    <cell relation="custom:alignment:adv.uom.toucum" id="Cf3eb9a99-85bb-4077-bf11-23888bc6e0c9" priority="normal">
 -        <source name="uom">
 -            <property>
--                <type name="AX_EinrichtungenFuerDenSchiffsverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                <type name="AX_EinrichtungenFuerDenSchiffsverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
 -                    <condition lang="CQL">art = '1430' and kilometerangabe is not null</condition>
 -                </type>
--                <child name="kilometerangabe" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="kilometerangabe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
 -                <child name="uom"/>
 -            </property>
 -        </source>
@@ -203,7 +203,16 @@ index 91bfea4..3b72679 100644
  
  def _id = "PortArea_$sourceId"
  	
-@@ -3095,9 +3085,9 @@ withTransformationContext {
+@@ -3087,7 +3077,7 @@ _target {
+ 
+ // bestimme ConditionOfWaterFacility
+ def conditionOfFacility = 'functional'
+-switch (_source.p.zustand.value()) {
++switch (_source.p.zustand.value() as String) {
+ 	case '2100': // Außer Betrieb, stillgelegt, verlassen
+ 		conditionOfFacility = 'disused'
+ 		break
+@@ -3108,9 +3098,9 @@ withTransformationContext {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -215,7 +224,7 @@ index 91bfea4..3b72679 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -3739,10 +3729,10 @@ collect.verticalPosition.consume { key, values -&gt;
+@@ -3752,10 +3742,10 @@ collect.verticalPosition.consume { key, values -&gt;
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quell-Objekts
@@ -228,16 +237,16 @@ index 91bfea4..3b72679 100644
  
  if (parentId) {
  	// nur falls ein Kanal verfügbar ist, der die entsprechenden Bedingungen erfüllt
-@@ -3755,7 +3745,7 @@ if (parentId) {
+@@ -3768,7 +3758,7 @@ if (parentId) {
  	
- 	// bestimme ConditionOfWaterFacility
+ 	// bestimme ConditionOfFacility
  	def conditionOfFacility = 'functional'
 -	switch (_source.p.zustand.value()) {
 +	switch (_source.p.zustand.value() as String) {
  	case '2100': // Außer Betrieb, stillgelegt, verlassen
  		conditionOfFacility = 'disused'
  		break
-@@ -3778,9 +3768,9 @@ if (parentId) {
+@@ -3791,9 +3781,9 @@ if (parentId) {
  	/*
  	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  	 */
@@ -249,7 +258,7 @@ index 91bfea4..3b72679 100644
  		if (bwf) {
  			switch (bwf) {
  			// AX_BauwerkImVerkehrsbereich
-@@ -3946,10 +3936,10 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -3959,10 +3949,10 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quell-Objekts
@@ -262,7 +271,7 @@ index 91bfea4..3b72679 100644
  
  if (parentId) {
  	// nur falls ein Wasserlauf verfügbar ist, der die entsprechenden Bedingungen erfüllt
-@@ -3972,9 +3962,9 @@ if (parentId) {
+@@ -3985,9 +3975,9 @@ if (parentId) {
  	/*
  	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  	 */
@@ -274,7 +283,7 @@ index 91bfea4..3b72679 100644
  		if (bwf) {
  			switch (bwf) {
  			// AX_BauwerkImVerkehrsbereich
-@@ -4098,7 +4088,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -4111,7 +4101,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quellobjekts
@@ -283,7 +292,7 @@ index 91bfea4..3b72679 100644
  
  def _id = "WaterwayLink_$sourceId"
  	
-@@ -4115,9 +4105,9 @@ withTransformationContext {
+@@ -4128,9 +4118,9 @@ withTransformationContext {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -295,7 +304,7 @@ index 91bfea4..3b72679 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -4236,9 +4226,11 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -4249,9 +4239,11 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quellobjekts
@@ -309,7 +318,7 @@ index 91bfea4..3b72679 100644
  	// nur Objekte die durch Curve/LineString oder CompositeCurve dargestellt sind
  	
  	def _id = "WaterwayLink_$sourceId"
-@@ -4258,9 +4250,9 @@ if (_source.p.position.CompositeCurve.first() || _source.p.position.Curve.first(
+@@ -4271,9 +4263,9 @@ if (_source.p.position.CompositeCurve.first() || _source.p.position.Curve.first(
  	/*
  	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  	 */
@@ -321,7 +330,7 @@ index 91bfea4..3b72679 100644
  		if (bwf) {
  			switch (bwf) {
  			// AX_BauwerkImVerkehrsbereich
-@@ -4316,8 +4308,7 @@ else {
+@@ -4329,8 +4321,7 @@ else {
  	// das ist die Vorgabe aus der Mapping-Tabelle - heißt das es können keine MultiCurves auftreten?
  	// zur Sicherheit - Warnung falls andere linienartige Geometrie gefunden
  	
@@ -331,7 +340,7 @@ index 91bfea4..3b72679 100644
  		_log.warn("AX_SchifffahrtslinieFaehrverkehr $sourceId enthält wider Erwarten linienartige Geometrie die nicht Curve/LineString/CompositeCurve ist, es wurde kein WaterwayLink gebildet")
  	}
  }
-@@ -4645,51 +4636,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -4658,51 +4649,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
              </property>
          </target>
      </cell>
