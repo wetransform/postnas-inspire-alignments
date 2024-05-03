@@ -1,12 +1,12 @@
 diff --git a/projects/cp-auto.halex.alignment.xml b/projects/cp-manual.halex.alignment.xml
-index e36f5cb..6c4742e 100644
+index 74da46d..610ccf0 100644
 --- a/projects/cp-auto.halex.alignment.xml
 +++ b/projects/cp-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
          <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
              <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
                  <cf:binding>java.lang.String</cf:binding>
--                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
              </cf:input>
              <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
@@ -14,7 +14,7 @@ index e36f5cb..6c4742e 100644
              </cf:input>
              <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
--                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -25,8 +25,8 @@ index e36f5cb..6c4742e 100644
 -    <cell relation="custom:alignment:adv.uom.toucum" id="C033c7108-6b60-4abd-92a4-4cf19ee508a0" priority="normal">
 -        <source name="uom">
 -            <property>
--                <type name="AX_FlurstueckType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="amtlicheFlaeche" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <type name="AX_FlurstueckType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="amtlicheFlaeche" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
 -                <child name="uom"/>
 -            </property>
 -        </source>
