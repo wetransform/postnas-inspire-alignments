@@ -126,7 +126,7 @@ if (!name) {
 			if (collect.lagebezeichnung[schluesselGesamt].value()){
 				name = collect.lagebezeichnung[schluesselGesamt].value()
 			}
-			else _log.error('Für einen Namen aus einer verschlüsselten Lagebezeichnung liegt kein Katalogeintrag vor.')
+			else _log.error("Für einen Namen aus einer verschlüsselten Lagebezeichnung mit Schlüssel ${schluesselGesamt} liegt kein Katalogeintrag vor.")
 		}
 	}
 }
@@ -802,12 +802,12 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.join" id="C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
         <source name="types">
             <class>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '8300')</condition>
                 </type>
             </class>
@@ -820,29 +820,29 @@ _target {&#13;
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                         <condition lang="CQL">NOT (funktion = '8300')</condition>
                     </type>
                 </class>
                 <class>
-                    <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">NOT (funktion = '8300')</condition>
                         </type>
                         <child name="istteilvon"/>
                     </property>
                     <property>
-                        <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                         <child name="gml_id"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
         </complexParameter>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -852,12 +852,12 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.join" id="C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source name="types">
             <class>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '8300'</condition>
                 </type>
             </class>
@@ -870,29 +870,29 @@ _target {&#13;
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                         <condition lang="CQL">funktion = '8300'</condition>
                     </type>
                 </class>
                 <class>
-                    <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">funktion = '8300'</condition>
                         </type>
                         <child name="istteilvon"/>
                     </property>
                     <property>
-                        <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                         <child name="gml_id"/>
                     </property>
                 </jp:condition>
             </jp:join-parameter>
         </complexParameter>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -902,7 +902,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Cc4d2bf71-d9f7-4089-84fc-80ac610248a1" priority="normal">
         <source>
             <class>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -916,7 +916,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Ce45298d6-bb21-48c2-9f44-91b32411e0d0" priority="normal">
         <source>
             <class>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -930,7 +930,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C0c7a1560-07b7-497c-a0ea-9c6fad6bf459_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '8300')</condition>
                 </type>
                 <child name="beginnt"/>
@@ -945,7 +945,7 @@ _target {&#13;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -955,7 +955,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C0c7a1560-07b7-497c-a0ea-9c6fad6bf459_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '8300'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -970,7 +970,7 @@ _target {&#13;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -980,7 +980,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C98bc7f41-5f2a-4b8d-878d-f4576b4f4e17" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -996,7 +996,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8c332ab4-2fe1-445d-be6a-ad09a87e49e4" priority="normal">
         <source>
             <property>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -1012,7 +1012,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C32e99886-76cc-4140-baac-1bd195a851ef_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '8300')</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -1025,7 +1025,7 @@ _target {&#13;
             </property>
         </target>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1035,7 +1035,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C32e99886-76cc-4140-baac-1bd195a851ef_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '8300'</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -1048,7 +1048,7 @@ _target {&#13;
             </property>
         </target>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1058,7 +1058,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C492c3831-f97d-4d49-ac60-7beb6b6d245e" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -1072,7 +1072,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="Cd6c38161-1207-4cd6-ac79-b0e8c07a941a" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -1086,7 +1086,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cde4b9411-60d4-4cb4-b200-f7549b88df60_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '8300')</condition>
                 </type>
                 <child name="endet"/>
@@ -1101,7 +1101,7 @@ _target {&#13;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1111,7 +1111,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cde4b9411-60d4-4cb4-b200-f7549b88df60_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '8300'</condition>
                 </type>
                 <child name="endet"/>
@@ -1126,7 +1126,7 @@ _target {&#13;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1136,7 +1136,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cb91972dd-fc22-488d-8b0f-3918f77a7c79" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -1152,7 +1152,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C36280dbe-c3ca-49a4-869c-74601e29cdf1" priority="normal">
         <source>
             <property>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -1177,8 +1177,8 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C47b0e8c9-47e7-43ec-80db-e76d1c4bc615" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="artdergewaesserachse"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
+                <child name="artdergewaesserstationierungsachse"/>
             </property>
         </source>
         <target>
@@ -1204,7 +1204,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C9fa88231-373a-462b-9bdf-64c2bad25eeb_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '8300')</condition>
                 </type>
                 <child name="fliessrichtung"/>
@@ -1227,7 +1227,7 @@ _target {&#13;
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1237,7 +1237,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C9fa88231-373a-462b-9bdf-64c2bad25eeb_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '8300'</condition>
                 </type>
                 <child name="fliessrichtung"/>
@@ -1260,7 +1260,7 @@ _target {&#13;
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1270,7 +1270,31 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C5a37708c-333d-4276-8f1f-8326af62a576" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
+                <child name="fliessrichtung"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <child name="flowDirection" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
+            </property>
+        </target>
+        <complexParameter name="lookupTable">
+            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+                <entry>
+                    <key value="true"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/LinkDirectionValue/inDirection"/>
+                </entry>
+            </lookup-table>
+        </complexParameter>
+        <parameter value="null" name="notClassifiedAction"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.classification" id="C8f9655a7-9899-434d-beb1-8de3788ed601" priority="normal">
+        <source>
+            <property>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:public"/>
                 <child name="fliessrichtung"/>
             </property>
         </source>
@@ -1304,7 +1328,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Ce3cc8696-e7b1-4231-ac7a-201fdf247ecc" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="zweitname"/>
             </property>
         </source>
@@ -1322,7 +1346,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C86f39286-d581-4d2b-a3a0-5e619cc766ea" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="zweitname"/>
             </property>
         </source>
@@ -1340,7 +1364,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C71676b63-a9dc-4ad2-800b-aaa43b690ae9" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:public"/>
                 <child name="zweitname"/>
             </property>
         </source>
@@ -1358,7 +1382,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C122cb93f-90e4-46dc-b908-65f257665de5" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="zweitname"/>
             </property>
         </source>
@@ -1373,10 +1397,181 @@ _target {&#13;
         </target>
         <parameter value="other" name="nameStatus"/>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="Cccbced66-91c7-4522-88f3-aa22fd17802a" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
+                <child name="regionalsprache"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0">
+                    <context>1</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (regionalsprache) {&#13;
+	regionalsprache.p.each { reg -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( reg )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language {&#13;
+					nilReason( 'unknown' )&#13;
+				}&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="C267327b8-dc05-4cab-8554-25ef925910fe" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
+                <child name="regionalsprache"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0">
+                    <context>1</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (regionalsprache) {&#13;
+	regionalsprache.p.each { reg -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( reg )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language {&#13;
+					nilReason( 'unknown' )&#13;
+				}&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="C7ea8ce26-1461-4062-a6c1-2cd5e4d4b19a" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
+                <child name="regionalsprache"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0">
+                    <context>1</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (regionalsprache) {&#13;
+	regionalsprache.p.each { reg -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( reg )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language {&#13;
+					nilReason( 'unknown' )&#13;
+				}&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C16ffcf76-ef69-4be7-9ae0-82a786e774c8" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="name"/>
             </property>
         </source>
@@ -1392,7 +1587,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C101f23ad-7a7f-4b77-a555-48704b165288" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="name"/>
             </property>
         </source>
@@ -1408,7 +1603,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C08c61bda-a3b3-4666-b590-9983166ed010" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:public"/>
                 <child name="name"/>
             </property>
         </source>
@@ -1424,7 +1619,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C7f4b3d7e-4c85-4754-b571-ece32a50c67f" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="name"/>
             </property>
         </source>
@@ -1440,7 +1635,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="C1f0af287-eddd-4251-b6ac-e06cc7e18b89" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gewaesserkennzahl"/>
             </property>
         </source>
@@ -1456,7 +1651,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cc0fe6041-233e-4a8c-b915-fe848f575f68" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gewaesserkennzahl"/>
             </property>
         </source>
@@ -1472,7 +1667,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cf52153cf-22ff-4166-93dd-997d3a7876f3" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gewaesserkennzahl"/>
             </property>
         </source>
@@ -1488,7 +1683,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ca5921261-7884-431f-ae4d-d5e46a49c9e7" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gewaesserkennzahl"/>
             </property>
         </source>
@@ -1504,7 +1699,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C8eaa42ed-88ad-4cb5-9560-43dddd8c6992" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gewaesserkennzahl"/>
             </property>
         </source>
@@ -1521,7 +1716,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C4529cd62-3c9f-4b97-bc3a-ed72da5d09d2" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gewaesserkennzahl"/>
             </property>
         </source>
@@ -1538,7 +1733,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ce61e7d4d-47b3-4e89-b984-0a46e8b04ab7" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gewaesserkennzahl"/>
             </property>
         </source>
@@ -1555,7 +1750,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C13e156bd-9301-42ba-ad04-3144cdc2e9ce" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gewaesserkennzahl"/>
             </property>
         </source>
@@ -1572,7 +1767,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9abf2351-2518-44d0-8926-cb8caf880963_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '8300')</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1586,7 +1781,7 @@ _target {&#13;
         </target>
         <parameter value="network" name="collectorName"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1596,7 +1791,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="C9abf2351-2518-44d0-8926-cb8caf880963_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '8300'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1610,7 +1805,7 @@ _target {&#13;
         </target>
         <parameter value="network" name="collectorName"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1620,7 +1815,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ca9d3b9b7-8ef8-4abb-93cf-0f4bdf32defa" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -1635,7 +1830,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="C4fe88ad1-3baa-48b4-ac03-a0490bb5f871" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -1650,7 +1845,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.identifier" id="C670559fc-a9d4-4fcb-a456-32fc671c071c_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '8300')</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1663,7 +1858,7 @@ _target {&#13;
             </property>
         </target>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1673,7 +1868,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.identifier" id="C670559fc-a9d4-4fcb-a456-32fc671c071c_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '8300'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1686,7 +1881,7 @@ _target {&#13;
             </property>
         </target>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1696,7 +1891,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.identifier" id="C9892986c-a82d-4d20-80b9-bbd0d408055c" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -1710,7 +1905,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.identifier" id="C50e93e5d-c134-4d5e-97e4-9615c913a454" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -1734,7 +1929,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ca0d6577b-2581-49cd-87d8-8f235e6ce242_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '8300')</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1749,7 +1944,7 @@ _target {&#13;
             </property>
         </target>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1759,7 +1954,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ca0d6577b-2581-49cd-87d8-8f235e6ce242_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '8300'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1774,7 +1969,7 @@ _target {&#13;
             </property>
         </target>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1784,7 +1979,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cffb35322-9f3a-467d-ade2-16a021dda2c8" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -1800,7 +1995,7 @@ _target {&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="C4018e6bb-8c8e-4931-927e-ea83f3708f8c" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -1826,7 +2021,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatelength" id="C7c8926c6-296b-4339-8f52-319848398955_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '8300')</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -1839,7 +2034,7 @@ _target {&#13;
             </property>
         </target>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1849,7 +2044,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatelength" id="C7c8926c6-296b-4339-8f52-319848398955_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '8300'</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -1862,7 +2057,7 @@ _target {&#13;
             </property>
         </target>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1872,7 +2067,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatelength" id="C2881ff0f-c31d-48f1-98e8-d828319a654c" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -1886,7 +2081,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatelength" id="Cf2ed3575-612d-4481-8ea5-db66d5cfb83c" priority="normal">
         <source>
             <property>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -1900,7 +2095,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cb034ce5f-93a2-4153-be13-0142edd7e94d_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (funktion = '8300')</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -1915,7 +2110,7 @@ _target {&#13;
         </target>
         <parameter value="m" name="value"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1925,7 +2120,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cb034ce5f-93a2-4153-be13-0142edd7e94d_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '8300'</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -1940,7 +2135,7 @@ _target {&#13;
         </target>
         <parameter value="m" name="value"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -1950,7 +2145,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C67bc8977-3a7d-4a0c-baa1-1e77beda7092" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -1966,7 +2161,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ceaf3f99b-6e40-4601-9e76-f435adecaf62" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sickerstrecke" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -1982,21 +2177,21 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="Cd25b8ffb-1b4a-4fbc-b480-57faf3462979" priority="highest">
         <source name="types">
             <class>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="CQL">bauwerksfunktion = '2012'</condition>
                 </type>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -2007,37 +2202,37 @@ _target {&#13;
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <class>
-                    <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                         <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                     </type>
                 </class>
                 <class>
-                    <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                        <condition lang="CQL">bauwerksfunktion = '1800'</condition>
+                    <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                        <condition lang="CQL">bauwerksfunktion = '2012'</condition>
                     </type>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                         <child name="hatdirektunten"/>
                     </property>
                     <property>
-                        <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                            <condition lang="CQL">bauwerksfunktion = '1800'</condition>
+                        <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                            <condition lang="CQL">bauwerksfunktion = '2012'</condition>
                         </type>
                         <child name="gml_id"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
                     <property>
-                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                         <child name="hatdirektunten"/>
                     </property>
                     <property>
-                        <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                         </type>
                         <child name="gml_id"/>
@@ -2064,14 +2259,14 @@ if (_source.links.ax_bauwerkimgewaesserbereich.first()){&#13;
 </core:text>
         </complexParameter>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
             </core:message>
         </annotation>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                 </core:content>
@@ -2081,20 +2276,20 @@ if (_source.links.ax_bauwerkimgewaesserbereich.first()){&#13;
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C13a28068-b2af-407e-91c2-780ee4fa28f2" priority="higher">
         <source name="types">
             <class>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="CQL">bauwerksfunktion = '2012'</condition>
                 </type>
             </class>
         </source>
@@ -2106,37 +2301,37 @@ if (_source.links.ax_bauwerkimgewaesserbereich.first()){&#13;
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <class>
-                    <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                         <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                     </type>
                 </class>
                 <class>
-                    <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                        <condition lang="CQL">bauwerksfunktion = '1800'</condition>
+                    <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                        <condition lang="CQL">bauwerksfunktion = '2012'</condition>
                     </type>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="hatdirektunten"/>
                     </property>
                     <property>
-                        <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                            <condition lang="CQL">bauwerksfunktion = '1800'</condition>
+                        <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                            <condition lang="CQL">bauwerksfunktion = '2012'</condition>
                         </type>
                         <child name="gml_id"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
                     <property>
-                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="hatdirektunten"/>
                     </property>
                     <property>
-                        <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                         </type>
                         <child name="gml_id"/>
@@ -2163,29 +2358,29 @@ if (_source.links.ax_bauwerkimgewaesserbereich.first()){&#13;
 </core:text>
         </complexParameter>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
             </core:message>
         </annotation>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                 </core:content>
             </core:message>
         </annotation>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C0770ce5a-e56e-4e98-ab1c-d7802faf4907" priority="normal">
         <source name="types">
             <class>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '2012'</condition>
                 </type>
             </class>
@@ -2198,22 +2393,105 @@ if (_source.links.ax_bauwerkimgewaesserbereich.first()){&#13;
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                         <condition lang="CQL">bauwerksfunktion = '2012'</condition>
                     </type>
                 </class>
                 <class>
-                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">bauwerksfunktion = '2012'</condition>
                         </type>
                         <child name="gml_id"/>
                     </property>
                     <property>
-                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
+                        <child name="hatdirektunten"/>
+                    </property>
+                </jp:condition>
+            </jp:join-parameter>
+        </complexParameter>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+def c = _.context.collector()&#13;
+&#13;
+def obereGewaesserAchseIDs = c.crossing[_source.p.gml_id.value()].values()&#13;
+&#13;
+if (obereGewaesserAchseIDs) {&#13;
+	obereGewaesserAchseIDs.each{ obereGewaesserAchseID -&gt;&#13;
+		_source.links.ax_fliessgewaesser.p.gml_id.each { fliessgewaesserID -&gt;&#13;
+			fliessgewaesserID = 'WatercourseLink_' + fliessgewaesserID&#13;
+			_target {&#13;
+			//https://inspire.ec.europa.eu/data-model/approved/r4618-ir/html/EARoot/EA3/EA1/EA5/EA9018.htm: "The order reflects their elevation; the first link is the lower link. "&#13;
+				element {&#13;
+					//unteres Fliessgewaesser&#13;
+					href( "#$fliessgewaesserID" )&#13;
+					}&#13;
+				element {&#13;
+					// obere Gewaesserachse/Fliessgewaesser&#13;
+					href( "#WatercourseLink_$obereGewaesserAchseID" )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
+        <source name="types">
+            <class>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
+            </class>
+        </source>
+        <source name="types">
+            <class>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="CQL">bauwerksfunktion = '2012'</condition>
+                </type>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+            </class>
+        </target>
+        <complexParameter name="join">
+            <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
+                <class>
+                    <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                        <condition lang="CQL">bauwerksfunktion = '2012'</condition>
+                    </type>
+                </class>
+                <class>
+                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
+                </class>
+                <jp:condition>
+                    <property>
+                        <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                            <condition lang="CQL">bauwerksfunktion = '2012'</condition>
+                        </type>
+                        <child name="gml_id"/>
+                    </property>
+                    <property>
+                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="hatdirektunten"/>
                     </property>
                 </jp:condition>
@@ -2247,14 +2525,14 @@ if(obereGewaesserAchseIDs){&#13;
         </complexParameter>
         <documentation>Mittels der Relation`hatDirektUnten` wird ermittelt, ob es Gewässerachsen gibt, die von einem Düker unterquert werden. Ist dies der Fall, wird ein `WatercourseSeparatedCrossing` erstellt.</documentation>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
             </core:message>
         </annotation>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                 </core:content>
@@ -2264,14 +2542,14 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
         <source name="types">
             <class>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -2282,22 +2560,22 @@ if(obereGewaesserAchseIDs){&#13;
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                         <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                     </type>
                 </class>
                 <class>
-                    <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                         </type>
                         <child name="hatdirektunten"/>
                     </property>
                     <property>
-                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                         <child name="gml_id"/>
                     </property>
                 </jp:condition>
@@ -2333,14 +2611,14 @@ if(obereGewaesserAchseIDs){&#13;
         </complexParameter>
         <documentation>Mittels der Relation`hatDirektUnten` wird ermittelt, ob es Fliessgewässer gibt, die von einer Brücke überquert werden. Ist dies der Fall, wird ein `WatercourseSeparatedCrossing` erstellt.</documentation>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
             </core:message>
         </annotation>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                 </core:content>
@@ -2350,14 +2628,14 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
         <source name="types">
             <class>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -2368,22 +2646,22 @@ if(obereGewaesserAchseIDs){&#13;
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                         <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                     </type>
                 </class>
                 <class>
-                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                         </type>
                         <child name="hatdirektunten"/>
                     </property>
                     <property>
-                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="gml_id"/>
                     </property>
                 </jp:condition>
@@ -2419,41 +2697,16 @@ if(obereGewaesserAchseIDs){&#13;
         </complexParameter>
         <documentation>Mittels der Relation`hatDirektUnten` wird ermittelt, ob es Gewässerachsen gibt, die von einer Brücke überquert werden. Ist dies der Fall, wird ein `WatercourseSeparatedCrossing` erstellt.</documentation>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
             </core:message>
         </annotation>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C2bd85216-4863-4563-954d-31c8e95e7490_C13a28068-b2af-407e-91c2-780ee4fa28f2" priority="normal">
-        <source>
-            <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
             </core:message>
         </annotation>
@@ -2461,32 +2714,7 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2bd85216-4863-4563-954d-31c8e95e7490_Cd25b8ffb-1b4a-4fbc-b480-57faf3462979" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C2bd85216-4863-4563-954d-31c8e95e7490_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
-        <source>
-            <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '2012'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -2501,82 +2729,7 @@ if(obereGewaesserAchseIDs){&#13;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8bfb7a01-ae8a-42b9-9f2c-fb708d5b7918_C13a28068-b2af-407e-91c2-780ee4fa28f2" priority="normal">
-        <source>
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8bfb7a01-ae8a-42b9-9f2c-fb708d5b7918_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
-        <source>
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8bfb7a01-ae8a-42b9-9f2c-fb708d5b7918_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
-        <source>
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="beginnt"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -2586,7 +2739,7 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8bfb7a01-ae8a-42b9-9f2c-fb708d5b7918_Cd25b8ffb-1b4a-4fbc-b480-57faf3462979" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -2601,32 +2754,7 @@ if(obereGewaesserAchseIDs){&#13;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf0510852-3541-4662-ae7f-e275be6973f7_C13a28068-b2af-407e-91c2-780ee4fa28f2" priority="normal">
-        <source>
-            <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="endet"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -2636,32 +2764,7 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf0510852-3541-4662-ae7f-e275be6973f7_Cd25b8ffb-1b4a-4fbc-b480-57faf3462979" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="endet"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf0510852-3541-4662-ae7f-e275be6973f7_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
-        <source>
-            <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '2012'</condition>
                 </type>
                 <child name="endet"/>
@@ -2676,82 +2779,7 @@ if(obereGewaesserAchseIDs){&#13;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C6d7d8ef1-4c16-4fb6-a635-7355ccafcae6_C13a28068-b2af-407e-91c2-780ee4fa28f2" priority="normal">
-        <source>
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="endet"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C6d7d8ef1-4c16-4fb6-a635-7355ccafcae6_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
-        <source>
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="endet"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C6d7d8ef1-4c16-4fb6-a635-7355ccafcae6_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
-        <source>
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="endet"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -2761,7 +2789,7 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C6d7d8ef1-4c16-4fb6-a635-7355ccafcae6_Cd25b8ffb-1b4a-4fbc-b480-57faf3462979" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="endet"/>
@@ -2776,90 +2804,17 @@ if(obereGewaesserAchseIDs){&#13;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
             </core:message>
         </annotation>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C09349cb4-f977-4f44-b662-4c9597457d39" priority="normal">
-        <source name="spelling">
-            <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-            </property>
-        </target>
-        <parameter value="official" name="nameStatus"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ca19f26cc-d722-4574-9217-23c1da508d5e_C13a28068-b2af-407e-91c2-780ee4fa28f2" priority="normal">
+    <cell relation="custom:alignment:adv.inspire.id.default" id="Ca19f26cc-d722-4574-9217-23c1da508d5e_C0770ce5a-e56e-4e98-ab1c-d7802faf4907" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="network" name="collectorName"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ca19f26cc-d722-4574-9217-23c1da508d5e_Cd25b8ffb-1b4a-4fbc-b480-57faf3462979" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="network" name="collectorName"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Ca19f26cc-d722-4574-9217-23c1da508d5e_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '2012'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2873,79 +2828,7 @@ if(obereGewaesserAchseIDs){&#13;
         </target>
         <parameter value="network" name="collectorName"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="C136eff7d-1e18-46b1-b96e-76f77ce9f584_C13a28068-b2af-407e-91c2-780ee4fa28f2" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="network" name="collectorName"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="C136eff7d-1e18-46b1-b96e-76f77ce9f584_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="network" name="collectorName"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="C136eff7d-1e18-46b1-b96e-76f77ce9f584_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="network" name="collectorName"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -2955,7 +2838,7 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="C136eff7d-1e18-46b1-b96e-76f77ce9f584_Cd25b8ffb-1b4a-4fbc-b480-57faf3462979" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2969,30 +2852,7 @@ if(obereGewaesserAchseIDs){&#13;
         </target>
         <parameter value="network" name="collectorName"/>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.identifier" id="Cffa73abc-d9fd-483a-ad19-5beca3a5e2b6_C13a28068-b2af-407e-91c2-780ee4fa28f2" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -3002,30 +2862,7 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cffa73abc-d9fd-483a-ad19-5beca3a5e2b6_Cd25b8ffb-1b4a-4fbc-b480-57faf3462979" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.identifier" id="Cffa73abc-d9fd-483a-ad19-5beca3a5e2b6_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '2012'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3038,76 +2875,7 @@ if(obereGewaesserAchseIDs){&#13;
             </property>
         </target>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.identifier" id="C37922be7-144a-4018-8f73-def91c4788b4_C13a28068-b2af-407e-91c2-780ee4fa28f2" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.identifier" id="C37922be7-144a-4018-8f73-def91c4788b4_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.identifier" id="C37922be7-144a-4018-8f73-def91c4788b4_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -3117,7 +2885,7 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="custom:alignment:adv.inspire.identifier" id="C37922be7-144a-4018-8f73-def91c4788b4_Cd25b8ffb-1b4a-4fbc-b480-57faf3462979" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3130,52 +2898,12 @@ if(obereGewaesserAchseIDs){&#13;
             </property>
         </target>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
             </core:message>
         </annotation>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C13a28068-b2af-407e-91c2-780ee4fa28f2" priority="normal">
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="href" ns="http://www.w3.org/1999/xlink"/>
-            </property>
-        </target>
-        <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_Cd25b8ffb-1b4a-4fbc-b480-57faf3462979" priority="normal">
         <target>
@@ -3187,60 +2915,10 @@ if(obereGewaesserAchseIDs){&#13;
         </target>
         <parameter value="#{{project:NETWORK_ID}}" name="pattern"/>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cc56c5410-b9cc-47d8-852b-1ca0a5b8adda_C13a28068-b2af-407e-91c2-780ee4fa28f2" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cc56c5410-b9cc-47d8-852b-1ca0a5b8adda_Cd25b8ffb-1b4a-4fbc-b480-57faf3462979" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cc56c5410-b9cc-47d8-852b-1ca0a5b8adda_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '2012'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3255,82 +2933,7 @@ if(obereGewaesserAchseIDs){&#13;
             </property>
         </target>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cba9bc971-ba94-4dfa-89b3-5edd2a77adfc_C13a28068-b2af-407e-91c2-780ee4fa28f2" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cba9bc971-ba94-4dfa-89b3-5edd2a77adfc_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="Cba9bc971-ba94-4dfa-89b3-5edd2a77adfc_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
-        <source name="id">
-            <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">bauwerksfunktion = '1800'</condition>
-                </type>
-                <child name="gml_id"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-            </property>
-        </target>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
@@ -3340,7 +2943,7 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cba9bc971-ba94-4dfa-89b3-5edd2a77adfc_Cd25b8ffb-1b4a-4fbc-b480-57faf3462979" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3355,7 +2958,7 @@ if(obereGewaesserAchseIDs){&#13;
             </property>
         </target>
         <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
                 <core:content>
                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                 </core:content>
