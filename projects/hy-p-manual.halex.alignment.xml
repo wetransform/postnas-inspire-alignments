@@ -138,7 +138,7 @@ if (!name) {
 			if (collect.lagebezeichnung[schluesselGesamt].value()){
 				name = collect.lagebezeichnung[schluesselGesamt].value()
 			}
-			else _log.error('Für einen Namen aus einer verschlüsselten Lagebezeichnung liegt kein Katalogeintrag vor.')
+			else _log.error("Für einen Namen aus einer verschlüsselten Lagebezeichnung mit Schlüssel ${schluesselGesamt} liegt kein Katalogeintrag vor.")
 		}
 	}
 }
@@ -780,8 +780,8 @@ Aktuell ist folgende Abbildung umgesetzt:
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C7062dc56-15a8-4b8e-a5d7-2b9aef459001" priority="normal">
         <source>
             <class>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2010','2011')) OR bauwerksfunktion = '2012') OR bauwerksfunktion = '2013'</condition>
                 </type>
             </class>
         </source>
@@ -853,19 +853,19 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="Cef61b9c6-e7e9-410d-a70b-ef79522d1d16" priority="normal">
         <source name="types">
             <class>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -876,37 +876,37 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                         <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                     </type>
                 </class>
                 <class>
-                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <class>
-                    <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                         </type>
                         <child name="hatdirektunten"/>
                     </property>
                     <property>
-                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="gml_id"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
                     <property>
-                        <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                         </type>
                         <child name="hatdirektunten"/>
                     </property>
                     <property>
-                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                         <child name="gml_id"/>
                     </property>
                 </jp:condition>
@@ -983,7 +983,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C76a01cce-00b7-4705-8a54-109506ab4fdb" priority="normal">
         <source>
             <class>
-                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">archaeologischertyp = '1110'</condition>
                 </type>
             </class>
@@ -1056,8 +1056,8 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_C7062dc56-15a8-4b8e-a5d7-2b9aef459001" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2010','2011')) OR bauwerksfunktion = '2012') OR bauwerksfunktion = '2013'</condition>
                 </type>
                 <child name="beginnt"/>
             </property>
@@ -1081,7 +1081,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8212dbab-5681-4fa9-a3d4-48332c5c9dd4" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -1106,7 +1106,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_Cef61b9c6-e7e9-410d-a70b-ef79522d1d16" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -1114,13 +1114,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </source>
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
         <source>
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -1143,7 +1143,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_C76a01cce-00b7-4705-8a54-109506ab4fdb" priority="normal">
         <source>
             <property>
-                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">archaeologischertyp = '1110'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -1168,8 +1168,8 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ca6813682-3575-4bb7-9a69-d65ba4d3d86a" priority="lowest">
         <source name="anchor">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2010','2011')) OR bauwerksfunktion = '2012') OR bauwerksfunktion = '2013'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1193,8 +1193,8 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C55f30921-d5d1-477f-8d01-19b218a1f25a" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2010','2011')) OR bauwerksfunktion = '2012') OR bauwerksfunktion = '2013'</condition>
                 </type>
                 <child name="zustand"/>
             </property>
@@ -1230,7 +1230,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cd09e31ef-430a-435c-a900-8bb0d439032f" priority="lowest">
         <source name="anchor">
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1255,7 +1255,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.classification" id="Cf63c2fb7-08aa-4316-b52a-781b5dcabb99" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="zustand"/>
@@ -1292,8 +1292,8 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_C7062dc56-15a8-4b8e-a5d7-2b9aef459001" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2010','2011')) OR bauwerksfunktion = '2012') OR bauwerksfunktion = '2013'</condition>
                 </type>
                 <child name="endet"/>
             </property>
@@ -1317,7 +1317,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C9ebfe7f6-4d54-48a9-84bf-98620050e82b" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="endet"/>
@@ -1342,7 +1342,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_Cef61b9c6-e7e9-410d-a70b-ef79522d1d16" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="endet"/>
@@ -1350,13 +1350,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </source>
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
         <source>
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -1379,7 +1379,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_C76a01cce-00b7-4705-8a54-109506ab4fdb" priority="normal">
         <source>
             <property>
-                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">archaeologischertyp = '1110'</condition>
                 </type>
                 <child name="endet"/>
@@ -1401,11 +1401,77 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </core:message>
         </annotation>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="Cffe8aaba-2bd5-441b-8559-f3c694c9b429" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2010','2011')) OR bauwerksfunktion = '2012') OR bauwerksfunktion = '2013'</condition>
+                </type>
+                <child name="regionalsprache"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="CrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
+                    <context>0</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (regionalsprache) {&#13;
+	regionalsprache.p.each { reg -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( reg )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language {&#13;
+					nilReason( 'unknown' )&#13;
+				}&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C0664ffc1-5775-4565-b4f7-36e8ca17f5cd" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2010','2011')) OR bauwerksfunktion = '2012') OR bauwerksfunktion = '2013'</condition>
                 </type>
                 <child name="name"/>
             </property>
@@ -1428,7 +1494,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C13fc5874-2c20-48de-b80e-ed3a8ae4ff73" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="name"/>
@@ -1452,7 +1518,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C5c2f96fd-8ae6-44d9-af64-f2261dc8ac44" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">archaeologischertyp = '1110'</condition>
                 </type>
                 <child name="name"/>
@@ -1486,8 +1552,8 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8c914f39-9647-4653-bd06-c6b8871cd637_C7062dc56-15a8-4b8e-a5d7-2b9aef459001" priority="lowest">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2010','2011')) OR bauwerksfunktion = '2012') OR bauwerksfunktion = '2013'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1509,7 +1575,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8c914f39-9647-4653-bd06-c6b8871cd637_Cef61b9c6-e7e9-410d-a70b-ef79522d1d16" priority="lowest">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1517,13 +1583,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </source>
         <source name="id">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
         <source name="id">
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -1544,7 +1610,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8c914f39-9647-4653-bd06-c6b8871cd637_C76a01cce-00b7-4705-8a54-109506ab4fdb" priority="lowest">
         <source name="id">
             <property>
-                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">archaeologischertyp = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1567,8 +1633,8 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_C7062dc56-15a8-4b8e-a5d7-2b9aef459001" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2010','2011')) OR bauwerksfunktion = '2012') OR bauwerksfunktion = '2013'</condition>
                 </type>
                 <child name="gml_id"/>
             </property>
@@ -1590,7 +1656,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_Cef61b9c6-e7e9-410d-a70b-ef79522d1d16" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1598,13 +1664,13 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </source>
         <source name="id">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
         <source name="id">
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -1625,7 +1691,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_C76a01cce-00b7-4705-8a54-109506ab4fdb" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">archaeologischertyp = '1110'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1648,8 +1714,8 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.classification" id="Cd31ebb2d-50bf-420d-82b8-dd5f5f6f8cf1" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
-                    <condition lang="CQL">(bauwerksfunktion = '2010' OR bauwerksfunktion = '2011') OR bauwerksfunktion = '2012'</condition>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2010','2011')) OR bauwerksfunktion = '2012') OR bauwerksfunktion = '2013'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
             </property>
@@ -1664,15 +1730,19 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <complexParameter name="lookupTable">
             <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
                 <entry>
-                    <key value="2010"/>
-                    <value value="http://inspire.ec.europa.eu/codelist/CrossingTypeValue/culvert"/>
+                    <key value="2012"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/CrossingTypeValue/siphon"/>
                 </entry>
                 <entry>
                     <key value="2011"/>
                     <value value="http://inspire.ec.europa.eu/codelist/CrossingTypeValue/culvert"/>
                 </entry>
                 <entry>
-                    <key value="2012"/>
+                    <key value="2010"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/CrossingTypeValue/culvert"/>
+                </entry>
+                <entry>
+                    <key value="2013"/>
                     <value value="http://inspire.ec.europa.eu/codelist/CrossingTypeValue/siphon"/>
                 </entry>
             </lookup-table>
@@ -1689,7 +1759,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C154f1f76-644f-4cb3-9970-ebd5a7afa093" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1800'</condition>
                 </type>
                 <child name="bauwerksfunktion"/>
@@ -1722,7 +1792,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C84a31c71-c61a-47ee-a175-7b3f5e6ce081" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">archaeologischertyp = '1110'</condition>
                 </type>
                 <child name="archaeologischertyp"/>
@@ -1747,7 +1817,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cb562d66d-d71a-4ef6-bacd-a24d624e7524" priority="normal">
         <source>
             <class>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
                 </type>
             </class>
@@ -1820,7 +1890,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_Cb562d66d-d71a-4ef6-bacd-a24d624e7524" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -1855,7 +1925,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C54cc6920-5273-40a5-8e80-242606dd573e" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
                 </type>
                 <child name="zustand"/>
@@ -1892,7 +1962,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_Cb562d66d-d71a-4ef6-bacd-a24d624e7524" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
                 </type>
                 <child name="endet"/>
@@ -1914,10 +1984,76 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </core:message>
         </annotation>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="C4c625618-7748-4992-a25d-be50177ccc99" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
+                </type>
+                <child name="regionalsprache"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="DamOrWeirType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
+                    <context>0</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (regionalsprache) {&#13;
+	regionalsprache.p.each { reg -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( reg )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language {&#13;
+					nilReason( 'unknown' )&#13;
+				}&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cfabb43b6-cc38-4c8a-af50-dc45428fe9ca" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
                 </type>
                 <child name="name"/>
@@ -1951,7 +2087,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8c914f39-9647-4653-bd06-c6b8871cd637_Cb562d66d-d71a-4ef6-bacd-a24d624e7524" priority="lowest">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1974,7 +2110,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_Cb562d66d-d71a-4ef6-bacd-a24d624e7524" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">((bauwerksfunktion IN ('2030','2040')) OR bauwerksfunktion = '2050') OR bauwerksfunktion = '2060'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1997,7 +2133,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C6f0c9e09-ca9c-4e91-8217-b0b3f24e1c5c" priority="normal">
         <source>
             <class>
-                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '3001' OR funktion = '3003'</condition>
                 </type>
             </class>
@@ -2070,7 +2206,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C32f776bc-fba8-48e1-bd83-a1e6454656e9" priority="normal">
         <source>
             <class>
-                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1720'</condition>
                 </type>
             </class>
@@ -2143,7 +2279,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_C6f0c9e09-ca9c-4e91-8217-b0b3f24e1c5c" priority="normal">
         <source>
             <property>
-                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '3001' OR funktion = '3003'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -2168,7 +2304,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_C32f776bc-fba8-48e1-bd83-a1e6454656e9" priority="normal">
         <source>
             <property>
-                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1720'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -2203,7 +2339,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_C6f0c9e09-ca9c-4e91-8217-b0b3f24e1c5c" priority="normal">
         <source>
             <property>
-                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '3001' OR funktion = '3003'</condition>
                 </type>
                 <child name="endet"/>
@@ -2228,7 +2364,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_C32f776bc-fba8-48e1-bd83-a1e6454656e9" priority="normal">
         <source>
             <property>
-                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1720'</condition>
                 </type>
                 <child name="endet"/>
@@ -2253,7 +2389,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cfde62eb0-4d0e-47c1-9290-91631c8392d6" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '3001' OR funktion = '3003'</condition>
                 </type>
                 <child name="name"/>
@@ -2277,7 +2413,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C44c4dc3b-51c0-40a0-bf85-7370a347b617" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1720'</condition>
                 </type>
                 <child name="name"/>
@@ -2311,7 +2447,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8c914f39-9647-4653-bd06-c6b8871cd637_C6f0c9e09-ca9c-4e91-8217-b0b3f24e1c5c" priority="lowest">
         <source name="id">
             <property>
-                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '3001' OR funktion = '3003'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2334,7 +2470,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8c914f39-9647-4653-bd06-c6b8871cd637_C32f776bc-fba8-48e1-bd83-a1e6454656e9" priority="lowest">
         <source name="id">
             <property>
-                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1720'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2357,7 +2493,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_C6f0c9e09-ca9c-4e91-8217-b0b3f24e1c5c" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_dammwalldeich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '3001' OR funktion = '3003'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2380,7 +2516,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_C32f776bc-fba8-48e1-bd83-a1e6454656e9" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1720'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2403,7 +2539,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cae0752b4-933e-4549-8771-2f1e96f6ea98" priority="normal">
         <source>
             <class>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1620'</condition>
                 </type>
             </class>
@@ -2476,7 +2612,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C59e380fc-8670-4e0b-af1f-4a4f3d30d461" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1620'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -2501,7 +2637,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C02feec04-1e71-4bf6-be77-8cfd9b905943" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1620'</condition>
                 </type>
                 <child name="endet"/>
@@ -2523,10 +2659,140 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </core:message>
         </annotation>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="C0b9f7760-3e08-4b99-9c65-b8047ca307fc" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="CQL">art = '1620'</condition>
+                </type>
+                <child name="regionalsprache"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="FallsType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
+                    <context>0</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (regionalsprache) {&#13;
+	regionalsprache.p.each { reg -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( reg )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language {&#13;
+					nilReason( 'unknown' )&#13;
+				}&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="C712b1901-36f7-4bf4-a7e7-60e78c130143" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="CQL">art = '1620'</condition>
+                </type>
+                <child name="zweitname"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="FallsType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
+                    <context>1</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (zweitname) {&#13;
+	zweitname.p.each { zweit -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( zweit )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language( 'deu' )&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C8220fe6a-8a3e-4807-9d5d-0564bb6df281" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1620'</condition>
                 </type>
                 <child name="name"/>
@@ -2560,7 +2826,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C6824724d-d3c8-4e35-95d5-942ed844d7d4" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1620'</condition>
                 </type>
                 <child name="objekthoehe"/>
@@ -2596,7 +2862,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C1f48e318-a73d-4dc7-ae83-a03f60aafd65" priority="normal">
         <source>
             <class>
-                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '2000'</condition>
                 </type>
             </class>
@@ -2669,7 +2935,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_C1f48e318-a73d-4dc7-ae83-a03f60aafd65" priority="normal">
         <source>
             <property>
-                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '2000'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -2704,7 +2970,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_C1f48e318-a73d-4dc7-ae83-a03f60aafd65" priority="normal">
         <source>
             <property>
-                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '2000'</condition>
                 </type>
                 <child name="endet"/>
@@ -2726,25 +2992,55 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </core:message>
         </annotation>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbf1cda1f-4b02-4c93-970e-bddaabf3ebfb_C1f48e318-a73d-4dc7-ae83-a03f60aafd65" priority="normal">
-        <source name="spelling">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="Cbf1cda1f-4b02-4c93-970e-bddaabf3ebfb_C1f48e318-a73d-4dc7-ae83-a03f60aafd65" priority="normal">
+        <source name="var">
             <property>
-                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '2000'</condition>
                 </type>
                 <child name="zweitname"/>
             </property>
         </source>
-        <target>
+        <target name="result">
             <property>
                 <type name="FordType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
                 <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
                     <context>0</context>
                 </child>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="other" name="nameStatus"/>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (zweitname) {&#13;
+	zweitname.p.each { zweit -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( zweit )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language( 'deu' )&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                 <core:content>
@@ -2752,11 +3048,18 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 </core:content>
             </core:message>
         </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbd827f78-2210-4e29-af90-97da9de6e6c4" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '2000'</condition>
                 </type>
                 <child name="name"/>
@@ -2790,7 +3093,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8c914f39-9647-4653-bd06-c6b8871cd637_C1f48e318-a73d-4dc7-ae83-a03f60aafd65" priority="lowest">
         <source name="id">
             <property>
-                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '2000'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2813,7 +3116,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_C1f48e318-a73d-4dc7-ae83-a03f60aafd65" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_strassenverkehrsanlage" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '2000'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2836,7 +3139,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C140bf801-ace9-4ad1-9966-5ad0890a5734" priority="normal">
         <source>
             <class>
-                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -2851,7 +3154,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C38524ac6-a79d-45c2-b55d-b34ca346213b" priority="normal">
         <source>
             <property>
-                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -2867,7 +3170,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C753d2d02-b769-40a8-b28b-711172881b36" priority="normal">
         <source>
             <property>
-                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -2883,7 +3186,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cad9d9d2c-bf2b-4bb8-9ea4-89d4a3b38412" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -2897,7 +3200,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="Ce05a29e2-d34a-4213-b1b3-4b1612ffb6d0" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -2911,7 +3214,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cd9a032f7-091f-464e-a5c8-9d840d8f69f2" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_meer" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_meer" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -2937,7 +3240,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C3aac6754-dc82-4824-932a-3df081b6d4a4" priority="normal">
         <source>
             <class>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1890'</condition>
                 </type>
             </class>
@@ -3010,7 +3313,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_C3aac6754-dc82-4824-932a-3df081b6d4a4" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1890'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -3045,7 +3348,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C2b763b70-7ddf-4a8d-85f2-cd51dd2c91b4" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1890'</condition>
                 </type>
                 <child name="zustand"/>
@@ -3064,6 +3367,10 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                     <key value="2100"/>
                     <value value="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/disused"/>
                 </entry>
+                <entry>
+                    <key value="4000"/>
+                    <value value="http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/underConstruction"/>
+                </entry>
             </lookup-table>
         </complexParameter>
         <parameter value="fixed:http://inspire.ec.europa.eu/codelist/ConditionOfFacilityValue/functional" name="notClassifiedAction"/>
@@ -3078,7 +3385,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_C3aac6754-dc82-4824-932a-3df081b6d4a4" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1890'</condition>
                 </type>
                 <child name="endet"/>
@@ -3103,7 +3410,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cedef1a85-0446-4ec8-879f-270116960042" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1890'</condition>
                 </type>
                 <child name="name"/>
@@ -3137,7 +3444,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8c914f39-9647-4653-bd06-c6b8871cd637_C3aac6754-dc82-4824-932a-3df081b6d4a4" priority="lowest">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1890'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3160,7 +3467,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_C3aac6754-dc82-4824-932a-3df081b6d4a4" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1890'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3183,7 +3490,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C73df86e2-4fc8-4e5d-b231-86fa5bc9aa70" priority="normal">
         <source>
             <class>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1630'</condition>
                 </type>
             </class>
@@ -3256,7 +3563,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C207f7171-5f3b-4d66-82bc-57616b98b875" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1630'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -3281,7 +3588,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2e6f4102-37ea-4794-b984-fafed5c1ee2e" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1630'</condition>
                 </type>
                 <child name="endet"/>
@@ -3303,10 +3610,140 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </core:message>
         </annotation>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="Cd9813168-0d9d-4a10-bbcd-076537379b2f" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="CQL">art = '1630'</condition>
+                </type>
+                <child name="regionalsprache"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="RapidsType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
+                    <context>0</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (regionalsprache) {&#13;
+	regionalsprache.p.each { reg -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( reg )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language {&#13;
+					nilReason( 'unknown' )&#13;
+				}&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="Ce9e378bd-e094-44d2-aa17-56463e4c15fa" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="CQL">art = '1630'</condition>
+                </type>
+                <child name="zweitname"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="RapidsType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
+                    <context>1</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (zweitname) {&#13;
+	zweitname.p.each { zweit -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( zweit )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language( 'deu' )&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C5f7f4bef-d160-4d1c-ae9f-2643c2d57e5b" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1630'</condition>
                 </type>
                 <child name="name"/>
@@ -3330,7 +3767,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C18bc7bb0-8edd-4fa0-8029-94ef246b80bf" priority="normal">
         <source>
             <class>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
                 </type>
             </class>
@@ -3403,7 +3840,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_C18bc7bb0-8edd-4fa0-8029-94ef246b80bf" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -3438,7 +3875,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C6af2888b-6e0c-4408-b357-292cdae7f0b0" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
                 </type>
                 <child name="zustand"/>
@@ -3475,7 +3912,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_C18bc7bb0-8edd-4fa0-8029-94ef246b80bf" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
                 </type>
                 <child name="endet"/>
@@ -3497,10 +3934,76 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </core:message>
         </annotation>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="C32e41555-9ddd-4eb9-98d9-99efbc365b82" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
+                </type>
+                <child name="regionalsprache"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="ShorelineConstructionType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
+                    <context>0</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (regionalsprache) {&#13;
+	regionalsprache.p.each { reg -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( reg )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language {&#13;
+					nilReason( 'unknown' )&#13;
+				}&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbc519d88-61b1-4853-9ca9-2cc035a3eddb" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
                 </type>
                 <child name="name"/>
@@ -3534,7 +4037,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8c914f39-9647-4653-bd06-c6b8871cd637_C18bc7bb0-8edd-4fa0-8029-94ef246b80bf" priority="lowest">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3557,7 +4060,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_C18bc7bb0-8edd-4fa0-8029-94ef246b80bf" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">(((((bauwerksfunktion = '2130' OR bauwerksfunktion = '2131') OR bauwerksfunktion = '2132') OR bauwerksfunktion = '2133') OR bauwerksfunktion = '2134') OR bauwerksfunktion = '2135') OR bauwerksfunktion = '2136'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3580,7 +4083,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cf00631c0-e08c-4d15-8007-fdffe5531785" priority="normal">
         <source>
             <class>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
                 </type>
             </class>
@@ -3653,7 +4156,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fbf5b7d-2f92-4d4f-a2ce-f4829d308bcf_Cf00631c0-e08c-4d15-8007-fdffe5531785" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
                 </type>
                 <child name="beginnt"/>
@@ -3688,7 +4191,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C338cbc85-692f-4152-a438-3e686dae2177" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
                 </type>
                 <child name="zustand"/>
@@ -3725,7 +4228,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C58817263-94ad-47a9-97c5-36968314bc04_Cf00631c0-e08c-4d15-8007-fdffe5531785" priority="normal">
         <source>
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
                 </type>
                 <child name="endet"/>
@@ -3747,10 +4250,76 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </core:message>
         </annotation>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="Cec2f4b15-e92b-43c4-9453-6130fc62e104" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
+                </type>
+                <child name="regionalsprache"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="SluiceType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
+                    <context>0</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (regionalsprache) {&#13;
+	regionalsprache.p.each { reg -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( reg )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language {&#13;
+					nilReason( 'unknown' )&#13;
+				}&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C6ef68b74-d86f-48a8-b598-4f1f0a9ecfe3" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
                 </type>
                 <child name="name"/>
@@ -3784,7 +4353,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8c914f39-9647-4653-bd06-c6b8871cd637_Cf00631c0-e08c-4d15-8007-fdffe5531785" priority="lowest">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3807,7 +4376,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb8460d08-86f3-41ec-afe4-7bd999be3b0c_Cf00631c0-e08c-4d15-8007-fdffe5531785" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">bauwerksfunktion IN ('2070','2080')</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3830,7 +4399,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C79051b3f-be48-4f04-a9ca-bcf3b3194c9d" priority="normal">
         <source>
             <class>
-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -3844,7 +4413,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Ca4c651ad-57c5-41e0-9a9b-cd82614fec7c" priority="normal">
         <source>
             <class>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -3858,7 +4427,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
         <source>
             <class>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1040</condition>
                 </type>
             </class>
@@ -3881,7 +4450,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_C79051b3f-be48-4f04-a9ca-bcf3b3194c9d" priority="normal">
         <source>
             <property>
-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -3897,7 +4466,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Ca4c651ad-57c5-41e0-9a9b-cd82614fec7c" priority="normal">
         <source>
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -3913,7 +4482,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
         <source>
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1040</condition>
                 </type>
                 <child name="beginnt"/>
@@ -3968,7 +4537,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_C79051b3f-be48-4f04-a9ca-bcf3b3194c9d" priority="normal">
         <source>
             <property>
-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -3984,7 +4553,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Ca4c651ad-57c5-41e0-9a9b-cd82614fec7c" priority="normal">
         <source>
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -4000,7 +4569,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
         <source>
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1040</condition>
                 </type>
                 <child name="endet"/>
@@ -4022,40 +4591,152 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </core:message>
         </annotation>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="C4ca21b60-8b53-45d5-8280-27ac5f6a2377" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
+                <child name="regionalsprache"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
+                    <context>0</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (regionalsprache) {&#13;
+	regionalsprache.p.each { reg -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( reg )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language {&#13;
+					nilReason( 'unknown' )&#13;
+				}&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="C6d32357a-148a-41ce-96ba-38d2e38222ff" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
+                <child name="zweitname"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
+                    <context>1</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (zweitname) {&#13;
+	zweitname.p.each { zweit -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( zweit )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language( 'deu' )&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C45a9e47b-e2c7-408a-a3b8-3e43593337e0" priority="normal">
         <source name="lage_gemeinde">
             <property>
-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gemeinde"/>
             </property>
         </source>
         <source name="lage_kreis">
             <property>
-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
                 <child name="kreis"/>
             </property>
         </source>
         <source name="lage_lage">
             <property>
-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
                 <child name="lage"/>
             </property>
         </source>
         <source name="lage_land">
             <property>
-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
                 <child name="land"/>
             </property>
         </source>
         <source name="lage_regierungsbezirk">
             <property>
-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
                 <child name="regierungsbezirk"/>
             </property>
         </source>
         <source name="lage_unverschluesselt">
             <property>
-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
                 <child name="unverschluesselt"/>
             </property>
         </source>
@@ -4069,7 +4750,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                 <core:content>
-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_HafenbeckenType/name/AX_Lagebezeichnung found</core:text>
+                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/7.1/AX_HafenbeckenType/name/AX_Lagebezeichnung found</core:text>
                 </core:content>
             </core:message>
         </annotation>
@@ -4077,37 +4758,37 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="Cd3870b33-cff0-4f43-a422-d73ab401da15" priority="normal">
         <source name="lage_gemeinde">
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gemeinde"/>
             </property>
         </source>
         <source name="lage_kreis">
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="kreis"/>
             </property>
         </source>
         <source name="lage_lage">
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="lage"/>
             </property>
         </source>
         <source name="lage_land">
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="land"/>
             </property>
         </source>
         <source name="lage_regierungsbezirk">
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="regierungsbezirk"/>
             </property>
         </source>
         <source name="lage_unverschluesselt">
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="unverschluesselt"/>
             </property>
         </source>
@@ -4121,7 +4802,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                 <core:content>
-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_StehendesGewaesserType/name/AX_Lagebezeichnung found</core:text>
+                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/7.1/AX_StehendesGewaesserType/name/AX_Lagebezeichnung found</core:text>
                 </core:content>
             </core:message>
         </annotation>
@@ -4139,7 +4820,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C1b0ebcaf-be82-4e39-a6c0-4dbccf9f95dc" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -4153,7 +4834,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C7621e85f-7d14-4b91-b9f1-c3c1168241be" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -4167,7 +4848,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C25bee785-55ad-4f62-b999-8ada1a3b0f85" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1040</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -4187,11 +4868,11 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </core:message>
         </annotation>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.id.default" id="C805e9253-34b1-44d6-9a16-310ebe798975" priority="highest">
+    <cell relation="custom:alignment:adv.inspire.id.default" id="C7ce7cb76-2def-4335-a113-e2ed9d945be3" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gewaesserkennziffer"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
+                <child name="seekennzahl"/>
             </property>
         </source>
         <target>
@@ -4203,11 +4884,44 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </property>
         </target>
     </cell>
+    <cell relation="custom:alignment:adv.inspire.id.default" id="C805e9253-34b1-44d6-9a16-310ebe798975" priority="highest">
+        <source name="id">
+            <property>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
+                <child name="seekennzahl"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
+            </property>
+        </target>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cced3a202-fd04-4d90-9482-c7f13f48ba9c" priority="normal">
+        <source name="anchor">
+            <property>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
+                <child name="seekennzahl"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
+            </property>
+        </target>
+        <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C13745c24-7740-4e72-83f8-b2767eac21b6" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="gewaesserkennziffer"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
+                <child name="seekennzahl"/>
             </property>
         </source>
         <target>
@@ -4224,7 +4938,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C1df2b062-9f5b-4cac-80f9-1c8263a0c92f_C79051b3f-be48-4f04-a9ca-bcf3b3194c9d" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4238,7 +4952,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C1df2b062-9f5b-4cac-80f9-1c8263a0c92f_Ca4c651ad-57c5-41e0-9a9b-cd82614fec7c" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4252,7 +4966,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C1df2b062-9f5b-4cac-80f9-1c8263a0c92f_Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1040</condition>
                 </type>
                 <child name="gml_id"/>
@@ -4275,7 +4989,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="C8c3983da-2139-4a23-a2ef-fbde3d487718_C79051b3f-be48-4f04-a9ca-bcf3b3194c9d" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4289,7 +5003,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="C8c3983da-2139-4a23-a2ef-fbde3d487718_Ca4c651ad-57c5-41e0-9a9b-cd82614fec7c" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4303,7 +5017,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="C8c3983da-2139-4a23-a2ef-fbde3d487718_Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1040</condition>
                 </type>
                 <child name="gml_id"/>
@@ -4336,7 +5050,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cfc744e73-d1b2-48a1-b83a-dbb887176b69_C79051b3f-be48-4f04-a9ca-bcf3b3194c9d" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4352,7 +5066,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cfc744e73-d1b2-48a1-b83a-dbb887176b69_Ca4c651ad-57c5-41e0-9a9b-cd82614fec7c" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4368,7 +5082,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cfc744e73-d1b2-48a1-b83a-dbb887176b69_Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1040</condition>
                 </type>
                 <child name="gml_id"/>
@@ -4403,7 +5117,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C4eb97a51-60f9-4f6b-9a43-1e1babb5250e" priority="normal">
         <source>
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="funktion"/>
             </property>
         </source>
@@ -4432,6 +5146,22 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
         </complexParameter>
         <parameter value="null" name="notClassifiedAction"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C2780e8a8-0ec7-412b-afcd-49aa1b2fbbb2" priority="normal">
+        <source>
+            <property>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
+                <child name="wasserspiegelhoeheinstehendemgewaesser"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="StandingWaterType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="meanDepth" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Ce2c159ed-7dc2-4629-967c-2f2eff39aab4" priority="normal">
         <target>
             <property>
@@ -4440,7 +5170,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
                 <child name="nilReason"/>
             </property>
         </target>
-        <parameter value="other:unpopulated" name="value"/>
+        <parameter value="unknown" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cb8e38300-1f13-4475-b6ba-2c2534cea851" priority="normal">
         <target>
@@ -4455,7 +5185,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C59fda809-5619-441a-89d7-a1ede60f9463" priority="normal">
         <source>
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="funktion"/>
             </property>
         </source>
@@ -4498,7 +5228,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C69bfe3f6-0b91-4c09-b2ca-ae965780dbcd" priority="normal">
         <source>
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="hydrologischesmerkmal"/>
             </property>
         </source>
@@ -4522,7 +5252,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C7b422b8e-8e23-4f51-bbbe-25c69116836d_Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
         <source>
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1040</condition>
                 </type>
                 <child name="hydrologischesmerkmal"/>
@@ -4559,7 +5289,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatearea" id="C981b5b7e-427e-4b55-a967-92c93ceae02b" priority="normal">
         <source>
             <property>
-                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_hafenbecken" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -4573,7 +5303,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatearea" id="C6b2cca23-bd6d-4f8e-bf5e-793da5b46cd8" priority="normal">
         <source>
             <property>
-                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_stehendesgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -4587,7 +5317,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C8dbb8703-b255-4eea-b40b-a5226dd7d016_Cab93792e-2527-48a1-99db-011349314c28" priority="normal">
         <source name="var">
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">funktion = 1040</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -4650,17 +5380,17 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.join" id="Cb6a3be00-a71e-4d27-9040-df087e8288f7" priority="normal">
         <source name="types">
             <class>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -4671,31 +5401,31 @@ if(flaeche){&#13;
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <class>
-                    <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <class>
-                    <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                         <child name="istteilvon"/>
                     </property>
                     <property>
-                        <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                         <child name="gml_id"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
                     <property>
-                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                         <child name="istteilvon"/>
                     </property>
                     <property>
-                        <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                         <child name="gml_id"/>
                     </property>
                 </jp:condition>
@@ -4705,17 +5435,17 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.join" id="Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
         <source name="types">
             <class>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -4726,31 +5456,31 @@ if(flaeche){&#13;
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <class>
-                    <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <class>
-                    <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="istteilvon"/>
                     </property>
                     <property>
-                        <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                         <child name="gml_id"/>
                     </property>
                 </jp:condition>
                 <jp:condition>
                     <property>
-                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="istteilvon"/>
                     </property>
                     <property>
-                        <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                         <child name="gml_id"/>
                     </property>
                 </jp:condition>
@@ -4760,7 +5490,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.retype" id="C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
         <source>
             <class>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
                 </type>
             </class>
@@ -4783,19 +5513,19 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Cb6a3be00-a71e-4d27-9040-df087e8288f7" priority="normal">
         <source>
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
         <source>
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
         <source>
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -4811,19 +5541,19 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
         <source>
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
         <source>
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -4839,7 +5569,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cdd094462-9891-4f45-a5ae-8f83549d6f9e" priority="normal">
         <source>
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -4855,7 +5585,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce23bc678-70b8-4cf5-b71e-942fa3527f6b_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
         <source>
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
                 </type>
                 <child name="beginnt"/>
@@ -4880,7 +5610,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C218f88ef-e885-4ed1-9e73-7ba5837561bf" priority="normal">
         <source>
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -4896,7 +5626,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C9707edaf-3714-49ae-8185-3c195d154bb9" priority="normal">
         <source>
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="zustand">
                     <condition lang="ECQL">parent.funktion = 8300</condition>
                 </child>
@@ -4933,7 +5663,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.classification" id="Ccd4643eb-a25d-4e93-ab3c-b494ed7b8648" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="zustand">
                     <condition lang="ECQL">parent.funktion = 8300</condition>
                 </child>
@@ -4970,7 +5700,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C2e857ef5-1506-4ba5-84da-200d88775cf5" priority="lowest">
         <source name="anchor">
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -5005,19 +5735,19 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cb6a3be00-a71e-4d27-9040-df087e8288f7" priority="normal">
         <source>
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
         <source>
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
         <source>
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -5033,19 +5763,19 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
         <source>
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
         <source>
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -5061,7 +5791,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C838343b5-ac84-4569-aea5-08c9d42d93a1" priority="normal">
         <source>
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -5077,7 +5807,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8b3c1a96-d0cf-4fcf-8de9-0d89b9c1090f_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
         <source>
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
                 </type>
                 <child name="endet"/>
@@ -5102,7 +5832,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca8f9e2c3-f1a3-4a39-93fe-8ac66c12012d" priority="normal">
         <source>
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -5115,46 +5845,234 @@ if(flaeche){&#13;
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C8a8634eb-f5e9-4eeb-812c-91283edcf8c6" priority="normal">
-        <source name="spelling">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="C8a8634eb-f5e9-4eeb-812c-91283edcf8c6" priority="normal">
+        <source name="var">
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="zweitname"/>
             </property>
         </source>
-        <target>
+        <target name="result">
             <property>
                 <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
                 <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
                     <context>0</context>
                 </child>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="other" name="nameStatus"/>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (zweitname) {&#13;
+	zweitname.p.each { zweit -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( zweit )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language( 'deu' )&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C090830b0-827e-4cdc-b3b2-50b0d3237a8c" priority="normal">
-        <source name="spelling">
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="C090830b0-827e-4cdc-b3b2-50b0d3237a8c" priority="normal">
+        <source name="var">
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="zweitname"/>
             </property>
         </source>
-        <target>
+        <target name="result">
             <property>
                 <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
                 <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
                     <context>0</context>
                 </child>
-                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
-        <parameter value="other" name="nameStatus"/>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (zweitname) {&#13;
+	zweitname.p.each { zweit -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( zweit )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language( 'deu' )&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="C1ec20802-867e-47e7-8c4e-39cad899ee63" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
+                <child name="regionalsprache"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
+                    <context>1</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (regionalsprache) {&#13;
+	regionalsprache.p.each { reg -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( reg )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language {&#13;
+					nilReason( 'unknown' )&#13;
+				}&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="C645c3ee1-4fa0-402a-be4e-3f0e7c2c70c8" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
+                <child name="regionalsprache"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
+                    <context>2</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (regionalsprache) {&#13;
+	regionalsprache.p.each { reg -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( reg )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language {&#13;
+					nilReason( 'unknown' )&#13;
+				}&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
     </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Ce4a48e2b-84e1-41be-9c32-9cab71cfa1d6" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="name"/>
             </property>
         </source>
@@ -5170,7 +6088,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cb2033b87-768b-46ce-ac7f-3aadfd4ee20d_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
                 </type>
                 <child name="name"/>
@@ -5194,7 +6112,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cea58528f-17ec-408c-a064-36835ebad97a" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="name"/>
             </property>
         </source>
@@ -5217,26 +6135,10 @@ if(flaeche){&#13;
         </target>
         <parameter value="unknown" name="value"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cea684f74-0b5b-4bfd-bcbd-0dd7067ba5eb" priority="normal">
-        <source name="anchor">
-            <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-                <child name="name"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="WatercourseType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
-                <child name="nilReason"/>
-            </property>
-        </target>
-        <parameter value="unknown" name="value"/>
-    </cell>
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C6202185c-4c9c-4a1a-9a0c-31e279370883" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -5250,7 +6152,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="Cbd8abc75-1f63-4c15-89d6-f66cca71dad5" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -5264,7 +6166,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C8709ed4b-550f-4eb6-b54d-a4859b2fc759_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -5287,7 +6189,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="C4b86b49e-a8df-4c27-96d4-7131b5d17ca3" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gewaesserkennzahl"/>
             </property>
         </source>
@@ -5303,7 +6205,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cd67d10a4-e0bf-4b02-a9d1-58c7eee1b102" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gewaesserkennzahl"/>
             </property>
         </source>
@@ -5319,7 +6221,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C8add09b1-e139-4350-9d5c-7b8d60e1e7da" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gewaesserkennzahl"/>
             </property>
         </source>
@@ -5337,7 +6239,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C9ad21c84-c16a-47e4-9c72-db4352712bc6" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gewaesserkennzahl"/>
             </property>
         </source>
@@ -5355,7 +6257,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="C5454207f-344f-4c5a-9c5b-73d1ec03f65f_Cb6a3be00-a71e-4d27-9040-df087e8288f7" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -5369,7 +6271,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="C5454207f-344f-4c5a-9c5b-73d1ec03f65f_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -5383,7 +6285,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="C5454207f-344f-4c5a-9c5b-73d1ec03f65f_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -5406,7 +6308,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.inspire.identifier" id="Ccd2fc3ac-3e44-4e08-8b1e-801af1116258_Cb6a3be00-a71e-4d27-9040-df087e8288f7" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -5420,7 +6322,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.inspire.identifier" id="Ccd2fc3ac-3e44-4e08-8b1e-801af1116258_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -5434,7 +6336,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.inspire.identifier" id="Ccd2fc3ac-3e44-4e08-8b1e-801af1116258_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -5457,7 +6359,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ce7e6c9c6-c7a2-409d-ac3a-9b9d823e6dba_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -5482,7 +6384,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="C69a5523d-7358-491b-8244-bbd2055f32a8_Cb6a3be00-a71e-4d27-9040-df087e8288f7" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -5498,7 +6400,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="C69a5523d-7358-491b-8244-bbd2055f32a8_Cf28c2a3a-1f66-4f1f-b279-b5c3d56d4c21" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -5514,7 +6416,7 @@ if(flaeche){&#13;
     <cell relation="custom:alignment:adv.inspire.id.default" id="C69a5523d-7358-491b-8244-bbd2055f32a8_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -5550,7 +6452,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.cst.functions.geometric.calculatelength" id="C4d116941-ddfa-4411-b15a-e73a9cc2665a" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -5564,7 +6466,7 @@ if(flaeche){&#13;
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cddc34be6-c933-49fb-8e00-083b905fb305_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
         <source name="var">
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -5637,7 +6539,7 @@ if(linie){&#13;
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C99235916-bba1-4542-a48f-32c839385a66" priority="normal">
         <source>
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="funktion"/>
             </property>
         </source>
@@ -5662,7 +6564,7 @@ if(linie){&#13;
     <cell relation="eu.esdihumboldt.hale.align.classification" id="Ca6e1a84d-f57e-4c3c-9834-75409791bedc" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="funktion"/>
             </property>
         </source>
@@ -5687,7 +6589,7 @@ if(linie){&#13;
     <cell relation="eu.esdihumboldt.hale.align.classification" id="Ceab25895-636a-4ef2-8477-34516b553032_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
         <source>
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
                 </type>
                 <child name="funktion"/>
@@ -5729,10 +6631,10 @@ if(linie){&#13;
             </core:message>
         </annotation>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C798f4a2e-c841-49c6-ac4d-f97cae4e79a0" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C798f4a2e-c841-49c6-ac4d-f97cae4e79a0" priority="low">
         <source name="anchor">
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -5748,7 +6650,7 @@ if(linie){&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ca6fd253b-5cd2-4b59-93e3-572c96bd73c4" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -5763,7 +6665,7 @@ if(linie){&#13;
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C6602df75-2182-4d07-ae63-458a3b113a98_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
         <source>
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
                 </type>
                 <child name="funktion"/>
@@ -5807,7 +6709,7 @@ if(linie){&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cf6cd33d6-5bd9-4c59-a219-6083c138c97f" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -5842,7 +6744,7 @@ if(linie){&#13;
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C4757f6d3-98af-409b-a8f0-1e95452a285e" priority="normal">
         <source>
             <property>
-                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_fliessgewaesser" ns="jdbc:postgresql:testbed:public"/>
                 <child name="hydrologischesmerkmal"/>
             </property>
         </source>
@@ -5866,7 +6768,7 @@ if(linie){&#13;
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C68128db9-e882-4dad-91e9-b9bf826c6def" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="hydrologischesmerkmal"/>
             </property>
         </source>
@@ -5894,7 +6796,7 @@ if(linie){&#13;
     <cell relation="eu.esdihumboldt.hale.align.classification" id="C1267641e-cf8a-44b9-9f90-e7b10da7d500_C4c2ee7db-fc9f-4442-8fca-84f1bcbd4c32" priority="normal">
         <source>
             <property>
-                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_untergeordnetesgewaesser" ns="jdbc:postgresql:testbed:public">
                     <condition lang="ECQL">(NOT (funktion = 1011) AND NOT (funktion = 1012)) AND NOT (funktion = 1040)</condition>
                 </type>
                 <child name="hydrologischesmerkmal"/>
@@ -5940,7 +6842,7 @@ if(linie){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8a6b2a77-12cb-470e-b454-69bdbd5eb988" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="breitedesgewaessers"/>
             </property>
         </source>
@@ -5958,7 +6860,7 @@ if(linie){&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C7e59b5bc-9f32-403b-892b-917093ea71f8" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="breitedesgewaessers"/>
             </property>
         </source>
@@ -5976,7 +6878,7 @@ if(linie){&#13;
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C42130a1a-cc03-4976-8f07-78c3c8f329f6" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="breitedesgewaessers"/>
             </property>
         </source>
@@ -5994,7 +6896,7 @@ if(linie){&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C4e29b5a5-7c18-4a9f-b584-f94f0f580ae8" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="breitedesgewaessers"/>
             </property>
         </source>
@@ -6022,7 +6924,7 @@ if(linie){&#13;
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C4c0212ea-a994-4344-9aec-580c1420ba86" priority="normal">
         <source>
             <class>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1650'</condition>
                 </type>
             </class>
@@ -6095,7 +6997,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Ca40c749f-4179-4b6b-a68b-b30c4e8c82c8" priority="normal">
         <source>
             <class>
-                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -6109,7 +7011,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cd3ab0ba5-a0cc-4014-99c1-606ebf20eab7" priority="normal">
         <source>
             <class>
-                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">zustand = '5000'</condition>
                 </type>
             </class>
@@ -6182,7 +7084,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C62ff5fc1-bfe9-42bd-a0c4-84580da5ab0b" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1650'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -6207,7 +7109,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C3bf2b790-5c7c-47e1-b72c-6f8ff4242254" priority="normal">
         <source>
             <property>
-                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -6223,7 +7125,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf4212fa2-4a7e-43e6-a078-c7f24c3bc347" priority="normal">
         <source>
             <property>
-                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">zustand = '5000'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -6248,7 +7150,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C05a5d40f-861b-4278-b646-2638ac993bc7" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1650'</condition>
                 </type>
                 <child name="endet"/>
@@ -6273,7 +7175,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C900a9627-9f86-48f1-9e01-92c6ab8bc979" priority="normal">
         <source>
             <property>
-                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -6289,7 +7191,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C1881b404-2a68-4b7b-bbff-b5c1cfd364b9" priority="normal">
         <source>
             <property>
-                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">zustand = '5000'</condition>
                 </type>
                 <child name="endet"/>
@@ -6311,10 +7213,140 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
             </core:message>
         </annotation>
     </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="C8b9a0043-41fe-49af-8336-1cbdc6a36681" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="CQL">art = '1650'</condition>
+                </type>
+                <child name="regionalsprache"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="WetlandType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
+                    <context>0</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (regionalsprache) {&#13;
+	regionalsprache.p.each { reg -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( reg )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language {&#13;
+					nilReason( 'unknown' )&#13;
+				}&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
+    <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="Cd13280ca-32e9-41e8-85f7-052c8da792d8" priority="normal">
+        <source name="var">
+            <property>
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
+                    <condition lang="CQL">art = '1650'</condition>
+                </type>
+                <child name="zweitname"/>
+            </property>
+        </source>
+        <target name="result">
+            <property>
+                <type name="WetlandType" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-p/4.0">
+                    <context>1</context>
+                </child>
+            </property>
+        </target>
+        <complexParameter name="script">
+            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
+if (zweitname) {&#13;
+	zweitname.p.each { zweit -&gt;&#13;
+		_target {&#13;
+			GeographicalName {&#13;
+				sourceOfName {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				spelling {&#13;
+					SpellingOfName {&#13;
+						text( zweit )&#13;
+						script( 'Latn' )&#13;
+					}&#13;
+				}&#13;
+				pronunciation {&#13;
+					nilReason( 'other:unpopulated' )&#13;
+				}&#13;
+				language( 'deu' )&#13;
+				nameStatus {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NameStatusValue/other' )&#13;
+				}&#13;
+				nativeness {&#13;
+					href( 'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym' )&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+	}&#13;
+}
+</core:text>
+        </complexParameter>
+        <parameter value="false" name="variablesAsInstances"/>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+        <annotation type="message">
+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                <core:content>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
+                </core:content>
+            </core:message>
+        </annotation>
+    </cell>
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cd97765cc-c225-4d5a-8f97-2aeaf227b592" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1650'</condition>
                 </type>
                 <child name="name"/>
@@ -6338,7 +7370,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C76a93599-1a50-47c0-9f39-995d30ea93c3" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">zustand = '5000'</condition>
                 </type>
                 <child name="name"/>
@@ -6372,7 +7404,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C869b74da-1a21-462f-8259-944880c3ff07" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -6386,7 +7418,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C58c5f9d9-1800-432a-a0ab-6b3db0d97791_C4c0212ea-a994-4344-9aec-580c1420ba86" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1650'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -6409,7 +7441,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C58c5f9d9-1800-432a-a0ab-6b3db0d97791_Ca40c749f-4179-4b6b-a68b-b30c4e8c82c8" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -6423,7 +7455,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C58c5f9d9-1800-432a-a0ab-6b3db0d97791_Cd3ab0ba5-a0cc-4014-99c1-606ebf20eab7" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">zustand = '5000'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -6446,7 +7478,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0702079d-c85c-431e-ad2c-fd570baaa99b_C4c0212ea-a994-4344-9aec-580c1420ba86" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1650'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -6469,7 +7501,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0702079d-c85c-431e-ad2c-fd570baaa99b_Ca40c749f-4179-4b6b-a68b-b30c4e8c82c8" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -6483,7 +7515,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.identifier" id="C0702079d-c85c-431e-ad2c-fd570baaa99b_Cd3ab0ba5-a0cc-4014-99c1-606ebf20eab7" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">zustand = '5000'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -6506,7 +7538,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="custom:alignment:adv.inspire.id.default" id="C3256c4e5-7a27-45ad-84ab-1096b561f9df" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -6522,7 +7554,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C03469749-f494-48a5-a587-645f7678bd87" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -6539,7 +7571,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ca2b1d326-c24a-4230-83be-695af3568469" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1650'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -6564,7 +7596,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cef6e3f51-e53e-47ec-a3c0-cac604684053" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_sumpf" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -6580,7 +7612,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cc57e98ef-1ecc-490b-a206-8a090935f1f4" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_vegetationsmerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">zustand = '5000'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -6615,7 +7647,7 @@ Die lokale ID wird aus dem Namen der Ziel-Objektart, der AAA-ObjektID des Quell-
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C7a86fc5e-68fd-4572-b859-56b34ee25f9d" priority="normal">
         <source name="anchor">
             <property>
-                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_gewaessermerkmal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1650'</condition>
                 </type>
                 <child name="gml_id"/>
