@@ -1,5 +1,5 @@
 diff --git a/projects/bu-2d-auto.halex.alignment.xml b/projects/bu-2d-manual.halex.alignment.xml
-index a103747..933270e 100644
+index b316c00..4a3a856 100644
 --- a/projects/bu-2d-auto.halex.alignment.xml
 +++ b/projects/bu-2d-manual.halex.alignment.xml
 @@ -64,11 +64,25 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -9,7 +9,7 @@ index a103747..933270e 100644
 -            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
 +            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_unverschluesselt">
                  <cf:binding>java.lang.String</cf:binding>
--                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
              </cf:input>
 -            <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
 +            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_land">
@@ -58,7 +58,7 @@ index a103747..933270e 100644
              </cf:input>
              <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
--                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1">
                  <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -249,14 +249,14 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -1284,36 +1297,6 @@ if (baujahr){&#13;
+@@ -1284,31 +1297,6 @@ if (baujahr){&#13;
          </target>
          <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
      </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C041711db-6015-40e6-9198-513e210b5ef7_C7a92c0b5-e161-4208-a6c5-ac722aeb297c" priority="normal">
--        <source>
+-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C041711db-6015-40e6-9198-513e210b5ef7_C7a92c0b5-e161-4208-a6c5-ac722aeb297c" priority="normal">
+-        <source name="spelling">
 -            <property>
--                <type name="AX_BauteilType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                <type name="AX_BauteilType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
 -                    <condition lang="ECQL">bauart = '1100' or bauart = '1200' or bauart = '1300' or bauart = '1400' or bauart = '2500' or bauart = '2510' or bauart = '2520' or bauart = '2710' or bauart = '2720'</condition>
 -                </type>
 -                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
@@ -267,18 +267,13 @@ index a103747..933270e 100644
 -                <type name="BuildingPartType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
 -                <child name="name" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
 -                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
 -            </property>
 -        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
 -        <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
 -        <annotation type="message">
 -            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
 -                <core:content>
--                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_BauteilType/name found</core:text>
+-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/7.1/AX_BauteilType/name found</core:text>
 -                </core:content>
 -            </core:message>
 -        </annotation>
@@ -286,7 +281,7 @@ index a103747..933270e 100644
      <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc8fd8e45-bc44-4aae-aa33-f036ade25274" priority="normal">
          <source>
              <property>
-@@ -1332,7 +1315,7 @@ if (baujahr){&#13;
+@@ -1327,7 +1315,7 @@ if (baujahr){&#13;
          <parameter value="false" name="ignoreNamespaces"/>
          <parameter value="false" name="structuralRename"/>
          <annotation type="message">
@@ -295,7 +290,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -1356,9 +1339,9 @@ if (baujahr){&#13;
+@@ -1351,9 +1339,9 @@ if (baujahr){&#13;
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  //bauwerksfunktion = '2030' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2070' or bauwerksfunktion = '2080' or bauwerksfunktion = '2090'&#13;
  &#13;
@@ -308,7 +303,7 @@ index a103747..933270e 100644
  def baufun = _source.p.bauwerksfunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -1383,7 +1366,7 @@ else if (lingeom){&#13;
+@@ -1378,7 +1366,7 @@ else if (lingeom){&#13;
  }&#13;
  &#13;
  else{&#13;
@@ -317,7 +312,7 @@ index a103747..933270e 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -1411,14 +1394,14 @@ _target{&#13;
+@@ -1406,14 +1394,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -334,7 +329,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1442,9 +1425,9 @@ _target{&#13;
+@@ -1437,9 +1425,9 @@ _target{&#13;
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  //bauwerksfunktion = '1800' or bauwerksfunktion = '1830' or bauwerksfunktion = '1880' or bauwerksfunktion = '1890'&#13;
  &#13;
@@ -347,7 +342,7 @@ index a103747..933270e 100644
  def baufun = _source.p.bauwerksfunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -1465,12 +1448,12 @@ else if (lingeom){&#13;
+@@ -1460,12 +1448,12 @@ else if (lingeom){&#13;
  	        targeom = _.geom.buffer(geometry: lingeom, distance: 8)&#13;
  	        break&#13;
  	    case '1890':&#13;
@@ -362,7 +357,7 @@ index a103747..933270e 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -1498,14 +1481,14 @@ _target{&#13;
+@@ -1493,14 +1481,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -379,7 +374,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1531,9 +1514,9 @@ _target{&#13;
+@@ -1526,9 +1514,9 @@ _target{&#13;
  //bauwerksfunktion = '1270' or bauwerksfunktion = '1280' or bauwerksfunktion = '1290' or bauwerksfunktion = '1330' or bauwerksfunktion = '1331' or&#13;
  //bauwerksfunktion = '1332' or bauwerksfunktion = '1333' or bauwerksfunktion = '1340' or bauwerksfunktion = '1350'&#13;
  &#13;
@@ -392,7 +387,7 @@ index a103747..933270e 100644
  def baufun = _source.p.bauwerksfunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -1549,11 +1532,11 @@ else if (poigeom){&#13;
+@@ -1544,11 +1532,11 @@ else if (poigeom){&#13;
  &#13;
  //wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
  else if (lingeom){&#13;
@@ -406,7 +401,7 @@ index a103747..933270e 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -1581,14 +1564,14 @@ _target{&#13;
+@@ -1576,14 +1564,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -423,7 +418,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1613,9 +1596,9 @@ _target{&#13;
+@@ -1608,9 +1596,9 @@ _target{&#13;
  //bauwerksfunktion = '1430' or bauwerksfunktion = '1431' or bauwerksfunktion = '1432' or bauwerksfunktion = '1440' or bauwerksfunktion = '1470' or&#13;
  //bauwerksfunktion = '1490'&#13;
  &#13;
@@ -436,7 +431,7 @@ index a103747..933270e 100644
  def baufun = _source.p.bauwerksfunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -1639,12 +1622,12 @@ else if (lingeom){&#13;
+@@ -1634,12 +1622,12 @@ else if (lingeom){&#13;
  	        targeom = _.geom.buffer(geometry: lingeom, distance: 10)&#13;
  	        break&#13;
  	    case ['1431', '1432', '1470']:&#13;
@@ -451,7 +446,7 @@ index a103747..933270e 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -1672,14 +1655,14 @@ _target{&#13;
+@@ -1667,14 +1655,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -468,7 +463,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1701,9 +1684,9 @@ _target{&#13;
+@@ -1696,9 +1684,9 @@ _target{&#13;
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -481,7 +476,7 @@ index a103747..933270e 100644
  def art = _source.p.art.value()&#13;
  def targeom&#13;
  &#13;
-@@ -1719,11 +1702,11 @@ else if (poigeom){&#13;
+@@ -1714,11 +1702,11 @@ else if (poigeom){&#13;
  &#13;
  //wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
  else if (lingeom){&#13;
@@ -495,7 +490,7 @@ index a103747..933270e 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -1751,14 +1734,14 @@ _target{&#13;
+@@ -1746,14 +1734,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -512,7 +507,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1781,14 +1764,14 @@ _target{&#13;
+@@ -1776,14 +1764,14 @@ _target{&#13;
  //die Werte aus dem Kollektor, der bei der Erzeugung der Bauteile erstellt wurde, werden ausgelesen&#13;
  def c = _.context.collector()&#13;
  //die IDs aller zu dem Gebäude gehörigen Bauteile werden in eine Liste geschrieben&#13;
@@ -533,7 +528,7 @@ index a103747..933270e 100644
  def gebfun = _source.p.gebaeudefunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -1804,11 +1787,11 @@ else if (poigeom){&#13;
+@@ -1799,11 +1787,11 @@ else if (poigeom){&#13;
  &#13;
  //wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
  else if (lingeom){&#13;
@@ -547,7 +542,7 @@ index a103747..933270e 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -1829,10 +1812,10 @@ _target{&#13;
+@@ -1824,10 +1812,10 @@ _target{&#13;
  			//für Befliegungsgebäude und aufgeständerte Gebäude können die Werte der horizontalGeometryReference je nach Datensatz unterschiedlich sein. Daher wird der Wert in diesen Fälllen über&#13;
  			//eine Projektvariable übergeben und an dieser Stelle verwendet&#13;
  			horizontalGeometryReference {&#13;
@@ -560,7 +555,7 @@ index a103747..933270e 100644
  					href( 'http://inspire.ec.europa.eu/codelist/HorizontalGeometryReferenceValue/' + _project.vars.HORIZONTALGEOMETRYREFERENCEVALUE_AUFGESTAENDERT )&#13;
  				}&#13;
  				//für Gebäude, deren Bauteile bestimmte Bauarten haben, muss der Wert combined gesetzt werden&#13;
-@@ -1856,7 +1839,7 @@ _target{&#13;
+@@ -1851,7 +1839,7 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -569,7 +564,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1880,9 +1863,9 @@ _target{&#13;
+@@ -1875,9 +1863,9 @@ _target{&#13;
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  //archaeologischerTyp = '1100' or archaeologischerTyp = '1110' or archaeologischerTyp = '1210' or archaeologischerTyp = '1410'&#13;
  &#13;
@@ -582,10 +577,10 @@ index a103747..933270e 100644
  def arctyp = _source.p.archaeologischerTyp.value()&#13;
  def targeom&#13;
  &#13;
-@@ -1906,12 +1889,12 @@ else if (lingeom){&#13;
+@@ -1901,12 +1889,12 @@ else if (lingeom){&#13;
  	        targeom = _.geom.buffer(geometry: lingeom, distance: 5)&#13;
  	        break&#13;
- 	    case ['1210', '1410']:&#13;
+ 	    case '1210':&#13;
 -	    	_log.error("Es liegt eine Liniengeometrie vor, für die keine Standardbreite angegeben ist. Bauwerk-id: " +  _source.p.id.value())&#13;
 +	    	_log.error("Es liegt eine Liniengeometrie vor, für die keine Standardbreite angegeben ist. Bauwerk-id: " +  _source.p.gml_id.value())&#13;
  	}&#13;
@@ -597,7 +592,7 @@ index a103747..933270e 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -1939,14 +1922,14 @@ _target{&#13;
+@@ -1934,14 +1922,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -614,7 +609,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -1969,9 +1952,9 @@ _target{&#13;
+@@ -1964,9 +1952,9 @@ _target{&#13;
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  //Leitungen sollen ständardmäßig mit 0,5 m gebuffert werden&#13;
@@ -627,7 +622,7 @@ index a103747..933270e 100644
  def targeom&#13;
  &#13;
  //wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
-@@ -1989,7 +1972,7 @@ else if (lingeom){&#13;
+@@ -1984,7 +1972,7 @@ else if (lingeom){&#13;
  }&#13;
  &#13;
  if(!targeom){&#13;
@@ -636,7 +631,7 @@ index a103747..933270e 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -2017,14 +2000,14 @@ _target{&#13;
+@@ -2012,14 +2000,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -653,7 +648,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -2046,9 +2029,9 @@ _target{&#13;
+@@ -2041,9 +2029,9 @@ _target{&#13;
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -666,7 +661,7 @@ index a103747..933270e 100644
  def konmer = _source.p.konstruktionsmerkmalBauart.value()&#13;
  def targeom&#13;
  &#13;
-@@ -2064,11 +2047,11 @@ else if (poigeom){&#13;
+@@ -2059,11 +2047,11 @@ else if (poigeom){&#13;
  &#13;
  //wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
  else if (lingeom){&#13;
@@ -680,7 +675,7 @@ index a103747..933270e 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -2096,14 +2079,14 @@ _target{&#13;
+@@ -2091,14 +2079,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -697,7 +692,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -2125,9 +2108,9 @@ _target{&#13;
+@@ -2120,9 +2108,9 @@ _target{&#13;
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -710,7 +705,7 @@ index a103747..933270e 100644
  def targeom&#13;
  //Pufferwert ist derzeit angenommen durch jo - auf Angaben von Gebäudeexperten wird gewartet&#13;
  //wenn die Quellgeometrie ein Polygon ist, wird diese übernommen&#13;
-@@ -2145,7 +2128,7 @@ else if (lingeom){&#13;
+@@ -2140,7 +2128,7 @@ else if (lingeom){&#13;
  }&#13;
  &#13;
  if(!targeom){&#13;
@@ -719,7 +714,7 @@ index a103747..933270e 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -2173,14 +2156,14 @@ _target{&#13;
+@@ -2168,14 +2156,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -736,7 +731,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -2204,9 +2187,9 @@ _target{&#13;
+@@ -2199,9 +2187,9 @@ _target{&#13;
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  //bauwerksfunktion = '1610' or bauwerksfunktion = '1611' or bauwerksfunktion = '1700'&#13;
  &#13;
@@ -749,7 +744,7 @@ index a103747..933270e 100644
  def baufun = _source.p.bauwerksfunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -2227,12 +2210,12 @@ else if (lingeom){&#13;
+@@ -2222,12 +2210,12 @@ else if (lingeom){&#13;
  	        targeom = _.geom.buffer(geometry: lingeom, distance: 0.5)&#13;
  	        break&#13;
  	    case ['1610', '1611']:&#13;
@@ -764,7 +759,7 @@ index a103747..933270e 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -2260,14 +2243,14 @@ _target{&#13;
+@@ -2255,14 +2243,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -781,7 +776,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -2287,9 +2270,9 @@ _target{&#13;
+@@ -2282,9 +2270,9 @@ _target{&#13;
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -794,7 +789,7 @@ index a103747..933270e 100644
  def baufun = _source.p.bauwerksfunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -2305,11 +2288,11 @@ else if (poigeom){&#13;
+@@ -2300,11 +2288,11 @@ else if (poigeom){&#13;
  &#13;
  //wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
  else if (lingeom){&#13;
@@ -808,7 +803,7 @@ index a103747..933270e 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -2337,7 +2320,7 @@ _target{&#13;
+@@ -2332,7 +2320,7 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -817,7 +812,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -2359,9 +2342,9 @@ _target{&#13;
+@@ -2354,9 +2342,9 @@ _target{&#13;
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -830,7 +825,7 @@ index a103747..933270e 100644
  def baufun = _source.p.bauwerksfunktion.value()&#13;
  def targeom&#13;
  &#13;
-@@ -2377,11 +2360,11 @@ else if (poigeom){&#13;
+@@ -2372,11 +2360,11 @@ else if (poigeom){&#13;
  &#13;
  //wenn die Quellgeometrie eine Linie ist, wird eine Fehlermeldung ausgegeben, da keine Standardwerte für die Breite angegeben sind.&#13;
  else if (lingeom){&#13;
@@ -844,7 +839,7 @@ index a103747..933270e 100644
  }&#13;
  &#13;
  _target{&#13;
-@@ -2409,14 +2392,14 @@ _target{&#13;
+@@ -2404,14 +2392,14 @@ _target{&#13;
  </core:text>
          </complexParameter>
          <annotation type="message">
@@ -861,7 +856,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -2442,7 +2425,7 @@ _target{&#13;
+@@ -2437,7 +2425,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -870,7 +865,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2468,7 +2451,7 @@ _target{&#13;
+@@ -2463,7 +2451,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -879,7 +874,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2494,7 +2477,7 @@ _target{&#13;
+@@ -2489,7 +2477,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -888,7 +883,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2520,7 +2503,7 @@ _target{&#13;
+@@ -2515,7 +2503,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -897,7 +892,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2546,7 +2529,7 @@ _target{&#13;
+@@ -2541,7 +2529,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -906,7 +901,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2589,7 +2572,7 @@ _target{&#13;
+@@ -2584,7 +2572,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -915,7 +910,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2615,7 +2598,7 @@ _target{&#13;
+@@ -2610,7 +2598,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -924,7 +919,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2641,7 +2624,7 @@ _target{&#13;
+@@ -2636,7 +2624,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -933,7 +928,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2667,7 +2650,7 @@ _target{&#13;
+@@ -2662,7 +2650,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -942,7 +937,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2693,7 +2676,7 @@ _target{&#13;
+@@ -2688,7 +2676,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -951,7 +946,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2736,7 +2719,7 @@ _target{&#13;
+@@ -2731,7 +2719,7 @@ _target{&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -960,106 +955,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -2819,7 +2802,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -2864,7 +2847,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -2925,7 +2908,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -2970,7 +2953,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -3003,7 +2986,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -3116,7 +3099,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -3149,7 +3132,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -3186,7 +3169,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -3235,7 +3218,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -3276,7 +3259,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -3373,7 +3356,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -3421,7 +3404,7 @@ _target{&#13;
+@@ -3125,7 +3113,7 @@ _target{&#13;
          <parameter value="null" name="notClassifiedAction"/>
          <documentation>Platzhalter weil Abbildung noch fehlt</documentation>
          <annotation type="message">
@@ -1068,7 +964,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3455,7 +3438,7 @@ _target{&#13;
+@@ -3159,7 +3147,7 @@ _target{&#13;
          <parameter value="null" name="notClassifiedAction"/>
          <documentation>Platzhalter weil Abbildung noch fehlt</documentation>
          <annotation type="message">
@@ -1077,7 +973,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3501,7 +3484,7 @@ _target{&#13;
+@@ -3205,7 +3193,7 @@ _target{&#13;
          <parameter value="null" name="notClassifiedAction"/>
          <documentation>Platzhalter weil Abbildung noch fehlt</documentation>
          <annotation type="message">
@@ -1086,7 +982,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3862,7 +3845,7 @@ _target{&#13;
+@@ -3238,7 +3226,7 @@ _target{&#13;
          </complexParameter>
          <parameter value="null" name="notClassifiedAction"/>
          <annotation type="message">
@@ -1095,97 +991,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -3909,7 +3892,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -3992,7 +3975,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -4047,7 +4030,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -4082,7 +4065,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -4943,7 +4926,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -4978,7 +4961,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -5017,7 +5000,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -5068,7 +5051,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -5111,7 +5094,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -5236,7 +5219,7 @@ _target{&#13;
-         </complexParameter>
-         <parameter value="null" name="notClassifiedAction"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -5289,7 +5272,7 @@ if (baujahr){&#13;
+@@ -4145,7 +4133,7 @@ if (baujahr){&#13;
          </complexParameter>
          <parameter value="false" name="variablesAsInstances"/>
          <annotation type="message">
@@ -1194,7 +1000,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -5332,7 +5315,7 @@ if (baujahr){&#13;
+@@ -4188,7 +4176,7 @@ if (baujahr){&#13;
          </complexParameter>
          <parameter value="false" name="variablesAsInstances"/>
          <annotation type="message">
@@ -1203,7 +1009,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                  </core:content>
-@@ -5358,7 +5341,7 @@ if (baujahr){&#13;
+@@ -4214,7 +4202,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1212,7 +1018,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5384,7 +5367,7 @@ if (baujahr){&#13;
+@@ -4240,7 +4228,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1221,7 +1027,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5410,7 +5393,7 @@ if (baujahr){&#13;
+@@ -4266,7 +4254,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1230,7 +1036,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5436,7 +5419,7 @@ if (baujahr){&#13;
+@@ -4292,7 +4280,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1239,7 +1045,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5462,7 +5445,7 @@ if (baujahr){&#13;
+@@ -4318,7 +4306,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1248,7 +1054,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5505,7 +5488,7 @@ if (baujahr){&#13;
+@@ -4361,7 +4349,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1257,7 +1063,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5531,7 +5514,7 @@ if (baujahr){&#13;
+@@ -4387,7 +4375,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1266,7 +1072,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5557,7 +5540,7 @@ if (baujahr){&#13;
+@@ -4413,7 +4401,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1275,7 +1081,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5583,7 +5566,7 @@ if (baujahr){&#13;
+@@ -4439,7 +4427,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1284,7 +1090,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5609,7 +5592,7 @@ if (baujahr){&#13;
+@@ -4465,7 +4453,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1293,7 +1099,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5652,7 +5635,7 @@ if (baujahr){&#13;
+@@ -4508,7 +4496,7 @@ if (baujahr){&#13;
          <parameter value="false" name="structuralRename"/>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1302,61 +1108,24 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5679,7 +5662,7 @@ if (baujahr){&#13;
-         </target>
-         <parameter value="http://inspire.ec.europa.eu/codelist/ElevationReferenceValue/topOfConstruction" name="value"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -5724,7 +5707,7 @@ if (baujahr){&#13;
-         </target>
-         <parameter value="http://inspire.ec.europa.eu/codelist/ElevationReferenceValue/topOfConstruction" name="value"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -5769,7 +5752,7 @@ if (baujahr){&#13;
-         </target>
-         <parameter value="http://inspire.ec.europa.eu/codelist/ElevationReferenceValue/topOfConstruction" name="value"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -5796,7 +5779,7 @@ if (baujahr){&#13;
-         </target>
-         <parameter value="http://inspire.ec.europa.eu/codelist/ElevationReferenceValue/generalGround" name="value"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -5841,7 +5824,7 @@ if (baujahr){&#13;
-         </target>
-         <parameter value="http://inspire.ec.europa.eu/codelist/ElevationReferenceValue/generalGround" name="value"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -5886,7 +5869,7 @@ if (baujahr){&#13;
-         </target>
-         <parameter value="http://inspire.ec.europa.eu/codelist/ElevationReferenceValue/generalGround" name="value"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -5913,7 +5896,7 @@ if (baujahr){&#13;
+@@ -5042,13 +5030,10 @@ if (baujahr){&#13;
+     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C40330ebe-c2fd-4afa-be22-67e9847b3a22" priority="normal">
+         <source name="anchor">
+             <property>
+-                <type name="AX_BauwerkImGewaesserbereichType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">bauwerksfunktion = '2030' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2070' or bauwerksfunktion = '2080' or bauwerksfunktion = '2090'</condition>
++                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">((((bauwerksfunktion IN ('2030','2050')) OR bauwerksfunktion = '2060') OR bauwerksfunktion = '2070') OR bauwerksfunktion = '2080') OR bauwerksfunktion = '2090'</condition>
+                 </type>
+-                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="AX_RelativeHoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="hoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="uom"/>
++                <child name="hoehe"/>
+             </property>
+         </source>
+         <target>
+@@ -5215,7 +5200,7 @@ if (baujahr){&#13;
          </target>
          <parameter value="http://inspire.ec.europa.eu/codelist/HeightStatusValue/measured" name="value"/>
          <annotation type="message">
@@ -1365,7 +1134,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -5958,7 +5941,7 @@ if (baujahr){&#13;
+@@ -5242,7 +5227,7 @@ if (baujahr){&#13;
          </target>
          <parameter value="http://inspire.ec.europa.eu/codelist/HeightStatusValue/measured" name="value"/>
          <annotation type="message">
@@ -1374,7 +1143,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6003,7 +5986,7 @@ if (baujahr){&#13;
+@@ -5287,7 +5272,7 @@ if (baujahr){&#13;
          </target>
          <parameter value="http://inspire.ec.europa.eu/codelist/HeightStatusValue/measured" name="value"/>
          <annotation type="message">
@@ -1383,7 +1152,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6030,7 +6013,7 @@ if (baujahr){&#13;
+@@ -5494,7 +5479,7 @@ if (baujahr){&#13;
          <parameter value="false" name="ignoreNamespaces"/>
          <parameter value="false" name="structuralRename"/>
          <annotation type="message">
@@ -1392,16 +1161,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6075,7 +6058,7 @@ if (baujahr){&#13;
-         <parameter value="false" name="ignoreNamespaces"/>
-         <parameter value="false" name="structuralRename"/>
-         <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
-                 <core:content>
-                     <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
-                 </core:content>
-@@ -6120,21 +6103,20 @@ if (baujahr){&#13;
+@@ -5539,23 +5524,20 @@ if (baujahr){&#13;
          <parameter value="false" name="ignoreNamespaces"/>
          <parameter value="false" name="structuralRename"/>
          <annotation type="message">
@@ -1413,158 +1173,387 @@ index a103747..933270e 100644
              </core:message>
          </annotation>
      </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C306ab7e7-4fd2-4a10-a531-5f700a5255bc" priority="normal">
+-    <cell relation="eu.esdihumboldt.hale.align.classification" id="C78b8227b-6202-4496-9ddd-ebde60135e0a" priority="normal">
+-        <source>
++    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C78b8227b-6202-4496-9ddd-ebde60135e0a" priority="normal">
++        <source name="anchor">
+             <property>
+-                <type name="AX_BauwerkImGewaesserbereichType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">bauwerksfunktion = '2030' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2070' or bauwerksfunktion = '2080' or bauwerksfunktion = '2090'</condition>
++                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">((((bauwerksfunktion IN ('2030','2050')) OR bauwerksfunktion = '2060') OR bauwerksfunktion = '2070') OR bauwerksfunktion = '2080') OR bauwerksfunktion = '2090'</condition>
+                 </type>
+-                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="AX_RelativeHoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="hoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="uom"/>
++                <child name="hoehe"/>
+             </property>
+         </source>
+         <target>
+@@ -5567,15 +5549,7 @@ if (baujahr){&#13;
+                 <child name="uom"/>
+             </property>
+         </target>
+-        <complexParameter name="lookupTable">
+-            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+-                <entry>
+-                    <key value="urn:adv:uom:m"/>
+-                    <value value="m"/>
+-                </entry>
+-            </lookup-table>
+-        </complexParameter>
+-        <parameter value="source" name="notClassifiedAction"/>
++        <parameter value="m" name="value"/>
+         <annotation type="message">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                 <core:content>
+@@ -5584,16 +5558,13 @@ if (baujahr){&#13;
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.classification" id="Cc8aaea0b-381b-4844-a7cf-e5ea134424f6" priority="normal">
+-        <source>
++    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cc8aaea0b-381b-4844-a7cf-e5ea134424f6" priority="normal">
++        <source name="anchor">
+             <property>
+-                <type name="AX_BauwerkImVerkehrsbereichType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">bauwerksfunktion = '1800' or bauwerksfunktion = '1830' or bauwerksfunktion = '1880' or bauwerksfunktion = '1890'</condition>
++                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">((bauwerksfunktion IN ('1800','1830')) OR bauwerksfunktion = '1880') OR bauwerksfunktion = '1890'</condition>
+                 </type>
+-                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="AX_RelativeHoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="hoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="uom"/>
++                <child name="hoehe"/>
+             </property>
+         </source>
+         <target>
+@@ -5605,15 +5576,7 @@ if (baujahr){&#13;
+                 <child name="uom"/>
+             </property>
+         </target>
+-        <complexParameter name="lookupTable">
+-            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+-                <entry>
+-                    <key value="urn:adv:uom:m"/>
+-                    <value value="m"/>
+-                </entry>
+-            </lookup-table>
+-        </complexParameter>
+-        <parameter value="source" name="notClassifiedAction"/>
++        <parameter value="m" name="value"/>
+         <annotation type="message">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                 <core:content>
+@@ -5622,16 +5585,13 @@ if (baujahr){&#13;
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.classification" id="C306ab7e7-4fd2-4a10-a531-5f700a5255bc" priority="normal">
 -        <source>
 +    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C306ab7e7-4fd2-4a10-a531-5f700a5255bc" priority="normal">
 +        <source name="anchor">
              <property>
--                <type name="AX_BauwerkOderAnlageFuerIndustrieUndGewerbeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                <type name="AX_BauwerkOderAnlageFuerIndustrieUndGewerbeType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
 -                    <condition lang="ECQL">bauwerksfunktion = '1215' or bauwerksfunktion = '1220' or bauwerksfunktion = '1250' or bauwerksfunktion = '1251' or  bauwerksfunktion = '1260' or bauwerksfunktion = '1270' or bauwerksfunktion = '1280' or bauwerksfunktion = '1290' or bauwerksfunktion = '1330' or bauwerksfunktion = '1331' or bauwerksfunktion = '1332' or bauwerksfunktion = '1333' or bauwerksfunktion = '1340' or bauwerksfunktion = '1350'</condition>
-+                <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:aaa_ogr">
-+                    <condition lang="ECQL">(((((((((((("bauwerksfunktion" IN ('1215','1220')) OR "bauwerksfunktion" = '1250') OR "bauwerksfunktion" = '1251') OR "bauwerksfunktion" = '1260') OR "bauwerksfunktion" = '1270') OR "bauwerksfunktion" = '1280') OR "bauwerksfunktion" = '1290') OR "bauwerksfunktion" = '1330') OR "bauwerksfunktion" = '1331') OR "bauwerksfunktion" = '1332') OR "bauwerksfunktion" = '1333') OR "bauwerksfunktion" = '1340') OR "bauwerksfunktion" = '1350'</condition>
++                <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
                  </type>
--                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="AX_RelativeHoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="hoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
 -                <child name="uom"/>
-+                <child name="objekthoehe"/>
++                <child name="hoehe"/>
              </property>
          </source>
          <target>
-@@ -6146,22 +6128,20 @@ if (baujahr){&#13;
+@@ -5643,15 +5603,7 @@ if (baujahr){&#13;
                  <child name="uom"/>
              </property>
          </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
+-        <complexParameter name="lookupTable">
+-            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+-                <entry>
+-                    <key value="urn:adv:uom:m"/>
+-                    <value value="m"/>
+-                </entry>
+-            </lookup-table>
+-        </complexParameter>
+-        <parameter value="source" name="notClassifiedAction"/>
 +        <parameter value="m" name="value"/>
          <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                  <core:content>
-                     <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_BauwerkOderAnlageFuerIndustrieUndGewerbeType/objekthoehe/uom found</core:text>
-                 </core:content>
+@@ -5660,16 +5612,13 @@ if (baujahr){&#13;
              </core:message>
          </annotation>
      </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca47e3811-5e28-4539-b715-03c7d2837f13" priority="normal">
+-    <cell relation="eu.esdihumboldt.hale.align.classification" id="Cba6f9d70-84df-430b-a084-e9859c4597e2" priority="normal">
+-        <source>
++    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cba6f9d70-84df-430b-a084-e9859c4597e2" priority="normal">
++        <source name="anchor">
+             <property>
+-                <type name="AX_BauwerkOderAnlageFuerSportFreizeitUndErholungType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">bauwerksfunktion = '1430' or bauwerksfunktion = '1431' or bauwerksfunktion = '1432' or bauwerksfunktion = '1440' or bauwerksfunktion = '1470' or bauwerksfunktion = '1490'</condition>
++                <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">((((bauwerksfunktion IN ('1430','1431')) OR bauwerksfunktion = '1432') OR bauwerksfunktion = '1440') OR bauwerksfunktion = '1470') OR bauwerksfunktion = '1490'</condition>
+                 </type>
+-                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="AX_RelativeHoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="hoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="uom"/>
++                <child name="hoehe"/>
+             </property>
+         </source>
+         <target>
+@@ -5681,15 +5630,7 @@ if (baujahr){&#13;
+                 <child name="uom"/>
+             </property>
+         </target>
+-        <complexParameter name="lookupTable">
+-            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+-                <entry>
+-                    <key value="urn:adv:uom:m"/>
+-                    <value value="m"/>
+-                </entry>
+-            </lookup-table>
+-        </complexParameter>
+-        <parameter value="source" name="notClassifiedAction"/>
++        <parameter value="m" name="value"/>
+         <annotation type="message">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                 <core:content>
+@@ -5698,14 +5639,11 @@ if (baujahr){&#13;
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.classification" id="Ca47e3811-5e28-4539-b715-03c7d2837f13" priority="normal">
 -        <source>
 +    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ca47e3811-5e28-4539-b715-03c7d2837f13" priority="normal">
 +        <source name="anchor">
              <property>
--                <type name="AX_GebaeudeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <type name="AX_GebaeudeType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="AX_RelativeHoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="hoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
 -                <child name="uom"/>
-+                <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                <child name="objekthoehe"/>
++                <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:public"/>
++                <child name="hoehe"/>
              </property>
          </source>
          <target>
-@@ -6173,24 +6153,22 @@ if (baujahr){&#13;
+@@ -5717,15 +5655,7 @@ if (baujahr){&#13;
                  <child name="uom"/>
              </property>
          </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
+-        <complexParameter name="lookupTable">
+-            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+-                <entry>
+-                    <key value="urn:adv:uom:m"/>
+-                    <value value="m"/>
+-                </entry>
+-            </lookup-table>
+-        </complexParameter>
+-        <parameter value="source" name="notClassifiedAction"/>
 +        <parameter value="m" name="value"/>
          <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                  <core:content>
-                     <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_GebaeudeType/objekthoehe/uom found</core:text>
-                 </core:content>
+@@ -5734,16 +5664,13 @@ if (baujahr){&#13;
              </core:message>
          </annotation>
      </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C574ac1a1-24a1-4653-9782-8ec97697acf1" priority="normal">
+-    <cell relation="eu.esdihumboldt.hale.align.classification" id="C0e0283b8-ab46-4f54-90ae-2cb9375bd720" priority="normal">
+-        <source>
++    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C0e0283b8-ab46-4f54-90ae-2cb9375bd720" priority="normal">
++        <source name="anchor">
+             <property>
+-                <type name="AX_HistorischesBauwerkOderHistorischeEinrichtungType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">archaeologischerTyp = '1100' or archaeologischerTyp = '1110' or archaeologischerTyp = '1210' or archaeologischerTyp = '1410'</condition>
++                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">((archaeologischertyp IN ('1100','1110')) OR archaeologischertyp = '1210') OR archaeologischertyp = '1410'</condition>
+                 </type>
+-                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="AX_RelativeHoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="hoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="uom"/>
++                <child name="hoehe"/>
+             </property>
+         </source>
+         <target>
+@@ -5755,15 +5682,7 @@ if (baujahr){&#13;
+                 <child name="uom"/>
+             </property>
+         </target>
+-        <complexParameter name="lookupTable">
+-            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+-                <entry>
+-                    <key value="urn:adv:uom:m"/>
+-                    <value value="m"/>
+-                </entry>
+-            </lookup-table>
+-        </complexParameter>
+-        <parameter value="source" name="notClassifiedAction"/>
++        <parameter value="m" name="value"/>
+         <annotation type="message">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                 <core:content>
+@@ -5772,16 +5691,13 @@ if (baujahr){&#13;
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.classification" id="C33b9c226-625f-4a87-93e3-37a16cebd91b" priority="normal">
+-        <source>
++    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C33b9c226-625f-4a87-93e3-37a16cebd91b" priority="normal">
++        <source name="anchor">
+             <property>
+-                <type name="AX_SchleuseType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">konstruktionsmerkmalBauart = '1010' or konstruktionsmerkmalBauart = '1020'</condition>
++                <type name="ax_schleuse" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">konstruktionsmerkmalbauart IN ('1010','1020')</condition>
+                 </type>
+-                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="AX_RelativeHoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="hoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="uom"/>
++                <child name="hoehe"/>
+             </property>
+         </source>
+         <target>
+@@ -5793,15 +5709,7 @@ if (baujahr){&#13;
+                 <child name="uom"/>
+             </property>
+         </target>
+-        <complexParameter name="lookupTable">
+-            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+-                <entry>
+-                    <key value="urn:adv:uom:m"/>
+-                    <value value="m"/>
+-                </entry>
+-            </lookup-table>
+-        </complexParameter>
+-        <parameter value="source" name="notClassifiedAction"/>
++        <parameter value="m" name="value"/>
+         <annotation type="message">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                 <core:content>
+@@ -5810,16 +5718,13 @@ if (baujahr){&#13;
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.classification" id="C574ac1a1-24a1-4653-9782-8ec97697acf1" priority="normal">
 -        <source>
 +    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C574ac1a1-24a1-4653-9782-8ec97697acf1" priority="normal">
 +        <source name="anchor">
              <property>
--                <type name="AX_SonstigesBauwerkOderSonstigeEinrichtungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                <type name="AX_SonstigesBauwerkOderSonstigeEinrichtungType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
 -                    <condition lang="ECQL">bauwerksfunktion = '1610' or bauwerksfunktion = '1611' or bauwerksfunktion = '1700'</condition>
-+                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:aaa_ogr">
-+                    <condition lang="ECQL">("bauwerksfunktion" IN ('1610','1611')) OR "bauwerksfunktion" = '1700'</condition>
++                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">(bauwerksfunktion IN ('1610','1611')) OR bauwerksfunktion = '1700'</condition>
                  </type>
--                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="AX_RelativeHoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="hoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
 -                <child name="uom"/>
-+                <child name="objekthoehe"/>
++                <child name="hoehe"/>
              </property>
          </source>
          <target>
-@@ -6202,22 +6180,20 @@ if (baujahr){&#13;
+@@ -5831,15 +5736,7 @@ if (baujahr){&#13;
                  <child name="uom"/>
              </property>
          </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
+-        <complexParameter name="lookupTable">
+-            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+-                <entry>
+-                    <key value="urn:adv:uom:m"/>
+-                    <value value="m"/>
+-                </entry>
+-            </lookup-table>
+-        </complexParameter>
+-        <parameter value="source" name="notClassifiedAction"/>
 +        <parameter value="m" name="value"/>
          <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                  <core:content>
-                     <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_SonstigesBauwerkOderSonstigeEinrichtungType/objekthoehe/uom found</core:text>
-                 </core:content>
+@@ -5848,14 +5745,11 @@ if (baujahr){&#13;
              </core:message>
          </annotation>
      </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca94c6ea1-6520-4947-a175-023d4711d2be" priority="normal">
+-    <cell relation="eu.esdihumboldt.hale.align.classification" id="Ca94c6ea1-6520-4947-a175-023d4711d2be" priority="normal">
 -        <source>
 +    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ca94c6ea1-6520-4947-a175-023d4711d2be" priority="normal">
 +        <source name="anchor">
              <property>
--                <type name="AX_TurmType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <type name="AX_TurmType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="AX_RelativeHoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="hoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
 -                <child name="uom"/>
-+                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr"/>
-+                <child name="objekthoehe"/>
++                <type name="ax_turm" ns="jdbc:postgresql:testbed:public"/>
++                <child name="hoehe"/>
              </property>
          </source>
          <target>
-@@ -6229,24 +6205,22 @@ if (baujahr){&#13;
+@@ -5867,15 +5761,7 @@ if (baujahr){&#13;
                  <child name="uom"/>
              </property>
          </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
+-        <complexParameter name="lookupTable">
+-            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+-                <entry>
+-                    <key value="urn:adv:uom:m"/>
+-                    <value value="m"/>
+-                </entry>
+-            </lookup-table>
+-        </complexParameter>
+-        <parameter value="source" name="notClassifiedAction"/>
 +        <parameter value="m" name="value"/>
          <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                  <core:content>
-                     <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_TurmType/objekthoehe/uom found</core:text>
-                 </core:content>
+@@ -5884,16 +5770,13 @@ if (baujahr){&#13;
              </core:message>
          </annotation>
      </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cdc8e06fc-0a49-4f55-8ad9-5f523d9f7246" priority="normal">
+-    <cell relation="eu.esdihumboldt.hale.align.classification" id="Cdc8e06fc-0a49-4f55-8ad9-5f523d9f7246" priority="normal">
 -        <source>
 +    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Cdc8e06fc-0a49-4f55-8ad9-5f523d9f7246" priority="normal">
 +        <source name="anchor">
              <property>
--                <type name="AX_VorratsbehaelterSpeicherbauwerkType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+-                <type name="AX_VorratsbehaelterSpeicherbauwerkType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
 -                    <condition lang="ECQL">bauwerksfunktion = '1201' or bauwerksfunktion = '1203' or bauwerksfunktion = '1205' or bauwerksfunktion = '1206'</condition>
-+                <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:aaa_ogr">
-+                    <condition lang="ECQL">(("bauwerksfunktion" IN ('1201','1203')) OR "bauwerksfunktion" = '1205') OR "bauwerksfunktion" = '1206'</condition>
++                <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">((bauwerksfunktion IN ('1201','1203')) OR bauwerksfunktion = '1205') OR bauwerksfunktion = '1206'</condition>
                  </type>
--                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <child name="objekthoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="AX_RelativeHoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="hoehe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
 -                <child name="uom"/>
-+                <child name="objekthoehe"/>
++                <child name="hoehe"/>
              </property>
          </source>
          <target>
-@@ -6258,10 +6232,9 @@ if (baujahr){&#13;
+@@ -5905,15 +5788,7 @@ if (baujahr){&#13;
                  <child name="uom"/>
              </property>
          </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
+-        <complexParameter name="lookupTable">
+-            <lookup-table xmlns:ns2="http://www.esdi-humboldt.eu/hale/alignment" xmlns="">
+-                <entry>
+-                    <key value="urn:adv:uom:m"/>
+-                    <value value="m"/>
+-                </entry>
+-            </lookup-table>
+-        </complexParameter>
+-        <parameter value="source" name="notClassifiedAction"/>
 +        <parameter value="m" name="value"/>
          <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration" dismissed="true">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                  <core:content>
-                     <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_VorratsbehaelterSpeicherbauwerkType/objekthoehe/uom found</core:text>
-                 </core:content>
-@@ -6285,7 +6258,7 @@ if (baujahr){&#13;
+@@ -5939,7 +5814,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1573,7 +1562,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6309,7 +6282,7 @@ if (baujahr){&#13;
+@@ -5963,7 +5838,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1582,7 +1571,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6333,7 +6306,7 @@ if (baujahr){&#13;
+@@ -5987,7 +5862,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1591,7 +1580,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6357,7 +6330,7 @@ if (baujahr){&#13;
+@@ -6011,7 +5886,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1600,7 +1589,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6381,7 +6354,7 @@ if (baujahr){&#13;
+@@ -6035,7 +5910,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1609,7 +1598,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6420,7 +6393,7 @@ if (baujahr){&#13;
+@@ -6074,7 +5949,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1618,7 +1607,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6444,7 +6417,7 @@ if (baujahr){&#13;
+@@ -6098,7 +5973,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1627,7 +1616,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6468,7 +6441,7 @@ if (baujahr){&#13;
+@@ -6122,7 +5997,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1636,7 +1625,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6492,7 +6465,7 @@ if (baujahr){&#13;
+@@ -6146,7 +6021,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1645,7 +1634,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6516,7 +6489,7 @@ if (baujahr){&#13;
+@@ -6170,7 +6045,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1654,7 +1643,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6555,7 +6528,7 @@ if (baujahr){&#13;
+@@ -6209,7 +6084,7 @@ if (baujahr){&#13;
          </target>
          <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
          <annotation type="message">
@@ -1663,7 +1652,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6578,7 +6551,7 @@ if (baujahr){&#13;
+@@ -6232,7 +6107,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1672,7 +1661,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6601,7 +6574,7 @@ if (baujahr){&#13;
+@@ -6255,7 +6130,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1681,7 +1670,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6624,7 +6597,7 @@ if (baujahr){&#13;
+@@ -6278,7 +6153,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1690,7 +1679,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6647,7 +6620,7 @@ if (baujahr){&#13;
+@@ -6301,7 +6176,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1699,7 +1688,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6670,7 +6643,7 @@ if (baujahr){&#13;
+@@ -6324,7 +6199,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1708,7 +1697,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6707,7 +6680,7 @@ if (baujahr){&#13;
+@@ -6361,7 +6236,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1717,7 +1706,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6730,7 +6703,7 @@ if (baujahr){&#13;
+@@ -6384,7 +6259,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1726,7 +1715,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6753,7 +6726,7 @@ if (baujahr){&#13;
+@@ -6407,7 +6282,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1735,7 +1724,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6776,7 +6749,7 @@ if (baujahr){&#13;
+@@ -6430,7 +6305,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1744,7 +1733,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6799,7 +6772,7 @@ if (baujahr){&#13;
+@@ -6453,7 +6328,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1753,7 +1742,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6836,7 +6809,7 @@ if (baujahr){&#13;
+@@ -6490,133 +6365,13 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1762,7 +1751,133 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -6991,7 +6964,7 @@ if (baujahr){&#13;
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C805f4cb4-ab9a-4baf-9340-6b9eaebd2212_C07321ced-1f5b-43c5-8f08-ac59f89e9ea7" priority="normal">
+-        <target>
+-            <property>
+-                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
+-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+-                <child name="codeSpace"/>
+-            </property>
+-        </target>
+-        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C805f4cb4-ab9a-4baf-9340-6b9eaebd2212_C087ae3b3-fda6-4354-897b-03d30ed62a04" priority="normal">
+-        <target>
+-            <property>
+-                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
+-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+-                <child name="codeSpace"/>
+-            </property>
+-        </target>
+-        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C805f4cb4-ab9a-4baf-9340-6b9eaebd2212_C29adde8a-511b-4046-9c56-ecd54af8bc59" priority="normal">
+-        <target>
+-            <property>
+-                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
+-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+-                <child name="codeSpace"/>
+-            </property>
+-        </target>
+-        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C805f4cb4-ab9a-4baf-9340-6b9eaebd2212_C363888d7-5601-4508-8c09-dae006c12ac6" priority="normal">
+-        <target>
+-            <property>
+-                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
+-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+-                <child name="codeSpace"/>
+-            </property>
+-        </target>
+-        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C805f4cb4-ab9a-4baf-9340-6b9eaebd2212_C3adad5a8-dd81-481b-9fd6-cd3a569aff15" priority="normal">
+-        <target>
+-            <property>
+-                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
+-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+-                <child name="codeSpace"/>
+-            </property>
+-        </target>
+-        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C805f4cb4-ab9a-4baf-9340-6b9eaebd2212_C463caa38-dd1c-42f8-9bd0-af7cb865fd20" priority="normal">
+-        <target>
+-            <property>
+-                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
+-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+-                <child name="codeSpace"/>
+-            </property>
+-        </target>
+-        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C805f4cb4-ab9a-4baf-9340-6b9eaebd2212_C4b12fd63-6989-443a-94eb-838948b8d19b" priority="normal">
+-        <target>
+-            <property>
+-                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
+-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+-                <child name="codeSpace"/>
+-            </property>
+-        </target>
+-        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C805f4cb4-ab9a-4baf-9340-6b9eaebd2212_C503472e5-66e5-4c75-85e9-9296add78c50" priority="normal">
+-        <target>
+-            <property>
+-                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
+-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+-                <child name="codeSpace"/>
+-            </property>
+-        </target>
+-        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C805f4cb4-ab9a-4baf-9340-6b9eaebd2212_Caad34127-3f0e-4288-85a4-83231078d4b8" priority="normal">
+-        <target>
+-            <property>
+-                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
+-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+-                <child name="codeSpace"/>
+-            </property>
+-        </target>
+-        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C805f4cb4-ab9a-4baf-9340-6b9eaebd2212_Cad6ca570-178f-407c-9363-08b027a2474f" priority="normal">
+-        <target>
+-            <property>
+-                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
+-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+-                <child name="codeSpace"/>
+-            </property>
+-        </target>
+-        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C805f4cb4-ab9a-4baf-9340-6b9eaebd2212_Cbcd55c99-4fe8-4d48-9e1d-d890c237dcc0" priority="normal">
+-        <target>
+-            <property>
+-                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
+-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+-                <child name="codeSpace"/>
+-            </property>
+-        </target>
+-        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+-    </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C805f4cb4-ab9a-4baf-9340-6b9eaebd2212_Ce0fdbee9-6b55-4b40-9d47-c931a769d2aa" priority="normal">
+-        <target>
+-            <property>
+-                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
+-                <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
+-                <child name="codeSpace"/>
+-            </property>
+-        </target>
+-        <parameter value="http://inspire.ec.europa.eu/ids" name="value"/>
+-    </cell>
+     <cell relation="eu.esdihumboldt.hale.align.assign" id="C805f4cb4-ab9a-4baf-9340-6b9eaebd2212_Ce30b78c1-1b25-4b90-9e35-f8449d3f6444" priority="normal">
+         <target>
+             <property>
+@@ -6645,7 +6400,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1771,7 +1886,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7016,7 +6989,7 @@ if (baujahr){&#13;
+@@ -6670,7 +6425,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1780,7 +1895,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7041,7 +7014,7 @@ if (baujahr){&#13;
+@@ -6695,7 +6450,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1789,7 +1904,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7066,7 +7039,7 @@ if (baujahr){&#13;
+@@ -6720,7 +6475,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1798,7 +1913,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7091,7 +7064,7 @@ if (baujahr){&#13;
+@@ -6745,7 +6500,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1807,7 +1922,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7132,7 +7105,7 @@ if (baujahr){&#13;
+@@ -6786,7 +6541,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1816,7 +1931,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7157,7 +7130,7 @@ if (baujahr){&#13;
+@@ -6811,7 +6566,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1825,7 +1940,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7182,7 +7155,7 @@ if (baujahr){&#13;
+@@ -6836,7 +6591,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1834,7 +1949,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7207,7 +7180,7 @@ if (baujahr){&#13;
+@@ -6861,7 +6616,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1843,7 +1958,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7232,7 +7205,7 @@ if (baujahr){&#13;
+@@ -6886,7 +6641,7 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1852,7 +1967,7 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7273,7 +7246,7 @@ if (baujahr){&#13;
+@@ -6927,24 +6682,13 @@ if (baujahr){&#13;
              </property>
          </target>
          <annotation type="message">
@@ -1861,396 +1976,322 @@ index a103747..933270e 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
-@@ -7423,392 +7396,6 @@ if (baujahr){&#13;
+             </core:message>
+         </annotation>
+     </cell>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C4dfe0865-6809-4cb2-b48a-d57327dc52fe_C07321ced-1f5b-43c5-8f08-ac59f89e9ea7" priority="normal">
+-        <target>
+-            <property>
+-                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-            </property>
+-        </target>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
+-    </cell>
+     <cell relation="eu.esdihumboldt.hale.align.assign" id="C4dfe0865-6809-4cb2-b48a-d57327dc52fe_C087ae3b3-fda6-4354-897b-03d30ed62a04" priority="normal">
+         <target>
+             <property>
+@@ -6956,127 +6700,6 @@ if (baujahr){&#13;
          </target>
          <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
      </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C041711db-6015-40e6-9198-513e210b5ef7_Cad6ca570-178f-407c-9363-08b027a2474f" priority="normal">
--        <source>
--            <property>
--                <type name="AX_BauwerkImGewaesserbereichType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
--                    <condition lang="ECQL">bauwerksfunktion = '2030' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2070' or bauwerksfunktion = '2080' or bauwerksfunktion = '2090'</condition>
--                </type>
--                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
--            </property>
--        </source>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C4dfe0865-6809-4cb2-b48a-d57327dc52fe_C29adde8a-511b-4046-9c56-ecd54af8bc59" priority="normal">
 -        <target>
 -            <property>
 -                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
--                <child name="name" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
--                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
 -            </property>
 -        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_BauwerkImGewaesserbereichType/name found</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
 -    </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C041711db-6015-40e6-9198-513e210b5ef7_Ce0fdbee9-6b55-4b40-9d47-c931a769d2aa" priority="normal">
--        <source>
--            <property>
--                <type name="AX_BauwerkImVerkehrsbereichType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
--                    <condition lang="ECQL">bauwerksfunktion = '1800' or bauwerksfunktion = '1830' or bauwerksfunktion = '1880' or bauwerksfunktion = '1890'</condition>
--                </type>
--                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
--            </property>
--        </source>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C4dfe0865-6809-4cb2-b48a-d57327dc52fe_C363888d7-5601-4508-8c09-dae006c12ac6" priority="normal">
 -        <target>
 -            <property>
 -                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
--                <child name="name" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
--                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
 -            </property>
 -        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_BauwerkImVerkehrsbereichType/name found</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
 -    </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C041711db-6015-40e6-9198-513e210b5ef7_C3adad5a8-dd81-481b-9fd6-cd3a569aff15" priority="normal">
--        <source>
--            <property>
--                <type name="AX_BauwerkOderAnlageFuerIndustrieUndGewerbeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
--                    <condition lang="ECQL">bauwerksfunktion = '1215' or bauwerksfunktion = '1220' or bauwerksfunktion = '1250' or bauwerksfunktion = '1251' or  bauwerksfunktion = '1260' or bauwerksfunktion = '1270' or bauwerksfunktion = '1280' or bauwerksfunktion = '1290' or bauwerksfunktion = '1330' or bauwerksfunktion = '1331' or bauwerksfunktion = '1332' or bauwerksfunktion = '1333' or bauwerksfunktion = '1340' or bauwerksfunktion = '1350'</condition>
--                </type>
--                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
--            </property>
--        </source>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C4dfe0865-6809-4cb2-b48a-d57327dc52fe_C3adad5a8-dd81-481b-9fd6-cd3a569aff15" priority="normal">
 -        <target>
 -            <property>
 -                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
--                <child name="name" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
--                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
 -            </property>
 -        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_BauwerkOderAnlageFuerIndustrieUndGewerbeType/name found</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
 -    </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C041711db-6015-40e6-9198-513e210b5ef7_C29adde8a-511b-4046-9c56-ecd54af8bc59" priority="normal">
--        <source>
--            <property>
--                <type name="AX_BauwerkOderAnlageFuerSportFreizeitUndErholungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
--                    <condition lang="ECQL">bauwerksfunktion = '1430' or bauwerksfunktion = '1431' or bauwerksfunktion = '1432' or bauwerksfunktion = '1440' or bauwerksfunktion = '1470' or bauwerksfunktion = '1490'</condition>
--                </type>
--                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
--            </property>
--        </source>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C4dfe0865-6809-4cb2-b48a-d57327dc52fe_C463caa38-dd1c-42f8-9bd0-af7cb865fd20" priority="normal">
 -        <target>
 -            <property>
 -                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
--                <child name="name" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
--                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
 -            </property>
 -        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_BauwerkOderAnlageFuerSportFreizeitUndErholungType/name found</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
 -    </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C041711db-6015-40e6-9198-513e210b5ef7_C07321ced-1f5b-43c5-8f08-ac59f89e9ea7" priority="normal">
--        <source>
--            <property>
--                <type name="AX_EinrichtungenFuerDenSchiffsverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
--                    <condition lang="ECQL">art = '1420'</condition>
--                </type>
--                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
--            </property>
--        </source>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C4dfe0865-6809-4cb2-b48a-d57327dc52fe_C4b12fd63-6989-443a-94eb-838948b8d19b" priority="normal">
 -        <target>
 -            <property>
 -                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
--                <child name="name" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
--                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
 -            </property>
 -        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_EinrichtungenFuerDenSchiffsverkehrType/name found</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
 -    </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C041711db-6015-40e6-9198-513e210b5ef7_C503472e5-66e5-4c75-85e9-9296add78c50" priority="normal">
--        <source>
--            <property>
--                <type name="AX_GebaeudeType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
--            </property>
--        </source>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C4dfe0865-6809-4cb2-b48a-d57327dc52fe_C503472e5-66e5-4c75-85e9-9296add78c50" priority="normal">
 -        <target>
 -            <property>
 -                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
--                <child name="name" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
--                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
 -            </property>
 -        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_GebaeudeType/name found</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
 -    </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C041711db-6015-40e6-9198-513e210b5ef7_Caad34127-3f0e-4288-85a4-83231078d4b8" priority="normal">
--        <source>
--            <property>
--                <type name="AX_HistorischesBauwerkOderHistorischeEinrichtungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
--                    <condition lang="ECQL">archaeologischerTyp = '1100' or archaeologischerTyp = '1110' or archaeologischerTyp = '1210' or archaeologischerTyp = '1410'</condition>
--                </type>
--                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
--            </property>
--        </source>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C4dfe0865-6809-4cb2-b48a-d57327dc52fe_Caad34127-3f0e-4288-85a4-83231078d4b8" priority="normal">
 -        <target>
 -            <property>
 -                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
--                <child name="name" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
--                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
 -            </property>
 -        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_HistorischesBauwerkOderHistorischeEinrichtungType/name found</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
 -    </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C041711db-6015-40e6-9198-513e210b5ef7_Cbcd55c99-4fe8-4d48-9e1d-d890c237dcc0" priority="normal">
--        <source>
--            <property>
--                <type name="AX_LeitungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
--                    <condition lang="ECQL">bauwerksfunktion = '1110'</condition>
--                </type>
--                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
--            </property>
--        </source>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C4dfe0865-6809-4cb2-b48a-d57327dc52fe_Cad6ca570-178f-407c-9363-08b027a2474f" priority="normal">
 -        <target>
 -            <property>
 -                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
--                <child name="name" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
--                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
 -            </property>
 -        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_LeitungType/name found</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
 -    </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C041711db-6015-40e6-9198-513e210b5ef7_C463caa38-dd1c-42f8-9bd0-af7cb865fd20" priority="normal">
--        <source>
--            <property>
--                <type name="AX_SchleuseType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
--                    <condition lang="ECQL">konstruktionsmerkmalBauart = '1010' or konstruktionsmerkmalBauart = '1020'</condition>
--                </type>
--                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
--            </property>
--        </source>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C4dfe0865-6809-4cb2-b48a-d57327dc52fe_Cbcd55c99-4fe8-4d48-9e1d-d890c237dcc0" priority="normal">
 -        <target>
 -            <property>
 -                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
--                <child name="name" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
--                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
 -            </property>
 -        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_SchleuseType/name found</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
 -    </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C041711db-6015-40e6-9198-513e210b5ef7_C087ae3b3-fda6-4354-897b-03d30ed62a04" priority="normal">
--        <source>
--            <property>
--                <type name="AX_SeilbahnSchwebebahnType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
--                    <condition lang="ECQL">bahnkategorie = '2100' or bahnkategorie = '2200' or bahnkategorie = '2300' or bahnkategorie = '2500' or bahnkategorie = '2600'</condition>
--                </type>
--                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
--            </property>
--        </source>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C4dfe0865-6809-4cb2-b48a-d57327dc52fe_Ce0fdbee9-6b55-4b40-9d47-c931a769d2aa" priority="normal">
 -        <target>
 -            <property>
 -                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
--                <child name="name" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
--                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
 -            </property>
 -        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_SeilbahnSchwebebahnType/name found</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
 -    </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C041711db-6015-40e6-9198-513e210b5ef7_Ce30b78c1-1b25-4b90-9e35-f8449d3f6444" priority="normal">
--        <source>
--            <property>
--                <type name="AX_SonstigesBauwerkOderSonstigeEinrichtungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
--                    <condition lang="ECQL">bauwerksfunktion = '1610' or bauwerksfunktion = '1611' or bauwerksfunktion = '1700'</condition>
--                </type>
--                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
--            </property>
--        </source>
+-    <cell relation="eu.esdihumboldt.hale.align.assign" id="C4dfe0865-6809-4cb2-b48a-d57327dc52fe_Ce30b78c1-1b25-4b90-9e35-f8449d3f6444" priority="normal">
 -        <target>
 -            <property>
 -                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
--                <child name="name" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
--                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
 -            </property>
 -        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_SonstigesBauwerkOderSonstigeEinrichtungType/name found</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
+-        <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
 -    </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C041711db-6015-40e6-9198-513e210b5ef7_C363888d7-5601-4508-8c09-dae006c12ac6" priority="normal">
--        <source>
--            <property>
--                <type name="AX_TurmType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
--                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
--            </property>
--        </source>
--        <target>
--            <property>
--                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
--                <child name="name" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
--                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--            </property>
--        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_TurmType/name found</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
--    </cell>
--    <cell relation="eu.esdihumboldt.hale.align.rename" id="C041711db-6015-40e6-9198-513e210b5ef7_C4b12fd63-6989-443a-94eb-838948b8d19b" priority="normal">
--        <source>
--            <property>
--                <type name="AX_VorratsbehaelterSpeicherbauwerkType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
--                    <condition lang="ECQL">bauwerksfunktion = '1201' or bauwerksfunktion = '1203' or bauwerksfunktion = '1205' or bauwerksfunktion = '1206'</condition>
--                </type>
--                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
--            </property>
--        </source>
--        <target>
--            <property>
--                <type name="BuildingType" ns="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0"/>
--                <child name="name" ns="http://inspire.ec.europa.eu/schemas/bu-base/4.0"/>
--                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--                <child name="text" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--            </property>
--        </target>
--        <parameter value="false" name="ignoreNamespaces"/>
--        <parameter value="false" name="structuralRename"/>
--        <documentation>wird auf Ebene von AA_Objekt durchgeführt, weil alle FeatureTypen davon erben und Abbildung für alle gültig.</documentation>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
--                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_VorratsbehaelterSpeicherbauwerkType/name found</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
--    </cell>
-     <cell relation="eu.esdihumboldt.hale.align.rename" id="C064fd9e3-6530-4a08-8196-b2633fa61c85" priority="normal">
-         <source>
+     <cell relation="eu.esdihumboldt.cst.functions.groovy.greedy" id="C8e0f4178-7bb6-4562-8750-4c49799ebc0a" priority="normal">
+         <source name="var">
              <property>
+@@ -7258,10 +6881,10 @@ if (regionalsprache) {&#13;
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C041711db-6015-40e6-9198-513e210b5ef7_Cad6ca570-178f-407c-9363-08b027a2474f" priority="normal">
+         <source name="spelling">
+             <property>
+-                <type name="AX_BauwerkImGewaesserbereichType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">bauwerksfunktion = '2030' or bauwerksfunktion = '2050' or bauwerksfunktion = '2060' or bauwerksfunktion = '2070' or bauwerksfunktion = '2080' or bauwerksfunktion = '2090'</condition>
++                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">((((bauwerksfunktion IN ('2030','2050')) OR bauwerksfunktion = '2060') OR bauwerksfunktion = '2070') OR bauwerksfunktion = '2080') OR bauwerksfunktion = '2090'</condition>
+                 </type>
+-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -7283,10 +6906,10 @@ if (regionalsprache) {&#13;
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C041711db-6015-40e6-9198-513e210b5ef7_Ce0fdbee9-6b55-4b40-9d47-c931a769d2aa" priority="normal">
+         <source name="spelling">
+             <property>
+-                <type name="AX_BauwerkImVerkehrsbereichType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">bauwerksfunktion = '1800' or bauwerksfunktion = '1830' or bauwerksfunktion = '1880' or bauwerksfunktion = '1890'</condition>
++                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">((bauwerksfunktion IN ('1800','1830')) OR bauwerksfunktion = '1880') OR bauwerksfunktion = '1890'</condition>
+                 </type>
+-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -7308,10 +6931,10 @@ if (regionalsprache) {&#13;
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C041711db-6015-40e6-9198-513e210b5ef7_C3adad5a8-dd81-481b-9fd6-cd3a569aff15" priority="normal">
+         <source name="spelling">
+             <property>
+-                <type name="AX_BauwerkOderAnlageFuerIndustrieUndGewerbeType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">bauwerksfunktion = '1215' or bauwerksfunktion = '1220' or bauwerksfunktion = '1250' or bauwerksfunktion = '1251' or  bauwerksfunktion = '1260' or bauwerksfunktion = '1270' or bauwerksfunktion = '1280' or bauwerksfunktion = '1290' or bauwerksfunktion = '1330' or bauwerksfunktion = '1331' or bauwerksfunktion = '1332' or bauwerksfunktion = '1333' or bauwerksfunktion = '1340' or bauwerksfunktion = '1350'</condition>
++                <type name="ax_bauwerkoderanlagefuerindustrieundgewerbe" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">((((((((((((bauwerksfunktion IN ('1215','1220')) OR bauwerksfunktion = '1250') OR bauwerksfunktion = '1251') OR bauwerksfunktion = '1260') OR bauwerksfunktion = '1270') OR bauwerksfunktion = '1280') OR bauwerksfunktion = '1290') OR bauwerksfunktion = '1330') OR bauwerksfunktion = '1331') OR bauwerksfunktion = '1332') OR bauwerksfunktion = '1333') OR bauwerksfunktion = '1340') OR bauwerksfunktion = '1350'</condition>
+                 </type>
+-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -7333,10 +6956,10 @@ if (regionalsprache) {&#13;
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C041711db-6015-40e6-9198-513e210b5ef7_C29adde8a-511b-4046-9c56-ecd54af8bc59" priority="normal">
+         <source name="spelling">
+             <property>
+-                <type name="AX_BauwerkOderAnlageFuerSportFreizeitUndErholungType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">bauwerksfunktion = '1430' or bauwerksfunktion = '1431' or bauwerksfunktion = '1432' or bauwerksfunktion = '1440' or bauwerksfunktion = '1470' or bauwerksfunktion = '1490'</condition>
++                <type name="ax_bauwerkoderanlagefuersportfreizeitunderholung" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">((((bauwerksfunktion IN ('1430','1431')) OR bauwerksfunktion = '1432') OR bauwerksfunktion = '1440') OR bauwerksfunktion = '1470') OR bauwerksfunktion = '1490'</condition>
+                 </type>
+-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -7358,10 +6981,10 @@ if (regionalsprache) {&#13;
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C041711db-6015-40e6-9198-513e210b5ef7_C07321ced-1f5b-43c5-8f08-ac59f89e9ea7" priority="normal">
+         <source name="spelling">
+             <property>
+-                <type name="AX_EinrichtungenFuerDenSchiffsverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
++                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
+                     <condition lang="ECQL">art = '1420'</condition>
+                 </type>
+-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -7383,8 +7006,8 @@ if (regionalsprache) {&#13;
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C041711db-6015-40e6-9198-513e210b5ef7_C503472e5-66e5-4c75-85e9-9296add78c50" priority="normal">
+         <source name="spelling">
+             <property>
+-                <type name="AX_GebaeudeType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
++                <type name="ax_gebaeude" ns="jdbc:postgresql:testbed:public"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -7406,10 +7029,10 @@ if (regionalsprache) {&#13;
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C041711db-6015-40e6-9198-513e210b5ef7_Caad34127-3f0e-4288-85a4-83231078d4b8" priority="normal">
+         <source name="spelling">
+             <property>
+-                <type name="AX_HistorischesBauwerkOderHistorischeEinrichtungType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">archaeologischerTyp = '1100' or archaeologischerTyp = '1110' or archaeologischerTyp = '1210' or archaeologischerTyp = '1410'</condition>
++                <type name="ax_historischesbauwerkoderhistorischeeinrichtung" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">((archaeologischertyp IN ('1100','1110')) OR archaeologischertyp = '1210') OR archaeologischertyp = '1410'</condition>
+                 </type>
+-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -7431,10 +7054,10 @@ if (regionalsprache) {&#13;
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C041711db-6015-40e6-9198-513e210b5ef7_Cbcd55c99-4fe8-4d48-9e1d-d890c237dcc0" priority="normal">
+         <source name="spelling">
+             <property>
+-                <type name="AX_LeitungType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
++                <type name="ax_leitung" ns="jdbc:postgresql:testbed:public">
+                     <condition lang="ECQL">bauwerksfunktion = '1110'</condition>
+                 </type>
+-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -7456,10 +7079,10 @@ if (regionalsprache) {&#13;
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C041711db-6015-40e6-9198-513e210b5ef7_C463caa38-dd1c-42f8-9bd0-af7cb865fd20" priority="normal">
+         <source name="spelling">
+             <property>
+-                <type name="AX_SchleuseType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">konstruktionsmerkmalBauart = '1010' or konstruktionsmerkmalBauart = '1020'</condition>
++                <type name="ax_schleuse" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">konstruktionsmerkmalbauart IN ('1010','1020')</condition>
+                 </type>
+-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -7481,10 +7104,10 @@ if (regionalsprache) {&#13;
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C041711db-6015-40e6-9198-513e210b5ef7_C087ae3b3-fda6-4354-897b-03d30ed62a04" priority="normal">
+         <source name="spelling">
+             <property>
+-                <type name="AX_SeilbahnSchwebebahnType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">bahnkategorie = '2100' or bahnkategorie = '2200' or bahnkategorie = '2300' or bahnkategorie = '2500' or bahnkategorie = '2600'</condition>
++                <type name="ax_seilbahnschwebebahn" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">(((bahnkategorie IN ('2100','2200')) OR bahnkategorie = '2300') OR bahnkategorie = '2500') OR bahnkategorie = '2600'</condition>
+                 </type>
+-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -7506,10 +7129,10 @@ if (regionalsprache) {&#13;
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C041711db-6015-40e6-9198-513e210b5ef7_Ce30b78c1-1b25-4b90-9e35-f8449d3f6444" priority="normal">
+         <source name="spelling">
+             <property>
+-                <type name="AX_SonstigesBauwerkOderSonstigeEinrichtungType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">bauwerksfunktion = '1610' or bauwerksfunktion = '1611' or bauwerksfunktion = '1700'</condition>
++                <type name="ax_sonstigesbauwerkodersonstigeeinrichtung" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">(bauwerksfunktion IN ('1610','1611')) OR bauwerksfunktion = '1700'</condition>
+                 </type>
+-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -7531,8 +7154,8 @@ if (regionalsprache) {&#13;
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C041711db-6015-40e6-9198-513e210b5ef7_C363888d7-5601-4508-8c09-dae006c12ac6" priority="normal">
+         <source name="spelling">
+             <property>
+-                <type name="AX_TurmType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
+-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
++                <type name="ax_turm" ns="jdbc:postgresql:testbed:public"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -7554,10 +7177,10 @@ if (regionalsprache) {&#13;
+     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C041711db-6015-40e6-9198-513e210b5ef7_C4b12fd63-6989-443a-94eb-838948b8d19b" priority="normal">
+         <source name="spelling">
+             <property>
+-                <type name="AX_VorratsbehaelterSpeicherbauwerkType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
+-                    <condition lang="ECQL">bauwerksfunktion = '1201' or bauwerksfunktion = '1203' or bauwerksfunktion = '1205' or bauwerksfunktion = '1206'</condition>
++                <type name="ax_vorratsbehaelterspeicherbauwerk" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">((bauwerksfunktion IN ('1201','1203')) OR bauwerksfunktion = '1205') OR bauwerksfunktion = '1206'</condition>
+                 </type>
+-                <child name="name" ns="http://www.opengis.net/gml/3.2"/>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
