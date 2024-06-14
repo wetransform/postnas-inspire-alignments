@@ -9,7 +9,7 @@ index f0a1c66..ccb667f 100644
 -            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
 +            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_unverschluesselt">
                  <cf:binding>java.lang.String</cf:binding>
--                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
              </cf:input>
 -            <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
 +            <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lage_land">
@@ -55,7 +55,7 @@ index f0a1c66..ccb667f 100644
              </cf:input>
              <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                  <cf:binding>java.lang.String</cf:binding>
--                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
              </cf:input>
              <cf:output eager="false" maxOccurs="1" minOccurs="1"/>
              <cf:param maxOccurs="1" minOccurs="0" name="source">
