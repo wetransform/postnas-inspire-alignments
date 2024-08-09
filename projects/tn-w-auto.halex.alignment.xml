@@ -66,7 +66,7 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann. 
         <cf:custom-property-function xmlns:cf="http://www.esdi-humboldt.eu/hale/custom-function" identifier="adv.inspire.AX_Lagebezeichnung.GeographicalName" name="AX_Lagebezeichnung zu GeographicalName" type="groovy">
             <cf:input eager="false" maxOccurs="1" minOccurs="1" name="lagebezeichnung">
                 <cf:binding>java.lang.String</cf:binding>
-                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+                <cf:type name="AX_LagebezeichnungType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
             </cf:input>
             <cf:input eager="false" maxOccurs="1" minOccurs="0" name="source">
                 <cf:binding>java.lang.String</cf:binding>
@@ -127,7 +127,7 @@ if (!name) {
 			if (collect.lagebezeichnung[schluesselGesamt].value()){
 				name = collect.lagebezeichnung[schluesselGesamt].value()
 			}
-			else _log.error('Für einen Namen aus einer verschlüsselten Lagebezeichnung liegt kein Katalogeintrag vor.')
+			else _log.error("Für einen Namen aus einer verschlüsselten Lagebezeichnung mit Schlüssel ${schluesselGesamt} liegt kein Katalogeintrag vor.")
 		}
 	}
 }
@@ -279,7 +279,7 @@ if (_params.source) {&#13;&#13;
             </cf:input>
             <cf:input eager="true" maxOccurs="1" minOccurs="0" name="source">
                 <cf:binding>java.lang.String</cf:binding>
-                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+                <cf:type name="AA_ModellartPropertyType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
             </cf:input>
             <cf:output eager="false" maxOccurs="1" minOccurs="1">
                 <cf:type name="GeographicalNameType" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -770,7 +770,7 @@ Aktuell ist folgende Abbildung umgesetzt:
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C33b5349d-fb85-4c7d-8519-ac27e4c49867" priority="highest">
         <source>
             <class>
-                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_bauwerkimgewaesserbereich" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -804,7 +804,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C43232927-f863-47e3-b297-dd8902f4bbc7" priority="highest">
         <source>
             <class>
-                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_bauwerkimverkehrsbereich" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -838,7 +838,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C2a56c91e-e51c-4d0e-b793-3eeddd2db607" priority="normal">
         <source>
             <class>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1420'</condition>
                 </type>
             </class>
@@ -985,7 +985,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cdd4f2102-ce96-4efe-9d55-97e4e2b3a52c" priority="normal">
         <source>
             <class>
-                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_turm" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1006'</condition>
                 </type>
             </class>
@@ -1132,7 +1132,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C7218003c-8d6b-4af7-87a1-36f9d1404e11_C2a56c91e-e51c-4d0e-b793-3eeddd2db607" priority="normal">
         <source>
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1420'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -1157,7 +1157,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C7218003c-8d6b-4af7-87a1-36f9d1404e11_Cdd4f2102-ce96-4efe-9d55-97e4e2b3a52c" priority="normal">
         <source>
             <property>
-                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_turm" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1006'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -1182,7 +1182,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2bd625f2-b918-40d1-9516-9e16131a590c_C2a56c91e-e51c-4d0e-b793-3eeddd2db607" priority="normal">
         <source>
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1420'</condition>
                 </type>
                 <child name="endet"/>
@@ -1207,7 +1207,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2bd625f2-b918-40d1-9516-9e16131a590c_Cdd4f2102-ce96-4efe-9d55-97e4e2b3a52c" priority="normal">
         <source>
             <property>
-                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_turm" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1006'</condition>
                 </type>
                 <child name="endet"/>
@@ -1232,7 +1232,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C3c41c6c3-f2cb-43ce-8ea7-81e6d7535882_C2a56c91e-e51c-4d0e-b793-3eeddd2db607" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1420'</condition>
                 </type>
                 <child name="name"/>
@@ -1256,7 +1256,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C1652e4bd-b28f-4dbb-8f72-720322fde61a_Cdd4f2102-ce96-4efe-9d55-97e4e2b3a52c" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_turm" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1006'</condition>
                 </type>
                 <child name="name"/>
@@ -1290,7 +1290,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C4a0cc162-ac3e-49ed-86a1-0f1a710ece5c_C2a56c91e-e51c-4d0e-b793-3eeddd2db607" priority="normal">
         <source>
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1420'</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -1309,7 +1309,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                 <core:content>
-                    <core:text xml:space="preserve">Inaccurate match of [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_EinrichtungenFuerDenSchiffsverkehrType/position/choice/Point to [type] jdbc:postgresql:testbed:aaa_ogr/ax_einrichtungenfuerdenschiffsverkehr/wkb_geometry via parent entity</core:text>
+                    <core:text xml:space="preserve">Inaccurate match of [type] http://www.adv-online.de/namespaces/adv/gid/7.1/AX_EinrichtungenFuerDenSchiffsverkehrType/position/choice/Point to [type] jdbc:postgresql:testbed:public/ax_einrichtungenfuerdenschiffsverkehr/wkb_geometry via parent entity</core:text>
                 </core:content>
             </core:message>
         </annotation>
@@ -1324,7 +1324,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C8494f7dd-4c75-46b5-b8c8-23e2de6901a2_Cdd4f2102-ce96-4efe-9d55-97e4e2b3a52c" priority="normal">
         <source>
             <property>
-                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_turm" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1006'</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -1343,7 +1343,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                 <core:content>
-                    <core:text xml:space="preserve">Inaccurate match of [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_TurmType/position/choice/Point to [type] jdbc:postgresql:testbed:aaa_ogr/ax_turm/wkb_geometry via parent entity</core:text>
+                    <core:text xml:space="preserve">Inaccurate match of [type] http://www.adv-online.de/namespaces/adv/gid/7.1/AX_TurmType/position/choice/Point to [type] jdbc:postgresql:testbed:public/ax_turm/wkb_geometry via parent entity</core:text>
                 </core:content>
             </core:message>
         </annotation>
@@ -1358,7 +1358,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cfef43c2d-376c-414d-9c11-619eaa7df89b_C2a56c91e-e51c-4d0e-b793-3eeddd2db607" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1420'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1381,7 +1381,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cfef43c2d-376c-414d-9c11-619eaa7df89b_Cdd4f2102-ce96-4efe-9d55-97e4e2b3a52c" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_turm" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1006'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1404,7 +1404,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cdd8ddb3b-1a52-4e89-bc63-4e3ecadedcf4_C2a56c91e-e51c-4d0e-b793-3eeddd2db607" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1420'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1427,7 +1427,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cdd8ddb3b-1a52-4e89-bc63-4e3ecadedcf4_Cdd4f2102-ce96-4efe-9d55-97e4e2b3a52c" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_turm" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1006'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1480,7 +1480,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cfb256771-1656-4483-a9d6-e39418da21f3_C2a56c91e-e51c-4d0e-b793-3eeddd2db607" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1420'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1505,7 +1505,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cfb256771-1656-4483-a9d6-e39418da21f3_Cdd4f2102-ce96-4efe-9d55-97e4e2b3a52c" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_turm" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_turm" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">bauwerksfunktion = '1006'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -1722,7 +1722,7 @@ Es werden Referenzen (NetworkReference) zu allen Netzwerk-Elementen (z.B. `Water
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C5a4972ce-eb0a-48ef-8a40-debf02cf39a3" priority="normal">
         <source>
             <class>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -1901,7 +1901,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Caf7b0555-5a63-4b10-96bb-2c957f27b686" priority="normal">
         <source>
             <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -1917,7 +1917,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C2fc86ee5-4387-40bf-a141-350a4caff2e9" priority="normal">
         <source>
             <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -1933,7 +1933,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C796062d5-d95f-442c-b6ba-8c07dcc3acc6" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="name"/>
             </property>
         </source>
@@ -1958,7 +1958,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="C3a0a2fd0-7f2a-4949-9524-8816046c5a96" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -1972,7 +1972,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cdf1f605f-b9fb-48f1-a1fb-4dda08785640" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -2001,7 +2001,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="C1c9370d6-e78a-46c0-b6a7-473e2d52039d" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -2128,7 +2128,7 @@ Es werden Referenzen (NetworkReference) zu allen `FerryCrossing`s erstellt, welc
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cf1f2f7bd-bb34-484b-b673-8b7b532d0f53" priority="normal">
         <source>
             <class>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
             </class>
@@ -2196,7 +2196,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C3d72272e-349b-469e-96d4-b1487aa1e681" priority="normal">
         <source>
             <class>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
             </class>
@@ -2265,7 +2265,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C141f2f47-581a-47da-8732-626f593cbc6e_Cf1f2f7bd-bb34-484b-b673-8b7b532d0f53" priority="normal">
         <source>
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
                 <child name="beginnt"/>
@@ -2290,7 +2290,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C141f2f47-581a-47da-8732-626f593cbc6e_C3d72272e-349b-469e-96d4-b1487aa1e681" priority="normal">
         <source>
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
                 <child name="beginnt"/>
@@ -2315,7 +2315,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C7400f7b3-3b75-4b90-9270-fa8855343c72_Cf1f2f7bd-bb34-484b-b673-8b7b532d0f53" priority="normal">
         <source>
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
                 <child name="endet"/>
@@ -2340,7 +2340,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C7400f7b3-3b75-4b90-9270-fa8855343c72_C3d72272e-349b-469e-96d4-b1487aa1e681" priority="normal">
         <source>
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
                 <child name="endet"/>
@@ -2365,7 +2365,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Ca8634f0a-bd4a-4a67-92de-42d073bff027_Cf1f2f7bd-bb34-484b-b673-8b7b532d0f53" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
                 <child name="name"/>
@@ -2389,7 +2389,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C947d0186-a5ef-4403-a40d-68ff36cd0082_C3d72272e-349b-469e-96d4-b1487aa1e681" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
                 <child name="name"/>
@@ -2423,7 +2423,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
     <cell relation="custom:alignment:adv.inspire.id.default" id="C3b005256-e42f-444b-bd6c-a86b4690cfdc_Cf1f2f7bd-bb34-484b-b673-8b7b532d0f53" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2446,7 +2446,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
     <cell relation="custom:alignment:adv.inspire.id.default" id="C3b005256-e42f-444b-bd6c-a86b4690cfdc_C3d72272e-349b-469e-96d4-b1487aa1e681" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2469,7 +2469,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
     <cell relation="custom:alignment:adv.inspire.identifier" id="C612881bf-a4cd-4a1f-a5e7-ab4d31bf841f_Cf1f2f7bd-bb34-484b-b673-8b7b532d0f53" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2492,7 +2492,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
     <cell relation="custom:alignment:adv.inspire.identifier" id="C612881bf-a4cd-4a1f-a5e7-ab4d31bf841f_C3d72272e-349b-469e-96d4-b1487aa1e681" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2545,7 +2545,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cb742a3cd-b7d6-48c3-be8d-ae7d79dd3cdb_Cf1f2f7bd-bb34-484b-b673-8b7b532d0f53" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2570,7 +2570,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cb742a3cd-b7d6-48c3-be8d-ae7d79dd3cdb_C3d72272e-349b-469e-96d4-b1487aa1e681" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2625,7 +2625,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Ce0ed4595-aaa8-4966-bf5c-2f725fcb2985" priority="normal">
         <source>
             <class>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1430' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
             </class>
@@ -2772,7 +2772,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C87c89354-ceab-4ef2-b643-e554d4279844" priority="normal">
         <source>
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1430' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="beginnt"/>
@@ -2797,7 +2797,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C013ba5fb-479f-47ed-ae66-13ca195cd972" priority="normal">
         <source>
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1430' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="endet"/>
@@ -2822,7 +2822,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C4d6020a4-5d41-4396-b8f6-701b52d7c5e6" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1430' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="name"/>
@@ -2856,7 +2856,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C9e496c4e-7871-461a-96d8-fdef1abfea63" priority="normal">
         <source>
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1430' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -2874,7 +2874,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                 <core:content>
-                    <core:text xml:space="preserve">Inaccurate match of [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_EinrichtungenFuerDenSchiffsverkehrType/position/choice/Point to [type] jdbc:postgresql:testbed:aaa_ogr/ax_einrichtungenfuerdenschiffsverkehr/wkb_geometry via parent entity</core:text>
+                    <core:text xml:space="preserve">Inaccurate match of [type] http://www.adv-online.de/namespaces/adv/gid/7.1/AX_EinrichtungenFuerDenSchiffsverkehrType/position/choice/Point to [type] jdbc:postgresql:testbed:public/ax_einrichtungenfuerdenschiffsverkehr/wkb_geometry via parent entity</core:text>
                 </core:content>
             </core:message>
         </annotation>
@@ -2889,7 +2889,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="C244e0bdd-cb78-4bcf-82f3-b8dab46ffd07" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1430' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2912,7 +2912,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cb3e19b77-9e01-4800-b6c4-1ecfbf18fc73" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1430' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2950,7 +2950,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cb065e796-b480-4609-9613-25b8f9efb81a" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1430' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="gml_id"/>
@@ -2985,7 +2985,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc1ee5d1a-6ab2-4274-a2c5-441fd6065878" priority="normal">
         <source>
             <property>
-                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_einrichtungenfuerdenschiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">art = '1430' AND NOT (kilometerangabe IS NULL)</condition>
                 </type>
                 <child name="kilometerangabe"/>
@@ -3010,10 +3010,10 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.uom.toucum" id="Cf3eb9a99-85bb-4077-bf11-23888bc6e0c9" priority="normal">
         <source name="uom">
             <property>
-                <type name="AX_EinrichtungenFuerDenSchiffsverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/6.0">
+                <type name="AX_EinrichtungenFuerDenSchiffsverkehrType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
                     <condition lang="CQL">art = '1430' and kilometerangabe is not null</condition>
                 </type>
-                <child name="kilometerangabe" ns="http://www.adv-online.de/namespaces/adv/gid/6.0"/>
+                <child name="kilometerangabe" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
                 <child name="uom"/>
             </property>
         </source>
@@ -3027,7 +3027,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                 <core:content>
-                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/6.0/AX_EinrichtungenFuerDenSchiffsverkehrType/kilometerangabe/uom found</core:text>
+                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/7.1/AX_EinrichtungenFuerDenSchiffsverkehrType/kilometerangabe/uom found</core:text>
                 </core:content>
             </core:message>
         </annotation>
@@ -3065,7 +3065,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C31c21664-3fcc-43ea-89d3-d5485904465c" priority="normal">
         <source>
             <class>
-                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '5610'</condition>
                 </type>
             </class>
@@ -3085,11 +3085,24 @@ def _id = "PortArea_$sourceId"
 _target {
 }
 
+// bestimme ConditionOfWaterFacility
+def conditionOfFacility = 'functional'
+switch (_source.p.zustand.value()) {
+	case '2100': // Außer Betrieb, stillgelegt, verlassen
+		conditionOfFacility = 'disused'
+		break
+	case '4000': // Im Bau
+		conditionOfFacility = 'underConstruction'
+		break
+}
+
 def collect
 withTransformationContext {
 	collect = _.context.collector(it)
 	// Sammle ID für Netzwerk	
 	collect.network &lt;&lt; _id
+	// Sammle ID für ConditionOfWaterFacility
+	collect.conditionOfWaterFacility[conditionOfFacility] &lt;&lt; _id
 }
 
 /*
@@ -3207,7 +3220,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ccf154095-4848-4440-a66e-0cbf2730500c_C31c21664-3fcc-43ea-89d3-d5485904465c" priority="normal">
         <source>
             <property>
-                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '5610'</condition>
                 </type>
                 <child name="beginnt"/>
@@ -3232,7 +3245,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce3aa3157-e12f-4794-8226-d6dc6e876c65_C31c21664-3fcc-43ea-89d3-d5485904465c" priority="normal">
         <source>
             <property>
-                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '5610'</condition>
                 </type>
                 <child name="endet"/>
@@ -3267,7 +3280,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="Cb0d7c387-ff11-4165-b81c-fe28c5cb7813_C31c21664-3fcc-43ea-89d3-d5485904465c" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '5610'</condition>
                 </type>
                 <child name="wkb_geometry"/>
@@ -3290,7 +3303,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cca83e39e-3475-4b62-9cef-0c4099c7e63d_C31c21664-3fcc-43ea-89d3-d5485904465c" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '5610'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3313,7 +3326,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cbe32f6f6-ee87-475e-953e-821c0c30c18a_C31c21664-3fcc-43ea-89d3-d5485904465c" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '5610'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3351,7 +3364,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="C8691cbe4-1b7c-4b17-a22b-cc9064912e28_C31c21664-3fcc-43ea-89d3-d5485904465c" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_schiffsverkehr" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">funktion = '5610'</condition>
                 </type>
                 <child name="gml_id"/>
@@ -3697,14 +3710,14 @@ collect.verticalPosition.consume { key, values -&gt;
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="Cc3026039-7b92-4b52-aaa5-cc40b3749b65" priority="high">
         <source name="types">
             <class>
-                <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_kanal" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -3715,20 +3728,20 @@ collect.verticalPosition.consume { key, values -&gt;
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <class>
-                    <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <type name="ax_kanal" ns="jdbc:postgresql:testbed:public">
                         <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                     </type>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="istteilvon"/>
                     </property>
                     <property>
-                        <type name="ax_kanal" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_kanal" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                         </type>
                         <child name="gml_id"/>
@@ -3753,7 +3766,7 @@ if (parentId) {
 	_target {
 	}
 	
-	// bestimme ConditionOfWaterFacility
+	// bestimme ConditionOfFacility
 	def conditionOfFacility = 'functional'
 	switch (_source.p.zustand.value()) {
 	case '2100': // Außer Betrieb, stillgelegt, verlassen
@@ -3763,7 +3776,7 @@ if (parentId) {
 		conditionOfFacility = 'underConstruction'
 		break
 	}
-	
+
 	def collect
 	withTransformationContext {
 		collect = _.context.collector(it)
@@ -3772,7 +3785,7 @@ if (parentId) {
 		// Sammle ID für Liste von WaterwayLinks für den Kanal
 		collect.AX_Kanal[parentId].links &lt;&lt; _id
 		// Sammle ID für ConditionOfWaterFacility
-		collect.conditionOfWaterFacility[conditionOfFacility] &lt;&lt; _id
+		collect.conditionOfFacility[conditionOfFacility] &lt;&lt; _id
 	}
 	
 	/*
@@ -3904,14 +3917,14 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy.join" id="C4ce2dafa-0c09-46d1-b006-f8b9d3156e12" priority="high">
         <source name="types">
             <class>
-                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public">
                     <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                 </type>
             </class>
         </source>
         <source name="types">
             <class>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -3922,20 +3935,20 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         <complexParameter name="join">
             <jp:join-parameter xmlns:jp="http://www.esdi-humboldt.eu/hale/join">
                 <class>
-                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                    <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 </class>
                 <class>
-                    <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                    <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public">
                         <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                     </type>
                 </class>
                 <jp:condition>
                     <property>
-                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                        <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                         <child name="istteilvon"/>
                     </property>
                     <property>
-                        <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:aaa_ogr">
+                        <type name="ax_wasserlauf" ns="jdbc:postgresql:testbed:public">
                             <condition lang="CQL">NOT (schifffahrtskategorie IS NULL) OR NOT (identnummer IS NULL)</condition>
                         </type>
                         <child name="gml_id"/>
@@ -4087,7 +4100,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="Cbd3d5432-25dc-4994-8c8d-d7680a5859e0" priority="normal">
         <source>
             <class>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -4225,7 +4238,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C2eb8a251-1062-494b-808f-c7a5771b0b57" priority="high">
         <source>
             <class>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -4377,7 +4390,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Caae3ba1e-0a31-4dd7-9660-0c0c2a6ddd41" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -4393,7 +4406,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca4fbb1a7-bc33-49ea-86dd-95aa2549f3ab" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -4409,7 +4422,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C59525ab6-8dee-4437-928e-54e1f6a151e2" priority="normal">
         <source>
             <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="beginnt"/>
             </property>
         </source>
@@ -4425,7 +4438,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="Cb6470605-31fb-45d1-9126-c9933af47049" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -4439,7 +4452,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="Cee224ae4-bd8b-447e-b1ff-ec8b16a6aa40" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -4453,7 +4466,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.geometry.simplefeature" id="C83f11aca-ef38-44f5-ad61-fbb7614b6218" priority="normal">
         <source name="geometrie">
             <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="wkb_geometry"/>
             </property>
         </source>
@@ -4467,7 +4480,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce14a00f7-0f0f-425e-96bc-e278fa0d9678" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -4483,7 +4496,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cbf27a703-118d-492f-afec-07be2551d5db" priority="normal">
         <source>
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -4499,7 +4512,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Caaca87e3-a9d5-44d7-81fe-a11e193e342d" priority="normal">
         <source>
             <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="endet"/>
             </property>
         </source>
@@ -4524,7 +4537,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cbe021c4f-327f-4795-9577-da58aedae3cb" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="name"/>
             </property>
         </source>
@@ -4539,7 +4552,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="Cabfea868-d47a-4fa5-a554-443f3f8f0943" priority="normal">
         <source name="spelling">
             <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="name"/>
             </property>
         </source>
@@ -4564,7 +4577,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cce74419d-0751-4c44-8a6b-5d4abb872a84" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4578,7 +4591,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ca8495950-07d3-49ad-baaf-74292d11c9ae" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4592,7 +4605,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.id.default" id="Ca50aaae2-ab35-458e-bb82-0b8139997861" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4606,7 +4619,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="C1ba7c3de-dde9-42a8-bf41-3e0eb8d05787" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4620,7 +4633,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cd69df3f9-4409-47f5-b7a5-352467967492" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4634,7 +4647,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="custom:alignment:adv.inspire.identifier" id="Cd32b1107-5206-48b7-a0e8-04a512d542bc" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4708,7 +4721,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="C1323b69f-e907-4261-8bd9-b8fc0d01bab8" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4724,7 +4737,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="Cae7cd425-4532-48d1-82ba-e30f07daa650" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_gewaesserstationierungsachse" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4740,7 +4753,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.id.default" id="C82f94774-fde7-4990-967e-821d4f761b28" priority="normal">
         <source name="id">
             <property>
-                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:aaa_ogr"/>
+                <type name="ax_schifffahrtsliniefaehrverkehr" ns="jdbc:postgresql:testbed:public"/>
                 <child name="gml_id"/>
             </property>
         </source>
@@ -4783,7 +4796,4 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </target>
         <parameter value="other:unpopulated" name="value"/>
     </cell>
-    <modifier cell="C1eb2d011-34d1-4077-8388-f7fbdb1659b9">
-        <transformation mode="disabled"/>
-    </modifier>
 </alignment>
