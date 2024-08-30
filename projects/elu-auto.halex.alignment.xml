@@ -775,7 +775,7 @@ Aktuell ist folgende Abbildung umgesetzt:
     <cell relation="eu.esdihumboldt.cst.functions.groovy.retype" id="C40961cf5-b96a-4105-a945-d0b32805f640" priority="normal">
         <source>
             <class>
-                <type name="extentBundesland"/>
+                <type name="extent_bundesland" ns="jdbc:postgresql:testbed:public"/>
             </class>
         </source>
         <target>
@@ -795,7 +795,7 @@ c.wkt &lt;&lt; _source.p.WKT.value()
         <annotation type="message">
             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
                 <core:content>
-                    <core:text xml:space="preserve">No match for entity [type] /extentBundesland found</core:text>
+                    <core:text xml:space="preserve">The cell's source entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
                 </core:content>
             </core:message>
         </annotation>

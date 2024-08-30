@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hale-project version="5.1.0.release">
+<hale-project version="5.3.0.release">
     <name>[Annex III] AdV ALKIS 7.1.2 zu INSPIRE Existing Land Use</name>
     <author>Johanna Ott</author>
     <description>Transformationsprojekt für die Transformation von Daten aus ALKIS nach INSPIRE ExistingLandUse.&#13;
@@ -17,7 +17,7 @@ Hinweis zur Nutzung der Projektvariablen:&#13;
 ATKIS als Quelle derzeit ausgeschlossen&#13;
 (Begründung aus Email Herr Schliebner 30.05.2018: "Keine Verflächung von linienhaften Elementen. Zum AdV-Plenums-Beschluss 127/7 soll ein entsprechendes Änderungsersuchen gestellt werden, was Herr Dr. Seifert am 05.-06.Juni 2018 bei der AK IK-Tagung thematisieren wird. Diese Änderung kann hieb- und stichfest damit begründet werden, dass zur Schaffung von INSPIRE-Daten aus ATKIS erheblicher Aufwand anfiele.")</description>
     <created>2018-02-16T08:44:39.500+01:00</created>
-    <modified>2024-04-25T17:06:48.724+02:00</modified>
+    <modified>2024-08-30T12:08:18.732+02:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
@@ -1359,6 +1359,7 @@ ATKIS als Quelle derzeit ausgeschlossen&#13;
     <property name="mappableSourceType/24">{jdbc:postgresql:testbed:public}ax_meer</property>
     <property name="mappableSourceType/25">{jdbc:postgresql:testbed:public}ax_bergbaubetrieb</property>
     <property name="mappableSourceType/26">{jdbc:postgresql:testbed:public}ax_bahnverkehr</property>
+    <property name="mappableSourceType/27">{jdbc:postgresql:testbed:public}extent_bundesland</property>
     <property name="mappableSourceType/3">{jdbc:postgresql:testbed:public}ax_gehoelz</property>
     <property name="mappableSourceType/4">{jdbc:postgresql:testbed:public}ax_hafenbecken</property>
     <property name="mappableSourceType/5">{jdbc:postgresql:testbed:public}ax_sportfreizeitunderholungsflaeche</property>
@@ -1366,7 +1367,7 @@ ATKIS als Quelle derzeit ausgeschlossen&#13;
     <property name="mappableSourceType/7">{jdbc:postgresql:testbed:public}ax_friedhof</property>
     <property name="mappableSourceType/8">{jdbc:postgresql:testbed:public}ax_platz</property>
     <property name="mappableSourceType/9">{jdbc:postgresql:testbed:public}ax_heide</property>
-    <property name="mappableSourceType/count">26</property>
+    <property name="mappableSourceType/count">27</property>
     <property name="resource-027e1fd9-4ed3-4780-a48d-60fb209277cc:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/7.1}AX_LandwirtschaftType/{http://www.adv-online.de/namespaces/adv/gid/7.1}position/{http://www.opengis.net/gml/3.2}Surface">code:EPSG:25832</property>
     <property name="resource-027e1fd9-4ed3-4780-a48d-60fb209277cc:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/7.1}AX_LandwirtschaftType/{http://www.adv-online.de/namespaces/adv/gid/7.1}position/{http://www.opengis.net/gml/3.2}Surface/{http://www.opengis.net/gml/3.2}patches/{http://www.opengis.net/gml/3.2}PolygonPatch/{http://www.opengis.net/gml/3.2}exterior/{http://www.opengis.net/gml/3.2}Ring/{http://www.opengis.net/gml/3.2}curveMember/{http://www.opengis.net/gml/3.2}Curve/{http://www.opengis.net/gml/3.2}segments/{http://www.opengis.net/gml/3.2}LineStringSegment">code:EPSG:25832</property>
     <property name="resource-027e1fd9-4ed3-4780-a48d-60fb209277cc:defaultCRS:{http://www.adv-online.de/namespaces/adv/gid/7.1}AX_SportFreizeitUndErholungsflaecheType/{http://www.adv-online.de/namespaces/adv/gid/7.1}position/{http://www.opengis.net/gml/3.2}Surface">code:EPSG:25832</property>
