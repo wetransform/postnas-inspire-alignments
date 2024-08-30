@@ -8,3 +8,4 @@ Notizen zu manuellen Anpassungen
 - Doppelt-Belegungen von Quellen für Eigenschaftsabbildungen entfernt (Im Kontext von Joins mit `ap_pto`, `ax_kommunalesgebiet` und `ax_gebiet_*`)
 - Zugriff auf Geometrie in Groovy-Skripten angepasst
 - Zuweisung von `datumderletztenueberpruefung` erweitert, so dass Quellwert als Datum geparst wird
+- Zugriff auf Eigenschaft `WKT` in Groovy-Skript der Abbildung von `extent_bundesland` angepasst
