@@ -1,7 +1,7 @@
-PostNAS INSPIRE Alignments
+PostNAS-INSPIRE-Alignments
 ==========================
 
-Aus den AdV-Alignments abgeleitete Alignments (PostNAS nach INSPIRE)
+Aus den AdV-Alignments für GeoInfoDok 7.1.2 abgeleitete Alignments (PostNAS nach INSPIRE)
 
 Die Ableitung erfolgt teils automatisch (`projects/*-auto.halex`) und wird durch manuelle Anpassungen ergänzt (`projects/*-manual.halex`). Um die manuellen Anpassungen nachvollziehen zu können unterliegen auch die generierten Projekte der Versionskontrolle.
 
@@ -30,7 +30,7 @@ Gradle wird als Tool verwendet um Aufgaben bzgl. der Verwendung, Migration und P
 Für das Ausführen von Gradle mit hale müssen folgende Voraussetzungen geschaffen werden:
 
 - Internetverbindung (für Verwendung eines Proxy ist weitere Konfiguration nötig)
-- **Java 8** muss auf dem System installiert sein (erreichbar über `PATH` Umgebungsvariable)
+- **Java 17** muss auf dem System installiert sein (erreichbar über `PATH` Umgebungsvariable)
 - *(Optional)* Um eine bestimmte _hale-cli_ Version zu verwenden muss sie auf dem System verfügbar sein, der Pfad zur hale-cli-Executable muss in der Datei `gradle.properties` angegeben werden (siehe `gradle.properties.sample` für ein Beispiel). Wird keine Angabe gemacht werden die hale-cli-Bibliotheken für die Ausführung heruntergeladen.
 
 Gradle selbst wird beim ersten Aufruf von `gradlew.bat` (Windows) bzw. `./gradlew` (Linux / Mac OS X) automatisch heruntergeladen. Folgend wird `gradlew` stellvertretend für den Aufruf im jeweiligen Betriebssystem verwendet.
