@@ -2,8 +2,6 @@
 #
 # Defines projects to migrate.
 #
-ad:
-  advProject: annex-1/mappings/Addresses/aaa-ad-01.halex
 au:
   advProject: annex-1/mappings/AdministrativeUnits/aaa-au-flurstuecke.halex
 bu-2d:
@@ -20,8 +18,6 @@ hy-p:
   advProject: annex-1/mappings/Hydrography/aaa-hy-p.halex
 lc:
   advProject: annex-2-3/mappings/LandCover/ALKIS2INSPIRE_LC_v2.halex
-so:
-  advProject: annex-2-3/mappings/Soil/3A2INSPIRE_SO_v2.halex
 tn-ro:
   advProject: annex-1/mappings/RoadTransportNetwork/aaa-tn-ro-01.halex
 tn-ra:

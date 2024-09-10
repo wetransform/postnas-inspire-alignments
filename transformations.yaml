@@ -24,11 +24,6 @@ defaults:
     enabled: false
 
 tasks:
-  ad:
-    project: ad
-    model: DLKM
-    additionalModels:
-      - DKKM1000
   au-dlkm:
     project: au
     model: DLKM
@@ -80,9 +75,6 @@ tasks:
     model: Basis-DLM
   lc:
     project: lc
-    model: DLKM
-  so:
-    project: so
     model: DLKM
   tn-ro-dlkm:
     project: tn-ro
