@@ -9,7 +9,6 @@ Folgende Alignments werden hier verwaltet:
 
 | Alignment                                             | Status         | Kürzel     |
 | :---------------------------------------------------- | :------------: | :--------- |
-| PostNAS -> Adressen                                   | migriert       | ad         |
 | PostNAS -> Verwaltungseinheiten                       | migriert       | au         |
 | PostNAS -> Gebäude (2D)                               | migriert       | bu-2d      |
 | PostNAS -> Flurstücke/Grundstücke                     | migriert       | cp         |
@@ -17,7 +16,6 @@ Folgende Alignments werden hier verwaltet:
 | PostNAS -> Geografische Bezeichnungen                 | migriert       | gn         |
 | PostNAS -> Gewässernetz                               | migriert       | hy-n, hy-p |
 | PostNAS -> Landbedeckung                              | migriert       | lc         |
-| PostNAS -> Boden                                      | migriert       | so         |
 | PostNAS -> Verkehrsnetze (Straßenverkehrsnetz)        | migriert       | tn-ro      |
 | PostNAS -> Verkehrsnetze (Schienenverkehrsnetz)       | migriert       | tn-ra      |
 | PostNAS -> Verkehrsnetze (Wasserverkehrsnetz)         | migriert       | tn-w       |
