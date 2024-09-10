@@ -14,6 +14,10 @@ buildscript {
 
 import java.text.*
 
+plugins {
+  id 'distribution'
+}
+
 apply plugin: 'to.wetransform.hale'
 
 hale {
@@ -850,6 +854,33 @@ def reporter = new BuildReporter(project: project)
 gradle.addListener( (TaskExecutionListener) reporter)
 gradle.addListener( (BuildListener) reporter)
 
+distributions {
+  main {
+    distributionBaseName = 'postnas-inspire-alignments'
+    contents {
+      from('.') {
+        include '*'
+        include 'gradle/**'
+        include 'buildSrc/**'
+        include 'adv-alignments/**'
+        include 'profiles/**'
+        include 'projects/**'
+        include 'database/**'
+        exclude '.git'
+        exclude '.github'
+        exclude '.gitignore'
+        exclude '.gradle'
+        exclude '.releaserc.yml'
+        exclude '.vscode'
+        exclude '.wetf-repo.yml'
+        exclude '*.log'
+        exclude 'gradle.properties'
+        exclude 'build/**'
+        exclude 'workspace'
+      }
+    }
+  }
+}
 
 wrapper {
   gradleVersion = '8.10.1'
