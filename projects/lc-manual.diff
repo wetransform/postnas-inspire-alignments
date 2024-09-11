@@ -1,5 +1,5 @@
 diff --git a/projects/lc-auto.halex.alignment.xml b/projects/lc-manual.halex.alignment.xml
-index e0d5ce6..5d2db35 100644
+index e0d5ce6..f0ad000 100644
 --- a/projects/lc-auto.halex.alignment.xml
 +++ b/projects/lc-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -779,3 +779,11 @@ index e0d5ce6..5d2db35 100644
                  <core:content>
                      <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
                  </core:content>
+@@ -14036,4 +14046,7 @@ return targeom
+         </target>
+         <parameter value="other:unpopulated" name="value"/>
+     </cell>
++    <modifier cell="C291e909f-6406-4b56-bba1-a37ccb680902">
++        <disable-for parent="C0525b8d8-e0e2-43b4-81d5-897a6553c8ac"/>
++    </modifier>
+ </alignment>
