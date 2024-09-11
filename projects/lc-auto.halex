@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<hale-project version="5.1.0.release">
+<hale-project version="5.3.0.release">
     <name>[Annex II] AdV ALKIS 7.1.2 zu INSPIRE Land Cover</name>
     <author>Johanna Ott</author>
     <description>Transformationsprojekt für die Transformation von Daten aus ALKIS nach INSPIRE LandCover.&#13;
@@ -12,7 +12,7 @@ Hinweis zur Nutzung der Projektvariablen:&#13;
 	LANDCOVER_DATASET: id des LandCoverDatasets --&gt; kann nach Wunsch verändert werden&#13;
 	INSPIRE_NAMESPACE: gewünschten Namespace eingeben</description>
     <created>2018-02-21T09:31:57.934+01:00</created>
-    <modified>2024-04-25T16:31:13.819+02:00</modified>
+    <modified>2024-09-11T11:24:54.080+02:00</modified>
     <save-config provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>
