@@ -1,4 +1,4 @@
-FROM mdillon/postgis:9.4
+FROM mdillon/postgis:9.6
 
 RUN mkdir -p /docker-entrypoint-initdb.d
 COPY ./testbed-initdb.sh /docker-entrypoint-initdb.d/testbed-initdb.sh
