@@ -1,5 +1,5 @@
 diff --git a/projects/tn-ro-auto.halex.alignment.xml b/projects/tn-ro-manual.halex.alignment.xml
-index 8ff8b2a..b3745d3 100644
+index 853df09..12c9fee 100644
 --- a/projects/tn-ro-auto.halex.alignment.xml
 +++ b/projects/tn-ro-manual.halex.alignment.xml
 @@ -64,11 +64,22 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -248,7 +248,7 @@ index 8ff8b2a..b3745d3 100644
  					}
  				}
  			}
-@@ -1473,30 +1503,41 @@ withTransformationContext {
+@@ -1473,37 +1503,48 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -260,7 +260,9 @@ index 8ff8b2a..b3745d3 100644
  	def _ns = _project.vars.INSPIRE_NAMESPACE
  	
 -	_target {
--		functionalClass( key )
+-		functionalClass {
+-			href( 'http://inspire.ec.europa.eu/codelist/FunctionalRoadClassValue/' + key )
+-		}
 -		id( _id )
 -		inspireId {
 -			Identifier {
@@ -270,14 +272,7 @@ index 8ff8b2a..b3745d3 100644
 -		}
 -		identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
 -			codeSpace( 'http://inspire.ec.europa.eu/ids' )
-+	def valueGroups = _refLimit ? values.collate(_refLimit as int) : [values]
-+	def i = 1		
-+	valueGroups.each { valueGroup -&gt;
-+		def _id2 = _id 
-+		if (valueGroups.size &gt; 1) {
-+			// Gruppennummer anhängen, falls es mehr als eine Gruppe gibt
-+			_id2 += '_' + i++
- 		}
+-		}
 -		
 -		// Referenz zu gesammelten RoadLinks/RoadAreas mit dieser Eigenschaft
 -		values.each { linkId -&gt;
@@ -285,30 +280,50 @@ index 8ff8b2a..b3745d3 100644
 -				NetworkReference {
 -					element {
 -						href( "#$linkId" )
-+		_target {
-+			functionalClass( key )
-+			id( _id2 )
-+			inspireId {
-+				Identifier {
-+					namespace( _ns )
-+					localId( _id2 )
-+				}
-+			}
-+			identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id2 : _id2 ) {
-+				codeSpace( 'http://inspire.ec.europa.eu/ids' )
-+			}
-+			
-+			// Referenz zu gesammelten RoadLinks/RoadAreas mit dieser Eigenschaft
-+			valueGroup.each { linkId -&gt;
-+				networkRef {
-+					NetworkReference {
-+						element {
-+							href( "#$linkId" )
-+						}
- 					}
- 				}
- 			}
-@@ -1548,13 +1589,13 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
+-					}
+-				}
+-			}
+-		}
+-	}
++	def valueGroups = _refLimit ? values.collate(_refLimit as int) : [values]
++	def i = 1		
++	valueGroups.each { valueGroup -&gt;
++		def _id2 = _id 
++		if (valueGroups.size &gt; 1) {
++			// Gruppennummer anhängen, falls es mehr als eine Gruppe gibt
++			_id2 += '_' + i++
++            }	
++        _target {
++            functionalClass {
++                href( 'http://inspire.ec.europa.eu/codelist/FunctionalRoadClassValue/' + key )
++            }
++            id( _id2 )
++            inspireId {
++                Identifier {
++                    namespace( _ns )
++                    localId( _id2 )
++                }
++            }
++            identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
++                codeSpace( 'http://inspire.ec.europa.eu/ids' )
++            }
++            
++            // Referenz zu gesammelten RoadLinks/RoadAreas mit dieser Eigenschaft
++            valueGroup.each { linkId -&gt;
++                networkRef {
++                    NetworkReference {
++                        element {
++                            href( "#$linkId" )
++                        }
++                    }
++                }
++            }
++        }
++    }
+ }
+ </core:text>
+         </complexParameter>
+@@ -1550,13 +1591,13 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -324,7 +339,7 @@ index 8ff8b2a..b3745d3 100644
  
  def _id = "MarkerPost_$sourceId"
  	
-@@ -1573,9 +1614,9 @@ withTransformationContext {
+@@ -1575,9 +1616,9 @@ withTransformationContext {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -336,7 +351,7 @@ index 8ff8b2a..b3745d3 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -1951,36 +1992,46 @@ withTransformationContext {
+@@ -1953,36 +1994,46 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -405,7 +420,7 @@ index 8ff8b2a..b3745d3 100644
  						}
  					}
  				}
-@@ -2048,7 +2099,7 @@ withTransformationContext {
+@@ -2050,7 +2101,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit flächenartigen Geometrien behandeln
@@ -414,7 +429,7 @@ index 8ff8b2a..b3745d3 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def surfaces = _.geom.splitMulti(geometries)
-@@ -2058,11 +2109,11 @@ def surfaces = _.geom.splitMulti(geometries)
+@@ -2060,11 +2111,11 @@ def surfaces = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -428,7 +443,7 @@ index 8ff8b2a..b3745d3 100644
  case '1110': // Bundesautobahn
  	functionalClass = 'firstClass'
  	break
-@@ -2092,9 +2143,9 @@ case '9999': // Sonstiges --&gt; aufgrund von Angaben in https://haleconnect.com
+@@ -2094,9 +2145,9 @@ case '9999': // Sonstiges --&gt; aufgrund von Angaben in https://haleconnect.com
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -440,7 +455,7 @@ index 8ff8b2a..b3745d3 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2263,7 +2314,7 @@ withTransformationContext {
+@@ -2265,7 +2316,7 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -449,7 +464,7 @@ index 8ff8b2a..b3745d3 100644
  
  _target {
  }
-@@ -2271,9 +2322,9 @@ _target {
+@@ -2273,9 +2324,9 @@ _target {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -461,7 +476,7 @@ index 8ff8b2a..b3745d3 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2402,14 +2453,14 @@ withTransformationContext {
+@@ -2404,14 +2455,14 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -478,7 +493,7 @@ index 8ff8b2a..b3745d3 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -2424,9 +2475,9 @@ case '8000': // Erweiterung, Neuansiedlung
+@@ -2426,9 +2477,9 @@ case '8000': // Erweiterung, Neuansiedlung
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -490,7 +505,7 @@ index 8ff8b2a..b3745d3 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2568,14 +2619,14 @@ withTransformationContext {
+@@ -2570,14 +2621,14 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -507,7 +522,7 @@ index 8ff8b2a..b3745d3 100644
  case '5210': // Fahrweg
  case '5212': // Wirtschaftsweg
  	functionalClass = 'eighthClass'
-@@ -2593,9 +2644,9 @@ case '5250': // Rad- und Fußweg
+@@ -2595,9 +2646,9 @@ case '5250': // Rad- und Fußweg
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -519,7 +534,7 @@ index 8ff8b2a..b3745d3 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2742,7 +2793,7 @@ withTransformationContext {
+@@ -2744,7 +2795,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit flächenartigen Geometrien behandeln
@@ -528,7 +543,7 @@ index 8ff8b2a..b3745d3 100644
  
  // Ziel unterstützt keine MultiSurfaces
  def surfaces = _.geom.splitMulti(geometries)
-@@ -2752,7 +2803,7 @@ def surfaces = _.geom.splitMulti(geometries)
+@@ -2754,7 +2805,7 @@ def surfaces = _.geom.splitMulti(geometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -537,7 +552,7 @@ index 8ff8b2a..b3745d3 100644
  
  // bestimme FunctionalRoadClass
  def functionalClass = 'ninthClass'
-@@ -2760,9 +2811,9 @@ def functionalClass = 'ninthClass'
+@@ -2762,9 +2813,9 @@ def functionalClass = 'ninthClass'
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -549,7 +564,7 @@ index 8ff8b2a..b3745d3 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -3141,13 +3192,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -3143,13 +3194,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          </annotation>
      </cell>
      <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C7701b354-25ce-49a5-baa7-ef1dce6f6bd0_Ca20f2d64-1511-4c47-b43c-ea4f8f9cae05" priority="normal">
@@ -596,7 +611,7 @@ index 8ff8b2a..b3745d3 100644
              </property>
          </source>
          <target>
-@@ -3166,13 +3244,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -3168,13 +3246,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          </annotation>
      </cell>
      <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C56863741-74c0-4bbe-a955-273776c6670e_C0f1c8732-7bcc-4843-abce-025a5c88d4f6" priority="normal">
@@ -643,7 +658,7 @@ index 8ff8b2a..b3745d3 100644
              </property>
          </source>
          <target>
-@@ -3191,13 +3296,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -3193,13 +3298,40 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          </annotation>
      </cell>
      <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C8efb5887-8982-4d92-a666-4c4b1701e6a1_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990" priority="normal">
@@ -690,15 +705,15 @@ index 8ff8b2a..b3745d3 100644
              </property>
          </source>
          <target>
-@@ -3549,66 +3681,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -3551,66 +3683,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
              </core:message>
          </annotation>
      </cell>
 -    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C0f1c8732-7bcc-4843-abce-025a5c88d4f6" priority="normal">
 -        <target name="result">
 -            <property>
--                <type name="RoadAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <type name="RoadAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/5.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
 -                <child name="href" ns="http://www.w3.org/1999/xlink"/>
 -            </property>
 -        </target>
@@ -712,8 +727,8 @@ index 8ff8b2a..b3745d3 100644
 -    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C2581bae5-bd09-416c-948e-bcb8b5835ca3" priority="normal">
 -        <target name="result">
 -            <property>
--                <type name="RoadAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <type name="RoadAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/5.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
 -                <child name="href" ns="http://www.w3.org/1999/xlink"/>
 -            </property>
 -        </target>
@@ -727,8 +742,8 @@ index 8ff8b2a..b3745d3 100644
 -    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C2827fa08-a3dd-4539-83de-413c6b922f47" priority="normal">
 -        <target name="result">
 -            <property>
--                <type name="RoadAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <type name="RoadAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/5.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
 -                <child name="href" ns="http://www.w3.org/1999/xlink"/>
 -            </property>
 -        </target>
@@ -742,8 +757,8 @@ index 8ff8b2a..b3745d3 100644
 -    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Ca20f2d64-1511-4c47-b43c-ea4f8f9cae05" priority="normal">
 -        <target name="result">
 -            <property>
--                <type name="RoadAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <type name="RoadAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/5.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
 -                <child name="href" ns="http://www.w3.org/1999/xlink"/>
 -            </property>
 -        </target>
@@ -757,7 +772,7 @@ index 8ff8b2a..b3745d3 100644
      <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cf0cb60dc-8399-4dd5-a7cc-03bba3ce2990" priority="normal">
          <target name="result">
              <property>
-@@ -3845,11 +3917,11 @@ withTransformationContext {
+@@ -3847,11 +3919,11 @@ withTransformationContext {
  _b.strictValueFlags = false
  
  // ist die Fahrbahn getrennt?
@@ -771,7 +786,7 @@ index 8ff8b2a..b3745d3 100644
  if (getrennt &amp;&amp; widmung != '1301') {
  	formOfWay = 'dualCarriageway'
  }
-@@ -3866,7 +3938,7 @@ def surfaceCategory = 'paved'
+@@ -3868,7 +3940,7 @@ def surfaceCategory = 'paved'
  
  // bestimme FunctionalRoadClass
  def functionalClass
@@ -780,7 +795,7 @@ index 8ff8b2a..b3745d3 100644
  case '1301': // Bundesautobahn
  	functionalClass = 'firstClass'
  	break
-@@ -3883,24 +3955,24 @@ case '1307': // Gemeindestraße
+@@ -3885,24 +3957,24 @@ case '1307': // Gemeindestraße
  	functionalClass = 'sixthClass'
  	break
  }
@@ -811,7 +826,7 @@ index 8ff8b2a..b3745d3 100644
  		if (geoms.size() &gt; 1) {
  			_log.error("Zusammenfassung von Geometrie in Achse ${sourceId} nicht möglich")
  		}
-@@ -3919,22 +3991,22 @@ def erstelleRoadLink = { achse -&gt;
+@@ -3921,22 +3993,22 @@ def erstelleRoadLink = { achse -&gt;
  		
  		// bestimme FormOfWay
  		def formOfWayAchse = formOfWay
@@ -839,7 +854,7 @@ index 8ff8b2a..b3745d3 100644
  		case '2100': // Außer Betrieb, stillgelegt, verlassen
  			conditionOfFacility = 'disused'
  			break
-@@ -3956,9 +4028,9 @@ def erstelleRoadLink = { achse -&gt;
+@@ -3958,9 +4030,9 @@ def erstelleRoadLink = { achse -&gt;
  		/*
  		 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  		 */
@@ -851,7 +866,7 @@ index 8ff8b2a..b3745d3 100644
  			if (bwf) {
  				switch (bwf) {
  				// AX_BauwerkImVerkehrsbereich
-@@ -4040,7 +4112,7 @@ def erstelleRoadLink = { achse -&gt;
+@@ -4042,7 +4114,7 @@ def erstelleRoadLink = { achse -&gt;
  
  boolean hatFahrbahnachse = false
  
@@ -860,7 +875,7 @@ index 8ff8b2a..b3745d3 100644
  	erstelleRoadLink(achse)
  
  	hatFahrbahnachse = true
-@@ -4054,7 +4126,7 @@ if (hatFahrbahnachse) {
+@@ -4056,7 +4128,7 @@ if (hatFahrbahnachse) {
  
  boolean hatStrassenachse = false
  
@@ -869,7 +884,7 @@ index 8ff8b2a..b3745d3 100644
  	erstelleRoadLink(achse)
  
  	hatStrassenachse = true
-@@ -4063,7 +4135,7 @@ _source.links.AX_Strassenachse.each { achse -&gt;
+@@ -4065,7 +4137,7 @@ _source.links.AX_Strassenachse.each { achse -&gt;
  // keine Fahrbahnachsen oder Strassenachsen -&gt; keine Grundlage für RoadLink
  
  if (!hatStrassenachse) {
@@ -878,7 +893,7 @@ index 8ff8b2a..b3745d3 100644
  	_log.warn("RoadLink: Strasse $strasseId hat weder Fahrbahnachsen noch Strassenachsen")
  }
  </core:text>
-@@ -4189,7 +4261,7 @@ withTransformationContext {
+@@ -4191,7 +4263,7 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -887,7 +902,7 @@ index 8ff8b2a..b3745d3 100644
  
  _target {
  }
-@@ -4199,7 +4271,7 @@ _target {
+@@ -4201,7 +4273,7 @@ _target {
  
  // bestimme RoadSurfaceCategory
  def surfaceCategory
@@ -896,7 +911,7 @@ index 8ff8b2a..b3745d3 100644
  case '1000': // Befestigt
  	surfaceCategory = 'paved'
  	break
-@@ -4210,7 +4282,7 @@ case '2000': // Unbefestigt
+@@ -4212,7 +4284,7 @@ case '2000': // Unbefestigt
  
  // bestimme FunctionalRoadClass
  def functionalClass
@@ -905,7 +920,7 @@ index 8ff8b2a..b3745d3 100644
  case '5211': // Hauptwirtschaftsweg
  	functionalClass = 'seventhClass'
  	break
-@@ -4221,7 +4293,7 @@ case '5212': // Wirtschaftsweg
+@@ -4223,7 +4295,7 @@ case '5212': // Wirtschaftsweg
  
  //bestimme AccessRestriction
  def accessRestriction
@@ -914,7 +929,7 @@ index 8ff8b2a..b3745d3 100644
  case '2000': // Eingeschränkt befahrbar
  	accessRestriction = 'seasonal'
  	break
-@@ -4239,9 +4311,9 @@ else if (_source.p.fahrtrichtung.value().toString() == 'false') {
+@@ -4241,9 +4313,9 @@ else if (_source.p.fahrtrichtung.value().toString() == 'false') {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -926,7 +941,7 @@ index 8ff8b2a..b3745d3 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -4398,7 +4470,7 @@ withTransformationContext {
+@@ -4400,7 +4472,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit linienartigen Geometrien behandeln
@@ -935,7 +950,7 @@ index 8ff8b2a..b3745d3 100644
  
  // Ziel unterstützt keine MultiLineStrings
  def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: false)
-@@ -4408,7 +4480,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
+@@ -4410,7 +4482,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -944,7 +959,7 @@ index 8ff8b2a..b3745d3 100644
  
  // bestimme FormOfWay
  def formOfWay
-@@ -4425,7 +4497,7 @@ case '1103': // Fußweg
+@@ -4427,7 +4499,7 @@ case '1103': // Fußweg
  
  // bestimme RoadSurfaceCategory
  def surfaceCategory
@@ -953,7 +968,7 @@ index 8ff8b2a..b3745d3 100644
  case '1000': // Befestigt
  	surfaceCategory = 'paved'
  	break
-@@ -4440,9 +4512,9 @@ def functionalClass = 'ninthClass'
+@@ -4442,9 +4514,9 @@ def functionalClass = 'ninthClass'
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -965,15 +980,15 @@ index 8ff8b2a..b3745d3 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -4804,36 +4876,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -4806,36 +4878,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
              </property>
          </target>
      </cell>
 -    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C3296f18d-e980-40cf-a9f3-9e5187ecf16a" priority="normal">
 -        <target name="result">
 -            <property>
--                <type name="RoadLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <type name="RoadLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/5.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
 -                <child name="href" ns="http://www.w3.org/1999/xlink"/>
 -            </property>
 -        </target>
@@ -987,8 +1002,8 @@ index 8ff8b2a..b3745d3 100644
 -    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Ca2c2e18b-a4f7-4f75-8f33-c9f97ac16b08" priority="normal">
 -        <target name="result">
 -            <property>
--                <type name="RoadLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <type name="RoadLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/5.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
 -                <child name="href" ns="http://www.w3.org/1999/xlink"/>
 -            </property>
 -        </target>
@@ -1002,7 +1017,7 @@ index 8ff8b2a..b3745d3 100644
      <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cc8dfcac2-f330-4946-b4d6-8e1a87136c04" priority="normal">
          <target name="result">
              <property>
-@@ -4916,7 +4958,7 @@ withTransformationContext {&#13;
+@@ -4918,7 +4960,7 @@ withTransformationContext {&#13;
  	collect = _.context.collector(it)&#13;
  }&#13;
  &#13;
@@ -1011,7 +1026,7 @@ index 8ff8b2a..b3745d3 100644
  &#13;
  _target {&#13;
  }&#13;
-@@ -5032,14 +5074,14 @@ withTransformationContext {
+@@ -5034,14 +5076,14 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -1028,7 +1043,7 @@ index 8ff8b2a..b3745d3 100644
  case '5360': // Busbahnhof
  	serviceType = 'busStation'
  	break
-@@ -5048,9 +5090,9 @@ case '5360': // Busbahnhof
+@@ -5050,9 +5092,9 @@ case '5360': // Busbahnhof
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -1040,7 +1055,7 @@ index 8ff8b2a..b3745d3 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -5183,14 +5225,14 @@ withTransformationContext {
+@@ -5185,14 +5227,14 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -1057,7 +1072,7 @@ index 8ff8b2a..b3745d3 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -5205,9 +5247,9 @@ case '8000': // Erweiterung, Neuansiedlung
+@@ -5207,9 +5249,9 @@ case '8000': // Erweiterung, Neuansiedlung
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -1069,47 +1084,45 @@ index 8ff8b2a..b3745d3 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -5489,31 +5531,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -5491,14 +5533,13 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
              </core:message>
          </annotation>
      </cell>
 -    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C99266668-af5a-41d1-8c0f-761ef6877469_C2676fc94-d50d-4c45-b5b1-e4301a9cfe4a" priority="normal">
 -        <source name="lagebezeichnung">
--            <property>
++    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C29af463b-32e7-4faf-9c91-7d222cbc6030" priority="normal">
++        <source name="spelling">
+             <property>
 -                <type name="AX_PlatzType" ns="http://www.adv-online.de/namespaces/adv/gid/7.1">
 -                    <condition lang="ECQL">funktion = '5320' or funktion = '5330' or funktion = '5310' or funktion = '5360'</condition>
--                </type>
++                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:public">
++                    <condition lang="ECQL">funktion = 1200</condition>
+                 </type>
 -                <child name="name" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
 -                <child name="AX_Lagebezeichnung" ns="http://www.adv-online.de/namespaces/adv/gid/7.1"/>
--            </property>
--        </source>
--        <target>
--            <property>
--                <type name="RoadServiceAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
--                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
--            </property>
--        </target>
--        <annotation type="message">
--            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
--                <core:content>
++                <child name="name"/>
+             </property>
+         </source>
+         <target>
+@@ -5511,18 +5552,46 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+         <annotation type="message">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                 <core:content>
 -                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/7.1/AX_PlatzType/name/AX_Lagebezeichnung found</core:text>
--                </core:content>
--            </core:message>
--        </annotation>
--    </cell>
-     <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C29af463b-32e7-4faf-9c91-7d222cbc6030" priority="normal">
-         <source name="spelling">
-             <property>
-@@ -5538,8 +5555,60 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
++                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
+                 </core:content>
              </core:message>
          </annotation>
      </cell>
--    <cell relation="custom:alignment:adv.geometry.simplefeature" id="C073255ea-ac1a-4066-965a-7aa87cc9babc" priority="normal">
--        <source name="geometrie">
+-    <cell relation="custom:alignment:adv.inspire.GeographicalName.simple" id="C29af463b-32e7-4faf-9c91-7d222cbc6030" priority="normal">
+-        <source name="spelling">
 +    <cell relation="custom:alignment:adv.inspire.AX_Lagebezeichnung.GeographicalName" id="C99266668-af5a-41d1-8c0f-761ef6877469_C2676fc94-d50d-4c45-b5b1-e4301a9cfe4a" priority="normal">
 +        <source name="lage_gemeinde">
-+            <property>
+             <property>
+-                <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:public">
+-                    <condition lang="ECQL">funktion = 1200</condition>
+-                </type>
+-                <child name="name"/>
 +                <type name="ax_platz" ns="jdbc:postgresql:testbed:public"/>
 +                <child name="gemeinde"/>
 +            </property>
@@ -1142,37 +1155,27 @@ index 8ff8b2a..b3745d3 100644
 +            <property>
 +                <type name="ax_platz" ns="jdbc:postgresql:testbed:public"/>
 +                <child name="unverschluesselt"/>
-+            </property>
-+        </source>
-+        <target>
-+            <property>
-+                <type name="RoadServiceAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
-+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-+                <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
-+            </property>
-+        </target>
-+        <annotation type="message">
-+            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-+                <core:content>
+             </property>
+         </source>
+         <target>
+@@ -5535,7 +5604,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+         <annotation type="message">
+             <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
+                 <core:content>
+-                    <core:text xml:space="preserve">Filter condition may not be valid because the entity it is applied to has been replaced</core:text>
 +                    <core:text xml:space="preserve">No match for entity [type] http://www.adv-online.de/namespaces/adv/gid/7.1/AX_PlatzType/name/AX_Lagebezeichnung found</core:text>
-+                </core:content>
-+            </core:message>
-+        </annotation>
-+    </cell>
-+    <cell relation="custom:alignment:adv.geometry.simplefeature" id="C073255ea-ac1a-4066-965a-7aa87cc9babc" priority="normal">
-+        <source name="geometrie">
-             <property>
-                 <type name="ax_flaechebesondererfunktionalerpraegung" ns="jdbc:postgresql:testbed:public">
-                     <condition lang="ECQL">funktion = 1200</condition>
-@@ -5748,21 +5817,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+                 </core:content>
+             </core:message>
+         </annotation>
+@@ -5750,21 +5819,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
              </core:message>
          </annotation>
      </cell>
 -    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C2676fc94-d50d-4c45-b5b1-e4301a9cfe4a" priority="normal">
 -        <target name="result">
 -            <property>
--                <type name="RoadServiceAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <type name="RoadServiceAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/5.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
 -                <child name="href" ns="http://www.w3.org/1999/xlink"/>
 -            </property>
 -        </target>
@@ -1186,7 +1189,7 @@ index 8ff8b2a..b3745d3 100644
      <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C2f3a385b-d4d3-4a1e-9999-296f10a58386" priority="normal">
          <target name="result">
              <property>
-@@ -6540,32 +6594,42 @@ withTransformationContext {
+@@ -6542,32 +6596,42 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -1250,7 +1253,7 @@ index 8ff8b2a..b3745d3 100644
  					}
  				}
  			}
-@@ -6671,10 +6735,10 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
+@@ -6673,10 +6737,10 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. `Roa
  // Fahrbahnachsen werden präferiert als RoadLink für
  // Strassen verwendet, alternativ verwende Strassenachsen
  
@@ -1264,7 +1267,7 @@ index 8ff8b2a..b3745d3 100644
  if (!hatFahrbahnachse &amp;&amp; !hatStrassenachse) {
  	_log.warn("Road: Strasse $strasseId hat weder Fahrbahnachsen noch Strassenachsen")
  	throw new NoResultException('Kann kein Road-Objekt ohne RoadLinks erstellen')
-@@ -6684,16 +6748,16 @@ if (!hatFahrbahnachse &amp;&amp; !hatStrassenachse) {
+@@ -6686,16 +6750,16 @@ if (!hatFahrbahnachse &amp;&amp; !hatStrassenachse) {
  
  _target {
  	if (hatFahrbahnachse) {
@@ -1285,7 +1288,7 @@ index 8ff8b2a..b3745d3 100644
  			}
  		}
  	}
-@@ -6740,7 +6804,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
+@@ -6742,7 +6806,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
          </target>
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
@@ -1294,7 +1297,7 @@ index 8ff8b2a..b3745d3 100644
  
  _target {
  }
-@@ -6780,7 +6844,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
+@@ -6782,7 +6846,7 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // nur Objekt mit linienartigen Geometrien behandeln
  // welche einen RoadLink repräsentieren
@@ -1303,7 +1306,7 @@ index 8ff8b2a..b3745d3 100644
  
  // RoadLinks werden aus den individuellen Geometrien gebildet
  def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: false)
-@@ -6790,7 +6854,7 @@ if (curves) {
+@@ -6792,7 +6856,7 @@ if (curves) {
  	// vorhanden sind (andernfalls wird es eine RoadArea)
  
  	// Identifier des Quell-Objekts
@@ -1312,15 +1315,15 @@ index 8ff8b2a..b3745d3 100644
  	
  	_target {
  		// Verweis auf individuelle RoadLinks erstellen
-@@ -7154,36 +7218,6 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
+@@ -7156,36 +7220,6 @@ Die erstellte `Road` wird dem Index von Netzwerk-Elementen hinzugefügt.</docume
              </core:message>
          </annotation>
      </cell>
 -    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C3d378c6d-c4c0-4bfe-9748-be28f5908f38" priority="normal">
 -        <target name="result">
 -            <property>
--                <type name="RoadType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <type name="RoadType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/5.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
 -                <child name="href" ns="http://www.w3.org/1999/xlink"/>
 -            </property>
 -        </target>
@@ -1334,8 +1337,8 @@ index 8ff8b2a..b3745d3 100644
 -    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C949d36a1-b1e9-4c1d-9fab-584d6ff7bee2" priority="normal">
 -        <target name="result">
 -            <property>
--                <type name="RoadType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <type name="RoadType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/5.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
 -                <child name="href" ns="http://www.w3.org/1999/xlink"/>
 -            </property>
 -        </target>
@@ -1349,52 +1352,52 @@ index 8ff8b2a..b3745d3 100644
      <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
          <target name="result">
              <property>
-@@ -7268,36 +7302,6 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+@@ -7270,36 +7304,6 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
              </core:message>
          </annotation>
      </cell>
 -    <cell relation="custom:alignment:adv.inspire.namespace" id="Cc2269463-2fe0-460d-883d-6da676dbb1bc_C3d378c6d-c4c0-4bfe-9748-be28f5908f38" priority="normal">
 -        <target>
 -            <property>
--                <type name="RoadType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
--                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
--                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <type name="RoadType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/5.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
 -            </property>
 -        </target>
 -    </cell>
 -    <cell relation="custom:alignment:adv.inspire.namespace" id="Cc2269463-2fe0-460d-883d-6da676dbb1bc_C949d36a1-b1e9-4c1d-9fab-584d6ff7bee2" priority="normal">
 -        <target>
 -            <property>
--                <type name="RoadType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
--                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
--                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <type name="RoadType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/5.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
 -            </property>
 -        </target>
 -    </cell>
 -    <cell relation="custom:alignment:adv.inspire.namespace" id="Cc2269463-2fe0-460d-883d-6da676dbb1bc_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
 -        <target>
 -            <property>
--                <type name="RoadType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
--                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
--                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+-                <type name="RoadType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/5.0"/>
+-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
 -            </property>
 -        </target>
 -    </cell>
      <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C1505c26d-f446-4fad-8d7f-bc3fd3448caf" priority="normal">
          <source name="var">
              <property>
-@@ -7405,26 +7409,6 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
+@@ -7407,26 +7411,6 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
              </core:message>
          </annotation>
      </cell>
 -    <cell relation="eu.esdihumboldt.hale.align.assign" id="C6da68b64-b734-429c-acd4-bd1fd5b68db1_C3d378c6d-c4c0-4bfe-9748-be28f5908f38" priority="normal">
 -        <target>
 -            <property>
--                <type name="RoadType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="post" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+-                <type name="RoadType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/5.0"/>
+-                <child name="post" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
 -                <child name="nilReason"/>
 -            </property>
 -        </target>
@@ -1403,8 +1406,8 @@ index 8ff8b2a..b3745d3 100644
 -    <cell relation="eu.esdihumboldt.hale.align.assign" id="C6da68b64-b734-429c-acd4-bd1fd5b68db1_C949d36a1-b1e9-4c1d-9fab-584d6ff7bee2" priority="normal">
 -        <target>
 -            <property>
--                <type name="RoadType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/4.0"/>
--                <child name="post" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+-                <type name="RoadType" ns="http://inspire.ec.europa.eu/schemas/tn-ro/5.0"/>
+-                <child name="post" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
 -                <child name="nilReason"/>
 -            </property>
 -        </target>
@@ -1413,7 +1416,7 @@ index 8ff8b2a..b3745d3 100644
      <cell relation="eu.esdihumboldt.hale.align.assign" id="C6da68b64-b734-429c-acd4-bd1fd5b68db1_Ca487d3fe-c4c0-4b2e-9a46-937483bda3c3" priority="normal">
          <target>
              <property>
-@@ -7630,11 +7614,16 @@ withTransformationContext {
+@@ -7632,11 +7616,16 @@ withTransformationContext {
  	collector = _.context.collector(it)
  }
  
@@ -1434,7 +1437,7 @@ index 8ff8b2a..b3745d3 100644
  		}
  	}
  }
-@@ -7849,6 +7838,8 @@ withTransformationContext {
+@@ -7852,6 +7841,8 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -1443,18 +1446,13 @@ index 8ff8b2a..b3745d3 100644
  // Erstelle ein VerticalPosition-Objekt für jeden vorkommenden Wert
  //
  // Inhalt der hier gesetzt wird sind die Identifier und die Verknüpfungen
-@@ -7857,25 +7848,34 @@ collect.verticalPosition.consume { key, values -&gt;
+@@ -7860,27 +7851,36 @@ collect.verticalPosition.consume { key, values -&gt;
  	def _id = 'VerticalPosition_' + _project.vars.THEME_DISTINGUISHER + '_' + key
  	def _ns = _project.vars.INSPIRE_NAMESPACE
  	
 -	_target {
--		verticalPosition( key )
--		id( _id )
--		inspireId {
--			Identifier {
--				namespace( _ns )
--				localId( _id )
--			}
+-		verticalPosition {
+-			href( 'http://inspire.ec.europa.eu/codelist/VerticalPositionValue/' + key )
 +	def valueGroups = _refLimit ? values.collate(_refLimit as int) : [values]
 +	def i = 1		
 +	valueGroups.each { valueGroup -&gt;
@@ -1463,6 +1461,13 @@ index 8ff8b2a..b3745d3 100644
 +			// Gruppennummer anhängen, falls es mehr als eine Gruppe gibt
 +			_id2 += '_' + i++
  		}
+-		id( _id )
+-		inspireId {
+-			Identifier {
+-				namespace( _ns )
+-				localId( _id )
+-			}
+-		}
 -		identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
 -			codeSpace( 'http://inspire.ec.europa.eu/ids' )
 -		}
@@ -1473,30 +1478,32 @@ index 8ff8b2a..b3745d3 100644
 -				NetworkReference {
 -					element {
 -						href( "#$linkId" )
-+		_target {
-+			verticalPosition( key )
-+			id( _id2 )
-+			inspireId {
-+				Identifier {
-+					namespace( _ns )
-+					localId( _id2 )
-+				}
-+			}
-+			identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id2 : _id2 ) {
-+				codeSpace( 'http://inspire.ec.europa.eu/ids' )
-+			}
-+			
-+			// Referenz zu gesammelten Netzwerk-Elementen mit dieser Eigenschaft
-+			valueGroup.each { linkId -&gt;
-+				networkRef {
-+					NetworkReference {
-+						element {
-+							href( "#$linkId" )
-+						}
++	    _target {
++	    	verticalPosition {
++	    		href( 'http://inspire.ec.europa.eu/codelist/VerticalPositionValue/' + key )
++	    	}
++            id( _id2 )
++            inspireId {
++                Identifier {
++                    namespace( _ns )
++                    localId( _id2 )
++                }
++            }
++            identifier( _ns ? (_ns.endsWith('/') ? _ns : _ns + '/') + _id : _id ) {
++                codeSpace( 'http://inspire.ec.europa.eu/ids' )
++            }
++            
++            // Referenz zu gesammelten Netzwerk-Elementen mit dieser Eigenschaft
++            valueGroup.each { linkId -&gt;
++                networkRef {
++                    NetworkReference {
++                        element {
++                            href( "#$linkId" )
++                        }
  					}
  				}
  			}
-@@ -7907,138 +7907,23 @@ collect.verticalPosition.consume { key, values -&gt;
+@@ -7912,138 +7912,23 @@ collect.verticalPosition.consume { key, values -&gt;
          <parameter value="other:unpopulated" name="value"/>
          <documentation>Diese Information ist im 3A-Modell nicht vorhanden.</documentation>
      </cell>
@@ -1635,7 +1642,7 @@ index 8ff8b2a..b3745d3 100644
      <modifier cell="C87845354-a68e-4c9b-98a0-8d05883d4e0d">
          <disable-for parent="C2581bae5-bd09-416c-948e-bcb8b5835ca3"/>
          <disable-for parent="C2827fa08-a3dd-4539-83de-413c6b922f47"/>
-@@ -8047,72 +7932,22 @@ collect.verticalPosition.consume { key, values -&gt;
+@@ -8052,72 +7937,22 @@ collect.verticalPosition.consume { key, values -&gt;
          <disable-for parent="Ca30ad72d-b136-4147-b4a6-21e3a41ac5fd"/>
          <disable-for parent="C7167685d-1927-4e65-82f3-b01258f955b4"/>
      </modifier>
