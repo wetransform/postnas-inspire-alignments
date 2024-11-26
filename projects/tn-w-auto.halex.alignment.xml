@@ -845,7 +845,7 @@ Diese Information wird herangezogen um entsprechend für REO-Objekte über die B
         </source>
         <target>
             <class>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -992,7 +992,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <class>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -1140,8 +1140,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -1165,8 +1165,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -1190,8 +1190,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -1215,8 +1215,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -1240,8 +1240,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -1264,8 +1264,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -1280,8 +1280,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C56de7b41-922d-412e-ba68-2586fd6f8223" priority="normal">
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -1298,8 +1298,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="Point" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1332,8 +1332,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="Point" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1366,7 +1366,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1389,7 +1389,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1412,7 +1412,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1435,7 +1435,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1450,8 +1450,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C2a56c91e-e51c-4d0e-b793-3eeddd2db607" priority="normal">
         <target name="result">
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -1465,8 +1465,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cdd4f2102-ce96-4efe-9d55-97e4e2b3a52c" priority="normal">
         <target name="result">
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -1488,10 +1488,10 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </source>
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -1513,10 +1513,10 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </source>
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -1530,18 +1530,18 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.namespace" id="C45119567-9c6b-4b27-83d2-d47b459a0503" priority="normal">
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C9f3edea5-679e-4748-a581-0c2526826313" priority="normal">
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -1550,8 +1550,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C3788f6bf-9e32-4613-b5fd-e3739cca86c4" priority="normal">
         <target>
             <property>
-                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="BeaconType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -1560,7 +1560,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="C1eb2d011-34d1-4077-8388-f7fbdb1659b9" priority="low">
         <target>
             <class>
-                <type name="ConditionOfFacilityType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="ConditionOfFacilityType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -1619,8 +1619,8 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. *Tra
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C6563043b-57b7-4264-b3ff-6264b547216f_C1eb2d011-34d1-4077-8388-f7fbdb1659b9" priority="normal">
         <target>
             <property>
-                <type name="ConditionOfFacilityType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="ConditionOfFacilityType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -1630,8 +1630,8 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. *Tra
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C9fbdcf9a-e35a-4f33-b915-77155350de27_C1eb2d011-34d1-4077-8388-f7fbdb1659b9" priority="normal">
         <target>
             <property>
-                <type name="ConditionOfFacilityType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="ConditionOfFacilityType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -1641,7 +1641,7 @@ Es werden Referenzen (`NetworkReference`) zu allen Netzwerk-Elementen (z.B. *Tra
     <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="C487226a2-f5d6-4527-82d4-3417f4e479bd" priority="low">
         <target>
             <class>
-                <type name="ConditionOfWaterFacilityType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="ConditionOfWaterFacilityType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -1700,8 +1700,8 @@ Es werden Referenzen (NetworkReference) zu allen Netzwerk-Elementen (z.B. `Water
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C6563043b-57b7-4264-b3ff-6264b547216f_C487226a2-f5d6-4527-82d4-3417f4e479bd" priority="normal">
         <target>
             <property>
-                <type name="ConditionOfWaterFacilityType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="ConditionOfWaterFacilityType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -1711,8 +1711,8 @@ Es werden Referenzen (NetworkReference) zu allen Netzwerk-Elementen (z.B. `Water
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C9fbdcf9a-e35a-4f33-b915-77155350de27_C487226a2-f5d6-4527-82d4-3417f4e479bd" priority="normal">
         <target>
             <property>
-                <type name="ConditionOfWaterFacilityType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="ConditionOfWaterFacilityType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -1727,7 +1727,7 @@ Es werden Referenzen (NetworkReference) zu allen Netzwerk-Elementen (z.B. `Water
         </source>
         <target>
             <class>
-                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -1907,8 +1907,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -1923,8 +1923,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -1939,8 +1939,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -1948,8 +1948,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C04e5f29a-56cb-4f72-9f4c-92ac149ef366" priority="normal">
         <target>
             <property>
-                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -1964,7 +1964,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1978,7 +1978,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1986,8 +1986,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C5a4972ce-eb0a-48ef-8a40-debf02cf39a3" priority="normal">
         <target name="result">
             <property>
-                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -2007,28 +2007,28 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </source>
         <target>
             <property>
-                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.namespace" id="C1cb559a6-6235-48e7-83aa-6abc0b03e122" priority="normal">
         <target>
             <property>
-                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cecd03bc3-487d-471f-807d-dd28c7b141d2" priority="normal">
         <target>
             <property>
-                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -2037,8 +2037,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C7ccb8846-94d2-4891-a6dc-1430b128a95e" priority="normal">
         <target>
             <property>
-                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="FerryCrossingType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -2047,7 +2047,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="C4c69f1a6-6ccc-45ab-a446-898990d17441" priority="low">
         <target>
             <class>
-                <type name="FerryUseType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="FerryUseType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -2106,8 +2106,8 @@ Es werden Referenzen (NetworkReference) zu allen `FerryCrossing`s erstellt, welc
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C6563043b-57b7-4264-b3ff-6264b547216f_C4c69f1a6-6ccc-45ab-a446-898990d17441" priority="normal">
         <target>
             <property>
-                <type name="FerryUseType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="FerryUseType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -2117,8 +2117,8 @@ Es werden Referenzen (NetworkReference) zu allen `FerryCrossing`s erstellt, welc
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C9fbdcf9a-e35a-4f33-b915-77155350de27_C4c69f1a6-6ccc-45ab-a446-898990d17441" priority="normal">
         <target>
             <property>
-                <type name="FerryUseType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="FerryUseType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -2135,7 +2135,7 @@ Es werden Referenzen (NetworkReference) zu allen `FerryCrossing`s erstellt, welc
         </source>
         <target>
             <class>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -2203,7 +2203,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
         </source>
         <target>
             <class>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -2273,8 +2273,8 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
         </source>
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2298,8 +2298,8 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
         </source>
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2323,8 +2323,8 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
         </source>
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2348,8 +2348,8 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
         </source>
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2373,8 +2373,8 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
         </source>
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -2397,8 +2397,8 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
         </source>
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -2413,8 +2413,8 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cdb5be5d3-b7df-4ae2-9f9b-6035f22de40c" priority="normal">
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -2431,7 +2431,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
         </source>
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2454,7 +2454,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
         </source>
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2477,7 +2477,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
         </source>
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2500,7 +2500,7 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
         </source>
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2515,8 +2515,8 @@ Der erstellte `InlandWaterway` wird dem Index von Netzwerk-Elementen hinzugefüg
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C3d72272e-349b-469e-96d4-b1487aa1e681" priority="normal">
         <target name="result">
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -2530,8 +2530,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cf1f2f7bd-bb34-484b-b673-8b7b532d0f53" priority="normal">
         <target name="result">
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -2553,10 +2553,10 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </source>
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -2578,10 +2578,10 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </source>
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -2595,18 +2595,18 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.namespace" id="Cd7f7fddc-a910-456c-9479-d49e16605565" priority="normal">
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cec2abf19-bee8-4bbf-96c6-773a4d8639a0" priority="normal">
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -2615,8 +2615,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C726f07cf-2245-447f-89da-da7f34278da7" priority="normal">
         <target>
             <property>
-                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="InlandWaterwayType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -2632,7 +2632,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </source>
         <target>
             <class>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -2780,8 +2780,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2805,8 +2805,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2830,8 +2830,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -2846,8 +2846,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C4535f8cf-fb78-45c3-a9ad-717eddf9bbc8" priority="normal">
         <target>
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -2864,8 +2864,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="Point" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2897,7 +2897,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2920,7 +2920,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2935,8 +2935,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Ce0ed4595-aaa8-4966-bf5c-2f725fcb2985" priority="normal">
         <target name="result">
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -2958,10 +2958,10 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </source>
         <target>
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -2975,10 +2975,10 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.namespace" id="C8080735b-984f-4828-9026-3d4fdf15c401" priority="normal">
         <target>
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
@@ -2993,8 +2993,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </source>
         <target>
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="location" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="location" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -3019,8 +3019,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </source>
         <target>
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="location" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="location" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="uom"/>
             </property>
         </target>
@@ -3035,8 +3035,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C1b5231df-4a28-4162-a8ee-04202c8bb57c" priority="normal">
         <target>
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="route" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="route" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -3045,8 +3045,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C38821b7f-d278-4842-b742-50715029692e" priority="normal">
         <target>
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -3055,8 +3055,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C8f6d5063-61d0-49fc-b5df-f71cd1260ddf" priority="normal">
         <target>
             <property>
-                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -3072,7 +3072,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </source>
         <target>
             <class>
-                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -3228,8 +3228,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -3253,8 +3253,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -3270,8 +3270,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cd5a302fa-15cb-4ff3-82f8-ba1c6370065b" priority="normal">
         <target>
             <property>
-                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -3288,8 +3288,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -3311,7 +3311,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3334,7 +3334,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3349,8 +3349,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C31c21664-3fcc-43ea-89d3-d5485904465c" priority="normal">
         <target name="result">
             <property>
-                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -3372,10 +3372,10 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </source>
         <target>
             <property>
-                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -3389,18 +3389,18 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="custom:alignment:adv.inspire.namespace" id="C468ca902-89be-474c-94f9-af2454c7586e" priority="normal">
         <target>
             <property>
-                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C1fb8ae9d-135a-45bc-8a53-e7ac1af19590" priority="normal">
         <target>
             <property>
-                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -3409,8 +3409,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C58079db3-f86b-46ff-9958-9864eb201aa2" priority="normal">
         <target>
             <property>
-                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="PortAreaType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -3419,7 +3419,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="C376c9fef-ac45-4e2c-9941-651740ba7400" priority="lowest">
         <target>
             <class>
-                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -3448,8 +3448,8 @@ Zuvor wurde beim Erstellen jedes Netzwerk-Elements dessen GML id in einem Index 
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C60a849e5-b891-4866-8022-0cd07e0f01f4" priority="normal">
         <target>
             <property>
-                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="language" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
@@ -3459,8 +3459,8 @@ Zuvor wurde beim Erstellen jedes Netzwerk-Elements dessen GML id in einem Index 
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C8bd6e468-105d-4337-a3e7-f7355ed60664" priority="normal">
         <target>
             <property>
-                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="nameStatus" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
@@ -3471,8 +3471,8 @@ Zuvor wurde beim Erstellen jedes Netzwerk-Elements dessen GML id in einem Index 
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C56e9b1b9-1ade-49d5-9f53-37423fe9d061" priority="normal">
         <target>
             <property>
-                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="nativeness" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
@@ -3483,8 +3483,8 @@ Zuvor wurde beim Erstellen jedes Netzwerk-Elements dessen GML id in einem Index 
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cf2ce1338-3fce-4a09-807d-09c3e76262d0" priority="normal">
         <target>
             <property>
-                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="pronunciation" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="nilReason"/>
@@ -3495,8 +3495,8 @@ Zuvor wurde beim Erstellen jedes Netzwerk-Elements dessen GML id in einem Index 
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cd1613f96-fd11-4e0b-b093-d38ce17cb580" priority="normal">
         <target name="result">
             <property>
-                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="sourceOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
@@ -3520,8 +3520,8 @@ else {
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cd4048617-c86f-4863-99b5-3e9f0635a8f5" priority="normal">
         <target>
             <property>
-                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -3533,8 +3533,8 @@ else {
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C76fb8de5-dd5d-47c3-824e-3c37906a2c89" priority="normal">
         <target>
             <property>
-                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="spelling" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
                 <child name="SpellingOfName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -3546,7 +3546,7 @@ else {
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C79bec27b-cdca-459d-9ecc-540aeca29d4b" priority="normal">
         <target name="result">
             <property>
-                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3561,7 +3561,7 @@ Die Vorgabe kann über eine Projekt-Variable überschrieben werden.</documentati
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cad28e1b9-331b-4b75-838f-94b202fdba1f" priority="normal">
         <target name="result">
             <property>
-                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3596,7 +3596,7 @@ Beide Vorgaben können über eine Projekt-Variable überschrieben werden.</docum
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cc9255943-592d-4e33-b874-03846d8c9a3c" priority="normal">
         <target>
             <property>
-                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
                 <child name="codeSpace"/>
             </property>
@@ -3606,10 +3606,10 @@ Beide Vorgaben können über eine Projekt-Variable überschrieben werden.</docum
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Caddb8db5-f486-4664-a6b8-edd9eb936efe" priority="normal">
         <target>
             <property>
-                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <parameter value="{{project:NETWORK_ID}}" name="value"/>
@@ -3620,26 +3620,27 @@ Die Vorgabe kann über eine Projekt-Variable überschrieben werden.</documentati
     <cell relation="custom:alignment:adv.inspire.namespace" id="C935f563e-2939-4fcc-aecc-8029498b746b" priority="normal">
         <target>
             <property>
-                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C6f9c3702-c3f2-44e4-b3ae-30c909310cb1" priority="normal">
         <target>
             <property>
-                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="typeOfTransport" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="TransportNetworkType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="typeOfTransport" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
-        <parameter value="water" name="value"/>
+        <parameter value="http://inspire.ec.europa.eu/codelist/TransportTypeValue/water" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="C00cccf8c-b815-4fa9-b89c-6f37d12ae435" priority="lowest">
         <target>
             <class>
-                <type name="VerticalPositionType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="VerticalPositionType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -3658,7 +3659,9 @@ collect.verticalPosition.consume { key, values -&gt;
 	def _ns = _project.vars.INSPIRE_NAMESPACE
 	
 	_target {
-		verticalPosition( key )
+		verticalPosition {
+			href( 'http://inspire.ec.europa.eu/codelist/VerticalPositionValue/' + key )
+		}
 		id( _id )
 		inspireId {
 			Identifier {
@@ -3688,8 +3691,8 @@ collect.verticalPosition.consume { key, values -&gt;
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C6563043b-57b7-4264-b3ff-6264b547216f_C00cccf8c-b815-4fa9-b89c-6f37d12ae435" priority="normal">
         <target>
             <property>
-                <type name="VerticalPositionType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="VerticalPositionType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -3699,8 +3702,8 @@ collect.verticalPosition.consume { key, values -&gt;
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C9fbdcf9a-e35a-4f33-b915-77155350de27_C00cccf8c-b815-4fa9-b89c-6f37d12ae435" priority="normal">
         <target>
             <property>
-                <type name="VerticalPositionType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
-                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="VerticalPositionType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
+                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -3722,7 +3725,7 @@ collect.verticalPosition.consume { key, values -&gt;
         </source>
         <target>
             <class>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
             </class>
         </target>
         <complexParameter name="join">
@@ -3929,7 +3932,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <class>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
             </class>
         </target>
         <complexParameter name="join">
@@ -4105,7 +4108,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <class>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -4243,7 +4246,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <class>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -4396,8 +4399,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -4412,8 +4415,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -4428,8 +4431,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -4444,8 +4447,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
     </cell>
@@ -4458,8 +4461,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
     </cell>
@@ -4472,8 +4475,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
     </cell>
@@ -4486,8 +4489,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -4502,8 +4505,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -4518,8 +4521,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -4528,8 +4531,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Ce78abcd4-4f1e-4e80-9601-61885dc4185e" priority="normal">
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="fictitious" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="fictitious" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="value"/>
@@ -4543,8 +4546,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -4558,8 +4561,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -4567,8 +4570,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C60f845e8-bb92-47e0-b0f7-8010551b7d79" priority="normal">
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -4583,7 +4586,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -4597,7 +4600,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -4611,7 +4614,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -4625,7 +4628,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -4639,7 +4642,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -4653,7 +4656,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -4661,8 +4664,8 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch 
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C2eb8a251-1062-494b-808f-c7a5771b0b57" priority="normal">
         <target name="result">
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -4676,8 +4679,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C4ce2dafa-0c09-46d1-b006-f8b9d3156e12" priority="normal">
         <target name="result">
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -4691,8 +4694,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cbd3d5432-25dc-4994-8c8d-d7680a5859e0" priority="normal">
         <target name="result">
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -4706,8 +4709,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cc3026039-7b92-4b52-aaa5-cc40b3749b65" priority="normal">
         <target name="result">
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -4727,10 +4730,10 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
@@ -4743,10 +4746,10 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
@@ -4759,28 +4762,28 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
         </source>
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.namespace" id="C5c0ab4cb-bfaf-4e08-886e-f42c5d121cd3" priority="normal">
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Ca38a7f6e-9aef-4804-b3a8-703f720e4aee" priority="normal">
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -4789,8 +4792,8 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cf578548d-b5b6-4f90-9d89-59fee7bbf1e4" priority="normal">
         <target>
             <property>
-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
-                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
