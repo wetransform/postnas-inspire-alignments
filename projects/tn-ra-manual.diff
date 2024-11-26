@@ -1,5 +1,5 @@
 diff --git a/projects/tn-ra-auto.halex.alignment.xml b/projects/tn-ra-manual.halex.alignment.xml
-index 8e023f3..c16270a 100644
+index 052c49b..9330786 100644
 --- a/projects/tn-ra-auto.halex.alignment.xml
 +++ b/projects/tn-ra-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -64,7 +64,7 @@ index 8e023f3..c16270a 100644
  
  withTransformationContext {
    def collect = _.context.collector(it)
-@@ -1105,7 +1120,7 @@ withTransformationContext {
+@@ -1107,7 +1122,7 @@ withTransformationContext {
  	collect = _.context.collector(it)
  }
  
@@ -73,7 +73,7 @@ index 8e023f3..c16270a 100644
  
  _target {
  }
-@@ -1113,7 +1128,7 @@ _target {
+@@ -1115,7 +1130,7 @@ _target {
  // bestimme RailwayType(s)
  def railwayTypes = []
  _source.p.bahnkategorie.each { bkt -&gt;
@@ -82,7 +82,7 @@ index 8e023f3..c16270a 100644
  	case '1100': // Eisenbahn
  	case '1101': // Personenverkehr
  	case '1102': // Güterverkehr
-@@ -1145,7 +1160,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
+@@ -1147,7 +1162,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
  
  // bestimme ConditionOfFacility
  def conditionOfFacility = 'functional'
@@ -91,7 +91,7 @@ index 8e023f3..c16270a 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -1160,9 +1175,9 @@ case '8000': // Im Bau
+@@ -1162,9 +1177,9 @@ case '8000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -103,7 +103,7 @@ index 8e023f3..c16270a 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -1545,7 +1560,7 @@ _target {
+@@ -1547,7 +1562,7 @@ _target {
  // ID zum hinterlegen in Indizes bestimmen
  
  // alle Quell-IDs als Liste
@@ -112,7 +112,7 @@ index 8e023f3..c16270a 100644
  
  def _id
  
-@@ -1917,7 +1932,7 @@ _target {
+@@ -1919,7 +1934,7 @@ _target {
  
  // bestimme NominalTrackGauge
  def nominalTrackGauge
@@ -121,7 +121,7 @@ index 8e023f3..c16270a 100644
  case '1000': // Normalspur (Regelspur, Vollspur)
  	nominalTrackGauge = 'standard'
  	break
-@@ -1932,7 +1947,7 @@ case '3000': // Breitspur
+@@ -1934,7 +1949,7 @@ case '3000': // Breitspur
  // bestimme RailwayType(s)
  def railwayTypes = []
  _source.p.bahnkategorie.each { bkt -&gt;
@@ -130,7 +130,7 @@ index 8e023f3..c16270a 100644
  	case '1100': // Eisenbahn
  	case '1101': // Personenverkehr
  	case '1102': // Güterverkehr
-@@ -1964,7 +1979,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
+@@ -1966,7 +1981,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
  // bestimme RailwayUse(s)
  def railwayUses = []
  _source.p.bahnkategorie.each { bkt -&gt;
@@ -139,7 +139,7 @@ index 8e023f3..c16270a 100644
  	case '1100': // Eisenbahn
  	case '1300': // Seilbahn, Bergbahn
  	case '1302': // Standseilbahn
-@@ -1989,7 +2004,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
+@@ -1991,7 +2006,7 @@ _source.p.bahnkategorie.each { bkt -&gt;
  
  // bestimme NumberOfTracks
  def numberOfTracks
@@ -148,7 +148,7 @@ index 8e023f3..c16270a 100644
  case '1000': // Eingleisig
  	numberOfTracks = 1
  	break
-@@ -1999,11 +2014,11 @@ case '2000': // Zweigleisig
+@@ -2001,11 +2016,11 @@ case '2000': // Zweigleisig
  }
  
  // bestimme RailwayElectrification
@@ -162,7 +162,7 @@ index 8e023f3..c16270a 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -2015,9 +2030,9 @@ case '4000': // Im Bau
+@@ -2017,9 +2032,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -174,7 +174,7 @@ index 8e023f3..c16270a 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2067,7 +2082,7 @@ else {
+@@ -2069,7 +2084,7 @@ else {
  }
  
  // ID zum hinterlegen in Indizes
@@ -183,7 +183,7 @@ index 8e023f3..c16270a 100644
  def _id = "RailwayLink_${sourceId}"
  
  // Sammle ID für Netzwerk
-@@ -2236,7 +2251,7 @@ withTransformationContext {
+@@ -2238,7 +2253,7 @@ withTransformationContext {
  }
  
  // nur Objekt mit linienartigen Geometrien behandeln
@@ -192,7 +192,7 @@ index 8e023f3..c16270a 100644
  
  // Ziel unterstützt keine MultiLineStrings
  def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: false)
-@@ -2245,7 +2260,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
+@@ -2247,7 +2262,7 @@ def curves = _.geom.toSimpleGeometries(geometries: geometries, collections: fals
  // - Zuweisung der Geometrie auf Ebene von geometry zulassen
  _b.strictValueFlags = false
  
@@ -201,7 +201,7 @@ index 8e023f3..c16270a 100644
  
  // bestimme RailwayType
  def railwayType = 'suspendedRail'
-@@ -2253,9 +2268,9 @@ def railwayType = 'suspendedRail'
+@@ -2255,9 +2270,9 @@ def railwayType = 'suspendedRail'
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -213,7 +213,7 @@ index 8e023f3..c16270a 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -2676,13 +2691,13 @@ withTransformationContext {
+@@ -2678,13 +2693,13 @@ withTransformationContext {
  }
  
  // Objekte mit flächenartigen Geometrien behandeln
@@ -229,7 +229,7 @@ index 8e023f3..c16270a 100644
  pointGeometries.each { geo -&gt;
  	// Radius von 40.1 m führt zu gefordertem Flächeninhalt von &gt;=0,5 ha. Der sich mathematisch ergebende Radius
  	// von ~39.9 m reicht aufgrund geometrischer Ungenauigkeiten nicht aus.
-@@ -2697,11 +2712,11 @@ def surfaces = _.geom.splitMulti(areaGeometries)
+@@ -2699,11 +2714,11 @@ def surfaces = _.geom.splitMulti(areaGeometries)
  _b.strictValueFlags = false
  
  // Identifier des Quell-Objekts
@@ -243,7 +243,7 @@ index 8e023f3..c16270a 100644
  case '2100': // Außer Betrieb, stillgelegt, verlassen
  	conditionOfFacility = 'disused'
  	break
-@@ -2713,9 +2728,9 @@ case '4000': // Im Bau
+@@ -2715,9 +2730,9 @@ case '4000': // Im Bau
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -255,7 +255,7 @@ index 8e023f3..c16270a 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -3483,37 +3498,13 @@ collect.verticalPosition.consume { key, values -&gt;
+@@ -3488,37 +3503,13 @@ collect.verticalPosition.consume { key, values -&gt;
          <parameter value="other:unpopulated" name="value"/>
          <documentation>Diese Information ist im 3A-Modell nicht vorhanden.</documentation>
      </cell>
