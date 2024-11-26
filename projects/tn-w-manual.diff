@@ -1,5 +1,5 @@
 diff --git a/projects/tn-w-auto.halex.alignment.xml b/projects/tn-w-manual.halex.alignment.xml
-index 0ad9b4b..a637c81 100644
+index bd9d662..48f2d6a 100644
 --- a/projects/tn-w-auto.halex.alignment.xml
 +++ b/projects/tn-w-manual.halex.alignment.xml
 @@ -66,7 +66,6 @@ Nur erfolgreich falls genau eine Simple Feature Geometrie gebildet werden kann.
@@ -185,7 +185,7 @@ index 0ad9b4b..a637c81 100644
 +    <cell relation="eu.esdihumboldt.hale.align.assign" id="C7a0e022a-cddb-48cf-ad3f-1190ce199055" priority="normal">
          <target>
              <property>
-                 <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/4.0"/>
+                 <type name="MarkerPostType" ns="http://inspire.ec.europa.eu/schemas/tn/5.0"/>
 @@ -3024,6 +3013,7 @@ Dazu wird die vorgegebene ID für das Netzwerk verwendet (Projekt-Variable).</do
                  <child name="uom"/>
              </property>
@@ -224,7 +224,7 @@ index 0ad9b4b..a637c81 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -3752,10 +3742,10 @@ collect.verticalPosition.consume { key, values -&gt;
+@@ -3755,10 +3745,10 @@ collect.verticalPosition.consume { key, values -&gt;
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quell-Objekts
@@ -237,7 +237,7 @@ index 0ad9b4b..a637c81 100644
  
  if (parentId) {
  	// nur falls ein Kanal verfügbar ist, der die entsprechenden Bedingungen erfüllt
-@@ -3768,7 +3758,7 @@ if (parentId) {
+@@ -3771,7 +3761,7 @@ if (parentId) {
  	
  	// bestimme ConditionOfFacility
  	def conditionOfFacility = 'functional'
@@ -246,7 +246,7 @@ index 0ad9b4b..a637c81 100644
  	case '2100': // Außer Betrieb, stillgelegt, verlassen
  		conditionOfFacility = 'disused'
  		break
-@@ -3791,9 +3781,9 @@ if (parentId) {
+@@ -3794,9 +3784,9 @@ if (parentId) {
  	/*
  	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  	 */
@@ -258,7 +258,7 @@ index 0ad9b4b..a637c81 100644
  		if (bwf) {
  			switch (bwf) {
  			// AX_BauwerkImVerkehrsbereich
-@@ -3959,10 +3949,10 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -3962,10 +3952,10 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quell-Objekts
@@ -271,7 +271,7 @@ index 0ad9b4b..a637c81 100644
  
  if (parentId) {
  	// nur falls ein Wasserlauf verfügbar ist, der die entsprechenden Bedingungen erfüllt
-@@ -3985,9 +3975,9 @@ if (parentId) {
+@@ -3988,9 +3978,9 @@ if (parentId) {
  	/*
  	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  	 */
@@ -283,7 +283,7 @@ index 0ad9b4b..a637c81 100644
  		if (bwf) {
  			switch (bwf) {
  			// AX_BauwerkImVerkehrsbereich
-@@ -4111,7 +4101,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -4114,7 +4104,7 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quellobjekts
@@ -292,7 +292,7 @@ index 0ad9b4b..a637c81 100644
  
  def _id = "WaterwayLink_$sourceId"
  	
-@@ -4128,9 +4118,9 @@ withTransformationContext {
+@@ -4131,9 +4121,9 @@ withTransformationContext {
  /*
   * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
   */
@@ -304,7 +304,7 @@ index 0ad9b4b..a637c81 100644
  	if (bwf) {
  		switch (bwf) {
  		// AX_BauwerkImVerkehrsbereich
-@@ -4249,9 +4239,11 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -4252,9 +4242,11 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
          <complexParameter name="script">
              <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
  // ID des Quellobjekts
@@ -318,7 +318,7 @@ index 0ad9b4b..a637c81 100644
  	// nur Objekte die durch Curve/LineString oder CompositeCurve dargestellt sind
  	
  	def _id = "WaterwayLink_$sourceId"
-@@ -4271,9 +4263,9 @@ if (_source.p.position.CompositeCurve.first() || _source.p.position.Curve.first(
+@@ -4274,9 +4266,9 @@ if (_source.p.position.CompositeCurve.first() || _source.p.position.Curve.first(
  	/*
  	 * Sammeln von Informationen bzgl. hatDirektUnten für VerticalPosition
  	 */
@@ -330,7 +330,7 @@ index 0ad9b4b..a637c81 100644
  		if (bwf) {
  			switch (bwf) {
  			// AX_BauwerkImVerkehrsbereich
-@@ -4329,8 +4321,7 @@ else {
+@@ -4332,8 +4324,7 @@ else {
  	// das ist die Vorgabe aus der Mapping-Tabelle - heißt das es können keine MultiCurves auftreten?
  	// zur Sicherheit - Warnung falls andere linienartige Geometrie gefunden
  	
@@ -340,15 +340,15 @@ index 0ad9b4b..a637c81 100644
  		_log.warn("AX_SchifffahrtslinieFaehrverkehr $sourceId enthält wider Erwarten linienartige Geometrie die nicht Curve/LineString/CompositeCurve ist, es wurde kein WaterwayLink gebildet")
  	}
  }
-@@ -4658,51 +4649,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
+@@ -4661,51 +4652,6 @@ Für alle anderen `bauwerksfunktion`en, Referenzen auf andere Objekte oder auch
              </property>
          </target>
      </cell>
 -    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C2eb8a251-1062-494b-808f-c7a5771b0b57" priority="normal">
 -        <target name="result">
 -            <property>
--                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
--                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
 -                <child name="href" ns="http://www.w3.org/1999/xlink"/>
 -            </property>
 -        </target>
@@ -362,8 +362,8 @@ index 0ad9b4b..a637c81 100644
 -    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_C4ce2dafa-0c09-46d1-b006-f8b9d3156e12" priority="normal">
 -        <target name="result">
 -            <property>
--                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
--                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
 -                <child name="href" ns="http://www.w3.org/1999/xlink"/>
 -            </property>
 -        </target>
@@ -377,8 +377,8 @@ index 0ad9b4b..a637c81 100644
 -    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C03716a0b-a2f7-4f4b-8d93-13d186c7af73_Cbd3d5432-25dc-4994-8c8d-d7680a5859e0" priority="normal">
 -        <target name="result">
 -            <property>
--                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/4.0"/>
--                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+-                <type name="WaterwayLinkType" ns="http://inspire.ec.europa.eu/schemas/tn-w/5.0"/>
+-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
 -                <child name="href" ns="http://www.w3.org/1999/xlink"/>
 -            </property>
 -        </target>
