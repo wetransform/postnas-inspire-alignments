@@ -770,7 +770,7 @@ Aktuell ist folgende Abbildung umgesetzt:
     <cell relation="eu.esdihumboldt.cst.functions.groovy.create" id="C67d8bf39-6e9d-4605-aefc-d8abeb246f75" priority="lowest">
         <target>
             <class>
-                <type name="NetworkType" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="NetworkType" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -795,7 +795,7 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C60e1f079-e706-4198-85bc-7ba947ec92e0" priority="normal">
         <target>
             <property>
-                <type name="NetworkType" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="NetworkType" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -816,7 +816,7 @@ _target {&#13;
         </source>
         <target>
             <class>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
             </class>
         </target>
         <complexParameter name="join">
@@ -866,7 +866,7 @@ _target {&#13;
         </source>
         <target>
             <class>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
             </class>
         </target>
         <complexParameter name="join">
@@ -909,7 +909,7 @@ _target {&#13;
         </source>
         <target>
             <class>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
             </class>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -923,7 +923,7 @@ _target {&#13;
         </source>
         <target>
             <class>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
             </class>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -940,8 +940,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -965,8 +965,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -988,8 +988,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -1004,8 +1004,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -1022,8 +1022,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -1045,8 +1045,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -1066,8 +1066,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
     </cell>
@@ -1080,8 +1080,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="centrelineGeometry" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
     </cell>
@@ -1096,8 +1096,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -1121,8 +1121,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -1144,8 +1144,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -1160,8 +1160,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -1170,8 +1170,8 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C457401dd-ec1f-4ee7-984f-c50c73c9a8c0" priority="lowest">
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="fictitious" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="fictitious" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="value"/>
@@ -1185,8 +1185,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="fictitious" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="fictitious" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <complexParameter name="lookupTable">
@@ -1214,8 +1214,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="flowDirection" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="flowDirection" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -1247,8 +1247,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="flowDirection" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="flowDirection" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -1278,8 +1278,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="flowDirection" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="flowDirection" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -1302,8 +1302,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="flowDirection" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="flowDirection" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -1320,8 +1320,8 @@ _target {&#13;
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C863128d2-fb28-4d47-ac92-85dfb42d0c60" priority="lowest">
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="flowDirection" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="flowDirection" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -1336,8 +1336,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0">
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0">
                     <context>0</context>
                 </child>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -1354,8 +1354,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0">
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0">
                     <context>0</context>
                 </child>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -1372,8 +1372,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0">
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0">
                     <context>0</context>
                 </child>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -1390,8 +1390,8 @@ _target {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0">
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0">
                     <context>0</context>
                 </child>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
@@ -1408,8 +1408,8 @@ _target {&#13;
         </source>
         <target name="result">
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0">
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0">
                     <context>1</context>
                 </child>
             </property>
@@ -1465,8 +1465,8 @@ if (regionalsprache) {&#13;
         </source>
         <target name="result">
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0">
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0">
                     <context>1</context>
                 </child>
             </property>
@@ -1522,8 +1522,8 @@ if (regionalsprache) {&#13;
         </source>
         <target name="result">
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0">
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0">
                     <context>1</context>
                 </child>
             </property>
@@ -1579,8 +1579,8 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -1595,8 +1595,8 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -1611,8 +1611,8 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -1627,8 +1627,8 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="geographicalName" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -1643,10 +1643,10 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
             </property>
         </target>
     </cell>
@@ -1659,10 +1659,10 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
             </property>
         </target>
     </cell>
@@ -1675,10 +1675,10 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
             </property>
         </target>
     </cell>
@@ -1691,10 +1691,10 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
             </property>
         </target>
     </cell>
@@ -1707,10 +1707,10 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
             </property>
         </target>
         <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
@@ -1724,10 +1724,10 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
             </property>
         </target>
         <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
@@ -1741,10 +1741,10 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
             </property>
         </target>
         <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
@@ -1758,10 +1758,10 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/hy/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="hydroId" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="HydroIdentifier" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/hy/5.0"/>
             </property>
         </target>
         <parameter value="{{project:INSPIRE_NAMESPACE}}" name="value"/>
@@ -1777,7 +1777,7 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1801,7 +1801,7 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1823,7 +1823,7 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1838,7 +1838,7 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1855,7 +1855,7 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1878,7 +1878,7 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1899,7 +1899,7 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1913,7 +1913,7 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1921,8 +1921,8 @@ if (regionalsprache) {&#13;
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -1931,8 +1931,8 @@ if (regionalsprache) {&#13;
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -1941,8 +1941,8 @@ if (regionalsprache) {&#13;
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_Cc4d2bf71-d9f7-4089-84fc-80ac610248a1" priority="normal">
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -1951,8 +1951,8 @@ if (regionalsprache) {&#13;
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_Ce45298d6-bb21-48c2-9f44-91b32411e0d0" priority="normal">
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -1969,10 +1969,10 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -1994,10 +1994,10 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -2017,10 +2017,10 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
@@ -2033,50 +2033,50 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.namespace" id="C3cf05bdc-15bc-4540-95d0-4a87b84eb9df_C28f30088-0b5f-4fa4-9aa0-d270e6b6bcfc" priority="normal">
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.namespace" id="C3cf05bdc-15bc-4540-95d0-4a87b84eb9df_C5030a27e-9231-41f2-b351-e3972d38c52e" priority="normal">
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.namespace" id="C3cf05bdc-15bc-4540-95d0-4a87b84eb9df_Cc4d2bf71-d9f7-4089-84fc-80ac610248a1" priority="normal">
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.namespace" id="C3cf05bdc-15bc-4540-95d0-4a87b84eb9df_Ce45298d6-bb21-48c2-9f44-91b32411e0d0" priority="normal">
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
@@ -2091,8 +2091,8 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -2114,8 +2114,8 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -2135,8 +2135,8 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
             </property>
         </target>
     </cell>
@@ -2149,8 +2149,8 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
             </property>
         </target>
     </cell>
@@ -2165,8 +2165,8 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="uom"/>
             </property>
         </target>
@@ -2190,8 +2190,8 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="uom"/>
             </property>
         </target>
@@ -2213,8 +2213,8 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="uom"/>
             </property>
         </target>
@@ -2229,8 +2229,8 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseLinkType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="length" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="uom"/>
             </property>
         </target>
@@ -2258,7 +2258,7 @@ if (regionalsprache) {&#13;
         </source>
         <target>
             <class>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
             </class>
         </target>
         <complexParameter name="join">
@@ -2357,7 +2357,7 @@ if (_source.links.AX_BauwerkImGewaesserbereich.first()){&#13;
         </source>
         <target>
             <class>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
             </class>
         </target>
         <complexParameter name="join">
@@ -2449,7 +2449,7 @@ if (_source.links.AX_BauwerkImGewaesserbereich.first()){&#13;
         </source>
         <target>
             <class>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
             </class>
         </target>
         <complexParameter name="join">
@@ -2532,7 +2532,7 @@ if (obereGewaesserAchseIDs) {&#13;
         </source>
         <target>
             <class>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
             </class>
         </target>
         <complexParameter name="join">
@@ -2616,7 +2616,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <class>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
             </class>
         </target>
         <complexParameter name="join">
@@ -2702,7 +2702,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <class>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
             </class>
         </target>
         <complexParameter name="join">
@@ -2784,8 +2784,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2809,8 +2809,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2834,8 +2834,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2859,8 +2859,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2884,8 +2884,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2909,8 +2909,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2934,8 +2934,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2959,8 +2959,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2984,8 +2984,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -3009,8 +3009,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -3034,8 +3034,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -3059,8 +3059,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -3084,8 +3084,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -3109,8 +3109,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -3134,8 +3134,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -3159,8 +3159,8 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -3184,7 +3184,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3208,7 +3208,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3232,7 +3232,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3256,7 +3256,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3280,7 +3280,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3304,7 +3304,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3328,7 +3328,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3352,7 +3352,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3376,7 +3376,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3399,7 +3399,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3422,7 +3422,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3445,7 +3445,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3468,7 +3468,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3491,7 +3491,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3514,7 +3514,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3537,7 +3537,7 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3552,8 +3552,8 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C0770ce5a-e56e-4e98-ab1c-d7802faf4907" priority="normal">
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -3562,8 +3562,8 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C13a28068-b2af-407e-91c2-780ee4fa28f2" priority="normal">
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -3572,8 +3572,8 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C17077e21-db6b-43a0-b1a4-8e1a68dc9e25" priority="normal">
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -3582,8 +3582,8 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C3138ace2-ae86-4835-b110-f39ead4202a0" priority="normal">
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -3592,8 +3592,8 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_C34e7e1a9-d45a-4579-a5aa-53b2958a02e5" priority="normal">
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -3602,8 +3602,8 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="eu.esdihumboldt.hale.align.formattedstring" id="C55538203-dd9d-41f9-b453-d036082feada_Cd25b8ffb-1b4a-4fbc-b480-57faf3462979" priority="normal">
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inNetwork" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -3620,10 +3620,10 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -3645,10 +3645,10 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -3670,10 +3670,10 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -3695,10 +3695,10 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -3720,10 +3720,10 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -3745,10 +3745,10 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -3770,10 +3770,10 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -3795,10 +3795,10 @@ if(obereGewaesserAchseIDs){&#13;
         </source>
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -3812,10 +3812,10 @@ if(obereGewaesserAchseIDs){&#13;
     <cell relation="custom:alignment:adv.inspire.namespace" id="C12eaf7f7-c51d-4b2c-9650-a6e2491830d3" priority="normal">
         <target>
             <property>
-                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="WatercourseSeparatedCrossingType" ns="http://inspire.ec.europa.eu/schemas/hy-n/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/net/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
