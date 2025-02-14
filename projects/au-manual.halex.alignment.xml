@@ -775,7 +775,7 @@ Aktuell ist folgende Abbildung umgesetzt:
         </source>
         <target>
             <class>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </class>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -800,7 +800,7 @@ Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</doc
         </source>
         <target>
             <class>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </class>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -817,8 +817,8 @@ Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</doc
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cda73bba5-8df9-4012-bf50-946a7d3c3ea7" priority="normal">
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="admUnit" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="admUnit" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -837,8 +837,8 @@ Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</doc
         </source>
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -862,8 +862,8 @@ Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</doc
         </source>
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -879,8 +879,8 @@ Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</doc
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cba0fc743-8465-4b65-912a-f82a1f90d345" priority="normal">
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="country" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="country" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="Country" ns="http://www.isotc211.org/2005/gmd"/>
             </property>
         </target>
@@ -889,8 +889,8 @@ Link zur Datenspezifikation: https://inspire.ec.europa.eu/id/document/tg/au</doc
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cb8c4b6f3-d73d-468c-bb0b-9c60143f2dba" priority="normal">
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="country" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="country" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="Country" ns="http://www.isotc211.org/2005/gmd"/>
                 <child name="codeList"/>
             </property>
@@ -904,8 +904,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C5396ee5e-a30b-42a6-a82c-8b2664cee998" priority="normal">
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="country" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="country" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="Country" ns="http://www.isotc211.org/2005/gmd"/>
                 <child name="codeListValue"/>
             </property>
@@ -923,8 +923,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -948,8 +948,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -973,8 +973,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -996,8 +996,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -1019,7 +1019,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1042,7 +1042,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1066,7 +1066,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1089,7 +1089,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -1112,10 +1112,10 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <annotation type="message">
@@ -1137,10 +1137,10 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <parameter value="false" name="useTargetTypePrefix"/>
@@ -1155,18 +1155,18 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
     <cell relation="custom:alignment:adv.inspire.namespace" id="C6092e734-d37b-4a6b-964f-0b6762218a8d" priority="normal">
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cd23dd992-dc83-4e30-a67d-a4dcc56476ff" priority="normal">
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="legalStatus" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="legalStatus" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -1183,8 +1183,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -1240,8 +1240,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -1285,8 +1285,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C6ac9d6bf-2106-45c7-8ead-4e38d2374ed5" priority="normal">
         <target>
             <property>
-                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="technicalStatus" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeBoundaryType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="technicalStatus" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -1300,7 +1300,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <class>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -1430,7 +1430,7 @@ Die Verknüpfung zur untergeordneten Ebene von `AdministrativeUnit`s wird über 
         </source>
         <target>
             <class>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </class>
         </target>
         <complexParameter name="join">
@@ -1631,7 +1631,7 @@ Falls keine Zugehörigkeit zu einer Verwaltungsgemeinschaft besteht wird die Zug
         </source>
         <target>
             <class>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </class>
         </target>
         <complexParameter name="join">
@@ -1852,7 +1852,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
         </source>
         <target>
             <class>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -1998,7 +1998,7 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
         </source>
         <target>
             <class>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </class>
         </target>
         <complexParameter name="script">
@@ -2136,8 +2136,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2152,8 +2152,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2168,8 +2168,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2184,8 +2184,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2200,8 +2200,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2216,8 +2216,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2226,8 +2226,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C0c74cb2b-0866-4a59-ade9-e31fe3a2000f" priority="normal">
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="boundary" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="boundary" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -2236,8 +2236,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C1efcb03f-e0af-44e8-ae0a-bd1156e49dff" priority="normal">
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="country" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="country" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="Country" ns="http://www.isotc211.org/2005/gmd"/>
             </property>
         </target>
@@ -2246,8 +2246,8 @@ Die Information über die Zugehörigkeit zur übergeordneten `AdministrativeUnit
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cbea8cd8a-ea23-4c0d-8af0-0b1ef33b0420" priority="normal">
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="country" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="country" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="Country" ns="http://www.isotc211.org/2005/gmd"/>
                 <child name="codeList"/>
             </property>
@@ -2261,8 +2261,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Cfb72a1e8-0704-4dad-9129-6e84c67e2eb7" priority="normal">
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="country" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="country" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="Country" ns="http://www.isotc211.org/2005/gmd"/>
                 <child name="codeListValue"/>
             </property>
@@ -2278,8 +2278,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2294,8 +2294,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2310,8 +2310,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2326,8 +2326,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2342,8 +2342,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2358,8 +2358,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2374,7 +2374,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2388,7 +2388,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2402,7 +2402,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2416,7 +2416,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2430,7 +2430,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2444,7 +2444,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2458,7 +2458,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2472,7 +2472,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2486,7 +2486,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2500,7 +2500,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -2514,10 +2514,10 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
@@ -2530,10 +2530,10 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
@@ -2546,10 +2546,10 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
@@ -2562,10 +2562,10 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
@@ -2578,20 +2578,20 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
     <cell relation="custom:alignment:adv.inspire.namespace" id="Cf9be43df-c175-4f1d-b1f2-25c859526761" priority="normal">
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
@@ -2604,8 +2604,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -2619,8 +2619,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -2634,8 +2634,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -2649,8 +2649,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -2664,8 +2664,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="GeographicalName" ns="http://inspire.ec.europa.eu/schemas/gn/4.0"/>
             </property>
         </target>
@@ -2679,8 +2679,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2695,8 +2695,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2711,8 +2711,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2727,8 +2727,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2743,8 +2743,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalCode" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2759,8 +2759,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -2775,8 +2775,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -2791,8 +2791,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -2807,8 +2807,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -2823,8 +2823,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalLevel" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -2839,8 +2839,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalLevelName" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalLevelName" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
             </property>
         </target>
@@ -2855,8 +2855,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalLevelName" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalLevelName" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
             </property>
         </target>
@@ -2871,8 +2871,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalLevelName" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalLevelName" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
             </property>
         </target>
@@ -2887,8 +2887,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalLevelName" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalLevelName" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
             </property>
         </target>
@@ -2903,8 +2903,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="nationalLevelName" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="nationalLevelName" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="LocalisedCharacterString" ns="http://www.isotc211.org/2005/gmd"/>
             </property>
         </target>
@@ -2913,8 +2913,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="Ca7512f94-afc7-4040-924d-0b8ce6303b61" priority="normal">
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="residenceOfAuthority" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="residenceOfAuthority" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -2929,8 +2929,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="upperLevelUnit" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="upperLevelUnit" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="href" ns="http://www.w3.org/1999/xlink"/>
             </property>
         </target>
@@ -2944,7 +2944,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <class>
-                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </class>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2953,8 +2953,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
     <cell relation="eu.esdihumboldt.hale.align.assign" id="C635bad95-0f4b-4482-86c1-dec0a31966a8" priority="normal">
         <target>
             <property>
-                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="admUnit" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="admUnit" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="nilReason"/>
             </property>
         </target>
@@ -2969,8 +2969,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="beginLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -2985,8 +2985,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="endLifespanVersion" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -3001,8 +3001,8 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="geometry" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
             </property>
         </target>
     </cell>
@@ -3015,7 +3015,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3030,7 +3030,7 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
+                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
                 <child name="identifier" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
@@ -3044,10 +3044,10 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
         </source>
         <target>
             <property>
-                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
         <parameter value="false" name="useTargetTypePrefix"/>
@@ -3055,10 +3055,10 @@ und http://inspire.ec.europa.eu/codelist/CountryCode</documentation>
     <cell relation="custom:alignment:adv.inspire.namespace" id="C48c6b769-4bfd-4fbb-bed8-15e3e29aefbf" priority="normal">
         <target>
             <property>
-                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <type name="CondominiumType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/4.0"/>
             </property>
         </target>
     </cell>
