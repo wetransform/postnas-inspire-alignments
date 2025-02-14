@@ -161,6 +161,10 @@ Zusätzlich sollte auf jeden Fall die `.rej`-Datei geprüft werden, denn diese e
 
 Auch bei erfolgreicher Anwendung des Diffs sollte geprüft werden, ob eventuell neu hinzugekommene oder angepasste Mappings im Kontext des angepassten Quell-Schemas noch gültig sind.
 
+#### Hinweis zur Migration des Alignments "Verwaltungseinheiten" (au)
+
+Wird der Task zu Migration des Alignments (`migrate-au`) mit Windows ausgeführt, wird im Alignment das Mapping auf 'AdministrativeUnit.upperLevelUnit (Cell id="C8dac57f2-ccc4-4666-997a-6900aedfd82a") automatisch korrekt hinzugefügt. Es ist keine manuelle Anpassung notwendig. Wird der Task unter Linux ausgeführt, ist es notwendig das Mapping manuell zu ergänzen und es ist daher in der entsprechenden diff-Datei enthalten. Der entsrpechende Hunk der diff-Datei kann unter Windows nicht angewendet werden und wird abgelehnt, diese Meldung kann ignoriert werden.
+
 
 ### Manuelle Anpassung
 
