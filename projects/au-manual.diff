@@ -338,8 +338,8 @@ index bba3fe5..a361d45 100644
 +        </source>
 +        <target>
 +            <property>
-+                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
-+                <child name="upperLevelUnit" ns="http://inspire.ec.europa.eu/schemas/au/4.0"/>
++                <type name="AdministrativeUnitType" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
++                <child name="upperLevelUnit" ns="http://inspire.ec.europa.eu/schemas/au/5.0"/>
 +                <child name="href" ns="http://www.w3.org/1999/xlink"/>
 +            </property>
 +        </target>
