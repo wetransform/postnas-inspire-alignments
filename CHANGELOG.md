@@ -1,3 +1,15 @@
+## [7.1.0](https://github.com/wetransform/postnas-inspire-alignments/compare/v7.0.0...v7.1.0) (2025-02-21)
+
+### Features
+
+* update mapping au to new INSPIRE schema 5.0 ([fcdaefa](https://github.com/wetransform/postnas-inspire-alignments/commit/fcdaefac4921843644d9aec4b2b6f473ce8f8b4a))
+* update mapping hy-n to new INSPIRE schema 5.0 ([fe61a96](https://github.com/wetransform/postnas-inspire-alignments/commit/fe61a96a5b490eafe461f9cf68b1e91360663468))
+* update mapping hy-p to new INSPIRE schema 5.0 ([de4311f](https://github.com/wetransform/postnas-inspire-alignments/commit/de4311f9ab1b85527ca49cfc5292775adcbdfeb6))
+* update mapping lc to new INSPIRE schema 5.0 ([d9476de](https://github.com/wetransform/postnas-inspire-alignments/commit/d9476dee5a781f87f94f35359896421f6711f090))
+* update mapping tn-ra to new INSPIRE schema 5.0 ([4d0d25a](https://github.com/wetransform/postnas-inspire-alignments/commit/4d0d25a1319a9c2ea1cfd80acaaed03654ca8226))
+* update mapping tn-ro to new INSPIRE schema 5.0 ([0b67b1f](https://github.com/wetransform/postnas-inspire-alignments/commit/0b67b1f23f265659a8e6d4cf58bd6cd31d2742b7))
+* update mapping tn-w to new INSPIRE schema 5.0 ([711ccf6](https://github.com/wetransform/postnas-inspire-alignments/commit/711ccf6cd6715c420d2d243ba3e60a3bac39a0e5))
+
 ## [7.0.0](https://github.com/wetransform/postnas-inspire-alignments/compare/v6.22.0...v7.0.0) (2024-09-16)
 
 
