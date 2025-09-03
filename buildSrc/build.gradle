@@ -3,5 +3,5 @@ repositories {
 }
 
 dependencies {
-  implementation 'org.yaml:snakeyaml:1.33'
+  implementation 'org.yaml:snakeyaml:2.5'
 }
