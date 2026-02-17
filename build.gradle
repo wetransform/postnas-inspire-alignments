@@ -883,5 +883,5 @@ distributions {
 }
 
 wrapper {
-  gradleVersion = '8.10.1'
+  gradleVersion = '9.3.1'
 }
